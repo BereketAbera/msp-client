@@ -1,0 +1,93 @@
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {ActivatedRoute,Router} from "@angular/router";
+import {MatPaginator, MatSort, MatTableDataSource} from "@angular/material";
+import {TransactionService} from "../../service/transaction.service";
+import {tap} from 'rxjs/operators';
+import {merge} from "rxjs/observable/merge";
+import {TransactionsDataSource} from "../../service/transaction-data-source.service";
+import { Transaction } from 'src/app/model/transaction';
+
+@Component({
+  templateUrl: './buyer-orders.component.html',
+  styleUrls: ['./buyer-orders.component.css']
+})
+export class BuyerOrdersComponent implements OnInit, AfterViewInit{
+  
+  orders:Transaction[];
+  dataSource: TransactionsDataSource;
+  qrCode;
+
+  //displayedColumns= ["name","status","quantity","price","totalPrice","ViewOrder"];
+
+  //@ViewChild(MatPaginator) paginator: MatPaginator;
+
+  ////@ViewChild(MatSort) sort: MatSort;
+
+  //@ViewChild('input') input: ElementRef;
+
+  constructor(private route: ActivatedRoute,
+              private transactionService: TransactionService,private router:Router) {
+
+  }
+
+  ngOnInit() {
+    this.route.data
+    .subscribe((data: { orders: Transaction[]}) => {
+      this.orders = data.orders;
+     
+  });
+      //this.dataSource = new TransactionsDataSource(this.transactionService);
+      //this.dataSource.loadTransactions(1, '', 'asc', 0, 5);
+  }
+
+  ngAfterViewInit() {
+
+      //this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
+     // merge(this.sort.sortChange, this.paginator.page)
+      //.pipe(
+          //tap(() => this.loadTransactionsPage())
+      ////)
+      //.subscribe();
+
+  }
+  getStatus(transaction:Transaction){
+    let prdPickupEndTime = new Date(transaction.product.pickupEndTime);
+    let purchaseTime = new Date(transaction.purchaseTime);
+     let pickupEndTime = new Date(purchaseTime.getFullYear(),purchaseTime.getMonth(),purchaseTime.getDate(),prdPickupEndTime.getHours(),prdPickupEndTime.getMinutes(),prdPickupEndTime.getSeconds()).getTime();
+    //let pickupEndTime = new Date(transaction.product.purchaseTime).getTime();
+    let status = "Pending"
+    if(transaction.isScanneded){
+        if(transaction.status==1){
+          status = "Picked Up";
+          
+        }else if(transaction.status==2){
+          status = "Rejected";
+         
+        }else{
+          status = pickupEndTime < Date.now() ? "Rejected" : "Pending";
+        }
+    }else{
+      status = pickupEndTime < Date.now() ? "Expired" : "Pending";
+    }
+    return status;
+  }
+  gotoAddNewProduct(){
+    this.router.navigate(["./nwadtlgu"],{relativeTo:this.route})
+  }
+  showOrders(){
+    if(this.orders.length > 0)
+      return true;
+    return false;
+  }
+  loadTransactionsPage() {
+      /*this.dataSource.loadTransactions(
+          1,
+          'name',
+          this.sort.direction,
+          this.paginator.pageIndex,
+          this.paginator.pageSize);*/
+  }
+
+
+}
+

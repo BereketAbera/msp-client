@@ -1,0 +1,180 @@
+.searchContainer{
+    display: flex;
+    
+  }
+  .locationS{
+    width:120px;
+    padding-left: 1px;
+    padding-right: 10px;
+  }
+  .ffrMenu{
+    background-color: #ff4081;
+    color:rgb(255, 255, 255);
+    text-align: center;
+    border-bottom: 1px solid white;
+  }
+  
+  .example-card {
+    width: 100%;
+    padding: 0px;
+  }
+  img {
+    width: 100%;
+    height: 180px;
+    image-orientation: from-image;
+  
+  }
+  @media only screen and (min-width: 732px) {
+    img {
+      width: 100%;
+      height: 411px;
+      object-fit: cover;
+      image-orientation: from-image;
+    }
+  }
+  input[type=text]{
+      width:100%;
+      font-weight: 400;
+      font-size: 14;
+      margin:8px 0;
+      outline:none;
+      padding:8px;
+      box-sizing:border-box;
+      transition:.3s;
+    }
+    input[type=text] {
+      border: 0px;
+    }
+    input[type=text]:focus{
+      border-color:dodgerBlue;
+      box-shadow:0 0 8px 0 dodgerBlue;
+    }
+    
+    .inputWithIcon input[type=text]{
+      padding-left:40px;
+     }
+    
+    .inputWithIcon{
+      position:relative;
+    }
+    
+    .inputWithIcon i{
+      position:absolute;
+      left:0;
+      top:4px;
+      padding:9px 8px;
+      color:#aaa;
+      transition:.3s;
+    }
+    
+    .inputWithIcon input[type=text]:focus + i{
+      color:dodgerBlue;
+    }
+    
+    .inputWithIcon.inputIconBg i{
+      background-color:#aaa;
+      color:#fff;
+      padding:9px 4px;
+      border-radius:4px 0 0 4px;
+    }
+    img {
+      max-width: 100%;
+    }
+    .inputWithIcon.inputIconBg input[type=text]:focus + i{
+      color:#fff;
+      background-color:dodgerBlue;
+    }
+    .example-container {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .example-container > * {
+      width: 100%;
+    }
+    .fill-remaining-space {
+      /* This fills the remaining space, by using flexbox. 
+         Every toolbar row uses a flexbox row layout. */
+      flex: 1 1 auto;
+    }
+    .fill-remaining-space1{
+      flex:1 1 auto;
+      font-size: 12;
+      font-weight: 200;
+      font-family: "Open Sans", OpenSans, system, -apple-system, BlinkMacSystemFont, Roboto, Arial, FreeSans, sans-serif;
+    }
+    .captureC{
+      background-color: blueviolet;
+  }
+  .sale {
+      position: relative;
+      text-align: center;
+      color: white;
+  }
+  .centered {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+  }
+  
+  ul {
+    list-style: none;
+    padding-left: 0px;
+  }
+  a {
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+  }
+  .clickCard
+    {
+      position: absolute;
+      top: 0; left: 0;
+      height: 100%; width: 100%;
+      }
+  .prdName{
+    font-weight: bold;
+  }
+  .strikethrough {
+    text-decoration: line-through;
+  }
+  .itemPriceBfr{
+    text-decoration: line-through;
+    font-size: 14px;
+    font-weight: bold;
+    color:grey;
+  }
+  .itmPriceNw{
+    font-size: 18px;
+    font-weight: bold;
+    color:#ff4081;
+  
+  }
+  .material-icons {
+    vertical-align: middle;
+  }
+  
+  .itemContent{
+    line-height: 1.2;
+    padding-left: 5px;
+    padding-right: 8px;
+  }
+  .push {
+     margin-left: auto;
+     text-align: end;
+  }
+  .mng {
+     font-size: 12px;
+  }
+  .lmtd {
+    text-align: justify;
+    font-size: 12px;
+    font-weight:lighter;
+    line-height: 1.2;
+  }
+  .material-icons.orange600 { color: #f44336; }
+  .material-icons.md-48 { font-size: 72px; }
+  .material-icons.yellowStar { color:#ffc120; width:24px;}
+  .material-icons.greyStar { color:lightgray;width:24px; }
+  

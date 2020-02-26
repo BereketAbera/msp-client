@@ -1,0 +1,28 @@
+.btnPadd{
+    padding-top: 10px;
+}
+#errorCntr {
+    width: 80%;
+    border: 2px solid red;
+    padding: 15px 15px 15px 15px;
+    margin: 20px 20px 20px 20px;
+    background: #A4D3EE;
+    overflow: visible;
+    position: relative;
+  }
+  .divMrg {
+      margin-left: 10px;
+      margin-bottom: 20px;
+  }
+  #errClsBtn {
+      position: absolute;
+      background: red;
+      color: white;
+      top: -10px;
+      right: -10px;
+  }
+  ul {
+    list-style: none; /* Remove list bullets */
+    padding: 0;
+    margin: 0;
+}

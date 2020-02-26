@@ -1,0 +1,20 @@
+<mat-card>
+    <h2>Order Detail</h2>
+    <mat-card-content>
+      <h4>Order</h4>
+      <p>Product: {{order.product.name}}</p>
+      <p>Order Date: {{order.purchaseTime|date:"short"}}</p>
+      <p>Service Time</p>
+      <ul>
+        <li><p>Starting: {{order.pickupStartTime|date:'short'}}</p></li>
+        <li></li>
+        <li><p>Ending: {{order.pickupEndTime|date:'short'}}</p></li>
+      </ul>
+      <p>Discounted Unit Price: {{order.discountedPrice|currency}}</p>
+      <p>Quantiy: {{order.quantity}}</p>
+      <p>Total: {{order.quantity*order.discountedPrice|currency}} plus any tax</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button type="button" mat-flat-button color="accent" (click)="gotoSellerTrans()" >Cancel</button>
+    </mat-card-actions>
+  </mat-card>

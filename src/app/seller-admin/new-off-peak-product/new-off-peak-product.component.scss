@@ -1,0 +1,107 @@
+.dateCtrl {
+    width: 110px;
+  }
+  .hhMMCntrl {
+    width: 35px;
+  }
+ .ampm{
+    width: 40px;
+  }
+.captureC{
+    text-align: center;
+    padding: 2px;
+}
+
+.mainC{
+    position: relative;
+    height:12%;
+}
+.clickCard
+    {
+      position: absolute;
+      top: 0; left: 0;
+      height: 100%; width: 100%;
+      }
+
+.captureBrdr{
+    border: 2px dotted white;
+    
+    
+}
+.material-icons.orange600 { color: #f44336; }
+.material-icons.md-48 { font-size: 60px; }
+.offerTitle{
+    font-size:small;
+}
+
+#errorCntr {
+    width: 80%;
+    border: 2px solid red;
+    padding: 15px 15px 15px 15px;
+    margin: 20px 20px 20px 20px;
+    background: #A4D3EE;
+    overflow: visible;
+    position: relative;
+  }
+  
+  #errClsBtn {
+      position: absolute;
+      background: red;
+      color: white;
+      top: -10px;
+      right: -10px;
+  }
+  ul {
+    list-style: none; /* Remove list bullets */
+    padding: 0;
+    margin: 0;
+}
+.spaceDown{
+    margin-bottom: 20px;
+}
+.pdlft{
+    padding-left: 5px;
+}
+.example-section {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 60px;
+}
+.example-margin {
+  margin: 0 10px;
+  font-size: 12px;
+}
+.scrolling-wrapper-flexbox {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    margin-top: 10px;
+    padding-bottom: 15px;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    .card {
+      flex: 0 0 auto;
+      width:105px;
+      height: 120px;
+      padding-left: 10px;
+     .glryImg{
+        width:100px;
+        height: 80px;
+        margin: 3px;
+        border-radius: 25px;
+      }
+      input[type=radio] {
+        display:none; 
+        margin:10px;
+      }
+      input[type=radio]:checked + label>img { 
+        border: 2px solid red;
+        padding: 2px;
+        
+      }
+   }
+   
+    
+  }

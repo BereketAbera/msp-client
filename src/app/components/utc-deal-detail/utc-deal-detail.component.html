@@ -1,0 +1,93 @@
+
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <mat-card  class="example-card" >
+        <img class="image-card" mat-card-image src="{{product.imagePath}}" alt="Photo of a Shiba Inu">
+      <mat-card-content class="itemContent zeroPm">
+          <ul>
+            <li>
+              <div fxLayout="row nowrap">
+                  <div>
+                      <span class="prdName">{{product?.name}}</span>
+                    </div>
+                    <div class="push"></div>
+                </div>
+                
+              </li>
+              <li>
+                <div fxLayout="row nowrap">
+                    <div>
+                        
+                      </div>
+                      <div class="push"> <span >Reserve Orders: {{product?.offerStartTime|date:'shortTime'}}
+                        To: {{product?.offerEndTime|date:'shortTime'}}
+                     </span></div>
+                  </div>
+                  
+                </li>
+          
+        
+          <li>
+            <div fxLayout="row nowrap">
+                  <div>
+                      
+                    </div>
+                    <div class="push"> <span>Service Time: {{product?.pickupStartTime|date:'shortTime'}}
+                      To: {{product?.pickupEndTime|date:'shortTime'}}
+                   </span></div>
+                </div>
+          </li>
+          <li>
+            <div fxLayout="row nowrap">
+                  <div>
+                      <span><strong>{{product.shopName}} </strong>{{product.shop.address}}, {{product.shop.city}}</span>
+                    </div>
+                    <div> </div>
+                </div>
+          </li>
+              <li>
+                      <div fxLayout="row">
+                              <div>
+                                  <span class="prdName">{{product.description}}</span>
+                                </div>
+                                <div class="push"> <span class="lftTime">Quantity left: </span> 
+                                    <span>{{product.quantityOnHand}}</span></div>
+                            </div>
+                  </li>
+                 
+              <li>
+                <div fxLayout="row nowrap">
+                  <div><span>UTC Time: {{utcTime}}</span></div>
+                    <div class="push"> <span class="itemPriceBfr">{{product.normalPrice|currency}}</span> <span class="itmPriceNw"> now {{product.discountPrice|currency}}</span></div>
+                </div>
+                
+              </li>
+              
+            </ul>
+            
+      </mat-card-content>
+     <mat-card-actions class="zeroPm">
+          <form [formGroup]="buyForm" class="zeroPm">
+            
+                  <div fxLayout="row nowrap" fxLayoutAlign="space-around center" class="zeroPm">
+                      
+                      <mat-form-field class="quantityW zeroPm">
+                              <input type="number" formControlName="quantity" #qnty matInput  value="1" min="1" [max]="product.quantity">
+                              <span matPrefix>qty:&nbsp;</span>
+                          </mat-form-field>
+                          
+                          <div class="zeroPm" >
+                            <span>Total:</span><span class="itmPriceNw">{{qnty.value*product.discountPrice|currency}}</span>
+                  </div>
+                  
+                  <div fxLayout="row" fxLayoutGap="3px" class="zeroPm">
+                                  <button  mat-flat-button color="accent" (click)="addToCart()"><mat-icon>shopping_cart</mat-icon>
+                                    <span>Add to Cart</span></button>
+                                  <button  mat-flat-button color="accent" (click)="cancel()">Cancel</button>
+                                </div>
+                                  
+                      </div>
+                          </form>
+     </mat-card-actions>
+    </mat-card>
+    
+</div>

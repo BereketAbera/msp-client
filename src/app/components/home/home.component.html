@@ -1,0 +1,35 @@
+<mat-card *ngIf="isIE()"  class="example-card">
+        <mat-card-content class="itemContent">
+            <P>You are using Microsoft Edge browser. Our App works better with Chrome, Safari, Firefox, and Opera.</P>
+            </mat-card-content>
+</mat-card>
+<div>
+     
+    <div class="scrolling-wrapper-flexbox">
+      <div class="card" *ngFor="let catagory of caragories">
+        <input type="radio" (click)="searchByCtgry(catagory.id)" [id]="catagory.id" name="gender">
+        <label [for]="catagory.id">
+         <span class="glryImg">{{catagory.name}}</span>
+        </label>
+        
+      </div>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+<div  fxLayout="column"  fxLayoutAlign="center center">
+  <div  class="example-viewport">
+  <div *ngFor="let product of products" >
+      <app-product  [product]="product" ></app-product>
+  </div>
+  </div>
+  <!-- <div #anchor class="loader-container" [class.hide-loader]="reachedPageEnd"><div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div></div> -->
+  <div id='xyze12' #anchor >
+    
+  </div>
+  <div style="min-height: 100px; width: 100%"></div>
+</div>
+
+<div  class="footer">
+  <button (click)="gotoCart()" mat-fab color="accent"><mat-icon>shopping_cart</mat-icon>
+      <span>Cart</span></button>
+</div>

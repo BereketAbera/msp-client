@@ -1,0 +1,36 @@
+<div *ngIf="showError" id="errorCntr">
+  <button id = "errClsBtn" (click)="close()">
+      X
+  </button>
+  <ul>
+    <li *ngFor="let error of errors">
+      {{error}}
+    </li>
+    
+  </ul>
+</div>
+<form [formGroup]="paymentForm" >
+  <mat-card>
+    <mat-card-content>
+      <div fxLayout="column">
+        <div>
+            <span style="display:block; color: rgba(0,0,0,0.54);font-size: 12px; font-weight: 400;padding: .4375em 0;line-height: 1.125;">Payment Amount</span>
+            <label>{{orderAmount|currency}}</label>
+           <br>
+           <br>
+          </div>
+        <div fxLayout="row" fxLayoutGap="3px">
+          <div>
+            <button type="button" (click)="onSubmit()" mat-flat-button color="accent">Pay Handling Fee Now</button>
+          </div>
+          
+           <div>
+              <button type="button" mat-flat-button color="accent" (click)="goToHome()" >Cancel</button>
+           </div>
+           
+         </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</form>
+

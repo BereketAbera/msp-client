@@ -1,0 +1,22 @@
+
+.spaceNext{
+    padding-top: 20px;
+  }
+.spaceLeft{
+    margin-left: 20px;
+}
+.zipstatecity {
+    width: 120px;
+  }
+  .itmPriceNw{
+    font-size: 18px;
+    font-weight: bold;
+    color:#ff4081;
+
+  }
+  .quantityW {
+    width: 70px;
+  }
+  .ordcls{
+    border-bottom: 2px dashed black;
+  }

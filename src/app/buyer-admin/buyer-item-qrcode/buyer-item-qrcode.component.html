@@ -1,0 +1,133 @@
+<div *ngIf="showAcceptReject()" fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center">
+<div *ngIf="showError" id="errorCntr">
+    <button id = "errClsBtn" (click)="close()">
+        X
+    </button>
+    <ul>
+        <li *ngFor="let error of errors">
+          {{error}}
+        </li>
+        
+      </ul>
+    
+  </div>
+</div>
+<div *ngIf="showAcceptReject()" fxLayout="column" fxLayoutAlign="center">
+  
+  <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center"> 
+  <div *ngIf="showAccept()">
+    <button type="button" mat-flat-button color="accent"   (click)="acceptProduct()">Accept Product</button>
+  </div>
+  <div *ngIf="showReject()">
+    <button type="button" mat-flat-button color="accent" (click)="rejectProduct()">Reject Product</button>
+  </div>
+ 
+  </div>
+  <div>
+      <p class="infoOrder">Present this code to store for your pick up. Examine the product carefully before you press Accept or Reject.
+        No returns once accepted; Your account will receive a credit if rejected.</p>
+    </div>
+</div>
+<div fxLayout="column" fxLayoutAlign="center center">
+  <P >Order Number: <span class="inputCode">{{code}} </span></P>
+</div>
+<div class="container invoice">
+  <div class="invoice-body">
+    <div class="row">
+      <div class="col-xs-5">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Order</h3>
+          </div>
+          <div class="panel-body">
+            <p>Status: {{ORDERSTATUS}}</p>
+            <p>Service Starts: {{transStatus.claimStartDate|date:"yyyy-MM-dd HH:mm:ss"}}</p>
+            <p>Service Ends: {{transStatus.claimEndDate|date:"yyyy-MM-dd HH:mm:ss"}}</p>
+            <p *ngIf="showClaimedDate()">{{CLAIMMSG}}: {{transStatus.claimedDate|date:"yyyy-MM-dd HH:mm:ss"}}</p>
+            <p *ngIf="showIfRejected()">Refund available one hour after product rejection time.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="col-xs-5">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Company Details</h3>
+          </div>
+          <div class="panel-body">
+            <p>Name: {{supplier.name}}</p>
+            <p>Address: {{supplier.address}}</p>
+            <p>Phone: {{supplier.phoneNumber}}</p>
+            <p>Website: {{supplier.website}}</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <br>
+        <h3 class="panel-title">Services / Products</h3>
+      </div>
+      <table class="table table-bordered table-condensed">
+        <tbody>
+          <tr>
+            <td>Item</td>
+            <td class="text-center colfix">Quanity</td>
+            <td class="text-center colfix">Unit Cost</td>
+            <td class="text-center colfix">Sub Total</td>
+          </tr>
+          <tr>
+            <td>
+              {{transaction.product.name}}
+              <br>
+              <small class="text-muted">{{transaction.product.description}}</small>
+            </td>
+            <td class="text-right lineTax">
+              <span class="mono">{{transaction.quantity}}</span>
+
+            </td>
+            <td class="text-right lineTax">
+              <span class="mono">{{transaction.product.discountPrice|currency}}</span>
+
+            </td>
+
+            <td class="text-right lineTax">
+              <strong class="mono">{{transaction.quantity*transaction.product.discountPrice|currency}}</strong>
+            </td>
+          </tr>
+          <tr>
+
+            <td colspan="3" class="tdx">
+              <span class="mono">Tax</span>
+
+            </td>
+
+            <td class="text-right">
+              <strong class="mono">{{transaction.quantity*transaction.product.discountPrice*transaction.product.shop.tax/100|currency}}</strong>
+            </td>
+          </tr>
+          <tr>
+
+            <td colspan="3" class="tdx">
+              <span class="mono">Total</span>
+
+            </td>
+
+            <td class="text-right">
+              <strong class="mono">{{transaction.quantity*transaction.product.discountPrice*(1 +
+                transaction.product.shop.tax/100)|currency}}</strong>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="invoice-footer">
+    Thank you for choosing our services.
+    <br /> We hope to see you again soon.
+    <br />
+  </div>
+</div>

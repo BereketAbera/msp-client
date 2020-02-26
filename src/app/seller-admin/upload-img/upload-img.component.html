@@ -1,0 +1,43 @@
+<div *ngIf="showError" id="errorCntr">
+  <button id = "errClsBtn" (click)="close()">
+      X
+  </button>
+  <ul>
+    <li *ngFor="let error of errors">
+      {{error}}
+    </li>
+    
+  </ul>
+</div>
+<form  [formGroup]="uploadForm" >
+  <div class="ffrMenu captureC" fxLayout="row" fxLayoutAlign="start" fxLayoutGap="10px">
+    <div>
+      <div><span>Keep picture size smaller.  Max 1M.</span></div>
+      <div><span>Click to use camera or upload an image</span></div>
+       <div class="captureBrdr">
+        <label for="file">
+          <i class="material-icons orange600 md-48"></i>
+          <input type="file" #file id="file" (change)="filePreviewHandler($event)" accept="image/jpg,image/jpeg,image/gif,image/png"
+            style="display: none;">
+        </label>
+      </div>
+    </div>
+    <div *ngIf="showImage" class="captureBrdr" fxFlexAlign="center">
+      <img src={{imgPath}} height="96px" width="110px">
+    </div>
+  </div>
+ 
+  <div fxLayout="column" class="frmDiv">
+    <mat-form-field>
+      <input type="text" placeholder="Name of Image" matInput  formControlName="name" required>
+    </mat-form-field>
+   
+  </div>
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <div fxLayout="row nowrap" fxLayoutGap="10px" class="spaceDown">
+      <div><button (click)="onSubmit()" mat-flat-button color="accent" [disabled]="!uploadForm.valid">Upload</button></div>
+      <div><button type="button" mat-flat-button color="accent" (click)="gotoGallery()">Cancel</button></div>
+    </div>
+  </div>
+</form>
+

@@ -1,0 +1,97 @@
+<div *ngIf="showError" id="errorCntr">
+  <button id = "errClsBtn" (click)="close()">
+      X
+  </button>
+  <ul>
+    <li *ngFor="let error of errors">
+      {{error}}
+    </li>
+    
+  </ul>
+</div>
+<form [formGroup]="paymentForm" (ngSubmit)="onSubmit()">
+    
+  <mat-card>
+    <span>BILLING INFORMATION</span>
+    <mat-card-content>
+      <div fxLayout="column" fxLayoutGap="5px">
+          <div fxLayout="row" fxLayoutGap="7px">
+        <mat-form-field>
+          <input matInput placeholder="First Name" formControlName="firstName" required>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Last Name" formControlName="lastName" required>
+          </mat-form-field>
+          </div>
+          <mat-form-field>
+          <input matInput placeholder="Address" formControlName="address" required>
+        </mat-form-field>
+        <div fxLayout="row" fxLayoutGap="7px">
+          <mat-form-field class="zipstatecity">
+            <input matInput placeholder="City" formControlName="city" required>
+          </mat-form-field>
+          <mat-form-field class="zipstatecity">
+            <input matInput placeholder="State" formControlName="state" required>
+          </mat-form-field>
+          <mat-form-field class="zipstatecity">
+            <input matInput type="text" placeholder="Zip / Postal Code" matInput [matAutocomplete]="auto"
+              formControlName="zipCode" required>
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option *ngFor="let result of zipCodeHints$ | async" [value]="result.zipCode">
+                <span>{{result.zipCode}}</span>
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </div>
+
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card>
+    <span>PAYMENT INFORMATION</span>
+    <mat-card-content>
+      <div fxLayout="column">
+        <div fxLayout="row" fxLayoutGap="5px">
+          <mat-form-field>
+            <input matInput id="cc-number" formControlName="creditCard" placeholder="Card Number" type="tel"
+              autocomplete="cc-number" ccNumber>
+          </mat-form-field>
+          <div fxFlexAlign="center"  >
+            <img src="/assets/image/vmd.jpeg" width="120px" height="30px">
+          </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="5px">
+          <mat-form-field>
+            <input matInput id="cc-exp-date" formControlName="expirationDate" placeholder="Exipiration Date MM/YY"
+              type="tel" autocomplete="cc-exp" ccExp>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput id="cc-cvc" type="number" formControlName="cvc" maxlength="4" placeholder="CVC" type="tel"
+              autocomplete="off" ccCvc>
+          </mat-form-field>
+        </div>
+        <div>
+            
+          <mat-checkbox formControlName="rememberCrdt">Remember my payment information </mat-checkbox>
+        </div>
+        <div>
+          <mat-form-field>
+            <input matInput type="number" min={{minimumAmount}} formControlName="deposit" placeholder="Deposit Amount" >
+            <span matPrefix>$&nbsp;</span>
+            <mat-hint align="start"><strong>Minimum top up is {{minimumAmount|currency}}</strong> </mat-hint>
+          </mat-form-field>
+        </div>
+        <div fxLayout="row"  fxLayoutGap="7px" class="spaceNext">
+          <div>
+            <button type="submit" mat-flat-button color="accent" [disabled]="!paymentForm.valid">Pay Now</button>
+          </div>
+          <div>
+            <button type="button" mat-flat-button color="accent" (click)="goToHome()">Cancel</button>
+          </div>
+          
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+ </form>

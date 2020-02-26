@@ -1,0 +1,59 @@
+
+<mat-card *ngIf="product"  class="example-card">
+  <a class="clickCard" (click)="navdetail(product)"></a>
+<img class="image-card"  src="{{product?.imagePath}}" alt="Photo of a Shiba Inu">
+<mat-card-content class="itemContent">
+    <ul>
+        <li>
+            <div fxLayout="row nowrap">
+                <div>
+                    <span class="prdName">{{product?.name}}</span>
+                  </div>
+                  <div class="push"></div>
+              </div>
+              
+            </li>
+            <li>
+              <div fxLayout="row nowrap">
+                  <div>
+                  </div>
+                    <div class="push"> <span >Reserve Orders From {{product?.offerStartTime|date:'shortTime'}}
+                      to {{product?.offerEndTime|date:'shortTime'}}
+                   </span></div>
+                </div>
+                
+              </li>
+       
+       <li>
+          <div fxLayout="row nowrap">
+                <div>
+                </div>
+                  <div class="push"> <span>Arrive at Restaurant From {{product?.pickupStartTime|date:'shortTime'}}
+                    to {{product?.pickupEndTime|date:'shortTime'}}
+                 </span></div>
+              </div>
+        </li>
+        <li class="lmtd"><span class="lmtd">Limited quantity. Must reserve online, get special discount code from us, arrive at restaurant within service time.  Pay restaurant directly. Enjoy!</span></li>
+        <li><span>{{product?.description}}</span></li>
+        <li>
+          <div fxLayout="row nowrap">
+                <div>
+                    <span><strong>{{product.shopName}} </strong>{{product.address}}, {{product.city}}</span>
+                  </div>
+                  <div> </div>
+              </div>
+        </li>
+        <li>
+          <div fxLayout="row nowrap">
+            <div>
+              <span>UTC Time: {{utcTime}}</span>
+              </div>
+              <div class="push"> <span class="itemPriceBfr">{{product?.normalPrice|currency}}</span> <span class="itmPriceNw"> <span class="mng"> ManagerSpecial</span> {{product?.discountPrice|currency}}</span></div>
+          </div>
+          
+        </li>
+      </ul>
+ </mat-card-content>
+
+</mat-card>
+

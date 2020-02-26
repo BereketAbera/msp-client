@@ -1,0 +1,70 @@
+
+example-container {
+    display: flex;
+    flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 126px;
+  padding: 66px;
+  border-radius: 8px;
+  }
+  .errorCnt{
+    width: 100%;
+   border: 2px solid red
+  }
+  .spaceTrms{
+    color:rgb(0, 147, 234);
+  }
+  span:hover{
+    text-decoration: underline;
+  }
+  .example-container > * {
+    width: 100%;
+    margin-left: 5px;
+    margin-left: 5px;
+  }
+  label {
+    font-family: Open Sans,OpenSans,system,-apple-system,BlinkMacSystemFont,Roboto,Arial,FreeSans,sans-serif;
+  }
+  .example-right-align {
+    text-align: right;
+  }
+  .example-full-width {
+    width: 100%;
+  }
+  input.example-right-align::-webkit-outer-spin-button,
+  input.example-right-align::-webkit-inner-spin-button {
+    display: none;
+  }
+  
+  input.example-right-align {
+    -moz-appearance: textfield;
+  }
+  #errorCntr {
+    width: 80%;
+    border: 1px solid red;
+    padding: 15px 15px 15px 15px;
+    margin: 20px 20px 20px 20px;
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    overflow: visible;
+    position: relative;
+  }
+  
+  #errClsBtn {
+      position: absolute;
+      background-color: #a94442;
+      border-color: #ebccd1;
+      top: -10px;
+      right: -10px;
+      border: 0;
+      box-shadow: none;
+      border-radius: 0px;
+  }
+  ul {
+    list-style: none; /* Remove list bullets */
+    padding: 0;
+    margin: 0;
+  }
+ 

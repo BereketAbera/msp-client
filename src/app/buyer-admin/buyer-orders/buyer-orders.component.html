@@ -1,0 +1,29 @@
+<div>
+<div>
+  <mat-card>
+    <p>Only orders that are not used and within their service time windows are displayed here. Click 'History' button on the top to see past orders.</p>
+  </mat-card>
+</div>
+<div *ngFor= "let order of orders" >
+       <mat-card>
+          <p>Seller: <strong>{{order.shopName}}</strong></p>
+          <p>Address: {{order.address}}</p>
+           <p>Show Seller this discount code before service: <strong>{{order.code}}</strong></p>
+            <mat-card-content>
+              <div class="product-image" ><img src="{{order.imagePath}}"> </div>
+              <p>{{order.name}}</p>
+              <p>Order Date: {{order.purchaseTime|date:"short"}}</p>
+              <p>Service Starts: {{order.pickupStartTime|date:"short"}}</p>
+              <p>Service Ends: {{order.pickupEndTime|date:"short"}}</p>
+              <p>Unit Price: {{order.discountedPrice|currency}}</p>
+              <p>Quantiy: {{order.quantity}}</p>
+              <p>Total: {{order.quantity*order.discountedPrice|currency}}</p>
+              <p>Pay seller the Total amount plus tax</p>
+             </mat-card-content>
+            <mat-card-actions>
+              
+            </mat-card-actions>
+          </mat-card>  
+</div>
+    
+  </div>

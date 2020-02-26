@@ -1,0 +1,28 @@
+.active-route {
+  color: darkblue;
+  
+}
+ul {
+  list-style: none;
+  padding-left: 0px;
+}
+a {
+  text-decoration: none;
+  color: white;
+  font-size: 14px;
+}
+.example-fill-remaining-space {
+  /* This fills the remaining space, by using flexbox. 
+     Every toolbar row uses a flexbox row layout. */
+  flex: 1 1 auto;
+}
+span a {
+  text-decoration: none;
+  color: black;
+ 
+}
+.active {
+  color: #000000;
+  border-bottom: 2px solid #000000;
+  font-weight: 300;
+}

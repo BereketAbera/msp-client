@@ -1,0 +1,16 @@
+<div class="frmDiv">
+  <table class="example-full-width" cellspacing="0">
+    <tr>
+        <td><p>Total Products: {{summary.products}}</p></td><td><p>Total Quantity offered: {{summary.totalQty}}</p></td>
+      </tr>
+    <tr>
+        <td><p>Total Quantity Sold: {{summary.totalSoldQty}}</p></td><td><p>Total Revenue: {{summary.totalRevenu|currency}}</p></td>
+      </tr>
+    </table>
+</div>
+<mat-card class="example-card">
+   <mat-card-content>
+    <canvas #lineChart>{{ chart }}</canvas>
+  </mat-card-content>
+  
+</mat-card>

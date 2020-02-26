@@ -1,0 +1,14 @@
+<mat-card>
+    <span>Deposit Information</span>
+    <mat-card-content>
+      <br>
+      <p>Deposit Date: {{deposit.depositeDate|date:"yyyy-mm-dd HH:MM:SS"}}</p>
+      <p>Deposit Amount: {{deposit.amount}}</p>
+      <p>Credit Card: {{deposit.paymentInfo.cardNumber}}</p>
+      <p>Card Type: {{deposit.paymentInfo.cardType}}</p>
+
+    </mat-card-content>
+    <mat-card-actions>
+      <button type="button" mat-flat-button color="accent" (click)="gotoBuyerTrans()" >Cancel</button>
+    </mat-card-actions>
+  </mat-card>

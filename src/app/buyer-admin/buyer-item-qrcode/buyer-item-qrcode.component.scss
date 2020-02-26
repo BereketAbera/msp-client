@@ -1,0 +1,139 @@
+.invoice{
+    .invoice-header{
+      padding:25px 25px 15px;
+      h1{
+        margin:0
+      }
+      .media{
+        .media-body{
+          font-size:.9em;
+          margin:0;
+        }
+      }
+    }
+    .invoice-body{
+      border-radius:10px;
+      padding:25px;
+      background:#FFF;
+    }
+    .invoice-footer{
+      padding:15px;
+      font-size:0.9em;
+      text-align:right;
+      color:#999;
+    }
+  }
+  .logo{
+    max-height:70px;
+    border-radius:10px;
+  }
+  .dl-horizontal{
+    margin:0;
+    dt{
+          float: left;
+      width: 80px;
+      overflow: hidden;
+      clear: left;
+      text-align: right;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    dd{
+      margin-left:90px;
+    }
+  }
+  .rowamount{
+    padding-top:15px !important;
+  }
+  .rowtotal{
+    font-size:1.3em;
+  }
+  .colfix{
+    width:12%;
+  }
+  .mono{
+    font-family:monospace;
+  }
+  .tdx{
+    text-align: right;
+  }
+  .lineTax {
+    border-bottom:1pt dotted black;
+  }
+  #errorCntr {
+    width: 80%;
+    border: 2px solid red;
+    padding: 15px 15px 15px 15px;
+    margin: 20px 20px 20px 20px;
+    background: #A4D3EE;
+    overflow: visible;
+    position: relative;
+  }
+  
+  #errClsBtn {
+      position: absolute;
+      background: red;
+      color: white;
+      top: -10px;
+      right: -10px;
+  }
+  ul {
+    list-style: none; /* Remove list bullets */
+    padding: 0;
+    margin: 0;
+}
+.pat{
+  color:gray;
+}
+.infoOrder{
+  padding:15px;
+  font-size:0.9em;
+  text-align:center;
+  color:#999;
+}
+.flashbutton {
+  background-color: #004A7F;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  border: none;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Arial;
+  font-size: 20px;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  -webkit-animation: glowing 1500ms infinite;
+  -moz-animation: glowing 1500ms infinite;
+  -o-animation: glowing 1500ms infinite;
+  animation: glowing 1500ms infinite;
+}
+@-webkit-keyframes glowing {
+  0% { background-color: #B20000; -webkit-box-shadow: 0 0 3px #B20000; }
+  50% { background-color: #FF0000; -webkit-box-shadow: 0 0 40px #FF0000; }
+  100% { background-color: #B20000; -webkit-box-shadow: 0 0 3px #B20000; }
+}
+
+@-moz-keyframes glowing {
+  0% { background-color: #B20000; -moz-box-shadow: 0 0 3px #B20000; }
+  50% { background-color: #FF0000; -moz-box-shadow: 0 0 40px #FF0000; }
+  100% { background-color: #B20000; -moz-box-shadow: 0 0 3px #B20000; }
+}
+
+@-o-keyframes glowing {
+  0% { background-color: #B20000; box-shadow: 0 0 3px #B20000; }
+  50% { background-color: #FF0000; box-shadow: 0 0 40px #FF0000; }
+  100% { background-color: #B20000; box-shadow: 0 0 3px #B20000; }
+}
+
+@keyframes glowing {
+  0% { background-color: #B20000; box-shadow: 0 0 3px #B20000; }
+  50% { background-color: #FF0000; box-shadow: 0 0 40px #FF0000; }
+  100% { background-color: #B20000; box-shadow: 0 0 3px #B20000; }
+}
+.inputCode {
+  width: 160px;
+  font-size: 18px;
+  font-weight: 600;
+}
