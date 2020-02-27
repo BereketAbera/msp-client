@@ -3,12 +3,12 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  version:"V3.0.0 AA",
+  version: "V3.0.0 AA",
   production: false,
-  APIEndpoint: "http://192.168.0.100:8383/api/"
-  //APIEndpoint: "http://localhost:8383/api/"
+  // APIEndpoint: "http://192.168.0.100:8383/api/"
+  APIEndpoint: "http://localhost:8080/api/"
   //APIEndpoint: "https://www.qualitycode1.com/api/"
-   //APIEndpoint: "https://www.qualitycode2.com/api/"
+  //APIEndpoint: "https://www.qualitycode2.com/api/"
   //APIEndpoint: "https://www.managerspecial.com/api/"
 };
 
