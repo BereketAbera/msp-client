@@ -16,6 +16,9 @@ import { MspMarkupResolverService } from "./service/msp-markup-resolver.service"
 import { TestUtcComponent } from "./components/test-utc/test-utc.component";
 import { UtcDealDetailComponent } from "./components/utc-deal-detail/utc-deal-detail.component";
 import { HomeGuard } from "./home.guard";
+import { SellerGuard } from "./seller-admin/seller.guard";
+import { BuyerGuard } from "./buyer-admin/buyer.guard";
+import { AdminGuard } from "./system-admin/admin.guard";
 
 const appRoutes: Routes = [
   {
@@ -52,6 +55,25 @@ const appRoutes: Routes = [
       { path: "beauty", component: BeautyComponent },
       { path: "test", component: TestUtcComponent }
     ]
+  },
+  {
+    path: "",
+    loadChildren: "./auth/auth.module#AuthModule"
+  },
+  {
+    path: "tlgu-slr",
+    canActivate: [SellerGuard],
+    loadChildren: "./seller-admin/seller.module#SellerModule"
+  },
+  {
+    path: "tlgu-byr",
+    canActivate: [BuyerGuard],
+    loadChildren: "./buyer-admin/buyer.module#BuyerModule"
+  },
+  {
+    path: "tlgu-admin",
+    canActivate: [AdminGuard],
+    loadChildren: "./system-admin/system-admin.module#SystemAdminModule"
   },
   { path: "**", redirectTo: "", pathMatch: "full" }
 ];
