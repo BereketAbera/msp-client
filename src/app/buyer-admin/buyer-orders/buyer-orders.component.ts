@@ -9,7 +9,7 @@ import { Transaction } from 'src/app/model/transaction';
 
 @Component({
   templateUrl: './buyer-orders.component.html',
-  styleUrls: ['./buyer-orders.component.css']
+  styleUrls: ['./buyer-orders.component.scss']
 })
 export class BuyerOrdersComponent implements OnInit, AfterViewInit{
   

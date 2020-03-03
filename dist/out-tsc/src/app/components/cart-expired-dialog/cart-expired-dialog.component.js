@@ -15,7 +15,7 @@ var CartExpiredDialogComponent = /** @class */ (function () {
         Component({
             selector: 'app-cart-expired-dialog',
             templateUrl: './cart-expired-dialog.component.html',
-            styleUrls: ['./cart-expired-dialog.component.css']
+            styleUrls: ['./cart-expired-dialog.component.scss']
         }),
         tslib_1.__param(1, Inject(MAT_DIALOG_DATA)),
         tslib_1.__metadata("design:paramtypes", [MatDialogRef, Object])

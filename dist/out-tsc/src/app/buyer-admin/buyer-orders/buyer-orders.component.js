@@ -70,7 +70,7 @@ var BuyerOrdersComponent = /** @class */ (function () {
     BuyerOrdersComponent = tslib_1.__decorate([
         Component({
             templateUrl: './buyer-orders.component.html',
-            styleUrls: ['./buyer-orders.component.css']
+            styleUrls: ['./buyer-orders.component.scss']
         }),
         tslib_1.__metadata("design:paramtypes", [ActivatedRoute,
             TransactionService, Router])

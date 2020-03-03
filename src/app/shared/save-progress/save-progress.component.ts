@@ -6,7 +6,7 @@ import {ConfirmationData} from '../../model/confirmation-data'
 @Component({
   selector: 'app-save-progress',
   templateUrl: './save-progress.component.html',
-  styleUrls: ['./save-progress.component.css']
+  styleUrls: ['./save-progress.component.scss']
 })
 export class SaveProgressComponent{
 

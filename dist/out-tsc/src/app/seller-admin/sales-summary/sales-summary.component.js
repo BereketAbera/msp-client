@@ -48,7 +48,7 @@ var SalesSummaryComponent = /** @class */ (function () {
         Component({
             selector: 'app-sales-summary',
             templateUrl: './sales-summary.component.html',
-            styleUrls: ['./sales-summary.component.css']
+            styleUrls: ['./sales-summary.component.scss']
         }),
         tslib_1.__metadata("design:paramtypes", [ActivatedRoute,
             UserService, Router])

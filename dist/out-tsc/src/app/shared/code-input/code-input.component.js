@@ -155,7 +155,7 @@ var CodeInputComponent = /** @class */ (function () {
         Component({
             selector: 'app-code-input',
             templateUrl: './code-input.component.html',
-            styleUrls: ['./code-input.component.css'],
+            styleUrls: ['./code-input.component.scss'],
             providers: [{ provide: MatFormFieldControl, useExisting: CodeInputComponent_1 }],
             host: {
                 '[class.example-floating]': 'shouldLabelFloat',

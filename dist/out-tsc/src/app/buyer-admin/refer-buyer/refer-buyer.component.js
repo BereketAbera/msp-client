@@ -55,7 +55,7 @@ var ReferBuyerComponent = /** @class */ (function () {
         Component({
             selector: 'app-refer-buyer',
             templateUrl: './refer-buyer.component.html',
-            styleUrls: ['./refer-buyer.component.css']
+            styleUrls: ['./refer-buyer.component.scss']
         }),
         tslib_1.__metadata("design:paramtypes", [UserService])
     ], ReferBuyerComponent);

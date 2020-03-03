@@ -6,7 +6,7 @@ import {Transaction} from '../../model/transaction';
 @Component({
   selector: 'app-seller-order-detail',
   templateUrl: './seller-order-detail.component.html',
-  styleUrls: ['./seller-order-detail.component.css']
+  styleUrls: ['./seller-order-detail.component.scss']
 })
 export class SellerOrderDetailComponent implements OnInit {
   order:Transaction;

@@ -9,7 +9,7 @@ var BuyerConsentComponent = /** @class */ (function () {
         Component({
             selector: 'app-buyer-consent',
             templateUrl: './buyer-consent.component.html',
-            styleUrls: ['./buyer-consent.component.css']
+            styleUrls: ['./buyer-consent.component.scss']
         }),
         tslib_1.__metadata("design:paramtypes", [])
     ], BuyerConsentComponent);

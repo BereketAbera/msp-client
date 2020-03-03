@@ -54,7 +54,7 @@ var ReferStatusComponent = /** @class */ (function () {
         Component({
             selector: 'app-refer-status',
             templateUrl: './refer-status.component.html',
-            styleUrls: ['./refer-status.component.css']
+            styleUrls: ['./refer-status.component.scss']
         }),
         tslib_1.__metadata("design:paramtypes", [ActivatedRoute,
             UserService, Router])

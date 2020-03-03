@@ -30,7 +30,7 @@ var RegisterComponent = /** @class */ (function () {
         Component({
             selector: 'app-register',
             templateUrl: './register.component.html',
-            styleUrls: ['./register.component.css']
+            styleUrls: ['./register.component.scss']
         }),
         tslib_1.__metadata("design:paramtypes", [UserService, FormBuilder])
     ], RegisterComponent);

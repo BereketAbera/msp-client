@@ -157,7 +157,7 @@ var DepositeWithNewCreditCardComponent = /** @class */ (function () {
         Component({
             selector: 'app-deposite-with-new-credit-card',
             templateUrl: './deposite-with-new-credit-card.component.html',
-            styleUrls: ['./deposite-with-new-credit-card.component.css']
+            styleUrls: ['./deposite-with-new-credit-card.component.scss']
         }),
         tslib_1.__metadata("design:paramtypes", [TransactionService, DataStorageService, FormBuilder, ZipcodeService, Router, ActivatedRoute])
     ], DepositeWithNewCreditCardComponent);

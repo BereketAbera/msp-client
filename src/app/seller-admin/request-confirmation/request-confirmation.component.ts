@@ -6,7 +6,7 @@ import { TransactionService } from '../../service/transaction.service';
 @Component({
   selector: 'app-request-confirmation',
   templateUrl: './request-confirmation.component.html',
-  styleUrls: ['./request-confirmation.component.css']
+  styleUrls: ['./request-confirmation.component.scss']
 })
 
 export class RequestConfirmationComponent implements OnInit {

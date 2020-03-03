@@ -20,7 +20,7 @@ import * as moment from 'moment';
 @Component({
   selector: 'app-utc-deal-detail',
   templateUrl: './utc-deal-detail.component.html',
-  styleUrls: ['./utc-deal-detail.component.css']
+  styleUrls: ['./utc-deal-detail.component.scss']
 })
 export class UtcDealDetailComponent implements OnInit {
   product: Product;

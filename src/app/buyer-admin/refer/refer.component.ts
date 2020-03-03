@@ -12,7 +12,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 @Component({
   selector: 'app-refer',
   templateUrl: './refer.component.html',
-  styleUrls: ['./refer.component.css']
+  styleUrls: ['./refer.component.scss']
 })
 export class ReferComponent implements OnInit {
   emails = [];

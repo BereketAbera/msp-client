@@ -93,7 +93,7 @@ var PaymentWithBalanceComponent = /** @class */ (function () {
         Component({
             selector: 'app-payment-with-balance',
             templateUrl: './payment-with-balance.component.html',
-            styleUrls: ['./payment-with-balance.component.css']
+            styleUrls: ['./payment-with-balance.component.scss']
         }),
         tslib_1.__metadata("design:paramtypes", [MatDialog, CartService, TransactionService, FormBuilder, Router, ActivatedRoute])
     ], PaymentWithBalanceComponent);

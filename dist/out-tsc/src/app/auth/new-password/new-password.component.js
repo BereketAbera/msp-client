@@ -67,7 +67,7 @@ var NewPasswordComponent = /** @class */ (function () {
         Component({
             selector: 'app-new-password',
             templateUrl: './new-password.component.html',
-            styleUrls: ['./new-password.component.css']
+            styleUrls: ['./new-password.component.scss']
         }),
         tslib_1.__metadata("design:paramtypes", [ActivatedRoute, MatDialog, UserService, FormBuilder, Router])
     ], NewPasswordComponent);

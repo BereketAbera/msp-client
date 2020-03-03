@@ -5,7 +5,7 @@ import {Deposit} from '../../model/deposit';
 @Component({
   selector: 'app-buyer-deposit-detail',
   templateUrl: './buyer-deposit-detail.component.html',
-  styleUrls: ['./buyer-deposit-detail.component.css']
+  styleUrls: ['./buyer-deposit-detail.component.scss']
 })
 export class BuyerDepositDetailComponent implements OnInit {
 

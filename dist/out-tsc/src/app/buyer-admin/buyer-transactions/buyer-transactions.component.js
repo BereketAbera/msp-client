@@ -54,7 +54,7 @@ var BuyerTransactionsComponent = /** @class */ (function () {
     BuyerTransactionsComponent = tslib_1.__decorate([
         Component({
             templateUrl: './buyer-transactions.component.html',
-            styleUrls: ['./buyer-transactions.component.css']
+            styleUrls: ['./buyer-transactions.component.scss']
         }),
         tslib_1.__metadata("design:paramtypes", [ActivatedRoute,
             TransactionService, Router])

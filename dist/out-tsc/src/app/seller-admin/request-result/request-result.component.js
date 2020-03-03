@@ -13,7 +13,7 @@ var RequestResultComponent = /** @class */ (function () {
         Component({
             selector: 'app-request-result',
             templateUrl: './request-result.component.html',
-            styleUrls: ['./request-result.component.css']
+            styleUrls: ['./request-result.component.scss']
         }),
         tslib_1.__param(1, Inject(MAT_DIALOG_DATA)),
         tslib_1.__metadata("design:paramtypes", [MatDialogRef, Object])

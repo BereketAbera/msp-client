@@ -12,7 +12,7 @@ import {RevenuRprt} from '../../model/revenuRprt';
 @Component({
   selector: 'app-seller-dashboard',
   templateUrl: './seller-dashboard.component.html',
-  styleUrls: ['./seller-dashboard.component.css']
+  styleUrls: ['./seller-dashboard.component.scss']
 })
 export class SellerDashboardComponent implements OnInit {
   @ViewChild('lineChart') private chartRef;    

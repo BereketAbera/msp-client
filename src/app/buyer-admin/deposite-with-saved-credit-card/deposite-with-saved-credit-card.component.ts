@@ -9,7 +9,7 @@ import { debounceTime} from 'rxjs/operators';
 @Component({
   selector: 'app-deposite-with-saved-credit-card',
   templateUrl: './deposite-with-saved-credit-card.component.html',
-  styleUrls: ['./deposite-with-saved-credit-card.component.css']
+  styleUrls: ['./deposite-with-saved-credit-card.component.scss']
 })
 export class DepositeWithSavedCreditCardComponent implements OnInit {
   @Output() payWith = new EventEmitter<any>();

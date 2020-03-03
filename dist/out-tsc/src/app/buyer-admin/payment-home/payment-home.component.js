@@ -202,7 +202,7 @@ var PaymentHomeComponent = /** @class */ (function () {
         Component({
             selector: 'app-payment-home',
             templateUrl: './payment-home.component.html',
-            styleUrls: ['./payment-home.component.css']
+            styleUrls: ['./payment-home.component.scss']
         }),
         tslib_1.__metadata("design:paramtypes", [CartService, ComponentFactoryResolver, Router, ActivatedRoute])
     ], PaymentHomeComponent);

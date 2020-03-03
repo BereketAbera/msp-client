@@ -15,7 +15,7 @@ import {PaymentWithSavedCreditCardComponent} from '../payment-with-saved-credit-
 @Component({
   selector: 'app-payment-home',
   templateUrl: './payment-home.component.html',
-  styleUrls: ['./payment-home.component.css']
+  styleUrls: ['./payment-home.component.scss']
 })
 
 export class PaymentHomeComponent implements OnInit {

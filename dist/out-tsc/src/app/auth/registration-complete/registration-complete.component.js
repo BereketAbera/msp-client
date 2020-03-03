@@ -9,7 +9,7 @@ var RegistrationCompleteComponent = /** @class */ (function () {
         Component({
             selector: 'app-registration-complete',
             templateUrl: './registration-complete.component.html',
-            styleUrls: ['./registration-complete.component.css']
+            styleUrls: ['./registration-complete.component.scss']
         }),
         tslib_1.__metadata("design:paramtypes", [])
     ], RegistrationCompleteComponent);

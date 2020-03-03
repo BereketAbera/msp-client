@@ -17,7 +17,7 @@ var TermsUseBuyerComponent = /** @class */ (function () {
         Component({
             selector: 'app-terms-use-buyer',
             templateUrl: './terms-use-buyer.component.html',
-            styleUrls: ['./terms-use-buyer.component.css']
+            styleUrls: ['./terms-use-buyer.component.scss']
         }),
         __metadata("design:paramtypes", [])
     ], TermsUseBuyerComponent);

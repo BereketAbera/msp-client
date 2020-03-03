@@ -9,7 +9,7 @@ import { Balance } from '../../model/balance';
 @Component({
   selector: 'app-transactions',
   templateUrl: './transactions.component.html',
-  styleUrls: ['./transactions.component.css']
+  styleUrls: ['./transactions.component.scss']
 })
 export class TransactionsComponent implements OnInit, AfterViewInit{
   

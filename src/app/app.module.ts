@@ -1,48 +1,42 @@
-import '../polyfills';
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import "../polyfills";
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from "@angular/core";
 
-import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppComponent } from "./app.component";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
-import {MatNativeDateModule} from '@angular/material';
+import { MatNativeDateModule } from "@angular/material";
 
+import { RoutingModule } from "./routing.module";
 
-import {RoutingModule} from './routing.module';
+import { HttpClientModule } from "@angular/common/http";
+import { ReactiveFormsModule } from "@angular/forms";
 
+import { HomeComponent } from "./components/home/home.component";
+import { DealDetailComponent } from "./components/deal-detail/deal-detail.component";
+import { BannerCtrlDirective } from "./components/bannerCtrl/banner-ctrl.directive";
 
-import {HttpClientModule} from '@angular/common/http';
-import {ReactiveFormsModule} from '@angular/forms';
+import { SharedModule } from "./shared/shared.module";
 
-import { HomeComponent } from './components/home/home.component';
-import { DealDetailComponent } from './components/deal-detail/deal-detail.component';
-import {BannerCtrlDirective} from './components/bannerCtrl/banner-ctrl.directive';
+import { SaveConfirmationDialogComponent } from "./shared/save-confirmation-dialog/save-confirmation-dialog.component";
+import { SaveProgressComponent } from "./shared/save-progress/save-progress.component";
+import { BuyerModule } from "./buyer-admin/buyer.module";
+import { SellerModule } from "./seller-admin/seller.module";
+import { SystemAdminModule } from "./system-admin/system-admin.module";
+import { AuthModule } from "./auth/auth.module";
+import { PublicComponent } from "./components/public/public.component";
 
-
-import {SharedModule} from './shared/shared.module';
-
-import {SaveConfirmationDialogComponent} from './shared/save-confirmation-dialog/save-confirmation-dialog.component';
-import {SaveProgressComponent} from './shared/save-progress/save-progress.component';
-import {BuyerModule} from './buyer-admin/buyer.module';
-import { SellerModule } from './seller-admin/seller.module';
-import { SystemAdminModule} from './system-admin/system-admin.module';
-import {AuthModule} from './auth/auth.module';
-import { PublicComponent } from './components/public/public.component';
-
-import {httpInterceptorProviders} from './http-interceptors/index';
-import { ProductComponent } from './components/product/product.component';
-import { ServiceWorkerModule } from '@angular/service-worker';
-import { environment } from '../environments/environment';
-import { CartComponent } from './components/cart/cart.component';
-import { CartExpiredDialogComponent } from './components/cart-expired-dialog/cart-expired-dialog.component';
-import {BeautyComponent} from './components/beauty/beauty.component';
-import { OthersComponent } from './components/others/others.component';
-import { TestUtcComponent } from './components/test-utc/test-utc.component';
-import { UtcProductComponent } from './components/utc-product/utc-product.component';
-import { UtcDealDetailComponent } from './components/utc-deal-detail/utc-deal-detail.component';
-
-
-
+import { httpInterceptorProviders } from "./http-interceptors/index";
+import { ProductComponent } from "./components/product/product.component";
+import { ServiceWorkerModule } from "@angular/service-worker";
+import { environment } from "../environments/environment";
+import { CartComponent } from "./components/cart/cart.component";
+import { CartExpiredDialogComponent } from "./components/cart-expired-dialog/cart-expired-dialog.component";
+import { BeautyComponent } from "./components/beauty/beauty.component";
+import { OthersComponent } from "./components/others/others.component";
+import { TestUtcComponent } from "./components/test-utc/test-utc.component";
+import { UtcProductComponent } from "./components/utc-product/utc-product.component";
+import { UtcDealDetailComponent } from "./components/utc-deal-detail/utc-deal-detail.component";
 
 @NgModule({
   declarations: [
@@ -58,8 +52,7 @@ import { UtcDealDetailComponent } from './components/utc-deal-detail/utc-deal-de
     OthersComponent,
     TestUtcComponent,
     UtcProductComponent,
-    UtcDealDetailComponent,
-   
+    UtcDealDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -68,16 +61,23 @@ import { UtcDealDetailComponent } from './components/utc-deal-detail/utc-deal-de
     SharedModule,
     MatNativeDateModule,
     ReactiveFormsModule,
-    AuthModule,
-    BuyerModule,
-    SellerModule,
-    SystemAdminModule,
+    // AuthModule,
+    // BuyerModule,
+    // SellerModule,
+    // SystemAdminModule,
     RoutingModule,
 
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    ServiceWorkerModule.register("ngsw-worker.js", {
+      enabled: environment.production
+    })
   ],
-  entryComponents: [AppComponent, SaveConfirmationDialogComponent,SaveProgressComponent,CartExpiredDialogComponent],
-  providers:[httpInterceptorProviders],
+  entryComponents: [
+    AppComponent,
+    SaveConfirmationDialogComponent,
+    SaveProgressComponent,
+    CartExpiredDialogComponent
+  ],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

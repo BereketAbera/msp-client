@@ -21,7 +21,7 @@ import {AuthService} from '../../service/auth.service';
 @Component({
   selector: 'app-new-shop',
   templateUrl: './new-shop.component.html',
-  styleUrls: ['./new-shop.component.css']
+  styleUrls: ['./new-shop.component.scss']
 })
 export class NewShopComponent implements OnInit {
   showError:boolean = false;

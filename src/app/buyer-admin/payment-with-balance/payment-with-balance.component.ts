@@ -14,7 +14,7 @@ import {CartExpiredDialogComponent} from '../../components/cart-expired-dialog/c
 @Component({
   selector: 'app-payment-with-balance',
   templateUrl: './payment-with-balance.component.html',
-  styleUrls: ['./payment-with-balance.component.css']
+  styleUrls: ['./payment-with-balance.component.scss']
 })
 export class PaymentWithBalanceComponent implements OnInit {
   @Output() payWith = new EventEmitter<any>();

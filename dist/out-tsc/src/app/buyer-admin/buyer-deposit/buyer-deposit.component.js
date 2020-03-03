@@ -125,7 +125,7 @@ var BuyerDepositComponent = /** @class */ (function () {
         Component({
             selector: 'app-buyer-deposit',
             templateUrl: './buyer-deposit.component.html',
-            styleUrls: ['./buyer-deposit.component.css']
+            styleUrls: ['./buyer-deposit.component.scss']
         }),
         tslib_1.__metadata("design:paramtypes", [ComponentFactoryResolver, Router, ActivatedRoute])
     ], BuyerDepositComponent);
