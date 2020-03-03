@@ -9,7 +9,7 @@ var SellerAdminComponent = /** @class */ (function () {
         Component({
             selector: 'app-seller-admin',
             templateUrl: './seller-admin.component.html',
-            styleUrls: ['./seller-admin.component.css']
+            styleUrls: ['./seller-admin.component.scss']
         }),
         tslib_1.__metadata("design:paramtypes", [])
     ], SellerAdminComponent);

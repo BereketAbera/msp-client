@@ -9,7 +9,7 @@ import { RegistrationCompleteComponent } from '../registration-complete/registra
 @Component({
   selector: 'app-register-buyer-ref',
   templateUrl: './register-buyer-ref.component.html',
-  styleUrls: ['./register-buyer-ref.component.css']
+  styleUrls: ['./register-buyer-ref.component.scss']
 })
 export class RegisterBuyerRefComponent implements OnInit {
 

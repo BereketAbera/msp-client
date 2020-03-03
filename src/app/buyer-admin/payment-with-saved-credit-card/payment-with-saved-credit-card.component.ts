@@ -9,7 +9,7 @@ import { PaymentInfo } from '../../model/paymentInfo';
 @Component({
   selector: 'app-payment-with-saved-credit-card',
   templateUrl: './payment-with-saved-credit-card.component.html',
-  styleUrls: ['./payment-with-saved-credit-card.component.css']
+  styleUrls: ['./payment-with-saved-credit-card.component.scss']
 })
 export class PaymentWithSavedCreditCardComponent implements OnInit {
   @Output() payWith = new EventEmitter<any>();

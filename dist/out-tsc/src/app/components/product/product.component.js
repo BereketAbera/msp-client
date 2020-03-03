@@ -41,7 +41,7 @@ var ProductComponent = /** @class */ (function () {
         Component({
             selector: 'app-product',
             templateUrl: './product.component.html',
-            styleUrls: ['./product.component.css']
+            styleUrls: ['./product.component.scss']
         }),
         tslib_1.__metadata("design:paramtypes", [Router, ProductService])
     ], ProductComponent);

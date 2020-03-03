@@ -45,7 +45,7 @@ var ReferComponent = /** @class */ (function () {
         Component({
             selector: 'app-refer',
             templateUrl: './refer.component.html',
-            styleUrls: ['./refer.component.css']
+            styleUrls: ['./refer.component.scss']
         }),
         tslib_1.__metadata("design:paramtypes", [UserService])
     ], ReferComponent);

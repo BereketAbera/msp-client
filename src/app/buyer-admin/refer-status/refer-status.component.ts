@@ -10,7 +10,7 @@ import {merge} from "rxjs/observable/merge";
 @Component({
   selector: 'app-refer-status',
   templateUrl: './refer-status.component.html',
-  styleUrls: ['./refer-status.component.css']
+  styleUrls: ['./refer-status.component.scss']
 })
 export class ReferStatusComponent implements OnInit, AfterViewInit{
   

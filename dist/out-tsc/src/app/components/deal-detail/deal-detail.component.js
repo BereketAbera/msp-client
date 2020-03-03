@@ -174,7 +174,7 @@ var DealDetailComponent = /** @class */ (function () {
         Component({
             selector: 'app-deal-detail',
             templateUrl: './deal-detail.component.html',
-            styleUrls: ['./deal-detail.component.css']
+            styleUrls: ['./deal-detail.component.scss']
         }),
         tslib_1.__metadata("design:paramtypes", [MatDialog, CartService, DataStorageService, ActivatedRoute, Router, FormBuilder])
     ], DealDetailComponent);

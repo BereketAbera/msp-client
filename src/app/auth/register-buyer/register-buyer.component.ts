@@ -11,7 +11,7 @@ import { RegistrationCompleteComponent } from '../registration-complete/registra
 @Component({
   selector: 'app-register-buyer',
   templateUrl: './register-buyer.component.html',
-  styleUrls: ['./register-buyer.component.css']
+  styleUrls: ['./register-buyer.component.scss']
 })
 export class RegisterBuyerComponent implements OnInit {
   @Output() registeredByr: EventEmitter<any> = new EventEmitter();

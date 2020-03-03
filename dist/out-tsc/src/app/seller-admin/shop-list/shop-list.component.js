@@ -65,7 +65,7 @@ var ShopListComponent = /** @class */ (function () {
         Component({
             selector: 'app-shop-list',
             templateUrl: './shop-list.component.html',
-            styleUrls: ['./shop-list.component.css']
+            styleUrls: ['./shop-list.component.scss']
         }),
         tslib_1.__metadata("design:paramtypes", [AuthService, ActivatedRoute,
             ShopsService, Router])

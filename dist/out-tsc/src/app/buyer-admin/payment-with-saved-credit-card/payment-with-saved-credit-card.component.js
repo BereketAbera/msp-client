@@ -88,7 +88,7 @@ var PaymentWithSavedCreditCardComponent = /** @class */ (function () {
         Component({
             selector: 'app-payment-with-saved-credit-card',
             templateUrl: './payment-with-saved-credit-card.component.html',
-            styleUrls: ['./payment-with-saved-credit-card.component.css']
+            styleUrls: ['./payment-with-saved-credit-card.component.scss']
         }),
         tslib_1.__metadata("design:paramtypes", [FormBuilder, TransactionService, Router, ActivatedRoute])
     ], PaymentWithSavedCreditCardComponent);

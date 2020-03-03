@@ -84,7 +84,7 @@ var DepositeWithSavedCreditCardComponent = /** @class */ (function () {
         Component({
             selector: 'app-deposite-with-saved-credit-card',
             templateUrl: './deposite-with-saved-credit-card.component.html',
-            styleUrls: ['./deposite-with-saved-credit-card.component.css']
+            styleUrls: ['./deposite-with-saved-credit-card.component.scss']
         }),
         tslib_1.__metadata("design:paramtypes", [FormBuilder, TransactionService, Router, ActivatedRoute])
     ], DepositeWithSavedCreditCardComponent);

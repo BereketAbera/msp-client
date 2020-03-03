@@ -20,7 +20,7 @@ var BuyerDepositDetailComponent = /** @class */ (function () {
         Component({
             selector: 'app-buyer-deposit-detail',
             templateUrl: './buyer-deposit-detail.component.html',
-            styleUrls: ['./buyer-deposit-detail.component.css']
+            styleUrls: ['./buyer-deposit-detail.component.scss']
         }),
         tslib_1.__metadata("design:paramtypes", [ActivatedRoute, Router])
     ], BuyerDepositDetailComponent);

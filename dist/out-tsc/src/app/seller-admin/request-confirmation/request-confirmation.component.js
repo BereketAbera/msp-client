@@ -29,7 +29,7 @@ var RequestConfirmationComponent = /** @class */ (function () {
         Component({
             selector: 'app-request-confirmation',
             templateUrl: './request-confirmation.component.html',
-            styleUrls: ['./request-confirmation.component.css']
+            styleUrls: ['./request-confirmation.component.scss']
         }),
         tslib_1.__param(2, Inject(MAT_DIALOG_DATA)),
         tslib_1.__metadata("design:paramtypes", [TransactionService,

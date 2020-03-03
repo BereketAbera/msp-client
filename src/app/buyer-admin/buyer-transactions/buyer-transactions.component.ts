@@ -9,7 +9,7 @@ import {BuyerTransactionsDataSource} from "../../service/buyer-transactions-data
 import { Balance } from '../../model/balance';
 @Component({
   templateUrl: './buyer-transactions.component.html',
-  styleUrls: ['./buyer-transactions.component.css']
+  styleUrls: ['./buyer-transactions.component.scss']
 })
 export class BuyerTransactionsComponent implements OnInit, AfterViewInit{
   

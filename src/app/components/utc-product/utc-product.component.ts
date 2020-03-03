@@ -7,7 +7,7 @@ import { Observable } from 'rxjs/Observable'
 @Component({
   selector: 'app-utc-product',
   templateUrl: './utc-product.component.html',
-  styleUrls: ['./utc-product.component.css']
+  styleUrls: ['./utc-product.component.scss']
 })
 export class UtcProductComponent implements OnInit {
 

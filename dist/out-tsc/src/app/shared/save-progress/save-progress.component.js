@@ -13,7 +13,7 @@ var SaveProgressComponent = /** @class */ (function () {
         Component({
             selector: 'app-save-progress',
             templateUrl: './save-progress.component.html',
-            styleUrls: ['./save-progress.component.css']
+            styleUrls: ['./save-progress.component.scss']
         }),
         tslib_1.__param(1, Inject(MAT_DIALOG_DATA)),
         tslib_1.__metadata("design:paramtypes", [MatDialogRef, Object])

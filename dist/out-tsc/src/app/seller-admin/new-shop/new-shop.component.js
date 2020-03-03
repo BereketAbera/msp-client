@@ -91,7 +91,7 @@ var NewShopComponent = /** @class */ (function () {
         Component({
             selector: 'app-new-shop',
             templateUrl: './new-shop.component.html',
-            styleUrls: ['./new-shop.component.css']
+            styleUrls: ['./new-shop.component.scss']
         }),
         tslib_1.__metadata("design:paramtypes", [StateService, AuthService, ShopsService, ActivatedRoute, MatSnackBar, Router, FormBuilder, GeocoderService, ZipcodeService])
     ], NewShopComponent);

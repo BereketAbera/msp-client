@@ -84,7 +84,7 @@ var RegisterBuyerRefComponent = /** @class */ (function () {
         Component({
             selector: 'app-register-buyer-ref',
             templateUrl: './register-buyer-ref.component.html',
-            styleUrls: ['./register-buyer-ref.component.css']
+            styleUrls: ['./register-buyer-ref.component.scss']
         }),
         tslib_1.__metadata("design:paramtypes", [ActivatedRoute, MatDialog, UserService, FormBuilder, Router])
     ], RegisterBuyerRefComponent);

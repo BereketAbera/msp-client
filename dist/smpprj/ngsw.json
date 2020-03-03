@@ -13,7 +13,7 @@
         "/main.2ffb5e3497c8c01ecb31.js",
         "/polyfills.cbf93bb94203c851ac17.js",
         "/runtime.26209474bfa8dc87a77c.js",
-        "/styles.25672d5c75d74386b36d.css"
+        "/styles.25672d5c75d74386b36d.scss"
       ],
       "patterns": []
     },
@@ -229,7 +229,7 @@
     "/main.2ffb5e3497c8c01ecb31.js": "0e3f28626db1d59595f873aeb0a3e4a72199d0a4",
     "/polyfills.cbf93bb94203c851ac17.js": "681d740a05b3b890d316d982ca23cdac4bdf68b6",
     "/runtime.26209474bfa8dc87a77c.js": "b62956c2192bfe5516d6374e753773901ed50ec5",
-    "/styles.25672d5c75d74386b36d.css": "e6ec2349530d463d2d83f93819ab94b295caa111"
+    "/styles.25672d5c75d74386b36d.scss": "e6ec2349530d463d2d83f93819ab94b295caa111"
   },
   "navigationUrls": [
     {

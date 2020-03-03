@@ -15,7 +15,7 @@ import { TransactionService } from '../../service/transaction.service';
 @Component({
   selector: 'app-deposite-with-new-credit-card',
   templateUrl: './deposite-with-new-credit-card.component.html',
-  styleUrls: ['./deposite-with-new-credit-card.component.css']
+  styleUrls: ['./deposite-with-new-credit-card.component.scss']
 })
 export class DepositeWithNewCreditCardComponent implements OnInit {
 

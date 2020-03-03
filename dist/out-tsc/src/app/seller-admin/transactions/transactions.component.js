@@ -47,7 +47,7 @@ var TransactionsComponent = /** @class */ (function () {
         Component({
             selector: 'app-transactions',
             templateUrl: './transactions.component.html',
-            styleUrls: ['./transactions.component.css']
+            styleUrls: ['./transactions.component.scss']
         }),
         tslib_1.__metadata("design:paramtypes", [ActivatedRoute,
             TransactionService, Router])

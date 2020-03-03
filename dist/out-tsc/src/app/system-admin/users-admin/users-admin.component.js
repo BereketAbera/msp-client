@@ -123,7 +123,7 @@ var UsersAdminComponent = /** @class */ (function () {
         Component({
             selector: 'app-users-admin',
             templateUrl: './users-admin.component.html',
-            styleUrls: ['./users-admin.component.css']
+            styleUrls: ['./users-admin.component.scss']
         }),
         tslib_1.__metadata("design:paramtypes", [MatSnackBar, MatDialog, ActivatedRoute,
             UserService, Router])

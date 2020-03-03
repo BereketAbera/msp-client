@@ -114,7 +114,7 @@ var UploadImgComponent = /** @class */ (function () {
         Component({
             selector: 'app-upload-img',
             templateUrl: './upload-img.component.html',
-            styleUrls: ['./upload-img.component.css']
+            styleUrls: ['./upload-img.component.scss']
         }),
         tslib_1.__metadata("design:paramtypes", [UploadService, MatSnackBar, MatDialog, ActivatedRoute, Router, FormBuilder])
     ], UploadImgComponent);

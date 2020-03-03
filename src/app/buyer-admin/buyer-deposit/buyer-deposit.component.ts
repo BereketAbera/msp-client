@@ -11,7 +11,7 @@ import {DepositeWithSavedCreditCardComponent} from '../deposite-with-saved-credi
 @Component({
   selector: 'app-buyer-deposit',
   templateUrl: './buyer-deposit.component.html',
-  styleUrls: ['./buyer-deposit.component.css']
+  styleUrls: ['./buyer-deposit.component.scss']
 })
 
 export class BuyerDepositComponent implements OnInit {

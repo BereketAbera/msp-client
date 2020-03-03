@@ -5,7 +5,7 @@ import {ConfirmationData} from '../../model/confirmation-data'
 @Component({
   selector: 'app-request-result',
   templateUrl: './request-result.component.html',
-  styleUrls: ['./request-result.component.css']
+  styleUrls: ['./request-result.component.scss']
 })
 export class RequestResultComponent{
 

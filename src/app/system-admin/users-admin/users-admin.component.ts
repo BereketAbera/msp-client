@@ -16,7 +16,7 @@ import { User } from 'src/app/model/user';
 @Component({
   selector: 'app-users-admin',
   templateUrl: './users-admin.component.html',
-  styleUrls: ['./users-admin.component.css']
+  styleUrls: ['./users-admin.component.scss']
 })
 export class UsersAdminComponent implements OnInit, AfterViewInit {
 

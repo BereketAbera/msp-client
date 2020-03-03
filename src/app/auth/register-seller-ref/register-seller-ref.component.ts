@@ -12,7 +12,7 @@ import 'rxjs/add/operator/filter';
 @Component({
   selector: 'app-register-seller-ref',
   templateUrl: './register-seller-ref.component.html',
-  styleUrls: ['./register-seller-ref.component.css']
+  styleUrls: ['./register-seller-ref.component.scss']
 })
 export class RegisterSellerRefComponent implements OnInit {
   tk:string;

@@ -10,7 +10,7 @@ import {ShopsDataSource} from "../../service/shopsDataSource";
 @Component({
   selector: 'app-shop-list',
   templateUrl: './shop-list.component.html',
-  styleUrls: ['./shop-list.component.css']
+  styleUrls: ['./shop-list.component.scss']
 })
 export class ShopListComponent implements OnInit, AfterViewInit{
   

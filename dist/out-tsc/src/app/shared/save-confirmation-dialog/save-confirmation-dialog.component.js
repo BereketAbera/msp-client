@@ -13,7 +13,7 @@ var SaveConfirmationDialogComponent = /** @class */ (function () {
         Component({
             selector: 'app-save-confirmation-dialog',
             templateUrl: './save-confirmation-dialog.component.html',
-            styleUrls: ['./save-confirmation-dialog.component.css']
+            styleUrls: ['./save-confirmation-dialog.component.scss']
         }),
         tslib_1.__param(1, Inject(MAT_DIALOG_DATA)),
         tslib_1.__metadata("design:paramtypes", [MatDialogRef, Object])

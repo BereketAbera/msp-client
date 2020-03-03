@@ -9,7 +9,7 @@ var InvalidTokenComponent = /** @class */ (function () {
         Component({
             selector: 'app-invalid-token',
             templateUrl: './invalid-token.component.html',
-            styleUrls: ['./invalid-token.component.css']
+            styleUrls: ['./invalid-token.component.scss']
         }),
         tslib_1.__metadata("design:paramtypes", [])
     ], InvalidTokenComponent);

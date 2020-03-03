@@ -9,7 +9,7 @@ var SystemAdminComponent = /** @class */ (function () {
         Component({
             selector: 'app-system-admin',
             templateUrl: './system-admin.component.html',
-            styleUrls: ['./system-admin.component.css']
+            styleUrls: ['./system-admin.component.scss']
         }),
         tslib_1.__metadata("design:paramtypes", [])
     ], SystemAdminComponent);

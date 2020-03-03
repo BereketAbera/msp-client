@@ -9,7 +9,7 @@ var BuyerDashboardComponent = /** @class */ (function () {
         Component({
             selector: 'app-buyer-dashboard',
             templateUrl: './buyer-dashboard.component.html',
-            styleUrls: ['./buyer-dashboard.component.css']
+            styleUrls: ['./buyer-dashboard.component.scss']
         }),
         tslib_1.__metadata("design:paramtypes", [])
     ], BuyerDashboardComponent);

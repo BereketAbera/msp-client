@@ -124,7 +124,7 @@ var DecimalInputComponent = /** @class */ (function () {
         Component({
             selector: 'app-decimal-input',
             templateUrl: './decimal-input.component.html',
-            styleUrls: ['./decimal-input.component.css'],
+            styleUrls: ['./decimal-input.component.scss'],
             providers: [{ provide: MatFormFieldControl, useExisting: DecimalInputComponent_1 }],
             host: {
                 '[class.example-floating]': 'shouldLabelFloat',

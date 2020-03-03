@@ -170,7 +170,7 @@ var QrScannerComponent = /** @class */ (function () {
         Component({
             selector: 'app-qr-scanner',
             templateUrl: './qr-scanner.component.html',
-            styleUrls: ['./qr-scanner.component.css']
+            styleUrls: ['./qr-scanner.component.scss']
         }),
         tslib_1.__metadata("design:paramtypes", [AuthService, MatDialog, TransactionService])
     ], QrScannerComponent);

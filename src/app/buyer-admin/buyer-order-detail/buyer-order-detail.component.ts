@@ -6,7 +6,7 @@ import {Supplier} from '../../model/supplier';
 @Component({
   selector: 'app-buyer-order-detail',
   templateUrl: './buyer-order-detail.component.html',
-  styleUrls: ['./buyer-order-detail.component.css']
+  styleUrls: ['./buyer-order-detail.component.scss']
 })
 export class BuyerOrderDetailComponent implements OnInit {
 

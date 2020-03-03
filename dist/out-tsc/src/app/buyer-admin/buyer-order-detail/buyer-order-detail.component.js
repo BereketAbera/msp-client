@@ -21,7 +21,7 @@ var BuyerOrderDetailComponent = /** @class */ (function () {
         Component({
             selector: 'app-buyer-order-detail',
             templateUrl: './buyer-order-detail.component.html',
-            styleUrls: ['./buyer-order-detail.component.css']
+            styleUrls: ['./buyer-order-detail.component.scss']
         }),
         tslib_1.__metadata("design:paramtypes", [ActivatedRoute, Router])
     ], BuyerOrderDetailComponent);

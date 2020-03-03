@@ -9,7 +9,7 @@ var BuyerAdminComponent = /** @class */ (function () {
         Component({
             selector: 'app-buyer-admin',
             templateUrl: './buyer-admin.component.html',
-            styleUrls: ['./buyer-admin.component.css']
+            styleUrls: ['./buyer-admin.component.scss']
         }),
         tslib_1.__metadata("design:paramtypes", [])
     ], BuyerAdminComponent);

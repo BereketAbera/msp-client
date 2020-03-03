@@ -76,7 +76,7 @@ var LoginComponent = /** @class */ (function () {
         Component({
             selector: 'app-login',
             templateUrl: './login.component.html',
-            styleUrls: ['./login.component.css']
+            styleUrls: ['./login.component.scss']
         }),
         tslib_1.__metadata("design:paramtypes", [AuthService, FormBuilder, Router, ActivatedRoute])
     ], LoginComponent);

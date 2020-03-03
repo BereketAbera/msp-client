@@ -12,7 +12,7 @@ import {MyDecimalInput} from '../../model/my-decimal-input'
 @Component({
   selector: 'app-decimal-input',
   templateUrl: './decimal-input.component.html',
-  styleUrls: ['./decimal-input.component.css'],
+  styleUrls: ['./decimal-input.component.scss'],
   providers: [{provide: MatFormFieldControl, useExisting: DecimalInputComponent}],
   
   host: {

@@ -38,7 +38,7 @@ var ResetPasswordComponent = /** @class */ (function () {
         Component({
             selector: 'app-reset-password',
             templateUrl: './reset-password.component.html',
-            styleUrls: ['./reset-password.component.css']
+            styleUrls: ['./reset-password.component.scss']
         }),
         tslib_1.__metadata("design:paramtypes", [AuthService, FormBuilder, Router, ActivatedRoute])
     ], ResetPasswordComponent);

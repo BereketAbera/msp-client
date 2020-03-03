@@ -13,7 +13,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 @Component({
   selector: 'app-refer-buyer',
   templateUrl: './refer-buyer.component.html',
-  styleUrls: ['./refer-buyer.component.css']
+  styleUrls: ['./refer-buyer.component.scss']
 })
 export class ReferBuyerComponent implements OnInit {
 

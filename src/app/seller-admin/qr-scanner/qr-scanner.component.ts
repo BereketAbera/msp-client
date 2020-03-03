@@ -20,7 +20,7 @@ import {QrCodeData} from '../../model/qrCodeData';
 @Component({
   selector: 'app-qr-scanner',
   templateUrl: './qr-scanner.component.html',
-  styleUrls: ['./qr-scanner.component.css']
+  styleUrls: ['./qr-scanner.component.scss']
 })
 export class QrScannerComponent implements OnInit {
   video: any;

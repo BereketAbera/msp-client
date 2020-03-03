@@ -4,7 +4,7 @@ import {ConfirmationData} from '../../model/confirmation-data'
 @Component({
   selector: 'app-save-confirmation-dialog',
   templateUrl: './save-confirmation-dialog.component.html',
-  styleUrls: ['./save-confirmation-dialog.component.css']
+  styleUrls: ['./save-confirmation-dialog.component.scss']
 })
 export class SaveConfirmationDialogComponent{
 

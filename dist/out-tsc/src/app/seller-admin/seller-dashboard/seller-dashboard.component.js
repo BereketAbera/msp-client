@@ -78,7 +78,7 @@ var SellerDashboardComponent = /** @class */ (function () {
         Component({
             selector: 'app-seller-dashboard',
             templateUrl: './seller-dashboard.component.html',
-            styleUrls: ['./seller-dashboard.component.css']
+            styleUrls: ['./seller-dashboard.component.scss']
         }),
         tslib_1.__metadata("design:paramtypes", [ActivatedRoute, FormBuilder])
     ], SellerDashboardComponent);

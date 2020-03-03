@@ -59,7 +59,7 @@ var HomeComponent = /** @class */ (function () {
     HomeComponent = tslib_1.__decorate([
         Component({
             templateUrl: './home.component.html',
-            styleUrls: ['./home.component.css'],
+            styleUrls: ['./home.component.scss'],
             changeDetection: ChangeDetectionStrategy.Default,
             animations: [
                 trigger('bannerAnimation', [

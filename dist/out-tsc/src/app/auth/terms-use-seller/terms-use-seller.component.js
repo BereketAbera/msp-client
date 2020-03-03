@@ -17,7 +17,7 @@ var TermsUseSellerComponent = /** @class */ (function () {
         Component({
             selector: 'app-terms-use-seller',
             templateUrl: './terms-use-seller.component.html',
-            styleUrls: ['./terms-use-seller.component.css']
+            styleUrls: ['./terms-use-seller.component.scss']
         }),
         __metadata("design:paramtypes", [])
     ], TermsUseSellerComponent);

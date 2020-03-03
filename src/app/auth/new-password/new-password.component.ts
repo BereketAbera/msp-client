@@ -10,7 +10,7 @@ import { RegistrationCompleteComponent } from '../registration-complete/registra
 @Component({
   selector: 'app-new-password',
   templateUrl: './new-password.component.html',
-  styleUrls: ['./new-password.component.css']
+  styleUrls: ['./new-password.component.scss']
 })
 export class NewPasswordComponent implements OnInit {
 

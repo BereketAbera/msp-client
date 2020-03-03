@@ -169,7 +169,7 @@ var PaymentWithCreditCardComponent = /** @class */ (function () {
         Component({
             selector: 'payment-with-credit-card',
             templateUrl: './payment-with-credit-card.component.html',
-            styleUrls: ['./payment-with-credit-card.component.css']
+            styleUrls: ['./payment-with-credit-card.component.scss']
         }),
         tslib_1.__metadata("design:paramtypes", [TransactionService, DataStorageService, FormBuilder, ZipcodeService, Router, ActivatedRoute])
     ], PaymentWithCreditCardComponent);

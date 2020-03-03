@@ -10,7 +10,7 @@ import { RegistrationCompleteComponent } from '../registration-complete/registra
 @Component({
   selector: 'app-register-seller',
   templateUrl: './register-seller.component.html',
-  styleUrls: ['./register-seller.component.css']
+  styleUrls: ['./register-seller.component.scss']
 })
 export class RegisterSellerComponent implements OnInit {
   @Output() registeredSlr: EventEmitter<any> = new EventEmitter();
