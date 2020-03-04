@@ -189,7 +189,8 @@ a {
     width: 100%;
     border: 1px solid #aaa;
     margin: 1rem;
-    align-self: center;
+    justify-content: space-between;
+    align-self: stretch;
     cursor: pointer;
   }
 

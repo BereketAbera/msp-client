@@ -101,14 +101,16 @@
 
     <div class="product__location">
       <span class="product__shop-name"
-        ><span class="product__arrow">&#8594;</span>
+        ><span class="product__arrow" *ngIf="product.shopName">&#8594;</span>
         {{ product.shopName }}</span
       >
       <span class="product__address"
-        ><span class="product__arrow">&#8594;</span> {{ product.address }}</span
+        ><span class="product__arrow" *ngIf="product.address">&#8594;</span>
+        {{ product.address }}</span
       >
       <span class="product__city"
-        ><span class="product__arrow">&#8594;</span> {{ product.city }}</span
+        ><span class="product__arrow" *ngIf="product.city">&#8594;</span>
+        {{ product.city }}</span
       >
     </div>
   </div>
