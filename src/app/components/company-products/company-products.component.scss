@@ -14,14 +14,11 @@
     margin: 0rem 0rem;
     padding: 1rem;
     max-width: 100%;
-    // position: relative;
+    position: relative;
     // min-width: 60rem;
     &__prod {
       display: flex;
-      // justify-content: column;
       align-items: stretch;
-      // min-width: 60rem;
-      // width: 100rem;
       overflow: scroll;
     }
 
@@ -35,11 +32,11 @@
   }
 
   &__product {
-    width: 23rem;
+    width: 26rem;
     display: flex;
     background-color: #eee;
     margin: 1rem;
-    min-width: 20rem;
+    min-width: 22rem;
   }
 }
 .material-icons.md-18 {
@@ -48,13 +45,41 @@
 }
 
 .forward__button {
-  display: none;
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  background-color: #eee;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 2rem;
 }
 .backward__button {
-  display: none;
+  position: absolute;
+  right: 0rem;
+  top: 50%;
+  background-color: #eee;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 2rem;
+}
+.backward__button:hover{
+  cursor: pointer;
+  box-shadow: 0px 0px 2px 2px rgba(75, 74, 74, 0.3);
 }
 .container {
   background-color: #eee;
 }
 
+.forward__button:hover{
+  cursor: pointer;
+  box-shadow: 0px 0px 2px 2px rgba(75, 74, 74, 0.3);
+}
+@media only screen and (max-width: 732px) {
+  .backward__button{
+    display: none;
+  }
+  .forward__button {
+    display: none;
+  }
+}
 

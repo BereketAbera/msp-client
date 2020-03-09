@@ -18,8 +18,8 @@
 <div class="container" fxLayout="column" fxLayoutAlign="center center">
   <div class="products__viewport" content="width=device-width, initial-scale=1.0">
     <div class="products__container">
-      <div style='width:100%;'  *ngFor="let company of companies">
-          <app-company-products class="company_proaduct"  [company]="company">
+      <div style='width:100%;'  *ngFor="let company of companies; let i = index">
+          <app-company-products class="company_proaduct" [index]='i'  [company]="company">
             </app-company-products>
             <div class="separator"></div>
       </div>

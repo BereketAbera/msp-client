@@ -188,38 +188,6 @@ img {
     }
   }
 
-  .forward__button {
-    position: absolute;
-    top: 52%;
-    left: 1rem;
-    display: block;
-    width: 3rem;
-    height: auto;
-  }
-
-  .forward__button:hover {
-    background: #eee;
-    cursor: pointer;
-    box-shadow: 0px 0px 2px 2px rgba(75, 74, 74, 0.3);
-  }
-
-  .backward__button {
-    position: absolute;
-    top: 50%;
-    right: 0rem;
-    display: block;
-    width: 3rem;
-    border-radius: 5px 5px 5px 5px;
-    // align-content: center;
-    // align-items: center;
-  }
-
-  .backward__button:hover {
-    background: #eee;
-    cursor: pointer;
-    box-shadow: 0px -7px 7px rgba(75, 74, 74, 0.3);
-  }
-
   // .banner-container-min {
   //   margin-left: auto;
   //   margin-right: auto;

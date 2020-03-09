@@ -1,14 +1,14 @@
 <div class="products__category" *ngIf="shown">
-  <h2 class="products__category__header"> {{ company.companyName }}</h2>
+  <h2 class="products__category__header"> {{ company.companyName  }}</h2>
 
-  <div class="products__category__prod">
+  <div class="products__category__prod" id="{{ 'contanier_prods-' + index }}">
 
-    <div class="forward__button" *ngIf="navigate">
+    <div class="forward__button" (click)='previousClickScroll(index)'  *ngIf="navigate">
       <mat-icon class="material-icons md-18">navigate_before</mat-icon>
     </div>
     <app-product class="products__product" *ngFor="let product of products" [product]="product"></app-product>
-    <div class="backward__button" *ngIf="navigate">
-      <mat-icon (click)='buttonClickScroll()' class="material-icons md-18">navigate_next</mat-icon>
+    <div class="backward__button"  *ngIf="navigate">
+      <mat-icon (click)='nextClickScroll(index)' class="material-icons md-18">navigate_next</mat-icon>
     </div>
   </div>
 </div>

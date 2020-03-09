@@ -8,6 +8,8 @@ import { ProductService } from 'src/app/service/product.service';
 })
 export class CompanyProductsComponent implements OnInit {
   @Input() company;
+  @Input() index;
+
   @ViewChild("anchor") anchor: ElementRef<HTMLElement>;
   page = 0;
   pageSize = 6;
@@ -50,15 +52,15 @@ export class CompanyProductsComponent implements OnInit {
       )
   }
 
-  buttonClickScroll(){
-    var rightPosition = window.innerHeight + window.pageYOffset;
-    // console.log(rightPosition)
-    var elementPosition = this.anchor
-        ? this.anchor.nativeElement.offsetTop
-        : 0;
-    var toPosition = window.innerWidth + window.pageXOffset+1;
-    window.scrollTo(elementPosition -10, rightPosition)
+  nextClickScroll(id){
+    console.log(id,'id')
+    document.getElementById(`contanier_prods-${id}`).scrollLeft += 2500;
   }
+
+  previousClickScroll(id){
+    document.getElementById(`contanier_prods-${id}`).scrollLeft -= 2500;
+  }
+
 
   fetchProductForCompany(userId,name) {
     // console.log(userId,this.productProject,'loaded')
