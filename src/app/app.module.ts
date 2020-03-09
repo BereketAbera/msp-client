@@ -37,6 +37,7 @@ import { OthersComponent } from "./components/others/others.component";
 import { TestUtcComponent } from "./components/test-utc/test-utc.component";
 import { UtcProductComponent } from "./components/utc-product/utc-product.component";
 import { UtcDealDetailComponent } from "./components/utc-deal-detail/utc-deal-detail.component";
+import { CompanyProductsComponent } from './components/company-products/company-products.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { UtcDealDetailComponent } from "./components/utc-deal-detail/utc-deal-de
     OthersComponent,
     TestUtcComponent,
     UtcProductComponent,
-    UtcDealDetailComponent
+    UtcDealDetailComponent,
+    CompanyProductsComponent
   ],
   imports: [
     BrowserModule,

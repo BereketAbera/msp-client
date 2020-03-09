@@ -91,11 +91,11 @@
         (selectedIndex)="tooltip.show()"
         (actualIndex)="tooltip.show()"
       ></div>
-      <div class="banner" *ngFor="let banner of items">
+      <!-- <div class="banner" *ngFor="let banner of items">
         <img src="{{ banner }}" alt="" />
-      </div>
+      </div> -->
     </div>
-    <div
+    <!-- <div
       *ngIf="!isUP"
       [@bannerAnimation]="selectedIndex"
       class="banner-container-min"
@@ -120,7 +120,7 @@
       <div class="banner" *ngFor="let banner of items">
         <img src="{{ banner }}" alt="" />
       </div>
-    </div>
+    </div> -->
   </div>
   <router-outlet (activate)="onActivate($event)"></router-outlet>
 </div>
