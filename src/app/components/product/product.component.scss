@@ -242,6 +242,8 @@ a {
 
   &__image {
     width: 100%;
+    height: 20rem;
+    object-fit: cover;
   }
 
   &__ratting {
