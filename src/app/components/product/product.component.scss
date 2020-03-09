@@ -253,6 +253,8 @@ a {
   &__image {
     width: 100%;
     border-radius: 10px 10px 0 0;
+    height: 20rem;
+    object-fit: cover;
   }
 
   &__ratting {

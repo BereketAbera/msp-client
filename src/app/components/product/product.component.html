@@ -120,16 +120,16 @@
      <div class="product__reserve">
       <span class="product__reserve-text">
         <i class="far fa-clock product__clock-icon"></i> Reserve
-        {{ product?.offerStartTime | date: "shortTime" }} -
-        {{ product?.offerEndTime | date: "shortTime" }}
+        {{ product?.offerStartTime }} -
+        {{ product?.offerEndTime }}
       </span>
     </div>
     
     <div class="product__arrive">
       <span
         ><i class="far fa-clock product__clock-icon"></i> Arrive
-        {{ product?.pickupStartTime | date: "shortTime" }} -
-        {{ product?.pickupEndTime | date: "shortTime" }}
+        {{ product?.pickupStartTime }} -
+        {{ product?.pickupEndTime }}
       </span>
     </div>
     <!-- <div class="product__ratting">
