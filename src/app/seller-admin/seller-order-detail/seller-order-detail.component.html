@@ -1,20 +1,41 @@
-<mat-card>
-    <h2>Order Detail</h2>
+<div class="main_contanier">
+  <mat-card class="mat-elevation-z2 contanier">
+    <mat-card-title>Order Detail</mat-card-title>
+    <mat-card-subtitle>Order</mat-card-subtitle>
     <mat-card-content>
-      <h4>Order</h4>
-      <p>Product: {{order.product.name}}</p>
-      <p>Order Date: {{order.purchaseTime|date:"short"}}</p>
-      <p>Service Time</p>
-      <ul>
-        <li><p>Starting: {{order.pickupStartTime|date:'short'}}</p></li>
-        <li></li>
-        <li><p>Ending: {{order.pickupEndTime|date:'short'}}</p></li>
-      </ul>
-      <p>Discounted Unit Price: {{order.discountedPrice|currency}}</p>
-      <p>Quantiy: {{order.quantity}}</p>
-      <p>Total: {{order.quantity*order.discountedPrice|currency}} plus any tax</p>
+        <div class="list">
+            <span class="list__header">  Product </span>
+            <span class="list__details">{{order.product.name}} </span>
+        </div>  
+        
+        <div class="list">
+            <span class="list__header">  Order Date </span>
+            <span class="list__details">{{order.purchaseTime|date:"short"}}</span>
+        </div> 
+
+        <div class="list">
+            <span class="list__header">  Service Time </span>
+            <span class="list__details">Starting: {{order.pickupStartTime|date:'short'}} </span>
+            <span class="list__details"> Ending: {{order.pickupEndTime|date:'short'}}</span> 
+          </div> 
+
+        <div class="list">
+            <span class="list__header">  Discounted Unit Price </span>
+            <span class="list__details">{{order.discountedPrice|currency}}</span>
+        </div> 
+
+        <div class="list">
+            <span class="list__header">  Quantiy </span>
+            <span class="list__details">{{order.quantity}} </span>
+        </div> 
+
+        <div class="list">
+            <span class="list__header">  Total </span>
+            <span class="list__details">{{order.quantity*order.discountedPrice|currency}} plus any tax </span>
+        </div>
     </mat-card-content>
     <mat-card-actions>
-      <button type="button" mat-flat-button color="accent" (click)="gotoSellerTrans()" >Cancel</button>
+      <button type="button" mat-flat-button color="accent" (click)="gotoSellerTrans()">Cancel</button>
     </mat-card-actions>
   </mat-card>
+</div>

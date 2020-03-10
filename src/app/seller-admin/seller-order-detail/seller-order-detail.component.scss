@@ -1,1 +1,37 @@
 li {list-style-type: none;}
+.main_contanier{
+    display: flex;
+    justify-content: center;
+}
+.contanier{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    margin:1rem 0;
+
+}
+
+.list{
+    border: 1px #630725c7 solid;
+    position: relative;
+    margin: 1.5rem 0;
+    padding: 1rem;
+    
+    &__details{
+        padding: 0 1rem;
+        font-size: 1.5rem;
+
+    }
+
+    &__header{
+        font-size: 1.3rem;
+        font-style: italic;
+        font-weight: 600;
+        // font-family: 'Courier New', Courier, monospace;
+        position: absolute;
+        top: -1rem;
+        background: white;
+    }
+
+   
+}
