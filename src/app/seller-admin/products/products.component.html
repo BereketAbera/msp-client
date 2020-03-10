@@ -23,7 +23,7 @@
       <div><button mat-raised-button color="accent"  class="btnAddPrd" (click)="gotoOffPeakProduct()">Add Off-Peak Product</button></div> 
       <div><button mat-raised-button color="accent" class="btnAddPrd" (click)="gotoAddNewProduct()">Add End-of-Day Product</button></div>
     </div>
-    <mat-table class="mat-elevation-z8" [dataSource]="dataSource"
+    <mat-table class="mat-elevation-z2 table" [dataSource]="dataSource"
                matSort matSortActive="name" matSortDirection="asc" matSortDisableClear>
   
         <ng-container matColumnDef="name">
