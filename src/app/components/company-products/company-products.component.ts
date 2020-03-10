@@ -37,12 +37,12 @@ export class CompanyProductsComponent implements OnInit {
       this.pageSize, 
       this.company.userId).subscribe(
         resp => {
-          console.log(resp,'product')
+          // console.log(resp,'product')
           if(resp && Object.keys(resp).length != 0){
             this.products  = resp;
 
             this.shown =true;
-            if(Object.keys(resp).length >= 2){
+            if(Object.keys(resp).length >= 4){
               this.navigate = true;
             }
           }else{
@@ -54,7 +54,7 @@ export class CompanyProductsComponent implements OnInit {
   }
 
   nextClickScroll(id){
-    console.log(id,'id')
+    // console.log(id,'id')
     document.getElementById(`contanier_prods-${id}`).scrollLeft += 2500;
   }
 
@@ -75,7 +75,7 @@ export class CompanyProductsComponent implements OnInit {
       this.pageSize, 
       userId).subscribe(
         resp => {
-          console.log(resp,'product')
+          // console.log(resp,'product')
           this.products  = resp;
           // this.productProject.push({company:name,product:resp})
           return resp;
