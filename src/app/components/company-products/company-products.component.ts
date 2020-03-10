@@ -26,26 +26,28 @@ export class CompanyProductsComponent implements OnInit {
 
   ngOnInit() {
     // console.log(this.company,'comps');
-    
-    this.prdctService.getListOfProducts(this.distance,
-      this.lat,
-      this.lng,
-      this.subCatagory,
-      "",
-      "desc",
-      this.page,
-      this.pageSize, 
-      this.company.userId).subscribe(
-        resp => {
-          // console.log(resp,'product')
-          if(resp && Object.keys(resp).length != 0){
-            this.products  = resp;
 
-            this.shown =true;
-            if(Object.keys(resp).length >= 4){
-              this.navigate = true;
-            }
-          }else{
+    this.prdctService
+      .getListOfProducts(
+        this.distance,
+        this.lat,
+        this.lng,
+        this.subCatagory,
+        "",
+        "desc",
+        this.page,
+        this.pageSize,
+        this.company.userId
+      )
+      .subscribe(resp => {
+        // console.log(resp,'product')
+        if (resp && Object.keys(resp).length != 0) {
+          this.products = resp;
+
+          this.shown = true;
+          if (Object.keys(resp).length >= 4) {
+            this.navigate = true;
+          } else {
             this.shown = false;
           }
         } else {
@@ -54,12 +56,8 @@ export class CompanyProductsComponent implements OnInit {
       });
   }
 
-<<<<<<< HEAD
   nextClickScroll(id) {
-=======
-  nextClickScroll(id){
     // console.log(id,'id')
->>>>>>> 6f49a9a798c6e9556f831175c50a23ca9b2a6c3b
     document.getElementById(`contanier_prods-${id}`).scrollLeft += 2500;
   }
 
