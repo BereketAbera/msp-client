@@ -1,0 +1,27 @@
+<div
+  *ngIf="type === 'success'"
+  class="notification notification--success"
+  [class.active]="show"
+  [ngStyle]="styleObject?.notification"
+>
+  <div class="notification__body" [ngStyle]="styleObject?.body">
+    <div class="icon-container icon-container--success">
+      <div class="checkmark"></div>
+    </div>
+    <span class="text" [ngStyle]="styleObject?.text">{{ text }}</span>
+  </div>
+</div>
+
+<div
+  *ngIf="type === 'error'"
+  class="notification notification--error"
+  [class.active]="show"
+  [ngStyle]="styleObject?.notification"
+>
+  <div class="notification__body" [ngStyle]="styleObject?.body">
+    <div class="icon-container icon-container--error">
+      <div class="timesmark"></div>
+    </div>
+    <span class="text" [ngStyle]="styleObject?.text">{{ text }}</span>
+  </div>
+</div>

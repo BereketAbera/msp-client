@@ -1,98 +1,268 @@
+<!-- <div>
+  <div>
+    <img
+      mat-card-image
+      src="{{ product.imagePath }}"
+      alt="Photo of a Shiba Inu"
+    />
+    <div>
+      <ul>
+        <li>
+          <div>
+            <div>
+              <span>{{ product?.name }}</span>
+            </div>
+            <div></div>
+          </div>
+        </li>
+        <li>
+          <div>
+            <div></div>
+            <div>
+              <span
+                >Reserve Orders: {{ product?.offerStartTime }} To:
+                {{ product?.offerEndTime }}
+              </span>
+            </div>
+          </div>
+        </li>
 
-  <div fxLayout="column" fxLayoutAlign="center center">
-      <mat-card  class="example-card" >
-          <img class="image-card" mat-card-image src="{{product.imagePath}}" alt="Photo of a Shiba Inu">
-        <mat-card-content class="itemContent zeroPm">
-            <ul>
-              <li>
-                <div fxLayout="row nowrap">
-                    <div>
-                        <span class="prdName">{{product?.name}}</span>
-                      </div>
-                      <div class="push"></div>
-                  </div>
-                  
-                </li>
-                <li>
-                  <div fxLayout="row nowrap">
-                      <div>
-                          
-                        </div>
-                        <div class="push"> <span >Reserve Orders: {{product?.offerStartTime|date:'shortTime'}}
-                          To: {{product?.offerEndTime|date:'shortTime'}}
-                       </span></div>
-                    </div>
-                    
-                  </li>
-            
-          
-            <li>
-              <div fxLayout="row nowrap">
-                    <div>
-                        
-                      </div>
-                      <div class="push"> <span>Service Time: {{product?.pickupStartTime|date:'shortTime'}}
-                        To: {{product?.pickupEndTime|date:'shortTime'}}
-                     </span></div>
-                  </div>
-            </li>
-            <li>
-              <div fxLayout="row nowrap">
-                    <div>
-                        <span><strong>{{product.shopName}} </strong>{{product.shop.address}}, {{product.shop.city}}</span>
-                      </div>
-                      <div> </div>
-                  </div>
-            </li>
-                <li>
-                        <div fxLayout="row">
-                                <div>
-                                    <span class="prdName">{{product.description}}</span>
-                                  </div>
-                                  <div class="push"> <span class="lftTime">Quantity left: </span> 
-                                      <span>{{product.quantityOnHand}}</span></div>
-                              </div>
-                    </li>
-                   
-                <li>
-                  <div fxLayout="row nowrap">
-                    <div>
-                      <i class="material-icons yellowStar">star_rate</i>
-                      <i class="material-icons yellowStar">star_rate</i>
-                      <i class="material-icons yellowStar">star_rate</i>
-                      <i class="material-icons yellowStar">star_rate</i>
-                      <i class="material-icons greyStar">star_rate</i>
-                      </div>
-                      <div class="push"> <span class="itemPriceBfr">{{product.normalPrice|currency}}</span> <span class="itmPriceNw"> now {{product.discountPrice|currency}}</span></div>
-                  </div>
-                  
-                </li>
-                
-              </ul>
-              
-        </mat-card-content>
-       <mat-card-actions class="zeroPm">
-            <form [formGroup]="buyForm" class="zeroPm">
-                    <div fxLayout="row nowrap" fxLayoutAlign="space-around center" class="zeroPm">
-                        
-                        <mat-form-field class="quantityW zeroPm">
-                                <input type="number" formControlName="quantity" #qnty matInput  value="1" min="1" [max]="product.quantity">
-                                <span matPrefix>qty:&nbsp;</span>
-                            </mat-form-field>
-                            
-                            <div class="zeroPm" >
-                              <span>Total:</span><span class="itmPriceNw">{{qnty.value*product.discountPrice|currency}}</span>
-                    </div>
-                    <div fxLayout="row" fxLayoutGap="3px" class="zeroPm">
-                                    <button  mat-flat-button color="accent" (click)="addToCart()"><mat-icon>shopping_cart</mat-icon>
-                                      <span>Add to Cart</span></button>
-                                    <button  mat-flat-button color="accent" (click)="cancel()">Cancel</button>
-                                  </div>
-                                    
-                        </div>
-                            </form>
-       </mat-card-actions>
-      </mat-card>
-      
+        <li>
+          <div>
+            <div></div>
+            <div>
+              <span
+                >Service Time: {{ product?.pickupStartTime }} To:
+                {{ product?.pickupEndTime }}
+              </span>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div>
+            <div>
+              <span
+                ><strong>{{ product?.shopName }} </strong
+                >{{ product?.shop?.address }}, {{ product?.shop?.city }}</span
+              >
+            </div>
+            <div></div>
+          </div>
+        </li>
+        <li>
+          <div>
+            <div>
+              <span>{{ product?.description }}</span>
+            </div>
+            <div>
+              <span class="lftTime">Quantity left: </span>
+              <span>{{ product?.quantityOnHand }}</span>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <div>
+            <div>
+              <i class="material-icons yellowStar">star_rate</i>
+              <i class="material-icons yellowStar">star_rate</i>
+              <i class="material-icons yellowStar">star_rate</i>
+              <i class="material-icons yellowStar">star_rate</i>
+              <i class="material-icons greyStar">star_rate</i>
+            </div>
+            <div>
+              <span>{{ product?.normalPrice | currency }}</span>
+              <span> now {{ product?.discountPrice | currency }}</span>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div>
+      <form>
+        <div>
+           <mat-form-field class="quantityW zeroPm">
+            <input
+              type="number"
+              formControlName="quantity"
+              #qnty
+              matInput
+              value="1"
+              min="1"
+              [max]="product.quantity"
+            />
+            <span matPrefix>qty:&nbsp;</span>
+          </mat-form-field>
+
+          <div>
+            <span>Total:</span>
+            <span>{{ qnty?.value * product?.discountPrice | currency }}</span>
+          </div>
+          <div fxLayoutGap="3px">
+            <button mat-flat-button color="accent" (click)="addToCart()">
+              <mat-icon>shopping_cart</mat-icon> <span>Add to Cart</span>
+            </button>
+            <button mat-flat-button color="accent" (click)="cancel()">
+              Cancel
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
   </div>
- 
+</div> -->
+<div class="product-detail__container">
+  <div class="product-detail__top">
+    <div class="product-detail__image-container">
+      <img [src]="product?.imagePath" alt="" class="product-detail__image" />
+
+      <div class="product-detail__image-overlay">
+        <div class="product-detail__product-name">
+          <!-- <i class="fas fa-chevron-right product-detail__list-icon"></i> -->
+          <h3 class="product-detail__name-text">{{ product?.name }}</h3>
+        </div>
+        <div class="product-detail__reserve-order">
+          <div style="display: flex">
+            <i class="fas fa-chevron-right product-detail__list-icon"></i>
+            <h5 class="product-detail__reserve-order-text">Reserve Order</h5>
+          </div>
+
+          <div class="product-detail__reserve-order-time">
+            <h6 class="product-detail__reserve-order-spec">
+              <i class="far fa-clock product-detail__time-icon"></i>
+              <span class="product-detail__reserve-order-time-text"
+                >From - {{ product?.offerStartTime }}</span
+              >
+            </h6>
+            <h6 class="product-detail__reserve-order-spec">
+              <i class="far fa-clock product-detail__time-icon"></i>
+              <span class="product-detail__reserve-order-time-text"
+                >To - {{ product?.offerEndTime }}</span
+              >
+            </h6>
+          </div>
+        </div>
+        <div class="product-detail__reserve-order">
+          <div style="display: flex">
+            <i class="fas fa-chevron-right product-detail__list-icon"></i>
+            <h5 class="product-detail__reserve-order-text">Service Time</h5>
+          </div>
+
+          <div class="product-detail__reserve-order-time">
+            <h6 class="product-detail__reserve-order-spec">
+              <i class="far fa-clock product-detail__time-icon"></i>
+              <span class="product-detail__reserve-order-time-text"
+                >From - {{ product?.pickupStartTime }}</span
+              >
+            </h6>
+            <h6 class="product-detail__reserve-order-spec">
+              <i class="far fa-clock product-detail__time-icon"></i>
+              <span class="product-detail__reserve-order-time-text"
+                >To - {{ product?.pickupEndTime }}</span
+              >
+            </h6>
+          </div>
+        </div>
+        <div class="product-detail__reserve-order">
+          <div style="display: flex">
+            <i class="fas fa-chevron-right product-detail__list-icon"></i>
+            <h5 class="product-detail__reserve-order-text">
+              {{ product?.quantityOnHand }} Remaining
+            </h5>
+          </div>
+
+          <div class="product-detail__reserve-order-time"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="product-detail__middle">
+    <div class="product-detail__description">
+      <p class="product-detail__description-text">
+        Description: {{ product?.description }}
+      </p>
+    </div>
+    <div class="product-detail__middle-container">
+      <div class="product-detail__middle-left">
+        <div class="product-detail__shop">
+          <i class="fas fa-store-alt product-detail__address-icon"></i>
+          <h5 class="product-detail__shop-name">{{ product?.shop?.name }}</h5>
+        </div>
+        <div class="product-detail__shop">
+          <i class="fas fa-map-marker-alt product-detail__address-icon"></i>
+          <h5 class="product-detail__address-name">
+            {{ product?.shop?.address }}, {{ product?.shop?.city }}
+          </h5>
+        </div>
+      </div>
+      <div class="product-detail__middle-right">
+        <div class="product-detail__price">
+          <span class="product-detail__normal-price">{{
+            product?.normalPrice | currency
+          }}</span>
+          <span class="product-detail__discountPrice">{{
+            product?.discountPrice | currency
+          }}</span>
+        </div>
+        <div class="product-detail__rating">
+          <i class="material-icons product-detail__rating-icon">star_rate</i>
+          <i class="material-icons product-detail__rating-icon">star_rate</i>
+          <i class="material-icons product-detail__rating-icon">star_rate</i>
+          <i class="material-icons product-detail__rating-icon">star_rate</i>
+          <i
+            class="material-icons product-detail__greyStar product-detail__rating-icon"
+            >star_rate</i
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="product-detail__bottom">
+    <div class="product-detail__bottom-container">
+      <div [formGroup]="buyForm" class="product-detail__input-container">
+        <label for="quantity" class="product-detail__input-label"
+          >Quantity</label
+        >
+        <input
+          id="quantity"
+          class="product-detail__input"
+          type="number"
+          formControlName="quantity"
+          value="1"
+          min="1"
+          [max]="product.quantity"
+        />
+      </div>
+      <div class="product-detail__total">
+        Total:
+        {{ product?.discountPrice * buyForm.value["quantity"] | currency }}
+      </div>
+    </div>
+    <div class="product-detail__bottom-container">
+      <button
+        mat-flat-button
+        color="accent"
+        class="product-detail__button"
+        (click)="addToCart()"
+      >
+        <mat-icon>shopping_cart</mat-icon> <span>Add to Cart</span>
+      </button>
+      <button
+        mat-flat-button
+        color="accent"
+        class="product-detail__button"
+        (click)="cancel()"
+      >
+        Cancel
+      </button>
+    </div>
+  </div>
+</div>
+
+<app-custom-notification
+  [show]="showErrorNotification"
+  type="error"
+  [text]="errorMessage"
+  callback="goBack"
+>
+</app-custom-notification>

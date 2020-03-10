@@ -1,4 +1,4 @@
-<!-- <div *ngIf="showError" id="errorCntr">
+<div *ngIf="showError" id="errorCntr">
   <button id="errClsBtn" (click)="close()">
     X
   </button>
@@ -7,7 +7,7 @@
       {{ error }}
     </li>
   </ul>
-</div> -->
+</div>
 <form
   *ngIf="showForm()"
   [formGroup]="productForm"
@@ -415,3 +415,11 @@
     sales@ManagerSpecial.com.
   </p>
 </div>
+
+<app-custom-notification
+  [show]="showErrorNotification"
+  type="error"
+  [text]="errorMessage"
+  callback="goBack"
+>
+</app-custom-notification>

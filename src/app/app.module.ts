@@ -37,7 +37,8 @@ import { OthersComponent } from "./components/others/others.component";
 import { TestUtcComponent } from "./components/test-utc/test-utc.component";
 import { UtcProductComponent } from "./components/utc-product/utc-product.component";
 import { UtcDealDetailComponent } from "./components/utc-deal-detail/utc-deal-detail.component";
-import { CompanyProductsComponent } from './components/company-products/company-products.component';
+import { CompanyProductsComponent } from "./components/company-products/company-products.component";
+import { CustomNotificationComponent } from "./components/custom-notification/custom-notification.component";
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { CompanyProductsComponent } from './components/company-products/company-
     TestUtcComponent,
     UtcProductComponent,
     UtcDealDetailComponent,
-    CompanyProductsComponent
+    CompanyProductsComponent,
+    CustomNotificationComponent
   ],
   imports: [
     BrowserModule,
@@ -63,10 +65,6 @@ import { CompanyProductsComponent } from './components/company-products/company-
     SharedModule,
     MatNativeDateModule,
     ReactiveFormsModule,
-    // AuthModule,
-    // BuyerModule,
-    // SellerModule,
-    // SystemAdminModule,
     RoutingModule,
 
     ServiceWorkerModule.register("ngsw-worker.js", {

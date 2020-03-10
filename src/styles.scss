@@ -1,3 +1,9 @@
+$container-size: 3.5rem;
+$check-height: $container-size/2;
+$check-width: $check-height/2;
+$success-color: #50e83e;
+$error-color: #ff0000;
+
 * {
   padding: 0px;
   margin: 0px;
@@ -45,5 +51,84 @@ html {
 @media only screen and (min-width: 950px) {
   html {
     font-size: 80%;
+  }
+}
+
+@keyframes popOut {
+  0% {
+    transform: translate(-40%, 200%);
+    visibility: hidden;
+  }
+  10% {
+    transform: translate(-40%, 0%);
+    opacity: 1;
+    visibility: visible;
+  }
+  85% {
+    transform: translate(-40%, 0%);
+    opacity: 1;
+    visibility: visible;
+  }
+  100% {
+    transform: translate(-40%, 200%);
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes checkmark {
+  0% {
+    height: 0;
+    width: 0;
+    opacity: 1;
+  }
+  2% {
+    height: 0;
+    width: $check-width;
+    opacity: 1;
+  }
+  5% {
+    height: $check-height;
+    width: $check-width;
+    opacity: 1;
+  }
+  100% {
+    height: $check-height;
+    width: $check-width;
+    opacity: 1;
+  }
+}
+
+@keyframes cross-left {
+  0% {
+    opacity: 0;
+    height: 0;
+  }
+
+  2% {
+    opacity: 1;
+    height: $check-height;
+  }
+
+  100% {
+    opacity: 1;
+    height: $check-height;
+  }
+}
+
+@keyframes cross-right {
+  0% {
+    opacity: 0;
+    height: 0;
+  }
+
+  2% {
+    opacity: 1;
+    height: $check-height;
+  }
+
+  100% {
+    opacity: 1;
+    height: $check-height;
   }
 }
