@@ -46,7 +46,7 @@ export class CompanyProductsComponent implements OnInit {
           this.products = resp;
 
           this.shown = true;
-          if (Object.keys(resp).length >= 4) {
+          if (Object.keys(resp).length >= 3) {
             this.navigate = true;
           } else {
             this.navigate = false;
@@ -83,11 +83,8 @@ export class CompanyProductsComponent implements OnInit {
         userId
       )
       .subscribe(resp => {
-        // console.log(resp,'product')
         this.products = resp;
-        // this.productProject.push({company:name,product:resp})
         return resp;
-        // console.log(resp,'product')
       });
   }
 }

@@ -99,6 +99,7 @@ ul {
   align-content: center;
   align-items: center;
   align-self: center;
+  justify-content: center;
   // width: 40%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
@@ -106,13 +107,16 @@ ul {
   &__tab{
     width: 95%;
     font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
   }
 }
 
 .footer {
   background: #ddd;
-  position: fixed;
+  position: absolute;
   bottom: 0rem;
+  top:100%;
   padding: 2rem 4rem;
   margin-top:3rem;
   height: 5vh;
@@ -128,7 +132,7 @@ ul {
      margin: 1rem 2rem;
      font-size: 1.2rem;
       input{
-        font-size: 2.5rem;
+        font-size: 2rem;
       }
      &__pass{
        margin: 1rem 2rem;

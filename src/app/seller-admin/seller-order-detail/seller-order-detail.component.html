@@ -1,37 +1,37 @@
 <div class="main_contanier">
   <mat-card class="mat-elevation-z2 contanier">
-    <mat-card-title>Order Detail</mat-card-title>
-    <mat-card-subtitle>Order</mat-card-subtitle>
+    <mat-card-title class="contanier__header">Order Detail</mat-card-title>
+    <!-- <mat-card-subtitle>Order</mat-card-subtitle> -->
     <mat-card-content>
         <div class="list">
             <span class="list__header">  Product </span>
-            <span class="list__details">{{order.product.name}} </span>
+            <span class="list__details">  <mat-icon style="color:#cf8c9c" class="material-icons md-18">subdirectory_arrow_right</mat-icon> {{order.product.name}} </span>
         </div>  
         
         <div class="list">
             <span class="list__header">  Order Date </span>
-            <span class="list__details">{{order.purchaseTime|date:"short"}}</span>
+            <span class="list__details"> <mat-icon style="color:#cf8c9c" class="material-icons md-18">subdirectory_arrow_right</mat-icon>  {{order.purchaseTime|date:"short"}}</span>
         </div> 
 
         <div class="list">
             <span class="list__header">  Service Time </span>
-            <span class="list__details">Starting: {{order.pickupStartTime|date:'short'}} </span>
+            <span class="list__details"> <mat-icon style="color:#cf8c9c" class="material-icons md-18">subdirectory_arrow_right</mat-icon> Starting: {{order.pickupStartTime|date:'short'}} </span>
             <span class="list__details"> Ending: {{order.pickupEndTime|date:'short'}}</span> 
           </div> 
 
         <div class="list">
             <span class="list__header">  Discounted Unit Price </span>
-            <span class="list__details">{{order.discountedPrice|currency}}</span>
+            <span class="list__details"> <mat-icon style="color:#cf8c9c" class="material-icons md-18">subdirectory_arrow_right</mat-icon> {{order.discountedPrice|currency}}</span>
         </div> 
 
         <div class="list">
-            <span class="list__header">  Quantiy </span>
-            <span class="list__details">{{order.quantity}} </span>
+            <span class="list__header">  Quantity </span>
+            <span class="list__details"> <mat-icon style="color:#cf8c9c" class="material-icons md-18">subdirectory_arrow_right</mat-icon>  {{order.quantity}} </span>
         </div> 
 
         <div class="list">
             <span class="list__header">  Total </span>
-            <span class="list__details">{{order.quantity*order.discountedPrice|currency}} plus any tax </span>
+            <span class="list__details"> <mat-icon style="color:#cf8c9c" class="material-icons md-18">subdirectory_arrow_right</mat-icon>  {{order.quantity*order.discountedPrice|currency}} plus any tax </span>
         </div>
     </mat-card-content>
     <mat-card-actions>
