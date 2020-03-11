@@ -9,6 +9,7 @@ import { SafeHtmlPipe } from "./safe-html-pipe.pipe";
 import { DecimalInputComponent } from "./decimal-input/decimal-input.component";
 import { ReactiveFormsModule } from "@angular/forms";
 import { CodeInputComponent } from "./code-input/code-input.component";
+import { CustomNotificationComponent } from "../components/custom-notification/custom-notification.component";
 // import { CustomNotificationComponent } from "./custom-notification/custom-notification.component";
 
 const PRINT_BREAKPOINTS = [
@@ -32,7 +33,8 @@ const PRINT_BREAKPOINTS = [
     DecimalInputComponent,
     CodeInputComponent,
     FlexLayoutModule,
-    SafeHtmlPipe
+    SafeHtmlPipe,
+    CustomNotificationComponent
   ],
   declarations: [
     SaveConfirmationDialogComponent,
@@ -40,7 +42,8 @@ const PRINT_BREAKPOINTS = [
     SaveProgressComponent,
     SafeHtmlPipe,
     DecimalInputComponent,
-    CodeInputComponent
+    CodeInputComponent,
+    CustomNotificationComponent
   ],
   providers: [{ provide: BREAKPOINT, useValue: PRINT_BREAKPOINTS, multi: true }]
 })
