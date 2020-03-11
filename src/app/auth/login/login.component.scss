@@ -98,11 +98,11 @@ ul {
   flex-direction: column;
   align-content: center;
   align-items: center;
-  align-self: flex-end;
+  align-self: center;
   // width: 40%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
-  width: 50%;
+  width: 60%;
   &__tab{
     width: 95%;
     font-size: 1.5rem;
