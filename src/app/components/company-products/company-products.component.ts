@@ -20,6 +20,7 @@ export class CompanyProductsComponent implements OnInit {
   lng: number = 0;
   distance: number = 0;
   products;
+  showAnimate=false;
   shown = false;
   navigate = false;
   constructor(private prdctService: ProductService) {}
@@ -45,23 +46,25 @@ export class CompanyProductsComponent implements OnInit {
           this.products = resp;
 
           this.shown = true;
-          if (Object.keys(resp).length >= 4) {
+          if (Object.keys(resp).length >= 3) {
             this.navigate = true;
           } else {
-            this.shown = false;
+            this.navigate = false;
           }
         } else {
-          this.shown = false;
+          this.navigate = false;
         }
       });
   }
 
   nextClickScroll(id) {
     // console.log(id,'id')
+    this.showAnimate=true;
     document.getElementById(`contanier_prods-${id}`).scrollLeft += 2500;
   }
 
   previousClickScroll(id) {
+    this.showAnimate = true;
     document.getElementById(`contanier_prods-${id}`).scrollLeft -= 2500;
   }
 
@@ -80,11 +83,8 @@ export class CompanyProductsComponent implements OnInit {
         userId
       )
       .subscribe(resp => {
-        // console.log(resp,'product')
         this.products = resp;
-        // this.productProject.push({company:name,product:resp})
         return resp;
-        // console.log(resp,'product')
       });
   }
 }

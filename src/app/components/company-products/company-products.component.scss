@@ -20,6 +20,13 @@
       display: flex;
       align-items: stretch;
       overflow: scroll;
+      transition: 1s;
+
+      &__animate {
+        animation-name: slideAndStay;
+        animation-duration: 3.5s;
+        animation-iteration-count: 1;
+      }
     }
 
     &__prod::-webkit-scrollbar {
@@ -52,6 +59,7 @@
   width: 4rem;
   height: 4rem;
   border-radius: 2rem;
+  z-index: 2;
 }
 .backward__button {
   position: absolute;
