@@ -6,16 +6,16 @@ $error-color: #ff0000;
 
 .notification {
   position: fixed;
-  bottom: 7rem;
+  bottom: 3.5rem;
   left: 50%;
   transform: translate(-40%, 200%);
   opacity: 0;
   visibility: hidden;
-  padding: 2rem 2rem;
+  padding: 1rem 1rem;
   background-color: #333;
   border: 1px solid rgba(white, 0.2);
   border-right: none;
-  border-radius: 5px;
+  // border-radius: 2px;
   box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 1);
   z-index: 9999999999;
   cursor: pointer;
@@ -30,7 +30,7 @@ $error-color: #ff0000;
     width: $container-size;
     height: $container-size;
     border-radius: 50%;
-    margin-right: 1.5rem;
+    margin-right: 1rem;
 
     &--success {
       border: 2px solid $success-color;
@@ -44,11 +44,11 @@ $error-color: #ff0000;
   &__icon {
     display: inline;
     margin-right: 1rem;
-    font-size: 2rem;
+    font-size: 1.1rem;
   }
 
   .text {
-    font-size: 1.8rem;
+    font-size: 1.3rem;
     color: white;
     white-space: nowrap;
     text-transform: capitalize;

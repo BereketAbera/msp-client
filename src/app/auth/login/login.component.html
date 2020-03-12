@@ -1,82 +1,112 @@
 <div class="contanier">
-    <div class="header">
-        <mat-toolbar class="mainC" color="accent">
-            <a class="clickCard" routerLink="/">
-                <span>
-                    MANAGER SPECIAL
-                </span>
-            </a>
-        </mat-toolbar>
-    </div>
+  <div class="header">
+    <mat-toolbar class="mainC" color="accent">
+      <a class="clickCard" routerLink="/">
+        <span>
+          MANAGER SPECIAL
+        </span>
+      </a>
+    </mat-toolbar>
+  </div>
 
-    <div class="card">
-        <mat-tab-group class="card__tab" [selectedIndex]="selectedIndex">
+  <div class="card">
+    <mat-tab-group class="card__tab" [selectedIndex]="selectedIndex">
+      <mat-tab label="SIGN IN">
+        <form class="form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <div class="example-container">
+            <div *ngIf="showError" id="errorCntr">
+              <button id="errClsBtn" (click)="close()">
+                X
+              </button>
+              <ul>
+                <li *ngFor="let error of errors">
+                  {{ error }}
+                </li>
+              </ul>
+            </div>
+            <div class="form__group">
+              <mat-form-field>
+                <input
+                  matInput
+                  placeholder="Enter your email"
+                  formControlName="email"
+                  required
+                />
+                <mat-error *ngIf="loginForm.controls.email.invalid">{{
+                  getErrorMessage()
+                }}</mat-error>
+              </mat-form-field>
+            </div>
 
-            <mat-tab label="SIGN IN">
+            <div class="form__group">
+              <mat-form-field>
+                <input
+                  matInput
+                  placeholder="Enter your password"
+                  formControlName="password"
+                  [type]="hide ? 'password' : 'text'"
+                />
+                <mat-icon matSuffix (click)="hide = !hide"
+                  >{{ hide ? "visibility_off" : "visibility" }}
+                </mat-icon>
+              </mat-form-field>
+            </div>
 
-                <form class="form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-                    <div class="example-container">
+            <div class="form__group__pass">
+              <mat-hint id="frgtpswrd">
+                <a class="forgot-password" routerLink="/rstpwrd">
+                  Forgot Password?
+                </a></mat-hint
+              >
+            </div>
 
-                        <div *ngIf="showError" id="errorCntr">
-                            <button id="errClsBtn" (click)="close()">
-                                X
-                            </button>
-                            <ul>
-                                <li *ngFor="let error of errors">
-                                    {{error}}
-                                </li>
-
-                            </ul>
-
-                        </div>
-                        <div class="form__group">
-                            <mat-form-field>
-                                <input matInput placeholder="Enter your email" formControlName="email" required>
-                                <mat-error *ngIf="loginForm.controls.email.invalid">{{getErrorMessage()}}</mat-error>
-                            </mat-form-field>
-                        </div>
-
-                        <div class="form__group">
-                            <mat-form-field>
-                                <input matInput placeholder="Enter your password" formControlName="password"
-                                    [type]="hide ? 'password' : 'text'">
-                                <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}
-                                </mat-icon>
-                            </mat-form-field>
-                        </div>
-
-                        <div class="form__group__pass">
-                            <mat-hint id="frgtpswrd"> <a class="forgot-password" routerLink="/rstpwrd"> Forgot Password?
-                                </a></mat-hint>
-                        </div>
-
-                        <div class="form__group__agreed">
-                            <p id="trmsprvsid">I have read and agreed to ManagerSpecial's <a
-                                    href='./Manager-Special-Privacy-Policy-Seller.html'>Privacy Statement.</a> and <a
-                                    href="./Terms-of-Use-for-Buyer.html"> Buyer's Terms of Use</a> or <a
-                                    href='./Terms-of-Use-for-Sellers.html'> Seller's Terms of Use</a>, whichever applies
-                                and any additions and amendments whereof.</p>
-                        </div>
-                        <div class="form__group__submit">
-                            <button type="submit" mat-raised-button color="accent">Sign IN</button>
-                        </div>
-
-                    </div>
-                </form>
-            </mat-tab>
-            <mat-tab label="NEW BUYER" *ngIf="showBuyer">
-                <app-register-buyer (registeredByr)="setSelectedIndexBuyer()"></app-register-buyer>
-            </mat-tab>
-            <mat-tab label="NEW SELLER" *ngIf="showSeller">
-                <app-register-seller (registeredSlr)="setSelectedIndexSeller()"></app-register-seller>
-            </mat-tab>
-        </mat-tab-group>
-    </div>
-    <div class="footer">
-        <p class="pat">ManagerSpecial Copyright 2018. All Rights reserved. Worldwide Patent Pending 2018. A business
-            unit of
-            Live Inc.&nbsp;&nbsp;&nbsp;&nbsp;V{{version}}</p>
-
-    </div>
-
+            <div class="form__group__agreed">
+              <p id="trmsprvsid">
+                I have read and agreed to ManagerSpecial's
+                <a href="./Manager-Special-Privacy-Policy-Seller.html"
+                  >Privacy Statement.</a
+                >
+                and
+                <a href="./Terms-of-Use-for-Buyer.html">
+                  Buyer's Terms of Use</a
+                >
+                or
+                <a href="./Terms-of-Use-for-Sellers.html">
+                  Seller's Terms of Use</a
+                >, whichever applies and any additions and amendments whereof.
+              </p>
+            </div>
+            <div class="form__group__submit">
+              <button
+                type="submit"
+                mat-raised-button
+                class="msp-button"
+                color="accent"
+              >
+                Sign IN
+              </button>
+            </div>
+          </div>
+        </form>
+      </mat-tab>
+      <mat-tab label="NEW BUYER" *ngIf="showBuyer">
+        <app-register-buyer
+          (registeredByr)="setSelectedIndexBuyer()"
+        ></app-register-buyer>
+      </mat-tab>
+      <mat-tab label="NEW SELLER" *ngIf="showSeller">
+        <app-register-seller
+          (registeredSlr)="setSelectedIndexSeller()"
+        ></app-register-seller>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+  <div class="footer">
+    <p class="pat">
+      ManagerSpecial Copyright 2018. All Rights reserved. Worldwide Patent
+      Pending 2018. A business unit of Live Inc.&nbsp;&nbsp;&nbsp;&nbsp;V{{
+        version
+      }}
+    </p>
+  </div>
 </div>

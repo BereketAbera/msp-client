@@ -1,54 +1,68 @@
-
-.course {
-    text-align: center;
-    max-width: 390px;
-    margin: 0 auto;
-}
-.frmDiv{
-    padding:15px;
-}
-.course-thumbnail {
-    width: 150px;
-    margin: 20px auto 0 auto;
-    display: block;
+.orders {
+  &__container {
+    width: 80%;
+    margin: 1rem auto;
+  }
 }
 
-.addNewDiv{
-    padding-top: 15px;
-    padding-bottom: 20px;
-    padding-right: 20px;
-}
+.order {
+  &__container {
+    width: 100%;
+    border: 1px solid #aaa;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 1rem 0rem;
+  }
 
+  &__image {
+    height: 7rem;
+    max-width: 10rem;
+  }
 
-.spinner-container {
-    height: 360px;
-    width: 390px;
-    position: fixed;
-}
+  &__left {
+    display: flex;
+    align-items: center;
+  }
 
-.lessons-table {
-    min-height: 360px;
-    margin-top: 10px;
-}
+  &__address {
+    padding: 0.5rem 1rem;
+  }
 
-.spinner-container mat-spinner {
-    margin: 130px auto 0 auto;
+  &__name {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #333;
+  }
+
+  &__shop-name {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #555;
+  }
+
+  &__shop-address {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #555;
+  }
+
+  &__pickTime {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #555;
+  }
+
+  &__order-date {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #555;
+  }
+
+  &__code {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+  }
 }
-.clickCard
-    {
-      position: absolute;
-      top: 0; left: 0;
-      height: 100%; width: 100%;
-      }
-      .product-image {
-        width: auto;
-        margin: 10px 10px 10px 10px;
-      }
-      .product-image  img {
-        width: 100px;
-        
-      }
-      .error-template {
-        padding: 40px 15px;
-        text-align: center;
-      }

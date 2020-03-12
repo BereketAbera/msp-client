@@ -1,29 +1,74 @@
-<div>
-<div>
-  <mat-card>
-    <p>Only orders that are not used and within their service time windows are displayed here. Click 'History' button on the top to see past orders.</p>
-  </mat-card>
-</div>
-<div *ngFor= "let order of orders" >
-       <mat-card>
-          <p>Seller: <strong>{{order.shopName}}</strong></p>
-          <p>Address: {{order.address}}</p>
-           <p>Show Seller this discount code before service: <strong>{{order.code}}</strong></p>
-            <mat-card-content>
-              <div class="product-image" ><img src="{{order.imagePath}}"> </div>
-              <p>{{order.name}}</p>
-              <p>Order Date: {{order.purchaseTime|date:"short"}}</p>
-              <p>Service Starts: {{order.pickupStartTime|date:"short"}}</p>
-              <p>Service Ends: {{order.pickupEndTime|date:"short"}}</p>
-              <p>Unit Price: {{order.discountedPrice|currency}}</p>
-              <p>Quantiy: {{order.quantity}}</p>
-              <p>Total: {{order.quantity*order.discountedPrice|currency}}</p>
-              <p>Pay seller the Total amount plus tax</p>
-             </mat-card-content>
-            <mat-card-actions>
-              
-            </mat-card-actions>
-          </mat-card>  
-</div>
-    
+<!-- <div>
+  <div>
+    <mat-card>
+      <p>
+        Only orders that are not used and within their service time windows are
+        displayed here. Click 'History' button on the top to see past orders.
+      </p>
+    </mat-card>
   </div>
+  <div *ngFor="let order of orders">
+    <mat-card>
+      <p>
+        Seller: <strong>{{ order.shopName }}</strong>
+      </p>
+      <p>Address: {{ order.address }}</p>
+      <p>
+        Show Seller this discount code before service:
+        <strong>{{ order.code }}</strong>
+      </p>
+      <mat-card-content>
+        <div class="product-image"><img src="{{ order.imagePath }}" /></div>
+        <p>{{ order.name }}</p>
+        <p>Order Date: {{ order.purchaseTime | date: "short" }}</p>
+        <p>Service Starts: {{ changeToLocal12Hours(order.pickupStartTime) }}</p>
+        <p>Service Ends: {{ changeToLocal12Hours(order.pickupEndTime) }}</p>
+        <p>Unit Price: {{ order.discountedPrice | currency }}</p>
+        <p>Quantiy: {{ order.quantity }}</p>
+        <p>Total: {{ order.quantity * order.discountedPrice | currency }}</p>
+        <p>Pay seller the Total amount plus tax</p>
+      </mat-card-content>
+      <mat-card-actions> </mat-card-actions>
+    </mat-card>
+  </div>
+</div> -->
+
+<div class="orders__container">
+  <div *ngFor="let order of orders" class="order__container">
+    <div class="order__left">
+      <div class="order__image-container">
+        <img [src]="order.imagePath" alt="order image" class="order__image" />
+      </div>
+      <div class="order__address">
+        <div class="order__name">{{ order.name }}</div>
+        <div class="order__shop-name">Shop Name: {{ order.shopName }}</div>
+        <div class="order__shop-address">Address: {{ order.address }}</div>
+      </div>
+    </div>
+
+    <div class="order__middle">
+      <div class="order__time">
+        <div class="order__order-date">
+          Order Date: {{ order.purchaseTime | date: "short" }}
+        </div>
+        <div class="order__pickTime">
+          Service Starts: {{ changeToLocal12Hours(order.pickupStartTime) }}
+        </div>
+        <div class="order__pickTime">
+          Service Ends: {{ changeToLocal12Hours(order.pickupEndTime) }}
+        </div>
+      </div>
+    </div>
+
+    <div class="order__right">
+      <div class="order__code">Service Code: {{ order.code }}</div>
+      <div class="order__unit-price">
+        Unit Price: {{ order.discountedPrice | currency }}
+      </div>
+      <div class="order__quantity">Quantiy: {{ order.quantity }}</div>
+      <div class="order__total">
+        Total: {{ order.quantity * order.discountedPrice | currency }}
+      </div>
+    </div>
+  </div>
+</div>
