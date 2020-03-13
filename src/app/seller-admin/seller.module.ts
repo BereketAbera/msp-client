@@ -25,7 +25,7 @@ import { GalleryComponent } from './gallery/gallery.component';
 import { UploadImgComponent } from './upload-img/upload-img.component';
 import { NewOffPeakProductComponent } from './new-off-peak-product/new-off-peak-product.component';
 import { SalesSummaryComponent } from './sales-summary/sales-summary.component';
-
+import { DragDropDirective  } from '../service/drag-drop.directive'
 
 @NgModule({
   imports: [
@@ -53,7 +53,8 @@ import { SalesSummaryComponent } from './sales-summary/sales-summary.component';
     GalleryComponent,
     UploadImgComponent,
     NewOffPeakProductComponent,
-    SalesSummaryComponent
+    SalesSummaryComponent,
+    DragDropDirective
     
   ],
   entryComponents:[

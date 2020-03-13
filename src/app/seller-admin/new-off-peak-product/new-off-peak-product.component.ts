@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { FormBuilder, Validators, FormControl } from "@angular/forms";
-import { Router, ActivatedRoute } from "@angular/router";
+import { Router, ActivatedRoute, NavigationEnd } from "@angular/router";
 import { ProductService } from "../../service/product.service";
 import { AuthService } from "../../service/auth.service";
 import { Product } from "src/app/model/product";
@@ -10,16 +10,19 @@ import { MatSnackBar } from "@angular/material";
 import { Shop } from "../../model/shop";
 import { Category } from "../../model/category";
 import { Picture } from "../../model/picture";
-
+import _ from 'lodash';
+import { Location } from '@angular/common';
 import * as moment from "moment";
 
 import { SaveConfirmationDialogComponent } from "../../shared/save-confirmation-dialog/save-confirmation-dialog.component";
 import { SaveProgressComponent } from "../../shared/save-progress/save-progress.component";
 import { RequestResultComponent } from "../request-result/request-result.component";
+import { UploadService } from 'src/app/service/upload.service';
+// import { DragDropDirective } from 'src/app/service/drag-drop.directive';
 
 export interface Discount {
   value: string;
-  viewValue: string;
+  name: string;
 }
 
 @Component({
@@ -37,7 +40,9 @@ export class NewOffPeakProductComponent implements OnInit {
     { name: "SAT", selected: true, id: 6 },
     { name: "SUN", selected: true, id: 7 }
   ];
-
+  @ViewChild('file') file;
+  section1 = false;
+  section2 = false;
   showErrorNotification = false;
   errorMessage = "";
   markup: number = 0;
@@ -68,26 +73,26 @@ export class NewOffPeakProductComponent implements OnInit {
   pickupStartTime: Date;
   pickupEndTime: Date;
 
-  discounts: Discount[] = [
-    { value: "20", viewValue: "10%" },
-    { value: "20", viewValue: "15%" },
-    { value: "20", viewValue: "20%" },
-    { value: "25", viewValue: "25%" },
-    { value: "30", viewValue: "30%" },
-    { value: "35", viewValue: "35%" },
-    { value: "40", viewValue: "40%" },
-    { value: "45", viewValue: "45%" },
-    { value: "50", viewValue: "50%" },
-    { value: "55", viewValue: "55%" },
-    { value: "60", viewValue: "60%" },
-    { value: "65", viewValue: "65%" },
-    { value: "70", viewValue: "70%" },
-    { value: "75", viewValue: "75%" },
-    { value: "80", viewValue: "80%" },
-    { value: "85", viewValue: "85%" },
-    { value: "90", viewValue: "90%" },
-    { value: "95", viewValue: "95%" },
-    { value: "100", viewValue: "100%" }
+  discounts = [
+    { value: 20, name: "10%" },
+    { value: 20, name: "15%" },
+    { value: 20, name: "20%" },
+    { value: 25, name: "25%" },
+    { value: 30, name: "30%" },
+    { value: 35, name: "35%" },
+    { value: 40, name: "40%" },
+    { value: 45, name: "45%" },
+    { value: 50, name: "50%" },
+    { value: 55, name: "55%" },
+    { value: 60, name: "60%" },
+    { value: 65, name: "65%" },
+    { value: 70, name: "70%" },
+    { value: 75, name: "75%" },
+    { value: 80, name: "80%" },
+    { value: 85, name: "85%" },
+    { value: 90, name: "90%" },
+    { value: 95, name: "95%" },
+    { value: 100, name: "100%" }
   ];
   options: string[];
   hhmm: string[] = [];
@@ -141,6 +146,17 @@ export class NewOffPeakProductComponent implements OnInit {
     weekDays: this.buildWeekDays(),
     imgId: null
   });
+  files: any;
+  imageUploadsDiv = false;
+  element: any;
+  product: any;
+  categories1: any = [];
+  shop1: any = [];
+  clone = false;
+  previousUrl: string;
+  edit: boolean=false;
+  imagePath: any;
+
   constructor(
     private authService: AuthService,
     public snackBar: MatSnackBar,
@@ -148,10 +164,52 @@ export class NewOffPeakProductComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private productService: ProductService,
-    private fb: FormBuilder
-  ) {}
+    // private dragDropDirective:DragDropDirective,
+    private fb: FormBuilder,
+    private uploadService: UploadService,
+    private location: Location
+  ) {
+  }
 
   ngOnInit() {
+
+    this.route.params.subscribe(
+      params => {
+        if (params.id) {
+          this.productService.getProductById(params.id).subscribe(
+            resp => {
+              // console.log(resp)
+              this.imagePath = resp.imagePath;
+              this.product = resp;
+              this.product['offerStartHH'] = this.hour_12(resp.offerStartTime.split(':')[0])
+              this.product['offerStartMM'] = resp.offerStartTime.split(':')[1]
+              this.product['offerStartAMPM'] = this.getPMAMHour(resp.offerStartTime.split(':')[0])
+              this.product['offerEndHH'] = this.hour_12(resp.offerEndTime.split(':')[0])
+              this.product['offerEndMM'] = resp.offerEndTime.split(':')[1]
+              this.product['offerEndAMPM'] = this.getPMAMHour(resp.offerEndTime.split(':')[0])
+
+              this.product['pickupStartHH'] = this.hour_12(resp.pickupStartTime.split(':')[0])
+              this.product['pickupStartMM'] = resp.pickupStartTime.split(':')[1]
+              this.product['pickupStartAMPM'] = this.getPMAMHour(resp.pickupStartTime.split(':')[0])
+              this.product['pickupEndHH'] = this.hour_12(resp.offerEndTime.split(':')[0])
+              this.product['pickupEndMM'] = resp.offerEndTime.split(':')[1]
+              this.product['pickupEndAMPM'] = this.getPMAMHour(resp.offerEndTime.split(':')[0])
+
+              console.log(this.product)
+              this.product.offerStartDate = this.product.offerStartDate.split('T')[0];
+              this.product.offerEndDate = this.product.offerEndDate.split('T')[0];
+
+              this.populateFields();
+              this.parseWeekDay(this.product.activeDays)
+            },
+            err => console.log(err)
+          );
+        }
+      },
+      err => console.log(err)
+    );
+
+
     this.productForm
       .get("normalPrice")
       .valueChanges.pipe(
@@ -188,11 +246,18 @@ export class NewOffPeakProductComponent implements OnInit {
         categories: Category[];
         markup: number;
         pictures: Picture[];
+        clone:boolean,
+        edit:boolean
       }) => {
+        this.clone = data.clone;
+        this.edit = data.edit;
         this.shops = data.shops;
         this.categories = data.categories;
         this.markup = data.markup;
         this.pictures = data.pictures;
+        this.fillShops(data.shops);
+        this.fillcategories(data.categories);
+        // console.log(this.shop1,this.categories1,this.discounts)
         if (this.shops.length < 1) {
           const dialogRef = this.dialog.open(RequestResultComponent, {
             width: "300px",
@@ -211,6 +276,7 @@ export class NewOffPeakProductComponent implements OnInit {
         //console.log("shops " + data.shops.length);
       }
     );
+    console.log(this.clone)
     this.productForm.get("categoryId").valueChanges.subscribe(value => {
       if (value == "1") {
         this.options = [
@@ -247,6 +313,17 @@ export class NewOffPeakProductComponent implements OnInit {
   }
   getAMPM(date) {
     return date.getHours() >= 12 ? "PM" : "AM";
+  }
+  hour_12(hour) {
+    let hour_12 = (hour + 24) % 12 || 12
+    if (hour_12 < 10) {
+      return `0${hour_12}`;
+    } else {
+      return `${hour_12}`;
+    }
+  }
+  getPMAMHour(hour) {
+    return hour >= 12 ? "PM" : "AM"
   }
   initOfferPickupTime() {
     let defaultOfferSHH = this.hours12(this.offerStartInitTime).toString();
@@ -309,49 +386,106 @@ export class NewOffPeakProductComponent implements OnInit {
       product.pickupEndTime = this.pickupEndTime;
       product.offerEndDate = this.offerEndDate;
       product.offerStartDate = this.offerStartDate;
-      const dialogRef = this.dialog.open(SaveConfirmationDialogComponent, {
-        width: "300px",
-        height: "200px",
-        data: { title: "", question: "do you want to save this product?" }
-      });
-      dialogRef.afterClosed().subscribe(result => {
-        if (result == "yes") {
-          const progressDialogRef = this.dialog.open(SaveProgressComponent, {
-            width: "160px",
-            height: "180px",
-            data: { title: "", question: "" }
-          });
-          this.productService.createProduct(product).subscribe(
-            res => {
-              if (res["success"]) {
+      product.shop = this.productForm.get('shop').value;
+
+      if (this.product && !this.clone) {
+        console.log({ ...this.productForm.value }, 'edit')
+        // product = { ...this.productForm.value };
+        product.id = this.product.id;
+        const dialogRef = this.dialog.open(SaveConfirmationDialogComponent, {
+          width: "300px",
+          height: "200px",
+          data: { title: "", question: "do you want to Edit this product?" }
+        });
+        dialogRef.afterClosed().subscribe(result => {
+          if (result == "yes") {
+            const progressDialogRef = this.dialog.open(SaveProgressComponent, {
+              width: "160px",
+              height: "180px",
+              data: { title: "", question: "" }
+            });
+            this.productService.editProduct(product).subscribe(
+              res => {
+                console.log(res, 'resp')
+                if (res["success"]) {
+                  progressDialogRef.close();
+                  let snackBarRef = this.snackBar.open(
+                    "Successfuly saved",
+                    "Add More",
+                    {
+                      duration: 2000
+                    }
+                  );
+                  snackBarRef.afterDismissed().subscribe(() => {
+                    this.location.back();
+                    // this.router.navigate(["../"], { relativeTo: this.route });
+                  });
+                  snackBarRef.onAction().subscribe(() => {
+                    this.showImage = false;
+                    this.productForm.reset();
+                  });
+                  //this.router.navigate(["../"], { relativeTo: this.route });
+                } else {
+                  progressDialogRef.close();
+                  this.showError = true;
+                  this.errors = res["messages"];
+                }
+              },
+              err => {
                 progressDialogRef.close();
-                let snackBarRef = this.snackBar.open(
-                  "Successfuly saved",
-                  "Add More",
-                  {
-                    duration: 2000
-                  }
-                );
-                snackBarRef.afterDismissed().subscribe(() => {
-                  this.router.navigate(["../"], { relativeTo: this.route });
-                });
-                snackBarRef.onAction().subscribe(() => {
-                  this.showImage = false;
-                  this.productForm.reset();
-                });
-                //this.router.navigate(["../"], { relativeTo: this.route });
-              } else {
-                progressDialogRef.close();
-                this.showError = true;
-                this.errors = res["messages"];
               }
-            },
-            err => {
-              progressDialogRef.close();
-            }
-          );
-        }
-      });
+            );
+          }
+        });
+      }
+      else {
+        console.log(product,'create')
+        const dialogRef = this.dialog.open(SaveConfirmationDialogComponent, {
+          width: "300px",
+          height: "200px",
+          data: { title: "", question: "do you want to save this product?" }
+        });
+        dialogRef.afterClosed().subscribe(result => {
+          if (result == "yes") {
+            const progressDialogRef = this.dialog.open(SaveProgressComponent, {
+              width: "160px",
+              height: "180px",
+              data: { title: "", question: "" }
+            });
+            this.productService.createProduct(product).subscribe(
+              res => {
+                if (res["success"]) {
+                  progressDialogRef.close();
+                  let snackBarRef = this.snackBar.open(
+                    "Successfuly saved",
+                    "Add More",
+                    {
+                      duration: 2000
+                    }
+                  );
+                  snackBarRef.afterDismissed().subscribe(() => {
+                    this.location.back();
+                    // this.router.navigate(["../"], { relativeTo: this.route });
+                  });
+                  snackBarRef.onAction().subscribe(() => {
+                    this.showImage = false;
+                    this.productForm.reset();
+                  });
+                  //this.router.navigate(["../"], { relativeTo: this.route });
+                } else {
+                  progressDialogRef.close();
+                  this.showError = true;
+                  this.errors = res["messages"];
+                }
+              },
+              err => {
+                progressDialogRef.close();
+              }
+            );
+          }
+        });
+      }
+
     } else {
       alert("Sorry, you can't submit this form now!");
     }
@@ -572,5 +706,85 @@ export class NewOffPeakProductComponent implements OnInit {
   }
   gotoGallery() {
     this.router.navigate(["../../gallery"], { relativeTo: this.route });
+  }
+  toggleImageUploads() {
+    this.imageUploadsDiv = !this.imageUploadsDiv;
+  }
+  toggleNext(index) {
+    if (index == 1) {
+      this.section1 = true;
+    }
+    else if (index == 2) {
+      this.section2 = true
+    }
+  }
+  uploadFile(event) {
+    for (var index = 0; index < event.length; index++) {
+    }
+    // console.log(index, 'i')
+    const element = event[index - 1];
+    this.files = element.name
+    // console.log(element)
+    this.element = event[index - 1];
+  }
+  parseWeekDay(weekDays) {
+    // weekDays='tuewedthusatsun'
+    this.weekDaysInit.map((day, index) => {
+      // day.selected = false;
+      if (weekDays.includes(day.name.toLowerCase())) {
+        day.selected = true;
+        this.productForm.get('weekDays').get(`${index}`).setValue(true)
+      } else {
+        day.selected = false;
+      }
+    })
+
+  }
+  populateFields() {
+    _.map(this.product, (value, key) => {
+      this.productForm.controls[key] ? this.productForm.controls[key].setValue(value) : null;
+    });
+    this.productForm.get('categoryId').setValue(this.product.subCategoryId);
+    this.productForm.get('shop').setValue(this.product.storeId);
+    this.productForm.get("offerStartDate").setValue(this.product.offerStartDate);
+    this.offerStartInitTime = this.product.offerStartDate
+    this.offerEndInitTime = this.product.offerEndDate
+    // this.productForm.controls['discountPersent'].setValue(); 
+    this.productForm.get('discountPersent').setValue(this.product.discountPercentage);
+  }
+
+  fillcategories(categories) {
+    categories.map(industry => {
+      this.categories1.push({
+        name: industry.name,
+        value: industry.id
+      });
+    });
+  }
+
+  fillShops(shop) {
+    shop.map(shop => {
+      this.shop1.push({
+        name: shop.name,
+        value: shop.id
+      });
+    });
+  }
+
+  uploadSelectFile() {
+    // this.files.splice(index, 1)
+    let picture = new Picture();
+    picture = { id: 756, name: this.element.name, file: this.element };
+    let fileList = []
+    fileList.push(this.element)
+    this.uploadService.createImage(picture, fileList).subscribe(
+      (res) => {
+        console.log(res['image']);
+        if (res['success']) {
+          this.pictures.push(res['image'])
+        }
+        // this.pictures.push()
+      }
+    )
   }
 }

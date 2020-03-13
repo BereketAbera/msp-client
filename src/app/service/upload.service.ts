@@ -32,6 +32,9 @@ export class UploadService {
     }
     formData.append('name', picture.name);
     return this.http.post(uploadApi, formData, { params, headers }).pipe(
+      res => { 
+        return res;
+      },
       catchError(this.handleError)
     );
   }

@@ -28,6 +28,15 @@ export class ProductService {
       catchError(this.handleError)
     );
   }
+
+  editProduct(product){
+    return this.http.put(productApi,product).pipe(
+      catchError(this.handleError)
+    )
+  }
+  getProductById(id):Observable<any>{
+    return this.http.get<any>(`${productApi}/product/${id}`);
+  }
   removeProduct(productId: number | String) {
     return this.http.delete(productApi + "/" + productId).pipe(
       map(
