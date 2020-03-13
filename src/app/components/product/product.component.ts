@@ -47,6 +47,7 @@ export class ProductComponent implements OnInit {
 
   changeToLocal12Hours(time) {
     let d = -new Date().getTimezoneOffset();
+    // console.log(d);
     let x = time.split(":");
     let hour = parseInt(x[0]);
     let minute = parseInt(x[1]);
