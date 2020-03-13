@@ -16,7 +16,6 @@ export class SellerOrderDetailComponent implements OnInit {
     this.route.data
     .subscribe((data: { order: Transaction}) => {
       this.order = data.order;
-      console.log(this.order)
     
     });
   }
