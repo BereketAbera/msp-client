@@ -29,7 +29,7 @@ export class CustomNotificationComponent implements OnInit {
         } else {
           this.router.navigate([this.callback]);
         }
-      }, 4550);
+      }, 2000);
     }
   }
 }
