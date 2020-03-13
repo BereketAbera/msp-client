@@ -48,6 +48,28 @@ const sellerRoutes: Routes = [
         }
       },
       {
+        path: "prdcts/nwoffpktlgu/edit/:id",
+        component: NewOffPeakProductComponent,
+        resolve: {
+          shops: ShopResolverService,
+          categories: SubCategoryResolverService,
+          markup: MarkupResolverService,
+          pictures: GalleryResolverService
+        },
+        data:{clone:false,edit:true}
+      },
+      {
+        path: "prdcts/nwoffpktlgu/clone/:id",
+        component: NewOffPeakProductComponent,
+        resolve: {
+          shops: ShopResolverService,
+          categories: SubCategoryResolverService,
+          markup: MarkupResolverService,
+          pictures: GalleryResolverService
+        },
+        data:{clone:true,edit:false}
+      },
+      {
         path: "prdcts/nwclsngtlgu",
         component: AddNewAdComponent,
         resolve: {

@@ -73,6 +73,15 @@
                               <mat-icon color="accent">delete</mat-icon>
                               <span>Remove</span>
                             </button>
+
+                            <button mat-menu-item (click)="editProduct(product)">
+                              <mat-icon color="accent">edit</mat-icon>
+                              <span>Edit</span>
+                            </button>
+                            <button mat-menu-item (click)="cloneProduct(product)">
+                              <mat-icon color="accent">add</mat-icon>
+                              <span>Clone</span>
+                            </button>
                             
                           </mat-menu></mat-cell>
       

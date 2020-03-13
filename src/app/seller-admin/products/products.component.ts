@@ -84,6 +84,13 @@ export class ProductsComponent implements OnInit, AfterViewInit{
       this.errors = ["Sorry, your account is either inactive or disabled.Please contact sales@ManagerSpecial.com."]
     }
   }
+
+  editProduct($event){
+    this.router.navigate([`./nwoffpktlgu/edit/${$event.id}`],{relativeTo:this.route})
+  }
+  cloneProduct($event){
+    this.router.navigate([`./nwoffpktlgu/clone/${$event.id}`],{relativeTo:this.route})
+  }
   loadProductsPage() {
       this.dataSource.loadProducts(
           1,

@@ -1,32 +1,168 @@
+.upload_container {
+  display: none;
+}
+
+.form-group{
+  // border-bottom:1px #940e41 solid;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  width: 100%;
+  &-item{
+    margin: 1rem;
+    width: 29%;
+  }
+  &-header{
+    font-size: 1.5rem;
+    margin: 1rem 0;
+    color: #333;
+
+  }
+  &-content{
+    display: flex;
+    flex-direction: row;
+  }
+}
+.edit_image{
+  
+  img{
+    // width: 60%;
+    height: 14rem;
+    object-fit: cover;
+    /* background: white; */
+    border: 9px #eee solid;
+    box-shadow: 2px 2px 6px #aaa;
+  }
+   
+  
+}
+
+.product-drag {
+  &__header {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin: 2rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    color: #333;
+
+    .text {
+      padding: 0.5rem 1rem;
+      background: #c20e53;
+      border-radius: 20px;
+      color: white;
+      font-size: 1.5rem;
+      border: 0;
+      height: 3.5rem;
+      cursor: pointer;
+    }
+  }
+  .uploadfilecontainer {
+    // background-image: url("../../assets/cloud-2044823_960_720.png");
+    background-repeat: no-repeat;
+    background-size: 100px;
+    background-position: center;
+    height: 150px;
+    width: 80%;
+    margin: 20px auto;
+    border: 2px dashed #940e41;
+    border-radius: 10px;
+
+    .drag_drop {
+      display: flex;
+      align-content: center;
+      align-self: center;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+      margin-top: 3rem;
+      .text {
+        color: #940e41;
+        display: block;
+        font-size: 1.7rem;
+      }
+      .drag_icons {
+        display: block;
+        font-size: 2rem;
+      }
+    }
+  }
+
+  .uploadfilecontainer:hover {
+    cursor: pointer;
+    background-color: #b7d3e7 !important;
+    opacity: 0.8;
+  }
+
+  .files-list {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    margin: 10px auto;
+    background: #ffffff;
+    border: 1px dashed;
+    border-radius: 12px;
+    padding: 0.5rem;
+    color: #aa134d;
+  }
+
+  .files-list {
+    background: transparent;
+    // border: none;
+  }
+
+  .files-list .delete-file img {
+    width: 30px;
+  }
+  .upload-file {
+    padding: 0.5rem;
+    background: #940e41;
+    border-radius: 12px;
+    border: 0;
+    cursor: pointer;
+  }
+}
+.contanier{
+  background: #eee;
+  padding: 1rem;
+}
 .product-form {
   &__container {
     display: flex;
     flex-direction: column;
     padding: 1rem;
-    width: 80%;
-    max-width: 60rem;
-    margin: 0 auto;
+    width: 90%;
+    max-width: 70rem;
+    margin: 0rem auto;
     font-size: 1.2rem;
+    
   }
 
   &__header {
     font-size: 2rem;
     color: #333;
     width: 100%;
-    text-align: center;
+    // text-align: center;
     margin: 1rem;
   }
 
   &__section {
     display: flex;
     flex-direction: column;
-
+    background: white;
+    border-radius: 5px;
+    box-shadow: 1px 2px 2px #ddd;
     width: 100%;
     padding: 0.5rem 1rem;
 
     &:not(:last-child) {
       border: 1px solid #ddd;
       margin-bottom: 1rem;
+    }
+
+    .next__btn{
+      display: flex;
+      justify-content: flex-end;
     }
   }
 
@@ -46,9 +182,11 @@
   }
 
   &__image-gallery {
-    width: 100%;
+    width: 96%;
     overflow-x: scroll;
-    padding: 1rem;
+    padding: 1.5rem;
+    border: #cac3c6 1px solid;
+    margin:1rem
   }
 
   &__image-gallery::-webkit-scrollbar {
@@ -69,7 +207,7 @@
   }
 
   &__image {
-    height: 6rem;
+    height: 7rem;
     border: 2px solid #fff;
     border-radius: 1rem;
     cursor: pointer;

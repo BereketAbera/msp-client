@@ -47,7 +47,8 @@ export class UploadImgComponent implements OnInit {
        if (this.chackFormValidity()) {
         let picture = new Picture();
         picture = { ...this.uploadForm.value };
-        
+        console.log({...this.uploadForm.value})
+        console.log(this.file.nativeElement.files)
         const dialogRef = this.dialog.open(SaveConfirmationDialogComponent, {
           width: '300px',
           height: '200px',
