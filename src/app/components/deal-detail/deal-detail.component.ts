@@ -134,6 +134,7 @@ export class DealDetailComponent implements OnInit {
       this.buyForm.get("quantity").value > 0
     ) {
       order = JSON.parse(localStorage.getItem("msp_cart_items")) || new Order();
+      console.log(order);
       let reserveProduct = new ReserveProduct();
       reserveProduct.ordruid = order.guid;
       reserveProduct.prdid = this.product.id;

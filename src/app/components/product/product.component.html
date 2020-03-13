@@ -1,90 +1,3 @@
-<!-- <mat-card *ngIf="product" class="example-card" class="product__container">
-  <a class="clickCard" (click)="navdetail(product)"></a>
-  <img
-    class="image-card"
-    class="product__image"
-    src="{{ product?.imagePath }}"
-    alt="Photo of a Shiba Inu"
-  />
-  <mat-card-content class="itemContent">
-    <ul>
-      <li>
-        <div fxLayout="row nowrap">
-          <div>
-            <span class="prdName">{{ product?.name }}</span>
-          </div>
-          <div class="push"></div>
-        </div>
-      </li>
-      <li>
-        <div fxLayout="row nowrap">
-          <div></div>
-          <div class="push">
-            <span
-              >Reserve Orders From
-              {{ product?.offerStartTime | date: "shortTime" }} to
-              {{ product?.offerEndTime | date: "shortTime" }}
-            </span>
-          </div>
-        </div>
-      </li>
-
-      <li>
-        <div fxLayout="row nowrap">
-          <div></div>
-          <div class="push">
-            <span
-              >Arrive at Restaurant From
-              {{ product?.pickupStartTime | date: "shortTime" }} to
-              {{ product?.pickupEndTime | date: "shortTime" }}
-            </span>
-          </div>
-        </div>
-      </li>
-      <li class="lmtd">
-        <span class="lmtd"
-          >Limited quantity. Reserve online, get special discount code. Pay
-          restaurant directly. Enjoy!</span
-        >
-      </li>
-      <li>
-        <span>{{ product?.description }}</span>
-      </li>
-      <li>
-        <div fxLayout="row nowrap">
-          <div>
-            <span
-              ><strong>{{ product.shopName }} </strong>{{ product.address }},
-              {{ product.city }}</span
-            >
-          </div>
-          <div></div>
-        </div>
-      </li>
-      <li>
-        <div fxLayout="row nowrap">
-          <div>
-            <i class="material-icons yellowStar">star_rate</i>
-            <i class="material-icons yellowStar">star_rate</i>
-            <i class="material-icons yellowStar">star_rate</i>
-            <i class="material-icons yellowStar">star_rate</i>
-            <i class="material-icons greyStar">star_rate</i>
-          </div>
-          <div class="push">
-            <span class="itemPriceBfr">{{
-              product?.normalPrice | currency
-            }}</span>
-            <span class="itmPriceNw">
-              <span class="mng"> ManagerSpecial</span>
-              {{ product?.discountPrice | currency }}</span
-            >
-          </div>
-        </div>
-      </li>
-    </ul>
-  </mat-card-content>
-</mat-card> -->
-
 <a *ngIf="product" (click)="navdetail(product)" class="product__container">
   <div class="product__section-top">
     <img
@@ -113,8 +26,8 @@
       <span class="product__reserve-text">
         <i class="far fa-clock product__clock-icon"></i>
         Reserve
-        {{ product?.offerStartTime }} -
-        {{ product?.offerEndTime }}
+        {{ changeToLocal12Hours(product?.offerStartTime) }} -
+        {{ changeToLocal12Hours(product?.offerEndTime) }}
       </span>
     </div>
 
@@ -122,8 +35,8 @@
       <span>
         <i class="far fa-clock product__clock-icon"></i>
         Arrive
-        {{ product?.pickupStartTime }} -
-        {{ product?.pickupEndTime }}
+        {{ changeToLocal12Hours(product?.pickupStartTime) }} -
+        {{ changeToLocal12Hours(product?.pickupEndTime) }}
       </span>
     </div>
     <!-- <div class="product__ratting">

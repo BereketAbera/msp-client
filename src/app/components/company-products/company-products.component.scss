@@ -21,6 +21,7 @@
       align-items: stretch;
       overflow: scroll;
       transition: 1s;
+      scroll-behavior: smooth;
 
       &__animate {
         animation-name: slideAndStay;
@@ -70,7 +71,7 @@
   height: 4rem;
   border-radius: 2rem;
 }
-.backward__button:hover{
+.backward__button:hover {
   cursor: pointer;
   box-shadow: 0px 0px 2px 2px rgba(75, 74, 74, 0.3);
 }
@@ -78,16 +79,34 @@
   background-color: #eee;
 }
 
-.forward__button:hover{
+.forward__button:hover {
   cursor: pointer;
   box-shadow: 0px 0px 2px 2px rgba(75, 74, 74, 0.3);
 }
+
+.slide {
+  &__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 2rem;
+    padding: 0rem;
+  }
+
+  &__button-icon {
+    font-size: 3rem;
+    width: auto;
+    height: auto;
+  }
+}
 @media only screen and (max-width: 732px) {
-  .backward__button{
+  .backward__button {
     display: none;
   }
   .forward__button {
     display: none;
   }
 }
-

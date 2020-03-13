@@ -20,7 +20,7 @@ export class CompanyProductsComponent implements OnInit {
   lng: number = 0;
   distance: number = 0;
   products;
-  showAnimate=false;
+  showAnimate = false;
   shown = false;
   navigate = false;
   constructor(private prdctService: ProductService) {}
@@ -59,13 +59,15 @@ export class CompanyProductsComponent implements OnInit {
 
   nextClickScroll(id) {
     // console.log(id,'id')
-    this.showAnimate=true;
-    document.getElementById(`contanier_prods-${id}`).scrollLeft += 2500;
+    this.showAnimate = true;
+    let elm = document.getElementById(`contanier_prods-${id}`);
+    elm.scrollLeft += elm.offsetWidth;
   }
 
   previousClickScroll(id) {
     this.showAnimate = true;
-    document.getElementById(`contanier_prods-${id}`).scrollLeft -= 2500;
+    let elm = document.getElementById(`contanier_prods-${id}`);
+    elm.scrollLeft -= elm.offsetWidth;
   }
 
   fetchProductForCompany(userId, name) {

@@ -17,18 +17,11 @@ import { Transaction } from "src/app/model/transaction";
   templateUrl: "./buyer-orders.component.html",
   styleUrls: ["./buyer-orders.component.scss"]
 })
-export class BuyerOrdersComponent implements OnInit, AfterViewInit {
+export class BuyerOrdersComponent implements OnInit {
   orders: Transaction[];
   dataSource: TransactionsDataSource;
   qrCode;
-
-  //displayedColumns= ["name","status","quantity","price","totalPrice","ViewOrder"];
-
-  //@ViewChild(MatPaginator) paginator: MatPaginator;
-
-  ////@ViewChild(MatSort) sort: MatSort;
-
-  //@ViewChild('input') input: ElementRef;
+  count;
 
   constructor(
     private route: ActivatedRoute,
@@ -39,19 +32,11 @@ export class BuyerOrdersComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.route.data.subscribe((data: { orders: Transaction[] }) => {
       this.orders = data.orders;
+      this.count = this.transactionService.countSubject.value;
+      console.log(data);
     });
-    //this.dataSource = new TransactionsDataSource(this.transactionService);
-    //this.dataSource.loadTransactions(1, '', 'asc', 0, 5);
   }
 
-  ngAfterViewInit() {
-    //this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
-    // merge(this.sort.sortChange, this.paginator.page)
-    //.pipe(
-    //tap(() => this.loadTransactionsPage())
-    ////)
-    //.subscribe();
-  }
   getStatus(transaction: Transaction) {
     let prdPickupEndTime = new Date(transaction.product.pickupEndTime);
     let purchaseTime = new Date(transaction.purchaseTime);
@@ -63,7 +48,7 @@ export class BuyerOrdersComponent implements OnInit, AfterViewInit {
       prdPickupEndTime.getMinutes(),
       prdPickupEndTime.getSeconds()
     ).getTime();
-    //let pickupEndTime = new Date(transaction.product.purchaseTime).getTime();
+
     let status = "Pending";
     if (transaction.isScanneded) {
       if (transaction.status == 1) {
@@ -84,14 +69,6 @@ export class BuyerOrdersComponent implements OnInit, AfterViewInit {
   showOrders() {
     if (this.orders.length > 0) return true;
     return false;
-  }
-  loadTransactionsPage() {
-    /*this.dataSource.loadTransactions(
-          1,
-          'name',
-          this.sort.direction,
-          this.paginator.pageIndex,
-          this.paginator.pageSize);*/
   }
 
   changeToLocal12Hours(time) {
@@ -122,5 +99,14 @@ export class BuyerOrdersComponent implements OnInit, AfterViewInit {
 
   returnTwoDigit(value) {
     return value.toString().length == 1 ? "0" + value : value;
+  }
+
+  getServerData(event) {
+    this.transactionService
+      .listTransactions(1, "", "", event.pageIndex, event.pageSize)
+      .subscribe(data => {
+        this.orders = data;
+      });
+    console.log(event);
   }
 }
