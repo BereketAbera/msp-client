@@ -20,7 +20,7 @@
       <div class="product-drag">
         <div class="product-drag__header">
 
-         {{ edit ? 'Image': 'Select Image'}} 
+         {{ edit ? '': 'Select Image'}} 
 
          <div *ngIf="edit" class="edit_image">
           <img *ngIf='imagePath && !imageUploadsDiv' [src]="imagePath" alt="">
@@ -33,8 +33,6 @@
             </span>
           </div>
         </div>
-
-        
         <div [class.upload_container]='!imageUploadsDiv'>
           <div class="uploadfilecontainer" (click)="fileInput.click()" appDragDrop (onFileDropped)="uploadFile($event)">
             <input hidden type="file" #fileInput (change)="uploadFile($event.target.files)">
