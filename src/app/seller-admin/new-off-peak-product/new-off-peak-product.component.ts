@@ -195,7 +195,7 @@ export class NewOffPeakProductComponent implements OnInit {
               this.product['pickupEndMM'] = resp.offerEndTime.split(':')[1]
               this.product['pickupEndAMPM'] = this.getPMAMHour(resp.offerEndTime.split(':')[0])
 
-              console.log(this.product)
+              // console.log(this.product)
               this.product.offerStartDate = this.product.offerStartDate.split('T')[0];
               this.product.offerEndDate = this.product.offerEndDate.split('T')[0];
 

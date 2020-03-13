@@ -92,7 +92,7 @@
             <input type="text" placeholder="Enter Product Name or Select from List" matInput [matAutocomplete]="auto"
               formControlName="name" required />
             <mat-autocomplete #auto="matAutocomplete">
-              <mat-option *ngFor="let option of categories1" [value]="option">
+              <mat-option *ngFor="let option of options" [value]="option">
                 {{ option }}
               </mat-option>
             </mat-autocomplete>
