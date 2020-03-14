@@ -178,22 +178,24 @@ export class NewOffPeakProductComponent implements OnInit {
         if (params.id) {
           this.productService.getProductById(params.id).subscribe(
             resp => {
-              // console.log(resp)
+              console.log(resp)
               this.imagePath = resp.imagePath;
               this.product = resp;
-              this.product['offerStartHH'] = this.hour_12(resp.offerStartTime.split(':')[0])
-              this.product['offerStartMM'] = resp.offerStartTime.split(':')[1]
-              this.product['offerStartAMPM'] = this.getPMAMHour(resp.offerStartTime.split(':')[0])
-              this.product['offerEndHH'] = this.hour_12(resp.offerEndTime.split(':')[0])
-              this.product['offerEndMM'] = resp.offerEndTime.split(':')[1]
-              this.product['offerEndAMPM'] = this.getPMAMHour(resp.offerEndTime.split(':')[0])
 
-              this.product['pickupStartHH'] = this.hour_12(resp.pickupStartTime.split(':')[0])
-              this.product['pickupStartMM'] = resp.pickupStartTime.split(':')[1]
-              this.product['pickupStartAMPM'] = this.getPMAMHour(resp.pickupStartTime.split(':')[0])
-              this.product['pickupEndHH'] = this.hour_12(resp.offerEndTime.split(':')[0])
-              this.product['pickupEndMM'] = resp.offerEndTime.split(':')[1]
-              this.product['pickupEndAMPM'] = this.getPMAMHour(resp.offerEndTime.split(':')[0])
+              console.log(this.changeToLocal12Hours(resp.offerStartTime),'silas')
+              this.product['offerStartHH'] = this.changeToLocal12Hours(resp.offerStartTime).split(':')[0]
+              this.product['offerStartMM'] = this.changeToLocal12Hours(resp.offerStartTime).split(':')[1]
+              this.product['offerStartAMPM'] = this.changeToLocal12Hours(resp.offerStartTime).split(':')[2]
+              this.product['offerEndHH'] = this.changeToLocal12Hours(resp.offerEndTime).split(':')[0]
+              this.product['offerEndMM'] = this.changeToLocal12Hours(resp.offerEndTime).split(':')[1]
+              this.product['offerEndAMPM'] = this.changeToLocal12Hours(resp.offerEndTime).split(':')[2]
+
+              this.product['pickupStartHH'] = this.changeToLocal12Hours(resp.pickupStartTime).split(':')[0]
+              this.product['pickupStartMM'] = this.changeToLocal12Hours(resp.pickupStartTime).split(':')[1]
+              this.product['pickupStartAMPM'] = this.changeToLocal12Hours(resp.pickupStartTime).split(':')[2]
+              this.product['pickupEndHH'] = this.changeToLocal12Hours(resp.pickupEndTime).split(':')[0]
+              this.product['pickupEndMM'] = this.changeToLocal12Hours(resp.pickupEndTime).split(':')[1]
+              this.product['pickupEndAMPM'] = this.changeToLocal12Hours(resp.pickupEndTime).split(':')[2]
 
               // console.log(this.product)
               this.product.offerStartDate = this.product.offerStartDate.split('T')[0];
@@ -276,7 +278,7 @@ export class NewOffPeakProductComponent implements OnInit {
         //console.log("shops " + data.shops.length);
       }
     );
-    console.log(this.clone)
+    // console.log(this.clone)
     this.productForm.get("categoryId").valueChanges.subscribe(value => {
       if (value == "1") {
         this.options = [
@@ -668,10 +670,10 @@ export class NewOffPeakProductComponent implements OnInit {
       );
       return false;
     }
-    if (!(this.offerStartDate.getTime() >= today.getTime())) {
-      alert("Promotion start date must be greater than or equal to Today.");
-      return false;
-    }
+    // if (!(this.offerStartDate.getTime() >= today.getTime())) {
+    //   alert("Promotion start date must be greater than or equal to Today.");
+    //   return false;
+    // }
     if (!(this.offerEndTime.getTime() > this.offerStartTime.getTime())) {
       alert(
         "Reservation end time must be greater than reservation start time."
@@ -747,6 +749,7 @@ export class NewOffPeakProductComponent implements OnInit {
     this.productForm.get('categoryId').setValue(this.product.subCategoryId);
     this.productForm.get('shop').setValue(this.product.storeId);
     this.productForm.get("offerStartDate").setValue(this.product.offerStartDate);
+    this.productForm.get("imgId").setValue(this.product.imgId);
     this.offerStartInitTime = this.product.offerStartDate
     this.offerEndInitTime = this.product.offerEndDate
     // this.productForm.controls['discountPersent'].setValue(); 
@@ -770,6 +773,37 @@ export class NewOffPeakProductComponent implements OnInit {
       });
     });
   }
+
+  returnTwoDigit(value) {
+    return value.toString().length == 1 ? "0" + value : value;
+  }
+
+  changeToLocal12Hours(time) {
+    let d = -new Date().getTimezoneOffset();
+    let x = time.split(":");
+    let hour = parseInt(x[0]);
+    let minute = parseInt(x[1]);
+    let totalMinutes = hour * 60 + minute + d;
+    hour = Math.floor(totalMinutes / 60);
+    minute = totalMinutes % 60;
+
+    if (hour < 12) {
+      return `${this.returnTwoDigit(hour)}:${this.returnTwoDigit(minute)}:AM`;
+    } else if (hour == 12) {
+      return `${this.returnTwoDigit(12)}:${this.returnTwoDigit(minute)}:PM`;
+    } else if (hour > 24) {
+      return `${this.returnTwoDigit(hour - 24)}:${this.returnTwoDigit(
+        minute
+      )}:AM`;
+    } else if (hour == 24) {
+      return `${this.returnTwoDigit(12)}:${this.returnTwoDigit(minute)}:AM`;
+    } else {
+      return `${this.returnTwoDigit(hour % 12)}:${this.returnTwoDigit(
+        minute
+      )}:PM`;
+    }
+  }
+
 
   uploadSelectFile() {
     // this.files.splice(index, 1)
