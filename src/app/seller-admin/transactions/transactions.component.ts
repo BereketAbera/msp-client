@@ -16,7 +16,7 @@ export class TransactionsComponent implements OnInit, AfterViewInit{
   dataSource: SellerOrderDataSource;
   qrCode;
   balance: number = 0;
-  displayedColumns= ["product","status","date","totalPrice","name"];
+  displayedColumns= ["img","product","status","date","totalPrice","name"];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -32,7 +32,6 @@ export class TransactionsComponent implements OnInit, AfterViewInit{
       
       this.dataSource = new SellerOrderDataSource(this.transactionService);
       this.dataSource.loadTransactions(1, '', 'asc', 0, 5);
-      
   }
 
   ngAfterViewInit() {

@@ -26,7 +26,7 @@ export class ProductsComponent implements OnInit, AfterViewInit{
 
   dataSource: ProductsDataSource;
 
-  displayedColumns= ["name", "shop", "discountPrice","dispercentage","remove"];
+  displayedColumns= ["img","name", "shop", "discountPrice","dispercentage","remove"];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 

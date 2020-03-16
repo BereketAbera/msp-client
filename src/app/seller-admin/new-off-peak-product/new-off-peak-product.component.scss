@@ -14,10 +14,26 @@
     color: #555;
     padding-right:1rem;
   }
+  &__label-2{
+    margin:0 1rem;
+    font-weight: 600;
+    color: #555;
+    padding-right:1rem;
+  }
   &-item{
     padding: 0 1rem;
     margin: 1rem;
     width: 29%;
+  }
+  &-item-2{
+    padding: 0, 1rem;
+    margin: 1rem;
+    width: 50%;
+  }
+  &-item-3{
+    padding: 0, 1rem;
+    margin: 1rem;
+    width: 100%;
   }
   &-header{
     font-size: 1.5rem;
@@ -55,18 +71,21 @@
     display: flex;
     justify-content: space-between;
     color: #333;
+    margin-bottom: 0;
 
+   
     .text {
-      padding: 0.5rem 1rem;
       background: #c20e53;
       border-radius: 20px;
       color: white;
-      font-size: 1.5rem;
       border: 0;
-      height: 3.5rem;
       cursor: pointer;
+      // width: 15rem;
+      height: 7vh;
+     
     }
   }
+  
   .uploadfilecontainer {
     // background-image: url("../../assets/cloud-2044823_960_720.png");
     background-repeat: no-repeat;
@@ -155,7 +174,12 @@
     color: #333;
     width: 100%;
     // text-align: center;
-    margin: 1rem;
+    margin:0 1rem;
+    &__subtitle{
+      font-size: 1.2rem;
+      color: #555;
+      margin:0 1rem
+    }
   }
 
   &__section {
@@ -272,7 +296,7 @@
     display: flex;
     width: 90%;
     justify-content: space-between;
-    margin: 1rem 0rem;
+    // margin: 1rem 0rem;
   }
 
   &__sub-input-container {
@@ -328,8 +352,49 @@
     width: 100%;
   }
 
-  .form-group-item{
+  .form-group-item , .form-group-item-2, .form-group-item-3{
     min-width: 20rem;
+    width: 80%;
+  }
+
+  .form-group-content{
+    display: flex;
+    flex-direction: column;
+  }
+  .form-group__label-2{
+    margin-right: 2.2rem!important;
+  }
+}
+
+@media only screen and (max-width: 372px) {
+  .contanier{
+    width: 100%;
+    padding: 0;
+  }
+  .product-form__container{
+    margin: 0;
+    width: 100%;
+  }
+  .product-form__sub-container{
+    width: 70%;
+  }
+
+  .product-drag__header{
+
+    padding: 0;
+
+    .text{
+      // height: 2.5rem;
+      padding: 0 0.5rem;
+      min-width: 15rem;
+      font-size: 1.2rem;
+
+    }
+  }
+
+  .form-group-item , .form-group-item-2, .form-group-item-3{
+    min-width: 20rem;
+    width: 100%;
   }
 
   .form-group-content{

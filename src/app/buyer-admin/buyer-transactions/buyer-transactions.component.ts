@@ -41,6 +41,7 @@ export class BuyerTransactionsComponent implements OnInit, AfterViewInit {
     this.route.data.subscribe((data: { balance: Balance }) => {
       this.balance = data.balance.amount;
     });
+    // console.log(this.dataSource)
   }
 
   ngAfterViewInit() {
