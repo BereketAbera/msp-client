@@ -8,7 +8,7 @@ $error-color: #ff0000;
   padding: 0px;
   margin: 0px;
   box-sizing: border-box;
-  font-family: "Nunito Sans", sans-serif;
+  font-family: "poppins",'roboto', sans-serif;
   &:focus {
     outline: none;
   }
@@ -20,12 +20,13 @@ body {
 }
 body {
   margin: 0;
-  font-family: "Roboto", sans-serif;
+  // font-family: "Roboto", sans-serif;
+  font-family: 'poppins';
 }
 
 html {
   font-size: 45%; //10px
-  font-family: "Nunito Sans", Arial;
+  font-family: "poppins", Arial;
 }
 
 @media only screen and (min-width: 320px) {
