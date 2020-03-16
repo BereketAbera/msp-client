@@ -27,14 +27,13 @@
           </div>
 
           
-          <button mat-menu-item class='text' (click)='toggleImageUploads()'>
-            <mat-icon color="white">cloud_upload</mat-icon>
+          <button mat-raised-button class='text' (click)='toggleImageUploads()'>
+            <!-- <button mat-icon-button>
+              <mat-icon aria-label="Heart">upload_clouds</mat-icon>
+           </button> -->
             <span> {{ edit ? 'Change Image': ' Upload Other'}}</span>
           </button>
 
-          
-
-          
         </div>
         <div [class.upload_container]='!imageUploadsDiv'>
           <div class="uploadfilecontainer" (click)="fileInput.click()" appDragDrop (onFileDropped)="uploadFile($event)">

@@ -182,7 +182,7 @@ export class NewOffPeakProductComponent implements OnInit {
               this.imagePath = resp.imagePath;
               this.product = resp;
 
-              console.log(this.changeToLocal12Hours(resp.offerStartTime),'silas')
+              
               this.product['offerStartHH'] = this.changeToLocal12Hours(resp.offerStartTime).split(':')[0]
               this.product['offerStartMM'] = this.changeToLocal12Hours(resp.offerStartTime).split(':')[1]
               this.product['offerStartAMPM'] = this.changeToLocal12Hours(resp.offerStartTime).split(':')[2]
@@ -198,8 +198,8 @@ export class NewOffPeakProductComponent implements OnInit {
               this.product['pickupEndAMPM'] = this.changeToLocal12Hours(resp.pickupEndTime).split(':')[2]
 
               // console.log(this.product)
-              this.product.offerStartDate = this.product.offerStartDate.split('T')[0];
-              this.product.offerEndDate = this.product.offerEndDate.split('T')[0];
+              // this.product.offerStartDate = this.changeToLocalDate(this.product.offerStartDate) ;
+              // this.product.offerEndDate = this.changeToLocalDate(this.product.offerEndDate.split('T')[0]) ;
 
               this.populateFields();
               this.parseWeekDay(this.product.activeDays)
@@ -730,7 +730,8 @@ export class NewOffPeakProductComponent implements OnInit {
     this.element = event[index - 1];
   }
   parseWeekDay(weekDays) {
-    // weekDays='tuewedthusatsun'
+    // weekDays= "montuethufrisun"
+    // console.log(weekDays,'week')
     this.weekDaysInit.map((day, index) => {
       // day.selected = false;
       if (weekDays.includes(day.name.toLowerCase())) {
@@ -738,6 +739,7 @@ export class NewOffPeakProductComponent implements OnInit {
         this.productForm.get('weekDays').get(`${index}`).setValue(true)
       } else {
         day.selected = false;
+        this.productForm.get('weekDays').get(`${index}`).setValue(false)
       }
     })
 
@@ -748,7 +750,7 @@ export class NewOffPeakProductComponent implements OnInit {
     });
     this.productForm.get('categoryId').setValue(this.product.subCategoryId);
     this.productForm.get('shop').setValue(this.product.storeId);
-    this.productForm.get("offerStartDate").setValue(this.product.offerStartDate);
+    // this.productForm.get("offerStartDate").setValue(this.product.offerStartDate);
     this.productForm.get("imgId").setValue(this.product.imgId);
     this.offerStartInitTime = this.product.offerStartDate
     this.offerEndInitTime = this.product.offerEndDate
@@ -777,7 +779,19 @@ export class NewOffPeakProductComponent implements OnInit {
   returnTwoDigit(value) {
     return value.toString().length == 1 ? "0" + value : value;
   }
+  changeToLocalDate(date){
+    const day = date.split('T')[0];
+    let d = -new Date().getTimezoneOffset();
+    let da = new Date(date);
+    console.log(date.toLocaleString())
+    if(da.getMonth() >= 10){
+      return `${da.getFullYear()}-${da.getMonth()+1}-${da.getDate()}`;
+    }else{
+      return `${da.getFullYear()}-0${da.getMonth()+1}-${da.getDate()}`;
+    }
+    
 
+  }
   changeToLocal12Hours(time) {
     let d = -new Date().getTimezoneOffset();
     let x = time.split(":");
