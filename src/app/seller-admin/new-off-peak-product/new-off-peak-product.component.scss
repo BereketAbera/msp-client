@@ -71,7 +71,9 @@
     display: flex;
     justify-content: space-between;
     color: #333;
+    margin-bottom: 0;
 
+   
     .text {
       background: #c20e53;
       border-radius: 20px;
@@ -83,6 +85,7 @@
      
     }
   }
+  
   .uploadfilecontainer {
     // background-image: url("../../assets/cloud-2044823_960_720.png");
     background-repeat: no-repeat;
@@ -171,7 +174,12 @@
     color: #333;
     width: 100%;
     // text-align: center;
-    margin: 1rem;
+    margin:0 1rem;
+    &__subtitle{
+      font-size: 1.2rem;
+      color: #555;
+      margin:0 1rem
+    }
   }
 
   &__section {

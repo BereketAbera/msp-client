@@ -391,7 +391,7 @@ export class NewOffPeakProductComponent implements OnInit {
       product.shop = this.productForm.get('shop').value;
 
       if (this.product && !this.clone) {
-        console.log({ ...this.productForm.value }, 'edit')
+        // console.log({ ...this.productForm.value }, 'edit')
         // product = { ...this.productForm.value };
         product.id = this.product.id;
         const dialogRef = this.dialog.open(SaveConfirmationDialogComponent, {
@@ -408,7 +408,7 @@ export class NewOffPeakProductComponent implements OnInit {
             });
             this.productService.editProduct(product).subscribe(
               res => {
-                console.log(res, 'resp')
+                // console.log(res, 'resp')
                 if (res["success"]) {
                   progressDialogRef.close();
                   let snackBarRef = this.snackBar.open(
@@ -441,7 +441,7 @@ export class NewOffPeakProductComponent implements OnInit {
         });
       }
       else {
-        console.log(product,'create')
+        // console.log(product,'create')
         const dialogRef = this.dialog.open(SaveConfirmationDialogComponent, {
           width: "300px",
           height: "200px",
