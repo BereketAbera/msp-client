@@ -1,28 +1,27 @@
 <div fxLayout="row" fxLayoutAlign="end center" class="addNewDiv">
-  <div><button mat-raised-button color="accent" (click)="gotoUploadPage()">Add Image</button></div>
-</div>
-<br>
-
-
-<div class="scrolling-wrapper-flexbox">
-    <div class="gallery" *ngFor="let picture of picturesEven">
-        <span (click)="delete(picture)" class="closebtn">&times;</span>
-        <div >
-          <img [src]="picture.file"  alt="Cinque Terre" width="600" height="400">
-        </div>
-        <div class="desc">{{picture.name}}</div>
-      </div>
-  
-</div>
-<div class="scrolling-wrapper-flexbox">
-    <div class="gallery" *ngFor="let picture of picturesOdd">
-        <span (click)="delete(picture)" class="closebtn">&times;</span>
-        <div>
-          <img [src]="picture.file"  alt="Cinque Terre" width="600" height="400">
-        </div>
-        <div class="desc">{{picture.name}}</div>
-      </div>
-    
+  <div>
+    <button mat-raised-button color="accent" (click)="gotoUploadPage()">
+      Add Image
+    </button>
   </div>
-  
+</div>
+<br />
 
+<div class="scrolling-wrapper-flexbox">
+  <div class="gallery" *ngFor="let picture of picturesEven">
+    <span (click)="delete(picture)" class="closebtn">&times;</span>
+    <div>
+      <img [src]="picture.file" alt="Cinque Terre" width="600" height="400" />
+    </div>
+    <div class="desc">{{ picture.name }}</div>
+  </div>
+</div>
+<div class="scrolling-wrapper-flexbox">
+  <div class="gallery" *ngFor="let picture of picturesOdd">
+    <span (click)="delete(picture)" class="closebtn">&times;</span>
+    <div>
+      <img [src]="picture.file" alt="Cinque Terre" width="600" height="400" />
+    </div>
+    <div class="desc">{{ picture.name }}</div>
+  </div>
+</div>
