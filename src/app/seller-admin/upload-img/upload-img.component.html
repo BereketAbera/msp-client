@@ -8,32 +8,28 @@
     </li>
   </ul>
 </div>
-<form [formGroup]="uploadForm">
-  <div
-    class="ffrMenu captureC"
-    fxLayout="row"
-    fxLayoutAlign="start"
-    fxLayoutGap="10px"
-  >
-    <div>
-      <div><span>Keep picture size smaller. Max 1M.</span></div>
-      <div><span>Click to use camera or upload an image</span></div>
-      <div class="captureBrdr">
-        <label for="file">
-          <i class="material-icons orange600 md-48"></i>
-          <input
-            type="file"
-            #file
-            id="file"
-            (change)="fileChangeEvent($event)"
-            accept="image/jpg,image/jpeg,image/gif,image/png"
-            style="display: none;"
-          />
-        </label>
-      </div>
+<form class="upload-form__container" [formGroup]="uploadForm">
+  <div class="upload-form__image-input">
+    <div
+      [class.hidden]="!uploadForm.value['img']"
+      class="captureBrdr"
+      fxFlexAlign="center"
+    >
+      <img id="localImage" src="" class="upload-form__image" />
     </div>
-    <div class="captureBrdr" fxFlexAlign="center">
-      <img id="localImage" src="" height="96px" width="110px" />
+    <!-- <div><span>Keep picture size smaller. Max 1M.</span></div> -->
+    <div><span>Click hear to upload an image</span></div>
+    <div class="captureBrdr">
+      <label for="file">
+        <i class="material-icons orange600 md-48"></i>
+        <input
+          type="file"
+          id="file"
+          (change)="fileChangeEvent($event)"
+          accept="image/jpg,image/jpeg,image/gif,image/png"
+          style="display: none;"
+        />
+      </label>
     </div>
   </div>
 
@@ -77,13 +73,14 @@
   </div>
 </form>
 
-<div class="image" *ngIf="imageChangedEvent">
+<div class="image" *ngIf="imageChangedEvent" [class.hidden]="loadingLocalImage">
   <image-cropper
     class="image__cropper"
     [imageChangedEvent]="imageChangedEvent"
     [maintainAspectRatio]="true"
     [aspectRatio]="550 / 440"
     [maintainAspectRatio]="false"
+    [hideResizeSquares]="true"
     (imageCropped)="imageCropped($event)"
     (cropperReady)="imageLoad($event)"
   ></image-cropper>
@@ -93,7 +90,7 @@
       (click)="saveImage()"
       class="mat-flat-button mat-accent image__submit"
     >
-      Save
+      Add Image
     </button>
     <button
       (click)="closeModal()"
@@ -101,5 +98,18 @@
     >
       Cancle
     </button>
+  </div>
+</div>
+<div *ngIf="loadingLocalImage" class="loader">
+  <div class="loader__container">
+    <div class="gooey">
+      <span class="dot"></span>
+      <div class="dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+    <div class="loader__text">Loading</div>
   </div>
 </div>

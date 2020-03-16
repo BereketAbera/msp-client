@@ -31,22 +31,22 @@ export class GalleryComponent implements OnInit {
   ngOnInit() {
     this.route.data.subscribe((data: { pictures: Picture[] }) => {
       this.pictures = data.pictures;
-      this.prepareOddEvenPicture();
+      // this.prepareOddEvenPicture();
     });
   }
-  prepareOddEvenPicture() {
-    if (this.picturesEven.length > 0) this.picturesEven = [];
-    if (this.picturesOdd.length > 0) this.picturesOdd = [];
-    for (var x = 0; x < this.pictures.length; x++) {
-      if (x === 0) {
-        this.picturesEven.push(this.pictures[x]);
-      } else if (x % 2 === 0) {
-        this.picturesEven.push(this.pictures[x]);
-      } else {
-        this.picturesOdd.push(this.pictures[x]);
-      }
-    }
-  }
+  // prepareOddEvenPicture() {
+  //   if (this.picturesEven.length > 0) this.picturesEven = [];
+  //   if (this.picturesOdd.length > 0) this.picturesOdd = [];
+  //   for (var x = 0; x < this.pictures.length; x++) {
+  //     if (x === 0) {
+  //       this.picturesEven.push(this.pictures[x]);
+  //     } else if (x % 2 === 0) {
+  //       this.picturesEven.push(this.pictures[x]);
+  //     } else {
+  //       this.picturesOdd.push(this.pictures[x]);
+  //     }
+  //   }
+  // }
   delete(picture: Picture) {
     const dialogRef = this.dialog.open(SaveConfirmationDialogComponent, {
       width: "220px",
@@ -70,7 +70,7 @@ export class GalleryComponent implements OnInit {
               snackBarRef.afterDismissed().subscribe(() => {
                 this.uploadService.listImages().subscribe(newPictures => {
                   this.pictures = newPictures;
-                  this.prepareOddEvenPicture();
+                  // this.prepareOddEvenPicture();
                 });
                 this.router.navigate(["./"], { relativeTo: this.route });
               });

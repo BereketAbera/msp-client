@@ -13,6 +13,8 @@ import { SaveProgressComponent } from "../../shared/save-progress/save-progress.
 import { ImageCroppedEvent } from "ngx-image-cropper";
 import Compressor from "compressorjs";
 
+let uploadClass = null;
+
 @Component({
   selector: "app-upload-img",
   templateUrl: "./upload-img.component.html",
@@ -34,7 +36,9 @@ export class UploadImgComponent implements OnInit {
     name: ["", Validators.required],
     img: null
   });
+  formData = new FormData();
   loadingFile = false;
+  loadingLocalImage = false;
 
   constructor(
     private uploadService: UploadService,
@@ -43,7 +47,9 @@ export class UploadImgComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private fb: FormBuilder
-  ) {}
+  ) {
+    uploadClass = this;
+  }
 
   ngOnInit() {}
   gotoGallery() {
@@ -53,126 +59,111 @@ export class UploadImgComponent implements OnInit {
     return true;
   }
   onSubmit() {
-    if (this.file.nativeElement.files.length > 0) {
-      var fileize = +(
-        this.file.nativeElement.files[0].size /
-        1024 /
-        1024
-      ).toFixed(4);
-      if (fileize <= 5) {
-        if (this.chackFormValidity()) {
-          let picture = new Picture();
-          picture = { ...this.uploadForm.value };
-          console.log({ ...this.uploadForm.value });
-          console.log(this.file.nativeElement.files);
-          const dialogRef = this.dialog.open(SaveConfirmationDialogComponent, {
+    if (this.uploadForm.valid) {
+      // this.formData.append("name", this.uploadForm.get("name").value);
+      let value = this.uploadForm.value;
+      this.formData.append("name", value["name"]);
+      this.formData.append("img", value["img"]);
+
+      const dialogRef = this.dialog.open(SaveConfirmationDialogComponent, {
+        width: "250px",
+        height: "150px",
+        data: { title: "", question: "do you want to upload this Image?" }
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+        if (result == "yes") {
+          const progressDialog = this.dialog.open(SaveProgressComponent, {
             width: "300px",
-            height: "200px",
-            data: { title: "", question: "do you want to upload this Image?" }
+            height: "200px"
           });
-          dialogRef.afterClosed().subscribe(result => {
-            if (result == "yes") {
-              const progressDialogRef = this.dialog.open(
-                SaveProgressComponent,
-                {
-                  width: "160px",
-                  height: "180px",
-                  data: { title: "", question: "" }
-                }
-              );
-              this.uploadService
-                .createImage(picture, this.file.nativeElement.files)
-                .subscribe(
-                  res => {
-                    if (res["success"]) {
-                      progressDialogRef.close();
-                      let snackBarRef = this.snackBar.open(
-                        "Successfuly Uploaded File",
-                        "Upload More",
-                        {
-                          duration: 2000
-                        }
-                      );
-                      snackBarRef.afterDismissed().subscribe(() => {
-                        this.router.navigate(["../"], {
-                          relativeTo: this.route
-                        });
-                      });
-                      snackBarRef.onAction().subscribe(() => {
-                        this.showImage = false;
-                        this.uploadForm.reset();
-                      });
-                      //this.router.navigate(["../"], { relativeTo: this.route });
-                    } else {
-                      progressDialogRef.close();
-                      this.showError = true;
-                      this.errors = res["messages"];
-                    }
-                  },
-                  err => {
-                    progressDialogRef.close();
+          this.uploadService.createImage(this.formData).subscribe(
+            res => {
+              if (res["success"]) {
+                progressDialog.close();
+                let snackBarRef = this.snackBar.open(
+                  "Successfuly Uploaded File",
+                  "Upload More",
+                  {
+                    duration: 2000
                   }
                 );
+                snackBarRef.afterDismissed().subscribe(() => {
+                  this.router.navigate(["../"], {
+                    relativeTo: this.route
+                  });
+                });
+                snackBarRef.onAction().subscribe(() => {
+                  this.showImage = false;
+                  this.uploadForm.reset();
+                });
+                //this.router.navigate(["../"], { relativeTo: this.route });
+              } else {
+                progressDialog.close();
+                this.showError = true;
+                this.errors = res["messages"];
+              }
+            },
+            err => {
+              progressDialog.close();
             }
-          });
+          );
         }
-      } else {
-        alert("Image size is too big");
-      }
-    } else {
-      alert("Please select image");
+      });
     }
   }
   close() {
     this.showError = false;
   }
-  filePreviewHandler(event) {
-    var input = event.target;
-    var reader = new FileReader();
-    reader.onload = () => {
-      //var dataURL = reader.result;
-      this.imgPath = reader.result;
-      let file = event.target.files[0];
-      this.uploadForm.get("img").setValue({
-        filetype: file.type,
-        value: reader.result
-      });
-      this.showImage = true;
-    };
-    reader.readAsDataURL(input.files[0]);
-  }
 
   fileChangeEvent(event: any): void {
-    this.loadingFile = true;
-    this.imageChangedEvent = event;
+    if (!event.target.files[0]) {
+      return;
+    }
+    let name = event.target.files[0].name;
+    if (name) {
+      if (
+        ["PNG", "JPG", "JPEG"].includes(
+          name.split(".")[name.split(".").length - 1].toUpperCase()
+        )
+      ) {
+        this.loadingLocalImage = true;
+        this.imageChangedEvent = event;
+      } else {
+        this.loadingLocalImage = false;
+        this.snackBar.open("The file type should be PNG or JPEG", "", {
+          duration: 4000
+        });
+      }
+    }
   }
   imageCropped(event: ImageCroppedEvent) {
+    this.loadingLocalImage = false;
     if (event.width < 550 || event.height < 440) {
-      console.log("image not large enough");
+      let snackBarRef = this.snackBar.open(
+        "Image is not large enough, Select a larger image.",
+        "",
+        {
+          duration: 4000
+        }
+      );
+      this.imageChangedEvent = "";
+      return;
     }
-    // console.log(event);
-    // this.croppedImage = event;
+    this.croppedImage = event;
   }
 
-  imageLoaded() {
-    // show cropper
-  }
+  imageLoaded() {}
   cropperReady() {
     // cropper ready
   }
-  loadImageFailed() {
-    // show message
-  }
+  loadImageFailed() {}
 
   closeModal() {
-    this.imageChangedEvent = "";
+    uploadClass.imageChangedEvent = "";
   }
 
-  imageLoad(event) {
-    // if (event.width < 550 || event.height < 440) {
-    //   this.closeModal();
-    // }
-  }
+  imageLoad(event) {}
 
   saveImage() {
     this.tempImg = this.croppedImage.base64;
@@ -189,10 +180,16 @@ export class UploadImgComponent implements OnInit {
 
   compressImage(image) {
     let setLocal = this.setLocalImage;
+    let closeModal = this.closeModal;
     new Compressor(image, {
       quality: 0.7,
+      minWidth: 550,
+      maxWidth: 550,
+      mimeType: "JPEG",
       success(result) {
         setLocal(result);
+        uploadClass.uploadForm.get("img").setValue(result);
+        closeModal();
       },
       error(err) {
         console.log(err);
