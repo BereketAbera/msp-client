@@ -18,8 +18,10 @@ import { SaveConfirmationDialogComponent } from "../../shared/save-confirmation-
 import { SaveProgressComponent } from "../../shared/save-progress/save-progress.component";
 import { RequestResultComponent } from "../request-result/request-result.component";
 import { UploadService } from 'src/app/service/upload.service';
+import { ImageCroppedEvent } from 'ngx-image-cropper';
+import Compressor from "compressorjs";
 // import { DragDropDirective } from 'src/app/service/drag-drop.directive';
-
+let uploadClass = null;
 export interface Discount {
   value: string;
   name: string;
@@ -54,6 +56,8 @@ export class NewOffPeakProductComponent implements OnInit {
       .add(30, "m")
       .valueOf()
   );
+
+  fileIn;
 
   pickupStartInitTime = new Date(
     moment(this.offerStartInitTime)
@@ -116,6 +120,11 @@ export class NewOffPeakProductComponent implements OnInit {
   shops: Shop[];
   categories: Category[];
   pictures: Picture[];
+  uploadForm = this.fb.group({
+    name: ["", Validators.required],
+    img: null
+  });
+  formData = new FormData();
   productForm = this.fb.group({
     name: ["", Validators.required],
     promo: ["closing", Validators.required],
@@ -156,6 +165,14 @@ export class NewOffPeakProductComponent implements OnInit {
   previousUrl: string;
   edit: boolean=false;
   imagePath: any;
+  imageChangedEvent: any = "";
+  croppedImage: any = "";
+  selectedImage;
+  tempImg: any;
+  loadingFile = false;
+  loadingLocalImage = false;
+  showErrorOutput: boolean;
+  
 
   constructor(
     private authService: AuthService,
@@ -169,6 +186,7 @@ export class NewOffPeakProductComponent implements OnInit {
     private uploadService: UploadService,
     private location: Location
   ) {
+    uploadClass = this;
   }
 
   ngOnInit() {
@@ -316,17 +334,6 @@ export class NewOffPeakProductComponent implements OnInit {
   getAMPM(date) {
     return date.getHours() >= 12 ? "PM" : "AM";
   }
-  hour_12(hour) {
-    let hour_12 = (hour + 24) % 12 || 12
-    if (hour_12 < 10) {
-      return `0${hour_12}`;
-    } else {
-      return `${hour_12}`;
-    }
-  }
-  getPMAMHour(hour) {
-    return hour >= 12 ? "PM" : "AM"
-  }
   initOfferPickupTime() {
     let defaultOfferSHH = this.hours12(this.offerStartInitTime).toString();
     if (defaultOfferSHH.length == 1) defaultOfferSHH = "0" + defaultOfferSHH;
@@ -378,6 +385,9 @@ export class NewOffPeakProductComponent implements OnInit {
     this.productForm.get("pickupEndMM").setValue(defaultPickupEMM);
     this.productForm.get("pickupEndAMPM").setValue(defaultPickupEAMPM);
   }
+  showNotification($event){
+     this.showErrorNotification = $event
+  }
   onSubmit() {
     if (this.checkFormValidity()) {
       let product = new Product();
@@ -389,7 +399,7 @@ export class NewOffPeakProductComponent implements OnInit {
       product.offerEndDate = this.offerEndDate;
       product.offerStartDate = this.offerStartDate;
       product.shop = this.productForm.get('shop').value;
-
+      
       if (this.product && !this.clone) {
         // console.log({ ...this.productForm.value }, 'edit')
         // product = { ...this.productForm.value };
@@ -419,7 +429,7 @@ export class NewOffPeakProductComponent implements OnInit {
                     }
                   );
                   snackBarRef.afterDismissed().subscribe(() => {
-                    this.location.back();
+                     this.location.back();
                     // this.router.navigate(["../"], { relativeTo: this.route });
                   });
                   snackBarRef.onAction().subscribe(() => {
@@ -489,7 +499,11 @@ export class NewOffPeakProductComponent implements OnInit {
       }
 
     } else {
-      alert("Sorry, you can't submit this form now!");
+      this.showErrorNotification=true;
+      if(this.errorMessage == ''){
+        this.errorMessage = "Invalid form, try again"
+      }
+      return false;
     }
   }
   gotoSellAdmin() {
@@ -551,30 +565,31 @@ export class NewOffPeakProductComponent implements OnInit {
     let todayMnt = moment().format("YYYY-MM-DD");
     let today = new Date(moment(todayMnt).valueOf());
     if (isNaN(imgId) || !(imgId > 0)) {
-      alert("Please select image for the product.");
+      // alert("");
+      this.errorMessage = 'Please select image for the product.'
       return false;
     }
     if (isNaN(normalPrice) || !(normalPrice > 0)) {
-      alert("Orginal Price should be valid and greater than zero.");
+      this.errorMessage = "Orginal Price should be valid and greater than zero.";
       return false;
     }
     if (isNaN(discountPrice) || !(discountPrice > 0)) {
-      alert("Offer price should be valid and greater than zero.");
+      this.errorMessage = "Offer price should be valid and greater than zero.";
       return false;
     }
     if (
       isNaN(discountPersent) ||
       !(discountPersent >= 20 || discountPersent % 5 != 0)
     ) {
-      alert("Discount By % should be valid and greater than or equal to 20%.");
+      this.errorMessage = "Discount By % should be valid and greater than or equal to 20%.";
       return false;
     }
     if (isNaN(quantity) || !(quantity > 0)) {
-      alert("Quantity should be valid and greater than zero.");
+      this.errorMessage = "Quantity should be valid and greater than zero.";
       return false;
     }
     if (isNaN(offerStartHH)) {
-      alert("Invalid pickup start hour.");
+      this.errorMessage = "Invalid pickup start hour.";
       return false;
     } else {
       if (offerStartAMPM == "PM") {
@@ -584,7 +599,7 @@ export class NewOffPeakProductComponent implements OnInit {
       }
     }
     if (isNaN(offerEndHH)) {
-      alert("Invalid pickup start hour.");
+      this.errorMessage = "Invalid pickup start hour.";
       return false;
     } else {
       if (offerEndAMPM == "PM") {
@@ -594,7 +609,7 @@ export class NewOffPeakProductComponent implements OnInit {
       }
     }
     if (isNaN(pickupStartHH)) {
-      alert("Invalid pickup start hour.");
+      this.errorMessage = "Invalid pickup start hour.";
       return false;
     } else {
       if (pickupStartAMPM == "PM") {
@@ -604,7 +619,7 @@ export class NewOffPeakProductComponent implements OnInit {
       }
     }
     if (isNaN(pickupEndHH)) {
-      alert("Invalid pickup start hour.");
+      this.errorMessage ="Invalid pickup start hour.";
       return false;
     } else {
       if (pickupEndAMPM == "PM") {
@@ -614,10 +629,10 @@ export class NewOffPeakProductComponent implements OnInit {
       }
     }
     if (!this.checkDate(offerStartDate, offerStartHH, offerStartMM)) {
-      alert("invalid offer start time");
+      this.errorMessage = "invalid offer start time"
       return false;
     } else if (!this.checkDate(offerEndDate, offerEndHH, offerEndMM)) {
-      alert("invalid offer end time");
+      this.errorMessage ="invalid offer end time";
       return false;
     } else {
       this.offerStartTime = new Date(
@@ -665,9 +680,9 @@ export class NewOffPeakProductComponent implements OnInit {
       //this.pickupEndTime = new Date(this.pickupEndTime.getUTCFullYear(),this.pickupEndTime.getUTCMonth(),this.pickupEndTime.getUTCDate(),this.pickupEndTime.getUTCHours(),this.pickupEndTime.getUTCMinutes(),this.pickupEndTime.getUTCSeconds());
     }
     if (!(this.offerEndDate.getTime() >= this.offerStartDate.getTime())) {
-      alert(
-        "Promotion end date must be greater than or equal to promotion start date."
-      );
+      
+       this.errorMessage= "Promotion end date must be greater than or equal to promotion start date."
+      
       return false;
     }
     // if (!(this.offerStartDate.getTime() >= today.getTime())) {
@@ -675,27 +690,20 @@ export class NewOffPeakProductComponent implements OnInit {
     //   return false;
     // }
     if (!(this.offerEndTime.getTime() > this.offerStartTime.getTime())) {
-      alert(
-        "Reservation end time must be greater than reservation start time."
-      );
+      // this.showErrorNotification=true;
+      this.errorMessage ="Reservation end time must be greater than reservation start time."
       return false;
     }
     if (!(this.pickupEndTime.getTime() > this.pickupStartTime.getTime())) {
-      alert(
-        "Consumption end time must be greater than consumption start time."
-      );
+      this.errorMessage =  "Consumption end time must be greater than consumption start time."
       return false;
     }
     if (!(this.pickupStartTime.getTime() > this.offerStartTime.getTime())) {
-      alert(
-        "Consumption start time must be greater than reservation start time."
-      );
-      return false;
+     this.errorMessage = "Consumption start time must be greater than reservation start time."
+     return false;
     }
     if (!(this.pickupEndTime.getTime() >= this.offerEndTime.getTime())) {
-      alert(
-        "Consumption end time must be greater than or equal to reservation end time."
-      );
+      this.errorMessage="Consumption end time must be greater than or equal to reservation end time."
       return false;
     }
     return true;
@@ -720,15 +728,6 @@ export class NewOffPeakProductComponent implements OnInit {
       this.section2 = true
     }
   }
-  uploadFile(event) {
-    for (var index = 0; index < event.length; index++) {
-    }
-    // console.log(index, 'i')
-    const element = event[index - 1];
-    this.files = element.name
-    // console.log(element)
-    this.element = event[index - 1];
-  }
   parseWeekDay(weekDays) {
     // weekDays= "montuethufrisun"
     // console.log(weekDays,'week')
@@ -750,11 +749,9 @@ export class NewOffPeakProductComponent implements OnInit {
     });
     this.productForm.get('categoryId').setValue(this.product.subCategoryId);
     this.productForm.get('shop').setValue(this.product.storeId);
-    // this.productForm.get("offerStartDate").setValue(this.product.offerStartDate);
     this.productForm.get("imgId").setValue(this.product.imgId);
     this.offerStartInitTime = this.product.offerStartDate
     this.offerEndInitTime = this.product.offerEndDate
-    // this.productForm.controls['discountPersent'].setValue(); 
     this.productForm.get('discountPersent').setValue(this.product.discountPercentage);
   }
 
@@ -797,7 +794,7 @@ export class NewOffPeakProductComponent implements OnInit {
     let x = time.split(":");
     let hour = parseInt(x[0]);
     let minute = parseInt(x[1]);
-    let totalMinutes = hour * 60 + minute + d;
+    let totalMinutes = hour * 60 + minute;
     hour = Math.floor(totalMinutes / 60);
     minute = totalMinutes % 60;
 
@@ -819,20 +816,145 @@ export class NewOffPeakProductComponent implements OnInit {
   }
 
 
-  uploadSelectFile() {
-    // this.files.splice(index, 1)
-    let picture = new Picture();
-    picture = { id: 756, name: this.element.name, file: this.element };
-    let fileList = []
-    fileList.push(this.element)
-    this.uploadService.createImage(picture, fileList).subscribe(
-      (res) => {
-        console.log(res['image']);
-        if (res['success']) {
-          this.pictures.push(res['image'])
-        }
-        // this.pictures.push()
+  // uploadSelectFile() {
+  //   // this.files.splice(index, 1)
+  //   let picture = new Picture();
+  //   picture = { id: 756, name: this.element.name, file: this.element };
+  //   let fileList = []
+  //   fileList.push(this.element)
+  //   this.uploadService.createImage(picture).subscribe(
+  //     (res) => {
+  //       console.log(res['image']);
+  //       if (res['success']) {
+  //         this.pictures.push(res['image'])
+  //       }
+  //       // this.pictures.push()
+  //     }
+  //   )
+  // }
+
+  fileChangeDragEvent(event:any){
+    console.log(event)
+    if (!event[0]) {
+      return;
+    }
+    let name = event[0].name;
+    if (name) {
+      if (
+        ["PNG", "JPG", "JPEG"].includes(
+          name.split(".")[name.split(".").length - 1].toUpperCase()
+        )
+      ) {
+        this.loadingLocalImage = true;
+        this.imageChangedEvent = event[0];
+        this.files = event[0].name;
+        this.element = event[0]
+      } else {
+        this.loadingLocalImage = false;
+        this.snackBar.open("The file type should be PNG or JPEG", "", {
+          duration: 4000
+        });
       }
-    )
+    }
+  }
+
+  
+  imageCropped(event: ImageCroppedEvent) {
+    this.loadingLocalImage = false;
+    if (event.width < 550 || event.height < 440) {
+      let snackBarRef = this.snackBar.open(
+        "Image is not large enough, Select a larger image.",
+        "",
+        {
+          duration: 4000
+        }
+      );
+      this.imageChangedEvent = "";
+      return;
+    }
+    this.croppedImage = event;
+  }
+
+  closeModal() {
+    uploadClass.imageChangedEvent = "";
+  }
+
+  saveImage() {
+    this.tempImg = this.croppedImage.base64;
+    let byteCharacters = atob(this.tempImg.split(",")[1]);
+    let byteNumbers = new Array(byteCharacters.length);
+    for (let i = 0; i < byteCharacters.length; i++) {
+      byteNumbers[i] = byteCharacters.charCodeAt(i);
+    }
+    let byteArray = new Uint8Array(byteNumbers);
+    let blob = new Blob([byteArray], { type: "image/jpeg" });
+
+    this.compressImage(blob);
+  }
+
+  compressImage(image) {
+    let setLocal = this.setLocalImage;
+    let closeModal = this.closeModal;
+    new Compressor(image, {
+      quality: 0.7,
+      minWidth: 550,
+      maxWidth: 550,
+      mimeType: "JPEG",
+      success(result) {
+       // setLocal(result);
+       uploadClass.uploadForm.get("img").setValue(result);
+       uploadClass.uploadForm.get("name").setValue(Date.now());
+        if (uploadClass.uploadForm.value) {
+          // this.formData.append("name", this.uploadForm.get("name").value);
+          let value = uploadClass.uploadForm.value;
+          uploadClass.formData.append("name", value["name"]);
+          uploadClass.formData.append("img", value["img"]);
+          uploadClass.uploadService.createImage(uploadClass.formData).subscribe(
+            res => {
+              if (res["success"]) {
+                //progressDialog.close();
+                let snackBarRef = uploadClass.snackBar.open(
+                  "Successfuly Uploaded File",
+                  "Upload More",
+                  {
+                    duration: 2000
+                  }
+                );
+                uploadClass.pictures.unshift(res['image']);
+                uploadClass.productForm.get("imgId").setValue(res['image'].id);
+                // snackBarRef.afterDismissed().subscribe(() => {
+                //   this.router.navigate(["../"], {
+                //     relativeTo: this.route
+                //   });
+                // });
+                // snackBarRef.onAction().subscribe(() => {
+                //   this.showImage = false;
+                //   this.uploadForm.reset();
+                // });
+                //this.router.navigate(["../"], { relativeTo: this.route });
+              } else {
+              //  progressDialog.close();
+                this.showError = true;
+                this.errors = res["messages"];
+              }
+            },
+            err => {
+              console.log(err)
+            }
+          );
+        
+        }
+        closeModal();
+      },
+      error(err) {
+        console.log(err);
+      }
+    });
+  }
+
+  setLocalImage(blob) {
+    var urlCreator = window.URL;
+    var imageUrl = urlCreator.createObjectURL(blob);
+    document.querySelector("#localImage")["src"] = imageUrl;
   }
 }

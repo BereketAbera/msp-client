@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, SimpleChanges } from "@angular/core";
+import { Component, OnInit, Input, SimpleChanges, EventEmitter, Output } from "@angular/core";
 import { Location } from "@angular/common";
 import { Router } from "@angular/router";
 
@@ -13,7 +13,7 @@ export class CustomNotificationComponent implements OnInit {
   @Input() type: string;
   @Input() callback;
   @Input() styleObject: { notification: {}; body: {}; icon: {}; text: {} };
-
+  @Output() showNotifications = new EventEmitter();
   constructor(private _location: Location, private router: Router) {}
 
   ngOnInit() {}
@@ -23,13 +23,18 @@ export class CustomNotificationComponent implements OnInit {
       setTimeout(() => {
         // this.show = false;
         if (!this.callback) {
+          this.showNotifications.emit(false)
           return;
         } else if (this.callback === "goBack") {
           this._location.back();
         } else {
           this.router.navigate([this.callback]);
         }
+       
       }, 2000);
+      
+     
+      
     }
   }
 }

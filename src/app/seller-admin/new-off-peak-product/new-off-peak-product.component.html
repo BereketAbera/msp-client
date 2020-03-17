@@ -37,8 +37,8 @@
 
         </div>
         <div [class.upload_container]='!imageUploadsDiv'>
-          <div class="uploadfilecontainer" (click)="fileInput.click()" appDragDrop (onFileDropped)="uploadFile($event)">
-            <input hidden type="file" #fileInput (change)="uploadFile($event.target.files)">
+          <div class="uploadfilecontainer" (click)="fileInput.click()" appDragDrop (onFileDropped)="fileChangeDragEvent($event)">
+            <input hidden type="file" #fileInput   (change)="fileChangeDragEvent($event.target.files)">
             <div class='drag_drop'>
               <div>
                 <mat-icon class="material-icons md-28 drag_icons">cloud_upload
@@ -47,12 +47,7 @@
               <h2 class="text">Drag And Drop Your Image Here </h2>
             </div>
           </div>
-          <div class="files-list">
-            Selected File:<p> {{ files }} </p>
-            <button class="upload-file" (click)="uploadSelectFile()">
-              Upload
-            </button>
-          </div>
+         
 
         </div>
         <div *ngIf='!edit || imageUploadsDiv' class="product-form__image-gallery-container">
@@ -392,7 +387,46 @@
   </div>
 </div>
 
-
-
-<app-custom-notification [show]="showErrorNotification" type="error" [text]="errorMessage" callback="goBack">
+<app-custom-notification [show]="showErrorNotification" type="error" [text]="errorMessage" (showNotifications)="showNotification($event)" >
 </app-custom-notification>
+
+<div class="image" *ngIf="imageChangedEvent" [class.hidden]="loadingLocalImage">
+  <image-cropper
+    class="image__cropper"
+    [imageFile]="imageChangedEvent"
+    [maintainAspectRatio]="true"
+    [aspectRatio]="550 / 440"
+    [maintainAspectRatio]="false"
+    [hideResizeSquares]="true"
+    (imageCropped)="imageCropped($event)"
+    (cropperReady)="imageLoad($event)"
+  ></image-cropper>
+
+  <div class="image__actions">
+    <button
+      (click)="saveImage()"
+      class="mat-flat-button mat-accent image__submit"
+    >
+      Add Image
+    </button>
+    <button
+      (click)="closeModal()"
+      class="mat-flat-button mat-accent image__submit"
+    >
+      Cancel
+    </button>
+  </div>
+</div>
+<div *ngIf="loadingLocalImage" class="loader">
+  <div class="loader__container">
+    <div class="gooey">
+      <span class="dot"></span>
+      <div class="dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+    <div class="loader__text">Loading</div>
+  </div>
+</div>
