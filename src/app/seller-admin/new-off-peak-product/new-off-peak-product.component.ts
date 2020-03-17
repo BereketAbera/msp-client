@@ -825,7 +825,7 @@ export class NewOffPeakProductComponent implements OnInit {
     picture = { id: 756, name: this.element.name, file: this.element };
     let fileList = []
     fileList.push(this.element)
-    this.uploadService.createImage(picture, fileList).subscribe(
+    this.uploadService.createImage(picture).subscribe(
       (res) => {
         console.log(res['image']);
         if (res['success']) {

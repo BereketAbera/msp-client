@@ -1,9 +1,82 @@
 .dateCtrl {
-    width: 115px;
+  width: 115px;
+}
+td {
+  padding-left: 10px;
+}
+.example-card {
+  padding-left: 0px;
+}
+
+.dashboard {
+  padding: 2rem;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
   }
-  td{
-    padding-left: 10px;
+
+  &__right {
+    flex: 2;
   }
-  .example-card{
-    padding-left: 0px;
+
+  &__left {
+    flex: 3;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
   }
+
+  &__item {
+    // width: 40%;
+    padding: 0.5rem;
+    // border: 1px solid #eee;
+    // font-size: 1.2rem;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    min-width: 15rem;
+    min-height: 15rem;
+    margin: 1rem;
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+
+  &__item-text {
+    max-width: 8rem;
+    align-items: center;
+    text-align: center;
+    font-size: 1.1rem;
+    color: #555;
+  }
+
+  &__item-value {
+    font-size: 2.5rem;
+    color: #888;
+  }
+
+  &__item-revenue {
+    font-size: 1.8rem;
+  }
+
+  &__item-percentage {
+    font-size: 1rem;
+    color: #f94081;
+  }
+
+  &__item-circle {
+    position: absolute;
+  }
+
+  &__circle {
+    stroke: #f94081;
+    fill: #aaa2;
+  }
+
+  // &__chart {
+  //   width:  !important;
+  //   height: 15rem !important;
+  // }
+}
