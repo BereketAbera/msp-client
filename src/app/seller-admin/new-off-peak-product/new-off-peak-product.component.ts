@@ -815,26 +815,7 @@ export class NewOffPeakProductComponent implements OnInit {
     }
   }
 
-
-  // uploadSelectFile() {
-  //   // this.files.splice(index, 1)
-  //   let picture = new Picture();
-  //   picture = { id: 756, name: this.element.name, file: this.element };
-  //   let fileList = []
-  //   fileList.push(this.element)
-  //   this.uploadService.createImage(picture).subscribe(
-  //     (res) => {
-  //       console.log(res['image']);
-  //       if (res['success']) {
-  //         this.pictures.push(res['image'])
-  //       }
-  //       // this.pictures.push()
-  //     }
-  //   )
-  // }
-
   fileChangeDragEvent(event:any){
-    console.log(event)
     if (!event[0]) {
       return;
     }

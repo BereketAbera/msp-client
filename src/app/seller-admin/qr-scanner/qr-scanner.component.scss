@@ -1,87 +1,157 @@
 .example-card {
   max-width: 300px;
-  
 }
 .inputCode {
   width: 140px;
   font-size: 18px;
   font-weight: 600;
 }
-.frmDiv{
-    padding-top:15px;
-    padding-bottom: 15px;
-    margin:15px;
+.frmDiv {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin: 15px;
 }
-.cnvs{
-    background-color: aqua;
-    height: 240px;
-    width: 320px;
-    margin:15px;
+.cnvs {
+  background-color: aqua;
+  height: 240px;
+  width: 320px;
+  margin: 15px;
 }
-video{
-    width: 320px;
-    height: 240px;
+video {
+  width: 320px;
+  height: 240px;
 }
 .flashbutton {
-    background-color: #004A7F;
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
-    border: none;
-    color: #FFFFFF;
-    cursor: pointer;
-    display: inline-block;
-    font-family: Arial;
-    font-size: 20px;
-    padding: 5px 10px;
-    text-align: center;
-    text-decoration: none;
-    -webkit-animation: glowing 1500ms infinite;
-    -moz-animation: glowing 1500ms infinite;
-    -o-animation: glowing 1500ms infinite;
-    animation: glowing 1500ms infinite;
+  background-color: #004a7f;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Arial;
+  font-size: 20px;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  -webkit-animation: glowing 1500ms infinite;
+  -moz-animation: glowing 1500ms infinite;
+  -o-animation: glowing 1500ms infinite;
+  animation: glowing 1500ms infinite;
+}
+@-webkit-keyframes glowing {
+  0% {
+    background-color: #b20000;
+    -webkit-box-shadow: 0 0 3px #b20000;
   }
-  @-webkit-keyframes glowing {
-    0% { background-color: #B20000; -webkit-box-shadow: 0 0 3px #B20000; }
-    50% { background-color: #FF0000; -webkit-box-shadow: 0 0 40px #FF0000; }
-    100% { background-color: #B20000; -webkit-box-shadow: 0 0 3px #B20000; }
+  50% {
+    background-color: #ff0000;
+    -webkit-box-shadow: 0 0 40px #ff0000;
   }
-  
-  @-moz-keyframes glowing {
-    0% { background-color: #B20000; -moz-box-shadow: 0 0 3px #B20000; }
-    50% { background-color: #FF0000; -moz-box-shadow: 0 0 40px #FF0000; }
-    100% { background-color: #B20000; -moz-box-shadow: 0 0 3px #B20000; }
+  100% {
+    background-color: #b20000;
+    -webkit-box-shadow: 0 0 3px #b20000;
   }
-  
-  @-o-keyframes glowing {
-    0% { background-color: #B20000; box-shadow: 0 0 3px #B20000; }
-    50% { background-color: #FF0000; box-shadow: 0 0 40px #FF0000; }
-    100% { background-color: #B20000; box-shadow: 0 0 3px #B20000; }
+}
+
+@-moz-keyframes glowing {
+  0% {
+    background-color: #b20000;
+    -moz-box-shadow: 0 0 3px #b20000;
   }
-  
-  @keyframes glowing {
-    0% { background-color: #B20000; box-shadow: 0 0 3px #B20000; }
-    50% { background-color: #FF0000; box-shadow: 0 0 40px #FF0000; }
-    100% { background-color: #B20000; box-shadow: 0 0 3px #B20000; }
+  50% {
+    background-color: #ff0000;
+    -moz-box-shadow: 0 0 40px #ff0000;
   }
-  #errorCntr {
-    width: 80%;
-    border: 2px solid red;
-    padding: 15px 15px 15px 15px;
-    margin: 20px 20px 20px 20px;
-    background: #A4D3EE;
-    overflow: visible;
-    position: relative;
+  100% {
+    background-color: #b20000;
+    -moz-box-shadow: 0 0 3px #b20000;
   }
-  
-  #errClsBtn {
-      position: absolute;
-      background: red;
-      color: white;
-      top: -10px;
-      right: -10px;
+}
+
+@-o-keyframes glowing {
+  0% {
+    background-color: #b20000;
+    box-shadow: 0 0 3px #b20000;
   }
-  ul {
-    list-style: none; /* Remove list bullets */
-    padding: 0;
-    margin: 0;
+  50% {
+    background-color: #ff0000;
+    box-shadow: 0 0 40px #ff0000;
+  }
+  100% {
+    background-color: #b20000;
+    box-shadow: 0 0 3px #b20000;
+  }
+}
+
+@keyframes glowing {
+  0% {
+    background-color: #b20000;
+    box-shadow: 0 0 3px #b20000;
+  }
+  50% {
+    background-color: #ff0000;
+    box-shadow: 0 0 40px #ff0000;
+  }
+  100% {
+    background-color: #b20000;
+    box-shadow: 0 0 3px #b20000;
+  }
+}
+#errorCntr {
+  width: 80%;
+  border: 2px solid red;
+  padding: 15px 15px 15px 15px;
+  margin: 20px 20px 20px 20px;
+  background: #a4d3ee;
+  overflow: visible;
+  position: relative;
+}
+
+#errClsBtn {
+  position: absolute;
+  background: red;
+  color: white;
+  top: -10px;
+  right: -10px;
+}
+ul {
+  list-style: none; /* Remove list bullets */
+  padding: 0;
+  margin: 0;
+}
+
+.scanner {
+  &__container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.mat-flat-button {
+  padding: 0rem 5rem;
+  min-width: 0rem;
+  min-height: 0rem;
+  height: auto;
+  width: auto;
+  margin: 0rem 0.5rem;
+  border-radius: 0rem;
+  margin-bottom: 1rem;
+}
+
+.mat-card {
+  box-shadow: none;
+  border: 2px solid #ccc !important;
+}
+
+.mat-card-content > :last-child:not(.mat-card-footer) {
+  width: 100%;
+}
+
+.mat-card-actions {
+  margin-left: 0rem;
+  margin-right: 0rem;
+  padding: 0rem;
 }

@@ -1,16 +1,84 @@
-<div class="frmDiv">
-  <table class="example-full-width" cellspacing="0">
-    <tr>
-        <td><p>Total Products: {{summary.products}}</p></td><td><p>Total Quantity offered: {{summary.totalQty}}</p></td>
-      </tr>
-    <tr>
-        <td><p>Total Quantity Sold: {{summary.totalSoldQty}}</p></td><td><p>Total Revenue: {{summary.totalRevenu|currency}}</p></td>
-      </tr>
-    </table>
+<div class="dashboard">
+  <div class="dashboard__container">
+    <div class="dashboard__left">
+      <div class="dashboard__item dashboard__total-product">
+        <svg class="dashboard__item-circle" height="150" width="150">
+          <circle
+            class="dashboard__circle"
+            stroke-dasharray="20 5 20 5 20"
+            style="stroke-dashoffset: 0;"
+            stroke-width="4"
+            fill="transparent"
+            r="70"
+            cx="75"
+            cy="75"
+          ></circle>
+        </svg>
+        <span class="dashboard__item-text">Products</span>
+        <span class="dashboard__item-value">{{ summary.products }}</span>
+        <!-- <span class="dashboard__item-percentage">50%</span> -->
+      </div>
+      <div class="dashboard__item dashboard__total-quantity-offered">
+        <svg class="dashboard__item-circle" height="150" width="150">
+          <circle
+            class="dashboard__circle"
+            stroke-dasharray="10 5 10"
+            style="stroke-dashoffset: 0;"
+            stroke-width="4"
+            fill="transparent"
+            r="70"
+            cx="75"
+            cy="75"
+          ></circle>
+        </svg>
+        <span class="dashboard__item-text">Items offered</span>
+        <span class="dashboard__item-value">{{ summary.totalQty }}</span>
+        <!-- <span class="dashboard__item-percentage">50%</span> -->
+      </div>
+      <div class="dashboard__item dashboard__total-quantity-sold">
+        <svg class="dashboard__item-circle" height="150" width="150">
+          <circle
+            class="dashboard__circle"
+            stroke-dasharray="439.82 439.82"
+            [style.stroke-dashoffset]="439.82 - soldPercentage * 4.3982"
+            stroke-width="4"
+            fill="transparent"
+            r="70"
+            cx="75"
+            cy="75"
+          ></circle>
+        </svg>
+        <span class="dashboard__item-text">Items Sold</span>
+        <span class="dashboard__item-value">{{ summary.totalSoldQty }}</span>
+        <span class="dashboard__item-percentage"> {{ soldPercentage }}%</span>
+      </div>
+
+      <div class="dashboard__item dashboard__total-revenue">
+        <svg class="dashboard__item-circle" height="150" width="150">
+          <circle
+            class="dashboard__circle"
+            stroke-dasharray="20 5 20 5 20"
+            style="stroke-dashoffset: 0;"
+            stroke-width="4"
+            fill="transparent"
+            r="70"
+            cx="75"
+            cy="75"
+          ></circle>
+        </svg>
+        <span class="dashboard__item-text">Revenue</span>
+        <span class="dashboard__item-value dashboard__item-revenue">{{
+          summary.totalRevenu | currency
+        }}</span>
+        <!-- <span class="dashboard__item-percentage">50%</span> -->
+      </div>
+    </div>
+    <div class="dashboard__right">
+      <mat-card class="example-card">
+        <mat-card-content>
+          <canvas class="dashboard__chart" #lineChart>{{ chart }}</canvas>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
 </div>
-<mat-card class="example-card">
-   <mat-card-content>
-    <canvas #lineChart>{{ chart }}</canvas>
-  </mat-card-content>
-  
-</mat-card>
