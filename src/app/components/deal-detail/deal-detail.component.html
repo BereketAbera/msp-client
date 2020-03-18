@@ -1,116 +1,3 @@
-<!-- <div>
-  <div>
-    <img
-      mat-card-image
-      src="{{ product.imagePath }}"
-      alt="Photo of a Shiba Inu"
-    />
-    <div>
-      <ul>
-        <li>
-          <div>
-            <div>
-              <span>{{ product?.name }}</span>
-            </div>
-            <div></div>
-          </div>
-        </li>
-        <li>
-          <div>
-            <div></div>
-            <div>
-              <span
-                >Reserve Orders: {{ product?.offerStartTime }} To:
-                {{ product?.offerEndTime }}
-              </span>
-            </div>
-          </div>
-        </li>
-
-        <li>
-          <div>
-            <div></div>
-            <div>
-              <span
-                >Service Time: {{ product?.pickupStartTime }} To:
-                {{ product?.pickupEndTime }}
-              </span>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div>
-            <div>
-              <span
-                ><strong>{{ product?.shopName }} </strong
-                >{{ product?.shop?.address }}, {{ product?.shop?.city }}</span
-              >
-            </div>
-            <div></div>
-          </div>
-        </li>
-        <li>
-          <div>
-            <div>
-              <span>{{ product?.description }}</span>
-            </div>
-            <div>
-              <span class="lftTime">Quantity left: </span>
-              <span>{{ product?.quantity }}</span>
-            </div>
-          </div>
-        </li>
-
-        <li>
-          <div>
-            <div>
-              <i class="material-icons yellowStar">star_rate</i>
-              <i class="material-icons yellowStar">star_rate</i>
-              <i class="material-icons yellowStar">star_rate</i>
-              <i class="material-icons yellowStar">star_rate</i>
-              <i class="material-icons greyStar">star_rate</i>
-            </div>
-            <div>
-              <span>{{ product?.normalPrice | currency }}</span>
-              <span> now {{ product?.discountPrice | currency }}</span>
-            </div>
-          </div>
-        </li>
-      </ul>
-    </div>
-    <div>
-      <form>
-        <div>
-           <mat-form-field class="quantityW zeroPm">
-            <input
-              type="number"
-              formControlName="quantity"
-              #qnty
-              matInput
-              value="1"
-              min="1"
-              [max]="product.quantity"
-            />
-            <span matPrefix>qty:&nbsp;</span>
-          </mat-form-field>
-
-          <div>
-            <span>Total:</span>
-            <span>{{ qnty?.value * product?.discountPrice | currency }}</span>
-          </div>
-          <div fxLayoutGap="3px">
-            <button mat-flat-button color="accent" (click)="addToCart()">
-              <mat-icon>shopping_cart</mat-icon> <span>Add to Cart</span>
-            </button>
-            <button mat-flat-button color="accent" (click)="cancel()">
-              Cancel
-            </button>
-          </div>
-        </div>
-      </form>
-    </div>
-  </div>
-</div> -->
 <div class="product-detail__container">
   <div class="product-detail__top">
     <div class="product-detail__image-container">
@@ -167,7 +54,7 @@
           <div style="display: flex">
             <i class="fas fa-chevron-right product-detail__list-icon"></i>
             <h5 class="product-detail__reserve-order-text">
-              {{ product?.quantity }} Remaining
+              {{ product?.currentQuantity }} Remaining
             </h5>
           </div>
 
@@ -186,12 +73,12 @@
       <div class="product-detail__middle-left">
         <div class="product-detail__shop">
           <i class="fas fa-store-alt product-detail__address-icon"></i>
-          <h5 class="product-detail__shop-name">{{ product?.shop?.name }}</h5>
+          <h5 class="product-detail__shop-name">{{ product?.shopName }}</h5>
         </div>
         <div class="product-detail__shop">
           <i class="fas fa-map-marker-alt product-detail__address-icon"></i>
           <h5 class="product-detail__address-name">
-            {{ product?.shop?.address }}, {{ product?.shop?.city }}
+            {{ product?.shopAddress }}, {{ product?.shopCity }}
           </h5>
         </div>
       </div>
