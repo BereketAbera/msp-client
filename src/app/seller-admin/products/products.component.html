@@ -21,8 +21,8 @@
   <div fxLayout="row" fxLayoutAlign="end center" class="addNewDiv" fxLayoutGap="2px">
     <div><button mat-raised-button color="accent" class="btnAddPrd" (click)="gotoOffPeakProduct()">Add Off-Peak
         Product</button></div>
-    <div><button mat-raised-button color="accent" class="btnAddPrd" (click)="gotoAddNewProduct()">Add End-of-Day
-        Product</button></div>
+    <!-- <div><button mat-raised-button color="accent" class="btnAddPrd" (click)="gotoAddNewProduct()">Add End-of-Day
+        Product</button></div> -->
   </div>
   <mat-table class="mat-elevation-z2 table" [dataSource]="dataSource" matSort matSortActive="name"
     matSortDirection="asc" matSortDisableClear>

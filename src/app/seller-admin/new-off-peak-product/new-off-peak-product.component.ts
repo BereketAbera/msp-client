@@ -150,7 +150,7 @@ export class NewOffPeakProductComponent implements OnInit {
     pickupEndHH: ["", Validators.required],
     pickupEndMM: ["", Validators.required],
     pickupEndAMPM: ["", Validators.required],
-    isOffPeak: [true],
+    isOffPeak: ["offpeak",Validators.required],
     showNow: [false, Validators.required],
     weekDays: this.buildWeekDays(),
     imgId: null
@@ -194,7 +194,7 @@ export class NewOffPeakProductComponent implements OnInit {
         if (params.id) {
           this.productService.getProductById(params.id).subscribe(
             resp => {
-              console.log(resp);
+              // console.log(resp);
               this.imagePath = resp.imagePath;
               this.product = resp;
 
@@ -411,6 +411,7 @@ export class NewOffPeakProductComponent implements OnInit {
   onSubmit() {
     if (this.checkFormValidity()) {
       let product = new Product();
+      
       product = { ...this.productForm.value };
       product.offerStartTime = this.offerStartTime;
       product.offerEndTime = this.offerEndTime;
@@ -419,7 +420,12 @@ export class NewOffPeakProductComponent implements OnInit {
       product.offerEndDate = this.offerEndDate;
       product.offerStartDate = this.offerStartDate;
       product.shop = this.productForm.get("shop").value;
-
+      if(this.productForm.get('isOffPeak').value == "offpeak"){
+        product.isOffPeak = true;
+      }else{
+        product.isOffPeak = false;
+      }
+      // console.log(product)
       if (this.product && !this.clone) {
         // console.log({ ...this.productForm.value }, 'edit')
         // product = { ...this.productForm.value };
@@ -785,6 +791,12 @@ export class NewOffPeakProductComponent implements OnInit {
     this.productForm
       .get("discountPersent")
       .setValue(this.product.discountPercentage);
+    if(this.product.isOffPeak){
+      this.productForm.get('isOffPeak').setValue('offpeak')
+    }else{
+      this.productForm.get('isOffPeak').setValue('endof')
+    }
+    
   }
 
   fillcategories(categories) {

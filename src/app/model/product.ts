@@ -31,4 +31,5 @@ export class Product {
     city:string;
     address:string;
     shopName:string;
+    isOffPeak:boolean;
 }

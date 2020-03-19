@@ -44,6 +44,7 @@ export class DealDetailComponent implements OnInit {
   ngOnInit() {
     this.route.data.subscribe(
       (data: { product: Product; mspMarkup: Markup }) => {
+        console.log(data)
         this.product = data.product;
         [
           "offerStartTime",

@@ -27,7 +27,7 @@
             <img *ngIf='imagePath && !imageUploadsDiv' [src]="imagePath" alt="">
           </div>
 
-          
+
           <button mat-raised-button class='text' (click)='toggleImageUploads()'>
             <!-- <button mat-icon-button>
               <mat-icon aria-label="Heart">upload_clouds</mat-icon>
@@ -37,8 +37,9 @@
 
         </div>
         <div [class.upload_container]='!imageUploadsDiv'>
-          <div class="uploadfilecontainer" (click)="fileInput.click()" appDragDrop (onFileDropped)="fileChangeDragEvent($event)">
-            <input hidden type="file" #fileInput   (change)="fileChangeDragEvent($event.target.files)">
+          <div class="uploadfilecontainer" (click)="fileInput.click()" appDragDrop
+            (onFileDropped)="fileChangeDragEvent($event)">
+            <input hidden type="file" #fileInput (change)="fileChangeDragEvent($event.target.files)">
             <div class='drag_drop'>
               <div>
                 <mat-icon class="material-icons md-28 drag_icons">cloud_upload
@@ -47,7 +48,7 @@
               <h2 class="text">Drag And Drop Your Image Here </h2>
             </div>
           </div>
-         
+
 
         </div>
         <div *ngIf='!edit || imageUploadsDiv' class="product-form__image-gallery-container">
@@ -152,9 +153,15 @@
 
       </div>
 
+
+    </div>
+
+
+    <div class="product-form__section product-form__section-three">
+
       <div class="form-group">
         <h2 class="form-group-header">
-          Week Days
+          Promotion and Consumption Date/Time
         </h2>
         <div class="form-group-content">
 
@@ -173,15 +180,7 @@
         </div>
 
       </div>
-    </div>
-
-
-    <div class="product-form__section product-form__section-three">
-
       <div class="form-group">
-        <h2 class="form-group-header">
-          Promotion and Consumption Date/Time
-        </h2>
 
         <div>
           <div fxLayout="row" fxFlexAlign="start">
@@ -347,13 +346,26 @@
 
       <div class="form-group">
         <div class="from-group-content">
+          <h3 class="form-group-header">Product Type</h3>
+
+          <mat-radio-group class="form-group-item-2 product-form__input--type-2" formControlName="isOffPeak">
+            <label class="product-form__label">Product: </label>
+            <mat-radio-button class="product-form__radio" value="offpeak">Off-Peak Product
+            </mat-radio-button>
+            <mat-radio-button class="product-form__radio" value="endof">End-of-Day Product
+            </mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <div class="from-group-content">
           <h3 class="form-group-header">Description(Optional)</h3>
           <mat-form-field class="form-group-item-3">
             <textarea matInput placeholder="Enter Additional Product Description "
               formControlName="description"></textarea>
           </mat-form-field>
-    
+
         </div>
+
+
       </div>
       <div class="form-group-item-3">
         <mat-checkbox formControlName="showNow">Do Not Show Product Until Offer Start Time
@@ -387,32 +399,20 @@
   </div>
 </div>
 
-<app-custom-notification [show]="showErrorNotification" type="error" [text]="errorMessage" (showNotifications)="showNotification($event)" >
+<app-custom-notification [show]="showErrorNotification" type="error" [text]="errorMessage"
+  (showNotifications)="showNotification($event)">
 </app-custom-notification>
 
 <div class="image" *ngIf="imageChangedEvent" [class.hidden]="loadingLocalImage">
-  <image-cropper
-    class="image__cropper"
-    [imageFile]="imageChangedEvent"
-    [maintainAspectRatio]="true"
-    [aspectRatio]="550 / 440"
-    [maintainAspectRatio]="false"
-    [hideResizeSquares]="true"
-    (imageCropped)="imageCropped($event)"
-    (cropperReady)="imageLoad($event)"
-  ></image-cropper>
+  <image-cropper class="image__cropper" [imageFile]="imageChangedEvent" [maintainAspectRatio]="true"
+    [aspectRatio]="550 / 440" [maintainAspectRatio]="false" [hideResizeSquares]="true"
+    (imageCropped)="imageCropped($event)" (cropperReady)="imageLoad($event)"></image-cropper>
 
   <div class="image__actions">
-    <button
-      (click)="saveImage()"
-      class="mat-flat-button mat-accent image__submit"
-    >
+    <button (click)="saveImage()" class="mat-flat-button mat-accent image__submit">
       Add Image
     </button>
-    <button
-      (click)="closeModal()"
-      class="mat-flat-button mat-accent image__submit"
-    >
+    <button (click)="closeModal()" class="mat-flat-button mat-accent image__submit">
       Cancel
     </button>
   </div>
