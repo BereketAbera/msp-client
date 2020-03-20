@@ -1,0 +1,77 @@
+<div class="add-staff__container">
+  <h3 class="add-staff__title">Add Staff</h3>
+
+  <form (ngSubmit)="onSubmit()" [formGroup]="addStaffForm">
+    <div class="add-staff__inputs">
+      <mat-form-field class="add-staff__input" hintLabel="Min 3 characters">
+        <input
+          matInput
+          minlength="3"
+          placeholder="Staffer username"
+          formControlName="username"
+          required
+        />
+        <mat-error *ngIf="addStaffForm.controls.username.invalid"
+          >Staffer username should be at least three characters.</mat-error
+        >
+      </mat-form-field>
+      <mat-form-field class="add-staff__input">
+        <input
+          matInput
+          placeholder="Staffer email"
+          formControlName="email"
+          required
+        />
+        <mat-error *ngIf="addStaffForm.controls.email.invalid"
+          >Invalid email.</mat-error
+        >
+      </mat-form-field>
+      <mat-form-field class="add-staff__input">
+        <input
+          matInput
+          placeholder="Staffer first name"
+          formControlName="firstName"
+          required
+        />
+        <mat-error *ngIf="addStaffForm.controls.firstName.invalid"
+          >First name required.</mat-error
+        >
+      </mat-form-field>
+      <mat-form-field class="add-staff__input">
+        <input
+          matInput
+          placeholder="Staffer last name"
+          formControlName="lastName"
+          required
+        />
+        <mat-error *ngIf="addStaffForm.controls.lastName.invalid"
+          >Invalid last name.</mat-error
+        >
+      </mat-form-field>
+      <mat-form-field class="add-staff__input">
+        <input
+          matInput
+          placeholder="Staffer phone number"
+          formControlName="phoneNumber"
+          required
+        />
+        <mat-error *ngIf="addStaffForm.controls.phoneNumber.invalid"
+          >Invalid phone number.</mat-error
+        >
+      </mat-form-field>
+    </div>
+    <div class="add-staff__actions">
+      <button
+        type="submit"
+        mat-flat-button
+        color="accent"
+        [disabled]="!addStaffForm.valid"
+      >
+        Save
+      </button>
+      <button mat-flat-button color="accent" (click)="gotoShopList()">
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>

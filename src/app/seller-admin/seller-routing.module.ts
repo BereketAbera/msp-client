@@ -1,3 +1,4 @@
+import { AddStaffComponent } from "./add-staff/add-staff.component";
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 
@@ -27,6 +28,7 @@ import { StateResolverService } from "../service/state-resolver.service";
 
 import { SellerGuard } from "./seller.guard";
 import { Transaction } from "../model/transaction";
+import { StaffsComponent } from "./staffs/staffs.component";
 
 // path: 'tlgu-slr',
 // component: SellerAdminComponent,
@@ -56,7 +58,7 @@ const sellerRoutes: Routes = [
           markup: MarkupResolverService,
           pictures: GalleryResolverService
         },
-        data:{clone:false,edit:true}
+        data: { clone: false, edit: true }
       },
       {
         path: "prdcts/nwoffpktlgu/clone/:id",
@@ -67,7 +69,7 @@ const sellerRoutes: Routes = [
           markup: MarkupResolverService,
           pictures: GalleryResolverService
         },
-        data:{clone:true,edit:false}
+        data: { clone: true, edit: false }
       },
       {
         path: "prdcts/nwclsngtlgu",
@@ -105,6 +107,8 @@ const sellerRoutes: Routes = [
       { path: "gallery/:upldimg", component: UploadImgComponent },
       { path: "qr-scanner", component: QrScannerComponent },
       { path: "shops", component: ShopListComponent },
+      { path: "staffs", component: StaffsComponent },
+      { path: "staffs/add", component: AddStaffComponent },
       {
         path: "",
         component: SellerDashboardComponent,

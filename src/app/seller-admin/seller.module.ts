@@ -26,6 +26,8 @@ import { NewOffPeakProductComponent } from "./new-off-peak-product/new-off-peak-
 import { SalesSummaryComponent } from "./sales-summary/sales-summary.component";
 import { DragDropDirective } from "../service/drag-drop.directive";
 import { ImageCropperModule } from "ngx-image-cropper";
+import { AddStaffComponent } from './add-staff/add-staff.component';
+import { StaffsComponent } from './staffs/staffs.component';
 
 @NgModule({
   imports: [
@@ -55,7 +57,9 @@ import { ImageCropperModule } from "ngx-image-cropper";
     UploadImgComponent,
     NewOffPeakProductComponent,
     SalesSummaryComponent,
-    DragDropDirective
+    DragDropDirective,
+    AddStaffComponent,
+    StaffsComponent
   ],
   entryComponents: [
     RequestConfirmationComponent,

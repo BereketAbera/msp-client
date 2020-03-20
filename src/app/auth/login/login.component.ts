@@ -1,73 +1,73 @@
-import { Component,Input, OnInit } from '@angular/core';
-import {Validators,FormBuilder} from '@angular/forms';
-import {Router,ActivatedRoute} from '@angular/router';
-import {AuthService} from '../../service/auth.service';
-import { environment } from '../../../environments/environment';
-
+import { Component, Input, OnInit } from "@angular/core";
+import { Validators, FormBuilder } from "@angular/forms";
+import { Router, ActivatedRoute } from "@angular/router";
+import { AuthService } from "../../service/auth.service";
+import { environment } from "../../../environments/environment";
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: "app-login",
+  templateUrl: "./login.component.html",
+  styleUrls: ["./login.component.scss"]
 })
 export class LoginComponent implements OnInit {
   selectedIndex: number = 0;
   hide = true;
   errors;
   version = environment.version;
-  showError:boolean = false;
-  type="normal";
+  showError: boolean = false;
+  type = "normal";
   loginForm = this.fb.group({
-    email: ["",[Validators.required, Validators.email]],
-    password: ["",Validators.required]
+    email: ["", [Validators.required, Validators.minLength(3)]],
+    password: ["", Validators.required]
   });
-  constructor(private authService:AuthService,private fb:FormBuilder,private router:Router,private route:ActivatedRoute) { }
+  constructor(
+    private authService: AuthService,
+    private fb: FormBuilder,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit() {
-    this.type = this.route.snapshot.paramMap.get('type');
-    if(!this.type)
-       this.type="normal";
+    this.type = this.route.snapshot.paramMap.get("type");
+    if (!this.type) this.type = "normal";
   }
   getErrorMessage() {
-    return this.loginForm.get('email').hasError('required') ? 'You must enter a value' :
-    this.loginForm.get('email').hasError('email') ? 'Not a valid email' :
-            '';
+    return this.loginForm.get("email").hasError("required")
+      ? "You must enter a value"
+      : this.loginForm.get("email").hasError("email")
+      ? "Not a valid email"
+      : "";
   }
-  get showBuyer(){
-    if(this.type == "buyer" || this.type == "normal")
-     return true;
-     return false;
+  get showBuyer() {
+    if (this.type == "buyer" || this.type == "normal") return true;
+    return false;
   }
-  get showSeller(){
-    if(this.type == "seller" || this.type == "normal")
-       return true;
-       return false;
+  get showSeller() {
+    if (this.type == "seller" || this.type == "normal") return true;
+    return false;
   }
-  setSelectedIndexBuyer(){
+  setSelectedIndexBuyer() {
     this.selectedIndex = 0;
-    this.type = "buyer"
+    this.type = "buyer";
   }
-  setSelectedIndexSeller(){
+  setSelectedIndexSeller() {
     this.selectedIndex = 0;
-    this.type = "seller"
+    this.type = "seller";
   }
-  close(){
+  close() {
     this.showError = false;
   }
   onSubmit() {
     return this.authService.login(this.loginForm.value).subscribe(
-      res=>{
-        if(this.authService.redirectURL){
+      res => {
+        if (this.authService.redirectURL) {
           this.router.navigateByUrl(this.authService.redirectURL);
-        }else
-         this.router.navigate([this.authService.defaultNavigationURL]);
+        } else this.router.navigate([this.authService.defaultNavigationURL]);
       },
-      error=>{
+      error => {
         this.showError = true;
         this.errors = error.messages;
       }
-      
-
-    )
+    );
   }
 }

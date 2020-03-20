@@ -7,20 +7,40 @@
 <mat-divider></mat-divider>
 <mat-toolbar color="accent">
   <mat-toolbar-row #toolbarRow>
-    <a mat-button routerLink="./" [routerLinkActive]="['active-route']"
-      [routerLinkActiveOptions]="{ exact: true }" #rla="routerLinkActive">
+    <a
+      mat-button
+      routerLink="./"
+      [routerLinkActive]="['active-route']"
+      [routerLinkActiveOptions]="{ exact: true }"
+      #rla="routerLinkActive"
+    >
       Statistics
     </a>
-    <a mat-button routerLink="./qr-scanner" [routerLinkActive]="['active-route']"
-      [routerLinkActiveOptions]="{ exact: true }" #rla="routerLinkActive">
+    <a
+      mat-button
+      routerLink="./qr-scanner"
+      [routerLinkActive]="['active-route']"
+      [routerLinkActiveOptions]="{ exact: true }"
+      #rla="routerLinkActive"
+    >
       Code
     </a>
-    <a mat-button routerLink="./trnsctns" [routerLinkActive]="['active-route']"
-      [routerLinkActiveOptions]="{ exact: true }" #rla="routerLinkActive">
+    <a
+      mat-button
+      routerLink="./trnsctns"
+      [routerLinkActive]="['active-route']"
+      [routerLinkActiveOptions]="{ exact: true }"
+      #rla="routerLinkActive"
+    >
       Orders
     </a>
-    <a mat-button routerLink="./slssmry" [routerLinkActive]="['active-route']"
-      [routerLinkActiveOptions]="{ exact: true }" #rla="routerLinkActive">
+    <a
+      mat-button
+      routerLink="./slssmry"
+      [routerLinkActive]="['active-route']"
+      [routerLinkActiveOptions]="{ exact: true }"
+      #rla="routerLinkActive"
+    >
       Summary
     </a>
 
@@ -29,10 +49,10 @@
       <mat-icon>more_vert</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-        <button mat-menu-item>
-            <mat-icon>account_box</mat-icon>
-           <span>{{name}}</span>
-          </button>
+      <button mat-menu-item>
+        <mat-icon>account_box</mat-icon>
+        <span>{{ name }}</span>
+      </button>
       <button mat-menu-item (click)="gotoProductMngmnt()">
         <mat-icon>filter_list</mat-icon>
         <span>Add Products</span>
@@ -44,6 +64,10 @@
       <button mat-menu-item (click)="gotoGallery()">
         <mat-icon>collections</mat-icon>
         <span>Product Photos</span>
+      </button>
+      <button *ngIf="role == 'SELLER'" mat-menu-item (click)="gotoStaff()">
+        <mat-icon>supervisor_account</mat-icon>
+        <span>Staffs</span>
       </button>
       <button mat-menu-item (click)="logout()">
         <mat-icon>logout</mat-icon>

@@ -1,49 +1,98 @@
-.captureC{
-    background-color: blueviolet;
-    text-align: center;
-    padding: 2px;
+.captureC {
+  background-color: blueviolet;
+  text-align: center;
+  padding: 2px;
 }
-.frmDiv{
-    padding:10px;
+.frmDiv {
+  padding: 10px;
 }
 .taxCntrl {
-    width: 300px;
-  }
-
-.captureBrdr{
-    border: 2px dotted white;
-    
+  width: 300px;
 }
-.clickCard
-    {
-      position: absolute;
-      top: 0; left: 0;
-      height: 100%; width: 100%;
-      }
 
-.material-icons.orange600 { color: #f44336; }
-.material-icons.md-48 { font-size: 60px; }
+.captureBrdr {
+  border: 2px dotted white;
+}
+.clickCard {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.material-icons.orange600 {
+  color: #f44336;
+}
+.material-icons.md-48 {
+  font-size: 60px;
+}
 
 #errorCntr {
-    width: 80%;
-    border: 2px solid red;
-    padding: 15px 15px 15px 15px;
-    margin: 20px 20px 20px 20px;
-    background: #A4D3EE;
-    overflow: visible;
-    position: relative;
-  }
-  
-  #errClsBtn {
-      position: absolute;
-      background: red;
-      color: white;
-      top: -10px;
-      right: -10px;
-  }
-  ul {
-    list-style: none; /* Remove list bullets */
-    padding: 0;
-    margin: 0;
+  width: 80%;
+  border: 2px solid red;
+  padding: 15px 15px 15px 15px;
+  margin: 20px 20px 20px 20px;
+  background: #a4d3ee;
+  overflow: visible;
+  position: relative;
 }
 
+#errClsBtn {
+  position: absolute;
+  background: red;
+  color: white;
+  top: -10px;
+  right: -10px;
+}
+ul {
+  list-style: none; /* Remove list bullets */
+  padding: 0;
+  margin: 0;
+}
+
+.add-shop {
+  &__container {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  &__address {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__input {
+    margin: 1rem 0rem;
+    width: 100%;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.mat-flat-button {
+  border-radius: 0rem;
+  padding: 0rem 3rem;
+  margin: 0rem 1rem;
+}
+
+@media only screen and (min-width: 600px) {
+  .add-shop {
+    &__container {
+      width: 90%;
+    }
+
+    &__address {
+      flex-direction: row;
+    }
+
+    &__input {
+      margin-right: 1rem;
+      width: auto;
+      max-width: 16rem;
+    }
+  }
+}

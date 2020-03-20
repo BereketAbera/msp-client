@@ -28,13 +28,14 @@
               <mat-form-field>
                 <input
                   matInput
-                  placeholder="Enter your email"
+                  minlength="3"
+                  placeholder="Enter your email or username"
                   formControlName="email"
                   required
                 />
-                <mat-error *ngIf="loginForm.controls.email.invalid">{{
-                  getErrorMessage()
-                }}</mat-error>
+                <mat-error *ngIf="loginForm.controls.email.invalid"
+                  >Username or email not valid.</mat-error
+                >
               </mat-form-field>
             </div>
 

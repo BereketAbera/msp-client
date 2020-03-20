@@ -69,3 +69,21 @@ ul {
   border-radius: 0rem;
   padding: 0rem 3rem;
 }
+
+.staff_status {
+  &--active {
+    color: green;
+  }
+
+  &--removed {
+    color: red;
+  }
+
+  &--suspended {
+    color: blue;
+  }
+}
+
+.mat-table {
+  margin: 1rem;
+}
