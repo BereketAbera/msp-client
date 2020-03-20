@@ -4,24 +4,24 @@
     <!-- <mat-card-subtitle>Order</mat-card-subtitle> -->
     <mat-card-content>
         <div class="list">
-            <span class="list__header">  Product </span>
+            <span class="list__header">   Product </span>
             <span class="list__details">  <mat-icon style="color:#cf8c9c" class="material-icons md-18">subdirectory_arrow_right</mat-icon> {{order.product.name}} </span>
         </div>  
         
         <div class="list">
             <span class="list__header">  Order Date </span>
-            <span class="list__details"> <mat-icon style="color:#cf8c9c" class="material-icons md-18">subdirectory_arrow_right</mat-icon>  {{order.purchaseTime|date:"short"}}</span>
+            <span class="list__details"> <mat-icon style="color:#cf8c9c" >access_time</mat-icon>   {{order.purchaseTime|date:"short"}}</span>
         </div> 
 
         <div class="list">
             <span class="list__header">  Service Time </span>
-            <span class="list__details"> <mat-icon style="color:#cf8c9c" class="material-icons md-18">subdirectory_arrow_right</mat-icon> Starting: {{order.pickupStartTime }} </span>
-            <span class="list__details"> Ending: {{order.pickupEndTime}}</span> 
+            <span class="list__details"> <mat-icon style="color:#cf8c9c" >access_time</mat-icon>  Starting: {{order.pickupStartTime }} - Ending: {{order.pickupEndTime}} </span>
+          
           </div> 
 
         <div class="list">
             <span class="list__header">  Discounted Unit Price </span>
-            <span class="list__details"> <mat-icon style="color:#cf8c9c" class="material-icons md-18">subdirectory_arrow_right</mat-icon> {{order.discountedPrice|currency}}</span>
+            <span class="list__details"> <mat-icon style="color:#cf8c9c" >attach_money</mat-icon>  {{order.discountedPrice|currency}}</span>
         </div> 
 
         <div class="list">

@@ -1,10 +1,12 @@
-<div>
+<div class="container">
   <div class="spinner-container" *ngIf="dataSource.loading$ | async">
     <mat-spinner></mat-spinner>
   </div>
-  <mat-card> <span>Balance: </span>{{ balance | currency }} </mat-card>
+  <mat-card class="balance"> <mat-icon>attach_money</mat-icon>  <span class="balance__header">Balance = </span> <span class="balance__header__value"> {{ balance | currency }} </span>  </mat-card>
+  
+  <h2 class="container__header">Transactions</h2>
   <mat-table
-    class="mat-elevation-z8"
+    class="table mat-elevation-z2"
     [dataSource]="dataSource"
     matSort
     matSortActive="date"

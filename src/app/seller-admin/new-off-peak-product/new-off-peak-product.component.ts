@@ -20,6 +20,7 @@ import { RequestResultComponent } from "../request-result/request-result.compone
 import { UploadService } from "src/app/service/upload.service";
 import { ImageCroppedEvent } from "ngx-image-cropper";
 import Compressor from "compressorjs";
+import { stringify } from 'querystring';
 // import { DragDropDirective } from 'src/app/service/drag-drop.directive';
 let uploadClass = null;
 export interface Discount {
@@ -150,7 +151,7 @@ export class NewOffPeakProductComponent implements OnInit {
     pickupEndHH: ["", Validators.required],
     pickupEndMM: ["", Validators.required],
     pickupEndAMPM: ["", Validators.required],
-    isOffPeak: ["offpeak",Validators.required],
+    isOffPeak: ["offpeak", Validators.required],
     showNow: [false, Validators.required],
     weekDays: this.buildWeekDays(),
     imgId: null
@@ -200,41 +201,41 @@ export class NewOffPeakProductComponent implements OnInit {
 
               this.product["offerStartHH"] = this.changeToLocal12Hours(
                 resp.offerStartTime
-              ).split(":")[0];
+              ).split(";")[0];
               this.product["offerStartMM"] = this.changeToLocal12Hours(
                 resp.offerStartTime
-              ).split(":")[1];
+              ).split(";")[1];
               this.product["offerStartAMPM"] = this.changeToLocal12Hours(
                 resp.offerStartTime
-              ).split(":")[2];
+              ).split(";")[2];
               this.product["offerEndHH"] = this.changeToLocal12Hours(
                 resp.offerEndTime
-              ).split(":")[0];
+              ).split(";")[0];
               this.product["offerEndMM"] = this.changeToLocal12Hours(
                 resp.offerEndTime
-              ).split(":")[1];
+              ).split(";")[1];
               this.product["offerEndAMPM"] = this.changeToLocal12Hours(
                 resp.offerEndTime
-              ).split(":")[2];
+              ).split(";")[2];
 
               this.product["pickupStartHH"] = this.changeToLocal12Hours(
                 resp.pickupStartTime
-              ).split(":")[0];
+              ).split(";")[0];
               this.product["pickupStartMM"] = this.changeToLocal12Hours(
                 resp.pickupStartTime
-              ).split(":")[1];
+              ).split(";")[1];
               this.product["pickupStartAMPM"] = this.changeToLocal12Hours(
                 resp.pickupStartTime
-              ).split(":")[2];
+              ).split(";")[2];
               this.product["pickupEndHH"] = this.changeToLocal12Hours(
                 resp.pickupEndTime
-              ).split(":")[0];
+              ).split(";")[0];
               this.product["pickupEndMM"] = this.changeToLocal12Hours(
                 resp.pickupEndTime
-              ).split(":")[1];
+              ).split(";")[1];
               this.product["pickupEndAMPM"] = this.changeToLocal12Hours(
                 resp.pickupEndTime
-              ).split(":")[2];
+              ).split(";")[2];
 
               // console.log(this.product)
               // this.product.offerStartDate = this.changeToLocalDate(this.product.offerStartDate) ;
@@ -265,20 +266,19 @@ export class NewOffPeakProductComponent implements OnInit {
             this.productForm.get("normalPrice").setValue(inpValue + ".00");
         }
       });
-    for (let i = 0; i < 60; i++)
-      if (i < 10) {
-        let y = "0" + i.toString();
-        this.hhmm.push(y);
-      } else {
-        this.hhmm.push(i.toString());
-      }
-    for (let i = 1; i < 12; i++)
-      if (i < 10) {
-        let y = "0" + i.toString();
-        this.hhmm.push(y);
-      } else {
-        this.hhmm.push(i.toString());
-      }
+ 
+      this.hhmm.push("00:AM");
+      this.hhmm.push("30:AM");
+      this.hhmm.push("00:PM");
+      this.hhmm.push("30:PM");
+
+    // for (let i = 1; i < 12; i++)
+    //   if (i < 10) {
+    //     let y = "0" + i.toString();
+    //     this.hhmm.push(y);
+    //   } else {
+    //     this.hhmm.push(i.toString());
+    //   }
 
     this.route.data.subscribe(
       (data: {
@@ -335,7 +335,7 @@ export class NewOffPeakProductComponent implements OnInit {
       } else {
         this.options = null;
       }
-      console.log(value);
+      // console.log(value);
     });
     this.initOfferPickupTime();
   }
@@ -358,7 +358,7 @@ export class NewOffPeakProductComponent implements OnInit {
     let defaultOfferSHH = this.hours12(this.offerStartInitTime).toString();
     if (defaultOfferSHH.length == 1) defaultOfferSHH = "0" + defaultOfferSHH;
 
-    let defaultOfferSMM = this.offerStartInitTime.getMinutes().toString();
+    let defaultOfferSMM = "00:AM";
     if (defaultOfferSMM.length == 1) defaultOfferSMM = "0" + defaultOfferSMM;
 
     let defaultOfferSAMPM = this.getAMPM(this.offerStartInitTime);
@@ -366,7 +366,7 @@ export class NewOffPeakProductComponent implements OnInit {
     let defaultOfferEHH = this.hours12(this.offerEndInitTime).toString();
     if (defaultOfferEHH.length == 1) defaultOfferEHH = "0" + defaultOfferEHH;
 
-    let defaultOfferEMM = this.offerEndInitTime.getMinutes().toString();
+    let defaultOfferEMM = "00:AM"
     if (defaultOfferEMM.length == 1) defaultOfferEMM = "0" + defaultOfferEMM;
 
     let defaultOfferEAMPM = this.getAMPM(this.offerEndInitTime);
@@ -374,7 +374,8 @@ export class NewOffPeakProductComponent implements OnInit {
     let defaultPickupSHH = this.hours12(this.pickupStartInitTime).toString();
     if (defaultPickupSHH.length == 1) defaultPickupSHH = "0" + defaultPickupSHH;
 
-    let defaultPickupSMM = this.pickupStartInitTime.getMinutes().toString();
+    // let defaultPickupSMM = this.pickupStartInitTime.getMinutes().toString();
+    let defaultPickupSMM = "00:AM"
     if (defaultPickupSMM.length == 1) defaultPickupSMM = "0" + defaultPickupSMM;
 
     let defaultPickupSAMPM = this.getAMPM(this.pickupStartInitTime);
@@ -382,7 +383,7 @@ export class NewOffPeakProductComponent implements OnInit {
     let defaultPickupEHH = this.hours12(this.pickupEndInitTime).toString();
     if (defaultPickupEHH.length == 1) defaultPickupEHH = "0" + defaultPickupEHH;
 
-    let defaultPickupEMM = this.pickupEndInitTime.getMinutes().toString();
+    let defaultPickupEMM = "00:AM"
     if (defaultPickupEMM.length == 1) defaultPickupEMM = "0" + defaultPickupEMM;
 
     let defaultPickupEAMPM = this.getAMPM(this.pickupEndInitTime);
@@ -411,7 +412,7 @@ export class NewOffPeakProductComponent implements OnInit {
   onSubmit() {
     if (this.checkFormValidity()) {
       let product = new Product();
-      
+
       product = { ...this.productForm.value };
       product.offerStartTime = this.offerStartTime;
       product.offerEndTime = this.offerEndTime;
@@ -420,12 +421,12 @@ export class NewOffPeakProductComponent implements OnInit {
       product.offerEndDate = this.offerEndDate;
       product.offerStartDate = this.offerStartDate;
       product.shop = this.productForm.get("shop").value;
-      if(this.productForm.get('isOffPeak').value == "offpeak"){
+      if (this.productForm.get('isOffPeak').value == "offpeak") {
         product.isOffPeak = true;
-      }else{
+      } else {
         product.isOffPeak = false;
       }
-      // console.log(product)
+      //  console.log(product,'sdfgf')
       if (this.product && !this.clone) {
         // console.log({ ...this.productForm.value }, 'edit')
         // product = { ...this.productForm.value };
@@ -569,23 +570,24 @@ export class NewOffPeakProductComponent implements OnInit {
       this.productForm.get("offerStartDate").value
     ).format("YYYY-MM-DD");
     let offerStartHH = this.productForm.get("offerStartHH").value;
-    let offerStartMM = this.productForm.get("offerStartMM").value;
-    let offerStartAMPM = this.productForm.get("offerStartAMPM").value;
+    let offerStartMM = this.productForm.get("offerStartMM").value.split(":")[0];
+    let offerStartAMPM = this.productForm.get("offerStartMM").value.split(":")[1];
 
+    
     let offerEndDate = moment(
       this.productForm.get("offerEndDate").value
     ).format("YYYY-MM-DD");
     let offerEndHH = this.productForm.get("offerEndHH").value;
-    let offerEndAMPM = this.productForm.get("offerEndAMPM").value;
-    let offerEndMM = this.productForm.get("offerEndMM").value;
+    let offerEndAMPM = this.productForm.get("offerEndMM").value.split(":")[1];;
+    let offerEndMM = this.productForm.get("offerEndMM").value.split(":")[0];;
 
     let pickupStartHH = this.productForm.get("pickupStartHH").value;
-    let pickupStartAMPM = this.productForm.get("pickupStartAMPM").value;
-    let pickupStartMM = this.productForm.get("pickupStartMM").value;
+    let pickupStartAMPM = this.productForm.get("pickupStartMM").value.split(":")[1];
+    let pickupStartMM = this.productForm.get("pickupStartMM").value.split(":")[0];
 
     let pickupEndHH = this.productForm.get("pickupEndHH").value;
-    let pickupEndAMPM = this.productForm.get("pickupEndAMPM").value;
-    let pickupEndMM = this.productForm.get("pickupEndMM").value;
+    let pickupEndAMPM = this.productForm.get("pickupEndMM").value.split(":")[1];
+    let pickupEndMM = this.productForm.get("pickupEndMM").value.split(":")[0];
     let todayMnt = moment().format("YYYY-MM-DD");
     let today = new Date(moment(todayMnt).valueOf());
     if (isNaN(imgId) || !(imgId > 0)) {
@@ -757,9 +759,30 @@ export class NewOffPeakProductComponent implements OnInit {
       this.section2 = true;
     }
   }
+
+  reserveTimesOnChanges($event) {
+    let curr = this.productForm.get('offerStartHH').value;
+    let currY = this.productForm.get('offerEndHH').value;
+    let pick = this.productForm.get('pickupStartHH').value;
+    let pickY = this.productForm.get('pickupEndHH').value;
+    if (parseInt(curr) == 12 && parseInt(curr) > parseInt(currY)) {
+      this.productForm.get('offerEndHH').setValue(`${this.returnTwoDigit(parseInt(curr))}`);  
+    } else if(parseInt(curr) > parseInt(currY)) {
+      this.productForm.get('offerEndHH').setValue(`${this.returnTwoDigit(parseInt(curr) + 1)}`);
+    }else if(parseInt(curr) > parseInt(pick) ){
+      this.productForm.get('pickupStartHH').setValue(`${this.returnTwoDigit(parseInt(curr) +1 )}`);  
+    }
+  }
+  consumptionTimesOnChanges($event) {
+    let curr = this.productForm.get('pickupStartHH').value;
+    let currY = this.productForm.get('pickupEndHH').value;
+    if (parseInt(curr) == 12 && parseInt(curr) > parseInt(currY)) {
+      this.productForm.get('pickupEndHH').setValue(`${this.returnTwoDigit(parseInt(curr))}`);  
+    } else if(parseInt(curr) > parseInt(currY)) {
+      this.productForm.get('pickupEndHH').setValue(`${this.returnTwoDigit(parseInt(curr) + 1)}`);
+    }
+  }
   parseWeekDay(weekDays) {
-    // weekDays= "montuethufrisun"
-    // console.log(weekDays,'week')
     this.weekDaysInit.map((day, index) => {
       // day.selected = false;
       if (weekDays.includes(day.name.toLowerCase())) {
@@ -791,12 +814,12 @@ export class NewOffPeakProductComponent implements OnInit {
     this.productForm
       .get("discountPersent")
       .setValue(this.product.discountPercentage);
-    if(this.product.isOffPeak){
+    if (this.product.isOffPeak) {
       this.productForm.get('isOffPeak').setValue('offpeak')
-    }else{
+    } else {
       this.productForm.get('isOffPeak').setValue('endof')
     }
-    
+
   }
 
   fillcategories(categories) {
@@ -824,7 +847,7 @@ export class NewOffPeakProductComponent implements OnInit {
     const day = date.split("T")[0];
     let d = -new Date().getTimezoneOffset();
     let da = new Date(date);
-    console.log(date.toLocaleString());
+    // console.log(date.toLocaleString());
     if (da.getMonth() >= 10) {
       return `${da.getFullYear()}-${da.getMonth() + 1}-${da.getDate()}`;
     } else {
@@ -841,19 +864,19 @@ export class NewOffPeakProductComponent implements OnInit {
     minute = totalMinutes % 60;
 
     if (hour < 12) {
-      return `${this.returnTwoDigit(hour)}:${this.returnTwoDigit(minute)}:AM`;
+      return `${this.returnTwoDigit(hour)};${this.returnTwoDigit(minute)}:AM;AM`;
     } else if (hour == 12) {
-      return `${this.returnTwoDigit(12)}:${this.returnTwoDigit(minute)}:PM`;
+      return `${this.returnTwoDigit(12)};${this.returnTwoDigit(minute)}:PM;PM`;
     } else if (hour > 24) {
-      return `${this.returnTwoDigit(hour - 24)}:${this.returnTwoDigit(
+      return `${this.returnTwoDigit(hour - 24)};${this.returnTwoDigit(
         minute
-      )}:AM`;
+      )}:AM;AM`;
     } else if (hour == 24) {
-      return `${this.returnTwoDigit(12)}:${this.returnTwoDigit(minute)}:AM`;
+      return `${this.returnTwoDigit(12)};${this.returnTwoDigit(minute)}:AM;AM`;
     } else {
-      return `${this.returnTwoDigit(hour % 12)}:${this.returnTwoDigit(
+      return `${this.returnTwoDigit(hour % 12)};${this.returnTwoDigit(
         minute
-      )}:PM`;
+      )}:PM;PM`;
     }
   }
 

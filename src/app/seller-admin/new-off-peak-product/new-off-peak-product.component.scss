@@ -297,7 +297,7 @@
   &__sub-container {
     display: flex;
     width: 90%;
-    justify-content: space-between;
+    justify-content: space-evenly;
     // margin: 1rem 0rem;
   }
 
@@ -339,6 +339,10 @@
 
   &__input--type-3 {
     max-width: 30%;
+    min-width: 2rem;
+  }
+  &__input--type-4 {
+    max-width: 40%;
     min-width: 2rem;
   }
 }

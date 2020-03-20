@@ -1,28 +1,72 @@
-  <mat-card>
-    <h2>Order Detail</h2>
-    <mat-card-content>
-      <h4>Seller</h4>
-      <p>Name: {{supplier.name}}</p>
-      <p>Phone: {{supplier.phoneNumber}}</p>
-      <p>Address: {{supplier.address}}</p>
-      <p>Website: {{supplier.website}} </p>
-      
-      <h4>Order</h4>
-      <p>Product:{{order.product.name}}</p>
-      <p>Order Date:{{order.purchaseTime|date:"short"}}</p>
-      <p>Service Time</p>
-      <ul>
-        <li><p>From: {{order.pickupStartTime|date:'short'}}</p></li>
-        <li></li>
-        <li><p>To: {{order.pickupEndTime|date:'short'}}</p></li>
-      </ul>
-      <p>Unit Price: {{order.product.discountPrice|currency}}</p>
-      <p>Quantiy: {{order.quantity}}</p>
-      <p>Total: {{order.quantity*order.product.discountPrice|currency}}</p>
-      
-     </mat-card-content>
-    <mat-card-actions>
-      <button type="button" mat-flat-button color="accent" (click)="gotoBuyerTrans()" >Cancel</button>
-    </mat-card-actions>
-  </mat-card>
 
+<div class="container">
+    <mat-card class="orders">
+        <h2 class="orders__header">Order Detail</h2>
+        <div class="orders___card">
+        </div>
+      </mat-card>
+      
+      <mat-card class="orders">
+        <h2 class="orders__headers">Sellers</h2>
+        <div class="orders__content">
+          <ul>
+            <li>
+              <span class="name">
+                <mat-icon>person</mat-icon> <span class="name"> {{supplier.name}} </span>
+              </span>
+              <span class="name">
+                <mat-icon>phone_number</mat-icon> <span class="name"> {{supplier.phoneNumber}} </span>
+              </span>
+              <span class="name">
+                <mat-icon>location_on</mat-icon> <span class="name"> {{supplier.address}} </span>
+              </span>
+              <span class="name">
+                <mat-icon>website</mat-icon> <span class="name"> {{supplier.website}} </span>
+              </span>
+            </li>
+          </ul>
+        </div>
+      
+      </mat-card>
+      
+      <mat-card class="orders">
+        <h2 class="orders__headers">Orders</h2>
+      
+        <div class="orders__content">
+          <ul>
+            <li>
+              <span class="name">
+                <mat-icon>list</mat-icon> <span class="name"> <b>Product Name : </b> {{order.product.name}} </span>
+              </span>
+              <span class="name">
+                <mat-icon>access_time</mat-icon> <span class="name"> <b>Order Date :</b> {{order.purchaseTime }} </span>
+              </span>
+              <span class="name">
+                <mat-icon>attach_money</mat-icon> <span class="name"> <b> Unit Price :</b>  {{order.product.discountPrice|currency}}
+                </span>
+              </span>
+              <span class="name">
+                <mat-icon>label</mat-icon> <span class="name"> <b> Quantiy : </b>  {{order.quantity}} </span>
+              </span>
+      
+              <span class="name">
+                <mat-icon>money</mat-icon> <span class="name"> <b> Total : </b>  {{order.quantity*order.product.discountPrice|currency}}
+                </span>
+              </span>
+              <span class="name">
+                <ul>
+                 <b>Services </b> 
+                  <li>
+                    <span class="name">
+                      <mat-icon>access_time</mat-icon> <span class="name"> 
+                          From: {{order.pickupStartTime}} <mat-icon>arrow_right_alt</mat-icon> To: {{order.pickupEndTime }} </span>
+                    </span>
+                  </li>
+                </ul>
+              </span>
+      
+            </li>
+          </ul>
+        </div>
+      </mat-card>
+</div>

@@ -9,11 +9,11 @@
     
   </ul>
 </div>
-<form [formGroup]="paymentForm" (ngSubmit)="onSubmit()">
+<form class="payment-form" [formGroup]="paymentForm" (ngSubmit)="onSubmit()">
     
-  <mat-card>
-    <span>BILLING INFORMATION</span>
-    <mat-card-content>
+  <mat-card class="payment-form-card">
+      <h2 class="payment-form__header">BILLING INFORMATION</h2>
+    <mat-card-content class="payment-form-content">
       <div fxLayout="column" fxLayoutGap="5px">
           <div fxLayout="row" fxLayoutGap="7px">
         <mat-form-field>
@@ -48,9 +48,9 @@
     </mat-card-content>
   </mat-card>
 
-  <mat-card>
-    <span>PAYMENT INFORMATION</span>
-    <mat-card-content>
+  <mat-card  class="payment-form-card" >
+      <h2 class="payment-form__header">PAYMENT INFORMATION</h2>
+    <mat-card-content class="payment-form-content">
       <div fxLayout="column">
         <div fxLayout="row" fxLayoutGap="5px">
           <mat-form-field>

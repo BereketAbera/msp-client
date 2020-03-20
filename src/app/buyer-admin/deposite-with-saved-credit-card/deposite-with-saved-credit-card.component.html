@@ -9,48 +9,52 @@
     
   </ul>
 </div>
-<form [formGroup]="paymentForm" (ngSubmit)="onSubmit()">
-  <mat-card>
-    <mat-card-content>
-      <div fxLayout="column">
-        <div>
-          <mat-form-field>
-            <mat-select placeholder="Credit Card Hint" formControlName="paymentInfoId">
-              <mat-option *ngFor="let crdt of data.creditCards" [value]="crdt.id">
-                {{crdt.cardNumber}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-        <div>
-          <mat-form-field>
-            <input matInput type="tel" formControlName="cvc" minlength="3" maxlength="4" placeholder="CVC" required>
-          </mat-form-field>
-        </div>
-        <div>
-          <mat-form-field>
-            <input matInput type="number" min="10" formControlName="deposit" placeholder="Deposit Amount" required>
-            <span matPrefix>$&nbsp;</span>
-            <mat-hint align="start"><strong>Minimum top up is  {{minimumAmount|currency}}</strong> </mat-hint>
-            <mat-error *ngIf="paymentForm.get('deposit')?.invalid">Minimum amount $10.</mat-error>
-          </mat-form-field>
-        </div>
-        <br>
-        <div class="btnPadd" fxLayout="row" fxLayoutGap="7px">
-          <div>
-            <button mat-flat-button type="submit" color="accent">Pay Now</button>
-          </div>
-         
-          <div>
-              <button type="button" mat-flat-button color="accent" (click)="goToHome()">Cancel</button>
-          </div>
-          <div>
-              <button mat-flat-button type="button" (click)="payWithNewCredit()">Pay With New Credit Card
-              </button>
-  
+<div >
+    <form class="payment-form" [formGroup]="paymentForm" (ngSubmit)="onSubmit()">
+        <mat-card class="payment-form-card">
+          <h2 class="payment-form__header">Payment</h2>
+          <mat-card-content class="payment-form-content">
+            <div fxLayout="column">
+              <div>
+                <mat-form-field>
+                  <mat-select placeholder="Credit Card Hint" formControlName="paymentInfoId">
+                    <mat-option *ngFor="let crdt of data.creditCards" [value]="crdt.id">
+                      {{crdt.cardNumber}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div>
+                <mat-form-field>
+                  <input matInput type="tel" formControlName="cvc" minlength="3" maxlength="4" placeholder="CVC" required>
+                </mat-form-field>
+              </div>
+              <div>
+                <mat-form-field>
+                  <input matInput type="number" min="10" formControlName="deposit" placeholder="Deposit Amount" required>
+                  <span matPrefix>$&nbsp;</span>
+                  <mat-hint align="start"><strong>Minimum top up is  {{minimumAmount|currency}}</strong> </mat-hint>
+                  <mat-error *ngIf="paymentForm.get('deposit')?.invalid">Minimum amount $10.</mat-error>
+                </mat-form-field>
+              </div>
+              <br>
+              <div class="btnPadd" fxLayout="row" fxLayoutGap="7px">
+                <div>
+                  <button mat-flat-button type="submit" color="accent">Pay Now</button>
+                </div>
+               
+                <div>
+                    <button type="button" mat-flat-button color="accent" (click)="goToHome()">Cancel</button>
+                </div>
+                <div>
+                    <button mat-flat-button type="button" color='primary' (click)="payWithNewCredit()">Pay With New Credit Card
+                    </button>
+        
+                  </div>
+              </div>
             </div>
-        </div>
-      </div>
-    </mat-card-content>
-  </mat-card>
-</form>
+          </mat-card-content>
+        </mat-card>
+      </form>
+</div>
+

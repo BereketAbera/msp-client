@@ -1,7 +1,11 @@
 
-  <mat-card>
-    <span>Credit Balance: </span>{{balance|currency}}
-    <P>You can only use these credits on our site and they cannot be converted to cash refunds.</P>
-  </mat-card>
-   <ng-template appPaymentType></ng-template>
+
+<div class="container">
+    <mat-card>
+        <mat-card class="balance"> <mat-icon>attach_money</mat-icon>  <span class="balance__header">Balance = </span> <span class="balance__header__value"> {{ balance | currency }} </span>  </mat-card>
+        <P class="description"> You can only use these credits on our site and they cannot be converted to cash refunds.</P>
+    </mat-card>
+     <ng-template appPaymentType></ng-template>
+</div>
+
    

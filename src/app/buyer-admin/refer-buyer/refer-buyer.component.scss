@@ -1,7 +1,8 @@
 .tab-item {
-  margin: 0 15rem;
+  margin: 0 20rem;
   font-size: 1.3rem;
   color: #888;
+  padding: 0rem 5rem;
 }
 
 .form-control {
@@ -71,5 +72,7 @@
 }
 .mat-elevation-z1{
     border :1px #ddd solid;
-    // box-shadow: 2px 2px 3px #ddd;
+    p{
+      padding:0 2rem 2rem;
+    }
 }
