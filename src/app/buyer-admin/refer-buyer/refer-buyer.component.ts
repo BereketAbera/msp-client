@@ -16,13 +16,16 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./refer-buyer.component.scss']
 })
 export class ReferBuyerComponent implements OnInit {
-
+  showErrorNotification=false;
+  errorMessage=''
   emails = [];
   emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email,
   ]);
   matcher = new MyErrorStateMatcher();
+  showSuccessNotification=false;
+
   constructor(private userService:UserService) { }
   addEmail(){
     if(this.emailFormControl.valid && (this.emails.indexOf(this.emailFormControl.value)< 0)){
@@ -31,7 +34,8 @@ export class ReferBuyerComponent implements OnInit {
         this.emails.push(this.emailFormControl.value);
         this.emailFormControl.reset();
         }else{
-          alert("Sorry, Email already used.");
+          this.errorMessage="Sorry, Email si alraedy in used";  
+          this.showErrorNotification = true;
         }
       });
     }
@@ -43,12 +47,16 @@ export class ReferBuyerComponent implements OnInit {
   }
   inviteUsers(){
     this.userService.inviteBuyers(this.emails).subscribe(rsp=>{
-      alert("Invitation sent to users");
+      this.errorMessage = "Invitation succesfully sent to user";
+      this.showSuccessNotification = true;
       this.emails = [];
     })
   }
   ngOnInit() {
   }
-
+  showNotification($event){
+    this.showErrorNotification = $event
+    this.showSuccessNotification = $event;
+  }
 
 }

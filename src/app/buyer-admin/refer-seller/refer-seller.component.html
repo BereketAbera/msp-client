@@ -1,11 +1,13 @@
-<div>
-  <mat-card>
-    <p>Refer a Seller and get $50 credits for each new Seller/restaurant sign up. It is easy, just enter their emails and we will do the rest.You can only use these credits on our site and they cannot be converted to cash.</p>
+<div class="tab-item">
+  <mat-card class='mat-elevation-z2'>
+    <p>Refer a Seller and get $50 credits for each new Seller/restaurant sign up. It is easy, just enter their emails
+      and we will do the rest.You can only use these credits on our site and they cannot be converted to cash.</p>
     <mat-card-content>
-        <form>
-            <div fxLayout="row"  fxLayoutGap="3px" >
+      <form>
+        <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="3px">
           <mat-form-field>
-            <input matInput placeholder="Email" [formControl]="emailFormControl" [errorStateMatcher]="matcher">
+            <input class="form-control" matInput placeholder="Email" [formControl]="emailFormControl"
+              [errorStateMatcher]="matcher">
             <mat-hint></mat-hint>
             <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
               Please enter a valid email address
@@ -14,23 +16,36 @@
               Email is <strong>required</strong>
             </mat-error>
           </mat-form-field>
-          <div><button type="button"  mat-button color="accent" (click)="addEmail()">Add Email</button></div>
-          
+          <div><button class="button" type="button" mat-button color="accent" (click)="addEmail()">Add Email</button>
+          </div>
+
         </div>
-        </form>
+      </form>
     </mat-card-content>
-    
+
   </mat-card>
-  </div>
-  <mat-card *ngIf="emails.length > 0">
+  <mat-card class="email_container" fxLayoutGap="3px" *ngIf="emails.length > 0">
     <mat-card-content>
-     <div *ngFor="let eml of emails">
-        <div fxLayout="row"  fxLayoutGap="3px" >
-           <p>{{eml}}</p>
-           <button mat-button (click)="remove(eml)">X</button></div>
-     </div>
+      <div *ngFor="let eml of emails">
+        <div class="email_container__list" fxLayoutAlign="center" fxLayoutGap="3px">
+          <p>{{eml}}</p>
+          <button mat-button (click)="remove(eml)">
+            <mat-icon color="accent">delete</mat-icon>
+          </button>
+        </div>
+      </div>
     </mat-card-content>
-    <mat-card-actions>
-      <button type="button" (click)="inviteUsers()" mat-flat-button color="accent">Submit</button>
+    <mat-card-actions class="email_container__button">
+      <button class="button" style="width: 15rem;" type="button" (click)="inviteUsers()" mat-button
+        color="accent">Submit</button>
     </mat-card-actions>
   </mat-card>
+ </div>
+
+ <app-custom-notification [show]="showErrorNotification" type="error" [text]="errorMessage"
+(showNotifications)="showNotification($event)">
+</app-custom-notification>
+
+<app-custom-notification [show]="showSuccessNotification" type="success" [text]="errorMessage"
+(showNotifications)="showNotification($event)">
+</app-custom-notification>
