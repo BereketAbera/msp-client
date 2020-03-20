@@ -26,7 +26,7 @@ export class CompanyProductsComponent implements OnInit {
   constructor(private prdctService: ProductService) {}
 
   ngOnInit() {
-    // console.log(this.company,'comps');
+    // console.log(this.company, "comps");
 
     this.prdctService
       .getListOfProducts(
@@ -38,7 +38,7 @@ export class CompanyProductsComponent implements OnInit {
         "desc",
         this.page,
         this.pageSize,
-        this.company.userId
+        this.company.sellerProfileId
       )
       .subscribe(resp => {
         // console.log(resp,'product')

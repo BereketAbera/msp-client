@@ -1,66 +1,118 @@
 <div *ngIf="showError" id="errorCntr">
-  <button id = "errClsBtn" (click)="close()">
-      X
+  <button id="errClsBtn" (click)="close()">
+    X
   </button>
   <ul>
     <li *ngFor="let error of errors">
-      {{error}}
+      {{ error }}
     </li>
-    
   </ul>
 </div>
-<form *ngIf="showForm()" [formGroup]="shopForm" (ngSubmit)="onSubmit()">
-<mat-card  >
+<form
+  *ngIf="showForm()"
+  [formGroup]="shopForm"
+  class="add-shop__container"
+  (ngSubmit)="onSubmit()"
+>
+  <mat-card>
     <mat-card-title>Create store location</mat-card-title>
     <p>Must create at least one store location to sell products.</p>
-    <mat-card-content>	
-<div fxLayout="column" class="frmDiv">
-  <mat-form-field hintLabel="Min 2 characters">
-    <input matInput minlength="2" placeholder="Store name at this location" formControlName="shopName" required>
-    <mat-error *ngIf="shopForm.controls.shopName.invalid">Shop name should be at least two characters.</mat-error>
-  </mat-form-field>
-  <mat-form-field >
-    <input matInput placeholder="Contact person" formControlName="contact">
-  </mat-form-field>
-    <mat-form-field class="example-full-width" hintLabel="Area code + 7 digits">
-        <input type="tel" maxlength="15" matInput placeholder="Telephone" formControlName="telephone">
-       </mat-form-field>
-  <mat-form-field >
-    <input matInput placeholder="Address" formControlName="address">
-  </mat-form-field>
-  <div fxLayout="row" fxLayoutGap="7px">
-    <mat-form-field class="zipstatecity">
-      <input matInput placeholder="City" formControlName="city" required>
-    </mat-form-field>
-    <mat-form-field class="zipstatecity">
-        <mat-select placeholder="Select State" formControlName="state" required>
-        <mat-option *ngFor="let state of states" [value]="state.id">
-          {{state.abbreviation}}
-        </mat-option>
-      </mat-select>
-      
-    </mat-form-field>
-    <mat-form-field >
-      <input matInput type="text" placeholder="Zip / Postal Code"  matInput [matAutocomplete]="auto" formControlName="zipCode">
-       <mat-autocomplete #auto="matAutocomplete">
-          <mat-option *ngFor="let result of zipCodeHints$ | async" [value]="result.zipCode" >
-            <span>{{result.zipCode}}</span>
-            <small> | {{result.countName}} {{result.cityName}} {{result.stateAbbr}}</small>
-        </mat-option>
-      </mat-autocomplete>
-  </mat-form-field>
-  </div>
-  
-  </div>
-  </mat-card-content>
-  <mat-card-actions>
-    <div fxLayout="row nowrap" fxLayoutGap="10px"> 
-      <div><button mat-flat-button color="accent" [disabled]="!shopForm.valid">Save</button></div>
-      <div><button mat-flat-button color="accent" (click)="gotoShopList()">Cancel</button></div>
-    </div>
-  </mat-card-actions>
-</mat-card>
+    <mat-card-content>
+      <div fxLayout="column" class="frmDiv">
+        <mat-form-field hintLabel="Min 2 characters">
+          <input
+            matInput
+            minlength="2"
+            placeholder="Store name at this location"
+            formControlName="shopName"
+            required
+          />
+          <mat-error *ngIf="shopForm.controls.shopName.invalid"
+            >Shop name should be at least two characters.</mat-error
+          >
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="Contact person"
+            formControlName="contact"
+          />
+        </mat-form-field>
+        <mat-form-field
+          class="example-full-width"
+          hintLabel="Area code + 7 digits"
+        >
+          <input
+            type="tel"
+            maxlength="15"
+            matInput
+            placeholder="Telephone"
+            formControlName="telephone"
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Address" formControlName="address" />
+        </mat-form-field>
+        <div class="add-shop__address">
+          <mat-form-field class="zipstatecity add-shop__input">
+            <input
+              matInput
+              placeholder="City"
+              formControlName="city"
+              required
+            />
+          </mat-form-field>
+          <mat-form-field class="zipstatecity add-shop__input">
+            <mat-select
+              placeholder="Select State"
+              formControlName="state"
+              required
+            >
+              <mat-option *ngFor="let state of states" [value]="state.id">
+                {{ state.abbreviation }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="add-shop__input">
+            <input
+              matInput
+              type="text"
+              placeholder="Zip / Postal Code"
+              matInput
+              [matAutocomplete]="auto"
+              formControlName="zipCode"
+            />
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option
+                *ngFor="let result of zipCodeHints$ | async"
+                [value]="result.zipCode"
+              >
+                <span>{{ result.zipCode }}</span>
+                <small>
+                  | {{ result.countName }} {{ result.cityName }}
+                  {{ result.stateAbbr }}</small
+                >
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <div class="add-shop__actions">
+        <button mat-flat-button color="accent" [disabled]="!shopForm.valid">
+          Save
+        </button>
+        <button mat-flat-button color="accent" (click)="gotoShopList()">
+          Cancel
+        </button>
+      </div>
+    </mat-card-actions>
+  </mat-card>
 </form>
 <div *ngIf="!showForm()">
-    <p>Sorry, your account is either inactive or disabled.Please contact sales@ManagerSpecial.com.</p>
+  <p>
+    Sorry, your account is either inactive or disabled.Please contact
+    sales@ManagerSpecial.com.
+  </p>
 </div>

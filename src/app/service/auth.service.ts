@@ -1,21 +1,24 @@
-import { Injectable } from '@angular/core';
-import { HttpClient ,HttpResponse, HttpErrorResponse} from '@angular/common/http';
+import { Injectable } from "@angular/core";
+import {
+  HttpClient,
+  HttpResponse,
+  HttpErrorResponse
+} from "@angular/common/http";
 
+import { throwError } from "rxjs";
+import { environment } from "../../environments/environment";
 
-import { throwError} from 'rxjs';
-import { environment } from '../../environments/environment';
+import * as moment from "moment";
 
-import * as moment from 'moment';
+import { catchError, tap, shareReplay, map } from "rxjs/operators";
 
-import { catchError,tap, shareReplay,map} from 'rxjs/operators';
-
-import { User } from '../model/user';
+import { User } from "../model/user";
 
 const authApi = environment.APIEndpoint + "authenticate";
 const pwdResetReqApi = environment.APIEndpoint + "pwdrstrqt";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class AuthService {
   private _redirectURL: string;
@@ -23,56 +26,55 @@ export class AuthService {
   private _defaultSellerNav = "./tlgu-slr";
   private _defaultBuyerNav = "./tlgu-byr";
   private _defaultNav = "./login";
-  currentLat:number;
-  currentLong:number;
-  isGPSOn:boolean = false;
-  constructor(private http: HttpClient) {
-
-  }
+  currentLat: number;
+  currentLong: number;
+  isGPSOn: boolean = false;
+  constructor(private http: HttpClient) {}
   login(useCredential) {
-    return this.http.post<HttpResponse<any>>(authApi, useCredential,{ observe: 'response' }).pipe(
-      tap(res => {
-        if(res.body['success'])
-          this.setSession(res.body);
-
-      }),
-      map(res=>{
-        if(!res.body['success'])
-           throw res.body;
-      }),
-      shareReplay()
-    );
-  }
-  reqPwdRest(email){
-    return this.http.post(pwdResetReqApi, email,{ observe: 'response' }).pipe(
-      tap(res => {
-        if(res.body['success'])
-          return res.body;
-
-      }),
-      map(res=>{
-        if(!res.body['success'])
-           throw res.body;
-      })
+    return this.http
+      .post<HttpResponse<any>>(authApi, useCredential, { observe: "response" })
+      .pipe(
+        tap(res => {
+          if (res.body["success"]) this.setSession(res.body);
+        }),
+        map(res => {
+          if (!res.body["success"]) throw res.body;
+        }),
+        shareReplay()
       );
   }
-  public getMyStatus(){
+  reqPwdRest(email) {
+    return this.http.post(pwdResetReqApi, email, { observe: "response" }).pipe(
+      tap(res => {
+        if (res.body["success"]) return res.body;
+      }),
+      map(res => {
+        if (!res.body["success"]) throw res.body;
+      })
+    );
+  }
+  public getMyStatus() {
     return localStorage.getItem("status");
   }
-  public getEmail(){
+  public getEmail() {
     return localStorage.getItem("email");
   }
-  public getName(){
+  public getName() {
     return localStorage.getItem("name");
   }
+
+  public getRole() {
+    const role = localStorage.getItem("role");
+    return role ? role : "ANONYMOUS";
+  }
   private setSession(authResult) {
-    const expiresAt = moment().add(authResult.expiresIn, 'second');
-    localStorage.setItem('id_token', authResult.idToken);
+    const expiresAt = moment().add(authResult.expiresIn, "second");
+    localStorage.setItem("id_token", authResult.idToken);
     localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()));
     localStorage.setItem("role", authResult.role);
     localStorage.setItem("status", authResult.status);
-    localStorage.setItem("email",authResult.email);
-    localStorage.setItem("name",authResult.name);
+    localStorage.setItem("email", authResult.email);
+    localStorage.setItem("name", authResult.name);
   }
   logout() {
     this.redirectURL = null;
@@ -101,31 +103,26 @@ export class AuthService {
   }
   isSeller() {
     const role = localStorage.getItem("role");
-    if (role && role == "SELLER")
-      return true;
+    if (role && (role == "SELLER" || role == "SELLER_STAFF")) return true;
     return false;
   }
-  isAccountActive(){
-    try{
+  isAccountActive() {
+    try {
       let status = localStorage.getItem("status");
       let userStatus = parseInt(status.toString());
-      if(userStatus == 1)
-        return true;
-        else
-        return false;
-    }catch(err){
+      if (userStatus == 1) return true;
+      else return false;
+    } catch (err) {
       return false;
     }
   }
-  accountCanScan(){
-    try{
+  accountCanScan() {
+    try {
       let status = localStorage.getItem("status");
       let userStatus = parseInt(status.toString());
-      if(userStatus == 1 || userStatus == 2)
-        return true;
-        else
-        return false;
-    }catch(err){
+      if (userStatus == 1 || userStatus == 2) return true;
+      else return false;
+    } catch (err) {
       return false;
     }
   }
@@ -134,14 +131,12 @@ export class AuthService {
   }
   isAdmin() {
     const role = localStorage.getItem("role");
-    if (role && role == "ADMIN")
-      return true;
+    if (role && role == "ADMIN") return true;
     return false;
   }
   isBuyer() {
     const role = localStorage.getItem("role");
-    if (role && role == "BUYER")
-      return true;
+    if (role && role == "BUYER") return true;
     return false;
   }
 
@@ -152,42 +147,39 @@ export class AuthService {
   }
   get defaultNavigationURL(): string {
     const role = localStorage.getItem("role");
-    if (role && role == "BUYER")
-      return this._defaultBuyerNav;
-    if (role && role == "SELLER")
-      return this._defaultSellerNav;
-    if (role && role == "ADMIN")
-      return this._defaultAdminNav;
-    else
-      return this._defaultNav;
+    if (role && role == "BUYER") return this._defaultBuyerNav;
+    if (role && role == "SELLER") return this._defaultSellerNav;
+    if (role && role == "SELLER_STAFF") return this._defaultSellerNav;
+    if (role && role == "ADMIN") return this._defaultAdminNav;
+    else return this._defaultNav;
   }
   get redirectURL(): string {
-    if(localStorage.getItem('rd_url') && localStorage.getItem('rd_url') != 'null'){
-      this._redirectURL = localStorage.getItem('rd_url');
-       localStorage.removeItem("rd_url");
+    if (
+      localStorage.getItem("rd_url") &&
+      localStorage.getItem("rd_url") != "null"
+    ) {
+      this._redirectURL = localStorage.getItem("rd_url");
+      localStorage.removeItem("rd_url");
     }
-      
-    return this._redirectURL
+
+    return this._redirectURL;
   }
   set redirectURL(rdrcturl: string) {
-    localStorage.setItem('rd_url', rdrcturl);
+    localStorage.setItem("rd_url", rdrcturl);
     this._redirectURL = rdrcturl;
   }
   handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
-      console.error('An error occurred:', error.error.message);
+      console.error("An error occurred:", error.error.message);
     } else {
       // The backend returned an unsuccessful response code.
       // The response body may contain clues as to what went wrong,
       console.error(
-        `Backend returned code ${error.status}, ` +
-        `body was: ${error.error}`);
+        `Backend returned code ${error.status}, ` + `body was: ${error.error}`
+      );
     }
     // return an observable with a user-facing error message
-    return throwError(
-      'Something bad happened; please try again later.');
+    return throwError("Something bad happened; please try again later.");
   }
-
-
 }
