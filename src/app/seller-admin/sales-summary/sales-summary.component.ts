@@ -33,6 +33,8 @@ export class SalesSummaryComponent implements OnInit,AfterViewInit {
   ngOnInit() {
     this.dataSource = new DailySalesDataSource(this.userService);
     this.dataSource.loadTransactions(this.date.value);
+
+    console.log(this.dataSource)
   }
   ngAfterViewInit() {
 

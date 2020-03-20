@@ -17,7 +17,11 @@
       <span>Search</span>
     </button>
   </div>
-  <div class="table">
+
+  <div *ngIf="dataSource.count == 0" class="not_found">
+    No Transactions on this date!
+  </div>
+  <div *ngIf="dataSource.count != 0" class="table">
     <mat-table class="mat-elevation-z2" [dataSource]="dataSource" matSort matSortActive="date" matSortDirection="asc"
       matSortDisableClear>
 
@@ -68,7 +72,7 @@
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
     </mat-table>
-    <mat-paginator [length]="dataSource.count" [pageSize]="5" [pageSizeOptions]="[5, 10]"></mat-paginator>
+    <mat-paginator  [length]="dataSource.count" [pageSize]="5" [pageSizeOptions]="[5, 10]"></mat-paginator>
 
   </div>
 

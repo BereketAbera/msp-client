@@ -4,20 +4,37 @@
   margin: 0 auto;
 }
 .table {
-  width: 95%;
-  margin: 2rem;
+  width: 100%;
+  // margin-left: 2rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  align-self: center;
+
+  .mat-table{
+    width: 80%;
+  }
+}
+
+.not_found{
+  display: flex;
+  justify-content: center;
+  color: #888;
+  font-size: 1.5rem;
+  padding-bottom: 1rem;
+
 }
 .summary {
   &__search {
     flex-direction: row;
-    margin: 2rem 0.5rem;
+    margin: 2rem 0.5rem 0.5rem ;
     font-size: 1.5rem;
     place-content: center;
     align-items: center;
 
     .button {
       color: #fff;
-      text-transform: uppercase;
       font-size: 1.4rem;
       letter-spacing: 0.15rem;
       transition: all 0.3s;

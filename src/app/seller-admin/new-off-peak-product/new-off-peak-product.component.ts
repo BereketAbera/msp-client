@@ -127,7 +127,7 @@ export class NewOffPeakProductComponent implements OnInit {
   });
   formData = new FormData();
   productForm = this.fb.group({
-    name: ["", Validators.required],
+    name: ["", [Validators.required, Validators.maxLength(50)]],
     promo: ["closing", Validators.required],
     unit: ["piece", Validators.required],
     categoryId: ["", Validators.required],
@@ -843,17 +843,6 @@ export class NewOffPeakProductComponent implements OnInit {
   returnTwoDigit(value) {
     return value.toString().length == 1 ? "0" + value : value;
   }
-  changeToLocalDate(date) {
-    const day = date.split("T")[0];
-    let d = -new Date().getTimezoneOffset();
-    let da = new Date(date);
-    // console.log(date.toLocaleString());
-    if (da.getMonth() >= 10) {
-      return `${da.getFullYear()}-${da.getMonth() + 1}-${da.getDate()}`;
-    } else {
-      return `${da.getFullYear()}-0${da.getMonth() + 1}-${da.getDate()}`;
-    }
-  }
   changeToLocal12Hours(time) {
     let d = -new Date().getTimezoneOffset();
     let x = time.split(":");
@@ -967,18 +956,7 @@ export class NewOffPeakProductComponent implements OnInit {
                 );
                 uploadClass.pictures.unshift(res["image"]);
                 uploadClass.productForm.get("imgId").setValue(res["image"].id);
-                // snackBarRef.afterDismissed().subscribe(() => {
-                //   this.router.navigate(["../"], {
-                //     relativeTo: this.route
-                //   });
-                // });
-                // snackBarRef.onAction().subscribe(() => {
-                //   this.showImage = false;
-                //   this.uploadForm.reset();
-                // });
-                //this.router.navigate(["../"], { relativeTo: this.route });
               } else {
-                //  progressDialog.close();
                 this.showError = true;
                 this.errors = res["messages"];
               }
