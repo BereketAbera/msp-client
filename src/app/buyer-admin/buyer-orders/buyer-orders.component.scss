@@ -14,6 +14,7 @@
     align-items: center;
     justify-content: space-between;
     margin: 1rem 0rem;
+    flex-direction: column;
   }
 
   &__image {
@@ -24,6 +25,15 @@
   &__left {
     display: flex;
     align-items: center;
+    width: 100%;
+  }
+
+  &__middle {
+    width: 100%;
+  }
+
+  &__right {
+    width: 100%;
   }
 
   &__address {
@@ -64,5 +74,26 @@
     font-size: 1.5rem;
     font-weight: 600;
     color: #333;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .order {
+    &__container {
+      flex-direction: row;
+    }
+
+    &__left {
+      width: auto;
+      align-items: center;
+    }
+
+    &__middle {
+      width: auto;
+    }
+
+    &__right {
+      width: auto;
+    }
   }
 }

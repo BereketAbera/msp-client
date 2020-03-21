@@ -1,59 +1,58 @@
-
 .course {
-    text-align: center;
-    max-width: 390px;
-    margin: 0 auto;
+  text-align: center;
+  max-width: 390px;
+  margin: 0 auto;
 }
 
-.header{
-    color: #777;
-    padding: 1rem;
-    padding-bottom: 0rem;
+.header {
+  color: #777;
+  padding: 1rem;
+  padding-bottom: 0rem;
 }
-.img{
-    width: 7rem;
-    height: 3.5rem;
+.img {
+  max-width: 8rem;
+  height: 4rem;
 }
-.mat-column-img{
-    flex: 0 0 11rem;
- }
-.table{
-    width: 96%;
-    margin: 2rem;
+.mat-column-img {
+  flex: 0 0 11rem;
 }
-.frmDiv{
-    padding:15px;
+.table {
+  width: 96%;
+  margin: 2rem;
+}
+.frmDiv {
+  padding: 15px;
 }
 .course-thumbnail {
-    width: 150px;
-    margin: 20px auto 0 auto;
-    display: block;
+  width: 150px;
+  margin: 20px auto 0 auto;
+  display: block;
 }
 
-.addNewDiv{
-    padding-top: 15px;
-    padding-bottom: 20px;
-    padding-right: 20px;
+.addNewDiv {
+  padding-top: 15px;
+  padding-bottom: 20px;
+  padding-right: 20px;
 }
-
 
 .spinner-container {
-    height: 360px;
-    width: 390px;
-    position: fixed;
+  height: 360px;
+  width: 390px;
+  position: fixed;
 }
 
 .lessons-table {
-    min-height: 360px;
-    margin-top: 10px;
+  min-height: 360px;
+  margin-top: 10px;
 }
 
 .spinner-container mat-spinner {
-    margin: 130px auto 0 auto;
+  margin: 130px auto 0 auto;
 }
-.clickCard
-    {
-      position: absolute;
-      top: 0; left: 0;
-      height: 100%; width: 100%;
-      }
+.clickCard {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}

@@ -10,6 +10,7 @@ import { Router } from "@angular/router";
 })
 export class AddStaffComponent implements OnInit {
   addStaffForm: FormGroup;
+  errorMessage = "";
 
   constructor(
     private formBuilder: FormBuilder,
@@ -35,7 +36,7 @@ export class AddStaffComponent implements OnInit {
           if (response.success) {
             this.router.navigate(["/tlgu-slr/staffs"]);
           } else {
-            alert("error occurred");
+            this.errorMessage = response.message;
           }
         });
     }

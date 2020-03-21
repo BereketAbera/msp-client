@@ -2,6 +2,9 @@
   <h3 class="add-staff__title">Add Staff</h3>
 
   <form (ngSubmit)="onSubmit()" [formGroup]="addStaffForm">
+    <div *ngIf="errorMessage" class="add-staff__errors">
+      <span>{{ errorMessage }}</span>
+    </div>
     <div class="add-staff__inputs">
       <mat-form-field class="add-staff__input" hintLabel="Min 3 characters">
         <input
