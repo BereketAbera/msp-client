@@ -765,20 +765,26 @@ export class NewOffPeakProductComponent implements OnInit {
     let currY = this.productForm.get('offerEndHH').value;
     let pick = this.productForm.get('pickupStartHH').value;
     let pickY = this.productForm.get('pickupEndHH').value;
-    if (parseInt(curr) == 12 && parseInt(curr) > parseInt(currY)) {
+    if (parseInt(curr) == 12 && parseInt(curr) >= parseInt(currY)) {
       this.productForm.get('offerEndHH').setValue(`${this.returnTwoDigit(parseInt(curr))}`);  
-    } else if(parseInt(curr) > parseInt(currY)) {
+    } else if(parseInt(curr) >= parseInt(currY)) {
       this.productForm.get('offerEndHH').setValue(`${this.returnTwoDigit(parseInt(curr) + 1)}`);
-    }else if(parseInt(curr) > parseInt(pick) ){
-      this.productForm.get('pickupStartHH').setValue(`${this.returnTwoDigit(parseInt(curr) +1 )}`);  
+    }if(parseInt(curr) == 12 && parseInt(curr) >= parseInt(pick)){
+      this.productForm.get('pickupStartHH').setValue(`${this.returnTwoDigit(parseInt(curr) )}`); 
+      this.productForm.get('pickupEndHH').setValue(`${this.returnTwoDigit(parseInt(curr) )}`);  
+    }
+    else if(parseInt(curr) >= parseInt(pick) ){
+      this.productForm.get('pickupStartHH').setValue(`${this.returnTwoDigit(parseInt(curr) + 1 )}`); 
+      this.productForm.get('pickupEndHH').setValue(`${this.returnTwoDigit(parseInt(curr) + 1 )}`);  
     }
   }
+
   consumptionTimesOnChanges($event) {
     let curr = this.productForm.get('pickupStartHH').value;
     let currY = this.productForm.get('pickupEndHH').value;
-    if (parseInt(curr) == 12 && parseInt(curr) > parseInt(currY)) {
+    if (parseInt(curr) == 12 && parseInt(curr) >= parseInt(currY)) {
       this.productForm.get('pickupEndHH').setValue(`${this.returnTwoDigit(parseInt(curr))}`);  
-    } else if(parseInt(curr) > parseInt(currY)) {
+    } else if(parseInt(curr) >= parseInt(currY)) {
       this.productForm.get('pickupEndHH').setValue(`${this.returnTwoDigit(parseInt(curr) + 1)}`);
     }
   }
