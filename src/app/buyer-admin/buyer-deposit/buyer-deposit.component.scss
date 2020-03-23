@@ -7,17 +7,15 @@
     }
 
     .description{
-        padding:1rem 3rem;
+        padding:1rem;
         font-size: 1.2rem;
     }
     .balance{
         display: flex;
         justify-content: center;
-        width: 20rem;
+        width: 25rem;
         align-items: center;
-        border: 1px #eee solid;
-        // border-radius: 2rem;
-        // border:1px rgb(231, 21, 73) solid;
+        background: #f2f2f2;
         &__header{
             font-size: 1.5rem;
             
@@ -26,6 +24,18 @@
                 font-weight: 700;
                 padding-left: 1rem;
             }
+        }
+
+        &__icon{
+            width: 5rem;
+            height: 100%;
+            background: #f43f81;
+            position: absolute;
+            left: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
         }
     }
 } 

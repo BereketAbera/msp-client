@@ -2,7 +2,11 @@
   <div class="spinner-container" *ngIf="dataSource.loading$ | async">
     <mat-spinner></mat-spinner>
   </div>
-  <mat-card class="balance"> <mat-icon>attach_money</mat-icon>  <span class="balance__header">Balance = </span> <span class="balance__header__value"> {{ balance | currency }} </span>  </mat-card>
+  <mat-card class="balance"> 
+    <div class="balance__icon">
+        <mat-icon>attach_money</mat-icon>  
+    </div>
+  <span class="balance__header">Balance = </span> <span class="balance__header__value"> {{ balance | currency }} </span>  </mat-card>
   
   <h2 class="container__header">Transactions</h2>
   <mat-table
