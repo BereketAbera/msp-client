@@ -9,7 +9,11 @@
       </button>
     </div>
   </div>
+  <div *ngIf="dataSource?.length == 0" class="staffs-notfound">
+    <span>You do not have any staffs yet.</span>
+  </div>
   <mat-table
+    *ngIf="dataSource?.length > 0"
     class="mat-elevation-z8"
     [dataSource]="dataSource"
     matSort

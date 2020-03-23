@@ -42,6 +42,13 @@
     display: flex;
     justify-content: center;
   }
+
+  &__errors {
+    font-size: 1.5rem;
+    color: red;
+    border: 1px solid red;
+    padding: 0.5rem 1rem;
+  }
 }
 
 .mat-flat-button {

@@ -1,85 +1,87 @@
-.img{
-    width: 7rem;
-    height: 3.5rem;
+.img {
+  max-width: 8rem;
+  height: 4rem;
 }
-.mat-column-img{
-    flex: 0 0 11rem;
- }
+.mat-column-img {
+  flex: 0 0 11rem;
+}
 .course {
-    text-align: center;
-    max-width: 390px;
-    margin: 0 auto;
+  text-align: center;
+  max-width: 390px;
+  margin: 0 auto;
 }
-.frmDiv{
-    padding:15px;
+.frmDiv {
+  padding: 15px;
 }
 .course-thumbnail {
-    width: 150px;
-    margin: 20px auto 0 auto;
-    display: block;
+  width: 150px;
+  margin: 20px auto 0 auto;
+  display: block;
 }
 
-.addNewDiv{
-    font-size: 10px;
-    padding-top: 15px;
-    padding-bottom: 20px;
-    padding-right: 5px;
-    padding-left: 5px;
-    margin-right: 1rem;
-   
+.addNewDiv {
+  font-size: 10px;
+  padding-top: 15px;
+  padding-bottom: 20px;
+  padding-right: 5px;
+  padding-left: 5px;
+  margin-right: 1rem;
 }
-.btnAddPrd{
-    font-size: 12px;
+.btnAddPrd {
+  font-size: 12px;
+  border-radius: 0rem;
+  padding: 0rem 2rem;
 }
 
 .spinner-container {
-    height: 360px;
-    width: 390px;
-    position: fixed;
+  height: 360px;
+  width: 390px;
+  position: fixed;
 }
 
 .lessons-table {
-    min-height: 360px;
-    margin-top: 10px;
+  min-height: 360px;
+  margin-top: 10px;
 }
 
 .spinner-container mat-spinner {
-    margin: 130px auto 0 auto;
+  margin: 130px auto 0 auto;
 }
-.clickCard
-    {
-      position: absolute;
-      top: 0; left: 0;
-      height: 100%; width: 100%;
-      }
+.clickCard {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
 
-      #errorCntr {
-        width: 80%;
-        border: 2px solid red;
-        padding: 15px 15px 15px 15px;
-        margin: 20px 20px 20px 20px;
-        background: #A4D3EE;
-        overflow: visible;
-        position: relative;
-      }
-      
-      #errClsBtn {
-          position: absolute;
-          background: red;
-          color: white;
-          top: -10px;
-          right: -10px;
-      }
-      ul {
-        list-style: none; /* Remove list bullets */
-        padding: 0;
-        margin: 0;
-    }
-    .red-icon {
-        fill: red;
-    }
+#errorCntr {
+  width: 80%;
+  border: 2px solid red;
+  padding: 15px 15px 15px 15px;
+  margin: 20px 20px 20px 20px;
+  background: #a4d3ee;
+  overflow: visible;
+  position: relative;
+}
 
-.table{
-    width: 98%;
-    margin: 1rem;
+#errClsBtn {
+  position: absolute;
+  background: red;
+  color: white;
+  top: -10px;
+  right: -10px;
+}
+ul {
+  list-style: none; /* Remove list bullets */
+  padding: 0;
+  margin: 0;
+}
+.red-icon {
+  fill: red;
+}
+
+.table {
+  width: 98%;
+  margin: 1rem;
 }
