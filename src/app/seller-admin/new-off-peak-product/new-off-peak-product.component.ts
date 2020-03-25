@@ -772,10 +772,14 @@ export class NewOffPeakProductComponent implements OnInit {
     }if(parseInt(curr) == 12 && parseInt(curr) >= parseInt(pick)){
       this.productForm.get('pickupStartHH').setValue(`${this.returnTwoDigit(parseInt(curr) )}`); 
       this.productForm.get('pickupEndHH').setValue(`${this.returnTwoDigit(parseInt(curr) )}`);  
+      
+    }else if(parseInt(curr) == 11 && parseInt(curr) >= parseInt(pick)){
+      this.productForm.get('pickupStartHH').setValue(`${this.returnTwoDigit(parseInt(curr) + 1 )}`); 
+      this.productForm.get('pickupEndHH').setValue(`${this.returnTwoDigit(parseInt(curr) + 1 )}`);  
     }
     else if(parseInt(curr) >= parseInt(pick) ){
       this.productForm.get('pickupStartHH').setValue(`${this.returnTwoDigit(parseInt(curr) + 1 )}`); 
-      this.productForm.get('pickupEndHH').setValue(`${this.returnTwoDigit(parseInt(curr) + 1 )}`);  
+      this.productForm.get('pickupEndHH').setValue(`${this.returnTwoDigit(parseInt(curr) + 2 )}`);  
     }
   }
 
