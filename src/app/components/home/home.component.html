@@ -1,4 +1,4 @@
-<mat-card *ngIf="isIE()" class="example-card">
+<!-- <mat-card *ngIf="isIE()" class="example-card">
   <mat-card-content class="itemContent">
     <P
       >You are using Microsoft Edge browser. Our App works better with Chrome,
@@ -20,7 +20,7 @@
       </label>
     </div>
   </div>
-</div>
+</div> -->
 <mat-divider></mat-divider>
 <div class="container" fxLayout="column" fxLayoutAlign="center center">
   <div
@@ -44,7 +44,7 @@
 </div>
 
 <div class="footer">
-  <button (click)="gotoCart()" mat-fab color="accent">
-    <mat-icon>shopping_cart</mat-icon> <span>Cart</span>
+  <button (click)="gotoCart()" class="floating_cart">
+    <i class="fas fa-shopping-cart floating_cart__icon"></i>
   </button>
 </div>

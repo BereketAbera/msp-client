@@ -1,126 +1,105 @@
-<mat-toolbar style="height: 40px;" color="accent">
-  <span class="fill-remaining-space">
-    <div class="fill-remaining-space">
-      <div class="scrolling-wrapper-flexbox">
-        <div class="card" *ngFor="let lctn of locations">
-          <input
-            type="radio"
-            (click)="searchByDistance(lctn.distance)"
-            [checked]="lctn.checked"
-            [id]="lctn.id"
-            name="lxnmsp"
-          />
-          <label [for]="lctn.id">
-            <span class="glryImg">{{ lctn.name }}</span>
-          </label>
+<div>
+  <div class="header">
+    <div class="header_mobile">
+      <div>
+        <input type="checkbox" class="header_mobile__menu_checkbox" />
+        <div class="header_mobile__menu_button"></div>
+        <div class="side_bar_mobile">
+          <ul class="side_bar_mobile__list-container">
+            <li class="side_bar_mobile__list-item">
+              <span class="side_bar_mobile__list-item-text">Home</span>
+            </li>
+            <li class="side_bar_mobile__list-item">
+              <span class="side_bar_mobile__list-item-text">About Us</span>
+            </li>
+            <li class="side_bar_mobile__list-item">
+              <span class="side_bar_mobile__list-item-text"
+                >Privacy Policy</span
+              >
+            </li>
+            <li class="side_bar_mobile__list-item">
+              <span class="side_bar_mobile__list-item-text"
+                >Terms & Conditions</span
+              >
+            </li>
+            <li class="side_bar_mobile__list-item">
+              <span class="side_bar_mobile__list-item-text">Contact Us</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="header_mobile__logo">
+        <img src="favicon.ico" alt="Logo" class="header_mobile__logo_icon" />
+        <div class="header_mobile__logo_text">Manager Special</div>
+      </div>
+      <div class="header_mobile__right">
+        <div
+          *ngIf="!mobileSearchActive"
+          (click)="searchClick()"
+          class="header_mobile__search-icon-container"
+        >
+          <i class="fas fa-search header_mobile__search-icon"></i>
+        </div>
+        <div
+          *ngIf="mobileSearchActive"
+          (click)="searchClick()"
+          class="header_mobile__search-icon-container"
+        >
+          <!-- <i class="fas fa-times"></i> -->
+          <i class="fas fa-times header_mobile__search-icon"></i>
         </div>
       </div>
     </div>
-  </span>
-  <span>
-    <a *ngIf="!isLoggedIn()" routerLink="/login">SIGN IN</a>
-  </span>
-  <div *ngIf="isLoggedIn()">
-    <button mat-icon-button [matMenuTriggerFor]="menu">
-      <mat-icon>menu</mat-icon>
-    </button>
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item (click)="gotoAdmin()">
-        <span>{{ name }}</span>
-      </button>
-      <button mat-menu-item (click)="gotoAdmin()">
-        <mat-icon>account_box</mat-icon>
-        <span>My Account</span>
-      </button>
-      <button mat-menu-item (click)="logout()">
-        <mat-icon>logout</mat-icon>
-        <span>Log Out</span>
-      </button>
-    </mat-menu>
-  </div>
-</mat-toolbar>
-<mat-divider></mat-divider>
-<div>
-  <div class="menu">
-    <div class="box">
-      <div class="box">
-        <ul class="box">
-          <li
-            [routerLinkActiveOptions]="{ exact: true }"
-            routerLinkActive="active"
-          >
-            <a routerLink="/">FOOD</a>
-          </li>
-          <li
-            [routerLinkActiveOptions]="{ exact: true }"
-            routerLinkActive="active"
-          >
-            <a routerLink="/beauty">BEAUTY</a>
-          </li>
-        </ul>
-      </div>
-      <div class="push"></div>
-    </div>
-  </div>
-  <div>
-    <div
-      *ngIf="isUP"
-      [@bannerAnimation]="selectedIndex"
-      class="banner-container-max"
-      bannerCtrl
-      #ctrl="bannerCtrl"
-      [itemsLength]="backingItems.length"
-      (selectedIndex)="selectedIndex = $event"
-      (actualIndex)="actualIndex = $event"
-    >
-      <a class="carousel-control-prev" (click)="ctrl.previous()"
-        ><mat-icon class="material-icons md-48">navigate_before</mat-icon></a
-      >
-      <a class="carousel-control-next" (click)="ctrl.next()"
-        ><mat-icon class="material-icons md-48">navigate_next</mat-icon></a
-      >
-      <a class="carousel-control-down" (click)="toggleUp()"
-        ><mat-icon
-          matTooltip="Hide"
-          #tooltip="matTooltip"
-          class="material-icons md-64"
-          >expand_less</mat-icon
-        ></a
-      >
-      <div
-        (selectedIndex)="tooltip.show()"
-        (actualIndex)="tooltip.show()"
-      ></div>
-      <!-- <div class="banner" *ngFor="let banner of items">
-        <img src="{{ banner }}" alt="" />
-      </div> -->
-    </div>
-    <!-- <div
-      *ngIf="!isUP"
-      [@bannerAnimation]="selectedIndex"
-      class="banner-container-min"
-      bannerCtrl
-      #ctrl1="bannerCtrl"
-      [itemsLength]="backingItems.length"
-      (selectedIndex)="selectedIndex = $event"
-      (actualIndex)="actualIndex = $event"
-    >
-      <a class="carousel-control-prev" (click)="ctrl1.previous()"
-        ><mat-icon class="material-icons md-48">navigate_before</mat-icon></a
-      >
-      <a class="carousel-control-next" (click)="ctrl1.next()"
-        ><mat-icon class="material-icons md-48">navigate_next</mat-icon></a
-      >
-      <a class="carousel-control-down" (click)="toggleUp()"
-        ><mat-icon matTooltip="More" class="material-icons md-64"
-          >expand_more</mat-icon
-        ></a
-      >
 
-      <div class="banner" *ngFor="let banner of items">
-        <img src="{{ banner }}" alt="" />
+    <div class="header__desktop">
+      <div class="header__desktop__logo">
+        <img src="favicon.ico" alt="Logo" class="header__desktop__logo_icon" />
+        <div class="header__desktop__logo_text">Manager Special</div>
       </div>
-    </div> -->
+
+      <div class="header__desktop__search-input-container">
+        <i class="fas fa-search header__desktop__search-icon"></i>
+        <input
+          type="text"
+          class="header__desktop__search-input"
+          placeholder="Search products..."
+        />
+        <i class="far fa-times-circle header__desktop__close-icon"></i>
+      </div>
+      <div class="header__desktop__right">
+        <div class="header__desktop__seller-signup-container">
+          <button class="header__desktop__seller-signup-button">
+            Seller Signup
+          </button>
+        </div>
+        <div class="header__desktop__buyer-signup-container">
+          <button class="header__desktop__buyer-signup-button">
+            Buyer Signup
+          </button>
+        </div>
+        <div class="header__desktop__login-container">
+          <button class="header__desktop__login-button">
+            <i class="fas fa-sign-in-alt"></i> &nbsp; Login
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
-  <router-outlet (activate)="onActivate($event)"></router-outlet>
+  <div class="content__container">
+    <router-outlet (activate)="onActivate($event)"></router-outlet>
+  </div>
+</div>
+
+<div
+  class="header_mobile__search-input-container"
+  [class.header_mobile__search-input-container--active]="mobileSearchActive"
+>
+  <input
+    type="text"
+    class="header_mobile__search-input"
+    placeholder="Search products..."
+  />
+  <button class="header_mobile__search-button">
+    <i class="fas fa-search header_mobile__search-icon"></i>
+  </button>
 </div>
