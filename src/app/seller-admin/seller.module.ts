@@ -29,6 +29,7 @@ import { ImageCropperModule } from "ngx-image-cropper";
 import { AddStaffComponent } from './add-staff/add-staff.component';
 import { StaffsComponent } from './staffs/staffs.component';
 import { ManageStaffAccessComponent } from './manage-staff-access/manage-staff-access.component';
+import { AccessDeniedComponent } from './access-denied/access-denied.component';
 
 @NgModule({
   imports: [
@@ -61,7 +62,8 @@ import { ManageStaffAccessComponent } from './manage-staff-access/manage-staff-a
     DragDropDirective,
     AddStaffComponent,
     StaffsComponent,
-    ManageStaffAccessComponent
+    ManageStaffAccessComponent,
+    AccessDeniedComponent
   ],
   entryComponents: [
     RequestConfirmationComponent,

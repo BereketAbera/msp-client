@@ -1,3 +1,4 @@
+import { AccessDeniedComponent } from "./access-denied/access-denied.component";
 import { UserFeaturesResolverService } from "./../service/user-features-resolver.service";
 import { AddStaffComponent } from "./add-staff/add-staff.component";
 import { NgModule } from "@angular/core";
@@ -168,6 +169,10 @@ const sellerRoutes: Routes = [
           summary: SellerSummaryResolverService,
           rvnuRprt: RevenuRprtResolverService
         }
+      },
+      {
+        path: "access_denied",
+        component: AccessDeniedComponent
       }
     ]
   }

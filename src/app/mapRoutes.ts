@@ -35,5 +35,7 @@ export let mapRoutes = {
 
   "/tlgu-slr/prdcts/nwoffpktlgu/edit/id": "Update Product",
 
-  "/tlgu-slr": "View Summary"
+  "/tlgu-slr": "View Summary",
+  "/tlgu-slr/gallery": "Manage Gallery",
+  "/tlgu-slr/gallery/upldimg": "Manage Gallery"
 };

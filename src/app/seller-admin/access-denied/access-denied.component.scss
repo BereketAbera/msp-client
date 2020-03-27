@@ -1,0 +1,15 @@
+.access_denied {
+  &__container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 3rem 0rem;
+  }
+
+  &__text {
+    font-size: 2.5rem;
+    color: #888;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+}
