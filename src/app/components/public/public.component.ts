@@ -26,28 +26,6 @@ import { BannerCtrlDirective } from "../bannerCtrl/banner-ctrl.directive";
   templateUrl: "./public.component.html",
   styleUrls: ["./public.component.scss"],
   changeDetection: ChangeDetectionStrategy.Default
-  // animations: [
-  //   trigger('bannerAnimation', [
-  //     transition(":increment", group([
-  //       query(':enter', [
-
-  //         animate('0.5s ease-out', style('*'))
-  //       ]),
-  //       query(':leave', [
-  //         animate('0.5s ease-out', )
-  //       ])
-  //     ])),
-  //     transition(":decrement", group([
-  //       query(':enter', [
-
-  //         animate('0.5s ease-out', style('*'))
-  //       ]),
-  //       query(':leave', [
-  //         animate('0.5s ease-out', )
-  //       ])
-  //     ])),
-  //   ])
-  // ]
 })
 export class PublicComponent implements OnInit {
   isUP: boolean = false;
@@ -69,6 +47,8 @@ export class PublicComponent implements OnInit {
   ];
   constructor(private authService: AuthService, private router: Router) {}
   name: string = "";
+  mobileSearchActive = false;
+
   ngOnInit() {
     if (this.isLoggedIn()) this.name = this.authService.getName();
     this.getMyLocation();
@@ -126,5 +106,9 @@ export class PublicComponent implements OnInit {
   }
   logout() {
     this.authService.logout();
+  }
+
+  searchClick() {
+    this.mobileSearchActive = !this.mobileSearchActive;
   }
 }
