@@ -9,6 +9,7 @@ import { throwError } from "rxjs";
 import { environment } from "../../environments/environment";
 
 import * as moment from "moment";
+import jwt_decode from "jwt-decode";
 
 import { catchError, tap, shareReplay, map } from "rxjs/operators";
 
@@ -181,5 +182,13 @@ export class AuthService {
     }
     // return an observable with a user-facing error message
     return throwError("Something bad happened; please try again later.");
+  }
+
+  getUser() {
+    let token = this.getToken();
+    let decoded = jwt_decode(token);
+    if (decoded) {
+      return { id: decoded.id, role: decoded.role };
+    }
   }
 }

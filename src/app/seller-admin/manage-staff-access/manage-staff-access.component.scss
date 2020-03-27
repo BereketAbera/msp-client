@@ -1,0 +1,61 @@
+.features {
+  &__main-container {
+    padding: 2rem;
+    width: 80%;
+    margin: 2rem auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 3px solid #eee;
+  }
+
+  &__container {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    margin: 2rem 0rem;
+  }
+
+  &__header {
+    font-size: 2rem;
+    color: #555;
+    font-weight: 600;
+  }
+
+  &__feature {
+    margin: 1rem 1rem;
+    // width: 30%;
+  }
+
+  &__feature-text {
+    font-size: 1.3rem;
+    color: #555;
+  }
+
+  &__done {
+    width: 8rem;
+    padding: 0.5rem;
+    text-align: center;
+    background-color: #f94081;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    align-self: center;
+    cursor: pointer;
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+}
+
+input[type="checkbox"] + label {
+  display: block;
+  margin: 0.2em;
+  cursor: pointer;
+  padding: 0.2em;
+}
+
+input[type="checkbox"] {
+  display: none;
+}

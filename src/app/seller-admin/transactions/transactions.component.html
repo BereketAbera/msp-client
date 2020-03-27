@@ -1,64 +1,67 @@
 <div>
+  <div class="spinner-container" *ngIf="dataSource.loading$ | async">
+    <mat-spinner></mat-spinner>
+  </div>
+  <h2 class="header">Orders</h2>
+  <mat-table
+    class="mat-elevation-z2 table"
+    [dataSource]="dataSource"
+    matSort
+    matSortActive="date"
+    matSortDirection="asc"
+    matSortDisableClear
+  >
+    <ng-container matColumnDef="img">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Image</mat-header-cell>
+      <mat-cell *matCellDef="let transaction">
+        <img class="img" [src]="transaction.imagePath" alt="" />
+      </mat-cell>
+    </ng-container>
 
+    <ng-container matColumnDef="type">
+      <mat-header-cell *matHeaderCellDef>Trasaction Type</mat-header-cell>
+      <mat-cell *matCellDef="let transaction">Order</mat-cell>
+    </ng-container>
 
-    <div class="spinner-container" *ngIf="dataSource.loading$ | async">
+    <ng-container matColumnDef="product">
+      <mat-header-cell *matHeaderCellDef>Product</mat-header-cell>
 
-        <mat-spinner></mat-spinner>
+      <mat-cell *matCellDef="let transaction">{{ transaction.name }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
 
-    </div>
-    <h2 class="header">Orders</h2>
-    <mat-table class="mat-elevation-z2 table" [dataSource]="dataSource" matSort matSortActive="date"
-        matSortDirection="asc" matSortDisableClear>
+      <mat-cell *matCellDef="let transaction">{{
+        transaction.transStatus
+      }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="date">
+      <mat-header-cell *matHeaderCellDef>Date</mat-header-cell>
 
-        <ng-container matColumnDef="img">
-            <mat-header-cell *matHeaderCellDef mat-sort-header>Image</mat-header-cell>
-            <mat-cell *matCellDef="let transaction"> <img class="img" [src]="transaction.imagePath" alt=""> </mat-cell>
-        </ng-container>
+      <mat-cell *matCellDef="let transaction">{{
+        transaction.purchaseTime | date: "yyyy-MM-dd"
+      }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="totalPrice">
+      <mat-header-cell *matHeaderCellDef>Amount</mat-header-cell>
 
-        <ng-container matColumnDef="type">
-            <mat-header-cell *matHeaderCellDef>Trasaction Type</mat-header-cell>
-            <mat-cell *matCellDef="let transaction">Order</mat-cell>
-        </ng-container>
+      <mat-cell *matCellDef="let transaction">{{
+        transaction.total | currency
+      }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
 
-        <ng-container matColumnDef="product">
-
-            <mat-header-cell *matHeaderCellDef>Product</mat-header-cell>
-
-            <mat-cell *matCellDef="let transaction">{{transaction.name}}</mat-cell>
-
-        </ng-container>
-        <ng-container matColumnDef="status">
-
-            <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
-
-            <mat-cell *matCellDef="let transaction">{{transaction.transStatus}}</mat-cell>
-
-        </ng-container>
-        <ng-container matColumnDef="date">
-
-            <mat-header-cell *matHeaderCellDef>Date</mat-header-cell>
-
-            <mat-cell *matCellDef="let transaction">{{transaction.purchaseTime|date:"yyyy-MM-dd"}}</mat-cell>
-
-        </ng-container>
-        <ng-container matColumnDef="totalPrice">
-
-            <mat-header-cell *matHeaderCellDef>Amount</mat-header-cell>
-
-            <mat-cell *matCellDef="let transaction">{{transaction.total|currency}}</mat-cell>
-
-        </ng-container>
-        <ng-container matColumnDef="name">
-
-            <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
-
-            <mat-cell *matCellDef="let transaction">
-                <a [routerLink]="['./',transaction.id]">View Detail</a>
-            </mat-cell>
-
-        </ng-container>
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
-    </mat-table>
-    <mat-paginator [length]="dataSource.count" [pageSize]="5" [pageSizeOptions]="[5, 10]"></mat-paginator>
+      <mat-cell *matCellDef="let transaction">
+        <a [routerLink]="['./', transaction.id]">View Detail</a>
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+  <mat-paginator
+    [length]="dataSource.count"
+    [pageSize]="5"
+    [pageSizeOptions]="[5, 10]"
+  ></mat-paginator>
 </div>

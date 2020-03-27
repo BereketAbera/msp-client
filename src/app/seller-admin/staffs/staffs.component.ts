@@ -18,6 +18,8 @@ export class StaffsComponent implements OnInit {
     "status",
     "actions"
   ];
+  count = 0;
+  page = 1;
 
   constructor(
     private sellerStaffService: SellerStaffService,
@@ -26,9 +28,10 @@ export class StaffsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.sellerStaffService.getStaffs().subscribe(response => {
+    this.sellerStaffService.getStaffs(1).subscribe(response => {
       if (response.success) {
-        this.dataSource = response.staffs;
+        this.dataSource = response.staffs.rows;
+        this.count = response.staffs.count;
       } else {
         console.log("error");
       }
@@ -52,5 +55,20 @@ export class StaffsComponent implements OnInit {
           });
         }
       });
+  }
+
+  getServerData(event) {
+    this.page = event.pageIndex + 1;
+    this.sellerStaffService.getStaffs(this.page).subscribe(response => {
+      if (response.success) {
+        this.dataSource = response.staffs.rows;
+      } else {
+        console.log("error");
+      }
+    });
+  }
+
+  manageStaff(staffId) {
+    this.router.navigate([`tlgu-slr/staffs/manage_access/${staffId}`]);
   }
 }
