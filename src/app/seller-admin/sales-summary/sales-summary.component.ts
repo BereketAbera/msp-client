@@ -50,7 +50,7 @@ export class SalesSummaryComponent implements OnInit, AfterViewInit {
     this.dataSource = new DailySalesDataSource(this.userService);
     this.dataSource.loadTransactions(this.date.value);
 
-    console.log(this.dataSource);
+    // console.log(this.dataSource);
   }
   ngAfterViewInit() {
     this.sort.sortChange.subscribe(() => (this.paginator.pageIndex = 0));
