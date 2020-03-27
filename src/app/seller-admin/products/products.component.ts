@@ -19,6 +19,7 @@ import { AuthService } from "../../service/auth.service";
 
 import { SaveConfirmationDialogComponent } from "../../shared/save-confirmation-dialog/save-confirmation-dialog.component";
 import { SaveProgressComponent } from "../../shared/save-progress/save-progress.component";
+import { Location } from '@angular/common';
 
 @Component({
   templateUrl: "./products.component.html",
@@ -51,12 +52,23 @@ export class ProductsComponent implements OnInit, AfterViewInit {
     private route: ActivatedRoute,
     private productService: ProductService,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private location:Location
   ) {}
 
   ngOnInit() {
     this.dataSource = new ProductsDataSource(this.productService);
-    this.dataSource.loadProducts(1, "", "asc", 0, 5);
+    
+  
+    console.log(this.paginator,'sdf')
+    this.route.queryParams.subscribe(
+      data => {
+        console.log(data)
+        this.paginator.pageIndex = +data.page - 1 >= 0 ? +data.page  : 0;
+        this.dataSource.loadProducts(1, "", "asc", this.paginator.pageIndex, 5);
+      },
+      err => console.log(err)
+    );
   }
 
   ngAfterViewInit() {
@@ -115,6 +127,7 @@ export class ProductsComponent implements OnInit, AfterViewInit {
     });
   }
   loadProductsPage() {
+    
     this.dataSource.loadProducts(
       1,
       "",
@@ -122,7 +135,17 @@ export class ProductsComponent implements OnInit, AfterViewInit {
       this.paginator.pageIndex,
       this.paginator.pageSize
     );
+  
+    let path = this.location.path();
+    if (path.indexOf('page') >= 0) {
+      path = path.replace(/.$/, this.paginator.pageIndex.toString());
+      this.location.go(path);
+    } else {
+      path = path.concat(`?page=${this.paginator.pageIndex}`);
+      this.location.go(path);
+    }
   }
+
   removeProduct(product: Product) {
     const dialogRef = this.dialog.open(SaveConfirmationDialogComponent, {
       width: "250px",
