@@ -14,8 +14,10 @@ export class SellerStaffService {
     return this.http.post(`${environment.APIEndpoint}accounts/staffs`, staff);
   }
 
-  getStaffs(): Observable<any> {
-    return this.http.get(`${environment.APIEndpoint}accounts/staffs`);
+  getStaffs(page): Observable<any> {
+    return this.http.get(
+      `${environment.APIEndpoint}accounts/staffs?page=${page}`
+    );
   }
 
   updateStaff(staff): Observable<any> {
@@ -23,5 +25,26 @@ export class SellerStaffService {
       `${environment.APIEndpoint}accounts/update_staff`,
       staff
     );
+  }
+
+  getFeatures(): Observable<any> {
+    return this.http.get(`${environment.APIEndpoint}route_access/features`);
+  }
+
+  getUserFeatures(userId): Observable<any> {
+    return this.http.get(
+      `${environment.APIEndpoint}route_access/user_features/${userId}`
+    );
+  }
+
+  addStaffRouteAccess(userId, featureId): Observable<any> {
+    return this.http.post(`${environment.APIEndpoint}route_access/add`, {
+      userId,
+      featureId
+    });
+  }
+
+  removeStaffRouteAccess(obj): Observable<any> {
+    return this.http.post(`${environment.APIEndpoint}route_access/remove`, obj);
   }
 }

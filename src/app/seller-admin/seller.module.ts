@@ -28,6 +28,7 @@ import { DragDropDirective } from "../service/drag-drop.directive";
 import { ImageCropperModule } from "ngx-image-cropper";
 import { AddStaffComponent } from './add-staff/add-staff.component';
 import { StaffsComponent } from './staffs/staffs.component';
+import { ManageStaffAccessComponent } from './manage-staff-access/manage-staff-access.component';
 
 @NgModule({
   imports: [
@@ -59,7 +60,8 @@ import { StaffsComponent } from './staffs/staffs.component';
     SalesSummaryComponent,
     DragDropDirective,
     AddStaffComponent,
-    StaffsComponent
+    StaffsComponent,
+    ManageStaffAccessComponent
   ],
   entryComponents: [
     RequestConfirmationComponent,

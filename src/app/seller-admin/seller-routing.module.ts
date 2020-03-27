@@ -1,3 +1,4 @@
+import { UserFeaturesResolverService } from "./../service/user-features-resolver.service";
 import { AddStaffComponent } from "./add-staff/add-staff.component";
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
@@ -29,6 +30,8 @@ import { StateResolverService } from "../service/state-resolver.service";
 import { SellerGuard } from "./seller.guard";
 import { Transaction } from "../model/transaction";
 import { StaffsComponent } from "./staffs/staffs.component";
+import { ManageStaffAccessComponent } from "./manage-staff-access/manage-staff-access.component";
+import { FeaturesResolverService } from "../service/features-resolver.service";
 
 // path: 'tlgu-slr',
 // component: SellerAdminComponent,
@@ -41,6 +44,7 @@ const sellerRoutes: Routes = [
     children: [
       {
         path: "prdcts/nwoffpktlgu",
+        canActivate: [SellerGuard],
         component: NewOffPeakProductComponent,
         resolve: {
           shops: ShopResolverService,
@@ -51,6 +55,7 @@ const sellerRoutes: Routes = [
       },
       {
         path: "prdcts/nwoffpktlgu/edit/:id",
+        canActivate: [SellerGuard],
         component: NewOffPeakProductComponent,
         resolve: {
           shops: ShopResolverService,
@@ -62,6 +67,7 @@ const sellerRoutes: Routes = [
       },
       {
         path: "prdcts/nwoffpktlgu/clone/:id",
+        canActivate: [SellerGuard],
         component: NewOffPeakProductComponent,
         resolve: {
           shops: ShopResolverService,
@@ -73,6 +79,7 @@ const sellerRoutes: Routes = [
       },
       {
         path: "prdcts/nwclsngtlgu",
+        canActivate: [SellerGuard],
         component: AddNewAdComponent,
         resolve: {
           shops: ShopResolverService,
@@ -84,33 +91,78 @@ const sellerRoutes: Routes = [
 
       {
         path: "shops/:newshp",
+        canActivate: [SellerGuard],
         component: NewShopComponent,
         resolve: {
           states: StateResolverService
         }
       },
-      { path: "trnsctns", component: TransactionsComponent },
+      {
+        path: "trnsctns",
+        canActivate: [SellerGuard],
+        component: TransactionsComponent
+      },
       {
         path: "trnsctns/:id",
+        canActivate: [SellerGuard],
         component: SellerOrderDetailComponent,
         resolve: { order: SellerOrderResolverService }
       },
-      { path: "slssmry", component: SalesSummaryComponent },
-      { path: "prdcts", component: ProductsComponent },
+      {
+        path: "slssmry",
+        canActivate: [SellerGuard],
+        component: SalesSummaryComponent
+      },
+      {
+        path: "prdcts",
+        canActivate: [SellerGuard],
+        component: ProductsComponent
+      },
       {
         path: "gallery",
+        canActivate: [SellerGuard],
         component: GalleryComponent,
         resolve: {
           pictures: GalleryResolverService
         }
       },
-      { path: "gallery/:upldimg", component: UploadImgComponent },
-      { path: "qr-scanner", component: QrScannerComponent },
-      { path: "shops", component: ShopListComponent },
-      { path: "staffs", component: StaffsComponent },
-      { path: "staffs/add", component: AddStaffComponent },
+      {
+        path: "gallery/:upldimg",
+        canActivate: [SellerGuard],
+        component: UploadImgComponent
+      },
+      {
+        path: "qr-scanner",
+        canActivate: [SellerGuard],
+        component: QrScannerComponent
+      },
+      {
+        path: "shops",
+        canActivate: [SellerGuard],
+        component: ShopListComponent
+      },
+      {
+        path: "staffs",
+        canActivate: [SellerGuard],
+        component: StaffsComponent
+      },
+      {
+        path: "staffs/add",
+        canActivate: [SellerGuard],
+        component: AddStaffComponent
+      },
+      {
+        path: "staffs/manage_access/:id",
+        canActivate: [SellerGuard],
+        component: ManageStaffAccessComponent,
+        resolve: {
+          features: FeaturesResolverService,
+          user_features: UserFeaturesResolverService
+        }
+      },
       {
         path: "",
+        canActivate: [SellerGuard],
         component: SellerDashboardComponent,
         resolve: {
           summary: SellerSummaryResolverService,

@@ -18,7 +18,6 @@ export class HomeGuard implements CanActivate {
     state: RouterStateSnapshot
   ): Observable<boolean> | Promise<boolean> | boolean {
     if (this.authService.isSellerLoggedIn()) {
-      console.log("seller sellere");
       this.router.navigate(["/tlgu-slr"]);
       return false;
     }

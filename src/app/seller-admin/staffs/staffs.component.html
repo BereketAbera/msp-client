@@ -88,7 +88,7 @@
             mat-menu-item
             (click)="updateStaff(staff.id, 'SUSPENDED')"
           >
-            <mat-icon color="accent">edit</mat-icon>
+            <mat-icon color="accent">lock</mat-icon>
             <span>Sespend</span>
           </button>
           <button
@@ -101,6 +101,10 @@
             <mat-icon color="accent">done</mat-icon>
             <span>ACTIVATE</span>
           </button>
+          <button mat-menu-item (click)="manageStaff(staff.id)">
+            <mat-icon color="accent">edit</mat-icon>
+            <span>Manage Access</span>
+          </button>
         </mat-menu>
       </mat-cell>
     </ng-container>
@@ -109,4 +113,9 @@
 
     <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
   </mat-table>
+  <mat-paginator
+    [length]="count"
+    [pageSize]="5"
+    (page)="pageEvent = getServerData($event)"
+  ></mat-paginator>
 </div>

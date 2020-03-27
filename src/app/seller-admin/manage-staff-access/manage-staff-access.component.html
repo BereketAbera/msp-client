@@ -1,0 +1,17 @@
+<div class="features__main-container">
+  <div class="features__header">Select Features to Give Access</div>
+
+  <div class="features__container">
+    <div *ngFor="let feature of features" class="features__feature">
+      <mat-checkbox
+        (click)="updateUser(feature.description, feature.id)"
+        [checked]="checkIncludes(feature.description)"
+        class="features__feature-text"
+      >
+        {{ feature?.description }}
+      </mat-checkbox>
+    </div>
+  </div>
+
+  <div (click)="goBack()" class="features__done">Done</div>
+</div>
