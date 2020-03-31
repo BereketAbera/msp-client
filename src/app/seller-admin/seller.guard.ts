@@ -36,21 +36,32 @@ export class SellerGuard implements CanActivate {
   manageUserRouteAccess(url: string): boolean {
     let role = this.authService.getRole();
     if (this.authService.isSellerLoggedIn()) {
-      if (role == "SELLER") {
+      if (role == "SELLER" || url == "/tlgu-slr/access_denied") {
         return true;
       }
       let user = this.authService.getUser();
       if (user) {
+        let found = false;
         if (!this.user_features) {
           return !!this.sellerStaffService.getUserFeatures(user.id).subscribe(
             response => {
               this.user_features = response.features;
-              return this.checkUserFeatures(url);
+              found = this.checkUserFeatures(url);
+              if (found) {
+                return found;
+              } else {
+                this.router.navigate(["/tlgu-slr/access_denied"]);
+              }
             },
             err => console.log(err)
           );
         } else {
-          return this.checkUserFeatures(url);
+          found = this.checkUserFeatures(url);
+          if (found) {
+            return found;
+          } else {
+            this.router.navigate(["/tlgu-slr/access_denied"]);
+          }
         }
       } else {
         this.router.navigate(["/login/seller"]);
@@ -79,7 +90,6 @@ export class SellerGuard implements CanActivate {
   }
 
   refactorUrl(url) {
-    console.log(url);
     if (/\d/.test(url)) {
       let x = url.split("/");
       url = url.replace(x[x.length - 1], "id");
