@@ -37,5 +37,15 @@ export let mapRoutes = {
 
   "/tlgu-slr": "View Summary",
   "/tlgu-slr/gallery": "Manage Gallery",
-  "/tlgu-slr/gallery/upldimg": "Manage Gallery"
+  "/tlgu-slr/gallery/upldimg": "Manage Gallery",
+
+  "/tlgu-slr/shops": "Manage Shop",
+  "/tlgu-slr/shops/newshp": "Manage Shop",
+
+  "/tlgu-slr/qr-scanner": "Process Buyer Code",
+
+  "/tlgu-slr/trnsctns": "View Order",
+  "/tlgu-slr/trnsctns/id": "View Order",
+
+  "/tlgu-slr/slssmry": "View Summary"
 };
