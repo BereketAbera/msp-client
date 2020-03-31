@@ -23,7 +23,7 @@ import * as moment from "moment";
   styleUrls: ["./deal-detail.component.scss"]
 })
 export class DealDetailComponent implements OnInit {
-  product: Product;
+  product: any;
   markup: Markup;
   buyForm = this.fb.group({
     quantity: ["1", Validators.required]
@@ -31,6 +31,7 @@ export class DealDetailComponent implements OnInit {
   total: any;
   showErrorNotification = false;
   errorMessage = "";
+  current
 
   constructor(
     public dialog: MatDialog,
