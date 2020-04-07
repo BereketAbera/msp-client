@@ -1,98 +1,94 @@
-
 <div>
-
-
   <div class="spinner-container" *ngIf="dataSource.loading$ | async">
-
-      <mat-spinner></mat-spinner>
-
+    <mat-spinner></mat-spinner>
   </div>
   <div *ngIf="showError" id="errorCntr">
-          <button id = "errClsBtn" (click)="close()">
-              X
-          </button>
-          <ul>
-              <li *ngFor="let error of errors">
-                {{error}}
-              </li>
-              
-            </ul>
-          
-        </div>
-    <mat-table class="mat-elevation-z8" [dataSource]="dataSource"
-    matSort matSortActive="name" matSortDirection="asc" matSortDisableClear>
-             <ng-container matColumnDef="email">
+    <button id="errClsBtn" (click)="close()">
+      X
+    </button>
+    <ul>
+      <li *ngFor="let error of errors">
+        {{ error }}
+      </li>
+    </ul>
+  </div>
+  <mat-table
+    class="mat-elevation-z8"
+    [dataSource]="dataSource"
+    matSort
+    matSortActive="name"
+    matSortDirection="asc"
+    matSortDisableClear
+  >
+    <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef>Account</mat-header-cell>
 
-                <mat-header-cell *matHeaderCellDef>Account</mat-header-cell>
-      
-                <mat-cell 
-                          *matCellDef="let user">{{user.email}}</mat-cell>
-      
-            </ng-container>
-      <ng-container matColumnDef="firstName">
-
-          <mat-header-cell *matHeaderCellDef >First Name</mat-header-cell>
-
-          <mat-cell *matCellDef="let user">{{user.firstName}}</mat-cell>
-
-      </ng-container>
-
-      <ng-container matColumnDef="lastName">
-
-          <mat-header-cell *matHeaderCellDef>Last Name</mat-header-cell>
-
-          <mat-cell 
-                    *matCellDef="let user">{{user.lastName}}</mat-cell>
-
-      </ng-container>
-      <ng-container matColumnDef="updatedAt">
-
-          <mat-header-cell *matHeaderCellDef>Updated At</mat-header-cell>
-  
-          <mat-cell 
-                    *matCellDef="let user">{{user.updatedAt|date:"yyyy-MM-dd"}}</mat-cell>
-  
-      </ng-container>
-      <ng-container matColumnDef="status">
-
-        <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
-
-        <mat-cell 
-                  *matCellDef="let user">{{getStatus(user.status)}}</mat-cell>
-
+      <mat-cell *matCellDef="let user">{{ user.email }}</mat-cell>
     </ng-container>
-     
-          <ng-container matColumnDef="remove">
+    <ng-container matColumnDef="firstName">
+      <mat-header-cell *matHeaderCellDef>First Name</mat-header-cell>
 
-              <mat-header-cell *matHeaderCellDef></mat-header-cell>
-    
-              <mat-cell 
-                        *matCellDef="let user"><button mat-icon-button [matMenuTriggerFor]="menu">
-                          <mat-icon>more_vert</mat-icon>
-                        </button>
-                        <mat-menu #menu="matMenu">
-                              <button *ngIf="showActivateAccount(user.status)" (click)="chageAccountStatus(user,1)" mat-menu-item >
-                                     
-                                      <span>Activate Account</span>
-                                    </button>
-                                   
-                                                  
-                          <button *ngIf="showDisablePrtlAccount(user.status)" (click)="chageAccountStatus(user,2)" mat-menu-item >
-                            
-                            <span>Disable New Products</span>
-                          </button>
-                          <button *ngIf="showDisableAccount(user.status)" (click)="chageAccountStatus(user,3)" mat-menu-item >
-                            
-                            <span>Disable Account</span>
-                          </button>
-                        </mat-menu></mat-cell>
-    
-          </ng-container>
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-cell *matCellDef="let user">{{ user.firstName }}</mat-cell>
+    </ng-container>
 
-      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    <ng-container matColumnDef="lastName">
+      <mat-header-cell *matHeaderCellDef>Last Name</mat-header-cell>
 
+      <mat-cell *matCellDef="let user">{{ user.lastName }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="updatedAt">
+      <mat-header-cell *matHeaderCellDef>Updated At</mat-header-cell>
+
+      <mat-cell *matCellDef="let user">{{
+        user.updatedAt | date: "yyyy-MM-dd"
+      }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
+
+      <mat-cell *matCellDef="let user">{{ getStatus(user.status) }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="remove">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+
+      <mat-cell *matCellDef="let user"
+        ><button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button
+            *ngIf="showActivateAccount(user.status)"
+            (click)="chageAccountStatus(user, 1)"
+            mat-menu-item
+          >
+            <span>Activate Account</span>
+          </button>
+
+          <button
+            *ngIf="showDisablePrtlAccount(user.status)"
+            (click)="chageAccountStatus(user, 2)"
+            mat-menu-item
+          >
+            <span>Disable New Products</span>
+          </button>
+          <button
+            *ngIf="showDisableAccount(user.status)"
+            (click)="chageAccountStatus(user, 3)"
+            mat-menu-item
+          >
+            <span>Disable Account</span>
+          </button>
+        </mat-menu></mat-cell
+      >
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
   </mat-table>
-  <mat-paginator [length]="dataSource.count" [pageSize]="5"
-                 [pageSizeOptions]="[5, 10]"></mat-paginator>
+  <mat-paginator
+    [length]="dataSource.count"
+    [pageSize]="5"
+    [pageSizeOptions]="[5, 10]"
+  ></mat-paginator>
 </div>

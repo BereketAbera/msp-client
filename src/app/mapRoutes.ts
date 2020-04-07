@@ -31,7 +31,7 @@ export let mapRoutes = {
 
   "/tlgu-slr/prdcts/nwoffpktlgu/clone/id": "Add Product",
 
-  "/tlgu-slr/prdcts": "View All Products",
+  "/tlgu-slr/prdcts": "View Products",
 
   "/tlgu-slr/prdcts/nwoffpktlgu/edit/id": "Update Product",
 

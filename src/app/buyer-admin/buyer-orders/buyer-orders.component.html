@@ -1,39 +1,4 @@
-<!-- <div>
-  <div>
-    <mat-card>
-      <p>
-        Only orders that are not used and within their service time windows are
-        displayed here. Click 'History' button on the top to see past orders.
-      </p>
-    </mat-card>
-  </div>
-  <div *ngFor="let order of orders">
-    <mat-card>
-      <p>
-        Seller: <strong>{{ order.shopName }}</strong>
-      </p>
-      <p>Address: {{ order.address }}</p>
-      <p>
-        Show Seller this discount code before service:
-        <strong>{{ order.code }}</strong>
-      </p>
-      <mat-card-content>
-        <div class="product-image"><img src="{{ order.imagePath }}" /></div>
-        <p>{{ order.name }}</p>
-        <p>Order Date: {{ order.purchaseTime | date: "short" }}</p>
-        <p>Service Starts: {{ changeToLocal12Hours(order.pickupStartTime) }}</p>
-        <p>Service Ends: {{ changeToLocal12Hours(order.pickupEndTime) }}</p>
-        <p>Unit Price: {{ order.discountedPrice | currency }}</p>
-        <p>Quantiy: {{ order.quantity }}</p>
-        <p>Total: {{ order.quantity * order.discountedPrice | currency }}</p>
-        <p>Pay seller the Total amount plus tax</p>
-      </mat-card-content>
-      <mat-card-actions> </mat-card-actions>
-    </mat-card>
-  </div>
-</div> -->
-
-<div class="orders__container">
+<div *ngIf="orders.length > 0" class="orders__container">
   <div *ngFor="let order of orders" class="order__container">
     <div class="order__left">
       <div class="order__image-container">
@@ -77,4 +42,10 @@
     [pageSizeOptions]="[5, 10]"
     (page)="pageEvent = getServerData($event)"
   ></mat-paginator>
+</div>
+<div
+  style="width: 100%; display:flex; justify-content: center;"
+  *ngIf="orders.length == 0"
+>
+  <p>You don't have any orders yet.</p>
 </div>

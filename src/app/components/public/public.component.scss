@@ -17,6 +17,21 @@
   position: fixed;
   top: -1px;
 
+  &__login-button {
+    border: none;
+    outline: none;
+    color: #f94081;
+    font-size: 2rem;
+    text-transform: uppercase;
+    font-weight: 900;
+    background-color: #fff;
+    cursor: pointer;
+
+    &:active {
+      transform: scale(1.05);
+    }
+  }
+
   &__menu_button {
     width: 3rem;
     position: relative;

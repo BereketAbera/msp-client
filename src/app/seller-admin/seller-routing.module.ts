@@ -34,9 +34,6 @@ import { StaffsComponent } from "./staffs/staffs.component";
 import { ManageStaffAccessComponent } from "./manage-staff-access/manage-staff-access.component";
 import { FeaturesResolverService } from "../service/features-resolver.service";
 
-// path: 'tlgu-slr',
-// component: SellerAdminComponent,
-// canActivate: [SellerGuard],
 const sellerRoutes: Routes = [
   {
     path: "",
