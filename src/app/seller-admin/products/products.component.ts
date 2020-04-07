@@ -59,11 +59,8 @@ export class ProductsComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.dataSource = new ProductsDataSource(this.productService);
     
-  
-    console.log(this.paginator,'sdf')
     this.route.queryParams.subscribe(
       data => {
-        console.log(data)
         this.paginator.pageIndex = +data.page - 1 >= 0 ? +data.page  : 0;
         this.dataSource.loadProducts(1, "", "asc", this.paginator.pageIndex, 5);
       },

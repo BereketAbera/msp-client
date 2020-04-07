@@ -40,7 +40,7 @@
     [length]="count"
     [pageSize]="5"
     [pageSizeOptions]="[5, 10]"
-    (page)="pageEvent = getServerData($event)"
+    (page)="getServerData($event)"
   ></mat-paginator>
 </div>
 <div

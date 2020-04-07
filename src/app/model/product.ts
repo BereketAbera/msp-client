@@ -31,5 +31,6 @@ export class Product {
     city:string;
     address:string;
     shopName:string;
+    currentQuantity
     isOffPeak:boolean;
 }
