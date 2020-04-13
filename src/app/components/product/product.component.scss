@@ -197,8 +197,6 @@ a {
     // box-shadow: -3px 1px 4px rgba(0.2, 0, 0, 0.2);
     // position: relative;
     opacity: 0.9;
-
-    
   }
 
   &__container:hover {
@@ -241,6 +239,10 @@ a {
     font-size: 1.1rem;
     color: #888;
     // margin-top: 1rem;
+  }
+
+  &__reserve-text {
+    font-size: 1.3rem;
   }
 
   &__arrive {

@@ -1,3 +1,4 @@
+import { PublicProductsComponent } from "./components/public-products/public-products.component";
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 
@@ -24,66 +25,73 @@ const appRoutes: Routes = [
   {
     path: "",
     component: PublicComponent,
-    canActivate: [HomeGuard],
+    resolve: {
+      categories: SubCategoryResolverService,
+    },
     children: [
+      {
+        path: "products",
+        component: PublicProductsComponent,
+      },
       {
         path: "deal/:id",
         component: DealDetailComponent,
         resolve: {
           product: ProductResolverService,
-          mspMarkup: MspMarkupResolverService
-        }
+          mspMarkup: MspMarkupResolverService,
+        },
       },
       {
         path: "utcdeal/:id/:utctime",
         component: UtcDealDetailComponent,
         resolve: {
           product: ProductResolverService,
-          mspMarkup: MspMarkupResolverService
-        }
+          mspMarkup: MspMarkupResolverService,
+        },
       },
       {
         path: "",
         component: HomeComponent,
+        canActivate: [HomeGuard],
         resolve: {
-          categories: SubCategoryResolverService
+          categories: SubCategoryResolverService,
         },
-        runGuardsAndResolvers: "always"
+        runGuardsAndResolvers: "always",
       },
-      { path: "cart", component: CartComponent },
+      { path: "cart", canActivate: [HomeGuard], component: CartComponent },
       { path: "food", component: HomeComponent },
       { path: "beauty", component: BeautyComponent },
-      { path: "test", component: TestUtcComponent }
-    ]
+      { path: "test", component: TestUtcComponent },
+    ],
   },
   {
     path: "",
-    loadChildren: "./auth/auth.module#AuthModule"
+    loadChildren: "./auth/auth.module#AuthModule",
   },
   {
     path: "tlgu-slr",
     canActivate: [SellerGuard],
-    loadChildren: "./seller-admin/seller.module#SellerModule"
+    loadChildren: "./seller-admin/seller.module#SellerModule",
   },
   {
     path: "tlgu-byr",
     canActivate: [BuyerGuard],
-    loadChildren: "./buyer-admin/buyer.module#BuyerModule"
+    loadChildren: "./buyer-admin/buyer.module#BuyerModule",
   },
   {
     path: "tlgu-admin",
     canActivate: [AdminGuard],
-    loadChildren: "./system-admin/system-admin.module#SystemAdminModule"
+    loadChildren: "./system-admin/system-admin.module#SystemAdminModule",
   },
-  { path: "**", redirectTo: "", pathMatch: "full" }
+  { path: "**", redirectTo: "", pathMatch: "full" },
 ];
 
 @NgModule({
   exports: [RouterModule],
   imports: [
     CommonModule,
-    RouterModule.forRoot(appRoutes, { onSameUrlNavigation: "reload" })
+    RouterModule.forRoot(appRoutes, { onSameUrlNavigation: "reload" }),
   ],
-  declarations: []
+  declarations: [],
 })
 export class RoutingModule {}

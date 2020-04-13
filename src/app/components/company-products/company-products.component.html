@@ -1,4 +1,7 @@
-<div class="products__category" *ngIf="shown">
+<div
+  *ngIf="products && products.length > 0 && shown"
+  class="products__category"
+>
   <h2 class="products__category__header">{{ company.companyName }}</h2>
 
   <div

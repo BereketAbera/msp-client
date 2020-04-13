@@ -1,27 +1,58 @@
-<mat-divider></mat-divider>
-<div class="container" fxLayout="column" fxLayoutAlign="center center">
-  <div
-    class="products__viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
-    <div class="products__container">
-      <div style="width:100%;" *ngFor="let company of companies; let i = index">
-        <app-company-products
-          class="company_proaduct"
-          [index]="i"
-          [company]="company"
+<div class="home">
+  <div class="home__section-one">
+    <div class="home__search-container">
+      <div class="home__search-header">Looking for discount products?</div>
+      <div action="#" mathod="GET" class="home__search-input-container">
+        <input
+          type="text"
+          placeholder="Enter zipcode..."
+          class="home__search-input"
+          (keyup)="getlocations($event.target.value)"
+          [formControl]="searchInput"
+        />
+        <div class="home__search-input-results">
+          <div class="home__search-input-result" (click)="getClientLocation()">
+            <div>
+              <i
+                class="fas fa-map-marker-alt home__search-input-result-icon"
+              ></i>
+              <span class="home__search-input-result-name"
+                >Use Current Location</span
+              >
+            </div>
+          </div>
+          <div
+            *ngFor="let address of addresses"
+            class="home__search-input-result"
+            (click)="addressChanged(address)"
+          >
+            <div>
+              <i
+                class="fas fa-map-marker-alt home__search-input-result-icon"
+              ></i>
+              <span class="home__search-input-result-name">
+                {{ address.CityName }}
+              </span>
+            </div>
+
+            <div class="home__search-input-county-state">
+              <span class="home__search-input-result-county"
+                >{{ address.StateName }},
+              </span>
+              <span class="home__search-input-result-state">
+                {{ address.ZIPCode }}
+              </span>
+            </div>
+          </div>
+        </div>
+        <button
+          (click)="getProducts()"
+          class="home__search-submit"
+          type="submit"
         >
-        </app-company-products>
-        <div class="separator"></div>
+          <i class="far fa-hand-point-right home__search-submit-icon"></i>
+        </button>
       </div>
     </div>
   </div>
-  <div id="xyze12" #anchor></div>
-  <div style="min-height: 100px; width: 100%"></div>
-</div>
-
-<div class="footer">
-  <button (click)="gotoCart()" class="floating_cart">
-    <i class="fas fa-shopping-cart floating_cart__icon"></i>
-  </button>
 </div>

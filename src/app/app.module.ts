@@ -38,6 +38,7 @@ import { TestUtcComponent } from "./components/test-utc/test-utc.component";
 import { UtcProductComponent } from "./components/utc-product/utc-product.component";
 import { UtcDealDetailComponent } from "./components/utc-deal-detail/utc-deal-detail.component";
 import { CompanyProductsComponent } from "./components/company-products/company-products.component";
+import { PublicProductsComponent } from "./components/public-products/public-products.component";
 // import { DragDropDirective } from './service/drag-drop.directive';
 // import { CustomNotificationComponent } from "./components/custom-notification/custom-notification.component";
 
@@ -57,6 +58,7 @@ import { CompanyProductsComponent } from "./components/company-products/company-
     UtcProductComponent,
     UtcDealDetailComponent,
     CompanyProductsComponent,
+    PublicProductsComponent,
     //  DragDropDirective
     // CustomNotificationComponent
   ],
@@ -71,16 +73,16 @@ import { CompanyProductsComponent } from "./components/company-products/company-
     // DragDropDirective,
 
     ServiceWorkerModule.register("ngsw-worker.js", {
-      enabled: environment.production
-    })
+      enabled: environment.production,
+    }),
   ],
   entryComponents: [
     AppComponent,
     SaveConfirmationDialogComponent,
     SaveProgressComponent,
-    CartExpiredDialogComponent
+    CartExpiredDialogComponent,
   ],
   providers: [httpInterceptorProviders],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

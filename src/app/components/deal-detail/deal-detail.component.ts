@@ -20,18 +20,18 @@ import * as moment from "moment";
 @Component({
   selector: "app-deal-detail",
   templateUrl: "./deal-detail.component.html",
-  styleUrls: ["./deal-detail.component.scss"]
+  styleUrls: ["./deal-detail.component.scss"],
 })
 export class DealDetailComponent implements OnInit {
   product: any;
   markup: Markup;
   buyForm = this.fb.group({
-    quantity: ["1", Validators.required]
+    quantity: ["1", Validators.required],
   });
   total: any;
   showErrorNotification = false;
   errorMessage = "";
-  current
+  current;
 
   constructor(
     public dialog: MatDialog,
@@ -45,15 +45,15 @@ export class DealDetailComponent implements OnInit {
   ngOnInit() {
     this.route.data.subscribe(
       (data: { product: Product; mspMarkup: Markup }) => {
-        console.log(data)
         this.product = data.product;
+        console.log(this.product);
         [
           "offerStartTime",
           "offerEndTime",
           "pickupStartTime",
-          "pickupEndTime"
+          "pickupEndTime",
         ].map(
-          key =>
+          (key) =>
             (this.product[key] = this.changeToLocal12Hours(this.product[key]))
         );
         this.markup = data.mspMarkup;
@@ -69,61 +69,6 @@ export class DealDetailComponent implements OnInit {
     this.router.navigate(["../"]);
   }
 
-  // showResetDialog() {
-  //   Promise.resolve().then(() => {
-  //     const dialogRef = this.dialog.open(CartExpiredDialogComponent, {
-  //       width: "250px",
-  //       data: {
-  //         title: "Cart Time Expired",
-  //         message:
-  //           "Sorry, your shopping cart time limit of ten minutes has expired"
-  //       }
-  //     });
-  //     dialogRef.afterClosed().subscribe(result => {
-  //       this.cartService.resetCart();
-  //       this.router.navigate(["../"]);
-  //     });
-  //   });
-  // }
-  // showFarFarmYouDialog() {
-  //   Promise.resolve().then(() => {
-  //     const dialogRef = this.dialog.open(CartExpiredDialogComponent, {
-  //       width: "250px",
-  //       data: { title: "", message: "Sorry, store too far from you." }
-  //     });
-  //     dialogRef.afterClosed().subscribe(result => {
-  //       this.router.navigate(["../"]);
-  //     });
-  //   });
-  // }
-  // showDeadlineDialog() {
-  //   Promise.resolve().then(() => {
-  //     const dialogRef = this.dialog.open(CartExpiredDialogComponent, {
-  //       width: "250px",
-  //       data: {
-  //         title: "",
-  //         message:
-  //           "Sorry, Reservation Deadline has expired. Check back again tomorrow."
-  //       }
-  //     });
-  //     dialogRef.afterClosed().subscribe(result => {
-  //       this.cartService.resetCart();
-  //       this.router.navigate(["../"]);
-  //     });
-  //   });
-  // }
-  // showReservationNotStartedDialog() {
-  //   Promise.resolve().then(() => {
-  //     const dialogRef = this.dialog.open(CartExpiredDialogComponent, {
-  //       width: "250px",
-  //       data: { title: "", message: "Sorry, Reservation not started yet." }
-  //     });
-  //     dialogRef.afterClosed().subscribe(result => {
-  //       this.cartService.resetCart();
-  //       this.router.navigate(["../"]);
-  //     });
-  //   });
-  // }
   addToCart() {
     this.showErrorNotification = false;
     this.errorMessage = "";
@@ -136,12 +81,11 @@ export class DealDetailComponent implements OnInit {
       this.buyForm.get("quantity").value > 0
     ) {
       order = JSON.parse(localStorage.getItem("msp_cart_items")) || new Order();
-      console.log(order);
       let reserveProduct = new ReserveProduct();
       reserveProduct.ordruid = order.guid;
       reserveProduct.prdid = this.product.id;
       reserveProduct.qty = this.buyForm.get("quantity").value;
-      this.cartService.addToCart(reserveProduct).subscribe(rsrvdPrd => {
+      this.cartService.addToCart(reserveProduct).subscribe((rsrvdPrd) => {
         if (rsrvdPrd["success"]) {
           reserveProduct.name = this.product.name;
           reserveProduct.imagePath = this.product.imagePath;
@@ -169,16 +113,15 @@ export class DealDetailComponent implements OnInit {
       this.product.quantityOnHand >= this.buyForm.get("quantity").value &&
       this.buyForm.get("quantity").value > 0
     ) {
-      // console.log(this.buyForm.get("quantity").value);
       this.dsSerive.selectedProductInfo = {
         productId: this.product.id,
-        quantity: this.buyForm.get("quantity").value
+        quantity: this.buyForm.get("quantity").value,
       };
       let navigationExtras: NavigationExtras = {
         queryParams: {
           productId: this.product.id,
-          quantity: this.buyForm.get("quantity").value
-        }
+          quantity: this.buyForm.get("quantity").value,
+        },
       };
       this.router.navigate(
         ["/tlgu-byr/payment", this.product.id],

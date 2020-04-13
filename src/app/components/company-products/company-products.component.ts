@@ -1,15 +1,24 @@
-import { Component, OnInit, Input, ViewChild, ElementRef } from "@angular/core";
+import { stringify } from "querystring";
+import {
+  Component,
+  OnInit,
+  Input,
+  ViewChild,
+  ElementRef,
+  SimpleChanges,
+} from "@angular/core";
 import { ProductService } from "src/app/service/product.service";
 
 @Component({
   selector: "app-company-products",
   templateUrl: "./company-products.component.html",
-  styleUrls: ["./company-products.component.scss"]
+  styleUrls: ["./company-products.component.scss"],
 })
 export class CompanyProductsComponent implements OnInit {
   @Input() company;
   @Input() index;
-
+  @Input() query;
+  q = "";
   @ViewChild("anchor") anchor: ElementRef<HTMLElement>;
   page = 0;
   pageSize = 6;
@@ -25,9 +34,24 @@ export class CompanyProductsComponent implements OnInit {
   navigate = false;
   constructor(private prdctService: ProductService) {}
 
-  ngOnInit() {
-    // console.log(this.company, "comps");
+  ngOnChanges(changes: SimpleChanges) {
+    for (let propName in changes) {
+      if (propName == "query") {
+        let chng = changes[propName];
+        let cur = JSON.stringify(chng.currentValue);
+        if (cur) {
+          this.q = cur;
+          this.getCompanyProducts();
+        }
+      }
+    }
+  }
 
+  ngOnInit() {
+    this.getCompanyProducts();
+  }
+
+  getCompanyProducts() {
     this.prdctService
       .getListOfProducts(
         this.distance,
@@ -38,9 +62,10 @@ export class CompanyProductsComponent implements OnInit {
         "desc",
         this.page,
         this.pageSize,
-        this.company.sellerProfileId
+        this.company.sellerProfileId,
+        this.query ? this.query : this.q
       )
-      .subscribe(resp => {
+      .subscribe((resp) => {
         // console.log(resp,'product')
         if (resp && Object.keys(resp).length != 0) {
           this.products = resp;
@@ -51,6 +76,8 @@ export class CompanyProductsComponent implements OnInit {
           } else {
             this.navigate = false;
           }
+        } else if (resp && Object.keys(resp).length == 0) {
+          this.products = [];
         } else {
           this.navigate = false;
         }
@@ -70,23 +97,23 @@ export class CompanyProductsComponent implements OnInit {
     elm.scrollLeft -= elm.offsetWidth;
   }
 
-  fetchProductForCompany(userId, name) {
-    // console.log(userId,this.productProject,'loaded')
-    return this.prdctService
-      .getListOfProducts(
-        this.distance,
-        this.lat,
-        this.lng,
-        this.subCatagory,
-        "",
-        "desc",
-        this.page,
-        this.pageSize,
-        userId
-      )
-      .subscribe(resp => {
-        this.products = resp;
-        return resp;
-      });
-  }
+  // fetchProductForCompany(userId, name) {
+  //   // console.log(userId,this.productProject,'loaded')
+  //   return this.prdctService
+  //     .getListOfProducts(
+  //       this.distance,
+  //       this.lat,
+  //       this.lng,
+  //       this.subCatagory,
+  //       "",
+  //       "desc",
+  //       this.page,
+  //       this.pageSize,
+  //       userId
+  //     )
+  //     .subscribe((resp) => {
+  //       this.products = resp;
+  //       return resp;
+  //     });
+  // }
 }

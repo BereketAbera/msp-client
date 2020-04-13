@@ -2,10 +2,10 @@ import { Injectable } from "@angular/core";
 import {
   HttpClient,
   HttpResponse,
-  HttpErrorResponse
+  HttpErrorResponse,
 } from "@angular/common/http";
 
-import { throwError } from "rxjs";
+import { throwError, BehaviorSubject } from "rxjs";
 import { environment } from "../../environments/environment";
 
 import * as moment from "moment";
@@ -19,7 +19,7 @@ const authApi = environment.APIEndpoint + "authenticate";
 const pwdResetReqApi = environment.APIEndpoint + "pwdrstrqt";
 
 @Injectable({
-  providedIn: "root"
+  providedIn: "root",
 })
 export class AuthService {
   private _redirectURL: string;
@@ -30,15 +30,20 @@ export class AuthService {
   currentLat: number;
   currentLong: number;
   isGPSOn: boolean = false;
-  constructor(private http: HttpClient) {}
+  public progressBarActive = new BehaviorSubject<boolean>(false);
+  clientLocation = null;
+
+  constructor(private http: HttpClient) {
+    this.clientLocation = JSON.parse(localStorage.getItem("client_address"));
+  }
   login(useCredential) {
     return this.http
       .post<HttpResponse<any>>(authApi, useCredential, { observe: "response" })
       .pipe(
-        tap(res => {
+        tap((res) => {
           if (res.body["success"]) this.setSession(res.body);
         }),
-        map(res => {
+        map((res) => {
           if (!res.body["success"]) throw res.body;
         }),
         shareReplay()
@@ -46,10 +51,10 @@ export class AuthService {
   }
   reqPwdRest(email) {
     return this.http.post(pwdResetReqApi, email, { observe: "response" }).pipe(
-      tap(res => {
+      tap((res) => {
         if (res.body["success"]) return res.body;
       }),
-      map(res => {
+      map((res) => {
         if (!res.body["success"]) throw res.body;
       })
     );
@@ -190,5 +195,13 @@ export class AuthService {
     if (decoded) {
       return { id: decoded.id, role: decoded.role };
     }
+  }
+
+  setProgress(value) {
+    this.progressBarActive.next(value);
+  }
+
+  updateClientLocation(obj) {
+    this.clientLocation = obj;
   }
 }

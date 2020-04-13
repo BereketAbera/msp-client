@@ -1,0 +1,89 @@
+<div class="search__container">
+  <div action="#" mathod="GET" class="search__search-input-container">
+    <input
+      type="text"
+      [value]="
+        'Location: ' + (address.CityName ? address.CityName : 'Your location')
+      "
+      placeholder="Enter zipcode..."
+      class="search__search-input"
+      (keyup)="getlocations($event.target.value)"
+      (focus)="onFocus()"
+      (blur)="onBlur()"
+      [formControl]="searchInput"
+      #locationInput
+    />
+    <div
+      class="search__search-input-results"
+      [class.search__search-input-results-active]="locationInputActive"
+    >
+      <div class="search__search-input-result" (click)="getClientLocation()">
+        <div>
+          <i class="fas fa-map-marker-alt search__search-input-result-icon"></i>
+          <span class="search__search-input-result-name"
+            >Use Current Location</span
+          >
+        </div>
+      </div>
+      <div
+        *ngFor="let address of addresses"
+        class="search__search-input-result"
+        (click)="addressChanged(address)"
+      >
+        <div>
+          <i class="fas fa-map-marker-alt search__search-input-result-icon"></i>
+          <span class="search__search-input-result-name">{{
+            address.CityName
+          }}</span>
+        </div>
+
+        <div class="search__search-input-county-state">
+          <span class="search__search-input-result-county"
+            >{{ address.StateName }},
+          </span>
+          <span class="search__search-input-result-state">
+            {{ address.ZIPCode }}</span
+          >
+        </div>
+      </div>
+    </div>
+    <button (click)="toggleLocationInputActive()" class="search__search-submit">
+      <i class="fas fa-map-marker-alt search__search-submit-icon"></i>
+    </button>
+  </div>
+</div>
+<div class="container" fxLayout="column" fxLayoutAlign="center center">
+  <div
+    class="products__viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+    <div *ngIf="companies?.length > 0" class="products__container">
+      <div
+        style="width: 100%;"
+        *ngFor="let company of companies; let i = index"
+      >
+        <app-company-products
+          class="company_proaduct"
+          [index]="i"
+          [company]="company"
+          [query]="query"
+        >
+        </app-company-products>
+        <div class="separator"></div>
+      </div>
+    </div>
+    <div *ngIf="companies?.length == 0" class="products__not-found-container">
+      <p class="products__not-found">
+        No Products Found. Check Other Locations.
+      </p>
+    </div>
+  </div>
+  <div id="xyze12" #anchor></div>
+  <div style="min-height: 100px; width: 100%;"></div>
+</div>
+
+<div class="footer">
+  <button (click)="gotoCart()" class="floating_cart">
+    <i class="fas fa-shopping-cart floating_cart__icon"></i>
+  </button>
+</div>

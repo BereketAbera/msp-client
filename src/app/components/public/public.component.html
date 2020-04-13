@@ -30,11 +30,11 @@
       </div>
       <div class="header_mobile__logo">
         <img src="favicon.ico" alt="Logo" class="header_mobile__logo_icon" />
-        <div class="header_mobile__logo_text">Manager Special</div>
+        <a class="header_mobile__logo_text">Manager Special</a>
       </div>
       <div class="header_mobile__right">
         <div
-          *ngIf="!mobileSearchActive"
+          *ngIf="!mobileSearchActive && searchActive"
           (click)="searchClick()"
           class="header_mobile__search-icon-container"
         >
@@ -63,13 +63,31 @@
       </div>
 
       <div class="header__desktop__search-input-container">
-        <i class="fas fa-search header__desktop__search-icon"></i>
+        <i
+          *ngIf="searchActive"
+          class="fas fa-search header__desktop__search-icon"
+        ></i>
         <input
+          *ngIf="searchActive"
+          [formControl]="desktopSearchValue"
           type="text"
           class="header__desktop__search-input"
           placeholder="Search products..."
+          (keyup.enter)="searchValueChanged('desktopSearchValue')"
+          #deskInput
         />
         <i class="far fa-times-circle header__desktop__close-icon"></i>
+
+        <div class="header__desktop__categories-container">
+          <div
+            *ngFor="let category of categories"
+            class="header__desktop__category"
+            (click)="categoryChanged(category.id)"
+            [class.header__desktop__category-active]="categoryId == category.id"
+          >
+            {{ category.name }}
+          </div>
+        </div>
       </div>
       <div class="header__desktop__right">
         <div class="header__desktop__seller-signup-container">
@@ -95,9 +113,15 @@
         </div>
       </div>
     </div>
+    <mat-progress-bar
+      *ngIf="progressBarActive"
+      color="#F94081"
+      mode="query"
+    ></mat-progress-bar>
   </div>
+
   <div class="content__container">
-    <router-outlet (activate)="onActivate($event)"></router-outlet>
+    <router-outlet></router-outlet>
   </div>
 </div>
 
@@ -105,12 +129,29 @@
   class="header_mobile__search-input-container"
   [class.header_mobile__search-input-container--active]="mobileSearchActive"
 >
-  <input
-    type="text"
-    class="header_mobile__search-input"
-    placeholder="Search products..."
-  />
-  <button class="header_mobile__search-button">
-    <i class="fas fa-search header_mobile__search-icon"></i>
-  </button>
+  <div class="header_mobile__search-input-sub-container">
+    <input
+      [formControl]="mobileSearchValue"
+      type="text"
+      class="header_mobile__search-input"
+      placeholder="Search products..."
+      (keyup.enter)="searchValueChanged('mobileSearchValue')"
+    />
+    <button
+      (click)="searchValueChanged('mobileSearchValue')"
+      class="header_mobile__search-button"
+    >
+      <i class="fas fa-search header_mobile__search-icon"></i>
+    </button>
+  </div>
+
+  <div class="header_mobile__category-container">
+    <span
+      *ngFor="let category of categories"
+      (click)="categoryChanged(category.id)"
+      class="header_mobile__category"
+      [class.header_mobile__category-active]="categoryId == category.id"
+      >{{ category.name }}</span
+    >
+  </div>
 </div>
