@@ -71,6 +71,10 @@ ul {
     display: flex;
     justify-content: center;
   }
+
+  &__categories {
+    width: 100%;
+  }
 }
 
 .mat-flat-button {
@@ -91,8 +95,11 @@ ul {
 
     &__input {
       margin-right: 1rem;
-      width: auto;
-      max-width: 16rem;
     }
+  }
+
+  .zipstatecity {
+    width: auto;
+    max-width: 16rem;
   }
 }

@@ -16,11 +16,12 @@ import { ZipcodeService } from "../../service/zipcode.service";
 import { StateService } from "../../service/state.service";
 
 import { AuthService } from "../../service/auth.service";
+import { Category } from "src/app/model/category";
 
 @Component({
   selector: "app-new-shop",
   templateUrl: "./new-shop.component.html",
-  styleUrls: ["./new-shop.component.scss"]
+  styleUrls: ["./new-shop.component.scss"],
 })
 export class NewShopComponent implements OnInit {
   showError: boolean = false;
@@ -32,6 +33,7 @@ export class NewShopComponent implements OnInit {
 
   lat: any = 60.168997;
   lng: any = 24.9433353;
+  categories: any;
 
   //shopName = new FormControl("",Validators.required);
   shopForm = this.fb.group({
@@ -41,7 +43,8 @@ export class NewShopComponent implements OnInit {
     state: ["", Validators.required],
     zipCode: ["", Validators.required],
     telephone: ["", Validators.required],
-    contact: ["", Validators.required]
+    contact: ["", Validators.required],
+    subCategoryId: ["", Validators.required],
   });
 
   constructor(
@@ -59,32 +62,22 @@ export class NewShopComponent implements OnInit {
     this.showError = false;
   }
   ngOnInit() {
-    this.route.data.subscribe((data: { states: State[] }) => {
-      this.states = data.states;
-    });
-    // this.zipCodeHints$ = this.shopForm.get('zipCode').valueChanges.pipe(
-    //   debounceTime(500),
-    //   filter(txt=>{
-    //     if(!txt || txt=="") return false;
-
-    //     return txt.toString().length > 3;
-    //   }),
-    //   distinctUntilChanged(),
-    //   switchMap(searchTXT =>
-    //     this.zipcodeService.listZipcods(searchTXT))
-    // );
+    this.route.data.subscribe(
+      (data: { states: State[]; categories: Category[] }) => {
+        this.states = data.states;
+        this.categories = data.categories;
+      }
+    );
   }
   searchZipCods(searchInp: string) {
     this.searchText$.next(searchInp);
   }
   onSubmit() {
-    // TODO: Use EventEmitter with form value
-
     let shop = new Shop();
     shop = { ...this.shopForm.value };
     shop.lat = this.lat;
     shop.lng = this.lng;
-    this.shopsSrvc.createShope(shop).subscribe(res => {
+    this.shopsSrvc.createShope(shop).subscribe((res) => {
       if (res["success"])
         this.router.navigate(["../"], { relativeTo: this.route });
       else {

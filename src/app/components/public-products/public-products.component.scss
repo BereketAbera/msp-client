@@ -345,6 +345,10 @@ img {
     border: 1px solid #eee;
     border-top: none;
     z-index: 100;
+
+    &:active {
+      display: block;
+    }
   }
 
   &__search-input-results-active {

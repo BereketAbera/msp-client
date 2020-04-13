@@ -40,7 +40,7 @@ export class PublicProductsComponent implements OnInit {
   categoryOptionsActive = false;
   locationInputActive = false;
   category: Category = new Category();
-  categoryId: any;
+  categoryId: number;
 
   constructor(
     private winRef: WindowRef,
@@ -100,6 +100,9 @@ export class PublicProductsComponent implements OnInit {
   loadJobs() {
     // console.log(this.addlatitude, this.longitude);
     window.onscroll = () => {
+      if (!this.router.url.includes("/products")) {
+        return;
+      }
       var bottomPosition = window.innerHeight + window.pageYOffset;
       var elementPosition = this.anchor
         ? this.anchor.nativeElement.offsetTop
@@ -187,9 +190,9 @@ export class PublicProductsComponent implements OnInit {
   }
 
   addressChanged(address) {
+    console.log(address);
     this.address = address;
     this.getProducts();
-    this.locationInputActive = false;
     this.onBlur();
   }
 
@@ -246,7 +249,6 @@ export class PublicProductsComponent implements OnInit {
       "Location: " +
         (this.address.CityName ? this.address.CityName : "Your Location")
     );
-
     this.locationInputActive = false;
   }
 }

@@ -18,6 +18,8 @@ export class CompanyProductsComponent implements OnInit {
   @Input() company;
   @Input() index;
   @Input() query;
+  @Input() categoryId: number;
+  catId: number;
   q = "";
   @ViewChild("anchor") anchor: ElementRef<HTMLElement>;
   page = 0;
@@ -36,11 +38,15 @@ export class CompanyProductsComponent implements OnInit {
 
   ngOnChanges(changes: SimpleChanges) {
     for (let propName in changes) {
-      if (propName == "query") {
+      if (propName == "query" || propName == "categoryId") {
         let chng = changes[propName];
         let cur = JSON.stringify(chng.currentValue);
         if (cur) {
-          this.q = cur;
+          if (propName == "categoryId") {
+            this.catId = parseInt(cur.replace(/"/g, ""));
+          } else {
+            this.q = cur;
+          }
           this.getCompanyProducts();
         }
       }
@@ -57,7 +63,7 @@ export class CompanyProductsComponent implements OnInit {
         this.distance,
         this.lat,
         this.lng,
-        this.subCatagory,
+        this.catId,
         "",
         "desc",
         this.page,
@@ -96,24 +102,4 @@ export class CompanyProductsComponent implements OnInit {
     let elm = document.getElementById(`contanier_prods-${id}`);
     elm.scrollLeft -= elm.offsetWidth;
   }
-
-  // fetchProductForCompany(userId, name) {
-  //   // console.log(userId,this.productProject,'loaded')
-  //   return this.prdctService
-  //     .getListOfProducts(
-  //       this.distance,
-  //       this.lat,
-  //       this.lng,
-  //       this.subCatagory,
-  //       "",
-  //       "desc",
-  //       this.page,
-  //       this.pageSize,
-  //       userId
-  //     )
-  //     .subscribe((resp) => {
-  //       this.products = resp;
-  //       return resp;
-  //     });
-  // }
 }

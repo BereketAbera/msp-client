@@ -31,7 +31,7 @@ export interface Discount {
 @Component({
   selector: "app-new-off-peak-product",
   templateUrl: "./new-off-peak-product.component.html",
-  styleUrls: ["./new-off-peak-product.component.scss"]
+  styleUrls: ["./new-off-peak-product.component.scss"],
 })
 export class NewOffPeakProductComponent implements OnInit {
   weekDaysInit = [
@@ -41,7 +41,7 @@ export class NewOffPeakProductComponent implements OnInit {
     { name: "THU", selected: true, id: 4 },
     { name: "FRI", selected: true, id: 5 },
     { name: "SAT", selected: true, id: 6 },
-    { name: "SUN", selected: true, id: 7 }
+    { name: "SUN", selected: true, id: 7 },
   ];
   @ViewChild("file") file;
   section1 = false;
@@ -52,23 +52,15 @@ export class NewOffPeakProductComponent implements OnInit {
   showError: boolean = false;
   errors = [];
   offerStartInitTime = new Date(moment().valueOf());
-  offerEndInitTime = new Date(
-    moment()
-      .add(30, "m")
-      .valueOf()
-  );
+  offerEndInitTime = new Date(moment().add(30, "m").valueOf());
 
   fileIn;
 
   pickupStartInitTime = new Date(
-    moment(this.offerStartInitTime)
-      .add(10, "m")
-      .valueOf()
+    moment(this.offerStartInitTime).add(10, "m").valueOf()
   );
   pickupEndInitTime = new Date(
-    moment(this.offerEndInitTime)
-      .add(40, "m")
-      .valueOf()
+    moment(this.offerEndInitTime).add(40, "m").valueOf()
   );
 
   offerEndDate: Date;
@@ -97,7 +89,7 @@ export class NewOffPeakProductComponent implements OnInit {
     { value: 85, name: "85%" },
     { value: 90, name: "90%" },
     { value: 95, name: "95%" },
-    { value: 100, name: "100%" }
+    { value: 100, name: "100%" },
   ];
   options: string[];
   hhmm: string[] = [];
@@ -113,7 +105,7 @@ export class NewOffPeakProductComponent implements OnInit {
     "09",
     "10",
     "11",
-    "12"
+    "12",
   ];
   pmam = ["PM", "AM"];
   showImage: boolean = false;
@@ -123,14 +115,13 @@ export class NewOffPeakProductComponent implements OnInit {
   pictures: Picture[];
   uploadForm = this.fb.group({
     name: ["", Validators.required],
-    img: null
+    img: null,
   });
   formData = new FormData();
   productForm = this.fb.group({
     name: ["", [Validators.required, Validators.maxLength(50)]],
     promo: ["closing", Validators.required],
     unit: ["piece", Validators.required],
-    categoryId: ["", Validators.required],
     shop: ["", Validators.required],
     normalPrice: ["", Validators.required],
     discountPrice: ["10", Validators.required],
@@ -154,7 +145,7 @@ export class NewOffPeakProductComponent implements OnInit {
     isOffPeak: ["offpeak", Validators.required],
     showNow: [false, Validators.required],
     weekDays: this.buildWeekDays(),
-    imgId: null
+    imgId: null,
   });
   files: any;
   imageUploadsDiv = false;
@@ -181,7 +172,6 @@ export class NewOffPeakProductComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private productService: ProductService,
-    // private dragDropDirective:DragDropDirective,
     private fb: FormBuilder,
     private uploadService: UploadService,
     private location: Location
@@ -191,11 +181,10 @@ export class NewOffPeakProductComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(
-      params => {
+      (params) => {
         if (params.id) {
           this.productService.getProductById(params.id).subscribe(
-            resp => {
-              // console.log(resp);
+            (resp) => {
               this.imagePath = resp.imagePath;
               this.product = resp;
 
@@ -236,19 +225,14 @@ export class NewOffPeakProductComponent implements OnInit {
               this.product["pickupEndAMPM"] = this.changeToLocal12Hours(
                 resp.pickupEndTime
               ).split(";")[2];
-
-              // console.log(this.product)
-              // this.product.offerStartDate = this.changeToLocalDate(this.product.offerStartDate) ;
-              // this.product.offerEndDate = this.changeToLocalDate(this.product.offerEndDate.split('T')[0]) ;
-
               this.populateFields();
               this.parseWeekDay(this.product.activeDays);
             },
-            err => console.log(err)
+            (err) => console.log(err)
           );
         }
       },
-      err => console.log(err)
+      (err) => console.log(err)
     );
 
     this.productForm
@@ -257,7 +241,7 @@ export class NewOffPeakProductComponent implements OnInit {
         debounceTime(5000)
         //distinctUntilChanged()
       )
-      .subscribe(inpValue => {
+      .subscribe((inpValue) => {
         if (inpValue) {
           if (
             /^\d+$/.test(inpValue.toString()) &&
@@ -272,18 +256,9 @@ export class NewOffPeakProductComponent implements OnInit {
     this.hhmm.push("00:PM");
     this.hhmm.push("30:PM");
 
-    // for (let i = 1; i < 12; i++)
-    //   if (i < 10) {
-    //     let y = "0" + i.toString();
-    //     this.hhmm.push(y);
-    //   } else {
-    //     this.hhmm.push(i.toString());
-    //   }
-
     this.route.data.subscribe(
       (data: {
         shops: Shop[];
-        categories: Category[];
         markup: number;
         pictures: Picture[];
         clone: boolean;
@@ -292,58 +267,34 @@ export class NewOffPeakProductComponent implements OnInit {
         this.clone = data.clone;
         this.edit = data.edit;
         this.shops = data.shops;
-        this.categories = data.categories;
         this.markup = data.markup;
         this.pictures = data.pictures;
         this.fillShops(data.shops);
-        this.fillcategories(data.categories);
-        // console.log(this.shop1,this.categories1,this.discounts)
         if (this.shops.length < 1) {
           const dialogRef = this.dialog.open(RequestResultComponent, {
             width: "300px",
             height: "200px",
             data: {
               title: "",
-              question: "You need at least one store to create a product"
-            }
+              question: "You need at least one store to create a product",
+            },
           });
-          dialogRef.afterClosed().subscribe(result => {
+          dialogRef.afterClosed().subscribe((result) => {
             this.router.navigate(["../../shops/newshp"], {
-              relativeTo: this.route
+              relativeTo: this.route,
             });
           });
         }
-        //console.log("shops " + data.shops.length);
       }
     );
-    // console.log(this.clone)
-    this.productForm.get("categoryId").valueChanges.subscribe(value => {
-      if (value == "1") {
-        this.options = [
-          "Sandwich",
-          "Pizza",
-          "Fried chicken",
-          "Cheeseburger",
-          "Special Drinks",
-          "BBQ Meats",
-          "Salad",
-          "Pasta",
-          "All you can eat"
-        ];
-      } else if (value == "2") {
-        this.options = ["Massage", "Nails", "Pedicure", "Manicure", "Facial"];
-      } else {
-        this.options = null;
-      }
-      // console.log(value);
-    });
+
     this.initOfferPickupTime();
   }
   hours12(date) {
     return (date.getHours() + 24) % 12 || 12;
   }
   buildWeekDays() {
-    const arr = this.weekDaysInit.map(weekDay => {
+    const arr = this.weekDaysInit.map((weekDay) => {
       return this.fb.control(weekDay.selected);
     });
     return this.fb.array(arr);
@@ -434,17 +385,17 @@ export class NewOffPeakProductComponent implements OnInit {
         const dialogRef = this.dialog.open(SaveConfirmationDialogComponent, {
           width: "300px",
           height: "200px",
-          data: { title: "", question: "do you want to Edit this product?" }
+          data: { title: "", question: "do you want to Edit this product?" },
         });
-        dialogRef.afterClosed().subscribe(result => {
+        dialogRef.afterClosed().subscribe((result) => {
           if (result == "yes") {
             const progressDialogRef = this.dialog.open(SaveProgressComponent, {
               width: "160px",
               height: "180px",
-              data: { title: "", question: "" }
+              data: { title: "", question: "" },
             });
             this.productService.editProduct(product).subscribe(
-              res => {
+              (res) => {
                 // console.log(res, 'resp')
                 if (res["success"]) {
                   progressDialogRef.close();
@@ -452,7 +403,7 @@ export class NewOffPeakProductComponent implements OnInit {
                     "Successfuly saved",
                     "Add More",
                     {
-                      duration: 2000
+                      duration: 2000,
                     }
                   );
                   snackBarRef.afterDismissed().subscribe(() => {
@@ -470,7 +421,7 @@ export class NewOffPeakProductComponent implements OnInit {
                   this.errors = res["messages"];
                 }
               },
-              err => {
+              (err) => {
                 progressDialogRef.close();
               }
             );
@@ -481,24 +432,24 @@ export class NewOffPeakProductComponent implements OnInit {
         const dialogRef = this.dialog.open(SaveConfirmationDialogComponent, {
           width: "300px",
           height: "200px",
-          data: { title: "", question: "do you want to save this product?" }
+          data: { title: "", question: "do you want to save this product?" },
         });
-        dialogRef.afterClosed().subscribe(result => {
+        dialogRef.afterClosed().subscribe((result) => {
           if (result == "yes") {
             const progressDialogRef = this.dialog.open(SaveProgressComponent, {
               width: "160px",
               height: "180px",
-              data: { title: "", question: "" }
+              data: { title: "", question: "" },
             });
             this.productService.createProduct(product).subscribe(
-              res => {
+              (res) => {
                 if (res["success"]) {
                   progressDialogRef.close();
                   let snackBarRef = this.snackBar.open(
                     "Successfuly saved",
                     "Add More",
                     {
-                      duration: 2000
+                      duration: 2000,
                     }
                   );
                   snackBarRef.afterDismissed().subscribe(() => {
@@ -516,7 +467,7 @@ export class NewOffPeakProductComponent implements OnInit {
                   this.errors = res["messages"];
                 }
               },
-              err => {
+              (err) => {
                 progressDialogRef.close();
               }
             );
@@ -543,7 +494,7 @@ export class NewOffPeakProductComponent implements OnInit {
       let file = event.target.files[0];
       this.productForm.get("img").setValue({
         filetype: file.type,
-        value: reader.result
+        value: reader.result,
       });
       this.showImage = true;
     };
@@ -690,14 +641,10 @@ export class NewOffPeakProductComponent implements OnInit {
       );
 
       this.offerEndDate = new Date(
-        moment(offerEndDate)
-          .add("hours", 13)
-          .valueOf()
+        moment(offerEndDate).add("hours", 13).valueOf()
       );
       this.offerStartDate = new Date(
-        moment(offerStartDate)
-          .add("hours", 13)
-          .valueOf()
+        moment(offerStartDate).add("hours", 13).valueOf()
       );
 
       this.offerStartDate.setHours(0);
@@ -821,16 +768,10 @@ export class NewOffPeakProductComponent implements OnInit {
       // day.selected = false;
       if (weekDays.includes(day.name.toLowerCase())) {
         day.selected = true;
-        this.productForm
-          .get("weekDays")
-          .get(`${index}`)
-          .setValue(true);
+        this.productForm.get("weekDays").get(`${index}`).setValue(true);
       } else {
         day.selected = false;
-        this.productForm
-          .get("weekDays")
-          .get(`${index}`)
-          .setValue(false);
+        this.productForm.get("weekDays").get(`${index}`).setValue(false);
       }
     });
   }
@@ -840,7 +781,7 @@ export class NewOffPeakProductComponent implements OnInit {
         ? this.productForm.controls[key].setValue(value)
         : null;
     });
-    this.productForm.get("categoryId").setValue(this.product.subCategoryId);
+
     this.productForm.get("shop").setValue(this.product.storeId);
     this.productForm.get("imgId").setValue(this.product.imgId);
     this.offerStartInitTime = this.product.offerStartDate;
@@ -855,20 +796,11 @@ export class NewOffPeakProductComponent implements OnInit {
     }
   }
 
-  fillcategories(categories) {
-    categories.map(industry => {
-      this.categories1.push({
-        name: industry.name,
-        value: industry.id
-      });
-    });
-  }
-
   fillShops(shop) {
-    shop.map(shop => {
+    shop.map((shop) => {
       this.shop1.push({
         name: shop.name,
-        value: shop.id
+        value: shop.id,
       });
     });
   }
@@ -922,7 +854,7 @@ export class NewOffPeakProductComponent implements OnInit {
       } else {
         this.loadingLocalImage = false;
         this.snackBar.open("The file type should be PNG or JPEG", "", {
-          duration: 4000
+          duration: 4000,
         });
       }
     }
@@ -935,7 +867,7 @@ export class NewOffPeakProductComponent implements OnInit {
         "Image is not large enough, Select a larger image.",
         "",
         {
-          duration: 4000
+          duration: 4000,
         }
       );
       this.imageChangedEvent = "";
@@ -979,14 +911,14 @@ export class NewOffPeakProductComponent implements OnInit {
           uploadClass.formData.append("name", value["name"]);
           uploadClass.formData.append("img", value["img"]);
           uploadClass.uploadService.createImage(uploadClass.formData).subscribe(
-            res => {
+            (res) => {
               if (res["success"]) {
                 //progressDialog.close();
                 let snackBarRef = uploadClass.snackBar.open(
                   "Successfuly Uploaded File",
                   "Upload More",
                   {
-                    duration: 2000
+                    duration: 2000,
                   }
                 );
                 uploadClass.pictures.unshift(res["image"]);
@@ -996,7 +928,7 @@ export class NewOffPeakProductComponent implements OnInit {
                 this.errors = res["messages"];
               }
             },
-            err => {
+            (err) => {
               console.log(err);
             }
           );
@@ -1005,7 +937,7 @@ export class NewOffPeakProductComponent implements OnInit {
       },
       error(err) {
         console.log(err);
-      }
+      },
     });
   }
 

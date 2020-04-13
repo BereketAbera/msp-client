@@ -46,7 +46,6 @@ export class DealDetailComponent implements OnInit {
     this.route.data.subscribe(
       (data: { product: Product; mspMarkup: Markup }) => {
         this.product = data.product;
-        console.log(this.product);
         [
           "offerStartTime",
           "offerEndTime",

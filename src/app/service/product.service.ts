@@ -93,7 +93,7 @@ export class ProductService {
     distance,
     lat,
     lng,
-    subCatagoryId,
+    subCategoryId,
     filter,
     sortOrder,
     pageNumber,
@@ -104,7 +104,9 @@ export class ProductService {
     return this.http
       .get(
         productApi +
-          `/company/product?distance=${distance}&lat=${lat}&q=${query}&lng=${lng}&userId=${userId}`
+          `/company/product?distance=${distance}&lat=${lat}&q=${query}&lng=${lng}&userId=${userId}${
+            subCategoryId ? "&subCategoryId=" + subCategoryId : ""
+          }`
       )
       .pipe(
         map((res) => {

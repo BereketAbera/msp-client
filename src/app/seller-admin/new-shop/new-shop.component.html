@@ -50,11 +50,25 @@
             formControlName="telephone"
           />
         </mat-form-field>
+        <mat-form-field class="add-shop__categories add-shop__input">
+          <mat-select
+            placeholder="Select Category"
+            formControlName="subCategoryId"
+            required
+          >
+            <mat-option
+              *ngFor="let category of categories"
+              [value]="category.id"
+            >
+              {{ category.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
         <mat-form-field>
           <input matInput placeholder="Address" formControlName="address" />
         </mat-form-field>
         <div class="add-shop__address">
-          <mat-form-field class="zipstatecity add-shop__input">
+          <mat-form-field class="add-shop__input zipstatecity">
             <input
               matInput
               placeholder="City"
@@ -62,7 +76,7 @@
               required
             />
           </mat-form-field>
-          <mat-form-field class="zipstatecity add-shop__input">
+          <mat-form-field class="add-shop__input zipstatecity">
             <mat-select
               placeholder="Select State"
               formControlName="state"
@@ -73,7 +87,7 @@
               </mat-option>
             </mat-select>
           </mat-form-field>
-          <mat-form-field class="add-shop__input">
+          <mat-form-field class="add-shop__input zipstatecity">
             <input
               matInput
               type="text"
