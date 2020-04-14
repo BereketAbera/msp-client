@@ -70,10 +70,12 @@
           [categoryId]="categoryId"
         >
         </app-company-products>
-        <div class="separator"></div>
       </div>
     </div>
-    <div *ngIf="companies?.length == 0" class="products__not-found-container">
+    <div
+      *ngIf="companies && companies.length == 0"
+      class="products__not-found-container"
+    >
       <p class="products__not-found">
         No Products Found. Check Other Locations.
       </p>
