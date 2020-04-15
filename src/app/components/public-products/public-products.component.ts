@@ -72,6 +72,7 @@ export class PublicProductsComponent implements OnInit {
   }
 
   loadFirstTime() {
+    this.page = 0;
     if (this.address && this.address.Latitude && this.address.Longitude) {
       this.authService.progressBarActive.next(true);
       this.prdctService
@@ -115,6 +116,7 @@ export class PublicProductsComponent implements OnInit {
         this.address.Longitude
       ) {
         this.shouldLoad = false;
+        console.log("about to fetch new companies");
         this.authService.progressBarActive.next(true);
         this.prdctService
           .listCompaniesProducts(
@@ -124,6 +126,7 @@ export class PublicProductsComponent implements OnInit {
             this.categoryId
           )
           .subscribe((company) => {
+            console.log(company);
             //@ts-ignore
             this.companies.push(...company);
             this.page = this.page + 1;

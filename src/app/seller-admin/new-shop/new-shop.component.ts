@@ -24,6 +24,7 @@ import { Category } from "src/app/model/category";
   styleUrls: ["./new-shop.component.scss"],
 })
 export class NewShopComponent implements OnInit {
+  [x: string]: any;
   showError: boolean = false;
   errors = [];
   // zipCodeHints$ = new Observable<ZipCode[]>();
@@ -33,7 +34,6 @@ export class NewShopComponent implements OnInit {
 
   lat: any = 60.168997;
   lng: any = 24.9433353;
-  categories: any;
 
   //shopName = new FormControl("",Validators.required);
   shopForm = this.fb.group({
@@ -44,7 +44,6 @@ export class NewShopComponent implements OnInit {
     zipCode: ["", Validators.required],
     telephone: ["", Validators.required],
     contact: ["", Validators.required],
-    subCategoryId: ["", Validators.required],
   });
 
   constructor(
@@ -62,12 +61,9 @@ export class NewShopComponent implements OnInit {
     this.showError = false;
   }
   ngOnInit() {
-    this.route.data.subscribe(
-      (data: { states: State[]; categories: Category[] }) => {
-        this.states = data.states;
-        this.categories = data.categories;
-      }
-    );
+    this.route.data.subscribe((data: { states: State[] }) => {
+      this.states = data.states;
+    });
   }
   searchZipCods(searchInp: string) {
     this.searchText$.next(searchInp);
@@ -94,5 +90,16 @@ export class NewShopComponent implements OnInit {
   }
   showForm() {
     return this.authService.isAccountActive();
+  }
+
+  getlocations(q) {
+    if (q.length > 2) {
+      this.zipcodeService.searchAddress(q).subscribe(
+        (response) => {
+          this.zipCodeHints = response;
+        },
+        (err) => console.log(err)
+      );
+    }
   }
 }

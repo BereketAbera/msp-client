@@ -64,7 +64,6 @@ export class CompanyProductsComponent implements OnInit {
       this.lat = this.address.Latitude;
       this.lng = this.address.Longitude;
     }
-    console.log(this.lat, this.lng);
     this.prdctService
       .getListOfProducts(
         this.distance,

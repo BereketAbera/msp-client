@@ -30,6 +30,7 @@ import { AddStaffComponent } from './add-staff/add-staff.component';
 import { StaffsComponent } from './staffs/staffs.component';
 import { ManageStaffAccessComponent } from './manage-staff-access/manage-staff-access.component';
 import { AccessDeniedComponent } from './access-denied/access-denied.component';
+import { EditShopComponent } from './edit-shop/edit-shop.component';
 
 @NgModule({
   imports: [
@@ -63,7 +64,8 @@ import { AccessDeniedComponent } from './access-denied/access-denied.component';
     AddStaffComponent,
     StaffsComponent,
     ManageStaffAccessComponent,
-    AccessDeniedComponent
+    AccessDeniedComponent,
+    EditShopComponent
   ],
   entryComponents: [
     RequestConfirmationComponent,
