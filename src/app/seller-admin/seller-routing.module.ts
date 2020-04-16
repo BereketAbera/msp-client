@@ -1,3 +1,4 @@
+import { EditShopComponent } from "./edit-shop/edit-shop.component";
 import { AccessDeniedComponent } from "./access-denied/access-denied.component";
 import { UserFeaturesResolverService } from "./../service/user-features-resolver.service";
 import { AddStaffComponent } from "./add-staff/add-staff.component";
@@ -33,6 +34,7 @@ import { Transaction } from "../model/transaction";
 import { StaffsComponent } from "./staffs/staffs.component";
 import { ManageStaffAccessComponent } from "./manage-staff-access/manage-staff-access.component";
 import { FeaturesResolverService } from "../service/features-resolver.service";
+import { ShopByIdResolverService } from "../service/shop-by-id-resolver.service";
 
 const sellerRoutes: Routes = [
   {
@@ -94,6 +96,15 @@ const sellerRoutes: Routes = [
         resolve: {
           states: StateResolverService,
           categories: SubCategoryResolverService,
+        },
+      },
+      {
+        path: "shops/edit/:id",
+        canActivate: [SellerGuard],
+        component: EditShopComponent,
+        resolve: {
+          states: StateResolverService,
+          shop: ShopByIdResolverService,
         },
       },
       {

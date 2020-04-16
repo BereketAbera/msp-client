@@ -15,8 +15,7 @@
   (ngSubmit)="onSubmit()"
 >
   <mat-card>
-    <mat-card-title>Create store location</mat-card-title>
-    <p>Must create at least one store location to sell products.</p>
+    <mat-card-title>Edit store location</mat-card-title>
     <mat-card-content>
       <div fxLayout="column" class="frmDiv">
         <mat-form-field hintLabel="Min 2 characters">
@@ -26,6 +25,7 @@
             placeholder="Store name at this location"
             formControlName="shopName"
             required
+            [value]="shop.name"
           />
           <mat-error *ngIf="shopForm.controls.shopName.invalid"
             >Shop name should be at least two characters.</mat-error
@@ -36,6 +36,7 @@
             matInput
             placeholder="Contact person"
             formControlName="contact"
+            [value]="shop.contact"
           />
         </mat-form-field>
         <mat-form-field
@@ -48,6 +49,7 @@
             matInput
             placeholder="Telephone"
             formControlName="telephone"
+            [value]="shop.phone"
           />
         </mat-form-field>
         <!-- <mat-form-field class="add-shop__categories add-shop__input">
@@ -65,7 +67,12 @@
           </mat-select>
         </mat-form-field> -->
         <mat-form-field>
-          <input matInput placeholder="Address" formControlName="address" />
+          <input
+            matInput
+            placeholder="Address"
+            formControlName="address"
+            [value]="shop.address"
+          />
         </mat-form-field>
         <div class="add-shop__address">
           <mat-form-field class="add-shop__input zipstatecity">
@@ -74,12 +81,14 @@
               placeholder="City"
               formControlName="city"
               required
+              [value]="shop.city"
             />
           </mat-form-field>
           <mat-form-field class="add-shop__input zipstatecity">
             <mat-select
               placeholder="Select State"
               formControlName="state"
+              [(ngModel)]="shop.stateId"
               required
             >
               <mat-option *ngFor="let state of states" [value]="state.id">
@@ -96,6 +105,7 @@
               [matAutocomplete]="auto"
               formControlName="zipCode"
               (keyup)="getlocations($event.target.value)"
+              [value]="shop.zipCode"
             />
             <mat-autocomplete #auto="matAutocomplete">
               <mat-option

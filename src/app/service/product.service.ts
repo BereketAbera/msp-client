@@ -101,6 +101,11 @@ export class ProductService {
     userId,
     query
   ) {
+    console.log(
+      `/company/product?distance=${distance}&lat=${lat}&q=${query}&lng=${lng}&userId=${userId}${
+        subCategoryId ? "&subCategoryId=" + subCategoryId : ""
+      }`
+    );
     return this.http
       .get(
         productApi +

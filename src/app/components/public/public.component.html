@@ -48,9 +48,20 @@
           <!-- <i class="fas fa-times"></i> -->
           <i class="fas fa-times header_mobile__search-icon"></i>
         </div>
-        <div class="header_mobile__search-icon-container">
+        <div
+          *ngIf="!authService.isLoggedIn()"
+          class="header_mobile__search-icon-container"
+        >
           <button routerLink="/login" class="header_mobile__login-button">
             <i class="fas fa-sign-in-alt"></i>
+          </button>
+        </div>
+        <div
+          *ngIf="authService.isLoggedIn()"
+          class="header_mobile__search-icon-container"
+        >
+          <button routerLink="/tlgu-byr" class="header_mobile__login-button">
+            <i class="fas fa-home"></i>
           </button>
         </div>
       </div>
@@ -89,7 +100,7 @@
           </div>
         </div>
       </div>
-      <div class="header__desktop__right">
+      <div *ngIf="!authService.isLoggedIn()" class="header__desktop__right">
         <div class="header__desktop__seller-signup-container">
           <button
             routerLink="/login"
@@ -112,7 +123,19 @@
           </button>
         </div>
       </div>
+      <div
+        *ngIf="authService.isLoggedIn()"
+        class="header__desktop__right"
+        style="justify-content: flex-end;"
+      >
+        <div class="header__desktop__login-container">
+          <button routerLink="/tlgu-byr" class="header__desktop__login-button">
+            Home
+          </button>
+        </div>
+      </div>
     </div>
+
     <mat-progress-bar
       *ngIf="progressBarActive"
       color="#F94081"

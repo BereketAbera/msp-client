@@ -1,8 +1,8 @@
 export class ZipCode {
-    id:number
-    zipCode:string;
-    cityName:string;
-    stateName:string;
-    stateAbbr:string;
-    countyName:string;
+  id: number;
+  ZIPCode: string;
+  CityName: string;
+  StateName: string;
+  StateAbbr: string;
+  CountyName: string;
 }

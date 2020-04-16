@@ -33,7 +33,7 @@ export class PublicProductsComponent implements OnInit {
   lat: number = 0;
   lng: number = 0;
   distance: number = 0;
-  companies: any = [];
+  companies: any;
   productProject = [];
   address: any;
   addresses: any;
@@ -72,7 +72,7 @@ export class PublicProductsComponent implements OnInit {
   }
 
   loadFirstTime() {
-    this.companies = [];
+    this.page = 0;
     if (this.address && this.address.Latitude && this.address.Longitude) {
       this.authService.progressBarActive.next(true);
       this.prdctService
@@ -116,6 +116,7 @@ export class PublicProductsComponent implements OnInit {
         this.address.Longitude
       ) {
         this.shouldLoad = false;
+        console.log("about to fetch new companies");
         this.authService.progressBarActive.next(true);
         this.prdctService
           .listCompaniesProducts(
@@ -125,6 +126,7 @@ export class PublicProductsComponent implements OnInit {
             this.categoryId
           )
           .subscribe((company) => {
+            console.log(company);
             //@ts-ignore
             this.companies.push(...company);
             this.page = this.page + 1;
@@ -203,9 +205,6 @@ export class PublicProductsComponent implements OnInit {
       this.loadFirstTime();
       this.searchInput.setValue("");
       this.categoryOptionsActive = false;
-    } else if (this.address) {
-      this.addresses = this.address;
-      this.loadFirstTime();
     }
   }
 
@@ -230,7 +229,6 @@ export class PublicProductsComponent implements OnInit {
             Latitude: response.coords.latitude,
             Longitude: response.coords.longitude,
           };
-          console.log(this.address);
           this.getProducts();
         },
         (err) => console.log(err)

@@ -34,9 +34,11 @@ export class CompanyProductsComponent implements OnInit {
   showAnimate = false;
   shown = false;
   navigate = false;
+  address: any;
   constructor(private prdctService: ProductService) {}
 
   ngOnChanges(changes: SimpleChanges) {
+    this.address = JSON.parse(localStorage.getItem("client_address"));
     for (let propName in changes) {
       if (propName == "query" || propName == "categoryId") {
         let chng = changes[propName];
@@ -58,6 +60,10 @@ export class CompanyProductsComponent implements OnInit {
   }
 
   getCompanyProducts() {
+    if (this.address) {
+      this.lat = this.address.Latitude;
+      this.lng = this.address.Longitude;
+    }
     this.prdctService
       .getListOfProducts(
         this.distance,
@@ -72,7 +78,6 @@ export class CompanyProductsComponent implements OnInit {
         this.query ? this.query : this.q
       )
       .subscribe((resp) => {
-        // console.log(resp,'product')
         if (resp && Object.keys(resp).length != 0) {
           this.products = resp;
 

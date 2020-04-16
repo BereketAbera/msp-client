@@ -51,7 +51,6 @@
         </td>
       </tr>
     </table>
-
     <mat-form-field hintLabel="max 32 characters">
       <input
         matInput
@@ -60,6 +59,17 @@
         formControlName="companyName"
         required
       />
+    </mat-form-field>
+    <mat-form-field class="add-shop__categories add-shop__input">
+      <mat-select
+        placeholder="Select Restaurant Type"
+        formControlName="subCategoryId"
+        required
+      >
+        <mat-option *ngFor="let category of categories" [value]="category.id">
+          {{ category.name }}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
     <mat-form-field class="example-full-width" hintLabel="max 15 numbers">
       <input

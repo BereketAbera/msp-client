@@ -3,7 +3,7 @@ import {
   Component,
   ElementRef,
   OnInit,
-  ViewChild
+  ViewChild,
 } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { MatPaginator, MatSort, MatTableDataSource } from "@angular/material";
@@ -16,14 +16,14 @@ import { ShopsDataSource } from "../../service/shopsDataSource";
 @Component({
   selector: "app-shop-list",
   templateUrl: "./shop-list.component.html",
-  styleUrls: ["./shop-list.component.scss"]
+  styleUrls: ["./shop-list.component.scss"],
 })
 export class ShopListComponent implements OnInit, AfterViewInit {
   errors;
   showError: boolean = false;
   dataSource: ShopsDataSource;
 
-  displayedColumns = ["name", "address", "ZipCode", "contact", "phone"];
+  displayedColumns = ["name", "address", "ZipCode", "contact", "phone", "menu"];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -58,13 +58,13 @@ export class ShopListComponent implements OnInit, AfterViewInit {
       else {
         this.showError = true;
         this.errors = [
-          "Sorry, your account is either inactive or disabled.Please contact sales@ManagerSpecial.com."
+          "Sorry, your account is either inactive or disabled.Please contact sales@ManagerSpecial.com.",
         ];
       }
     } catch (err) {
       this.showError = true;
       this.errors = [
-        "Sorry, your account is either inactive or disabled.Please contact sales@ManagerSpecial.com."
+        "Sorry, your account is either inactive or disabled.Please contact sales@ManagerSpecial.com.",
       ];
     }
   }
@@ -79,5 +79,9 @@ export class ShopListComponent implements OnInit, AfterViewInit {
   }
   close() {
     this.showError = false;
+  }
+
+  editProduct(shop) {
+    this.router.navigate([`/tlgu-slr/shops/edit/${shop.id}`]);
   }
 }

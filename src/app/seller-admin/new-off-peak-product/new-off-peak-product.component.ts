@@ -951,4 +951,8 @@ export class NewOffPeakProductComponent implements OnInit {
     var imageUrl = urlCreator.createObjectURL(blob);
     document.querySelector("#localImage")["src"] = imageUrl;
   }
+
+  shopChanged(event) {
+    console.log(event);
+  }
 }

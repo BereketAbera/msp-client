@@ -54,6 +54,22 @@
       <mat-cell *matCellDef="let shop">{{ shop.zipCode }}</mat-cell>
     </ng-container>
 
+    <ng-container matColumnDef="menu">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+
+      <mat-cell *matCellDef="let shop"
+        ><button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="editProduct(shop)">
+            <mat-icon color="accent">edit</mat-icon>
+            <span>Edit</span>
+          </button>
+        </mat-menu>
+      </mat-cell>
+    </ng-container>
+
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 
     <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
