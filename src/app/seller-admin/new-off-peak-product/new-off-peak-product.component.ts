@@ -21,6 +21,7 @@ import { UploadService } from "src/app/service/upload.service";
 import { ImageCroppedEvent } from "ngx-image-cropper";
 import Compressor from "compressorjs";
 import { stringify } from "querystring";
+import { copyStyles } from '@angular/animations/browser/src/util';
 // import { DragDropDirective } from 'src/app/service/drag-drop.directive';
 let uploadClass = null;
 export interface Discount {
@@ -234,6 +235,7 @@ export class NewOffPeakProductComponent implements OnInit {
       },
       (err) => console.log(err)
     );
+
 
     this.productForm
       .get("normalPrice")
@@ -721,6 +723,7 @@ export class NewOffPeakProductComponent implements OnInit {
       this.productForm
         .get("offerEndHH")
         .setValue(`${this.returnTwoDigit(parseInt(curr))}`);
+      this.productForm.get("offerEndMM").setValue(`30:PM`)
     } else if (parseInt(curr) >= parseInt(currY)) {
       this.productForm
         .get("offerEndHH")
@@ -733,6 +736,8 @@ export class NewOffPeakProductComponent implements OnInit {
       this.productForm
         .get("pickupEndHH")
         .setValue(`${this.returnTwoDigit(parseInt(curr))}`);
+      this.productForm.get("pickupEndMM").setValue(`30:PM`)
+
     } else if (parseInt(curr) == 11 && parseInt(curr) >= parseInt(pick)) {
       this.productForm
         .get("pickupStartHH")
@@ -813,7 +818,7 @@ export class NewOffPeakProductComponent implements OnInit {
     let x = time.split(":");
     let hour = parseInt(x[0]);
     let minute = parseInt(x[1]);
-    let totalMinutes = hour * 60 + minute;
+    let totalMinutes = hour * 60 + minute + d;
     hour = Math.floor(totalMinutes / 60);
     minute = totalMinutes % 60;
 
