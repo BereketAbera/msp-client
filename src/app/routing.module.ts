@@ -58,7 +58,7 @@ const appRoutes: Routes = [
         },
         runGuardsAndResolvers: "always",
       },
-      { path: "cart", canActivate: [HomeGuard], component: CartComponent },
+      { path: "cart", component: CartComponent },
       { path: "food", component: HomeComponent },
       { path: "beauty", component: BeautyComponent },
       { path: "test", component: TestUtcComponent },
