@@ -69,3 +69,14 @@ ul {
   border-radius: 0rem;
   padding: 0rem 3rem;
 }
+
+.shops {
+  &__container {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  &__sub-container {
+    min-width: 70rem;
+  }
+}

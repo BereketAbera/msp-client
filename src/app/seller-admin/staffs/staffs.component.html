@@ -12,110 +12,116 @@
   <div *ngIf="dataSource?.length == 0" class="staffs-notfound">
     <span>You do not have any staffs yet.</span>
   </div>
-  <mat-table
-    *ngIf="dataSource?.length > 0"
-    class="mat-elevation-z8"
-    [dataSource]="dataSource"
-    matSort
-    matSortActive="name"
-    matSortDirection="asc"
-    matSortDisableClear
-  >
-    <ng-container matColumnDef="username">
-      <mat-header-cell *matHeaderCellDef mat-sort-header
-        >Username</mat-header-cell
+  <div class="staff__container">
+    <div class="staff__sub-container">
+      <mat-table
+        *ngIf="dataSource?.length > 0"
+        class="mat-elevation-z8"
+        [dataSource]="dataSource"
+        matSort
+        matSortActive="name"
+        matSortDirection="asc"
+        matSortDisableClear
       >
-
-      <mat-cell *matCellDef="let staff">{{ staff.username }}</mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="email">
-      <mat-header-cell *matHeaderCellDef>Email</mat-header-cell>
-
-      <mat-cell *matCellDef="let staff">{{ staff.email }}</mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="firstName">
-      <mat-header-cell *matHeaderCellDef>First Name</mat-header-cell>
-
-      <mat-cell *matCellDef="let staff">{{ staff.firstName }}</mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="lastName">
-      <mat-header-cell *matHeaderCellDef>LastName</mat-header-cell>
-
-      <mat-cell *matCellDef="let staff">{{ staff.lastName }}</mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="phoneNumber">
-      <mat-header-cell *matHeaderCellDef>Phone Number</mat-header-cell>
-
-      <mat-cell *matCellDef="let staff">{{ staff.phoneNumber }}</mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="status">
-      <mat-header-cell *matHeaderCellDef>Staffer Status</mat-header-cell>
-
-      <mat-cell
-        [class.staff_status--active]="staff.staff_status == 'ACTIVE'"
-        [class.staff_status--suspended]="staff.staff_status == 'SUSPENDED'"
-        [class.staff_status--removed]="staff.staff_status == 'REMOVED'"
-        *matCellDef="let staff"
-        >{{ staff.staff_status }}</mat-cell
-      >
-    </ng-container>
-
-    <ng-container matColumnDef="actions">
-      <mat-header-cell *matHeaderCellDef></mat-header-cell>
-
-      <mat-cell *matCellDef="let staff"
-        ><button mat-icon-button [matMenuTriggerFor]="menu">
-          <mat-icon>more_vert</mat-icon>
-        </button>
-        <mat-menu #menu="matMenu">
-          <button
-            *ngIf="
-              staff.staff_status != 'REMOVED' && staff.staff_status != 'INVITED'
-            "
-            mat-menu-item
-            (click)="updateStaff(staff.id, 'REMOVED')"
+        <ng-container matColumnDef="username">
+          <mat-header-cell *matHeaderCellDef mat-sort-header
+            >Username</mat-header-cell
           >
-            <mat-icon color="accent">delete</mat-icon>
-            <span>Remove</span>
-          </button>
 
-          <button
-            *ngIf="
-              staff.staff_status != 'SUSPENDED' &&
-              staff.staff_status != 'INVITED'
-            "
-            mat-menu-item
-            (click)="updateStaff(staff.id, 'SUSPENDED')"
+          <mat-cell *matCellDef="let staff">{{ staff.username }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="email">
+          <mat-header-cell *matHeaderCellDef>Email</mat-header-cell>
+
+          <mat-cell *matCellDef="let staff">{{ staff.email }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="firstName">
+          <mat-header-cell *matHeaderCellDef>First Name</mat-header-cell>
+
+          <mat-cell *matCellDef="let staff">{{ staff.firstName }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="lastName">
+          <mat-header-cell *matHeaderCellDef>LastName</mat-header-cell>
+
+          <mat-cell *matCellDef="let staff">{{ staff.lastName }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="phoneNumber">
+          <mat-header-cell *matHeaderCellDef>Phone Number</mat-header-cell>
+
+          <mat-cell *matCellDef="let staff">{{ staff.phoneNumber }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="status">
+          <mat-header-cell *matHeaderCellDef>Staffer Status</mat-header-cell>
+
+          <mat-cell
+            [class.staff_status--active]="staff.staff_status == 'ACTIVE'"
+            [class.staff_status--suspended]="staff.staff_status == 'SUSPENDED'"
+            [class.staff_status--removed]="staff.staff_status == 'REMOVED'"
+            *matCellDef="let staff"
+            >{{ staff.staff_status }}</mat-cell
           >
-            <mat-icon color="accent">lock</mat-icon>
-            <span>Sespend</span>
-          </button>
-          <button
-            *ngIf="
-              staff.staff_status != 'ACTIVE' && staff.staff_status != 'INVITED'
-            "
-            mat-menu-item
-            (click)="updateStaff(staff.id, 'ACTIVE')"
-          >
-            <mat-icon color="accent">done</mat-icon>
-            <span>ACTIVATE</span>
-          </button>
-          <button mat-menu-item (click)="manageStaff(staff.id)">
-            <mat-icon color="accent">edit</mat-icon>
-            <span>Manage Access</span>
-          </button>
-        </mat-menu>
-      </mat-cell>
-    </ng-container>
+        </ng-container>
 
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <ng-container matColumnDef="actions">
+          <mat-header-cell *matHeaderCellDef></mat-header-cell>
 
-    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
-  </mat-table>
-  <mat-paginator
-    [length]="count"
-    [pageSize]="5"
-    (page)="getServerData($event)"
-  ></mat-paginator>
+          <mat-cell *matCellDef="let staff"
+            ><button mat-icon-button [matMenuTriggerFor]="menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button
+                *ngIf="
+                  staff.staff_status != 'REMOVED' &&
+                  staff.staff_status != 'INVITED'
+                "
+                mat-menu-item
+                (click)="updateStaff(staff.id, 'REMOVED')"
+              >
+                <mat-icon color="accent">delete</mat-icon>
+                <span>Remove</span>
+              </button>
+
+              <button
+                *ngIf="
+                  staff.staff_status != 'SUSPENDED' &&
+                  staff.staff_status != 'INVITED'
+                "
+                mat-menu-item
+                (click)="updateStaff(staff.id, 'SUSPENDED')"
+              >
+                <mat-icon color="accent">lock</mat-icon>
+                <span>Sespend</span>
+              </button>
+              <button
+                *ngIf="
+                  staff.staff_status != 'ACTIVE' &&
+                  staff.staff_status != 'INVITED'
+                "
+                mat-menu-item
+                (click)="updateStaff(staff.id, 'ACTIVE')"
+              >
+                <mat-icon color="accent">done</mat-icon>
+                <span>ACTIVATE</span>
+              </button>
+              <button mat-menu-item (click)="manageStaff(staff.id)">
+                <mat-icon color="accent">edit</mat-icon>
+                <span>Manage Access</span>
+              </button>
+            </mat-menu>
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+      </mat-table>
+      <mat-paginator
+        [length]="count"
+        [pageSize]="5"
+        (page)="getServerData($event)"
+      ></mat-paginator>
+    </div>
+  </div>
 </div>

@@ -95,3 +95,14 @@ ul {
   color: #555;
   font-size: 1.5rem;
 }
+
+.staff {
+  &__container {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  &__sub-container {
+    min-width: 70rem;
+  }
+}

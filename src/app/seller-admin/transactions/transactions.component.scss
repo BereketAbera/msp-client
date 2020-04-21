@@ -3,12 +3,6 @@
   max-width: 390px;
   margin: 0 auto;
 }
-
-.header {
-  color: #777;
-  padding: 1rem;
-  padding-bottom: 0rem;
-}
 .img {
   max-width: 8rem;
   height: 4rem;
@@ -55,4 +49,25 @@
   left: 0;
   height: 100%;
   width: 100%;
+}
+
+.order {
+  &__main-container {
+  }
+
+  &__list-container {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  &__sub-list-container {
+    min-width: 60rem;
+  }
+
+  &__header {
+    color: #777;
+    padding: 1rem;
+    padding-bottom: 0rem;
+    font-size: 1.8rem;
+  }
 }

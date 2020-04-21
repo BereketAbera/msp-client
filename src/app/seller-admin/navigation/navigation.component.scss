@@ -1,28 +1,155 @@
+// .active-route {
+//   color: darkblue;
+
+// }
+// ul {
+//   list-style: none;
+//   padding-left: 0px;
+// }
+// a {
+//   text-decoration: none;
+//   color: white;
+//   font-size: 14px;
+// }
+// .example-fill-remaining-space {
+//   /* This fills the remaining space, by using flexbox.
+//      Every toolbar row uses a flexbox row layout. */
+//   flex: 1 1 auto;
+// }
+// span a {
+//   text-decoration: none;
+//   color: black;
+
+// }
+// .active {
+//   color: #000000;
+//   border-bottom: 2px solid #000000;
+//   font-weight: 300;
+// }
+
+.navigation {
+  width: 100%;
+  padding: 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+  // border-top: 1px solid #aaa;
+
+  &__container {
+    width: 100%;
+    margin: 1rem;
+    display: flex;
+    // align-items: space-between;
+    // justify-content: space-between;
+  }
+
+  &__sub-container {
+    width: 100%;
+    display: flex;
+    list-style: none;
+  }
+
+  &__item {
+    // margin-bottom: 2rem;
+  }
+
+  &__item-text {
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #555;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem 2rem 0.5rem 1rem;
+    // margin-bottom: 1rem;
+    transition: transform 0.2s;
+    cursor: pointer;
+
+    &:hover,
+    &:active {
+      color: #fff;
+      text-decoration: none;
+      clip-path: polygon(90% 0, 100% 50%, 90% 100%, 0% 100%, 0 50%, 0% 0%);
+      background-color: #f94081;
+    }
+
+    // &:active {
+    //   transform: scaleX(1.05);
+    // }
+  }
+
+  &__item-icon {
+    margin-right: 1rem;
+    font-size: 1.2rem;
+  }
+
+  &__divider {
+    height: 3px;
+    width: 120%;
+    margin-left: -10%;
+    background: rgb(249, 64, 129);
+    background: linear-gradient(
+      90deg,
+      rgba(249, 64, 129, 1) 0%,
+      rgba(121, 9, 91, 1) 49%,
+      rgba(249, 64, 129, 1) 100%
+    );
+  }
+
+  &__header-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__header-image {
+    width: 2rem;
+  }
+
+  &__header-text {
+    font-size: 1.2rem;
+    font-weight: 900;
+    margin-left: 0.5rem;
+    color: #f94081;
+    width: 12rem;
+  }
+}
+
 .active-route {
-  color: darkblue;
-  
-}
-ul {
-  list-style: none;
-  padding-left: 0px;
-}
-a {
+  color: #fff;
   text-decoration: none;
-  color: white;
-  font-size: 14px;
+  clip-path: polygon(90% 0, 100% 50%, 90% 100%, 0% 100%, 0 50%, 0% 0%);
+  background-color: #f94081;
 }
-.example-fill-remaining-space {
-  /* This fills the remaining space, by using flexbox. 
-     Every toolbar row uses a flexbox row layout. */
-  flex: 1 1 auto;
-}
-span a {
-  text-decoration: none;
-  color: black;
- 
-}
-.active {
-  color: #000000;
-  border-bottom: 2px solid #000000;
-  font-weight: 300;
-}
+
+// .svg-wrapper {
+//   position: relative;
+//   top: 50%;
+//   transform: translateY(-10%);
+//   margin: 0 auto;
+//   width: 15rem;
+// }
+// .shape {
+//   stroke-dasharray: 110 270;
+//   stroke-dashoffset: -260;
+//   stroke-width: 4px;
+//   fill: transparent;
+//   stroke: #f94081;
+//   border-bottom: 5px solid black;
+//   transition: stroke-width 1s, stroke-dashoffset 1s, stroke-dasharray 1s;
+// }
+// .text {
+//   font-size: 1.5rem;
+//   // line-height: 32px;
+//   letter-spacing: 8px;
+//   color: #fff;
+//   top: 2rem;
+//   position: relative;
+// }
+// .svg-wrapper:hover .shape,
+// .svg-wrapper:active .shape {
+//   stroke-width: 4px;
+//   stroke-dashoffset: 0;
+//   stroke-dasharray: 440;
+// }

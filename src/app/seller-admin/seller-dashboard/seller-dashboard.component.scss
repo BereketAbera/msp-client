@@ -39,7 +39,7 @@ td {
     position: relative;
     min-width: 15rem;
     min-height: 15rem;
-    margin: 1rem;
+    margin: 3rem 1rem;
     flex-wrap: wrap;
     flex-direction: column;
   }
@@ -79,4 +79,12 @@ td {
   //   width:  !important;
   //   height: 15rem !important;
   // }
+}
+
+@media only screen and (min-width: 600px) {
+  .dashboard {
+    &__item {
+      margin: 1rem;
+    }
+  }
 }
