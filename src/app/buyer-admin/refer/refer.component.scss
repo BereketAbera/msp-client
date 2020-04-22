@@ -6,3 +6,19 @@
     width: 90%;
 }
 
+@media only screen and (max-width: 600px) {
+    .tab-container{
+       display: flex;
+       width: 38rem;
+    }
+
+    .tab-label {
+        display: flex;
+        width: 36rem;
+    }
+    .mat-tab-label {
+        min-width: 32px;
+    }
+    
+
+}

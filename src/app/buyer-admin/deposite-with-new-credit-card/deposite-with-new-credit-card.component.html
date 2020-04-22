@@ -14,8 +14,8 @@
   <mat-card class="payment-form-card">
       <h2 class="payment-form__header">BILLING INFORMATION</h2>
     <mat-card-content class="payment-form-content">
-      <div fxLayout="column" fxLayoutGap="5px">
-          <div fxLayout="row" fxLayoutGap="7px">
+      <div   fxLayout="column" fxLayoutGap="5px">
+          <div  class="content-row" fxLayout="row" fxLayoutGap="7px">
         <mat-form-field>
           <input matInput placeholder="First Name" formControlName="firstName" required>
         </mat-form-field>
@@ -26,7 +26,7 @@
           <mat-form-field>
           <input matInput placeholder="Address" formControlName="address" required>
         </mat-form-field>
-        <div fxLayout="row" fxLayoutGap="7px">
+        <div class="content-row" fxLayout="row" fxLayoutGap="7px">
           <mat-form-field class="zipstatecity">
             <input matInput placeholder="City" formControlName="city" required>
           </mat-form-field>
@@ -52,7 +52,7 @@
       <h2 class="payment-form__header">PAYMENT INFORMATION</h2>
     <mat-card-content class="payment-form-content">
       <div fxLayout="column">
-        <div fxLayout="row" fxLayoutGap="5px">
+        <div class="content-row"  fxLayout="row" fxLayoutGap="5px">
           <mat-form-field>
             <input matInput id="cc-number" formControlName="creditCard" placeholder="Card Number" type="tel"
               autocomplete="cc-number" ccNumber>
@@ -61,7 +61,7 @@
             <img src="/assets/image/vmd.jpeg" width="120px" height="30px">
           </div>
         </div>
-        <div fxLayout="row" fxLayoutGap="5px">
+        <div fxLayout="row" class="content-row"  fxLayoutGap="5px">
           <mat-form-field>
             <input matInput id="cc-exp-date" formControlName="expirationDate" placeholder="Exipiration Date MM/YY"
               type="tel" autocomplete="cc-exp" ccExp>
@@ -71,9 +71,9 @@
               autocomplete="off" ccCvc>
           </mat-form-field>
         </div>
-        <div>
+        <div class="rememberCrdt">
             
-          <mat-checkbox formControlName="rememberCrdt">Remember my payment information </mat-checkbox>
+          <mat-checkbox formControlName="rememberCrdt">Remember my payment  </mat-checkbox>
         </div>
         <div>
           <mat-form-field>
@@ -82,7 +82,7 @@
             <mat-hint align="start"><strong>Minimum top up is {{minimumAmount|currency}}</strong> </mat-hint>
           </mat-form-field>
         </div>
-        <div fxLayout="row"  fxLayoutGap="7px" class="spaceNext">
+        <div fxLayout="row" class="content-row"   fxLayoutGap="7px" class="spaceNext">
           <div>
             <button type="submit" mat-flat-button color="accent" [disabled]="!paymentForm.valid">Pay Now</button>
           </div>

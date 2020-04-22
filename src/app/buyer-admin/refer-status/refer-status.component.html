@@ -3,49 +3,44 @@
 
   <div class="spinner-container" *ngIf="dataSource.loading$ | async">
 
-      <mat-spinner></mat-spinner>
+    <mat-spinner></mat-spinner>
 
   </div>
-  <mat-table class="table mat-elevation-z2" [dataSource]="dataSource"
-             matSort matSortActive="date" matSortDirection="asc" matSortDisableClear>
+  <mat-table class="table mat-elevation-z2" [dataSource]="dataSource" matSort matSortActive="date"
+    matSortDirection="asc" matSortDisableClear>
 
-      
-      <ng-container matColumnDef="email">
 
-          <mat-header-cell *matHeaderCellDef>Refered Email</mat-header-cell>
+    <ng-container matColumnDef="email">
 
-          <mat-cell 
-                    *matCellDef="let refer">{{refer.referedEmail}}</mat-cell>
+      <mat-header-cell *matHeaderCellDef>Refered Email</mat-header-cell>
 
-      </ng-container>
-      <ng-container matColumnDef="type">
+      <mat-cell *matCellDef="let refer">{{refer.referedEmail}}</mat-cell>
 
-        <mat-header-cell *matHeaderCellDef>Type</mat-header-cell>
+    </ng-container>
+    <ng-container matColumnDef="type">
 
-        <mat-cell 
-                  *matCellDef="let refer">{{getType(refer.type)}}</mat-cell>
+      <mat-header-cell *matHeaderCellDef>Type</mat-header-cell>
 
-  </ng-container>
-      
-      <ng-container matColumnDef="isUsed">
+      <mat-cell *matCellDef="let refer">{{getType(refer.type)}}</mat-cell>
 
-        <mat-header-cell *matHeaderCellDef>Registered</mat-header-cell>
+    </ng-container>
 
-        <mat-cell 
-                  *matCellDef="let refer">{{isRegistered(refer.isUsed)}}</mat-cell>
+    <ng-container matColumnDef="isUsed">
 
-  </ng-container>
-  <ng-container matColumnDef="createdAt">
+      <mat-header-cell  *matHeaderCellDef>Registered</mat-header-cell>
 
-    <mat-header-cell *matHeaderCellDef>Refered At</mat-header-cell>
+      <mat-cell *matCellDef="let refer">{{isRegistered(refer.isUsed)}}</mat-cell>
 
-    <mat-cell 
-              *matCellDef="let refer">{{refer.createdAt|date:"yyyy-MM-dd HH:mm:ss"}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="createdAt">
 
-</ng-container>
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+      <mat-header-cell class="tab-hide" *matHeaderCellDef>Refered At</mat-header-cell>
+
+      <mat-cell class="tab-hide"  *matCellDef="let refer">{{refer.createdAt|date:"yyyy-MM-dd HH:mm:ss"}}</mat-cell>
+
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
   </mat-table>
-  <mat-paginator class="table" [length]="dataSource.count" [pageSize]="5"
-                 [pageSizeOptions]="[5, 10]"></mat-paginator>
+  <mat-paginator class="table" [length]="dataSource.count" [pageSize]="5" [pageSizeOptions]="[5, 10]"></mat-paginator>
 </div>

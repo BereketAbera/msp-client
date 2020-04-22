@@ -1,87 +1,93 @@
-
-
-.table{
-    margin: 1rem;
-    width: 95%;
+.table {
+  margin: 1rem;
+  width: 95%;
 }
-.container{
-    margin:1rem 2rem;
-    &__header{
-        color: #666;
-        font-size: 1.5rem;
-        padding-top:1rem;
-    }
-    .balance{
-        display: flex;
-        justify-content: center;
-        width: 21rem;
-        align-items: center;
-        background: #f2f2f2;
-        border-radius: 1rem;
-        // border:1px rgb(231, 21, 73) solid;
-        &__header{
-            font-size: 1.5rem;
-            
-            &__value{
-                font-size: 1.5rem;
-                font-weight: 700;
-                padding-left: 1rem;
-            }
-        }
+.container {
+  margin: 1rem 2rem;
+  &__header {
+    color: #666;
+    font-size: 1.5rem;
+    padding-top: 1rem;
+  }
+  .balance {
+    display: flex;
+    justify-content: center;
+    width: 21rem;
+    align-items: center;
+    background: #f2f2f2;
+    border-radius: 1rem;
+    // border:1px rgb(231, 21, 73) solid;
+    &__header {
+      font-size: 1.5rem;
 
-        &__icon{
-            width: 3rem;
-            height: 100%;
-            background: #f43f81;
-            position: absolute;
-            left: 0;
-            border-radius: 1rem 0rem 0rem 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            color: white;
-        }
+      &__value {
+        font-size: 1.5rem;
+        font-weight: 700;
+        padding-left: 1rem;
+      }
     }
-}   
+
+    &__icon {
+      width: 3rem;
+      height: 100%;
+      background: #f43f81;
+      position: absolute;
+      left: 0;
+      border-radius: 1rem 0rem 0rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      color: white;
+    }
+  }
+}
 
 .course {
-    text-align: center;
-    max-width: 390px;
-    margin: 0 auto;
+  text-align: center;
+  max-width: 390px;
+  margin: 0 auto;
 }
-.frmDiv{
-    padding:15px;
+.frmDiv {
+  padding: 15px;
 }
 .course-thumbnail {
-    width: 150px;
-    margin: 20px auto 0 auto;
-    display: block;
+  width: 150px;
+  margin: 20px auto 0 auto;
+  display: block;
 }
 
-.addNewDiv{
-    padding-top: 15px;
-    padding-bottom: 20px;
-    padding-right: 20px;
+.addNewDiv {
+  padding-top: 15px;
+  padding-bottom: 20px;
+  padding-right: 20px;
 }
-
 
 .spinner-container {
-    height: 360px;
-    width: 390px;
-    position: fixed;
+  height: 360px;
+  width: 390px;
+  position: fixed;
 }
 
 .lessons-table {
-    min-height: 360px;
-    margin-top: 10px;
+  min-height: 360px;
+  margin-top: 10px;
 }
 
 .spinner-container mat-spinner {
-    margin: 130px auto 0 auto;
+  margin: 130px auto 0 auto;
 }
-.clickCard
-    {
-      position: absolute;
-      top: 0; left: 0;
-      height: 100%; width: 100%;
-      }
+.clickCard {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+@media only screen and (max-width: 600px) {
+    .th_hide{
+        display: none;
+    }
+    .th_show{
+        display: block;
+    }
+}
