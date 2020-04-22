@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import * as moment from "moment";
 
 import { Chart } from "chart.js";
@@ -12,7 +12,7 @@ import { ThrowStmt } from "@angular/compiler";
 @Component({
   selector: "app-seller-dashboard",
   templateUrl: "./seller-dashboard.component.html",
-  styleUrls: ["./seller-dashboard.component.scss"]
+  styleUrls: ["./seller-dashboard.component.scss"],
 })
 export class SellerDashboardComponent implements OnInit {
   @ViewChild("lineChart") private chartRef;
@@ -22,11 +22,7 @@ export class SellerDashboardComponent implements OnInit {
   lables: string[];
   revenus: number[];
 
-  sdate = new Date(
-    moment()
-      .subtract(6, "M")
-      .format("YYYY-MM-DD")
-  );
+  sdate = new Date(moment().subtract(6, "M").format("YYYY-MM-DD"));
 
   soldPercentage: any = 0;
   fullCircle: any = 0;
@@ -34,10 +30,14 @@ export class SellerDashboardComponent implements OnInit {
   eData = new Date();
   revenuForm = this.fb.group({
     startDate: [this.sdate, Validators.required],
-    endDate: [this.eData, Validators.required]
+    endDate: [this.eData, Validators.required],
   });
 
-  constructor(private route: ActivatedRoute, private fb: FormBuilder) {}
+  constructor(
+    private route: ActivatedRoute,
+    private fb: FormBuilder,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.route.data.subscribe(
@@ -48,11 +48,11 @@ export class SellerDashboardComponent implements OnInit {
         );
 
         this.revenuReport = data.rvnuRprt;
-        this.lables = this.revenuReport.map(value => {
+        this.lables = this.revenuReport.map((value) => {
           return value.year + "|" + value.month + "|" + value.day;
         });
         // console.log(this.revenuReport);
-        this.revenus = this.revenuReport.map(value => {
+        this.revenus = this.revenuReport.map((value) => {
           return +value.revenu;
         });
 
@@ -75,7 +75,7 @@ export class SellerDashboardComponent implements OnInit {
               "rgba(255, 206, 86, 0.2)",
               "rgba(75, 192, 192, 0.2)",
               "rgba(153, 102, 255, 0.2)",
-              "rgba(255, 159, 64, 0.2)"
+              "rgba(255, 159, 64, 0.2)",
             ],
             borderColor: [
               "rgba(255,99,132,1)",
@@ -83,23 +83,23 @@ export class SellerDashboardComponent implements OnInit {
               "rgba(255, 206, 86, 1)",
               "rgba(75, 192, 192, 1)",
               "rgba(153, 102, 255, 1)",
-              "rgba(255, 159, 64, 1)"
+              "rgba(255, 159, 64, 1)",
             ],
-            borderWidth: 1
-          }
-        ]
+            borderWidth: 1,
+          },
+        ],
       },
       options: {
         scales: {
           yAxes: [
             {
               ticks: {
-                beginAtZero: true
-              }
-            }
-          ]
-        }
-      }
+                beginAtZero: true,
+              },
+            },
+          ],
+        },
+      },
     });
   }
   onSubmit() {}
@@ -113,5 +113,9 @@ export class SellerDashboardComponent implements OnInit {
         clearInterval(interval);
       }
     }, 1000 / number);
+  }
+
+  goToSellSummary() {
+    this.router.navigate(["./slssmry"], { relativeTo: this.route });
   }
 }

@@ -70,4 +70,21 @@
     padding-bottom: 0rem;
     font-size: 1.8rem;
   }
+
+  &__button {
+    // font-size: 1.3rem;
+    border-radius: 0rem;
+    padding: 0rem 2rem;
+  }
+
+  &__header-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 0rem 1rem;
+  }
+}
+
+.mat-cell:last-of-type {
+  padding-right: 0px;
+  max-width: 5rem;
 }

@@ -97,3 +97,8 @@ ul {
     padding: 1rem 0.5rem;
   }
 }
+
+.mat-cell:last-of-type {
+  padding-right: 0px;
+  max-width: 5rem;
+}

@@ -1,5 +1,15 @@
 <div class="order__main-container">
-  <h2 class="order__header">Orders</h2>
+  <div class="order__header-container">
+    <h2 class="order__header">Orders</h2>
+    <button
+      mat-raised-button
+      color="accent"
+      class="order__button"
+      (click)="goToProcessOrder()"
+    >
+      Process Order
+    </button>
+  </div>
   <div class="order__list-container">
     <div class="order__sub-list-container">
       <div class="spinner-container" *ngIf="dataSource.loading$ | async">
@@ -55,7 +65,7 @@
             transaction.total | currency
           }}</mat-cell>
         </ng-container>
-        <ng-container matColumnDef="name">
+        <ng-container matColumnDef="name" stickyEnd>
           <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
 
           <mat-cell *matCellDef="let transaction">

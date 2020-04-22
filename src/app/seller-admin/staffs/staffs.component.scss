@@ -106,3 +106,8 @@ ul {
     min-width: 70rem;
   }
 }
+
+.mat-cell:last-of-type {
+  padding-right: 0px;
+  max-width: 5rem;
+}

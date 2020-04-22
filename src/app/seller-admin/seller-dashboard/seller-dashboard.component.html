@@ -1,4 +1,15 @@
 <div class="dashboard">
+  <div class="dashboard__header-container">
+    <h2 class="dashboard__header">Dashboard</h2>
+    <button
+      mat-raised-button
+      color="accent"
+      class="dashboard__button"
+      (click)="goToSellSummary()"
+    >
+      Date Summary
+    </button>
+  </div>
   <div class="dashboard__container">
     <div class="dashboard__left">
       <div class="dashboard__item dashboard__total-product">
