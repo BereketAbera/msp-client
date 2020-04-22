@@ -113,6 +113,11 @@ const sellerRoutes: Routes = [
         component: TransactionsComponent,
       },
       {
+        path: "trnsctns/process",
+        canActivate: [SellerGuard],
+        component: QrScannerComponent,
+      },
+      {
         path: "trnsctns/:id",
         canActivate: [SellerGuard],
         component: SellerOrderDetailComponent,
@@ -140,11 +145,6 @@ const sellerRoutes: Routes = [
         path: "gallery/:upldimg",
         canActivate: [SellerGuard],
         component: UploadImgComponent,
-      },
-      {
-        path: "qr-scanner",
-        canActivate: [SellerGuard],
-        component: QrScannerComponent,
       },
       {
         path: "shops",

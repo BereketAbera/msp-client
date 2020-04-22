@@ -2,11 +2,12 @@
   &__container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: space-between;
 
     &::after {
       content: "";
       flex: auto;
+      display: none;
     }
   }
 
@@ -20,7 +21,7 @@
     background: #eee;
     transition: all 0.4s;
     min-height: 10rem;
-    width: 22%;
+    width: 40%;
 
     &:hover {
       border: 1rem solid #888;
@@ -75,4 +76,21 @@
   width: auto;
   margin: 0rem 0.5rem;
   border-radius: 0rem;
+}
+
+@media only screen and (min-width: 700px) {
+  .gallery {
+    &__container {
+      justify-content: flex-start;
+
+      &::after {
+        content: "";
+        flex: auto;
+      }
+    }
+
+    &__item {
+      width: 22%;
+    }
+  }
 }

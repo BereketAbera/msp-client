@@ -1,17 +1,18 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { AuthService } from "../../service/auth.service";
 
 @Component({
   selector: "app-navigation",
   templateUrl: "./navigation.component.html",
-  styleUrls: ["./navigation.component.scss"]
+  styleUrls: ["./navigation.component.scss"],
 })
 export class NavigationComponent implements OnInit {
   background = "primary";
   links = [];
   name: string = "";
   role: string = "";
+  @ViewChild("drawerCheckbox") drawerCheckbox: ElementRef;
 
   constructor(
     private router: Router,
@@ -45,5 +46,9 @@ export class NavigationComponent implements OnInit {
   logout() {
     this.authService.logout();
     this.router.navigate(["/"]);
+  }
+
+  drawerLinkClicked() {
+    this.drawerCheckbox.nativeElement.checked = false;
   }
 }

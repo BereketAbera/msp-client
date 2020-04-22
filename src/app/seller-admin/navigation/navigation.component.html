@@ -1,78 +1,149 @@
-<!-- works in Angular Material 7.0.0 as of late October 2018 -->
-<mat-toolbar class="mainC" color="accent">
-  <span>
-    MANAGER SPECIAL
-  </span>
-</mat-toolbar>
-<mat-divider></mat-divider>
-<mat-toolbar color="accent">
-  <mat-toolbar-row #toolbarRow>
-    <a
-      mat-button
-      routerLink="./"
-      [routerLinkActive]="['active-route']"
-      [routerLinkActiveOptions]="{ exact: true }"
-      #rla="routerLinkActive"
-    >
-      Statistics
-    </a>
-    <a
-      mat-button
-      routerLink="./qr-scanner"
-      [routerLinkActive]="['active-route']"
-      [routerLinkActiveOptions]="{ exact: true }"
-      #rla="routerLinkActive"
-    >
-      Code
-    </a>
-    <a
-      mat-button
-      routerLink="./trnsctns"
-      [routerLinkActive]="['active-route']"
-      [routerLinkActiveOptions]="{ exact: true }"
-      #rla="routerLinkActive"
-    >
-      Orders
-    </a>
-    <a
-      mat-button
-      routerLink="./slssmry"
-      [routerLinkActive]="['active-route']"
-      [routerLinkActiveOptions]="{ exact: true }"
-      #rla="routerLinkActive"
-    >
-      Summary
-    </a>
-
-    <span class="example-fill-remaining-space"></span>
-    <button mat-icon-button [matMenuTriggerFor]="menu">
-      <mat-icon>more_vert</mat-icon>
-    </button>
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item>
-        <mat-icon>account_box</mat-icon>
-        <span>{{ name }}</span>
-      </button>
-      <button mat-menu-item (click)="gotoProductMngmnt()">
-        <mat-icon>filter_list</mat-icon>
-        <span>Products</span>
-      </button>
-      <button mat-menu-item (click)="gotoStore()">
-        <mat-icon>store</mat-icon>
-        <span>Stores</span>
-      </button>
-      <button mat-menu-item (click)="gotoGallery()">
-        <mat-icon>collections</mat-icon>
-        <span>Product Photos</span>
-      </button>
-      <button *ngIf="role == 'SELLER'" mat-menu-item (click)="gotoStaff()">
-        <mat-icon>supervisor_account</mat-icon>
-        <span>Employees</span>
-      </button>
-      <button mat-menu-item (click)="logout()">
-        <mat-icon>logout</mat-icon>
-        <span>Log Out</span>
-      </button>
-    </mat-menu>
-  </mat-toolbar-row>
-</mat-toolbar>
+<header class="navigation">
+  <div class="navigation__divider"></div>
+  <div class="navigation__container">
+    <div class="header_mobile">
+      <div>
+        <input
+          #drawerCheckbox
+          type="checkbox"
+          class="header_mobile__menu_checkbox"
+        />
+        <div class="header_mobile__menu_button"></div>
+        <div class="side_bar_mobile">
+          <ul class="side_bar_mobile__list-container">
+            <li (click)="drawerLinkClicked()" class="side_bar_mobile__item">
+              <a
+                routerLink="./"
+                [routerLinkActive]="['active-route']"
+                [routerLinkActiveOptions]="{ exact: true }"
+                class="side_bar_mobile__item-text"
+                ><i class="far fa-chart-bar navigation__item-icon"></i>
+                Dashboard
+              </a>
+            </li>
+            <li (click)="drawerLinkClicked()" class="side_bar_mobile__item">
+              <a
+                routerLink="./trnsctns"
+                [routerLinkActive]="['active-route']"
+                [routerLinkActiveOptions]="{ exact: false }"
+                class="side_bar_mobile__item-text"
+                ><i class="far fa-envelope-open navigation__item-icon"></i
+                >Order</a
+              >
+            </li>
+            <li (click)="drawerLinkClicked()" class="side_bar_mobile__item">
+              <a
+                routerLink="./prdcts"
+                [routerLinkActive]="['active-route']"
+                [routerLinkActiveOptions]="{ exact: false }"
+                class="side_bar_mobile__item-text"
+                ><i class="far fa-clone side_bar_mobile__item-icon"></i
+                >Product</a
+              >
+            </li>
+            <li (click)="drawerLinkClicked()" class="side_bar_mobile__item">
+              <a
+                routerLink="./shops"
+                [routerLinkActive]="['active-route']"
+                [routerLinkActiveOptions]="{ exact: false }"
+                class="side_bar_mobile__item-text"
+                ><i class="far fa-map side_bar_mobile__item-icon"></i>Store
+              </a>
+            </li>
+            <li (click)="drawerLinkClicked()" class="side_bar_mobile__item">
+              <a
+                routerLink="./gallery"
+                [routerLinkActive]="['active-route']"
+                [routerLinkActiveOptions]="{ exact: false }"
+                class="side_bar_mobile__item-text"
+                ><i class="far fa-images side_bar_mobile__item-icon"></i>
+                Gallery</a
+              >
+            </li>
+            <li (click)="drawerLinkClicked()" class="side_bar_mobile__item">
+              <a
+                routerLink="./staffs"
+                [routerLinkActive]="['active-route']"
+                [routerLinkActiveOptions]="{ exact: false }"
+                class="side_bar_mobile__item-text"
+                ><i class="far fa-sun side_bar_mobile__item-icon"></i> Staff</a
+              >
+            </li>
+            <li (click)="drawerLinkClicked()" class="side_bar_mobile__item">
+              <a (click)="logout()" class="side_bar_mobile__item-text">
+                <i class="far fa-user side_bar_mobile__item-icon"></i>Log Out</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+      <img src="favicon.ico" alt="Logo" class="navigation__header-image" />
+      <a class="navigation__header-text">Manager Special</a>
+    </div>
+    <div class="navigation__header-container">
+      <img src="favicon.ico" alt="Logo" class="navigation__header-image" />
+    </div>
+    <ul class="navigation__sub-container">
+      <li class="navigation__item svg-wrapper">
+        <a
+          routerLink="./"
+          [routerLinkActive]="['active-route']"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="navigation__item-text"
+          ><i class="far fa-chart-bar navigation__item-icon"></i> Dashboard
+        </a>
+      </li>
+      <li class="navigation__item">
+        <a
+          routerLink="./trnsctns"
+          [routerLinkActive]="['active-route']"
+          [routerLinkActiveOptions]="{ exact: false }"
+          class="navigation__item-text"
+          ><i class="far fa-envelope-open navigation__item-icon"></i>Order</a
+        >
+      </li>
+      <li class="navigation__item">
+        <a
+          routerLink="./prdcts"
+          [routerLinkActive]="['active-route']"
+          [routerLinkActiveOptions]="{ exact: false }"
+          class="navigation__item-text"
+          ><i class="far fa-clone navigation__item-icon"></i>Product</a
+        >
+      </li>
+      <li class="navigation__item">
+        <a
+          routerLink="./shops"
+          [routerLinkActive]="['active-route']"
+          [routerLinkActiveOptions]="{ exact: false }"
+          class="navigation__item-text"
+          ><i class="far fa-map navigation__item-icon"></i>Store
+        </a>
+      </li>
+      <li class="navigation__item">
+        <a
+          routerLink="./gallery"
+          [routerLinkActive]="['active-route']"
+          [routerLinkActiveOptions]="{ exact: false }"
+          class="navigation__item-text"
+          ><i class="far fa-images navigation__item-icon"></i> Gallery</a
+        >
+      </li>
+      <li class="navigation__item">
+        <a
+          routerLink="./staffs"
+          [routerLinkActive]="['active-route']"
+          [routerLinkActiveOptions]="{ exact: false }"
+          class="navigation__item-text"
+          ><i class="far fa-sun navigation__item-icon"></i> Staff</a
+        >
+      </li>
+      <li class="navigation__item">
+        <a (click)="logout()" class="navigation__item-text">
+          <i class="far fa-user navigation__item-icon"></i>Log Out</a
+        >
+      </li>
+    </ul>
+  </div>
+  <div class="navigation__divider navigation__divider-bottom"></div>
+</header>

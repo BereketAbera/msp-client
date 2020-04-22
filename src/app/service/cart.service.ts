@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 import {
   HttpClient,
   HttpErrorResponse,
-  HttpParams
+  HttpParams,
 } from "@angular/common/http";
 import { Observable } from "rxjs/Observable";
 import { throwError } from "rxjs";
@@ -20,7 +20,7 @@ import * as moment from "moment";
 const reserveApi = environment.APIEndpoint + "rsrvordr";
 
 @Injectable({
-  providedIn: "root"
+  providedIn: "root",
 })
 export class CartService {
   public countSubject = new BehaviorSubject<number>(0);
@@ -61,11 +61,16 @@ export class CartService {
       a.guid = guid;
       a.createdAt = moment().format("YYYY-MM-DD HH:mm:ss");
     }
-    let idx = a.products.findIndex(element => {
+    let idx = a.products.findIndex((element) => {
       if (element.prdid == data.prdid) return true;
     });
     if (idx < 0) a.products.push(data);
-    else a.products[idx] = data;
+    else {
+      data.qty =
+        parseInt(data.qty.toString()) +
+        parseInt(a.products[idx].qty.toString());
+      a.products[idx] = data;
+    }
     localStorage.setItem("msp_cart_items", JSON.stringify(a));
   }
   // Removing cart from local
