@@ -1,22 +1,66 @@
-
-.spaceNext{
-    padding-top: 20px;
-  }
-.spaceLeft{
-    margin-left: 20px;
+.spaceNext {
+  padding-top: 20px;
+}
+.spaceLeft {
+  margin-left: 20px;
 }
 .zipstatecity {
-    width: 120px;
-  }
-  .itmPriceNw{
-    font-size: 18px;
-    font-weight: bold;
-    color:#ff4081;
+  width: 120px;
+}
+.itmPriceNw {
+  font-size: 18px;
+  font-weight: bold;
+  color: #ff4081;
+}
+.quantityW {
+  width: 70px;
+}
+.ordcls {
+  border-bottom: 2px dashed black;
+}
 
+.container {
+  margin: 1rem 2rem;
+  .description{
+    font-size: 1.4rem;
   }
-  .quantityW {
-    width: 70px;
+  .card {
+    margin: 1rem;
   }
-  .ordcls{
-    border-bottom: 2px dashed black;
+  &__header {
+    color: #666;
+    font-size: 1.5rem;
+    padding-top: 1rem;
   }
+  .balance {
+    display: flex;
+    justify-content: center;
+    width: 21rem;
+    align-items: center;
+    background: #f2f2f2;
+    border-radius: 1rem;
+    // border:1px rgb(231, 21, 73) solid;
+    &__header {
+      font-size: 1.5rem;
+
+      &__value {
+        font-size: 1.5rem;
+        font-weight: 700;
+        padding-left: 1rem;
+      }
+    }
+
+    &__icon {
+      width: 3rem;
+      height: 100%;
+      background: #f43f81;
+      position: absolute;
+      left: 0;
+      border-radius: 1rem 0rem 0rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      color: white;
+    }
+  }
+}

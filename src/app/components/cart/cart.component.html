@@ -16,10 +16,7 @@
       <div *ngFor="let product of cartProducts" class="row">
         <div class="cell">
           <div class="shopping-cart__product-image-container">
-            <img
-              class="shopping-cart__product-image"
-              src="{{ product.imagePath }}"
-            />
+            <img class="shopping-cart__product-image" src="{{ product.imagePath }}" />
           </div>
         </div>
         <div class="cell">
@@ -49,10 +46,7 @@
           </div>
         </div>
         <div class="cell">
-          <button
-            class="shopping-cart__remove-product"
-            (click)="removeCartProduct(product)"
-          >
+          <button class="shopping-cart__remove-product" (click)="removeCartProduct(product)">
             Remove
           </button>
         </div>
@@ -63,13 +57,50 @@
         </div>
       </div>
     </div>
+    <div class="mobile_responsive">
+      <div class="card" *ngFor="let product of cartProducts">
+
+        <div class="card__product">
+          <div class="card__product-title">{{ product.name }}</div>
+          <div class="card__product-body">
+            <div class="shopping-cart__product-price items">
+              <span>Reg </span> {{ product.regPrice | currency }}
+            </div>
+            <div class="shopping-cart__product-discount items">
+              <span>Savings</span> -{{ product.regPrice - product.disPrice | currency }}
+            </div>
+
+            <div class="shopping-cart__product-price items">
+              <span>Disc</span> {{ product.disPrice | currency }}
+            </div>
+            <div class="shopping-cart__product-quantity items">
+              <span>Quantity</span> {{ product.qty }}
+            </div>
+          </div>
+        </div>
+        <div class="card__action">
+          <div class="shopping-cart__product-line-price">
+            Total: <b>{{ product.unitPrice * product.qty | currency }} </b> 
+          </div>
+        </div>
+
+        <div class="card__remove">
+            <button class="shopping-cart__remove-product" (click)="removeCartProduct(product)">
+                X
+              </button>
+        </div>
+        <div class="card__header">
+          <img class="shopping-cart__product-image" src="{{ product.imagePath }}" />
+        </div>
+
+
+      </div>
+    </div>
   </div>
   <div class="shopping-cart__totals">
     <div class="shopping-cart__totals-item">
-      <label
-        >Pay the total discounted price plus tax to Seller directly upon
-        service:</label
-      >
+      <label>Pay the total discounted price plus tax to Seller directly upon
+        service:</label>
       <div class="shopping-cart__totals-value" id="cart-subtotal">
         {{ total | currency }}
       </div>
@@ -81,31 +112,19 @@
       </div>
     </div>
     <div class="shopping-cart__totals-item">
-      <label
-        >Pay us only this fee now for making reservation(s) and generating
-        discount code(s) for you:</label
-      >
+      <label>Pay us only this fee now for making reservation(s) and generating
+        discount code(s) for you:</label>
       <div class="shopping-cart__totals-value" id="cart-tax">
         {{ totalMSPMarkup | currency }}
       </div>
     </div>
   </div>
   <div class="shopping-cart__actions">
-    <button
-      mat-flat-button
-      color="accent"
-      class="shopping-cart__checkout"
-      (click)="gotoBuyerAdmin()"
-    >
+    <button mat-flat-button color="accent" class="shopping-cart__checkout" (click)="gotoBuyerAdmin()">
       Checkout
     </button>
 
-    <button
-      mat-flat-button
-      color="accent"
-      class="shopping-cart__checkout"
-      (click)="gotoHome()"
-    >
+    <button mat-flat-button color="accent" class="shopping-cart__checkout" (click)="gotoHome()">
       Continue Shopping
     </button>
   </div>
