@@ -27,12 +27,12 @@
     z-index: -1;
   }
 
-  &__mobile-container {
-    position: fixed;
-    top: 4.2rem;
-    background-color: #fff;
+  &__mobile-sub-container {
     width: 100%;
-    z-index: -1;
+    display: flex;
+    list-style: none;
+    padding: 2rem;
+    margin-left: -2rem;
   }
 
   &__item {
