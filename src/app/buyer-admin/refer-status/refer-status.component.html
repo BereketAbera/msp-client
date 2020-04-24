@@ -27,9 +27,9 @@
 
     <ng-container matColumnDef="isUsed">
 
-      <mat-header-cell  *matHeaderCellDef>Registered</mat-header-cell>
+      <mat-header-cell class="tab-hide"  *matHeaderCellDef>Registered</mat-header-cell>
 
-      <mat-cell *matCellDef="let refer">{{isRegistered(refer.isUsed)}}</mat-cell>
+      <mat-cell class="tab-hide"  *matCellDef="let refer">{{isRegistered(refer.isUsed)}}</mat-cell>
 
     </ng-container>
     <ng-container matColumnDef="createdAt">
