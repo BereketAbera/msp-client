@@ -31,7 +31,9 @@
     width: 100%;
     display: flex;
     list-style: none;
-    padding-top: 2rem;
+    margin-left: -2rem;
+    padding: 2rem;
+    background-color: #fff;
   }
 
   &__item {
