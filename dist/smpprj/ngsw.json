@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1585667082366,
+  "timestamp": 1587736238329,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -8,18 +8,19 @@
       "installMode": "prefetch",
       "updateMode": "prefetch",
       "urls": [
-        "/10.039cef671d44f12b596b.js",
-        "/2.a0fceecece382aab9eb0.js",
-        "/3.9661e2e7650a049f2328.js",
-        "/7.93600dcb7a7e16ee3d16.js",
-        "/8.59cd104398648c691109.js",
-        "/9.265b2b638e4d8f096d04.js",
-        "/common.16cc13f96acdea475a4f.js",
+        "/1.5caf91308ed3a71710a3.js",
+        "/10.42fe9fac237b73b1ff96.js",
+        "/11.58faeede210f2969a354.js",
+        "/3.62eaa2e97d4ec9f14856.js",
+        "/4.02d3f928724bfd3d1c56.js",
+        "/8.9ca9f77a256432d50423.js",
+        "/9.5e6d3f0ca953b6c0b836.js",
+        "/common.498add88e706905199fe.js",
         "/favicon.ico",
         "/index.html",
-        "/main.d549f261c662a3ffd903.js",
-        "/polyfills.0d158d9184f1ca523989.js",
-        "/runtime.9541c3bf05d10f71a5d3.js"
+        "/main.71551d8f154cf7df4187.js",
+        "/polyfills.f82a709fe3b5111903d3.js",
+        "/runtime.3e1c7949c4d2b3edf99a.js"
       ],
       "patterns": []
     },
@@ -44,22 +45,25 @@
         "/assets/image/banners/bnr1.jpg",
         "/assets/image/banners/bnr2.jpeg",
         "/assets/image/banners/bnr3.jpg",
+        "/assets/image/home_bg.jpg",
         "/assets/manager-special.jpg",
         "/assets/piza1.jpg",
         "/assets/s8.jpg",
-        "/assets/vmd.jpeg"
+        "/assets/vmd.jpeg",
+        "/home_bg.e989371698184bb63d18.jpg"
       ],
       "patterns": []
     }
   ],
   "dataGroups": [],
   "hashTable": {
-    "/10.039cef671d44f12b596b.js": "8acdec534a8e19de8790ef276f5ae5ce5527de20",
-    "/2.a0fceecece382aab9eb0.js": "b93c8e7a507e904d6a00b7d2a22f450b316b17c5",
-    "/3.9661e2e7650a049f2328.js": "a789bc7b17dd6ebd8a7537d740006e5043f18715",
-    "/7.93600dcb7a7e16ee3d16.js": "21595c0b3bb1bbbe3112660171651e33d9d3021e",
-    "/8.59cd104398648c691109.js": "0088110ec38142e345ec992d0acbdd568ea884ac",
-    "/9.265b2b638e4d8f096d04.js": "5c0b01e2bff883fa6d34ebbcbc79bb250cd3258f",
+    "/1.5caf91308ed3a71710a3.js": "2c16d924a8451235c6f92fefd88027c4bbdc611e",
+    "/10.42fe9fac237b73b1ff96.js": "c8cf3900bf50ee7d2d97e04714447ce696775b39",
+    "/11.58faeede210f2969a354.js": "0a1fbe8bd427316c676fd6c8cf85f522c4166483",
+    "/3.62eaa2e97d4ec9f14856.js": "75ee09c1236390e546ccc18bb1ca1b8e07d05627",
+    "/4.02d3f928724bfd3d1c56.js": "0ab5f931d7a354b2d07d8e0f3f9126deb0aaa049",
+    "/8.9ca9f77a256432d50423.js": "6104bf792096d4785fed5d25fa75fe7059979fb3",
+    "/9.5e6d3f0ca953b6c0b836.js": "7f3e615f3437be632fa70fc31cf71083e2d9f551",
     "/assets/13.jpg": "920d0e4b545afae1be7dd38f6da8b154e345228d",
     "/assets/14.jpg": "7f63323cb7a9a2a1cd751679f33c56af75ae957a",
     "/assets/credit-cards.jpg": "3c5fc737e72b835554f790b6137fd392b729dccd",
@@ -76,16 +80,18 @@
     "/assets/image/banners/bnr1.jpg": "4ab4251fac017015da5bdd06c6efc78d69d9f051",
     "/assets/image/banners/bnr2.jpeg": "f72d05d50664e8596ae0f7f8b8cdab01dd18aeda",
     "/assets/image/banners/bnr3.jpg": "ab7331121ac073db90a073f755f79b6d2971a9b6",
+    "/assets/image/home_bg.jpg": "e2319498932d824bbcab30b7e58e66cb018b608c",
     "/assets/manager-special.jpg": "103d9e23b3d8e8a406b166d99720489fb83cbfa0",
     "/assets/piza1.jpg": "1bd872fde1ed269d44dc1b992d2686163902d46c",
     "/assets/s8.jpg": "d2c1117b22b896e0ead515eed3daa55847f1c5a0",
     "/assets/vmd.jpeg": "ce2ebfb98ce58611bc4338bd396ebc2a03039e8f",
-    "/common.16cc13f96acdea475a4f.js": "57f4a35f2080db815394a2572ad5a02714ddeb77",
+    "/common.498add88e706905199fe.js": "19204dd415c4618872a884b7abd4d2d840b2aa4e",
     "/favicon.ico": "89c35c717758e37a92a3689825c5997cbcf57782",
-    "/index.html": "01f269dfbc13ae88c05a6b0a2a2d276f1e80baf8",
-    "/main.d549f261c662a3ffd903.js": "446b5f0cfbc16124816a5612b59f0564aec4027f",
-    "/polyfills.0d158d9184f1ca523989.js": "f93891c493021a2fda766c9ec9f76103c6b2c163",
-    "/runtime.9541c3bf05d10f71a5d3.js": "7347a768e80dc98e562d1cd1cc0e01413605318c"
+    "/home_bg.e989371698184bb63d18.jpg": "e2319498932d824bbcab30b7e58e66cb018b608c",
+    "/index.html": "237b8ca74b5263e8f44e7964dd124270bd214d69",
+    "/main.71551d8f154cf7df4187.js": "c2fb60bbe6962ec25dfc522c464401f20d193283",
+    "/polyfills.f82a709fe3b5111903d3.js": "2646c0ec00825860c7eeb691e6f1804cab9cf20c",
+    "/runtime.3e1c7949c4d2b3edf99a.js": "8dfe0e94e5bb49a4dd872b5a6d38626c35e71e3d"
   },
   "navigationUrls": [
     {

@@ -34,7 +34,7 @@ export class PublicComponent implements OnInit {
   searchActive: any;
 
   constructor(
-    private authService: AuthService,
+    public authService: AuthService,
     private router: Router,
     private cdr: ChangeDetectorRef,
     private route: ActivatedRoute
