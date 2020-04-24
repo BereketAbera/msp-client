@@ -145,5 +145,37 @@
       </li>
     </ul>
   </div>
+  <div class="navigation__divider navigation__divider-middle"></div>
+  <div class="navigation__mobile-container">
+    <ul class="navigation__mobile-sub-container">
+      <li class="navigation__item svg-wrapper">
+        <a
+          routerLink="./"
+          [routerLinkActive]="['active-route']"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="navigation__item-text"
+          ><i class="far fa-chart-bar navigation__item-icon"></i> Dashboard
+        </a>
+      </li>
+      <li class="navigation__item">
+        <a
+          routerLink="./trnsctns"
+          [routerLinkActive]="['active-route']"
+          [routerLinkActiveOptions]="{ exact: false }"
+          class="navigation__item-text"
+          ><i class="far fa-envelope-open navigation__item-icon"></i>Order</a
+        >
+      </li>
+      <li class="navigation__item">
+        <a
+          routerLink="./prdcts"
+          [routerLinkActive]="['active-route']"
+          [routerLinkActiveOptions]="{ exact: false }"
+          class="navigation__item-text"
+          ><i class="far fa-clone navigation__item-icon"></i>Product</a
+        >
+      </li>
+    </ul>
+  </div>
   <div class="navigation__divider navigation__divider-bottom"></div>
 </header>
