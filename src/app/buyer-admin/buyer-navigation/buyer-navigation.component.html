@@ -123,10 +123,14 @@
           </ul>
         </div>
       </div>
-      <img src="favicon.ico" alt="Logo" class="navigation__header-image" />
-      <a class="navigation__header-text">Manager Special</a>
+      <img routerLink="/"
+      [routerLinkActive]="['active-routeas']"
+      [routerLinkActiveOptions]="{ exact: false }"   src="favicon.ico" alt="Logo" class="navigation__header-image" />
+      <a  class="navigation__header-text">Manager Special</a>
     </div>
-    <div class="navigation__header-container">
+    <div (click)="drawerLinkClicked()" routerLink="/"
+    [routerLinkActive]="['active-routes']"  [routerLinkActiveOptions]="{ exact: false }"
+    class="navigation__header-container">
       <img src="favicon.ico" alt="Logo" class="navigation__header-image" />
     </div>
     <ul class="navigation__sub-container">
