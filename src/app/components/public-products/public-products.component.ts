@@ -121,10 +121,11 @@ export class PublicProductsComponent implements OnInit {
           )
           .subscribe((company) => {
             let l = this.companies.length;
+            this.shouldLoad = true;
             this.companies.push(...company);
             let l2 = this.companies.length;
-            if (l < l2) {
-              this.shouldLoad = true;
+            if (l == l2) {
+              this.reachedPageEnd = true;
             }
             this.authService.progressBarActive.next(false);
           });

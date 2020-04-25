@@ -120,7 +120,12 @@ export class ProductService {
       );
   }
 
-  listCompaniesProducts(page, latitude, longitude, subCatagoryId) {
+  listCompaniesProducts(
+    page,
+    latitude,
+    longitude,
+    subCatagoryId
+  ): Observable<any> {
     // console.log(latitude, longitude);
     return this.http
       .get(
@@ -128,6 +133,7 @@ export class ProductService {
       )
       .pipe(
         map((res) => {
+          console.log(res);
           return res;
         })
       );
