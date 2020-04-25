@@ -19,14 +19,10 @@ export class PublicProductsComponent implements OnInit {
   @ViewChild("locationInput") locationInput: ElementRef<HTMLElement>;
   query: string;
   searchInput = new FormControl("");
-  products: any = [];
-  products1: any = [];
-  products2: any = [];
-  isUP: boolean = false;
   categories: Category[];
   activeCategories: Category[];
   page = 1;
-  pageSize = 6;
+  pageSize = 3;
   shouldLoad: boolean = true;
   reachedPageEnd: boolean = false;
   subCatagory: number | string = 0;
@@ -68,25 +64,24 @@ export class PublicProductsComponent implements OnInit {
       this.categories = data.categories;
     });
     this.loadFirstTime();
-    this.loadJobs();
   }
 
   loadFirstTime() {
-    this.page = 0;
+    this.page = 1;
     if (this.address && this.address.Latitude && this.address.Longitude) {
       this.authService.progressBarActive.next(true);
       this.prdctService
         .listCompaniesProducts(
-          1,
+          this.page,
           this.address.Latitude,
           this.address.Longitude,
           this.categoryId
         )
         .subscribe((company) => {
           this.companies = company;
-
-          this.page = this.page + 1;
+          this.shouldLoad = true;
           this.authService.progressBarActive.next(false);
+          this.loadJobs();
         });
     }
   }
@@ -116,20 +111,21 @@ export class PublicProductsComponent implements OnInit {
         this.address.Longitude
       ) {
         this.shouldLoad = false;
-        console.log("about to fetch new companies");
         this.authService.progressBarActive.next(true);
         this.prdctService
           .listCompaniesProducts(
-            this.page,
+            ++this.page,
             this.address.Latitude,
             this.address.Longitude,
             this.categoryId
           )
           .subscribe((company) => {
-            console.log(company);
-            //@ts-ignore
+            let l = this.companies.length;
             this.companies.push(...company);
-            this.page = this.page + 1;
+            let l2 = this.companies.length;
+            if (l < l2) {
+              this.shouldLoad = true;
+            }
             this.authService.progressBarActive.next(false);
           });
       }
@@ -155,15 +151,11 @@ export class PublicProductsComponent implements OnInit {
     this.distance = distance;
     this.lat = this.authService.currentLat;
     this.lng = this.authService.currentLong;
-    this.page = 0;
-    this.products = [];
-    this.loadFirstTime();
+    this.getProducts();
   }
   searchByCtgry(id: number | string) {
     this.subCatagory = id;
-    this.page = 0;
-    this.products = [];
-    this.loadFirstTime();
+    this.getProducts();
   }
   gotoCart() {
     this.router.navigate(["cart"]);
@@ -192,7 +184,6 @@ export class PublicProductsComponent implements OnInit {
   }
 
   addressChanged(address) {
-    console.log(address);
     this.address = address;
     this.getProducts();
     this.onBlur();

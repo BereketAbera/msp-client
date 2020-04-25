@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1587736238329,
+  "timestamp": 1587736422485,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -14,13 +14,13 @@
         "/3.62eaa2e97d4ec9f14856.js",
         "/4.02d3f928724bfd3d1c56.js",
         "/8.9ca9f77a256432d50423.js",
-        "/9.5e6d3f0ca953b6c0b836.js",
+        "/9.f82cdd88a37ed56e0c02.js",
         "/common.498add88e706905199fe.js",
         "/favicon.ico",
         "/index.html",
         "/main.71551d8f154cf7df4187.js",
         "/polyfills.f82a709fe3b5111903d3.js",
-        "/runtime.3e1c7949c4d2b3edf99a.js"
+        "/runtime.81a47e661771ddcd7403.js"
       ],
       "patterns": []
     },
@@ -63,7 +63,7 @@
     "/3.62eaa2e97d4ec9f14856.js": "75ee09c1236390e546ccc18bb1ca1b8e07d05627",
     "/4.02d3f928724bfd3d1c56.js": "0ab5f931d7a354b2d07d8e0f3f9126deb0aaa049",
     "/8.9ca9f77a256432d50423.js": "6104bf792096d4785fed5d25fa75fe7059979fb3",
-    "/9.5e6d3f0ca953b6c0b836.js": "7f3e615f3437be632fa70fc31cf71083e2d9f551",
+    "/9.f82cdd88a37ed56e0c02.js": "8922862b95c97fccf4eed64a29f609a1da6b6cb5",
     "/assets/13.jpg": "920d0e4b545afae1be7dd38f6da8b154e345228d",
     "/assets/14.jpg": "7f63323cb7a9a2a1cd751679f33c56af75ae957a",
     "/assets/credit-cards.jpg": "3c5fc737e72b835554f790b6137fd392b729dccd",
@@ -88,10 +88,10 @@
     "/common.498add88e706905199fe.js": "19204dd415c4618872a884b7abd4d2d840b2aa4e",
     "/favicon.ico": "89c35c717758e37a92a3689825c5997cbcf57782",
     "/home_bg.e989371698184bb63d18.jpg": "e2319498932d824bbcab30b7e58e66cb018b608c",
-    "/index.html": "237b8ca74b5263e8f44e7964dd124270bd214d69",
+    "/index.html": "45808f589c812caaa940db2dfc2eb86a6c8fcf39",
     "/main.71551d8f154cf7df4187.js": "c2fb60bbe6962ec25dfc522c464401f20d193283",
     "/polyfills.f82a709fe3b5111903d3.js": "2646c0ec00825860c7eeb691e6f1804cab9cf20c",
-    "/runtime.3e1c7949c4d2b3edf99a.js": "8dfe0e94e5bb49a4dd872b5a6d38626c35e71e3d"
+    "/runtime.81a47e661771ddcd7403.js": "4e49d6c42a7c93344f3dc8f6c407a41d24ec8fe7"
   },
   "navigationUrls": [
     {

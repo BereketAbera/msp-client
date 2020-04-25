@@ -98,18 +98,18 @@ export class ProductService {
     sortOrder,
     pageNumber,
     pageSize,
-    userId,
+    storeId,
     query
   ) {
-    console.log(
-      `/company/product?distance=${distance}&lat=${lat}&q=${query}&lng=${lng}&userId=${userId}${
-        subCategoryId ? "&subCategoryId=" + subCategoryId : ""
-      }`
-    );
+    // console.log(
+    //   `/company/product?distance=${distance}&lat=${lat}&q=${query}&lng=${lng}&storeId=${storeId}${
+    //     subCategoryId ? "&subCategoryId=" + subCategoryId : ""
+    //   }`
+    // );
     return this.http
       .get(
         productApi +
-          `/company/product?distance=${distance}&lat=${lat}&q=${query}&lng=${lng}&userId=${userId}${
+          `/company/product?distance=${distance}&lat=${lat}&q=${query}&lng=${lng}&storeId=${storeId}${
             subCategoryId ? "&subCategoryId=" + subCategoryId : ""
           }`
       )
