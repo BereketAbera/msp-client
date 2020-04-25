@@ -133,7 +133,6 @@ export class ProductService {
       )
       .pipe(
         map((res) => {
-          console.log(res);
           return res;
         })
       );
