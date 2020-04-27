@@ -9,11 +9,11 @@
       </button>
     </div>
   </div>
-  <div *ngIf="dataSource?.length == 0" class="staffs-notfound">
+  <div *ngIf="!dataSource || dataSource?.length == 0" class="no_result">
     <span>You do not have any staffs yet.</span>
   </div>
   <div class="staff__container">
-    <div class="staff__sub-container">
+    <div  *ngIf="dataSource?.length > 0" class="staff__sub-container">
       <mat-table
         *ngIf="dataSource?.length > 0"
         class="mat-elevation-z8"
