@@ -124,12 +124,12 @@ export class ProductService {
     page,
     latitude,
     longitude,
-    subCatagoryId
+    subCategoryId
   ): Observable<any> {
     // console.log(latitude, longitude);
     return this.http
       .get(
-        `${productApi}/company?page=${page}&lat=${latitude}&lng=${longitude}&subCatagoryId=${subCatagoryId}`
+        `${productApi}/company?page=${page}&lat=${latitude}&lng=${longitude}&subCategoryId=${subCategoryId}`
       )
       .pipe(
         map((res) => {
