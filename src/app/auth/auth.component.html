@@ -1,1 +1,40 @@
-<router-outlet></router-outlet>
+<div>
+  <div class="header">
+    <div class="header_mobile">
+      <div class="header_mobile__logo">
+        <img src="favicon.ico" alt="Logo" class="header_mobile__logo_icon" />
+        <a routerLink="/" class="header_mobile__logo_text">Manager Special</a>
+      </div>
+    </div>
+
+    <div class="header__desktop">
+      <div class="header__desktop__logo">
+        <img src="favicon.ico" alt="Logo" class="header__desktop__logo_icon" />
+        <div class="header__desktop__logo_text">Manager Special</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="content__container">
+    <router-outlet></router-outlet>
+  </div>
+  <div class="footer__container">
+    <ul class="footer__sub-container">
+      <li class="footer__item">
+        <span class="footer__item-text">Home</span>
+      </li>
+      <li class="footer__item">
+        <span class="footer__item-text">About Us</span>
+      </li>
+      <li class="footer__item">
+        <span class="footer__item-text">Privacy Policy</span>
+      </li>
+      <li class="footer__item">
+        <span class="footer__item-text">Terms & Conditions</span>
+      </li>
+      <li class="footer__item">
+        <span class="footer__item-text">Contact Us</span>
+      </li>
+    </ul>
+  </div>
+</div>

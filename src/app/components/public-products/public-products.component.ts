@@ -102,11 +102,21 @@ export class PublicProductsComponent implements OnInit {
       var elementPosition = this.anchor
         ? this.anchor.nativeElement.offsetTop
         : 0;
+
+      // console.log(
+      //   elementPosition < bottomPosition,
+      //   this.shouldLoad,
+      //   !this.reachedPageEnd,
+      //   !!this.address,
+      //   this.address.Latitude,
+      //   this.address.Longitude
+      // );
+
       if (
-        bottomPosition > elementPosition &&
+        elementPosition < bottomPosition &&
         this.shouldLoad &&
         !this.reachedPageEnd &&
-        this.address &&
+        !!this.address &&
         this.address.Latitude &&
         this.address.Longitude
       ) {
@@ -122,7 +132,9 @@ export class PublicProductsComponent implements OnInit {
           .subscribe((company) => {
             let l = this.companies.length;
             this.shouldLoad = true;
-            this.companies.push(...company);
+            for (let i = 0; i < company.length; i++) {
+              this.companies.push(company[i]);
+            }
             let l2 = this.companies.length;
             if (l == l2) {
               this.reachedPageEnd = true;
@@ -186,6 +198,7 @@ export class PublicProductsComponent implements OnInit {
 
   addressChanged(address) {
     this.address = address;
+    this.reachedPageEnd = false;
     this.getProducts();
     this.onBlur();
   }

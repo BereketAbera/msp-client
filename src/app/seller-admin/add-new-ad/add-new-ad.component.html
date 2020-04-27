@@ -1,58 +1,88 @@
-<div *ngIf="showError" id="errorCntr">
-  <button id="errClsBtn" (click)="close()">
-    X
+<div *ngIf="showError" class="errorCntr">
+  <button class="errClsBtn" (click)="close()">
+    &#215;
   </button>
   <ul>
     <li *ngFor="let error of errors">
-      {{error}}
+      {{ error }}
     </li>
-
   </ul>
 </div>
 <form *ngIf="showForm()" [formGroup]="productForm">
-    <h5>End-Of-Day Product</h5>
-  <div style="margin-top: 8px;margin-left: 10px"><span>Select an Image First to Begin Posting /</span> <button (click)="gotoGallery()" mat-button
-      color="accent">upload more photos</button></div>
+  <h5>End-Of-Day Product</h5>
+  <div style="margin-top: 8px; margin-left: 10px;">
+    <span>Select an Image First to Begin Posting /</span>
+    <button (click)="gotoGallery()" mat-button color="accent">
+      upload more photos
+    </button>
+  </div>
   <div class="scrolling-wrapper-flexbox">
     <div class="card" *ngFor="let picture of pictures">
-      <input type="radio" [id]="picture.id" formControlName="imgId" [value]="picture.id">
+      <input
+        type="radio"
+        [id]="picture.id"
+        formControlName="imgId"
+        [value]="picture.id"
+      />
       <label [for]="picture.id">
-        <img [src]="picture.file" class="glryImg">
+        <img [src]="picture.file" class="glryImg" />
       </label>
-      <label>{{picture.name}}</label>
+      <label>{{ picture.name }}</label>
     </div>
   </div>
   <div fxLayout="column">
     <mat-form-field>
-      <mat-select placeholder="Select Category" formControlName="categoryId" required>
+      <mat-select
+        placeholder="Select Category"
+        formControlName="categoryId"
+        required
+      >
         <mat-option *ngFor="let category of categories" [value]="category.id">
-          {{category.name}}
+          {{ category.name }}
         </mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field>
-      <input type="text" placeholder="Enter Product Name or Select from List" matInput [matAutocomplete]="auto"
-        formControlName="name" required>
+      <input
+        type="text"
+        placeholder="Enter Product Name or Select from List"
+        matInput
+        [matAutocomplete]="auto"
+        formControlName="name"
+        required
+      />
       <mat-autocomplete #auto="matAutocomplete">
         <mat-option *ngFor="let option of options" [value]="option">
-          {{option}}
+          {{ option }}
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>
-    <br>
+    <br />
     <div>
       <label>Unit: </label>
       <mat-radio-group formControlName="unit">
-        <mat-radio-button class="pdlft" value="piece">Per Unit </mat-radio-button>
-        <mat-radio-button class="pdlft" value="person">Per Person </mat-radio-button>
-        <mat-radio-button class="pdlft" value="pound">Per Pound </mat-radio-button>
+        <mat-radio-button class="pdlft" value="piece"
+          >Per Unit
+        </mat-radio-button>
+        <mat-radio-button class="pdlft" value="person"
+          >Per Person
+        </mat-radio-button>
+        <mat-radio-button class="pdlft" value="pound"
+          >Per Pound
+        </mat-radio-button>
       </mat-radio-group>
     </div>
 
-    <mat-form-field hintLabel="If empty list, go create at least one store location first.">
-      <mat-select placeholder="Select Store Location" formControlName="shop" required>
+    <mat-form-field
+      hintLabel="If empty list, go create at least one store location first."
+    >
+      <mat-select
+        placeholder="Select Store Location"
+        formControlName="shop"
+        required
+      >
         <mat-option *ngFor="let shop of shops" [value]="shop">
-          {{shop.name}}
+          {{ shop.name }}
         </mat-option>
       </mat-select>
     </mat-form-field>
@@ -61,200 +91,291 @@
       <tr>
         <td>
           <mat-form-field class="example-full-width">
-            <input matInput type="number" step="0.01" data-number-to-fixed="2" data-number-stepfactor="100"
-              placeholder="Original Price" formControlName="normalPrice" required>
+            <input
+              matInput
+              type="number"
+              step="0.01"
+              data-number-to-fixed="2"
+              data-number-stepfactor="100"
+              placeholder="Original Price"
+              formControlName="normalPrice"
+              required
+            />
             <span matPrefix>$&nbsp;</span>
           </mat-form-field>
         </td>
         <td>
-          <mat-form-field hintLabel="Buyer will pay you the discounted price plus any tax directly upon service." class="example-full-width">
-            <mat-select placeholder="Discount %" formControlName="discountPersent" required>
+          <mat-form-field
+            hintLabel="Buyer will pay you the discounted price plus any tax directly upon service."
+            class="example-full-width"
+          >
+            <mat-select
+              placeholder="Discount %"
+              formControlName="discountPersent"
+              required
+            >
               <mat-option>--</mat-option>
-              <mat-option *ngFor="let discount of discounts" [value]="discount.value">
-                {{discount.viewValue}}
+              <mat-option
+                *ngFor="let discount of discounts"
+                [value]="discount.value"
+              >
+                {{ discount.viewValue }}
               </mat-option>
             </mat-select>
-            <mat-error *ngIf="productForm.controls.discountPersent.hasError('required')">Please choose discounted by
+            <mat-error
+              *ngIf="productForm.controls.discountPersent.hasError('required')"
+              >Please choose discounted by
             </mat-error>
-            </mat-form-field>
+          </mat-form-field>
         </td>
-
-
-
       </tr>
-      
     </table>
 
     <mat-form-field>
-      <input matInput type="number" placeholder="Quantity" formControlName="quantity" required>
+      <input
+        matInput
+        type="number"
+        placeholder="Quantity"
+        formControlName="quantity"
+        required
+      />
     </mat-form-field>
-    <br>
-    <div fxLayout="row" fxFlexAlign="start" >
+    <br />
+    <div fxLayout="row" fxFlexAlign="start">
       <span>Valid Days:</span>
     </div>
     <section class="example-section">
-      <div class="example-margin" *ngFor="let weekDay of weekDays.controls; let i=index">
-        <input type="checkbox" [formControl]="weekDay" /> {{weekDaysInit[i].name}}
+      <div
+        class="example-margin"
+        *ngFor="let weekDay of weekDays.controls; let i = index"
+      >
+        <input type="checkbox" [formControl]="weekDay" />
+        {{ weekDaysInit[i].name }}
       </div>
     </section>
-    <br>
-    <div fxLayout="row" fxFlexAlign="start" >
+    <br />
+    <div fxLayout="row" fxFlexAlign="start">
       <span> Promotion Start/End Dates</span>
     </div>
     <section class="example-section">
-        <div class="example-margin" fxLayout="row" fxFlexAlign="end" fxLayoutGap="7px">
-            <div class="offerTitle" fxFlexAlign="center">From: </div>
-            <mat-form-field class="dateCtrl">
-              <input matInput [matDatepicker]="pickerOffStr" formControlName="offerStartDate" placeholder="Date"
-                [value]="offerStartInitTime">
-              <mat-datepicker-toggle matSuffix [for]="pickerOffStr"></mat-datepicker-toggle>
-              <mat-datepicker touchUi #pickerOffStr></mat-datepicker>
-            </mat-form-field>
-    
-          </div>
-          <div class="example-margin" fxLayout="row" fxFlexAlign="end" fxLayoutGap="7px">
-            <div class="offerTitle" fxFlexAlign="center">To: </div>
-            <mat-form-field class="dateCtrl">
-              <input matInput [matDatepicker]="pickerOffEnd" formControlName="offerEndDate" placeholder="Date"
-                [value]="offerEndInitTime">
-              <mat-datepicker-toggle matSuffix [for]="pickerOffEnd"></mat-datepicker-toggle>
-              <mat-datepicker touchUi #pickerOffEnd></mat-datepicker>
-            </mat-form-field>
-    
-          </div>
+      <div
+        class="example-margin"
+        fxLayout="row"
+        fxFlexAlign="end"
+        fxLayoutGap="7px"
+      >
+        <div class="offerTitle" fxFlexAlign="center">From:</div>
+        <mat-form-field class="dateCtrl">
+          <input
+            matInput
+            [matDatepicker]="pickerOffStr"
+            formControlName="offerStartDate"
+            placeholder="Date"
+            [value]="offerStartInitTime"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="pickerOffStr"
+          ></mat-datepicker-toggle>
+          <mat-datepicker touchUi #pickerOffStr></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div
+        class="example-margin"
+        fxLayout="row"
+        fxFlexAlign="end"
+        fxLayoutGap="7px"
+      >
+        <div class="offerTitle" fxFlexAlign="center">To:</div>
+        <mat-form-field class="dateCtrl">
+          <input
+            matInput
+            [matDatepicker]="pickerOffEnd"
+            formControlName="offerEndDate"
+            placeholder="Date"
+            [value]="offerEndInitTime"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="pickerOffEnd"
+          ></mat-datepicker-toggle>
+          <mat-datepicker touchUi #pickerOffEnd></mat-datepicker>
+        </mat-form-field>
+      </div>
     </section>
-    <div fxLayout="row" fxFlexAlign="start" >
+    <div fxLayout="row" fxFlexAlign="start">
       <span>Product Reservation Time Window</span>
     </div>
     <div class="example-section">
-        <div  class="example-margin" fxLayout="row" fxFlexAlign="end" fxLayoutGap="4px">
-            <div class="offerTitle" fxFlexAlign="center">From: </div>
-            <mat-form-field class="hhMMCntrl">
-              <mat-select matInput formControlName="offerStartHH" placeholder="HH">
-                <mat-option *ngFor="let hh of hhlst" [value]="hh">
-                  {{hh}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-            <div fxFlexAlign="center">:</div>
-            <mat-form-field class="hhMMCntrl">
-              <mat-select matInput formControlName="offerStartMM" placeholder="MM">
-                <mat-option *ngFor="let min of hhmm" [value]="min">
-                  {{min}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-            <mat-form-field class="ampm">
-              <mat-select matInput formControlName="offerStartAMPM">
-                <mat-option *ngFor="let ap of pmam" [value]="ap">
-                  {{ap}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-    
-    
-          </div>
-          <div class="example-margin" fxLayout="row" fxFlexAlign="end" fxLayoutGap="4px">
-            <div fxFlexAlign="center" class="offerTitle">To:</div>
-            <mat-form-field class="hhMMCntrl">
-              <mat-select matInput formControlName="offerEndHH" placeholder="HH">
-                <mat-option *ngFor="let hh of hhlst" [value]="hh">
-                  {{hh}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-            <div fxFlexAlign="center">:</div>
-            <mat-form-field class="hhMMCntrl">
-              <mat-select matInput formControlName="offerEndMM" placeholder="MM">
-                <mat-option *ngFor="let min of hhmm" [value]="min">
-                  {{min}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-            <mat-form-field class="ampm">
-              <mat-select matInput formControlName="offerEndAMPM">
-                <mat-option *ngFor="let ap of pmam" [value]="ap">
-                  {{ap}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-           </div>
+      <div
+        class="example-margin"
+        fxLayout="row"
+        fxFlexAlign="end"
+        fxLayoutGap="4px"
+      >
+        <div class="offerTitle" fxFlexAlign="center">From:</div>
+        <mat-form-field class="hhMMCntrl">
+          <mat-select matInput formControlName="offerStartHH" placeholder="HH">
+            <mat-option *ngFor="let hh of hhlst" [value]="hh">
+              {{ hh }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div fxFlexAlign="center">:</div>
+        <mat-form-field class="hhMMCntrl">
+          <mat-select matInput formControlName="offerStartMM" placeholder="MM">
+            <mat-option *ngFor="let min of hhmm" [value]="min">
+              {{ min }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="ampm">
+          <mat-select matInput formControlName="offerStartAMPM">
+            <mat-option *ngFor="let ap of pmam" [value]="ap">
+              {{ ap }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div
+        class="example-margin"
+        fxLayout="row"
+        fxFlexAlign="end"
+        fxLayoutGap="4px"
+      >
+        <div fxFlexAlign="center" class="offerTitle">To:</div>
+        <mat-form-field class="hhMMCntrl">
+          <mat-select matInput formControlName="offerEndHH" placeholder="HH">
+            <mat-option *ngFor="let hh of hhlst" [value]="hh">
+              {{ hh }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div fxFlexAlign="center">:</div>
+        <mat-form-field class="hhMMCntrl">
+          <mat-select matInput formControlName="offerEndMM" placeholder="MM">
+            <mat-option *ngFor="let min of hhmm" [value]="min">
+              {{ min }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="ampm">
+          <mat-select matInput formControlName="offerEndAMPM">
+            <mat-option *ngFor="let ap of pmam" [value]="ap">
+              {{ ap }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
     </div>
-    
-    <div fxLayout="row" fxFlexAlign="start" >
+
+    <div fxLayout="row" fxFlexAlign="start">
       <span>Product Consumption Time Window</span>
     </div>
     <div class="example-section">
-        <div  class="example-margin" fxLayout="row" fxFlexAlign="end" fxLayoutGap="4px">
-            <div class="offerTitle" fxFlexAlign="center">From: </div>
-            <mat-form-field class="hhMMCntrl">
-              <mat-select matInput formControlName="pickupStartHH" placeholder="HH">
-                <mat-option *ngFor="let hh of hhlst" [value]="hh">
-                  {{hh}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-            <div fxFlexAlign="center">:</div>
-            <mat-form-field class="hhMMCntrl">
-              <mat-select matInput formControlName="pickupStartMM" placeholder="MM">
-                <mat-option *ngFor="let min of hhmm" [value]="min">
-                  {{min}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-            <mat-form-field class="ampm">
-              <mat-select matInput formControlName="pickupStartAMPM">
-                <mat-option *ngFor="let ap of pmam" [value]="ap">
-                  {{ap}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-    
-    
-          </div>
-          <div class="example-margin" fxLayout="row" fxFlexAlign="end" fxLayoutGap="4px">
-            <div fxFlexAlign="center" class="offerTitle">To:</div>
-            <mat-form-field class="hhMMCntrl">
-              <mat-select matInput formControlName="pickupEndHH" placeholder="HH">
-                <mat-option *ngFor="let hh of hhlst" [value]="hh">
-                  {{hh}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-            <div fxFlexAlign="center">:</div>
-            <mat-form-field class="hhMMCntrl">
-              <mat-select matInput formControlName="pickupEndMM" placeholder="MM">
-                <mat-option *ngFor="let min of hhmm" [value]="min">
-                  {{min}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-            <mat-form-field class="ampm">
-              <mat-select matInput formControlName="pickupEndAMPM">
-                <mat-option *ngFor="let ap of pmam" [value]="ap">
-                  {{ap}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-           </div>
-    </div>  
+      <div
+        class="example-margin"
+        fxLayout="row"
+        fxFlexAlign="end"
+        fxLayoutGap="4px"
+      >
+        <div class="offerTitle" fxFlexAlign="center">From:</div>
+        <mat-form-field class="hhMMCntrl">
+          <mat-select matInput formControlName="pickupStartHH" placeholder="HH">
+            <mat-option *ngFor="let hh of hhlst" [value]="hh">
+              {{ hh }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div fxFlexAlign="center">:</div>
+        <mat-form-field class="hhMMCntrl">
+          <mat-select matInput formControlName="pickupStartMM" placeholder="MM">
+            <mat-option *ngFor="let min of hhmm" [value]="min">
+              {{ min }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="ampm">
+          <mat-select matInput formControlName="pickupStartAMPM">
+            <mat-option *ngFor="let ap of pmam" [value]="ap">
+              {{ ap }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div
+        class="example-margin"
+        fxLayout="row"
+        fxFlexAlign="end"
+        fxLayoutGap="4px"
+      >
+        <div fxFlexAlign="center" class="offerTitle">To:</div>
+        <mat-form-field class="hhMMCntrl">
+          <mat-select matInput formControlName="pickupEndHH" placeholder="HH">
+            <mat-option *ngFor="let hh of hhlst" [value]="hh">
+              {{ hh }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div fxFlexAlign="center">:</div>
+        <mat-form-field class="hhMMCntrl">
+          <mat-select matInput formControlName="pickupEndMM" placeholder="MM">
+            <mat-option *ngFor="let min of hhmm" [value]="min">
+              {{ min }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="ampm">
+          <mat-select matInput formControlName="pickupEndAMPM">
+            <mat-option *ngFor="let ap of pmam" [value]="ap">
+              {{ ap }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
     <div>
-      <mat-checkbox formControlName="showNow">Do Not Show Product Until Offer Start Time </mat-checkbox>
+      <mat-checkbox formControlName="showNow"
+        >Do Not Show Product Until Offer Start Time
+      </mat-checkbox>
     </div>
     <mat-form-field>
-      <textarea matInput placeholder="Enter Additional Product Description (Optional)"
-        formControlName="description"></textarea>
+      <textarea
+        matInput
+        placeholder="Enter Additional Product Description (Optional)"
+        formControlName="description"
+      ></textarea>
     </mat-form-field>
   </div>
   <div fxLayout="row" fxLayoutAlign="center center">
     <div fxLayout="row nowrap" fxLayoutGap="10px" class="spaceDown">
-      <div><button (click)="onSubmit()" mat-flat-button color="accent" [disabled]="!productForm.valid">Save</button>
+      <div>
+        <button
+          (click)="onSubmit()"
+          mat-flat-button
+          color="accent"
+          [disabled]="!productForm.valid"
+        >
+          Save
+        </button>
       </div>
-      <div><button type="button" mat-flat-button color="accent" (click)="gotoSellAdmin()">Cancel</button></div>
+      <div>
+        <button
+          type="button"
+          mat-flat-button
+          color="accent"
+          (click)="gotoSellAdmin()"
+        >
+          Cancel
+        </button>
+      </div>
     </div>
   </div>
 </form>
 
 <div *ngIf="!showForm()">
-  <p>Sorry, your account is either inactive or disabled.Please contact sales@ManagerSpecial.com.</p>
+  <p>
+    Sorry, your account is either inactive or disabled.Please contact
+    sales@ManagerSpecial.com.
+  </p>
 </div>

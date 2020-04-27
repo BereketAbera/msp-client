@@ -18,7 +18,7 @@ let uploadClass = null;
 @Component({
   selector: "app-upload-img",
   templateUrl: "./upload-img.component.html",
-  styleUrls: ["./upload-img.component.scss"]
+  styleUrls: ["./upload-img.component.scss"],
 })
 export class UploadImgComponent implements OnInit {
   @ViewChild("file") file;
@@ -34,11 +34,12 @@ export class UploadImgComponent implements OnInit {
   showImage: boolean = false;
   uploadForm = this.fb.group({
     name: ["", Validators.required],
-    img: null
+    img: null,
   });
   formData = new FormData();
   loadingFile = false;
   loadingLocalImage = false;
+  fileSelected = false;
 
   constructor(
     private uploadService: UploadService,
@@ -59,7 +60,8 @@ export class UploadImgComponent implements OnInit {
     return true;
   }
   onSubmit() {
-    if (this.uploadForm.valid) {
+    console.log(this.fileSelected);
+    if (this.uploadForm.valid && this.fileSelected) {
       // this.formData.append("name", this.uploadForm.get("name").value);
       let value = this.uploadForm.value;
       this.formData.append("name", value["name"]);
@@ -68,29 +70,29 @@ export class UploadImgComponent implements OnInit {
       const dialogRef = this.dialog.open(SaveConfirmationDialogComponent, {
         width: "250px",
         height: "150px",
-        data: { title: "", question: "do you want to upload this Image?" }
+        data: { title: "", question: "do you want to upload this Image?" },
       });
 
-      dialogRef.afterClosed().subscribe(result => {
+      dialogRef.afterClosed().subscribe((result) => {
         if (result == "yes") {
           const progressDialog = this.dialog.open(SaveProgressComponent, {
             width: "300px",
-            height: "200px"
+            height: "200px",
           });
           this.uploadService.createImage(this.formData).subscribe(
-            res => {
+            (res) => {
               if (res["success"]) {
                 progressDialog.close();
                 let snackBarRef = this.snackBar.open(
                   "Successfuly Uploaded File",
                   "Upload More",
                   {
-                    duration: 2000
+                    duration: 2000,
                   }
                 );
                 snackBarRef.afterDismissed().subscribe(() => {
                   this.router.navigate(["../"], {
-                    relativeTo: this.route
+                    relativeTo: this.route,
                   });
                 });
                 snackBarRef.onAction().subscribe(() => {
@@ -104,7 +106,7 @@ export class UploadImgComponent implements OnInit {
                 this.errors = res["messages"];
               }
             },
-            err => {
+            (err) => {
               progressDialog.close();
             }
           );
@@ -120,6 +122,8 @@ export class UploadImgComponent implements OnInit {
     if (!event.target.files[0]) {
       return;
     }
+
+    this.fileSelected = true;
     let name = event.target.files[0].name;
     if (name) {
       if (
@@ -132,7 +136,7 @@ export class UploadImgComponent implements OnInit {
       } else {
         this.loadingLocalImage = false;
         this.snackBar.open("The file type should be PNG or JPEG", "", {
-          duration: 4000
+          duration: 4000,
         });
       }
     }
@@ -144,7 +148,7 @@ export class UploadImgComponent implements OnInit {
         "Image is not large enough, Select a larger image.",
         "",
         {
-          duration: 4000
+          duration: 4000,
         }
       );
       this.imageChangedEvent = "";
@@ -193,7 +197,7 @@ export class UploadImgComponent implements OnInit {
       },
       error(err) {
         console.log(err);
-      }
+      },
     });
   }
 

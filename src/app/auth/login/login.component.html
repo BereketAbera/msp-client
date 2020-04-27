@@ -1,5 +1,5 @@
 <div class="contanier">
-  <div class="header">
+  <!-- <div class="header">
     <mat-toolbar class="mainC" color="accent">
       <a class="clickCard" routerLink="/">
         <span>
@@ -7,16 +7,16 @@
         </span>
       </a>
     </mat-toolbar>
-  </div>
+  </div> -->
 
   <div class="card">
     <mat-tab-group class="card__tab" [selectedIndex]="selectedIndex">
       <mat-tab label="SIGN IN">
         <form class="form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
           <div class="example-container">
-            <div *ngIf="showError" id="errorCntr">
-              <button id="errClsBtn" (click)="close()">
-                X
+            <div *ngIf="showError" class="errorCntr">
+              <button class="errClsBtn" (click)="close()">
+                &#215;
               </button>
               <ul>
                 <li *ngFor="let error of errors">
@@ -102,12 +102,12 @@
       </mat-tab>
     </mat-tab-group>
   </div>
-  <div class="footer">
+  <!-- <div class="footer">
     <p class="pat">
       ManagerSpecial Copyright 2018. All Rights reserved. Worldwide Patent
       Pending 2018. A business unit of Live Inc.&nbsp;&nbsp;&nbsp;&nbsp;V{{
         version
       }}
     </p>
-  </div>
+  </div> -->
 </div>

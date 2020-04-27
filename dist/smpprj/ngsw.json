@@ -1,0 +1,114 @@
+{
+  "configVersion": 1,
+  "timestamp": 1587805197625,
+  "index": "/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "urls": [
+        "/1.5caf91308ed3a71710a3.js",
+        "/10.42fe9fac237b73b1ff96.js",
+        "/11.58faeede210f2969a354.js",
+        "/3.62eaa2e97d4ec9f14856.js",
+        "/4.02d3f928724bfd3d1c56.js",
+        "/8.9ca9f77a256432d50423.js",
+        "/9.14e473bd610e4f9da30f.js",
+        "/common.498add88e706905199fe.js",
+        "/favicon.ico",
+        "/index.html",
+        "/main.36d308646149a18e87aa.js",
+        "/polyfills.f82a709fe3b5111903d3.js",
+        "/runtime.4f479a95cd0f0dfde799.js"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "urls": [
+        "/assets/13.jpg",
+        "/assets/14.jpg",
+        "/assets/credit-cards.jpg",
+        "/assets/f1_1.jpg",
+        "/assets/f3.jpg",
+        "/assets/icons/icon-128x128.png",
+        "/assets/icons/icon-144x144.png",
+        "/assets/icons/icon-152x152.png",
+        "/assets/icons/icon-192x192.png",
+        "/assets/icons/icon-384x384.png",
+        "/assets/icons/icon-512x512.png",
+        "/assets/icons/icon-72x72.png",
+        "/assets/icons/icon-96x96.png",
+        "/assets/image/banners/bnr1.jpg",
+        "/assets/image/banners/bnr2.jpeg",
+        "/assets/image/banners/bnr3.jpg",
+        "/assets/image/home_bg.jpg",
+        "/assets/manager-special.jpg",
+        "/assets/piza1.jpg",
+        "/assets/s8.jpg",
+        "/assets/vmd.jpeg",
+        "/home_bg.e989371698184bb63d18.jpg"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/1.5caf91308ed3a71710a3.js": "2c16d924a8451235c6f92fefd88027c4bbdc611e",
+    "/10.42fe9fac237b73b1ff96.js": "c8cf3900bf50ee7d2d97e04714447ce696775b39",
+    "/11.58faeede210f2969a354.js": "0a1fbe8bd427316c676fd6c8cf85f522c4166483",
+    "/3.62eaa2e97d4ec9f14856.js": "75ee09c1236390e546ccc18bb1ca1b8e07d05627",
+    "/4.02d3f928724bfd3d1c56.js": "0ab5f931d7a354b2d07d8e0f3f9126deb0aaa049",
+    "/8.9ca9f77a256432d50423.js": "6104bf792096d4785fed5d25fa75fe7059979fb3",
+    "/9.14e473bd610e4f9da30f.js": "f50bb5cd0f4671f3a8b8efa54580003a7c175ec3",
+    "/assets/13.jpg": "920d0e4b545afae1be7dd38f6da8b154e345228d",
+    "/assets/14.jpg": "7f63323cb7a9a2a1cd751679f33c56af75ae957a",
+    "/assets/credit-cards.jpg": "3c5fc737e72b835554f790b6137fd392b729dccd",
+    "/assets/f1_1.jpg": "d9463188f4163b642890a51160dda00fbc13c80f",
+    "/assets/f3.jpg": "2dc6633891c2b55dfa3a5d682380b85221241fec",
+    "/assets/icons/icon-128x128.png": "dae3b6ed49bdaf4327b92531d4b5b4a5d30c7532",
+    "/assets/icons/icon-144x144.png": "b0bd89982e08f9bd2b642928f5391915b74799a7",
+    "/assets/icons/icon-152x152.png": "7479a9477815dfd9668d60f8b3b2fba709b91310",
+    "/assets/icons/icon-192x192.png": "1abd80d431a237a853ce38147d8c63752f10933b",
+    "/assets/icons/icon-384x384.png": "329749cd6393768d3131ed6304c136b1ca05f2fd",
+    "/assets/icons/icon-512x512.png": "559d9c4318b45a1f2b10596bbb4c960fe521dbcc",
+    "/assets/icons/icon-72x72.png": "c457e56089a36952cd67156f9996bc4ce54a5ed9",
+    "/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
+    "/assets/image/banners/bnr1.jpg": "4ab4251fac017015da5bdd06c6efc78d69d9f051",
+    "/assets/image/banners/bnr2.jpeg": "f72d05d50664e8596ae0f7f8b8cdab01dd18aeda",
+    "/assets/image/banners/bnr3.jpg": "ab7331121ac073db90a073f755f79b6d2971a9b6",
+    "/assets/image/home_bg.jpg": "e2319498932d824bbcab30b7e58e66cb018b608c",
+    "/assets/manager-special.jpg": "103d9e23b3d8e8a406b166d99720489fb83cbfa0",
+    "/assets/piza1.jpg": "1bd872fde1ed269d44dc1b992d2686163902d46c",
+    "/assets/s8.jpg": "d2c1117b22b896e0ead515eed3daa55847f1c5a0",
+    "/assets/vmd.jpeg": "ce2ebfb98ce58611bc4338bd396ebc2a03039e8f",
+    "/common.498add88e706905199fe.js": "19204dd415c4618872a884b7abd4d2d840b2aa4e",
+    "/favicon.ico": "89c35c717758e37a92a3689825c5997cbcf57782",
+    "/home_bg.e989371698184bb63d18.jpg": "e2319498932d824bbcab30b7e58e66cb018b608c",
+    "/index.html": "f97a4c9a8f6562337b5b61d9e792388f0d561276",
+    "/main.36d308646149a18e87aa.js": "54a38b5631aa46fe993455c605eded5264281f15",
+    "/polyfills.f82a709fe3b5111903d3.js": "2646c0ec00825860c7eeb691e6f1804cab9cf20c",
+    "/runtime.4f479a95cd0f0dfde799.js": "2013455642202fc8aa682d4aeac0a3302ec0afda"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ]
+}

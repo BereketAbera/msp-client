@@ -84,23 +84,39 @@ export class DealDetailComponent implements OnInit {
       reserveProduct.ordruid = order.guid;
       reserveProduct.prdid = this.product.id;
       reserveProduct.qty = this.buyForm.get("quantity").value;
-      this.cartService.addToCart(reserveProduct).subscribe((rsrvdPrd) => {
-        if (rsrvdPrd["success"]) {
-          reserveProduct.name = this.product.name;
-          reserveProduct.imagePath = this.product.imagePath;
-          reserveProduct.description = this.product.description;
-          reserveProduct.unitPrice = this.product.discountPrice;
-          reserveProduct.regPrice = this.product.normalPrice;
-          reserveProduct.disPrice = this.product.discountPrice;
-          reserveProduct.mspMarkup = this.markup.mspMarkup;
-          reserveProduct.ordruid = rsrvdPrd["guid"];
-          this.cartService.addToLocalCart(reserveProduct, rsrvdPrd["guid"]);
-          this.router.navigate(["../../cart"]);
-        } else {
-          this.errorMessage = rsrvdPrd["message"];
-          this.showErrorNotification = true;
-        }
-      });
+      // reserveProduct. =
+      let clientAddress = JSON.parse(localStorage.getItem("client_address"));
+      if (!clientAddress.Latitude || !clientAddress.Longitude) {
+        this.errorMessage = "You sould specify your location first.";
+        this.showErrorNotification = true;
+      }
+      this.cartService
+        .addToCart({
+          ...reserveProduct,
+          lat: clientAddress.Latitude,
+          lng: clientAddress.Longitude,
+        })
+        .subscribe((rsrvdPrd) => {
+          console.log(rsrvdPrd);
+          if (rsrvdPrd["success"]) {
+            reserveProduct.name = this.product.name;
+            reserveProduct.imagePath = this.product.imagePath;
+            reserveProduct.description = this.product.description;
+            reserveProduct.unitPrice = this.product.discountPrice;
+            reserveProduct.regPrice = this.product.normalPrice;
+            reserveProduct.disPrice = this.product.discountPrice;
+            reserveProduct.mspMarkup = this.markup.mspMarkup;
+            reserveProduct.ordruid = rsrvdPrd["guid"];
+            this.cartService.addToLocalCart(reserveProduct, rsrvdPrd["guid"]);
+            this.router.navigate(["../../cart"]);
+          } else if (rsrvdPrd["message"]) {
+            this.errorMessage = rsrvdPrd["message"];
+            this.showErrorNotification = true;
+          } else if (rsrvdPrd["messages"]) {
+            this.errorMessage = rsrvdPrd["messages"][0];
+            this.showErrorNotification = true;
+          }
+        });
     } else {
       this.errorMessage = "quantiy can not be less than 0 or greater than";
       this.showErrorNotification = true;
