@@ -1,0 +1,151 @@
+.content__container {
+  margin-top: 8rem;
+}
+
+.header_mobile {
+  width: 100%;
+  display: flex;
+  min-height: 7rem;
+  border-bottom: 1px solid #ddd;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  padding: 0.5rem 1rem;
+  z-index: 500;
+  background-color: #fff;
+  position: fixed;
+  top: -1px;
+
+  &__logo {
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__logo_text {
+    font-size: 2.5rem;
+    font-weight: 900;
+    margin-left: 0.5rem;
+    color: #333;
+    cursor: pointer;
+
+    text-decoration: none;
+
+    &:active {
+      text-decoration: none;
+      color: #333;
+    }
+  }
+
+  &__logo_icon {
+    width: 3rem;
+  }
+}
+
+.header__desktop {
+  display: none;
+  width: 100%;
+  min-height: 5rem;
+  border-bottom: 1px solid #ddd;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  padding: 0.5rem 1rem;
+  z-index: 500;
+  background-color: #fff;
+  position: fixed;
+  top: 0px;
+
+  &__logo {
+    align-self: center;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-right: 1rem;
+    border-right: 1px solid #aaa;
+  }
+
+  &__logo_text {
+    font-size: 1.8rem;
+    font-weight: 900;
+    margin-left: 0.5rem;
+    color: #f94081;
+  }
+
+  &__logo_icon {
+    width: 2.5rem;
+  }
+}
+
+.footer {
+  &__container {
+    width: 100%;
+  }
+
+  &__sub-container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding: 1rem 2rem;
+    background-color: #111;
+    list-style: none;
+    flex-wrap: wrap;
+  }
+
+  &__item {
+    padding: 0.5rem 1rem;
+    margin: 0.5rem 1rem;
+  }
+
+  &__item-text {
+    font-size: 1.5rem;
+    color: #ddd;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .header_mobile {
+    &__search-input-container {
+    }
+
+    &__search-input {
+      padding: 1rem;
+      font-size: 1.5rem;
+    }
+
+    &__search-button {
+    }
+  }
+
+  .footer {
+    // &__sub-container {
+    //   background-color: #000;
+    // }
+    &__item {
+      padding: 0rem;
+    }
+
+    &__item-text {
+      font-size: 1.1rem;
+    }
+  }
+}
+
+@media only screen and (min-width: 900px) {
+  .header_mobile {
+    display: none;
+
+    &__search-input-container {
+      display: none;
+    }
+  }
+
+  .header {
+    margin-top: 0;
+  }
+
+  .header__desktop {
+    display: flex;
+  }
+}

@@ -98,18 +98,18 @@ export class ProductService {
     sortOrder,
     pageNumber,
     pageSize,
-    userId,
+    storeId,
     query
   ) {
-    console.log(
-      `/company/product?distance=${distance}&lat=${lat}&q=${query}&lng=${lng}&userId=${userId}${
-        subCategoryId ? "&subCategoryId=" + subCategoryId : ""
-      }`
-    );
+    // console.log(
+    //   `/company/product?distance=${distance}&lat=${lat}&q=${query}&lng=${lng}&storeId=${storeId}${
+    //     subCategoryId ? "&subCategoryId=" + subCategoryId : ""
+    //   }`
+    // );
     return this.http
       .get(
         productApi +
-          `/company/product?distance=${distance}&lat=${lat}&q=${query}&lng=${lng}&userId=${userId}${
+          `/company/product?distance=${distance}&lat=${lat}&q=${query}&lng=${lng}&storeId=${storeId}${
             subCategoryId ? "&subCategoryId=" + subCategoryId : ""
           }`
       )
@@ -120,11 +120,16 @@ export class ProductService {
       );
   }
 
-  listCompaniesProducts(page, latitude, longitude, subCatagoryId) {
+  listCompaniesProducts(
+    page,
+    latitude,
+    longitude,
+    subCategoryId
+  ): Observable<any> {
     // console.log(latitude, longitude);
     return this.http
       .get(
-        `${productApi}/company?page=${page}&lat=${latitude}&lng=${longitude}&subCatagoryId=${subCatagoryId}`
+        `${productApi}/company?page=${page}&lat=${latitude}&lng=${longitude}&subCategoryId=${subCategoryId}`
       )
       .pipe(
         map((res) => {

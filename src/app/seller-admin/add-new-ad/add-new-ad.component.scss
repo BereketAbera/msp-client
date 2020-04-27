@@ -4,73 +4,84 @@
 .hhMMCntrl {
   width: 35px;
 }
-.ampm{
+.ampm {
   width: 40px;
 }
-.captureC{
+.captureC {
   text-align: center;
   padding: 2px;
 }
 
-.mainC{
+.mainC {
   position: relative;
-  height:12%;
+  height: 12%;
 }
-.clickCard
-  {
-    position: absolute;
-    top: 0; left: 0;
-    height: 100%; width: 100%;
-    }
+.clickCard {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
 
-.captureBrdr{
+.captureBrdr {
   border: 2px dotted white;
-  
-  
 }
-.material-icons.orange600 { color: #f44336; }
-.material-icons.md-48 { font-size: 60px; }
-.offerTitle{
-  font-size:small;
+.material-icons.orange600 {
+  color: #f44336;
+}
+.material-icons.md-48 {
+  font-size: 60px;
+}
+.offerTitle {
+  font-size: small;
 }
 
-#errorCntr {
-  width: 80%;
-  border: 2px solid red;
-  padding: 15px 15px 15px 15px;
-  margin: 20px 20px 20px 20px;
-  background: #A4D3EE;
+.errorCntr {
+  width: 90%;
+  border: 1px solid rgba(253, 89, 89, 0.74);
+  padding: 1.2rem;
+  margin: 1rem auto;
+  background: #a4d3ee;
   overflow: visible;
   position: relative;
+  border-radius: 1rem;
 }
 
-#errClsBtn {
-    position: absolute;
-    background: red;
-    color: white;
-    top: -10px;
-    right: -10px;
+.errClsBtn {
+  position: absolute;
+  background: red;
+  color: white;
+  top: -10px;
+  right: -10px;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 2rem;
+  border: 1px solid #fff;
+  font-size: 1.3rem;
+  cursor: pointer;
 }
+
 ul {
   list-style: none; /* Remove list bullets */
   padding: 0;
   margin: 0;
 }
-.spaceDown{
+.spaceDown {
   margin-bottom: 20px;
 }
-.pdlft{
+.pdlft {
   padding-left: 5px;
 }
 .example-section {
-display: flex;
-align-content: center;
-align-items: center;
-height: 60px;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 60px;
 }
 .example-margin {
-margin: 0 10px;
-font-size: 12px;
+  margin: 0 10px;
+  font-size: 12px;
 }
 .scrolling-wrapper-flexbox {
   display: flex;
@@ -83,25 +94,22 @@ font-size: 12px;
   }
   .card {
     flex: 0 0 auto;
-    width:105px;
+    width: 105px;
     height: 120px;
     padding-left: 10px;
-   .glryImg{
-      width:100px;
+    .glryImg {
+      width: 100px;
       height: 80px;
       margin: 3px;
       border-radius: 25px;
     }
-    input[type=radio] {
-      display:none; 
-      margin:10px;
+    input[type="radio"] {
+      display: none;
+      margin: 10px;
     }
-    input[type=radio]:checked + label>img { 
+    input[type="radio"]:checked + label > img {
       border: 2px solid red;
       padding: 2px;
-      
     }
- }
- 
-  
+  }
 }

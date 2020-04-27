@@ -53,6 +53,8 @@ export class CompanyProductsComponent implements OnInit {
         }
       }
     }
+
+    // console.log(this.company);
   }
 
   ngOnInit() {
@@ -74,7 +76,7 @@ export class CompanyProductsComponent implements OnInit {
         "desc",
         this.page,
         this.pageSize,
-        this.company.sellerProfileId,
+        this.company.storeId,
         this.query ? this.query : this.q
       )
       .subscribe((resp) => {
