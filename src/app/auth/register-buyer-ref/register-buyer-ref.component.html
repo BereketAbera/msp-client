@@ -1,61 +1,74 @@
 <mat-toolbar class="mainC" color="accent">
   <a class="clickCard" routerLink="/">
-      <span>
-          MANAGER SPECIAL
-      </span>
+    <span>
+      MANAGER SPECIAL
+    </span>
   </a>
 </mat-toolbar>
- 
+
 <div *ngIf="showError" id="errorCntr">
-  <button id = "errClsBtn" (click)="close()">
-      X
+  <button id="errClsBtn" (click)="close()">
+    X
   </button>
   <ul>
     <li *ngFor="let error of errors">
       {{error}}
     </li>
-    
+
   </ul>
 </div>
-<form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
-  <div class="example-container">
-      <table class="example-full-width" cellspacing="0"><tr>
-          <td>
-             <mat-form-field class="example-full-width" hintLabel="min 2 characters">
-              <input matInput placeholder="First Name" minlength="2" maxlength="20" formControlName="firstName" required>
-              <mat-error *ngIf="registrationForm.controls.firstName.invalid">No more than 20 characters.</mat-error>
-            </mat-form-field>
-          </td>
-          <td> 
-            <mat-form-field class="example-full-width" hintLabel="min 2 characters">
-              <input matInput placeholder="Last Name" minlength="2" maxlength="20" formControlName="lastName" required>
-              <mat-error *ngIf="registrationForm.controls.lastName.invalid">No more than 20 characters.</mat-error>
-            </mat-form-field>
-          </td>
-        </tr></table>
-        <mat-form-field class="example-full-width" hintLabel="max 15 numbers">
-          <input type="tel" matInput placeholder="Telephone" maxlength="15" formControlName="phoneNumber">
-         </mat-form-field>  
-<mat-form-field>
-  <input matInput disabled formControlName="email" required>
-  <mat-error *ngIf="registrationForm.controls.email.invalid">{{getErrorMessage()}}</mat-error>
-</mat-form-field>
+<div class="container">
+  <mat-card class="card">
+    <div class="card__tab">
+      <form class="form" [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+        <div class="example-container">
+          <table class="example-full-width" cellspacing="0">
+            <tr>
+              <td>
+                <mat-form-field class="example-full-width" hintLabel="min 2 characters">
+                  <input matInput placeholder="First Name" minlength="2" maxlength="20" formControlName="firstName"
+                    required>
+                  <mat-error *ngIf="registrationForm.controls.firstName.invalid">No more than 20 characters.</mat-error>
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field class="example-full-width" hintLabel="min 2 characters">
+                  <input matInput placeholder="Last Name" minlength="2" maxlength="20" formControlName="lastName"
+                    required>
+                  <mat-error *ngIf="registrationForm.controls.lastName.invalid">No more than 20 characters.</mat-error>
+                </mat-form-field>
+              </td>
+            </tr>
+          </table>
+          <mat-form-field class="example-full-width" hintLabel="max 15 numbers">
+            <input type="tel" matInput placeholder="Telephone" maxlength="15" formControlName="phoneNumber">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput disabled formControlName="email" required>
+            <mat-error *ngIf="registrationForm.controls.email.invalid">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
 
-    <mat-form-field hintLabel="min 2 characters and max 12 characters">
-  <input matInput placeholder="Enter your password" minlength="2" maxlength="12" formControlName="password" [type]="hide ? 'password' : 'text'" required>
-  <mat-error *ngIf="registrationForm.controls.password.invalid">No more than 12 characters.</mat-error>
-  <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-</mat-form-field>
-<br>
-<br>
- <mat-checkbox matInput formControlName="agreed" >I have read and agreed to the<a href="./Terms-of-Use-for-Buyer.html" > Buyer's Terms of Use</a><br>and the <a href="./Manager-Special-Privacy-Policy-Buyer.html">Privacy Statement.</a></mat-checkbox>
-<br>
-<br>
-<button type="submit" mat-raised-button color="accent">Sign Up</button>
+          <mat-form-field hintLabel="min 2 characters and max 12 characters">
+            <input matInput placeholder="Enter your password" minlength="2" maxlength="12" formControlName="password"
+              [type]="hide ? 'password' : 'text'" required>
+            <mat-error *ngIf="registrationForm.controls.password.invalid">No more than 12 characters.</mat-error>
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </mat-form-field>
+          <br>
+          <br>
+          <mat-checkbox matInput formControlName="agreed">I have read and agreed to the<a
+              href="./Terms-of-Use-for-Buyer.html"> Buyer's Terms of Use</a><br>and the <a
+              href="./Manager-Special-Privacy-Policy-Buyer.html">Privacy Statement.</a></mat-checkbox>
+          <br>
+          <br>
+          <button type="submit" mat-raised-button color="accent">Sign Up</button>
+        </div>
+      </form>
+    </div>
+
+  </mat-card>
+  <div class="footer">
+    <p class="pat">ManagerSpecial Copyright 2018. All Rights reserved. Worldwide Patent Pending 2018. A business unit of
+      Live Inc.&nbsp;&nbsp;&nbsp;&nbsp;</p>
+  </div>
 </div>
-</form>
-
-
- 
-
-<p class="pat">ManagerSpecial Copyright 2018. All Rights reserved. Worldwide Patent Pending 2018. A business unit of Live Inc.&nbsp;&nbsp;&nbsp;&nbsp;</p>

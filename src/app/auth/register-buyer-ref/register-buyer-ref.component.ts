@@ -52,6 +52,7 @@ export class RegisterBuyerRefComponent implements OnInit {
       usrInfo.tk = this.tk;
       return this.userService.registerByrUser(this.registrationForm.value).subscribe(
         res => {
+          console.log(res)
           if (res['success']) {
             this.router.navigate(['/login']);
           } else {

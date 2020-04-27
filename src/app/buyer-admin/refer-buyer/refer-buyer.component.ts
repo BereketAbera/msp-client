@@ -34,7 +34,7 @@ export class ReferBuyerComponent implements OnInit {
         this.emails.push(this.emailFormControl.value);
         this.emailFormControl.reset();
         }else{
-          this.errorMessage="Sorry, Email si alraedy in used";  
+          this.errorMessage="Sorry, Email is already in used";  
           this.showErrorNotification = true;
         }
       });

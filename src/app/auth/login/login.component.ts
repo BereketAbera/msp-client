@@ -60,6 +60,7 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     return this.authService.login(this.loginForm.value).subscribe(
       res => {
+        console.log(res,'sdfsd')
         if (this.authService.redirectURL) {
           this.router.navigateByUrl(this.authService.redirectURL);
         } else this.router.navigate([this.authService.defaultNavigationURL]);
