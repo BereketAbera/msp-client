@@ -10,12 +10,12 @@
       Process Order
     </button>
   </div>
-  <div class="order__list-container" >
+  <div class="order__list-container">
     <div class="order__sub-list-container">
       <div class="spinner-container" *ngIf="dataSource.loading$ | async">
         <mat-spinner></mat-spinner>
       </div>
-      <mat-table 
+      <mat-table
         class="mat-elevation-z2 table"
         [dataSource]="dataSource"
         matSort
@@ -83,7 +83,7 @@
     </div>
   </div>
 
-  <div *ngIf="dataSource.length == 0" class="no_result">
+  <div *ngIf="!dataSource" class="no_result">
     No order yet
   </div>
 </div>

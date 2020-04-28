@@ -116,21 +116,34 @@
               >
             </li> -->
             <li (click)="drawerLinkClicked()" class="side_bar_mobile__item">
-              <a (click)="logout()" class="side_bar_mobile__item-text">
-                <i class="far fa-user side_bar_mobile__item-icon"></i>Log Out</a
+              <a
+                (click)="logout()"
+                class="side_bar_mobile__item-text side_bar_mobile__logout"
+              >
+                <i class="far fa-user side_bar_mobile__item-icon"></i>Log Out
+                ({{ name }})</a
               >
             </li>
           </ul>
         </div>
       </div>
-      <img routerLink="/"
-      [routerLinkActive]="['active-routeas']"
-      [routerLinkActiveOptions]="{ exact: false }"   src="favicon.ico" alt="Logo" class="navigation__header-image" />
-      <a  class="navigation__header-text">Manager Special</a>
+      <img
+        routerLink="/"
+        [routerLinkActive]="['active-routeas']"
+        [routerLinkActiveOptions]="{ exact: false }"
+        src="favicon.ico"
+        alt="Logo"
+        class="navigation__header-image"
+      />
+      <a routerLink="/" class="navigation__header-text">Manager Special</a>
     </div>
-    <div (click)="drawerLinkClicked()" routerLink="/"
-    [routerLinkActive]="['active-routes']"  [routerLinkActiveOptions]="{ exact: false }"
-    class="navigation__header-container">
+    <div
+      (click)="drawerLinkClicked()"
+      routerLink="/"
+      [routerLinkActive]="['active-routes']"
+      [routerLinkActiveOptions]="{ exact: false }"
+      class="navigation__header-container"
+    >
       <img src="favicon.ico" alt="Logo" class="navigation__header-image" />
     </div>
     <ul class="navigation__sub-container">
@@ -189,8 +202,10 @@
         >
       </li> -->
       <li class="navigation__item">
-        <a (click)="logout()" class="navigation__item-text">
-          <i class="far fa-user navigation__item-icon"></i>Log Out</a
+        <a (click)="logout()" class="navigation__item-text navigation__logout">
+          <i class="far fa-user navigation__item-icon"></i>Log Out ({{
+            name
+          }})</a
         >
       </li>
     </ul>

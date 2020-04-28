@@ -126,6 +126,23 @@
         hide ? "visibility_off" : "visibility"
       }}</mat-icon>
     </mat-form-field>
+    <mat-form-field hintLabel="min 2 characters and max 12 characters">
+      <input
+        matInput
+        placeholder="Confirm your password"
+        minlength="2"
+        maxlength="12"
+        formControlName="confirmPassword"
+        [type]="hide ? 'password' : 'text'"
+        required
+      />
+      <mat-error *ngIf="registrationForm.controls.password.invalid"
+        >No more than 12 characters.</mat-error
+      >
+      <mat-icon matSuffix (click)="hide = !hide">{{
+        hide ? "visibility_off" : "visibility"
+      }}</mat-icon>
+    </mat-form-field>
     <br />
     <br />
     <div>

@@ -64,6 +64,7 @@
     align-items: center;
     padding-right: 1rem;
     border-right: 1px solid #aaa;
+    cursor: pointer;
   }
 
   &__logo_text {
@@ -71,6 +72,7 @@
     font-weight: 900;
     margin-left: 0.5rem;
     color: #f94081;
+    text-decoration: none;
   }
 
   &__logo_icon {
@@ -96,6 +98,7 @@
   &__item {
     padding: 0.5rem 1rem;
     margin: 0.5rem 1rem;
+    cursor: pointer;
   }
 
   &__item-text {

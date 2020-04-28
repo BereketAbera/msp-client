@@ -473,6 +473,7 @@
   &__item {
     padding: 0.5rem 1rem;
     margin: 0.5rem 1rem;
+    cursor: pointer;
   }
 
   &__item-text {
@@ -522,6 +523,10 @@
     &__search-input-container {
       display: none;
     }
+  }
+
+  .mat-progress-bar {
+    top: 5rem;
   }
 
   .header {

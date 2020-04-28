@@ -1,14 +1,20 @@
 <div class="container">
-    <mat-card>
-        <mat-card class="balance">
-            <div class="balance__icon">
-                <mat-icon>attach_money</mat-icon>
-            </div>
-            <span class="balance__header">Balance = </span> <span class="balance__header__value">
-                {{ balance | currency }} </span>
-        </mat-card>
-        <P class="description"> You can only use these credits on our site and they cannot be converted to cash refunds.
-        </P>
+  <mat-card>
+    <mat-card class="balance">
+      <div class="balance__icon">
+        <mat-icon>attach_money</mat-icon>
+      </div>
+      <span class="balance__header">Balance = </span>
+      <span class="balance__header__value"> {{ balance | currency }} </span>
     </mat-card>
-    <ng-template appPaymentType></ng-template>
+    <p class="description">
+      You can only use these credits on our site and they cannot be converted to
+      cash refunds.
+    </p>
+    <p class="description">
+      If you have problems adding money, email
+      <span class="email">Support@ManagerSpecial.com</span>
+    </p>
+  </mat-card>
+  <ng-template appPaymentType></ng-template>
 </div>

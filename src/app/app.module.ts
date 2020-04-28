@@ -1,3 +1,5 @@
+import { SellerTermsComponent } from "./components/seller-terms/seller-terms.component";
+import { PrivacyComponent } from "./components/privacy/privacy.component";
 import "../polyfills";
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
@@ -39,6 +41,7 @@ import { UtcProductComponent } from "./components/utc-product/utc-product.compon
 import { UtcDealDetailComponent } from "./components/utc-deal-detail/utc-deal-detail.component";
 import { CompanyProductsComponent } from "./components/company-products/company-products.component";
 import { PublicProductsComponent } from "./components/public-products/public-products.component";
+import { BuyerTermsComponent } from "./components/buyer-terms/buyer-terms.component";
 // import { DragDropDirective } from './service/drag-drop.directive';
 // import { CustomNotificationComponent } from "./components/custom-notification/custom-notification.component";
 
@@ -59,6 +62,9 @@ import { PublicProductsComponent } from "./components/public-products/public-pro
     UtcDealDetailComponent,
     CompanyProductsComponent,
     PublicProductsComponent,
+    PrivacyComponent,
+    BuyerTermsComponent,
+    SellerTermsComponent,
     //  DragDropDirective
     // CustomNotificationComponent
   ],

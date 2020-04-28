@@ -1,3 +1,6 @@
+import { SellerTermsComponent } from "./components/seller-terms/seller-terms.component";
+import { BuyerTermsComponent } from "./components/buyer-terms/buyer-terms.component";
+import { PrivacyComponent } from "./components/privacy/privacy.component";
 import { PublicProductsComponent } from "./components/public-products/public-products.component";
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
@@ -62,6 +65,9 @@ const appRoutes: Routes = [
       { path: "food", component: HomeComponent },
       { path: "beauty", component: BeautyComponent },
       { path: "test", component: TestUtcComponent },
+      { path: "privacy", component: PrivacyComponent },
+      { path: "buyer_terms", component: BuyerTermsComponent },
+      { path: "seller_terms", component: SellerTermsComponent },
     ],
   },
   {
