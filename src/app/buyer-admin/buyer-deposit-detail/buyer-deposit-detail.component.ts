@@ -10,7 +10,7 @@ import {Deposit} from '../../model/deposit';
 export class BuyerDepositDetailComponent implements OnInit {
 
   constructor(private route:ActivatedRoute,private router:Router) { }
-  deposit:Deposit;
+  deposit:any;
   ngOnInit() {
     this.route.data
       .subscribe((data: { deposit: Deposit}) => {
