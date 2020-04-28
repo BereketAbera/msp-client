@@ -2,7 +2,7 @@
   &__container {
     display: flex;
     flex-direction: column;
-    width: 80%;
+    width: 95%;
     margin: 1rem auto;
   }
 
@@ -44,7 +44,7 @@
   &__image-container {
     width: 100%;
     position: relative;
-    height: 70vh;
+    height: 50vh;
   }
 
   &__image {
@@ -62,7 +62,7 @@
     bottom: 0px;
     width: 90%;
     background-color: #ff3c819e;
-    clip-path: polygon(20% 0%, 100% 0, 100% 100%, 0% 100%);
+    clip-path: polygon(10% 0%, 100% 0, 100% 100%, 0% 100%);
     display: flex;
     flex-direction: column;
     // align-items: center;
@@ -165,7 +165,7 @@
   &__button {
     border-radius: 0rem;
     margin: 0rem 1rem;
-    padding: 0 3rem;
+    padding: 0 1rem;
   }
   // &__description {
   //   padding: 1rem;
@@ -216,10 +216,22 @@ input[type="number"]::-webkit-outer-spin-button {
   opacity: 1;
 }
 
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 700px) {
   .product-detail {
+    &__container {
+      width: 80%;
+    }
+
     &__image-overlay {
       width: 60%;
+    }
+
+    &__image-container {
+      height: 70vh;
+    }
+
+    &__button {
+      padding: 0rem 3rem;
     }
   }
 }

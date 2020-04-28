@@ -32,7 +32,7 @@
     display: flex;
     list-style: none;
     margin-left: -2rem;
-    padding: 2rem;
+    padding: 1.8rem;
     background-color: #fff;
   }
 
@@ -59,6 +59,14 @@
       text-decoration: none;
       clip-path: polygon(90% 0, 100% 50%, 90% 100%, 0% 100%, 0 50%, 0% 0%);
       background-color: #f94081;
+    }
+  }
+
+  &__logout {
+    &:hover,
+    &:active {
+      color: #888;
+      background-color: transparent;
     }
   }
 
@@ -381,6 +389,14 @@
       text-decoration: none;
       clip-path: polygon(90% 0, 100% 50%, 90% 100%, 0% 100%, 0 50%, 0% 0%);
       background-color: #f94081;
+    }
+  }
+
+  &__logout {
+    &:hover,
+    &:active {
+      color: #888;
+      background-color: transparent;
     }
   }
 

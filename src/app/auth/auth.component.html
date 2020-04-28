@@ -2,14 +2,24 @@
   <div class="header">
     <div class="header_mobile">
       <div class="header_mobile__logo">
-        <img src="favicon.ico" alt="Logo" class="header_mobile__logo_icon" />
+        <img
+          routerLink="/"
+          src="favicon.ico"
+          alt="Logo"
+          class="header_mobile__logo_icon"
+        />
         <a routerLink="/" class="header_mobile__logo_text">Manager Special</a>
       </div>
     </div>
 
     <div class="header__desktop">
       <div class="header__desktop__logo">
-        <img src="favicon.ico" alt="Logo" class="header__desktop__logo_icon" />
+        <img
+          routerLink="/"
+          src="favicon.ico"
+          alt="Logo"
+          class="header__desktop__logo_icon"
+        />
         <a routerLink="/" class="header__desktop__logo_text">Manager Special</a>
       </div>
     </div>
@@ -21,20 +31,26 @@
   <div class="footer__container">
     <ul class="footer__sub-container">
       <li class="footer__item">
+        <p class="footer__item-text">
+          ManagerSpecial Copyright {{ today }}. All Rights reserved. Worldwide
+          Patent Pending {{ today }}. A business unit of Live Inc. {{ version }}
+        </p>
+      </li>
+      <li routerLink="/" class="footer__item">
         <span class="footer__item-text">Home</span>
       </li>
-      <li class="footer__item">
+      <!-- <li class="footer__item">
         <span class="footer__item-text">About Us</span>
-      </li>
-      <li class="footer__item">
+      </li> -->
+      <li routerLink="/privacy" class="footer__item">
         <span class="footer__item-text">Privacy Policy</span>
       </li>
-      <li class="footer__item">
+      <!-- <li class="footer__item">
         <span class="footer__item-text">Terms & Conditions</span>
-      </li>
-      <li class="footer__item">
+      </li> -->
+      <!-- <li class="footer__item">
         <span class="footer__item-text">Contact Us</span>
-      </li>
+      </li> -->
     </ul>
   </div>
 </div>

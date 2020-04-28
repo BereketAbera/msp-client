@@ -64,6 +64,7 @@
     align-items: center;
     padding-right: 1rem;
     border-right: 1px solid #aaa;
+    cursor: pointer;
   }
 
   &__logo_text {
@@ -97,6 +98,7 @@
   &__item {
     padding: 0.5rem 1rem;
     margin: 0.5rem 1rem;
+    cursor: pointer;
   }
 
   &__item-text {

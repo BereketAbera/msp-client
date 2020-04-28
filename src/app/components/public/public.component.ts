@@ -1,3 +1,4 @@
+import { environment } from "../../../environments/environment";
 import {
   Component,
   ChangeDetectionStrategy,
@@ -22,6 +23,8 @@ import { Category } from "src/app/model/category";
   changeDetection: ChangeDetectionStrategy.Default,
 })
 export class PublicComponent implements OnInit {
+  today = new Date().getFullYear();
+  version = environment.version;
   progressBarActive: boolean = false;
   name: string = "";
   mobileSearchActive = false;

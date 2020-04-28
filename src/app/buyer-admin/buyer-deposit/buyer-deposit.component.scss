@@ -1,41 +1,45 @@
-.container{
-    margin:1rem 2rem;
-    &__header{
-        color: #666;
+.container {
+  margin: 1rem 2rem;
+  &__header {
+    color: #666;
+    font-size: 1.5rem;
+    padding-top: 1rem;
+  }
+
+  .description {
+    padding: 1rem;
+    font-size: 1.2rem;
+  }
+  .balance {
+    display: flex;
+    justify-content: center;
+    width: 25rem;
+    align-items: center;
+    background: #f2f2f2;
+    &__header {
+      font-size: 1.5rem;
+
+      &__value {
         font-size: 1.5rem;
-        padding-top:1rem;
+        font-weight: 700;
+        padding-left: 1rem;
+      }
     }
 
-    .description{
-        padding:1rem;
-        font-size: 1.2rem;
+    &__icon {
+      width: 5rem;
+      height: 100%;
+      background: #f43f81;
+      position: absolute;
+      left: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
     }
-    .balance{
-        display: flex;
-        justify-content: center;
-        width: 25rem;
-        align-items: center;
-        background: #f2f2f2;
-        &__header{
-            font-size: 1.5rem;
-            
-            &__value{
-                font-size: 1.5rem;
-                font-weight: 700;
-                padding-left: 1rem;
-            }
-        }
-
-        &__icon{
-            width: 5rem;
-            height: 100%;
-            background: #f43f81;
-            position: absolute;
-            left: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-        }
-    }
-} 
+  }
+  .email {
+    color: #f94081;
+    font-weight: 700;
+  }
+}

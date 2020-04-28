@@ -9,7 +9,7 @@
           <h3 class="product-detail__name-text">{{ product?.name }}</h3>
         </div>
         <div class="product-detail__reserve-order">
-          <div style="display: flex">
+          <div style="display: flex;">
             <i class="fas fa-chevron-right product-detail__list-icon"></i>
             <h5 class="product-detail__reserve-order-text">Reserve Order</h5>
           </div>
@@ -30,7 +30,7 @@
           </div>
         </div>
         <div class="product-detail__reserve-order">
-          <div style="display: flex">
+          <div style="display: flex;">
             <i class="fas fa-chevron-right product-detail__list-icon"></i>
             <h5 class="product-detail__reserve-order-text">Service Time</h5>
           </div>
@@ -51,7 +51,7 @@
           </div>
         </div>
         <div class="product-detail__reserve-order">
-          <div style="display: flex">
+          <div style="display: flex;">
             <i class="fas fa-chevron-right product-detail__list-icon"></i>
             <h5 class="product-detail__reserve-order-text">
               {{ product?.currentQuantity }} Remaining
@@ -121,7 +121,8 @@
       </div>
       <div class="product-detail__total">
         Total:
-        {{ product?.discountPrice * buyForm.value["quantity"] | currency }}
+        {{ product?.discountPrice * buyForm.value["quantity"] | currency }}, pay
+        seller directly at store
       </div>
     </div>
     <div class="product-detail__bottom-container">
@@ -131,7 +132,7 @@
         class="product-detail__button"
         (click)="addToCart()"
       >
-        <mat-icon>shopping_cart</mat-icon> <span>Add to Cart</span>
+        <mat-icon>shopping_cart</mat-icon> <span>Add To Reservation</span>
       </button>
       <button
         mat-flat-button

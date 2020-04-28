@@ -29,6 +29,7 @@ export class RegisterSellerComponent implements OnInit {
     websiteURL: ["", Validators.required],
     email: ["", [Validators.required, Validators.email]],
     password: ["", Validators.required],
+    confirmPassword: ["", Validators.required],
     agreed: [false, Validators.required],
     role: ["SELLER", Validators.required],
     subCategoryId: ["", Validators.required],
@@ -52,7 +53,20 @@ export class RegisterSellerComponent implements OnInit {
     this.showError = false;
   }
   onSubmit() {
-    if (this.registrationForm.get("agreed").value) {
+    if (
+      this.registrationForm.get("password").value !=
+      this.registrationForm.get("confirmPassword").value
+    ) {
+      this.showError = true;
+      this.errors = ["Your passwords do not much"];
+      return;
+    }
+    this.showError = false;
+    this.errors = [];
+    if (
+      this.registrationForm.get("agreed").value &&
+      this.registrationForm.valid
+    ) {
       return this.userService
         .registerUser(this.registrationForm.value)
         .subscribe((res) => {
