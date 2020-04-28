@@ -6,6 +6,7 @@ import {ReserveProduct} from '../../model/reserve-product';
 import {CartService} from '../../service/cart.service';
 
 import {CartExpiredDialogComponent} from '../cart-expired-dialog/cart-expired-dialog.component';
+import { copyStyles } from '@angular/animations/browser/src/util';
 
 @Component({
   selector: 'app-cart',
@@ -19,6 +20,7 @@ export class CartComponent implements OnInit {
   total:number = 0;
   normal:number = 0;
   totalMSPMarkup:number = 0;
+  empty=true;
 
 	// Not Found Message
 	messageTitle = 'No Products Found in Cart';
@@ -44,7 +46,7 @@ export class CartComponent implements OnInit {
 	getCartProduct() {
 		this.cartProducts = this.cartService.getLocalCartProducts();
 		this.getTotalPrice();
-		
+		console.log(this.cartProducts)
 	}
 	getTotalPrice(){
 		this.total = 0;

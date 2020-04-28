@@ -80,14 +80,14 @@
         </div>
         <div class="card__action">
           <div class="shopping-cart__product-line-price">
-            Total: <b>{{ product.unitPrice * product.qty | currency }} </b> 
+            Total: <b>{{ product.unitPrice * product.qty | currency }} </b>
           </div>
         </div>
 
         <div class="card__remove">
-            <button class="shopping-cart__remove-product" (click)="removeCartProduct(product)">
-                X
-              </button>
+          <button class="shopping-cart__remove-product" (click)="removeCartProduct(product)">
+            X
+          </button>
         </div>
         <div class="card__header">
           <img class="shopping-cart__product-image" src="{{ product.imagePath }}" />
@@ -128,4 +128,8 @@
       Continue Shopping
     </button>
   </div>
+</div>
+
+<div class="empty_result" *ngIf="cartProducts.length == 0">
+  No Product in Cart
 </div>
