@@ -105,7 +105,7 @@
   &__remove-product {
     border: none;
     outline: none;
-    padding: 0.5rem 1rem;
+    padding: 0.2rem 0.5rem;
     color: #fff;
     background-color: #f94081;
     cursor: pointer;
@@ -142,6 +142,13 @@
     margin-left: 2rem;
   }
 }
+.empty_result{
+  margin: 10rem 5rem;
+  display: flex;
+  justify-content: center;
+  font-size: 2.2rem;
+  color: #777;
+}
 
 @media only screen and (max-width: 600px) {
   .tbl {
@@ -149,6 +156,7 @@
   }
   .mobile_responsive {
     display: flex;
+    flex-direction: column;
   }
 
   .shopping-cart__actions{
@@ -164,12 +172,14 @@
       display: flex;
       justify-content: space-between;
       position: relative;
+      margin: 1rem 0;
+      min-height: 12rem;
       &__action{
         display: flex;
         flex-direction: row;
         position: absolute;
         bottom: 0;
-        right: 29%;
+        right: 0;
         padding:0 1rem;
         color: rgb(4, 92, 4);
         align-items: center;
