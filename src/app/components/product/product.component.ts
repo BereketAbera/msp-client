@@ -80,4 +80,31 @@ export class ProductComponent implements OnInit {
   returnTwoDigit(value) {
     return value.toString().length == 1 ? "0" + value : value;
   }
+
+  checkAvailability(start) {
+    let d = -new Date().getTimezoneOffset();
+    let x = start.split(":");
+    let hour = parseInt(x[0]);
+    let minute = parseInt(x[1]);
+    let totalMinutes = hour * 60 + minute + d;
+    let localMinutes = new Date().getHours() * 60 + new Date().getMinutes();
+
+    if (totalMinutes > localMinutes) {
+      return true;
+    }
+    return false;
+  }
+  checkAvailability2(end) {
+    let d = -new Date().getTimezoneOffset();
+    let x = end.split(":");
+    let hour = parseInt(x[0]);
+    let minute = parseInt(x[1]);
+    let totalMinutes = hour * 60 + minute + d;
+    let localMinutes = new Date().getHours() * 60 + new Date().getMinutes();
+
+    if (localMinutes > totalMinutes) {
+      return true;
+    }
+    return false;
+  }
 }

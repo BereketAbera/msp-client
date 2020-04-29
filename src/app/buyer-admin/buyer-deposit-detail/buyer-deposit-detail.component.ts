@@ -1,26 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute,Router} from '@angular/router';
-import {Deposit} from '../../model/deposit';
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
+import { Deposit } from "../../model/deposit";
 
 @Component({
-  selector: 'app-buyer-deposit-detail',
-  templateUrl: './buyer-deposit-detail.component.html',
-  styleUrls: ['./buyer-deposit-detail.component.scss']
+  selector: "app-buyer-deposit-detail",
+  templateUrl: "./buyer-deposit-detail.component.html",
+  styleUrls: ["./buyer-deposit-detail.component.scss"],
 })
 export class BuyerDepositDetailComponent implements OnInit {
-
-  constructor(private route:ActivatedRoute,private router:Router) { }
-  deposit:any;
+  constructor(private route: ActivatedRoute, private router: Router) {}
+  deposit: Deposit;
   ngOnInit() {
-    this.route.data
-      .subscribe((data: { deposit: Deposit}) => {
-        this.deposit = data.deposit;
-      
-      });
+    this.route.data.subscribe((data: { deposit: Deposit }) => {
+      this.deposit = data.deposit;
+    });
   }
-  gotoBuyerTrans(){
-    
-    this.router.navigate(["../../trnsctns"],{relativeTo:this.route});
-        
+  gotoBuyerTrans() {
+    this.router.navigate(["../../trnsctns"], { relativeTo: this.route });
   }
 }

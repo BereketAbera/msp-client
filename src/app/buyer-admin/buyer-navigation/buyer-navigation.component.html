@@ -45,7 +45,7 @@
 </mat-toolbar> -->
 
 <header class="navigation">
-  <div class="navigation__divider"></div>
+  <!-- <div class="navigation__divider"></div> -->
   <div class="navigation__container">
     <div class="header_mobile">
       <div>
@@ -144,7 +144,29 @@
       [routerLinkActiveOptions]="{ exact: false }"
       class="navigation__header-container"
     >
-      <img src="favicon.ico" alt="Logo" class="navigation__header-image" />
+      <div class="navigation__sub-header-container">
+        <img
+          routerLink="./"
+          src="favicon.ico"
+          alt="Logo"
+          class="navigation__desktop-header-image"
+        />
+        <a routerLink="./" class="navigation__desktop-header-text"
+          >Manager Special</a
+        >
+      </div>
+      <div>
+        <span class="navigation__item">
+          <a
+            (click)="logout()"
+            class="navigation__item-text navigation__logout"
+          >
+            <i class="far fa-user navigation__item-icon"></i>Log Out ({{
+              name
+            }})</a
+          >
+        </span>
+      </div>
     </div>
     <ul class="navigation__sub-container">
       <!-- <li class="navigation__item svg-wrapper">
@@ -201,13 +223,13 @@
           ><i class="far fa-sun navigation__item-icon"></i> Staff</a
         >
       </li> -->
-      <li class="navigation__item">
+      <!-- <li class="navigation__item">
         <a (click)="logout()" class="navigation__item-text navigation__logout">
           <i class="far fa-user navigation__item-icon"></i>Log Out ({{
             name
           }})</a
         >
-      </li>
+      </li> -->
     </ul>
   </div>
   <div class="navigation__divider navigation__divider-middle"></div>
