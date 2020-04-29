@@ -43,9 +43,11 @@ export class SellerDashboardComponent implements OnInit {
     this.route.data.subscribe(
       (data: { summary: SellerSummary; rvnuRprt: RevenuRprt[] }) => {
         this.summary = data.summary;
-        this.soldPercentage = Math.ceil(
-          (this.summary.totalSoldQty / this.summary.totalQty) * 100
-        );
+        if(this.summary.totalQty > 0){
+          this.soldPercentage = Math.ceil(
+            (this.summary.totalSoldQty / this.summary.totalQty) * 100
+          );
+        }
 
         this.revenuReport = data.rvnuRprt;
         this.lables = this.revenuReport.map((value) => {

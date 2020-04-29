@@ -4,9 +4,20 @@
   margin: 0 auto;
 }
 .no_result{
+  display: flex;
+  justify-content: center;
   font-size: 2rem;
   color: #777;
+  width: 97%;
+  margin: 1rem;
+  border:1px #ddd solid;
 }
+.header-align-right{
+  display: flex;
+  padding: 21px 5rem;
+  justify-content: flex-start;
+}
+
 .img {
   max-width: 8rem;
   height: 4rem;
@@ -56,8 +67,7 @@
 }
 
 .order {
-  &__main-container {
-  }
+
 
   &__list-container {
     width: 100%;

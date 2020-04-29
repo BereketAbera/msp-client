@@ -28,6 +28,7 @@
           (change)="fileChangeEvent($event)"
           accept="image/jpg,image/jpeg,image/gif,image/png"
           style="display: none;"
+         
         />
       </label>
     </div>
@@ -44,6 +45,8 @@
         formControlName="name"
         required
         (change)="fileChangeEvent($event)"
+        maxlength="30"
+        minlength="2"
       />
     </mat-form-field>
   </div>

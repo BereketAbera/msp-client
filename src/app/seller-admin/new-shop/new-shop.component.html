@@ -23,6 +23,7 @@
           <input
             matInput
             minlength="2"
+            maxlength="50"
             placeholder="Store name at this location"
             formControlName="shopName"
             required
@@ -36,6 +37,7 @@
             matInput
             placeholder="Contact person"
             formControlName="contact"
+            maxlength="45"
           />
         </mat-form-field>
         <mat-form-field
@@ -71,9 +73,11 @@
           <mat-form-field class="add-shop__input zipstatecity">
             <input
               matInput
+              maxlength="45"
               placeholder="City"
               formControlName="city"
               required
+             
             />
           </mat-form-field>
           <mat-form-field class="add-shop__input zipstatecity">

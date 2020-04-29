@@ -41,14 +41,14 @@ export class RegisterSellerComponent implements OnInit {
     private route: ActivatedRoute,
     private userService: UserService,
     private fb: FormBuilder
-  ) {}
+  ) { }
   ngOnInit() {
     this.route.data.subscribe((data: { categories: Category[] }) => {
       this.categories = data.categories;
     });
   }
-  openTerms() {}
-  openPrivacy() {}
+  openTerms() { }
+  openPrivacy() { }
   close() {
     this.showError = false;
   }
@@ -64,38 +64,43 @@ export class RegisterSellerComponent implements OnInit {
     this.showError = false;
     this.errors = [];
     if (
-      this.registrationForm.get("agreed").value &&
+
       this.registrationForm.valid
     ) {
-      return this.userService
-        .registerUser(this.registrationForm.value)
-        .subscribe((res) => {
-          if (res["success"]) {
-            const dialogRef = this.dialog.open(RegistrationCompleteComponent, {
-              width: "350px",
-            });
-            dialogRef.afterClosed().subscribe((result) => {
-              this.router
-                .navigateByUrl("/RefrshComponent", { skipLocationChange: true })
-                .then(() => this.router.navigate(["/login/seller"]));
-            });
+      if (this.registrationForm.get("agreed").value) {
+        return this.userService
+          .registerUser(this.registrationForm.value)
+          .subscribe((res) => {
+            if (res["success"]) {
+              const dialogRef = this.dialog.open(RegistrationCompleteComponent, {
+                width: "350px",
+              });
+              dialogRef.afterClosed().subscribe((result) => {
+                this.router
+                  .navigateByUrl("/RefrshComponent", { skipLocationChange: true })
+                  .then(() => this.router.navigate(["/login/seller"]));
+              });
 
-            //this.registeredSlr.emit("seller");
-          } else {
-            this.showError = true;
-            this.errors = res["messages"];
-          }
-        });
+              //this.registeredSlr.emit("seller");
+            } else {
+              this.showError = true;
+              this.errors = res["messages"];
+            }
+          });
+      } else {
+        this.showError = true;
+        this.errors = ["Please agree to the Seller's terms of use and privacy."];
+      }
     } else {
       this.showError = true;
-      this.errors = ["Please agree to the buyer's terms of use and privacy."];
+      this.errors = ["Invalid input! Check Again"];
     }
   }
   getErrorMessage() {
     return this.registrationForm.get("email").hasError("required")
       ? "You must enter a value"
       : this.registrationForm.get("email").hasError("email")
-      ? "Not a valid email"
-      : "";
+        ? "Not a valid email"
+        : "";
   }
 }

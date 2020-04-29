@@ -143,6 +143,7 @@
               [matAutocomplete]="auto"
               formControlName="name"
               required
+              maxlength="50"
             />
             <mat-autocomplete #auto="matAutocomplete">
               <mat-option *ngFor="let option of options" [value]="option">

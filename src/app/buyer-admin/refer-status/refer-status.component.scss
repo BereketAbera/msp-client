@@ -1,22 +1,26 @@
-.tab-item {
-//   width: 90%;
-  // margin: 0 12rem;
-  .table {
-   
-     max-width: 90rem;
-    min-width: 37rem;
-  }
+
+
+.container{
+  width: 100%;
+  width: 100%;
+  overflow-x: auto;
 }
 .mat-column-type {
-  flex: 0 0 4rem;
+  flex: 0 0 8rem;
+  padding-right: 1rem;
 }
 .mat-column-isUsed {
-  flex: 0 0 4rem;
+  flex: 0 0 7rem;
+  padding-right: 1rem;
 }
 
 .table {
   margin: 1rem;
-  width: 65rem;
+  width: 53rem;
+}
+.table__container {
+  // min-width: 70rem;
+  padding: 1rem 0.5rem;
 }
 .course {
   text-align: center;
@@ -60,21 +64,20 @@
   width: 100%;
 }
 
-
 @media only screen and (max-width: 600px) {
   .tab-hide {
     display: none;
   }
   .mat-column-isUsed {
-    max-width: 3rem;
+   padding-right: 10rem;
   }
-  .mat-column-type {
-    max-width: 5rem;
-    padding: 1px;
-  }
+  // .mat-column-type {
+  //   max-width: 5rem;
+  //   padding: 1px;
+  // }
 
-  .table {
-    width: 37rem;
-    // overflow: scroll;
-  }
+  // .table {
+  //   width: 37rem;
+  //   // overflow: scroll;
+  // }
 }

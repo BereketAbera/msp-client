@@ -1,5 +1,5 @@
 .course {
-  text-align: center;
+  // text-align: center;
   max-width: 390px;
   margin: 0 auto;
 }
@@ -10,6 +10,15 @@
   width: 150px;
   margin: 20px auto 0 auto;
   display: block;
+}
+.no_result{
+  display: flex;
+  justify-content: center;
+  font-size: 2rem;
+  color: #777;
+  width: 97%;
+  margin: 1rem;
+  border:1px #ddd solid;
 }
 
 .addNewDiv {
@@ -68,6 +77,17 @@ ul {
 .mat-raised-button {
   border-radius: 0rem;
   padding: 0rem 3rem;
+}
+
+.header-align-right{
+  display: flex;
+  padding: 21px 3rem;
+  justify-content: flex-start;
+}
+
+.table{
+  width: 95%;
+  margin: 2rem;
 }
 
 .shops {

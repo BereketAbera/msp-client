@@ -13,6 +13,7 @@
           placeholder="Staffer username"
           formControlName="username"
           required
+          maxlength="40"
         />
         <mat-error *ngIf="addStaffForm.controls.username.invalid"
           >Staffer username should be at least three characters.</mat-error
@@ -24,6 +25,7 @@
           placeholder="Staffer email"
           formControlName="email"
           required
+          maxlength="40"
         />
         <mat-error *ngIf="addStaffForm.controls.email.invalid"
           >Invalid email.</mat-error
@@ -35,6 +37,7 @@
           placeholder="Staffer first name"
           formControlName="firstName"
           required
+          maxlength="40"
         />
         <mat-error *ngIf="addStaffForm.controls.firstName.invalid"
           >First name required.</mat-error
@@ -46,6 +49,7 @@
           placeholder="Staffer last name"
           formControlName="lastName"
           required
+          maxlength="40"
         />
         <mat-error *ngIf="addStaffForm.controls.lastName.invalid"
           >Invalid last name.</mat-error
@@ -57,6 +61,7 @@
           placeholder="Staffer phone number"
           formControlName="phoneNumber"
           required
+          maxlength="24"
         />
         <mat-error *ngIf="addStaffForm.controls.phoneNumber.invalid"
           >Invalid phone number.</mat-error
@@ -72,7 +77,7 @@
       >
         Save
       </button>
-      <button mat-flat-button color="accent" >
+      <button   (click)="gotoSellAdmin()" mat-flat-button color="accent" >
         Cancel
       </button>
     </div>

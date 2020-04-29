@@ -909,7 +909,7 @@ export class NewOffPeakProductComponent implements OnInit {
       success(result) {
         // setLocal(result);
         uploadClass.uploadForm.get("img").setValue(result);
-        uploadClass.uploadForm.get("name").setValue(Date.now());
+        uploadClass.uploadForm.get("name").setValue("img_"+ Date.now() % 10000);
         if (uploadClass.uploadForm.value) {
           // this.formData.append("name", this.uploadForm.get("name").value);
           let value = uploadClass.uploadForm.value;
@@ -955,4 +955,6 @@ export class NewOffPeakProductComponent implements OnInit {
   shopChanged(event) {
     console.log(event);
   }
+
+  imageLoad(event) {}
 }

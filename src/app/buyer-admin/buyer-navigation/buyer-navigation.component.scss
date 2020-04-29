@@ -107,6 +107,7 @@
     margin-left: 0.5rem;
     color: #f94081;
     width: 20rem;
+    text-decoration: none;
   }
 
   &__divider-middle {
@@ -423,6 +424,8 @@
     &__header-text {
       display: none;
       font-size: 1.4rem;
+      
+
     }
 
     &__header-container {

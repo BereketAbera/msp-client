@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, Validators, FormGroup } from "@angular/forms";
 import { SellerStaffService } from "src/app/service/seller-staff.service";
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-add-staff",
@@ -15,7 +15,8 @@ export class AddStaffComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private sellerStaffSerevice: SellerStaffService,
-    private router: Router
+    private router: Router,
+    private route:ActivatedRoute
   ) {}
 
   ngOnInit() {
@@ -27,7 +28,9 @@ export class AddStaffComponent implements OnInit {
       phoneNumber: ["", Validators.required]
     });
   }
-
+  gotoSellAdmin() {
+    this.router.navigate(["../"], { relativeTo: this.route });
+  }
   onSubmit() {
     if (this.addStaffForm.valid) {
       this.sellerStaffSerevice

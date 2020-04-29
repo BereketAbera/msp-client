@@ -53,26 +53,31 @@ export class ProductsComponent implements OnInit, AfterViewInit {
     private productService: ProductService,
     private router: Router,
     private authService: AuthService,
-    private location:Location
-  ) {}
+    private location: Location
+  ) { }
 
   ngOnInit() {
     this.dataSource = new ProductsDataSource(this.productService);
-    
+
     this.route.queryParams.subscribe(
       data => {
-        this.paginator.pageIndex = +data.page - 1 >= 0 ? +data.page  : 0;
+
+        this.paginator.pageIndex = +data.page - 1 >= 0 ? +data.page : 0;
         this.dataSource.loadProducts(1, "", "asc", this.paginator.pageIndex, 5);
+
       },
       err => console.log(err)
     );
   }
 
   ngAfterViewInit() {
-    this.sort.sortChange.subscribe(() => (this.paginator.pageIndex = 0));
-    merge(this.sort.sortChange, this.paginator.page)
-      .pipe(tap(() => this.loadProductsPage()))
-      .subscribe();
+    if (this.sort) {
+      this.sort.sortChange.subscribe(() => (this.paginator.pageIndex = 0));
+      merge(this.sort.sortChange, this.paginator.page)
+        .pipe(tap(() => this.loadProductsPage()))
+        .subscribe();
+    }
+
   }
   gotoAddNewProduct() {
     try {
@@ -124,7 +129,7 @@ export class ProductsComponent implements OnInit, AfterViewInit {
     });
   }
   loadProductsPage() {
-    
+
     this.dataSource.loadProducts(
       1,
       "",
@@ -132,7 +137,7 @@ export class ProductsComponent implements OnInit, AfterViewInit {
       this.paginator.pageIndex,
       this.paginator.pageSize
     );
-  
+
     let path = this.location.path();
     if (path.indexOf('page') >= 0) {
       path = path.replace(/.$/, this.paginator.pageIndex.toString());

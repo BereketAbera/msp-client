@@ -157,7 +157,6 @@ export class UploadImgComponent implements OnInit {
     this.croppedImage = event;
   }
 
-  imageLoaded() {}
   cropperReady() {
     // cropper ready
   }

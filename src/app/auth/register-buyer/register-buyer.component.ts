@@ -49,10 +49,11 @@ export class RegisterBuyerComponent implements OnInit {
     this.showError = false;
     this.errors = [];
     if (
-      this.registrationForm.get("agreed").value &&
+      
       this.registrationForm.valid
     ) {
-      return this.userService
+      if(this.registrationForm.get("agreed").value){
+        return this.userService
         .registerUser(this.registrationForm.value)
         .subscribe((res) => {
           if (res["success"]) {
@@ -72,9 +73,14 @@ export class RegisterBuyerComponent implements OnInit {
             this.errors = res["messages"];
           }
         });
+      }else {
+        this.showError = true;
+        this.errors = ["Please agree to the buyer's terms of use and privacy."];
+      }
+     
     } else {
       this.showError = true;
-      this.errors = ["Please agree to the buyer's terms of use and privacy."];
+      this.errors = ["Invalid Input! Check Again"];
     }
   }
   openTerms() {}

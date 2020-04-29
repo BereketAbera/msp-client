@@ -72,4 +72,11 @@
 
 p{
   padding:0 2rem 2rem;
+  font-size: 1.4rem;
+}
+@media only screen and (max-width: 600px) {
+  p{
+    font-size: 1.8rem;
+    padding:2rem 0.2rem;
+  }
 }

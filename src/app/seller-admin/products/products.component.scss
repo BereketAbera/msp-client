@@ -5,6 +5,15 @@
 .mat-column-img {
   flex: 0 0 11rem;
 }
+.no_result{
+  display: flex;
+  justify-content: center;
+  font-size: 2rem;
+  color: #777;
+  width: 97%;
+  margin: 1rem;
+  border:1px #ddd solid;
+}
 .course {
   text-align: center;
   max-width: 390px;
@@ -12,6 +21,11 @@
 }
 .frmDiv {
   padding: 15px;
+}
+.header-align-right{
+  display: flex;
+  padding: 21px 3rem;
+  justify-content: center;
 }
 .course-thumbnail {
   width: 150px;

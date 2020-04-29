@@ -14,7 +14,12 @@ const authRoutes: Routes = [
     path: "",
     component: AuthComponent,
     children: [
-      { path: "login/:type", component: LoginComponent },
+      {
+        path: "login/:type", component: LoginComponent,
+        resolve: {
+          categories: SubCategoryResolverService,
+        }
+      },
       {
         path: "login",
         component: LoginComponent,
@@ -35,4 +40,4 @@ const authRoutes: Routes = [
   imports: [RouterModule.forChild(authRoutes)],
   exports: [RouterModule],
 })
-export class AuthRoutingModule {}
+export class AuthRoutingModule { }
