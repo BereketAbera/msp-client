@@ -12,6 +12,7 @@
     margin: 1rem;
     display: flex;
     min-height: 2rem;
+    margin-top: 4rem;
   }
 
   &__sub-container {
@@ -138,8 +139,9 @@
   background-color: #fff;
   position: fixed;
   top: 3px;
-  min-height: 5rem;
+  min-height: 5.5rem;
   margin-left: -3rem;
+  margin-top: -0.5rem;
 
   &__menu_button {
     width: 3rem;
@@ -429,8 +431,31 @@
     }
 
     &__header-container {
+      position: absolute;
+      top: 0.2rem;
+      left: 1rem;
       display: flex;
       margin-top: 0.1rem;
+      justify-content: space-between;
+      width: 98%;
+    }
+
+    &__sub-header-container {
+      display: flex;
+      align-items: center;
+    }
+
+    &__desktop-header-text {
+      font-size: 2rem;
+      text-decoration: none;
+      font-weight: 600;
+      margin-left: 1rem;
+      color: #f94081;
+    }
+
+    &__desktop-header-image {
+      width: 2.5rem;
+      font-size: 1.5rem;
     }
 
     &__header-image {
@@ -438,12 +463,12 @@
     }
 
     &__divider-middle {
-      top: 4.4rem;
+      top: 3.4rem;
     }
 
     &__divider-bottom {
-      display: none;
-      top: 8.8rem;
+      // display: none;
+      top: 6.8rem;
     }
 
     &__item-text {

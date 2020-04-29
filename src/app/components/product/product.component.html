@@ -49,4 +49,16 @@
       </span>
     </div>
   </div>
+  <span
+    *ngIf="checkAvailability(product?.offerStartTime)"
+    class="product__tag-container"
+  >
+    Available Leter
+  </span>
+  <span
+    *ngIf="checkAvailability2(product?.offerEndTime)"
+    class="product__tag-container"
+  >
+    Order Time Passed
+  </span>
 </a>

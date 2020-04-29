@@ -32,9 +32,6 @@ export class NewShopComponent implements OnInit {
   states: State[];
   private searchText$ = new Subject<string>();
 
-  lat: any = 60.168997;
-  lng: any = 24.9433353;
-
   //shopName = new FormControl("",Validators.required);
   shopForm = this.fb.group({
     shopName: ["", [Validators.required, Validators.minLength(2)]],
@@ -71,8 +68,6 @@ export class NewShopComponent implements OnInit {
   onSubmit() {
     let shop = new Shop();
     shop = { ...this.shopForm.value };
-    shop.lat = this.lat;
-    shop.lng = this.lng;
     this.shopsSrvc.createShope(shop).subscribe((res) => {
       if (res["success"])
         this.router.navigate(["../"], { relativeTo: this.route });

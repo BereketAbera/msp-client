@@ -97,7 +97,7 @@ export class DealDetailComponent implements OnInit {
           lng: clientAddress.Longitude,
         })
         .subscribe((rsrvdPrd) => {
-          console.log(rsrvdPrd);
+          // console.log(rsrvdPrd);
           if (rsrvdPrd["success"]) {
             reserveProduct.name = this.product.name;
             reserveProduct.imagePath = this.product.imagePath;

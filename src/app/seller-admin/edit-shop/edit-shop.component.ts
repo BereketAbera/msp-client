@@ -25,8 +25,6 @@ export class EditShopComponent implements OnInit {
   zipCodeHints: ZipCode[];
   states: State[];
   private searchText$ = new Subject<string>();
-
-  lat: any = 60.168997;
   lng: any = 24.9433353;
   shop: any;
   shopForm: FormGroup;
@@ -72,8 +70,6 @@ export class EditShopComponent implements OnInit {
   onSubmit() {
     let shop = new Shop();
     shop = { ...this.shopForm.value };
-    shop.lat = this.lat;
-    shop.lng = this.lng;
     this.shopsSrvc
       .updateShop({ ...shop, id: this.shop.id })
       .subscribe((res) => {
