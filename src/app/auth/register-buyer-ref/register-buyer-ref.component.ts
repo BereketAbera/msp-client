@@ -60,27 +60,34 @@ export class RegisterBuyerRefComponent implements OnInit {
     }
     this.showError = false;
     this.errors = [];
-    if (
-      this.registrationForm.get("agreed").value &&
-      this.registrationForm.valid
-    ) {
-      let usrInfo = this.registrationForm.value;
-      usrInfo.tk = this.tk;
-      return this.userService
-        .registerByrUser(this.registrationForm.value)
-        .subscribe((res) => {
-          console.log(res);
-          if (res["success"]) {
-            this.router.navigate(["/login"]);
-          } else {
-            this.showError = true;
-            this.errors = res["messages"];
-          }
-        });
-    } else {
+
+    if( this.registrationForm.valid){
+      if (
+        this.registrationForm.get("agreed").value 
+       
+      ) {
+        let usrInfo = this.registrationForm.value;
+        usrInfo.tk = this.tk;
+        return this.userService
+          .registerByrUser(this.registrationForm.value)
+          .subscribe((res) => {
+            console.log(res);
+            if (res["success"]) {
+              this.router.navigate(["/login"]);
+            } else {
+              this.showError = true;
+              this.errors = res["messages"];
+            }
+          });
+      } else {
+        this.showError = true;
+        this.errors = ["Please agree to the buyer's terms of use and privacy."];
+      }
+    }else{
       this.showError = true;
-      this.errors = ["Please agree to the buyer's terms of use and privacy."];
+      this.errors = ["Invalid input! Check again."];
     }
+
   }
   openTerms() {}
   openPrivacy() {}

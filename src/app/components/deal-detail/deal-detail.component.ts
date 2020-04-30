@@ -40,11 +40,25 @@ export class DealDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private fb: FormBuilder
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.route.data.subscribe(
       (data: { product: Product; mspMarkup: Markup }) => {
+
+        //  console.log(JSON.parse(localStorage.getItem("msp_cart_items")).products)
+
+        let localProduct = this.cartService.getLocalCartProducts();
+        if (localProduct) {
+          localProduct.map(
+            prod => {
+              if (prod.prdid == data.product.id) {
+                data.product.currentQuantity = parseInt(data.product.currentQuantity) - prod.qty;
+              }
+            }
+          )
+        }
+
         this.product = data.product;
         [
           "offerStartTime",
@@ -145,11 +159,11 @@ export class DealDetailComponent implements OnInit {
     } else {
       alert(
         "quantiy can not be less than 0 or greater than " +
-          this.product.quantityOnHand
+        this.product.quantityOnHand
       );
     }
   }
-  onSubmit() {}
+  onSubmit() { }
 
   changeToLocal12Hours(time) {
     let d = -new Date().getTimezoneOffset();
@@ -161,19 +175,19 @@ export class DealDetailComponent implements OnInit {
     minute = totalMinutes % 60;
 
     if (hour < 12) {
-      return `${this.returnTwoDigit(hour)}:${this.returnTwoDigit(minute)}:00AM`;
+      return `${this.returnTwoDigit(hour)}:${this.returnTwoDigit(minute)}AM`;
     } else if (hour == 12) {
-      return `${this.returnTwoDigit(12)}:${this.returnTwoDigit(minute)}:00PM`;
+      return `${this.returnTwoDigit(12)}:${this.returnTwoDigit(minute)}PM`;
     } else if (hour > 24) {
       return `${this.returnTwoDigit(hour - 24)}:${this.returnTwoDigit(
         minute
-      )}:00AM`;
+      )}AM`;
     } else if (hour == 24) {
-      return `${this.returnTwoDigit(12)}:${this.returnTwoDigit(minute)}:00AM`;
+      return `${this.returnTwoDigit(12)}:${this.returnTwoDigit(minute)}AM`;
     } else {
       return `${this.returnTwoDigit(hour % 12)}:${this.returnTwoDigit(
         minute
-      )}:00PM`;
+      )}PM`;
     }
   }
 

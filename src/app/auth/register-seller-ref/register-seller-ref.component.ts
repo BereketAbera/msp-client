@@ -74,29 +74,35 @@ export class RegisterSellerRefComponent implements OnInit {
     }
     this.showError = false;
     this.errors = [];
-    if (this.registrationForm.get("agreed").value) {
-      let usrInfo = this.registrationForm.value;
-      usrInfo.tk = this.tk;
-      return this.userService.registerSlrUser(usrInfo).subscribe((res) => {
-        if (res["success"]) {
-          const dialogRef = this.dialog.open(RegistrationCompleteComponent, {
-            width: "350px",
-          });
-          dialogRef.afterClosed().subscribe((result) => {
-            this.router
-              .navigateByUrl("/RefrshComponent", { skipLocationChange: true })
-              .then(() => this.router.navigate(["/login/seller"]));
-          });
-
-          //this.registeredSlr.emit("seller");
-        } else {
-          this.showError = true;
-          this.errors = res["messages"];
-        }
-      });
-    } else {
+    if( this.registrationForm.valid){
+      if (this.registrationForm.get("agreed").value) {
+        let usrInfo = this.registrationForm.value;
+        usrInfo.tk = this.tk;
+        return this.userService.registerSlrUser(usrInfo).subscribe((res) => {
+          if (res["success"]) {
+            const dialogRef = this.dialog.open(RegistrationCompleteComponent, {
+              width: "350px",
+            });
+            dialogRef.afterClosed().subscribe((result) => {
+              this.router
+                .navigateByUrl("/RefrshComponent", { skipLocationChange: true })
+                .then(() => this.router.navigate(["/login/seller"]));
+            });
+  
+            //this.registeredSlr.emit("seller");
+          } else {
+            this.showError = true;
+            this.errors = res["messages"];
+          }
+        });
+      } else {
+        this.showError = true;
+        this.errors = ["Please agree to the buyer's terms of use and privacy."];
+      }
+    }else{
       this.showError = true;
-      this.errors = ["Please agree to the buyer's terms of use and privacy."];
+        this.errors = ["Invalid Input! Check again"];
     }
+    
   }
 }
