@@ -26,7 +26,7 @@
       <span class="product__reserve-text">
         <i class="far fa-clock product__clock-icon"></i>
         Reserve
-        {{ changeToLocal12Hours(product?.offerStartTime) }} -
+        {{ changeToLocal12Hours(product?.offerStartTime)  }} -
         {{ changeToLocal12Hours(product?.offerEndTime) }}
       </span>
     </div>
@@ -57,7 +57,7 @@
     *ngIf="checkAvailability(product?.offerStartTime, product?.offerEndTime)"
     class="product__tag-container"
   >
-    Available Leter
+    Available Later
   </span>
   <!-- <span
     *ngIf="checkAvailability2(product?.offerEndTime)"

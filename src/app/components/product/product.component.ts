@@ -60,19 +60,19 @@ export class ProductComponent implements OnInit {
     minute = totalMinutes % 60;
 
     if (hour < 12) {
-      return `${this.returnTwoDigit(hour)}:${this.returnTwoDigit(minute)}:00AM`;
+      return `${this.returnTwoDigit(hour)}:${this.returnTwoDigit(minute)}AM`;
     } else if (hour == 12) {
-      return `${this.returnTwoDigit(12)}:${this.returnTwoDigit(minute)}:00PM`;
+      return `${this.returnTwoDigit(12)}:${this.returnTwoDigit(minute)}PM`;
     } else if (hour > 24) {
       return `${this.returnTwoDigit(hour - 24)}:${this.returnTwoDigit(
         minute
-      )}:00AM`;
+      )}AM`;
     } else if (hour == 24) {
-      return `${this.returnTwoDigit(12)}:${this.returnTwoDigit(minute)}:00AM`;
+      return `${this.returnTwoDigit(12)}:${this.returnTwoDigit(minute)}AM`;
     } else {
       return `${this.returnTwoDigit(hour % 12)}:${this.returnTwoDigit(
         minute
-      )}:00PM`;
+      )}PM`;
     }
   }
 

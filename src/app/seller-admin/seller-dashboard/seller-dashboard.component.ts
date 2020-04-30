@@ -42,6 +42,7 @@ export class SellerDashboardComponent implements OnInit {
   ngOnInit() {
     this.route.data.subscribe(
       (data: { summary: SellerSummary; rvnuRprt: RevenuRprt[] }) => {
+        console.log(this.summary,'sdf')
         this.summary = data.summary;
         if(this.summary.totalQty > 0){
           this.soldPercentage = Math.ceil(
