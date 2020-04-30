@@ -53,6 +53,7 @@ export class PublicProductsComponent implements OnInit {
     }
     this.route.queryParams.subscribe(
       (response) => {
+        this.reachedPageEnd = false;
         this.query = response.q;
         this.categoryId = response.categoryId;
         this.loadFirstTime();
@@ -63,7 +64,9 @@ export class PublicProductsComponent implements OnInit {
     this.route.data.subscribe((data: { categories: Category[] }) => {
       this.categories = data.categories;
     });
-    this.loadFirstTime();
+    if (!this.categoryId) {
+      this.loadFirstTime();
+    }
   }
 
   loadFirstTime() {
