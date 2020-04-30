@@ -1,3 +1,4 @@
+import { ProfileComponent } from "./profile/profile.component";
 import { EditShopComponent } from "./edit-shop/edit-shop.component";
 import { AccessDeniedComponent } from "./access-denied/access-denied.component";
 import { UserFeaturesResolverService } from "./../service/user-features-resolver.service";
@@ -35,6 +36,7 @@ import { StaffsComponent } from "./staffs/staffs.component";
 import { ManageStaffAccessComponent } from "./manage-staff-access/manage-staff-access.component";
 import { FeaturesResolverService } from "../service/features-resolver.service";
 import { ShopByIdResolverService } from "../service/shop-by-id-resolver.service";
+import { ProfileResolverService } from "../service/profile-resolver.service";
 
 const sellerRoutes: Routes = [
   {
@@ -150,6 +152,12 @@ const sellerRoutes: Routes = [
         path: "shops",
         canActivate: [SellerGuard],
         component: ShopListComponent,
+      },
+      {
+        path: "profile",
+        canActivate: [SellerGuard],
+        component: ProfileComponent,
+        resolve: { profile: ProfileResolverService },
       },
       {
         path: "staffs",

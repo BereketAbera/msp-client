@@ -54,15 +54,15 @@
     </div>
   </div>
   <span
-    *ngIf="checkAvailability(product?.offerStartTime)"
+    *ngIf="checkAvailability(product?.offerStartTime, product?.offerEndTime)"
     class="product__tag-container"
   >
     Available Leter
   </span>
-  <span
+  <!-- <span
     *ngIf="checkAvailability2(product?.offerEndTime)"
     class="product__tag-container"
   >
     Order Time Passed
-  </span>
+  </span> -->
 </a>

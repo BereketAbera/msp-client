@@ -1,5 +1,4 @@
-
-.no_result{
+.no_result {
   font-size: 2.2rem;
   color: #777;
   float: center;
@@ -39,10 +38,14 @@
 
   &__delete {
     position: absolute;
-    right: -0.8rem;
-    top: -1.5rem;
-    font-size: 1.6rem;
+    right: -1rem;
+    top: -1rem;
+    font-size: 1rem;
+    font-size: 700;
     cursor: pointer;
+    background-color: #aaa;
+    color: red;
+    padding: 1px 2px;
 
     &:active {
       transform: scale(1.05);

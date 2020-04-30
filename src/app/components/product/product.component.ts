@@ -80,30 +80,37 @@ export class ProductComponent implements OnInit {
     return value.toString().length == 1 ? "0" + value : value;
   }
 
-  checkAvailability(start) {
+  checkAvailability(start, end) {
     let d = -new Date().getTimezoneOffset();
     let x = start.split(":");
     let hour = parseInt(x[0]);
     let minute = parseInt(x[1]);
     let totalMinutes = hour * 60 + minute + d;
+
+    let xE = end.split(":");
+    let hourE = parseInt(xE[0]);
+    let minuteE = parseInt(xE[1]);
+    let totalMinutesE = hourE * 60 + minuteE + d;
+
     let localMinutes = new Date().getHours() * 60 + new Date().getMinutes();
 
-    if (totalMinutes > localMinutes) {
+    if (totalMinutes > localMinutes || totalMinutesE < localMinutes) {
       return true;
     }
-    return false;
-  }
-  checkAvailability2(end) {
-    let d = -new Date().getTimezoneOffset();
-    let x = end.split(":");
-    let hour = parseInt(x[0]);
-    let minute = parseInt(x[1]);
-    let totalMinutes = hour * 60 + minute + d;
-    let localMinutes = new Date().getHours() * 60 + new Date().getMinutes();
 
-    if (localMinutes > totalMinutes) {
-      return true;
-    }
     return false;
   }
+  // checkAvailability2(end) {
+  //   let d = -new Date().getTimezoneOffset();
+  //   let x = end.split(":");
+  //   let hour = parseInt(x[0]);
+  //   let minute = parseInt(x[1]);
+  //   let totalMinutes = hour * 60 + minute + d;
+  //   let localMinutes = new Date().getHours() * 60 + new Date().getMinutes();
+
+  //   if (localMinutes > totalMinutes) {
+  //     return true;
+  //   }
+  //   return false;
+  // }
 }

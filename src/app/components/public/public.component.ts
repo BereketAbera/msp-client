@@ -105,6 +105,11 @@ export class PublicComponent implements OnInit {
     if (categoryId == "") return;
     if (this.categoryId == categoryId) {
       this.categoryId = null;
+      this.router.navigate([], {
+        relativeTo: this.route,
+        queryParams: {},
+      });
+      return;
     } else {
       this.categoryId = categoryId;
     }

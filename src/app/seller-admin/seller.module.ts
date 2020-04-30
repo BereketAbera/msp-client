@@ -31,6 +31,7 @@ import { StaffsComponent } from './staffs/staffs.component';
 import { ManageStaffAccessComponent } from './manage-staff-access/manage-staff-access.component';
 import { AccessDeniedComponent } from './access-denied/access-denied.component';
 import { EditShopComponent } from './edit-shop/edit-shop.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   imports: [
@@ -65,7 +66,8 @@ import { EditShopComponent } from './edit-shop/edit-shop.component';
     StaffsComponent,
     ManageStaffAccessComponent,
     AccessDeniedComponent,
-    EditShopComponent
+    EditShopComponent,
+    ProfileComponent
   ],
   entryComponents: [
     RequestConfirmationComponent,
