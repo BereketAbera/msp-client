@@ -25,13 +25,12 @@ export class ProductComponent implements OnInit {
     //his.name = this.product.name;
   }
 
-  ngInit() {
-    // console.log(this.product);
-  }
+  ngInit() {}
   navdetail(product: Product) {
     this.router.navigate(["/deal", product.id]);
   }
   ngOnInit() {
+    // console.log(this.product);
     this.route.queryParams.subscribe(
       (response) => {
         response.q ? (this.query = response.q) : "";
