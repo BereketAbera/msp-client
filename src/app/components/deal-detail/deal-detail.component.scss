@@ -4,6 +4,8 @@
     flex-direction: column;
     width: 95%;
     margin: 1rem auto;
+    max-width: 100%;
+    overflow: hidden;
   }
 
   &__top {
@@ -110,7 +112,7 @@
   }
 
   &__reserve-order-time-text {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     text-transform: uppercase;
   }
 
@@ -125,25 +127,25 @@
   }
 
   &__shop-name {
-    font-size: 1.3rem;
+    font-size: 1.6rem;
     color: #555;
     text-transform: capitalize;
   }
 
   &__address-name {
-    font-size: 1.3rem;
+    font-size: 1.6rem;
     color: #555;
   }
 
   &__address-icon {
-    font-size: 1.2rem;
+    font-size: 1.6rem;
     width: 2rem;
     margin-right: 0.5rem;
     color: #555;
   }
 
   &__description-text {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     color: #333;
   }
 
@@ -152,7 +154,7 @@
   }
 
   &__normal-price {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     color: #888;
     text-decoration: line-through;
   }
@@ -173,7 +175,7 @@
 
   &__input {
     padding: 0.5rem 1rem;
-    font-size: 1.5rem;
+    font-size: 2rem;
     color: #555;
     border: 1px solid #888;
     background-color: #fff;
@@ -182,16 +184,17 @@
   &__input-container {
     display: flex;
     align-items: center;
+    flex-direction: column;
   }
 
   &__input-label {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     color: #555;
     margin-right: 1rem;
   }
 
   &__total {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     color: #333;
     margin-left: 2rem;
   }
@@ -215,7 +218,7 @@ input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   opacity: 1;
 }
-.reserve_time{
+.reserve_time {
   display: flex;
   align-items: center;
 }
@@ -235,6 +238,46 @@ input[type="number"]::-webkit-outer-spin-button {
 
     &__button {
       padding: 0rem 3rem;
+    }
+
+    &__input-container {
+      flex-direction: row;
+    }
+
+    &__name-text {
+      font-size: 2.3rem;
+    }
+
+    &__list-icon {
+      font-size: 1.8rem;
+    }
+
+    &__time-icon {
+      font-size: 1.2rem;
+    }
+
+    &__reserve-order-text {
+      font-size: 1.8rem;
+    }
+
+    &__reserve-order-time-text {
+      font-size: 1.2rem;
+    }
+
+    &__shop-name {
+      font-size: 1.3rem;
+    }
+
+    &__address-name {
+      font-size: 1.3rem;
+    }
+
+    &__address-icon {
+      font-size: 1.2rem;
+    }
+
+    &__description-text {
+      font-size: 1.5rem;
     }
   }
 }

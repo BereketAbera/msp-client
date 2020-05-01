@@ -40,11 +40,11 @@
   }
 
   &__product {
-    width: 26rem;
+    // width: 26rem;
     display: flex;
     background-color: #eee;
-    margin: 1rem;
-    min-width: 24rem;
+    margin: 0.3rem;
+    min-width: 270px;
   }
 }
 .material-icons.md-18 {
@@ -55,21 +55,23 @@
 .forward__button {
   position: absolute;
   left: 1rem;
-  top: 50%;
+  top: 45%;
   background-color: #eee;
   width: 4rem;
   height: 4rem;
   border-radius: 2rem;
   z-index: 2;
+  display: none;
 }
 .backward__button {
   position: absolute;
   right: 0rem;
-  top: 50%;
+  top: 45%;
   background-color: #eee;
   width: 4rem;
   height: 4rem;
   border-radius: 2rem;
+  display: none;
 }
 .backward__button:hover {
   cursor: pointer;
@@ -86,7 +88,7 @@
 
 .slide {
   &__button {
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     font-size: 2rem;
@@ -103,11 +105,23 @@
     height: auto;
   }
 }
-@media only screen and (max-width: 732px) {
+@media only screen and (min-width: 700px) {
   .backward__button {
-    display: none;
+    display: flex;
   }
   .forward__button {
-    display: none;
+    display: flex;
+  }
+
+  .slide {
+    &__button {
+      display: flex;
+    }
+  }
+
+  .products {
+    &__product {
+      min-width: 24rem;
+    }
   }
 }

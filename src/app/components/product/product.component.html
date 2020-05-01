@@ -9,7 +9,6 @@
   <div class="product__section-middle">
     <span class="product__name">{{ product?.name }}</span>
     <div *ngIf="product?.description" class="product__description">
-      Description:
       {{ product?.description }}
     </div>
     <div class="product__location">
@@ -26,7 +25,7 @@
       <span class="product__reserve-text">
         <i class="far fa-clock product__clock-icon"></i>
         Reserve
-        {{ changeToLocal12Hours(product?.offerStartTime)  }} -
+        {{ changeToLocal12Hours(product?.offerStartTime) }} -
         {{ changeToLocal12Hours(product?.offerEndTime) }}
       </span>
     </div>

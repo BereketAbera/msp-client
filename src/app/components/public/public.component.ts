@@ -103,12 +103,14 @@ export class PublicComponent implements OnInit {
 
   categoryChanged(categoryId) {
     if (categoryId == "") return;
+    // console.log("---------category----------");
     if (this.categoryId == categoryId) {
       this.categoryId = null;
       this.router.navigate([], {
         relativeTo: this.route,
         queryParams: {},
       });
+      this.mobileSearchActive = false;
       return;
     } else {
       this.categoryId = categoryId;

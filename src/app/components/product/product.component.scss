@@ -231,31 +231,31 @@ a {
   }
 
   &__name {
-    font-size: 1.4rem;
+    font-size: 1.8rem;
     color: #333;
     font-weight: 700;
     text-transform: uppercase;
   }
 
   &__reserve {
-    font-size: 1.1rem;
+    font-size: 1.6rem;
     color: #888;
     // margin-top: 1rem;
   }
 
   &__reserve-text {
-    font-size: 1.2rem;
+    font-size: 1.6rem;
   }
 
   &__arrive {
-    font-size: 1.1rem;
+    font-size: 1.6rem;
     color: #888;
     margin-bottom: 1rem;
   }
 
   &__description {
     width: 90%;
-    font-size: 1.3rem;
+    font-size: 1.6rem;
     color: #555;
     display: flex;
     flex-wrap: wrap;
@@ -269,7 +269,7 @@ a {
   }
 
   &__ratting {
-    font-size: 1.2rem;
+    font-size: 1.6rem;
   }
 
   &__location {
@@ -281,13 +281,13 @@ a {
   &__shop-name,
   &__address,
   &__city {
-    font-size: 1rem;
+    font-size: 1.6rem;
     color: #555;
     display: flex;
   }
 
   &__clock-icon {
-    font-size: 1.2rem;
+    font-size: 1.6rem;
     color: tomato;
   }
 
@@ -329,23 +329,19 @@ a {
     top: 0rem;
     left: 0rem;
     text-transform: uppercase;
-    font-size: 1rem;
+    font-size: 1.3rem;
     font-weight: 600;
     color: #fff;
   }
-
-  &__description {
-    font-size: 1.2rem;
-  }
 }
 
-@media only screen and (max-width: 732px) {
-  img {
-    width: 100%;
-    height: 100px;
-    object-fit: cover;
-    image-orientation: from-image;
-  }
+@media only screen and (min-width: 700px) {
+  // img {
+  //   width: 100%;
+  //   height: 100px;
+  //   object-fit: cover;
+  //   image-orientation: from-image;
+  // }
   .product {
     &__section {
       &__reserve {
@@ -355,6 +351,40 @@ a {
       &__arrive {
         margin-bottom: 0.5rem;
       }
+    }
+
+    &__name {
+      font-size: 1.4rem;
+    }
+
+    &__reserve-text {
+      font-size: 1.2rem;
+    }
+
+    &__arrive {
+      font-size: 1.1rem;
+    }
+
+    &__description {
+      font-size: 1.3rem;
+    }
+
+    &__ratting {
+      font-size: 1.2rem;
+    }
+
+    &__shop-name,
+    &__address,
+    &__city {
+      font-size: 1rem;
+    }
+
+    &__clock-icon {
+      font-size: 1.2rem;
+    }
+
+    &__tag-container {
+      font-size: 1rem;
     }
   }
 }

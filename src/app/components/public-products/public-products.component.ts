@@ -47,6 +47,9 @@ export class PublicProductsComponent implements OnInit {
     private zipcodeService: ZipcodeService
   ) {}
   ngOnInit() {
+    // document.body.scrollTop = 0;
+    // document.documentElement.scrollTop = 0;
+
     this.address = JSON.parse(localStorage.getItem("client_address"));
     if (!this.address) {
       this.router.navigate(["/"]);

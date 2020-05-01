@@ -193,21 +193,23 @@ img {
 }
 
 .floating_cart {
-  border-radius: 0rem;
-  padding: 0rem 2rem;
-  // width: 8rem;
+  // border-radius: 0rem;
+  padding: 0.5rem 2rem;
   height: auto;
   bottom: 0;
   left: 50%;
   position: fixed;
   background-color: #f94081;
+  margin-bottom: 0.5rem;
   color: #fff;
   cursor: pointer;
-  font-size: 2rem;
-
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  font-weight: 900;
   border: none;
   outline: none;
   transform: translateX(-50%);
+  box-shadow: 0px 1px 4px 3px #aaa;
 
   &:active {
     border: none;
@@ -218,6 +220,10 @@ img {
 
   &:hover {
     box-shadow: 0px 0px 5px 2px #bbb;
+  }
+
+  &__icon {
+    margin-right: 0.5rem;
   }
 
   //   &__icon {
