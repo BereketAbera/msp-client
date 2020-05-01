@@ -171,6 +171,7 @@ export class DealDetailComponent implements OnInit {
     let hour = parseInt(x[0]);
     let minute = parseInt(x[1]);
     let totalMinutes = hour * 60 + minute + d;
+    totalMinutes = totalMinutes < 0 ? 24 * 60 + totalMinutes : totalMinutes;
     hour = Math.floor(totalMinutes / 60);
     minute = totalMinutes % 60;
 

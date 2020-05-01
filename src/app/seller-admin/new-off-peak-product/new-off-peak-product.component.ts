@@ -228,6 +228,9 @@ export class NewOffPeakProductComponent implements OnInit {
               ).split(";")[2];
               this.populateFields();
               this.parseWeekDay(this.product.activeDays);
+
+
+              console.log(this.product)
             },
             (err) => console.log(err)
           );
@@ -235,7 +238,6 @@ export class NewOffPeakProductComponent implements OnInit {
       },
       (err) => console.log(err)
     );
-
 
     this.productForm
       .get("normalPrice")
@@ -379,7 +381,7 @@ export class NewOffPeakProductComponent implements OnInit {
       } else {
         product.isOffPeak = false;
       }
-      //  console.log(product,'sdfgf')
+        console.log(product,'se')
       if (this.product && !this.clone) {
         // console.log({ ...this.productForm.value }, 'edit')
         // product = { ...this.productForm.value };
@@ -819,6 +821,7 @@ export class NewOffPeakProductComponent implements OnInit {
     let hour = parseInt(x[0]);
     let minute = parseInt(x[1]);
     let totalMinutes = hour * 60 + minute + d;
+    totalMinutes = totalMinutes < 0 ? 24 * 60 + totalMinutes : totalMinutes;
     hour = Math.floor(totalMinutes / 60);
     minute = totalMinutes % 60;
 
@@ -909,7 +912,7 @@ export class NewOffPeakProductComponent implements OnInit {
       success(result) {
         // setLocal(result);
         uploadClass.uploadForm.get("img").setValue(result);
-        uploadClass.uploadForm.get("name").setValue("img_"+ Date.now() % 10000);
+        uploadClass.uploadForm.get("name").setValue("img_" + Date.now() % 10000);
         if (uploadClass.uploadForm.value) {
           // this.formData.append("name", this.uploadForm.get("name").value);
           let value = uploadClass.uploadForm.value;
@@ -956,5 +959,5 @@ export class NewOffPeakProductComponent implements OnInit {
     console.log(event);
   }
 
-  imageLoad(event) {}
+  imageLoad(event) { }
 }

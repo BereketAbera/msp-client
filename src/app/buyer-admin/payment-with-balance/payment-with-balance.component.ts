@@ -25,7 +25,7 @@ export class PaymentWithBalanceComponent implements OnInit {
   PAY_WITH_NEW_CARD: string = "PAY_WITH_NEW_CREDIT";
   PAY_WITH_SAVED_CARD: string = "PAY_WITH_SAVED_CREDIT";
   PAY_WITH_BALANCE: string = "PAY_WITH_BALANCE";
-
+  showSuccessNotification =false
   creditInfoAvailable: boolean = false;
   quantity: number = 0;
   ordrGuid: string;
@@ -85,12 +85,19 @@ export class PaymentWithBalanceComponent implements OnInit {
       this.trnsService.createTransaction(transction).subscribe(res => {
         if (res["success"]) {
           this.cartService.resetCart();
-          this.router.navigate(["../../"], { relativeTo: this.route });
+          this.showSuccessNotification=true;
+          setTimeout(() => {
+            this.router.navigate(["../../"], { relativeTo: this.route });
+          }, 3500);
+          // 
         } else {
           this.showError = true;
           this.errors = res["messages"];
         }
       });
     }
+  }
+  showNotification($event){
+    this.showSuccessNotification = $event;
   }
 }

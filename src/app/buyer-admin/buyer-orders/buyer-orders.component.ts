@@ -33,7 +33,7 @@ export class BuyerOrdersComponent implements OnInit {
     this.route.data.subscribe((data: { orders: Transaction[] }) => {
       this.orders = data.orders;
       this.count = this.transactionService.countSubject.value;
-      console.log(data);
+      // console.log(data);
     });
   }
 

@@ -34,3 +34,6 @@
   </mat-card>
 </form>
 
+<app-custom-notification [show]="showSuccessNotification" type="success" text="You have Succesfully order the product"
+(showNotifications)="showNotification($event)">
+</app-custom-notification>

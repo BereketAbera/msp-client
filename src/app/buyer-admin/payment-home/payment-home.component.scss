@@ -4,6 +4,15 @@
 .spaceLeft {
   margin-left: 20px;
 }
+.table{
+  padding: 2rem;
+  width: 100%;
+  &_header{
+    font-weight: 700;
+  }
+}
+
+
 .zipstatecity {
   width: 120px;
 }
