@@ -51,7 +51,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0.5rem 1rem 0.5rem 1rem;
+    padding: 0.5rem 2rem 0.5rem 1rem;
     transition: transform 0.2s;
     cursor: pointer;
 
@@ -416,6 +416,8 @@
     position: fixed;
     padding: 0rem 2rem;
     background-color: #fff;
+    width: 100vw;
+    height: 8rem;
 
     &__sub-container {
       display: flex;
@@ -431,13 +433,14 @@
     }
 
     &__header-container {
-      position: absolute;
+      position: fixed;
       top: 0.2rem;
       left: 1rem;
       display: flex;
       margin-top: 0.1rem;
       justify-content: space-between;
       width: 98%;
+      background-color: #fff;
     }
 
     &__sub-header-container {

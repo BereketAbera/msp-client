@@ -71,6 +71,16 @@
             </li>
             <li (click)="drawerLinkClicked()" class="side_bar_mobile__item">
               <a
+                routerLink="./profile"
+                [routerLinkActive]="['active-route']"
+                [routerLinkActiveOptions]="{ exact: false }"
+                class="side_bar_mobile__item-text"
+                ><i class="far fa-address-card side_bar_mobile__item-icon"></i>
+                Profile</a
+              >
+            </li>
+            <li (click)="drawerLinkClicked()" class="side_bar_mobile__item">
+              <a
                 (click)="logout()"
                 class="side_bar_mobile__item-text side_bar_mobile__logout"
               >
@@ -167,6 +177,15 @@
           [routerLinkActiveOptions]="{ exact: false }"
           class="navigation__item-text"
           ><i class="far fa-sun navigation__item-icon"></i> Staff</a
+        >
+      </li>
+      <li class="navigation__item">
+        <a
+          routerLink="./profile"
+          [routerLinkActive]="['active-route']"
+          [routerLinkActiveOptions]="{ exact: false }"
+          class="navigation__item-text"
+          ><i class="far fa-address-card navigation__item-icon"></i> Profile</a
         >
       </li>
     </ul>

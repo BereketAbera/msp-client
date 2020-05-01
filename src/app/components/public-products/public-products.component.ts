@@ -47,12 +47,16 @@ export class PublicProductsComponent implements OnInit {
     private zipcodeService: ZipcodeService
   ) {}
   ngOnInit() {
+    // document.body.scrollTop = 0;
+    // document.documentElement.scrollTop = 0;
+
     this.address = JSON.parse(localStorage.getItem("client_address"));
     if (!this.address) {
       this.router.navigate(["/"]);
     }
     this.route.queryParams.subscribe(
       (response) => {
+        this.reachedPageEnd = false;
         this.query = response.q;
         this.categoryId = response.categoryId;
         this.loadFirstTime();
@@ -63,7 +67,9 @@ export class PublicProductsComponent implements OnInit {
     this.route.data.subscribe((data: { categories: Category[] }) => {
       this.categories = data.categories;
     });
-    this.loadFirstTime();
+    if (!this.categoryId) {
+      this.loadFirstTime();
+    }
   }
 
   loadFirstTime() {

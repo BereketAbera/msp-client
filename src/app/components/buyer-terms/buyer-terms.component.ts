@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'app-buyer-terms',
-  templateUrl: './buyer-terms.component.html',
-  styleUrls: ['./buyer-terms.component.scss']
+  selector: "app-buyer-terms",
+  templateUrl: "./buyer-terms.component.html",
+  styleUrls: ["./buyer-terms.component.scss"],
 })
 export class BuyerTermsComponent implements OnInit {
-
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
   }
-
 }

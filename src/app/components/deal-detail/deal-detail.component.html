@@ -65,7 +65,7 @@
   <div class="product-detail__middle">
     <div class="product-detail__description">
       <p class="product-detail__description-text">
-        Description: {{ product?.description }}
+        {{ product?.description }}
       </p>
     </div>
     <div class="product-detail__middle-container">
@@ -107,7 +107,7 @@
     <div class="product-detail__bottom-container">
       <div [formGroup]="buyForm" class="product-detail__input-container">
         <label for="quantity" class="product-detail__input-label"
-          >Quantity</label
+          >Reserve Quantity</label
         >
         <input
           id="quantity"
@@ -119,11 +119,11 @@
           [max]="product.quantity"
         />
       </div>
-      <div class="product-detail__total">
+      <!-- <div class="product-detail__total">
         Total:
         {{ product?.discountPrice * buyForm.value["quantity"] | currency }}, pay
         seller directly at store
-      </div>
+      </div> -->
     </div>
     <div class="product-detail__bottom-container">
       <button

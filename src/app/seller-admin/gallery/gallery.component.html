@@ -10,7 +10,7 @@
 
   <div *ngIf="pictures && pictures.length > 0" class="gallery__container">
     <div class="gallery__item" *ngFor="let picture of pictures">
-      <span (click)="delete(picture)" class="gallery__delete">&times;</span>
+      <span (click)="delete(picture)" class="gallery__delete">Delete</span>
       <div class="gallery__image-container">
         <img class="gallery__image" [src]="picture.file" alt="Cinque Terre" />
       </div>
