@@ -16,13 +16,10 @@
     />
     <div
       class="search__search-input-results"
+      [style.width]="categoryId ? 'calc(60% + 8px)' : 'calc(85% + 8px)'"
       [class.search__search-input-results-active]="locationInputActive"
     >
-      <div
-        class="search__search-input-result"
-        [style.width]="categoryId ? 'calc(60% + 8px)' : 'calc(85% + 8px)'"
-        (click)="getClientLocation()"
-      >
+      <div class="search__search-input-result" (click)="getClientLocation()">
         <div>
           <i class="fas fa-map-marker-alt search__search-input-result-icon"></i>
           <span class="search__search-input-result-name"
