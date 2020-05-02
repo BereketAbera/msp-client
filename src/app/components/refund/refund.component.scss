@@ -12,6 +12,8 @@ h1 {
 h4 {
   font-size: 1.6rem;
   font-weight: 600;
+  color: #555;
+  text-decoration: underline;
 }
 
 h2 {
@@ -102,10 +104,10 @@ a.button {
 }
 
 /* @media (max-width: 599px) {
-  .mat-toolbar-row, .mat-toolbar-single-row {
-  height: 56px;
-  }
-  } */
+    .mat-toolbar-row, .mat-toolbar-single-row {
+    height: 56px;
+    }
+    } */
 .headerTitle {
   color: white;
   font-size: 14px;

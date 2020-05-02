@@ -1,6 +1,6 @@
 import { ZipcodeService } from "./../../service/zipcode.service";
 import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute, Router, Params } from "@angular/router";
 
 import { ProductService } from "../../service/product.service";
 import { AuthService } from "../../service/auth.service";
@@ -66,6 +66,7 @@ export class PublicProductsComponent implements OnInit {
 
     this.route.data.subscribe((data: { categories: Category[] }) => {
       this.categories = data.categories;
+      console.log(data.categories);
     });
     if (!this.categoryId) {
       this.loadFirstTime();
@@ -259,5 +260,28 @@ export class PublicProductsComponent implements OnInit {
         (this.address.CityName ? this.address.CityName : "Your Location")
     );
     this.locationInputActive = false;
+  }
+
+  getCategoryName() {
+    if (!this.categoryId) {
+      return false;
+    }
+    let name = "";
+    this.categories.map((cat) => {
+      if (cat.id == this.categoryId) {
+        name = cat.name;
+      }
+    });
+    return name;
+  }
+
+  removeCategory() {
+    this.categoryId = null;
+    const queryParams: Params = { categoryId: null };
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: queryParams,
+      queryParamsHandling: "merge",
+    });
   }
 }

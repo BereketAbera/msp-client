@@ -1,3 +1,4 @@
+import { RefundComponent } from "./components/refund/refund.component";
 import { SellerTermsComponent } from "./components/seller-terms/seller-terms.component";
 import { BuyerTermsComponent } from "./components/buyer-terms/buyer-terms.component";
 import { PrivacyComponent } from "./components/privacy/privacy.component";
@@ -35,6 +36,9 @@ const appRoutes: Routes = [
       {
         path: "products",
         component: PublicProductsComponent,
+        resolve: {
+          categories: SubCategoryResolverService,
+        },
       },
       {
         path: "deal/:id",
@@ -68,6 +72,7 @@ const appRoutes: Routes = [
       { path: "privacy", component: PrivacyComponent },
       { path: "buyer_terms", component: BuyerTermsComponent },
       { path: "seller_terms", component: SellerTermsComponent },
+      { path: "refund", component: RefundComponent },
     ],
   },
   {
