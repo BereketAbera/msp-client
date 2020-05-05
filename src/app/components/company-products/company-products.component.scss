@@ -22,6 +22,7 @@
       overflow: scroll;
       transition: 1s;
       scroll-behavior: smooth;
+      margin: 1rem;
 
       &__animate {
         animation-name: slideAndStay;
@@ -34,8 +35,10 @@
       display: none;
     }
     &__header {
-      margin-bottom: 1.5rem;
+      margin: 1rem;
       font-size: 2rem;
+      color: #222;
+      font-weight: 300;
     }
   }
 
@@ -43,7 +46,7 @@
     width: 26rem;
     display: flex;
     background-color: #eee;
-    margin: 0.3rem;
+    margin: 0.8rem;
     min-width: 270px;
   }
 }
@@ -121,7 +124,7 @@
 
   .products {
     &__product {
-      min-width: 24rem;
+      min-width: 26rem;
     }
   }
 }

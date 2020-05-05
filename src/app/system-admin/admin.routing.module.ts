@@ -6,6 +6,7 @@ import { SystemAdminComponent } from "./system-admin.component";
 import { UsersAdminComponent } from "./users-admin/users-admin.component";
 
 import { AdminGuard } from "./admin.guard";
+import { StateResolverService } from '../service/state-resolver.service';
 
 // path: "tlgu-admin",
 // component: SystemAdminComponent,
@@ -18,7 +19,10 @@ const sellerRoutes: Routes = [
     children: [
       {
         path: "",
-        component: UsersAdminComponent
+        component: UsersAdminComponent,
+        resolve:{
+          states: StateResolverService,
+        }
       }
     ]
   }

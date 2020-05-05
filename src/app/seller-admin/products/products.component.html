@@ -24,7 +24,7 @@
       <mat-table class="mat-elevation-z2 table" [dataSource]="dataSource" matSort matSortActive="name"
         matSortDirection="asc" matSortDisableClear>
         <ng-container matColumnDef="img">
-          <mat-header-cell class="header-align-right" *matHeaderCellDef mat-sort-header>Image</mat-header-cell>
+          <mat-header-cell class="header-align-right" *matHeaderCellDef >Image</mat-header-cell>
           <mat-cell *matCellDef="let product">
             <img class="img" [src]="product.imagePath" alt="" />
           </mat-cell>

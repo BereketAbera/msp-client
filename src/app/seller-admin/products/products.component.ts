@@ -63,7 +63,7 @@ export class ProductsComponent implements OnInit, AfterViewInit {
       data => {
 
         this.paginator.pageIndex = +data.page - 1 >= 0 ? +data.page : 0;
-        this.dataSource.loadProducts(1, "", "asc", this.paginator.pageIndex, 5);
+        this.dataSource.loadProducts(1, "", "", this.paginator.pageIndex, 5);
 
       },
       err => console.log(err)
@@ -72,6 +72,7 @@ export class ProductsComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     if (this.sort) {
+      console.log()
       this.sort.sortChange.subscribe(() => (this.paginator.pageIndex = 0));
       merge(this.sort.sortChange, this.paginator.page)
         .pipe(tap(() => this.loadProductsPage()))

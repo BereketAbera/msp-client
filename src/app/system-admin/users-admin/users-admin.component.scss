@@ -11,7 +11,41 @@
   margin: 20px auto 0 auto;
   display: block;
 }
+.mat-column-remove{
+  max-width: 3rem;
+  margin-right: 4px;
+}
 
+.mat-column-status {
+  max-width: 8rem;
+}
+
+.mat-column-updatedAt {
+  max-width: 10rem;
+}
+
+.mat-column-firstName {
+  max-width: 10rem;
+}
+
+.mat-column-lastName {
+  max-width: 10rem;
+}
+
+.filter{
+  display: flex;
+  justify-content: flex-end;
+  margin:1rem;
+
+  &-body{
+    padding:0 2rem;
+    font-size: 1.4rem;
+  }
+
+  &-state{
+    max-width: 15rem;
+  }
+}
 .addNewDiv {
   padding-top: 15px;
   padding-bottom: 20px;

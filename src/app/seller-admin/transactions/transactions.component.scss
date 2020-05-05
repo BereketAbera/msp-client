@@ -14,7 +14,7 @@
 }
 .header-align-right{
   display: flex;
-  padding: 21px 5rem;
+  // padding: 21px 5rem;
   justify-content: flex-start;
 }
 
@@ -22,9 +22,9 @@
   max-width: 8rem;
   height: 4rem;
 }
-.mat-column-img {
-  flex: 0 0 11rem;
-}
+// .mat-column-img {
+//   flex: 0 0 11rem;
+// }
 .table {
   width: 96%;
   margin: 2rem;
@@ -67,7 +67,6 @@
 }
 
 .order {
-
 
   &__list-container {
     width: 100%;
