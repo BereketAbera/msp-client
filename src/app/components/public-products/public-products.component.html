@@ -7,6 +7,7 @@
       "
       placeholder="Enter zipcode..."
       class="search__search-input"
+      [style.width]="categoryId ? '60%' : '85%'"
       (keyup)="getlocations($event.target.value)"
       (focus)="onFocus()"
       (blur)="onBlur()"
@@ -15,6 +16,7 @@
     />
     <div
       class="search__search-input-results"
+      [style.width]="categoryId ? 'calc(60% + 8px)' : 'calc(85% + 8px)'"
       [class.search__search-input-results-active]="locationInputActive"
     >
       <div class="search__search-input-result" (click)="getClientLocation()">
@@ -50,6 +52,12 @@
     <button (click)="toggleLocationInputActive()" class="search__search-submit">
       <i class="fas fa-map-marker-alt search__search-submit-icon"></i>
     </button>
+    <div *ngIf="categoryId" class="search__selected-category">
+      {{ getCategoryName() }}
+      <span (click)="removeCategory()" class="search__selected-category-close"
+        >&#215;</span
+      >
+    </div>
   </div>
 </div>
 <div class="container" fxLayout="column" fxLayoutAlign="center center">

@@ -6,20 +6,33 @@
         <a routerLink="/" class="header_mobile__logo_text">Manager Special</a>
       </div>
       <div class="header_mobile__right">
-        <div *ngIf="!mobileSearchActive && searchActive" (click)="searchClick()"
-          class="header_mobile__search-icon-container">
+        <div
+          *ngIf="!mobileSearchActive && searchActive"
+          (click)="searchClick()"
+          class="header_mobile__search-icon-container"
+        >
           <i class="fas fa-search header_mobile__search-icon"></i>
         </div>
-        <div *ngIf="mobileSearchActive" (click)="searchClick()" class="header_mobile__search-icon-container">
+        <div
+          *ngIf="mobileSearchActive"
+          (click)="searchClick()"
+          class="header_mobile__search-icon-container"
+        >
           <!-- <i class="fas fa-times"></i> -->
           <i class="fas fa-times header_mobile__search-icon"></i>
         </div>
-        <div *ngIf="!authService.isLoggedIn()" class="header_mobile__search-icon-container">
+        <div
+          *ngIf="!authService.isLoggedIn()"
+          class="header_mobile__search-icon-container"
+        >
           <button routerLink="/login" class="header_mobile__login-button">
             <i class="fas fa-sign-in-alt"></i>
           </button>
         </div>
-        <div *ngIf="authService.isLoggedIn()" class="header_mobile__search-icon-container">
+        <div
+          *ngIf="authService.isLoggedIn()"
+          class="header_mobile__search-icon-container"
+        >
           <button routerLink="/tlgu-byr" class="header_mobile__login-button">
             <i class="fas fa-home"></i>
           </button>
@@ -34,31 +47,55 @@
       </div>
 
       <div class="header__desktop__search-input-container">
-        <i *ngIf="searchActive" class="fas fa-search header__desktop__search-icon"></i>
-        <input *ngIf="searchActive" [formControl]="desktopSearchValue" type="text" class="header__desktop__search-input"
-          placeholder="Search products..." (keyup.enter)="searchValueChanged('desktopSearchValue')" #deskInput />
+        <i
+          *ngIf="searchActive"
+          class="fas fa-search header__desktop__search-icon"
+        ></i>
+        <input
+          *ngIf="searchActive"
+          [formControl]="desktopSearchValue"
+          type="text"
+          class="header__desktop__search-input"
+          placeholder="Search products..."
+          (keyup.enter)="searchValueChanged('desktopSearchValue')"
+          [value]="q"
+          #deskInput
+        />
         <i class="far fa-times-circle header__desktop__close-icon"></i>
 
         <div class="header__desktop__categories-container">
-          <div *ngFor="let category of categories" class="header__desktop__category"
-            (click)="categoryChanged(category.id)" [class.header__desktop__category-active]="categoryId == category.id">
+          <div
+            *ngFor="let category of categories"
+            class="header__desktop__category"
+            (click)="categoryChanged(category.id)"
+            [class.header__desktop__category-active]="categoryId == category.id"
+          >
             {{ category.name }}
           </div>
         </div>
       </div>
       <div *ngIf="!authService.isLoggedIn()" class="header__desktop__right">
         <!-- <div class="header__desktop__buyer-signup-container">
-          <button routerLink="/cart" class="header__desktop__buyer-signup-button reserve">
+          <button
+            routerLink="/cart"
+            class="header__desktop__buyer-signup-button reserve"
+          >
             Reserved
           </button>
-        </div> -->
+        </div>  -->
         <div class="header__desktop__seller-signup-container">
-          <button routerLink="/login/seller" class="header__desktop__seller-signup-button">
+          <button
+            routerLink="/login/seller"
+            class="header__desktop__seller-signup-button"
+          >
             Seller Signup
           </button>
         </div>
         <div class="header__desktop__buyer-signup-container">
-          <button routerLink="/login/buyer" class="header__desktop__buyer-signup-button">
+          <button
+            routerLink="/login/buyer"
+            class="header__desktop__buyer-signup-button"
+          >
             Buyer Signup
           </button>
         </div>
@@ -69,7 +106,11 @@
           </button>
         </div>
       </div>
-      <div *ngIf="authService.isLoggedIn()" class="header__desktop__right" style="justify-content: flex-end;">
+      <div
+        *ngIf="authService.isLoggedIn()"
+        class="header__desktop__right"
+        style="justify-content: flex-end;"
+      >
         <div class="header__desktop__login-container">
           <button routerLink="/tlgu-byr" class="header__desktop__login-button">
             Home
@@ -78,7 +119,11 @@
       </div>
     </div>
 
-    <mat-progress-bar *ngIf="progressBarActive" color="#F94081" mode="query"></mat-progress-bar>
+    <mat-progress-bar
+      *ngIf="progressBarActive"
+      color="#F94081"
+      mode="query"
+    ></mat-progress-bar>
   </div>
 
   <div class="content__container">
@@ -101,6 +146,9 @@
       <li routerLink="/privacy" class="footer__item">
         <span class="footer__item-text">Privacy Policy</span>
       </li>
+      <li routerLink="/refund" class="footer__item">
+        <span class="footer__item-text">Buyer Refund Policy</span>
+      </li>
       <!-- <li class="footer__item">
         <span class="footer__item-text">Terms & Conditions</span>
       </li> -->
@@ -111,18 +159,34 @@
   </div>
 </div>
 
-<div class="header_mobile__search-input-container"
-  [class.header_mobile__search-input-container--active]="mobileSearchActive">
+<div
+  class="header_mobile__search-input-container"
+  [class.header_mobile__search-input-container--active]="mobileSearchActive"
+>
   <div class="header_mobile__search-input-sub-container">
-    <input [formControl]="mobileSearchValue" type="text" class="header_mobile__search-input"
-      placeholder="Search products..." (keyup.enter)="searchValueChanged('mobileSearchValue')" />
-    <button (click)="searchValueChanged('mobileSearchValue')" class="header_mobile__search-button">
+    <input
+      [formControl]="mobileSearchValue"
+      type="text"
+      class="header_mobile__search-input"
+      placeholder="Search products..."
+      (keyup.enter)="searchValueChanged('mobileSearchValue')"
+      [value]="q"
+    />
+    <button
+      (click)="searchValueChanged('mobileSearchValue')"
+      class="header_mobile__search-button"
+    >
       <i class="fas fa-search header_mobile__search-icon"></i>
     </button>
   </div>
 
   <div class="header_mobile__category-container">
-    <span *ngFor="let category of categories" (click)="categoryChanged(category.id)" class="header_mobile__category"
-      [class.header_mobile__category-active]="categoryId == category.id">{{ category.name }}</span>
+    <span
+      *ngFor="let category of categories"
+      (click)="categoryChanged(category.id)"
+      class="header_mobile__category"
+      [class.header_mobile__category-active]="categoryId == category.id"
+      >{{ category.name }}</span
+    >
   </div>
 </div>

@@ -54,6 +54,11 @@ export class PublicComponent implements OnInit {
       this.categories = data.categories;
     });
 
+    this.route.queryParamMap.subscribe((res) => {
+      this.categoryId = res.get("categoryId");
+      this.q = res.get("q");
+    });
+
     this.router.events.subscribe((url: any) => {
       if (url.url && url.url.includes("/products")) {
         this.searchActive = true;
@@ -103,13 +108,12 @@ export class PublicComponent implements OnInit {
 
   categoryChanged(categoryId) {
     if (categoryId == "") return;
-    // console.log("---------category----------");
     if (this.categoryId == categoryId) {
-      this.categoryId = null;
-      this.router.navigate([], {
-        relativeTo: this.route,
-        queryParams: {},
-      });
+      // this.categoryId = null;
+      // this.router.navigate([], {
+      //   relativeTo: this.route,
+      //   queryParams: {},
+      // });
       this.mobileSearchActive = false;
       return;
     } else {

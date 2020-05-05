@@ -1,3 +1,4 @@
+import { RefundComponent } from "./components/refund/refund.component";
 import { SellerTermsComponent } from "./components/seller-terms/seller-terms.component";
 import { PrivacyComponent } from "./components/privacy/privacy.component";
 import "../polyfills";
@@ -65,6 +66,7 @@ import { BuyerTermsComponent } from "./components/buyer-terms/buyer-terms.compon
     PrivacyComponent,
     BuyerTermsComponent,
     SellerTermsComponent,
+    RefundComponent,
     //  DragDropDirective
     // CustomNotificationComponent
   ],

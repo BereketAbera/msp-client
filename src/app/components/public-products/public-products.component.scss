@@ -309,7 +309,7 @@ img {
     border-bottom: 2px solid transparent;
     color: #888;
     caret-color: #888;
-    width: 85%;
+    width: 60%;
 
     &:focus {
       border-bottom: 2px solid #f94081;
@@ -326,6 +326,7 @@ img {
     justify-content: center;
     align-items: center;
     font-size: 2rem;
+    max-width: 4rem;
     align-self: stretch;
     border: none;
     background-color: #fff;
@@ -335,6 +336,33 @@ img {
     border-bottom: 2px solid transparent;
     &:last-child {
       border-left: 1px solid #eee;
+    }
+  }
+
+  &__selected-category {
+    flex: 5;
+    display: flex;
+    position: relative;
+    font-size: 1.5rem;
+    color: #888;
+    text-transform: uppercase;
+    border-bottom: 2px solid #888;
+    padding-right: 2;
+    flex-wrap: nowrap;
+    margin-left: 1rem;
+  }
+
+  &__selected-category-close {
+    right: 0.2rem;
+    top: -0.6rem;
+    font-size: 2rem;
+    color: #f94081;
+    position: absolute;
+    cursor: pointer;
+    user-select: none;
+
+    &:active {
+      transform: scale(1.05);
     }
   }
 
@@ -413,7 +441,13 @@ img {
 
     &__search-input-container {
       margin-top: 3rem;
+      width: 40rem;
+      margin-left: -10rem;
       // width: 80%;
+    }
+
+    &__selected-category {
+      font-size: 1.2rem;
     }
 
     &__search-input {
