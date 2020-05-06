@@ -86,4 +86,13 @@ export class ShopsService {
     // return an observable with a user-facing error message
     return throwError("Something bad happened; please try again later.");
   }
+  removeShop(shopId: number | String) {
+    return this.http.delete(shopCreateApi + "/" + shopId).pipe(
+      map((shop) => {
+        return <Shop>shop;
+      }),
+      catchError(this.handleError)
+    );
+  }
+
 }

@@ -18,6 +18,8 @@ import { Product } from "src/app/model/product";
 import { SaveConfirmationDialogComponent } from "../../shared/save-confirmation-dialog/save-confirmation-dialog.component";
 import { SaveProgressComponent } from "../../shared/save-progress/save-progress.component";
 import { User } from "src/app/model/user";
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { State } from 'src/app/model/state';
 
 @Component({
   selector: "app-users-admin",
@@ -32,30 +34,44 @@ export class UsersAdminComponent implements OnInit, AfterViewInit {
 
   displayedColumns = [
     "email",
+    'companyName',
+    'address',
     "firstName",
     "lastName",
     "updatedAt",
     "status",
     "remove"
   ];
-
+  filterForm: FormGroup;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   @ViewChild(MatSort) sort: MatSort;
 
   @ViewChild("input") input: ElementRef;
+  states: any[];
 
   constructor(
     public snackBar: MatSnackBar,
     public dialog: MatDialog,
     private route: ActivatedRoute,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private formBuilder: FormBuilder,
   ) {}
 
   ngOnInit() {
     this.dataSource = new MerchantsDataSource(this.userService);
-    this.dataSource.loadMerchants(1, "", "asc", 0, 5);
+    this.dataSource.loadMerchants(1, "", "asc", 0, 20);
+    
+    this.route.data.subscribe((data: { states: State[] }) => {
+      this.states = data.states;
+    });
+    console.log(this.dataSource)
+    this.filterForm = this.formBuilder.group({
+      companyName: [""],
+      city: [""],
+      state: [""],
+    });
   }
 
   ngAfterViewInit() {

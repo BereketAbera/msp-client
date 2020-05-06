@@ -67,7 +67,7 @@ export class ProductService {
   listProductsSeller(
     usrId: number,
     filter = "",
-    sortOrder = "asc",
+    sortOrder,
     pageNumber = 0,
     pageSize = 5
   ): Observable<Product[]> {

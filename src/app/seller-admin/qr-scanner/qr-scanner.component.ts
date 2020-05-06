@@ -111,14 +111,15 @@ export class QrScannerComponent implements OnInit {
 checkCode(){
   //this.stopScanner()
     
-    let ordCode  = this.code.value.replace("-","");
+    let ordCoded  = `'${this.code.value}'`; 
+    let ordCode = ordCoded.replace("-","");
     let dialogRef = this.dialog.open(RequestCodeConfirmationComponent,{data: {code:ordCode}});
             dialogRef.afterClosed().subscribe(result => {
               if(result){
                 
                 //this.isScanning = false;
                 //this.video.pause();
-                this.transactionService.processTransactionQRCdCode({code:ordCode,qrCode:result.qrCode}).subscribe(
+                this.transactionService.processTransactionQRCdCode({code:parseInt(ordCode),qrCode:result.qrCode}).subscribe(
                    result=>{
                      if(result['success']){
                     this.transactionId = result['transactionId']

@@ -80,8 +80,8 @@
   }
 
   &__product-image {
-    height: 9rem;
-    max-width: 10rem;
+    height: 8rem;
+    max-width: 8rem;
   }
 
   &__product-title {
@@ -207,7 +207,7 @@
           .items {
             display: flex;
             flex-direction: column;
-            padding: 0 3%;
+            padding: 0 4px;
           }
         }
       }
