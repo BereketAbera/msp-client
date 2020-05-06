@@ -3,22 +3,22 @@
   max-width: 390px;
   margin: 0 auto;
 }
-.frmDiv {
-  padding: 15px;
-}
+// .frmDiv {
+//   padding: 15px;
+// }
 .course-thumbnail {
   width: 150px;
   margin: 20px auto 0 auto;
   display: block;
 }
-.no_result{
+.no_result {
   display: flex;
   justify-content: center;
   font-size: 2rem;
   color: #777;
   width: 97%;
   margin: 1rem;
-  border:1px #ddd solid;
+  border: 1px #ddd solid;
 }
 
 .addNewDiv {
@@ -79,16 +79,16 @@ ul {
   padding: 0rem 3rem;
 }
 
-// .header-align-right{
+// .header-align-right {
 //   display: flex;
 //   padding: 21px 3rem;
 //   justify-content: flex-start;
 // }
 
-// .table{
-//   width: 95%;
-//   margin: 2rem;
-// }
+.table {
+  width: 95%;
+  margin: 2rem;
+}
 
 .shops {
   &__container {
@@ -99,9 +99,33 @@ ul {
   &__sub-container {
     min-width: 70rem;
   }
+
+  &__header {
+    color: #777;
+    padding: 1rem;
+    padding-bottom: 0rem;
+    font-size: 1.8rem;
+  }
+
+  &__header-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 0rem 1rem;
+    width: 100%;
+  }
 }
 
-.mat-cell:last-of-type {
-  padding-right: 0px;
-  max-width: 5rem;
+.mat-cell {
+  word-break: break-word;
+  &:last-child {
+    padding-right: 0px;
+    max-width: 7rem;
+  }
+}
+
+.mat-header-cell {
+  &:last-child {
+    padding-right: 0px;
+    max-width: 7rem;
+  }
 }

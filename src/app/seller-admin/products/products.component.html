@@ -12,17 +12,34 @@
       </li>
     </ul>
   </div>
-  <div fxLayout="row" fxLayoutAlign="end center" class="addNewDiv" fxLayoutGap="2px">
-    <div>
-      <button mat-raised-button color="accent" class="btnAddPrd" (click)="gotoOffPeakProduct()">
+  <div
+    fxLayout="row"
+    fxLayoutAlign="end center"
+    class="addNewDiv"
+    fxLayoutGap="2px"
+  >
+    <div class="products__header-container">
+      <h2 class="products__header">Products</h2>
+      <button
+        mat-raised-button
+        color="accent"
+        class="btnAddPrd"
+        (click)="gotoOffPeakProduct()"
+      >
         Add Product
       </button>
     </div>
   </div>
   <div class="products__container">
-    <div  class="products__sub-container">
-      <mat-table class="mat-elevation-z2 table" [dataSource]="dataSource" matSort matSortActive="name"
-        matSortDirection="asc" matSortDisableClear>
+    <div class="products__sub-container">
+      <mat-table
+        class="mat-elevation-z2 table"
+        [dataSource]="dataSource"
+        matSort
+        matSortActive="name"
+        matSortDirection="asc"
+        matSortDisableClear
+      >
         <ng-container matColumnDef="img">
           <mat-header-cell  *matHeaderCellDef >Image</mat-header-cell>
           <mat-cell *matCellDef="let product">
@@ -59,7 +76,8 @@
         <ng-container matColumnDef="remove" stickyEnd>
           <mat-header-cell  *matHeaderCellDef></mat-header-cell>
 
-          <mat-cell *matCellDef="let product"><button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-cell *matCellDef="let product"
+            ><button mat-icon-button [matMenuTriggerFor]="menu">
               <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu #menu="matMenu">
@@ -84,12 +102,14 @@
         <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
       </mat-table>
       <div class="no_result" *ngIf="dataSource.count == 0">
-          You don't have product yet!
-        </div>
+        You don't have product yet!
+      </div>
 
-      <mat-paginator [length]="dataSource.count" [pageSize]="5" [pageSizeOptions]="[5, 10]"></mat-paginator>
+      <mat-paginator
+        [length]="dataSource.count"
+        [pageSize]="5"
+        [pageSizeOptions]="[5, 10]"
+      ></mat-paginator>
     </div>
-   
-
   </div>
 </div>

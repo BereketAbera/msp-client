@@ -66,8 +66,8 @@ export class CartComponent implements OnInit {
 	}
 	showResetDialog(){
 		const dialogRef = this.dialog.open(CartExpiredDialogComponent,{
-			width: '250px',
-			data: {titel: "Cart Time Expired", message: "Sorry, your shopping cart time limit of ten minutes has expired"}
+			width: '350px',
+			data: {title: "Cart Time Expired", message: "Sorry, your shopping cart time limit of ten minutes has expired"}
 		  });
 		dialogRef.afterClosed().subscribe(result => {
 			  this.cartService.resetCart();

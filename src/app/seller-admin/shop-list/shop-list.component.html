@@ -13,7 +13,8 @@
     </ul>
   </div>
   <div fxLayout="row" fxLayoutAlign="end center" class="addNewDiv">
-    <div>
+    <div class="shops__header-container">
+      <h2 class="shops__header">Stores</h2>
       <button mat-raised-button color="accent" (click)="gotoAddNewShop()">
         Add New Store
       </button>
@@ -21,35 +22,52 @@
   </div>
 
   <div class="shops__container">
-    <div class="shops__sub-container ">
-      <mat-table class="mat-elevation-z2" [dataSource]="dataSource" matSort matSortActive="name" matSortDirection="asc"
-        matSortDisableClear>
+    <div class="shops__sub-container">
+      <mat-table
+        class="table mat-elevation-z2"
+        [dataSource]="dataSource"
+        matSort
+        matSortActive="name"
+        matSortDirection="asc"
+        matSortDisableClear
+      >
         <ng-container matColumnDef="name">
-          <mat-header-cell class="header-align-right" *matHeaderCellDef>Name</mat-header-cell>
+          <mat-header-cell class="header-align-right" *matHeaderCellDef
+            >Name</mat-header-cell
+          >
 
           <mat-cell *matCellDef="let shop">{{ shop.name }}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="address">
-          <mat-header-cell class="header-align-right" *matHeaderCellDef>Address</mat-header-cell>
+          <mat-header-cell class="header-align-right" *matHeaderCellDef
+            >Address</mat-header-cell
+          >
 
           <mat-cell *matCellDef="let shop">
             <span>
               {{ shop.address }}
-            </span></mat-cell>
+            </span></mat-cell
+          >
         </ng-container>
         <ng-container matColumnDef="contact">
-          <mat-header-cell class="header-align-right" *matHeaderCellDef>Contact</mat-header-cell>
+          <mat-header-cell class="header-align-right" *matHeaderCellDef
+            >Contact</mat-header-cell
+          >
 
           <mat-cell *matCellDef="let shop">{{ shop.contact }}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="phone">
-          <mat-header-cell class="header-align-right" *matHeaderCellDef>Phone</mat-header-cell>
+          <mat-header-cell class="header-align-right" *matHeaderCellDef
+            >Phone</mat-header-cell
+          >
 
           <mat-cell *matCellDef="let shop">{{ shop.phone }}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="ZipCode">
-          <mat-header-cell class="header-align-right" *matHeaderCellDef>Zip Code</mat-header-cell>
+          <mat-header-cell class="header-align-right" *matHeaderCellDef
+            >Zip Code</mat-header-cell
+          >
 
           <mat-cell *matCellDef="let shop">{{ shop.zipCode }}</mat-cell>
         </ng-container>
@@ -57,7 +75,8 @@
         <ng-container matColumnDef="menu" stickyEnd>
           <mat-header-cell *matHeaderCellDef></mat-header-cell>
 
-          <mat-cell *matCellDef="let shop"><button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-cell *matCellDef="let shop"
+            ><button mat-icon-button [matMenuTriggerFor]="menu">
               <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu #menu="matMenu">
@@ -78,9 +97,13 @@
         <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
       </mat-table>
       <div *ngIf="dataSource.count == 0" class="no_result">
-          No Shop Added yet!
-          </div>
-      <mat-paginator [length]="dataSource.count" [pageSize]="5" [pageSizeOptions]="[5, 10]"></mat-paginator>
+        No Shop Added yet!
+      </div>
+      <mat-paginator
+        [length]="dataSource.count"
+        [pageSize]="5"
+        [pageSizeOptions]="[5, 10]"
+      ></mat-paginator>
     </div>
   </div>
 </div>

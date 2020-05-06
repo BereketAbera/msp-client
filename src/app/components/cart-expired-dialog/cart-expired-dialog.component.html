@@ -1,8 +1,8 @@
-<h1 mat-dialog-title>{{data.title}}</h1>
+<h1 class="header" mat-dialog-title>{{data.title}}</h1>
 <div mat-dialog-content>
-  <p>{{data.message}}</p>
+  <p class="body">{{data.message}}</p>
   
 </div>
-<div mat-dialog-actions>
-    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Ok</button>
+<div class="action" mat-dialog-actions>
+    <button class="body" mat-button [mat-dialog-close]="true" cdkFocusInitial>Ok</button>
 </div>

@@ -1,0 +1,20 @@
+.header{
+    font-size: 1.6rem;
+    font-weight: 700;
+}
+
+.body{
+    font-size: 1.5rem;
+}
+.action{
+    float: right;
+}
+
+@media only screen and (max-width: 700px) {
+    .header{
+        font-size: 2rem;
+    }
+    .body{
+        font-size: 2rem;
+    }
+}
