@@ -12,54 +12,91 @@
       </li>
     </ul>
   </div>
-  <div fxLayout="row" fxLayoutAlign="end center" class="addNewDiv" fxLayoutGap="2px">
-    <div>
-      <button mat-raised-button color="accent" class="btnAddPrd" (click)="gotoOffPeakProduct()">
+  <div
+    fxLayout="row"
+    fxLayoutAlign="end center"
+    class="addNewDiv"
+    fxLayoutGap="2px"
+  >
+    <div class="products__header-container">
+      <h2 class="products__header">Products</h2>
+      <button
+        mat-raised-button
+        color="accent"
+        class="btnAddPrd"
+        (click)="gotoOffPeakProduct()"
+      >
         Add Product
       </button>
     </div>
   </div>
   <div class="products__container">
-    <div  class="products__sub-container">
-      <mat-table class="mat-elevation-z2 table" [dataSource]="dataSource" matSort matSortActive="name"
-        matSortDirection="asc" matSortDisableClear>
+    <div class="products__sub-container">
+      <mat-table
+        class="mat-elevation-z2 table"
+        [dataSource]="dataSource"
+        matSort
+        matSortActive="name"
+        matSortDirection="asc"
+        matSortDisableClear
+      >
         <ng-container matColumnDef="img">
-          <mat-header-cell class="header-align-right" *matHeaderCellDef mat-sort-header>Image</mat-header-cell>
+          <mat-header-cell
+            class="header-align-right"
+            *matHeaderCellDef
+            mat-sort-header
+            >Image</mat-header-cell
+          >
           <mat-cell *matCellDef="let product">
             <img class="img" [src]="product.imagePath" alt="" />
           </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="name">
-          <mat-header-cell class="header-align-right" *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
+          <mat-header-cell
+            class="header-align-right"
+            *matHeaderCellDef
+            mat-sort-header
+            >Name</mat-header-cell
+          >
 
           <mat-cell *matCellDef="let product">{{ product.name }}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="shop">
-          <mat-header-cell class="header-align-right" *matHeaderCellDef>Store</mat-header-cell>
+          <mat-header-cell class="header-align-right" *matHeaderCellDef
+            >Store</mat-header-cell
+          >
 
           <mat-cell *matCellDef="let product">{{ product.shop.name }}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="discountPrice">
-          <mat-header-cell class="header-align-right" *matHeaderCellDef>Regular Price</mat-header-cell>
+          <mat-header-cell class="header-align-right" *matHeaderCellDef
+            >Regular Price</mat-header-cell
+          >
 
           <mat-cell *matCellDef="let product">{{
             product.normalPrice | currency
           }}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="dispercentage">
-          <mat-header-cell class="header-align-right" *matHeaderCellDef>Disc %</mat-header-cell>
+          <mat-header-cell class="header-align-right" *matHeaderCellDef
+            >Disc %</mat-header-cell
+          >
 
           <mat-cell *matCellDef="let product">{{
             product.discountPercentage
           }}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="remove" stickyEnd>
-          <mat-header-cell class="header-align-right" *matHeaderCellDef></mat-header-cell>
+          <mat-header-cell
+            class="header-align-right"
+            *matHeaderCellDef
+          ></mat-header-cell>
 
-          <mat-cell *matCellDef="let product"><button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-cell *matCellDef="let product"
+            ><button mat-icon-button [matMenuTriggerFor]="menu">
               <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu #menu="matMenu">
@@ -84,12 +121,14 @@
         <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
       </mat-table>
       <div class="no_result" *ngIf="dataSource.count == 0">
-          You don't have product yet!
-        </div>
+        You don't have product yet!
+      </div>
 
-      <mat-paginator [length]="dataSource.count" [pageSize]="5" [pageSizeOptions]="[5, 10]"></mat-paginator>
+      <mat-paginator
+        [length]="dataSource.count"
+        [pageSize]="5"
+        [pageSizeOptions]="[5, 10]"
+      ></mat-paginator>
     </div>
-   
-
   </div>
 </div>

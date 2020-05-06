@@ -3,7 +3,8 @@
       <mat-spinner></mat-spinner>
     </div> -->
   <div fxLayout="row" fxLayoutAlign="end center" class="addNewDiv">
-    <div>
+    <div class="staff__header-container">
+      <h2 class="staff__header">Staffs</h2>
       <button mat-raised-button color="accent" (click)="goToAddStaff()">
         Add New Staff
       </button>
@@ -13,7 +14,7 @@
     <span>You do not have any staffs yet.</span>
   </div>
   <div class="staff__container">
-    <div  *ngIf="dataSource?.length > 0" class="staff__sub-container">
+    <div *ngIf="dataSource?.length > 0" class="staff__sub-container">
       <mat-table
         *ngIf="dataSource?.length > 0"
         class="mat-elevation-z2"
@@ -24,25 +25,32 @@
         matSortDisableClear
       >
         <ng-container matColumnDef="username">
-          <mat-header-cell class="header-align-right"  *matHeaderCellDef mat-sort-header
+          <mat-header-cell
+            class="header-align-right"
+            *matHeaderCellDef
+            mat-sort-header
             >Username</mat-header-cell
           >
 
           <mat-cell *matCellDef="let staff">{{ staff.username }}</mat-cell>
         </ng-container>
 
-        <ng-container class="header-align-right"  matColumnDef="email">
+        <ng-container class="header-align-right" matColumnDef="email">
           <mat-header-cell *matHeaderCellDef>Email</mat-header-cell>
 
           <mat-cell *matCellDef="let staff">{{ staff.email }}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="firstName">
-          <mat-header-cell class="header-align-right"  *matHeaderCellDef>First Name</mat-header-cell>
+          <mat-header-cell class="header-align-right" *matHeaderCellDef
+            >First Name</mat-header-cell
+          >
 
           <mat-cell *matCellDef="let staff">{{ staff.firstName }}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="lastName">
-          <mat-header-cell class="header-align-right"  *matHeaderCellDef>LastName</mat-header-cell>
+          <mat-header-cell class="header-align-right" *matHeaderCellDef
+            >LastName</mat-header-cell
+          >
 
           <mat-cell *matCellDef="let staff">{{ staff.lastName }}</mat-cell>
         </ng-container>
@@ -52,7 +60,9 @@
           <mat-cell *matCellDef="let staff">{{ staff.phoneNumber }}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="status">
-          <mat-header-cell class="header-align-right"  *matHeaderCellDef>Staffer Status</mat-header-cell>
+          <mat-header-cell class="header-align-right" *matHeaderCellDef
+            >Staffer Status</mat-header-cell
+          >
 
           <mat-cell
             [class.staff_status--active]="staff.staff_status == 'ACTIVE'"

@@ -9,8 +9,8 @@
     max-height: 60rem;
     background: linear-gradient(
         -90deg,
-        rgba(250, 250, 250, 0.5),
-        rgba(250, 250, 250, 0.5)
+        rgba(116, 30, 60, 0.7),
+        rgba(116, 30, 60, 0.7)
       ),
       url("../../../assets/image/home_background2.svg");
     background-position-x: right;
@@ -32,7 +32,7 @@
   &__search-header {
     font-size: 2.5rem;
     font-weight: 700;
-    color: #f94081;
+    color: #fff;
     padding: 1rem 0rem;
   }
 
