@@ -9,7 +9,6 @@ import { environment } from "../../environments/environment";
 export class BuyerAdminComponent implements OnInit {
   today = new Date().getFullYear();
   version = environment.version;
-  constructor() {}
 
   ngOnInit() {}
 }

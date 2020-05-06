@@ -53,12 +53,20 @@
           }}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="name" stickyEnd>
-          <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+          <mat-header-cell *matHeaderCellDef></mat-header-cell>
 
-          <mat-cell *matCellDef="let transaction">
-            <a [routerLink]="['./', transaction.id]">View Detail</a>
+          <mat-cell *matCellDef="let transaction"><button mat-icon-button [matMenuTriggerFor]="menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item [routerLink]="['./', transaction.id]">
+                <mat-icon color="accent">info</mat-icon>
+                <span>Detail</span>
+              </button>
+            </mat-menu>
           </mat-cell>
         </ng-container>
+
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
       </mat-table>

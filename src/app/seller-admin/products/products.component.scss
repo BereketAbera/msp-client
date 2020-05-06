@@ -22,11 +22,11 @@
 .frmDiv {
   padding: 15px;
 }
-.header-align-right{
-  display: flex;
-  padding: 21px 3rem;
-  justify-content: center;
-}
+// .header-align-right{
+//   display: flex;
+//   padding: 21px 3rem;
+//   justify-content: center;
+// }
 .course-thumbnail {
   width: 150px;
   margin: 20px auto 0 auto;
@@ -95,10 +95,13 @@ ul {
   fill: red;
 }
 
-.table {
-  width: 98%;
-  margin: 1rem;
+.mat-column-remove{
+  max-width: 7rem;
 }
+// .table {
+//   width: 98%;
+//   margin: 1rem;
+// }
 
 .products {
   &__container {
@@ -112,7 +115,7 @@ ul {
   }
 }
 
-.mat-cell:last-of-type {
-  padding-right: 0px;
-  max-width: 5rem;
-}
+// .mat-cell:last-of-type {
+//   padding-right: 0px;
+//   max-width: 5rem;
+// }

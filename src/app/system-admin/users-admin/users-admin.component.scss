@@ -36,12 +36,28 @@
   display: flex;
   justify-content: flex-end;
   margin:1rem;
+  form{
+    display: flex;
 
+  }
   &-body{
     padding:0 2rem;
     font-size: 1.4rem;
   }
-
+  &-status{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 1rem;
+    font-size: 1.3rem;
+    .items{
+      padding:0 1rem;
+    }
+  }
+  &-button{
+    display: flex;
+    align-items: center;
+  }
   &-state{
     max-width: 15rem;
   }

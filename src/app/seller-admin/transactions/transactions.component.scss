@@ -12,11 +12,11 @@
   margin: 1rem;
   border:1px #ddd solid;
 }
-.header-align-right{
-  display: flex;
-  // padding: 21px 5rem;
-  justify-content: flex-start;
-}
+// .header-align-right{
+//   display: flex;
+//   // padding: 21px 5rem;
+//   justify-content: flex-start;
+// }
 
 .img {
   max-width: 8rem;
@@ -26,8 +26,8 @@
 //   flex: 0 0 11rem;
 // }
 .table {
-  width: 96%;
-  margin: 2rem;
+  // width: 96%;
+  margin: 2rem 1rem;
 }
 .frmDiv {
   padding: 15px;
@@ -64,6 +64,10 @@
   left: 0;
   height: 100%;
   width: 100%;
+}
+
+.mat-column-img {
+  flex: 0 0 11rem;
 }
 
 .order {

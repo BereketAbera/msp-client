@@ -49,6 +49,7 @@ export class UsersAdminComponent implements OnInit, AfterViewInit {
 
   @ViewChild("input") input: ElementRef;
   states: any[];
+  page: number;
 
   constructor(
     public snackBar: MatSnackBar,
@@ -62,7 +63,7 @@ export class UsersAdminComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.dataSource = new MerchantsDataSource(this.userService);
     this.dataSource.loadMerchants(1, "", "asc", 0, 20);
-    
+
     this.route.data.subscribe((data: { states: State[] }) => {
       this.states = data.states;
     });
@@ -71,7 +72,9 @@ export class UsersAdminComponent implements OnInit, AfterViewInit {
       companyName: [""],
       city: [""],
       state: [""],
+      status: ["1"],
     });
+
   }
 
   ngAfterViewInit() {
@@ -80,6 +83,7 @@ export class UsersAdminComponent implements OnInit, AfterViewInit {
       .pipe(tap(() => this.loadMerchantsPage()))
       .subscribe();
   }
+
   loadMerchantsPage() {
     this.dataSource.loadMerchants(
       1,
@@ -89,6 +93,7 @@ export class UsersAdminComponent implements OnInit, AfterViewInit {
       this.paginator.pageSize
     );
   }
+
   getStatus(status: number) {
     if (status == 0) return "ACCOUNT PENDING";
     else if (status == 1) return "ACTIVE";
@@ -157,5 +162,12 @@ export class UsersAdminComponent implements OnInit, AfterViewInit {
   }
   close() {
     this.showError = false;
+  }
+
+  filterSeller(){
+    var val = this.filterForm.value;
+    console.log(val)
+    this.dataSource.filterSeller(val.companyName,val.status, this.paginator.pageIndex,
+      this.paginator.pageSize);
   }
 }

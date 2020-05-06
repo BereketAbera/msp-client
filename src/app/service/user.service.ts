@@ -31,7 +31,7 @@ const profileAPI = environment.APIEndpoint + "profile";
 })
 export class UserService {
   public countSubject = new BehaviorSubject<number>(0);
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
   registerUser(user: User) {
     return this.http.post(userAPI, user).pipe(catchError(this.handleError));
   }
@@ -144,6 +144,34 @@ export class UserService {
     return this.http
       .post(accountAPI + "/seller", { userId: id, status: status })
       .pipe(catchError(this.handleError));
+  }
+
+  filterSeller(
+    companyName = "",
+    city = "",
+    state = "",
+    status,
+    pageNumber = 0,
+    pageSize = 5
+  ): Observable<any[]> {
+    return this.http
+      .get(accountAPI + "/seller/filter", {
+        params: new HttpParams()
+          .set("companyName", companyName)
+          .set("city", city)
+          .set("state", state)
+          .set("status",status)
+          .set("pageNumber", pageNumber.toString())
+          .set("pageSize", pageSize.toString()),
+      })
+      .pipe(
+        map((res) => {
+          console.log(res,'res')
+          this.countSubject.next(res["count"]);
+          return res["rows"];
+        }),
+        catchError(this.handleError)
+      );
   }
 
   listMerchants(

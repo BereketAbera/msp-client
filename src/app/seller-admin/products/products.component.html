@@ -24,40 +24,40 @@
       <mat-table class="mat-elevation-z2 table" [dataSource]="dataSource" matSort matSortActive="name"
         matSortDirection="asc" matSortDisableClear>
         <ng-container matColumnDef="img">
-          <mat-header-cell class="header-align-right" *matHeaderCellDef >Image</mat-header-cell>
+          <mat-header-cell  *matHeaderCellDef >Image</mat-header-cell>
           <mat-cell *matCellDef="let product">
             <img class="img" [src]="product.imagePath" alt="" />
           </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="name">
-          <mat-header-cell class="header-align-right" *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
+          <mat-header-cell  *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
 
           <mat-cell *matCellDef="let product">{{ product.name }}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="shop">
-          <mat-header-cell class="header-align-right" *matHeaderCellDef>Store</mat-header-cell>
+          <mat-header-cell  *matHeaderCellDef>Store</mat-header-cell>
 
           <mat-cell *matCellDef="let product">{{ product.shop.name }}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="discountPrice">
-          <mat-header-cell class="header-align-right" *matHeaderCellDef>Regular Price</mat-header-cell>
+          <mat-header-cell  *matHeaderCellDef>Regular Price</mat-header-cell>
 
           <mat-cell *matCellDef="let product">{{
             product.normalPrice | currency
           }}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="dispercentage">
-          <mat-header-cell class="header-align-right" *matHeaderCellDef>Disc %</mat-header-cell>
+          <mat-header-cell  *matHeaderCellDef>Disc %</mat-header-cell>
 
           <mat-cell *matCellDef="let product">{{
             product.discountPercentage
           }}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="remove" stickyEnd>
-          <mat-header-cell class="header-align-right" *matHeaderCellDef></mat-header-cell>
+          <mat-header-cell  *matHeaderCellDef></mat-header-cell>
 
           <mat-cell *matCellDef="let product"><button mat-icon-button [matMenuTriggerFor]="menu">
               <mat-icon>more_vert</mat-icon>

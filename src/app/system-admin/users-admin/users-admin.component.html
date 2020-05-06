@@ -16,7 +16,7 @@
   <div class="filter">
     <div class="add-shop__address">
 
-      <form (ngSubmit)="onSubmit()" [formGroup]="filterForm">
+      <form class="form" (ngSubmit)="filterSeller()" [formGroup]="filterForm">
         <div *ngIf="errorMessage" class="add-staff__errors">
           <span>{{ errorMessage }}</span>
         </div>
@@ -25,7 +25,20 @@
           <input matInput maxlength="45" placeholder="Company Name" formControlName="companyName" />
         </mat-form-field>
 
-        <mat-form-field class="filter-body">
+        <mat-radio-group class="filter-status" formControlName="status">
+          <label class="product-form__label"> <b>Status </b> </label>
+          <mat-radio-button class="items" value="1">Active
+          </mat-radio-button>
+          <mat-radio-button class="items" value="0">Pending
+          </mat-radio-button>
+        </mat-radio-group>
+
+        <div class="filter-button">
+          <button mat-raised-button color="accent">Search</button>
+        </div>
+
+
+        <!-- <mat-form-field class="filter-body">
           <input matInput maxlength="45" placeholder="City" formControlName="city" />
         </mat-form-field>
 
@@ -35,8 +48,7 @@
               {{ state.abbreviation }}
             </mat-option>
           </mat-select>
-        </mat-form-field>
-
+        </mat-form-field> -->
 
       </form>
     </div>
