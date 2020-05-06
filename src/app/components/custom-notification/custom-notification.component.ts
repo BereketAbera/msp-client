@@ -1,11 +1,18 @@
-import { Component, OnInit, Input, SimpleChanges, EventEmitter, Output } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  Input,
+  SimpleChanges,
+  EventEmitter,
+  Output,
+} from "@angular/core";
 import { Location } from "@angular/common";
 import { Router } from "@angular/router";
 
 @Component({
   selector: "app-custom-notification",
   templateUrl: "./custom-notification.component.html",
-  styleUrls: ["./custom-notification.component.scss"]
+  styleUrls: ["./custom-notification.component.scss"],
 })
 export class CustomNotificationComponent implements OnInit {
   @Input() text: string;
@@ -22,19 +29,12 @@ export class CustomNotificationComponent implements OnInit {
     if (changes.show && changes.show.currentValue) {
       setTimeout(() => {
         // this.show = false;
-        if (!this.callback) {
-          this.showNotifications.emit(false)
-          return;
-        } else if (this.callback === "goBack") {
+        if (this.callback === "goBack") {
           this._location.back();
         } else {
           this.router.navigate([this.callback]);
         }
-       
       }, 2000);
-      
-     
-      
     }
   }
 }

@@ -16,13 +16,16 @@ import { InvalidTokenComponent } from "./invalid-token/invalid-token.component";
 import { RegisterSellerRefComponent } from "./register-seller-ref/register-seller-ref.component";
 import { RegisterBuyerRefComponent } from "./register-buyer-ref/register-buyer-ref.component";
 import { AuthComponent } from "./auth.component";
+import { SharedModule } from "../shared/shared.module";
+// import { CustomNotificationComponent } from "../components/custom-notification/custom-notification.component";
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
     DemoMaterialModule,
-    AuthRoutingModule
+    SharedModule,
+    AuthRoutingModule,
   ],
   declarations: [
     LoginComponent,
@@ -35,8 +38,9 @@ import { AuthComponent } from "./auth.component";
     InvalidTokenComponent,
     RegisterSellerRefComponent,
     RegisterBuyerRefComponent,
-    AuthComponent
+    AuthComponent,
+    // CustomNotificationComponent,
   ],
-  entryComponents: [RegistrationCompleteComponent]
+  entryComponents: [RegistrationCompleteComponent],
 })
 export class AuthModule {}

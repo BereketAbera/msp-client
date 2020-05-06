@@ -43,6 +43,7 @@ import { UtcDealDetailComponent } from "./components/utc-deal-detail/utc-deal-de
 import { CompanyProductsComponent } from "./components/company-products/company-products.component";
 import { PublicProductsComponent } from "./components/public-products/public-products.component";
 import { BuyerTermsComponent } from "./components/buyer-terms/buyer-terms.component";
+import { CustomNotificationComponent } from "./components/custom-notification/custom-notification.component";
 // import { DragDropDirective } from './service/drag-drop.directive';
 // import { CustomNotificationComponent } from "./components/custom-notification/custom-notification.component";
 
@@ -68,7 +69,7 @@ import { BuyerTermsComponent } from "./components/buyer-terms/buyer-terms.compon
     SellerTermsComponent,
     RefundComponent,
     //  DragDropDirective
-    // CustomNotificationComponent
+    // CustomNotificationComponent,
   ],
   imports: [
     BrowserModule,
