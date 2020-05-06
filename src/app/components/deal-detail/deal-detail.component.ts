@@ -174,6 +174,7 @@ export class DealDetailComponent implements OnInit {
   showNotification($event) {
     this.showErrorNotification = $event;
   }
+
   changeToLocal12Hours(time) {
     let d = -new Date().getTimezoneOffset();
     let x = time.split(":");

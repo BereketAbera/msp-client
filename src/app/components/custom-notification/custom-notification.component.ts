@@ -31,8 +31,10 @@ export class CustomNotificationComponent implements OnInit {
         // this.show = false;
         if (this.callback === "goBack") {
           this._location.back();
+          this.showNotifications.emit(false)
         } else {
-          this.router.navigate([this.callback]);
+          this.showNotifications.emit(false)
+          // this.router.navigate([this.callback]);
         }
       }, 2000);
     }
