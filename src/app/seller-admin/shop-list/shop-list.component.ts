@@ -26,7 +26,7 @@ export class ShopListComponent implements OnInit, AfterViewInit {
   showError: boolean = false;
   dataSource: ShopsDataSource;
 
-  displayedColumns = ["name", "address", "ZipCode", "contact", "phone", "menu"];
+  displayedColumns = ["name", "address", "ZipCode", "contact", "phone","city","state", "menu"];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
