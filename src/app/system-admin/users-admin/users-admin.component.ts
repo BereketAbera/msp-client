@@ -3,7 +3,7 @@ import {
   Component,
   ElementRef,
   OnInit,
-  ViewChild
+  ViewChild,
 } from "@angular/core";
 import { MatDialog } from "@angular/material";
 import { MatSnackBar } from "@angular/material";
@@ -18,29 +18,30 @@ import { Product } from "src/app/model/product";
 import { SaveConfirmationDialogComponent } from "../../shared/save-confirmation-dialog/save-confirmation-dialog.component";
 import { SaveProgressComponent } from "../../shared/save-progress/save-progress.component";
 import { User } from "src/app/model/user";
-import { Validators, FormBuilder, FormGroup } from '@angular/forms';
-import { State } from 'src/app/model/state';
+import { Validators, FormBuilder, FormGroup } from "@angular/forms";
+import { State } from "src/app/model/state";
 
 @Component({
   selector: "app-users-admin",
   templateUrl: "./users-admin.component.html",
-  styleUrls: ["./users-admin.component.scss"]
+  styleUrls: ["./users-admin.component.scss"],
 })
 export class UsersAdminComponent implements OnInit, AfterViewInit {
   errors;
   showError: boolean = false;
+  errorMessage = "";
 
   dataSource: MerchantsDataSource;
 
   displayedColumns = [
     "email",
-    'companyName',
-    'address',
+    "companyName",
+    "address",
     "firstName",
     "lastName",
     "updatedAt",
     "status",
-    "remove"
+    "remove",
   ];
   filterForm: FormGroup;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -57,7 +58,7 @@ export class UsersAdminComponent implements OnInit, AfterViewInit {
     private route: ActivatedRoute,
     private userService: UserService,
     private router: Router,
-    private formBuilder: FormBuilder,
+    private formBuilder: FormBuilder
   ) {}
 
   ngOnInit() {
@@ -67,7 +68,7 @@ export class UsersAdminComponent implements OnInit, AfterViewInit {
     this.route.data.subscribe((data: { states: State[] }) => {
       this.states = data.states;
     });
-    console.log(this.dataSource)
+    console.log(this.dataSource);
     this.filterForm = this.formBuilder.group({
       companyName: [""],
       city: [""],
@@ -123,24 +124,24 @@ export class UsersAdminComponent implements OnInit, AfterViewInit {
     const dialogRef = this.dialog.open(SaveConfirmationDialogComponent, {
       width: "250px",
       height: "300px",
-      data: { title: "", question: cnfMsg }
+      data: { title: "", question: cnfMsg },
     });
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       if (result == "yes") {
         const progressDialogRef = this.dialog.open(SaveProgressComponent, {
           width: "260px",
           height: "180px",
-          data: { title: "", question: "" }
+          data: { title: "", question: "" },
         });
         this.userService.changeUserStatus(user.id, status).subscribe(
-          res => {
+          (res) => {
             if (res["success"]) {
               progressDialogRef.close();
               let snackBarRef = this.snackBar.open(
                 "You have successfuly changed the account status.",
                 "",
                 {
-                  duration: 2000
+                  duration: 2000,
                 }
               );
               snackBarRef.afterDismissed().subscribe(() => {
@@ -153,7 +154,7 @@ export class UsersAdminComponent implements OnInit, AfterViewInit {
               this.errors = res["messages"];
             }
           },
-          err => {
+          (err) => {
             progressDialogRef.close();
           }
         );
@@ -170,4 +171,5 @@ export class UsersAdminComponent implements OnInit, AfterViewInit {
     this.dataSource.filterSeller(val.companyName,val.status, this.paginator.pageIndex,
       this.paginator.pageSize);
   }
+  onSubmit() {}
 }

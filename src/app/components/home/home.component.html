@@ -13,8 +13,11 @@
         <div class="home__search-input-results">
           <div class="home__search-input-result" (click)="getClientLocation()">
             <div>
-              <i
+              <!-- <i
                 class="fas fa-map-marker-alt home__search-input-result-icon"
+              ></i> -->
+              <i
+                class="fad fa-map-marker-alt home__search-input-result-icon"
               ></i>
               <span class="home__search-input-result-name"
                 >Use Current Location</span
@@ -27,8 +30,11 @@
             (click)="addressChanged(address)"
           >
             <div>
-              <i
+              <!-- <i
                 class="fas fa-map-marker-alt home__search-input-result-icon"
+              ></i> -->
+              <i
+                class="fad fa-map-marker-alt home__search-input-result-icon"
               ></i>
               <span class="home__search-input-result-name">
                 {{ address.CityName }}
@@ -50,7 +56,8 @@
           class="home__search-submit"
           type="submit"
         >
-          <i class="far fa-hand-point-right home__search-submit-icon"></i>
+          <!-- <i class="far fa-hand-point-right home__search-submit-icon"></i> -->
+          <i class="fal fa-search-location home__search-submit-icon"></i>
         </button>
       </div>
     </div>

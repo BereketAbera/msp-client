@@ -40,23 +40,23 @@ export class DealDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private fb: FormBuilder
-  ) { }
+  ) {}
 
   ngOnInit() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
     this.route.data.subscribe(
       (data: { product: Product; mspMarkup: Markup }) => {
-
         //  console.log(JSON.parse(localStorage.getItem("msp_cart_items")).products)
 
         let localProduct = this.cartService.getLocalCartProducts();
         if (localProduct) {
-          localProduct.map(
-            prod => {
-              if (prod.prdid == data.product.id) {
-                data.product.currentQuantity = parseInt(data.product.currentQuantity) - prod.qty;
-              }
+          localProduct.map((prod) => {
+            if (prod.prdid == data.product.id) {
+              data.product.currentQuantity =
+                parseInt(data.product.currentQuantity) - prod.qty;
             }
-          )
+          });
         }
 
         this.product = data.product;
@@ -169,7 +169,7 @@ export class DealDetailComponent implements OnInit {
       );
     }
   }
-  onSubmit() { }
+  onSubmit() {}
 
   showNotification($event) {
     this.showErrorNotification = $event;

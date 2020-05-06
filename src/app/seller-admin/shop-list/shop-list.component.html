@@ -2,9 +2,9 @@
   <div class="spinner-container" *ngIf="dataSource.loading$ | async">
     <mat-spinner></mat-spinner>
   </div>
-  <div *ngIf="showError" id="errorCntr">
-    <button id="errClsBtn" (click)="close()">
-      X
+  <div *ngIf="showError" class="errorCntr">
+    <button class="errClsBtn" (click)="close()">
+      &#215;
     </button>
     <ul>
       <li *ngFor="let error of errors">

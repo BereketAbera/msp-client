@@ -7,8 +7,8 @@ $error-color: #ff0000;
 .notification {
   position: fixed;
   bottom: 3.5rem;
-  left: 50%;
-  transform: translate(-40%, 200%);
+  left: 45%;
+  // transform: translateX(-50%);
   opacity: 0;
   visibility: hidden;
   padding: 1rem 1rem;

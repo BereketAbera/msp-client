@@ -212,6 +212,11 @@
   &__greyStar {
     color: gray;
   }
+
+  &__icon {
+    font-size: 1.8rem;
+    margin-right: 1rem;
+  }
 }
 
 input[type="number"]::-webkit-inner-spin-button,
