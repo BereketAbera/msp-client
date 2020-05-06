@@ -21,7 +21,8 @@
     >
       <div class="search__search-input-result" (click)="getClientLocation()">
         <div>
-          <i class="fas fa-map-marker-alt search__search-input-result-icon"></i>
+          <i class="fad fa-map-marker-alt search__search-input-result-icon"></i>
+          <!-- <i class="fad fa-map-marker-alt"></i> -->
           <span class="search__search-input-result-name"
             >Use Current Location</span
           >
@@ -33,7 +34,7 @@
         (click)="addressChanged(address)"
       >
         <div>
-          <i class="fas fa-map-marker-alt search__search-input-result-icon"></i>
+          <i class="fad fa-map-marker-alt search__search-input-result-icon"></i>
           <span class="search__search-input-result-name">{{
             address.CityName
           }}</span>
@@ -50,7 +51,7 @@
       </div>
     </div>
     <button (click)="toggleLocationInputActive()" class="search__search-submit">
-      <i class="fas fa-map-marker-alt search__search-submit-icon"></i>
+      <i class="fad fa-map-marker-alt search__search-submit-icon"></i>
     </button>
     <div *ngIf="categoryId" class="search__selected-category">
       {{ getCategoryName() }}
