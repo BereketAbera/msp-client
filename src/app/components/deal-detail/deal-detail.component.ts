@@ -98,6 +98,12 @@ export class DealDetailComponent implements OnInit {
       reserveProduct.ordruid = order.guid;
       reserveProduct.prdid = this.product.id;
       reserveProduct.qty = this.buyForm.get("quantity").value;
+      // console.log(this.product.currentQuantity,reserveProduct.qty,'check')
+      if(reserveProduct.qty > this.product.currentQuantity){
+        this.errorMessage = "Quantity must less than available quantity";
+        this.showErrorNotification = true;
+        return false;
+      }
       // reserveProduct. =
       let clientAddress = JSON.parse(localStorage.getItem("client_address"));
       if (!clientAddress.Latitude || !clientAddress.Longitude) {
@@ -132,7 +138,7 @@ export class DealDetailComponent implements OnInit {
           }
         });
     } else {
-      this.errorMessage = "quantiy can not be less than 0 or greater than";
+      this.errorMessage = "quantity can not be less than 0 or greater than ";
       this.showErrorNotification = true;
     }
   }
@@ -158,13 +164,16 @@ export class DealDetailComponent implements OnInit {
       );
     } else {
       alert(
-        "quantiy can not be less than 0 or greater than " +
+        "quantity can not be less than 0 or greater than " +
         this.product.quantityOnHand
       );
     }
   }
   onSubmit() { }
 
+  showNotification($event) {
+    this.showErrorNotification = $event;
+  }
   changeToLocal12Hours(time) {
     let d = -new Date().getTimezoneOffset();
     let x = time.split(":");

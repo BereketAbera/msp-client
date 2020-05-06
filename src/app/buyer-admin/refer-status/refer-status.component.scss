@@ -5,31 +5,7 @@
   width: 100%;
   overflow-x: auto;
 }
-.mat-column-type {
-  flex: 0 0 8rem;
-  padding-right: 1rem;
-}
-.mat-column-isUsed {
-  flex: 0 0 7rem;
-  padding-right: 1rem;
-}
 
-.table {
-  margin: 1rem;
-  width: 53rem;
-}
-.table__container {
-  // min-width: 70rem;
-  padding: 1rem 0.5rem;
-}
-.course {
-  text-align: center;
-  max-width: 390px;
-  margin: 0 auto;
-}
-.frmDiv {
-  padding: 15px;
-}
 .course-thumbnail {
   width: 150px;
   margin: 20px auto 0 auto;
@@ -65,19 +41,27 @@
 }
 
 @media only screen and (max-width: 600px) {
-  .tab-hide {
+ 
+  .mat-cell:first-of-type{
+    padding: 0;
+  }
+  .mobile-label {
+    width: 85px;
+    display: inline-block!important;
+    font-weight: bold;
+  }
+
+  .mat-header-row {
     display: none;
   }
-  .mat-column-isUsed {
-   padding-right: 10rem;
-  }
-  // .mat-column-type {
-  //   max-width: 5rem;
-  //   padding: 1px;
-  // }
 
-  // .table {
-  //   width: 37rem;
-  //   // overflow: scroll;
-  // }
+  .mat-row { 
+    flex-direction: column;
+    align-items: start;
+    padding: 8px 24px;
+  }
+}
+
+.mobile-label {
+display: none;
 }

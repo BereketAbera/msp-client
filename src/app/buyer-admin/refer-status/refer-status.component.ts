@@ -35,7 +35,7 @@ export class ReferStatusComponent implements OnInit, AfterViewInit{
       
       this.dataSource = new RefersDataSource(this.userService);
       this.dataSource.loadRefers('', 'asc', 0, 5);
-      
+      // console.log(this.dataSource)
   }
   getType(type:number){
     if(type==2)

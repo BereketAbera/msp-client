@@ -135,7 +135,7 @@ export class UtcDealDetailComponent implements OnInit {
 
       })
     } else {
-      alert("quantiy can not be less than 0 or greater than " + this.product.quantityOnHand);
+      alert("quantity can not be less than 0 or greater than " + this.product.quantityOnHand);
     }
   }
   getTodaysQuantityOnHand(){
@@ -182,7 +182,7 @@ export class UtcDealDetailComponent implements OnInit {
       };
       this.router.navigate(['/tlgu-byr/payment', this.product.id], navigationExtras);
     } else {
-      alert("quantiy can not be less than 0 or greater than " + this.product.quantityOnHand);
+      alert("quantity can not be less than 0 or greater than " + this.product.quantityOnHand);
     }
   }
   onSubmit() {
