@@ -60,7 +60,7 @@
         required
       />
     </mat-form-field>
-    <mat-form-field class="add-shop__categories add-shop__input">
+    <mat-form-field class="seller__categories seller__input">
       <mat-select
         placeholder="Select Restaurant Type"
         formControlName="subCategoryId"
@@ -109,6 +109,47 @@
         getErrorMessage()
       }}</mat-error>
     </mat-form-field>
+    <div class="seller__address">
+      <mat-form-field class="seller__input zipstatecity">
+        <input
+          matInput
+          maxlength="45"
+          placeholder="City"
+          formControlName="city"
+          required
+        />
+      </mat-form-field>
+      <mat-form-field class="seller__input zipstatecity">
+        <mat-select placeholder="Select State" formControlName="state" required>
+          <mat-option *ngFor="let state of states" [value]="state.name">
+            {{ state.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="seller__input zipstatecity">
+        <input
+          matInput
+          type="text"
+          placeholder="Zip / Postal Code"
+          matInput
+          [matAutocomplete]="auto"
+          formControlName="zipcode"
+          (keyup)="getlocations($event.target.value)"
+        />
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option
+            *ngFor="let result of zipCodeHints"
+            [value]="result.ZIPCode"
+          >
+            <span>{{ result.ZIPCode }}</span>
+            <small>
+              | {{ result.CountyName }} {{ result.CityName }}
+              {{ result.StateAbbr }}</small
+            >
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
     <mat-form-field hintLabel="min 2 characters and max 12 characters">
       <input
         matInput

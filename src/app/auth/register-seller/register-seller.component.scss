@@ -74,3 +74,27 @@ ul {
 .form {
   width: 95%;
 }
+
+.seller {
+  &__address {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__input {
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .seller {
+    &__address {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    &__input {
+      width: 30%;
+    }
+  }
+}

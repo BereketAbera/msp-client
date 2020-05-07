@@ -8,6 +8,7 @@ import { RegisterBuyerRefComponent } from "./register-buyer-ref/register-buyer-r
 import { RegisterSellerRefComponent } from "./register-seller-ref/register-seller-ref.component";
 import { AuthComponent } from "./auth.component";
 import { SubCategoryResolverService } from "../service/sub-category-resolver.service";
+import { StateResolverService } from "../service/state-resolver.service";
 
 const authRoutes: Routes = [
   {
@@ -15,22 +16,32 @@ const authRoutes: Routes = [
     component: AuthComponent,
     children: [
       {
-        path: "login/:type", component: LoginComponent,
+        path: "login/:type",
+        component: LoginComponent,
         resolve: {
           categories: SubCategoryResolverService,
-        }
+          states: StateResolverService,
+        },
       },
       {
         path: "login",
         component: LoginComponent,
         resolve: {
           categories: SubCategoryResolverService,
+          states: StateResolverService,
         },
       },
       { path: "rstpwrd", component: ResetPasswordComponent },
       { path: "nwpwd", component: NewPasswordComponent },
       { path: "invtkn", component: InvalidTokenComponent },
-      { path: "regslrrfr", component: RegisterSellerRefComponent },
+      {
+        path: "regslrrfr",
+        component: RegisterSellerRefComponent,
+        resolve: {
+          categories: SubCategoryResolverService,
+          states: StateResolverService,
+        },
+      },
       { path: "regbyrrfr", component: RegisterBuyerRefComponent },
     ],
   },
@@ -40,4 +51,4 @@ const authRoutes: Routes = [
   imports: [RouterModule.forChild(authRoutes)],
   exports: [RouterModule],
 })
-export class AuthRoutingModule { }
+export class AuthRoutingModule {}

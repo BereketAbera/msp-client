@@ -1,3 +1,4 @@
+import { ZipcodeService } from "./../../service/zipcode.service";
 import { ActivatedRoute } from "@angular/router";
 import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 import { MatDialog } from "@angular/material";
@@ -7,6 +8,8 @@ import { UserService } from "../../service/user.service";
 
 import { RegistrationCompleteComponent } from "../registration-complete/registration-complete.component";
 import { Category } from "src/app/model/category";
+import { ZipCode } from "src/app/model/zipCode";
+import { State } from "src/app/model/state";
 
 @Component({
   selector: "app-register-seller",
@@ -19,6 +22,8 @@ export class RegisterSellerComponent implements OnInit {
   errors;
   showError: boolean = false;
   categories: any;
+  zipCodeHints: ZipCode[];
+  states: State[];
 
   registrationForm = this.fb.group({
     firstName: ["", Validators.required],
@@ -28,6 +33,9 @@ export class RegisterSellerComponent implements OnInit {
     address: ["", Validators.required],
     websiteURL: ["", Validators.required],
     email: ["", [Validators.required, Validators.email]],
+    zipcode: ["", Validators.required],
+    city: ["", Validators.required],
+    state: ["", Validators.required],
     password: ["", Validators.required],
     confirmPassword: ["", Validators.required],
     agreed: [false, Validators.required],
@@ -40,15 +48,20 @@ export class RegisterSellerComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private userService: UserService,
-    private fb: FormBuilder
-  ) { }
+    private fb: FormBuilder,
+    private zipcodeService: ZipcodeService
+  ) {}
   ngOnInit() {
-    this.route.data.subscribe((data: { categories: Category[] }) => {
-      this.categories = data.categories;
-    });
+    this.route.data.subscribe(
+      (data: { categories: Category[]; states: State[] }) => {
+        this.categories = data.categories;
+        this.states = data.states;
+        // console.log(data);
+      }
+    );
   }
-  openTerms() { }
-  openPrivacy() { }
+  openTerms() {}
+  openPrivacy() {}
   close() {
     this.showError = false;
   }
@@ -63,21 +76,23 @@ export class RegisterSellerComponent implements OnInit {
     }
     this.showError = false;
     this.errors = [];
-    if (
-
-      this.registrationForm.valid
-    ) {
+    if (this.registrationForm.valid) {
       if (this.registrationForm.get("agreed").value) {
         return this.userService
           .registerUser(this.registrationForm.value)
           .subscribe((res) => {
             if (res["success"]) {
-              const dialogRef = this.dialog.open(RegistrationCompleteComponent, {
-                width: "350px",
-              });
+              const dialogRef = this.dialog.open(
+                RegistrationCompleteComponent,
+                {
+                  width: "350px",
+                }
+              );
               dialogRef.afterClosed().subscribe((result) => {
                 this.router
-                  .navigateByUrl("/RefrshComponent", { skipLocationChange: true })
+                  .navigateByUrl("/RefrshComponent", {
+                    skipLocationChange: true,
+                  })
                   .then(() => this.router.navigate(["/login/seller"]));
               });
 
@@ -89,7 +104,9 @@ export class RegisterSellerComponent implements OnInit {
           });
       } else {
         this.showError = true;
-        this.errors = ["Please agree to the Seller's terms of use and privacy."];
+        this.errors = [
+          "Please agree to the Seller's terms of use and privacy.",
+        ];
       }
     } else {
       this.showError = true;
@@ -100,7 +117,18 @@ export class RegisterSellerComponent implements OnInit {
     return this.registrationForm.get("email").hasError("required")
       ? "You must enter a value"
       : this.registrationForm.get("email").hasError("email")
-        ? "Not a valid email"
-        : "";
+      ? "Not a valid email"
+      : "";
+  }
+
+  getlocations(q) {
+    if (q.length > 2) {
+      this.zipcodeService.searchAddress(q).subscribe(
+        (response) => {
+          this.zipCodeHints = response;
+        },
+        (err) => console.log(err)
+      );
+    }
   }
 }
