@@ -41,6 +41,7 @@ export class NewShopComponent implements OnInit {
     zipCode: ["", Validators.required],
     telephone: ["", Validators.required],
     contact: ["", Validators.required],
+    subCategoryId: ["", Validators.required],
   });
 
   constructor(
@@ -58,9 +59,12 @@ export class NewShopComponent implements OnInit {
     this.showError = false;
   }
   ngOnInit() {
-    this.route.data.subscribe((data: { states: State[] }) => {
-      this.states = data.states;
-    });
+    this.route.data.subscribe(
+      (data: { states: State[]; categories: Category[] }) => {
+        this.states = data.states;
+        this.categories = data.categories;
+      }
+    );
   }
   searchZipCods(searchInp: string) {
     this.searchText$.next(searchInp);

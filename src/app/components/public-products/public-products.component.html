@@ -2,12 +2,10 @@
   <div action="#" mathod="GET" class="search__search-input-container">
     <input
       type="text"
-      [value]="
-        'Location: ' + (address.CityName ? address.CityName : 'Your location')
-      "
+      [value]="address.CityName ? address.CityName : 'Your location'"
       placeholder="Enter zipcode..."
       class="search__search-input"
-      [style.width]="categoryId ? '60%' : '85%'"
+      [style.width]="categoryId ? '45%' : '85%'"
       (keyup)="getlocations($event.target.value)"
       (focus)="onFocus()"
       (blur)="onBlur()"
@@ -16,7 +14,7 @@
     />
     <div
       class="search__search-input-results"
-      [style.width]="categoryId ? 'calc(60% + 8px)' : 'calc(85% + 8px)'"
+      [style.width]="categoryId ? 'calc(45% + 8px)' : 'calc(85% + 8px)'"
       [class.search__search-input-results-active]="locationInputActive"
     >
       <div class="search__search-input-result" (click)="getClientLocation()">

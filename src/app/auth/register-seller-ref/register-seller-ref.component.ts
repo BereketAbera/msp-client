@@ -8,6 +8,10 @@ import { RegistrationCompleteComponent } from "../registration-complete/registra
 
 import { ActivatedRoute } from "@angular/router";
 import "rxjs/add/operator/filter";
+import { ZipCode } from "src/app/model/zipCode";
+import { State } from "src/app/model/state";
+import { ZipcodeService } from "src/app/service/zipcode.service";
+import { Category } from "src/app/model/category";
 
 @Component({
   selector: "app-register-seller-ref",
@@ -20,6 +24,9 @@ export class RegisterSellerRefComponent implements OnInit {
   errors;
   showError: boolean = false;
   referedEmail = "";
+  categories: any;
+  zipCodeHints: ZipCode[];
+  states: State[];
 
   registrationForm = this.fb.group({
     firstName: ["", Validators.required],
@@ -29,10 +36,14 @@ export class RegisterSellerRefComponent implements OnInit {
     address: ["", Validators.required],
     websiteURL: ["", Validators.required],
     email: ["", [Validators.required, Validators.email]],
+    zipcode: ["", Validators.required],
+    city: ["", Validators.required],
+    state: ["", Validators.required],
     password: ["", Validators.required],
     confirmPassword: ["", Validators.required],
     agreed: [false, Validators.required],
     role: ["SELLER", Validators.required],
+    subCategoryId: ["", Validators.required],
   });
 
   constructor(
@@ -40,10 +51,18 @@ export class RegisterSellerRefComponent implements OnInit {
     public dialog: MatDialog,
     private router: Router,
     private userService: UserService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private zipcodeService: ZipcodeService
   ) {}
 
   ngOnInit() {
+    this.route.data.subscribe(
+      (data: { categories: Category[]; states: State[] }) => {
+        this.categories = data.categories;
+        this.states = data.states;
+        // console.log(data);
+      }
+    );
     this.route.queryParams
       .filter((params) => params.tk)
       .subscribe((params) => {
@@ -74,7 +93,7 @@ export class RegisterSellerRefComponent implements OnInit {
     }
     this.showError = false;
     this.errors = [];
-    if( this.registrationForm.valid){
+    if (this.registrationForm.valid) {
       if (this.registrationForm.get("agreed").value) {
         let usrInfo = this.registrationForm.value;
         usrInfo.tk = this.tk;
@@ -88,7 +107,7 @@ export class RegisterSellerRefComponent implements OnInit {
                 .navigateByUrl("/RefrshComponent", { skipLocationChange: true })
                 .then(() => this.router.navigate(["/login/seller"]));
             });
-  
+
             //this.registeredSlr.emit("seller");
           } else {
             this.showError = true;
@@ -99,10 +118,20 @@ export class RegisterSellerRefComponent implements OnInit {
         this.showError = true;
         this.errors = ["Please agree to the buyer's terms of use and privacy."];
       }
-    }else{
+    } else {
       this.showError = true;
-        this.errors = ["Invalid Input! Check again"];
+      this.errors = ["Invalid Input! Check again"];
     }
-    
+  }
+
+  getlocations(q) {
+    if (q.length > 2) {
+      this.zipcodeService.searchAddress(q).subscribe(
+        (response) => {
+          this.zipCodeHints = response;
+        },
+        (err) => console.log(err)
+      );
+    }
   }
 }

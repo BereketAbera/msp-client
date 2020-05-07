@@ -287,7 +287,7 @@ img {
   &__search-input,
   &__search-input-category {
     padding: 0.5rem;
-    font-size: 1.8rem;
+    font-size: 2rem;
     border: none;
     border-bottom: 2px solid transparent;
     color: #888;
@@ -326,11 +326,11 @@ img {
     flex: 5;
     display: flex;
     position: relative;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     color: #888;
     text-transform: uppercase;
     border-bottom: 2px solid #888;
-    padding-right: 2;
+    // padding-right: 2;
     flex-wrap: nowrap;
     margin-left: 1rem;
   }

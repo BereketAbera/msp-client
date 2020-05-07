@@ -31,11 +31,11 @@ const profileAPI = environment.APIEndpoint + "profile";
 })
 export class UserService {
   public countSubject = new BehaviorSubject<number>(0);
-  constructor(private http: HttpClient) { }
-  registerUser(user: User) {
+  constructor(private http: HttpClient) {}
+  registerUser(user: any) {
     return this.http.post(userAPI, user).pipe(catchError(this.handleError));
   }
-  registerSlrUser(user: User) {
+  registerSlrUser(user: any) {
     return this.http
       .post(userAPI + "/crtslrfr", user)
       .pipe(catchError(this.handleError));
@@ -166,7 +166,7 @@ export class UserService {
       })
       .pipe(
         map((res) => {
-          // console.log(res,'res')
+          // console.log(res, "res");
           this.countSubject.next(res["count"]);
           return res["rows"];
         }),
@@ -202,7 +202,11 @@ export class UserService {
       })
       .pipe(
         map((res) => {
+<<<<<<< HEAD
           // console.log(res)
+=======
+          console.log(res);
+>>>>>>> 13053e4744696d33fee9e58126c8ff184bbcf9cd
           this.countSubject.next(res["count"]);
           return res["rows"];
         }),

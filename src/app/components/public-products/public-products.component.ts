@@ -256,8 +256,7 @@ export class PublicProductsComponent implements OnInit {
 
   onBlur() {
     this.searchInput.setValue(
-      "Location: " +
-        (this.address.CityName ? this.address.CityName : "Your Location")
+      this.address.CityName ? this.address.CityName : "Your Location"
     );
     this.locationInputActive = false;
   }

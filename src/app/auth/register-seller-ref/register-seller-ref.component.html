@@ -1,8 +1,6 @@
-
-
-<div *ngIf="showError" id="errorCntr">
-  <button id="errClsBtn" (click)="close()">
-    X
+<div *ngIf="showError" class="errorCntr">
+  <button class="errClsBtn" (click)="close()">
+    &#215;
   </button>
   <ul>
     <li *ngFor="let error of errors">
@@ -65,6 +63,20 @@
               required
             />
           </mat-form-field>
+          <mat-form-field class="seller__categories seller__input">
+            <mat-select
+              placeholder="Select Restaurant Type"
+              formControlName="subCategoryId"
+              required
+            >
+              <mat-option
+                *ngFor="let category of categories"
+                [value]="category.id"
+              >
+                {{ category.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
           <mat-form-field class="example-full-width" hintLabel="max 15 numbers">
             <input
               type="tel"
@@ -103,6 +115,51 @@
               getErrorMessage()
             }}</mat-error>
           </mat-form-field>
+          <div class="seller__address">
+            <mat-form-field class="seller__input zipstatecity">
+              <input
+                matInput
+                maxlength="45"
+                placeholder="City"
+                formControlName="city"
+                required
+              />
+            </mat-form-field>
+            <mat-form-field class="seller__input zipstatecity">
+              <mat-select
+                placeholder="Select State"
+                formControlName="state"
+                required
+              >
+                <mat-option *ngFor="let state of states" [value]="state.name">
+                  {{ state.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="seller__input zipstatecity">
+              <input
+                matInput
+                type="text"
+                placeholder="Zip / Postal Code"
+                matInput
+                [matAutocomplete]="auto"
+                formControlName="zipcode"
+                (keyup)="getlocations($event.target.value)"
+              />
+              <mat-autocomplete #auto="matAutocomplete">
+                <mat-option
+                  *ngFor="let result of zipCodeHints"
+                  [value]="result.ZIPCode"
+                >
+                  <span>{{ result.ZIPCode }}</span>
+                  <small>
+                    | {{ result.CountyName }} {{ result.CityName }}
+                    {{ result.StateAbbr }}</small
+                  >
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+          </div>
           <mat-form-field hintLabel="min 2 characters and max 12 characters">
             <input
               matInput
@@ -120,7 +177,23 @@
               hide ? "visibility_off" : "visibility"
             }}</mat-icon>
           </mat-form-field>
-
+          <mat-form-field hintLabel="min 2 characters and max 12 characters">
+            <input
+              matInput
+              placeholder="Confirm your password"
+              minlength="2"
+              maxlength="12"
+              formControlName="confirmPassword"
+              [type]="hide ? 'password' : 'text'"
+              required
+            />
+            <mat-error *ngIf="registrationForm.controls.password.invalid"
+              >No more than 12 characters.</mat-error
+            >
+            <mat-icon matSuffix (click)="hide = !hide">{{
+              hide ? "visibility_off" : "visibility"
+            }}</mat-icon>
+          </mat-form-field>
           <br />
           <br />
           <div>
@@ -141,5 +214,4 @@
       </form>
     </div>
   </mat-card>
-
 </div>
