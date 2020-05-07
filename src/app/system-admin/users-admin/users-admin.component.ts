@@ -59,12 +59,12 @@ export class UsersAdminComponent implements OnInit, AfterViewInit {
     private userService: UserService,
     private router: Router,
     private formBuilder: FormBuilder
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.dataSource = new MerchantsDataSource(this.userService);
-    this.dataSource.loadMerchants(1, "", "asc", 0, 10);
-
+    //this.dataSource.loadMerchants(1, "", "asc", 0, 10);
+    this.dataSource.filterSeller("", "","","", 0, 10);
     this.route.data.subscribe((data: { states: State[] }) => {
       this.states = data.states;
     });
@@ -86,10 +86,12 @@ export class UsersAdminComponent implements OnInit, AfterViewInit {
   }
 
   loadMerchantsPage() {
-    this.dataSource.loadMerchants(
-      1,
+    var val = this.filterForm.value;
+    this.dataSource.filterSeller(
+      val.companyName,
+      val.city,
+      val.state,
       "",
-      this.sort.direction,
       this.paginator.pageIndex,
       this.paginator.pageSize
     );
@@ -145,8 +147,8 @@ export class UsersAdminComponent implements OnInit, AfterViewInit {
                 }
               );
               snackBarRef.afterDismissed().subscribe(() => {
-                this.dataSource.loadMerchants(1, "", "asc",this.paginator.pageIndex,
-                this.paginator.pageSize);
+                // this.dataSource.filterSeller(this, "", "asc",this.paginator.pageIndex,
+                // this.paginator.pageSize);
               });
               //this.router.navigate(["../"], { relativeTo: this.route });
             } else {
@@ -166,11 +168,14 @@ export class UsersAdminComponent implements OnInit, AfterViewInit {
     this.showError = false;
   }
 
-  filterSeller(){
+  filterSeller() {
     var val = this.filterForm.value;
     console.log(val)
-    this.dataSource.filterSeller(val.companyName,val.status, this.paginator.pageIndex,
+    this.dataSource.filterSeller(val.companyName,
+      val.city,
+      val.state,
+      val.status, this.paginator.pageIndex,
       this.paginator.pageSize);
   }
-  onSubmit() {}
+  onSubmit() { }
 }

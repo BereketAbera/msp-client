@@ -10,12 +10,14 @@ import { UsersAdminComponent } from "./users-admin/users-admin.component";
 
 import { AdminRoutingModule } from "./admin.routing.module";
 import { AdminNavigationComponent } from "./admin-navigation/admin-navigation.component";
+import { SellerDetailComponent } from './seller-detail/seller-detail.component';
 
 @NgModule({
   declarations: [
     SystemAdminComponent,
     UsersAdminComponent,
-    AdminNavigationComponent
+    AdminNavigationComponent,
+    SellerDetailComponent,
   ],
   imports: [CommonModule, ReactiveFormsModule, SharedModule, AdminRoutingModule]
 })

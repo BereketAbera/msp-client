@@ -25,6 +25,18 @@
           <input matInput maxlength="45" placeholder="Company Name" formControlName="companyName" />
         </mat-form-field>
 
+        <mat-form-field class="filter-body">
+          <input matInput maxlength="45" placeholder="City" formControlName="city" />
+        </mat-form-field>
+
+        <mat-form-field class="filter-body filter-state">
+          <mat-select placeholder="Select State" formControlName="state">
+            <mat-option *ngFor="let state of states" [value]="state.name">
+              {{ state.abbreviation }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
         <mat-radio-group class="filter-status" formControlName="status">
           <label class="product-form__label"> <b>Status </b> </label>
           <mat-radio-button class="items" value="1">Active
@@ -36,19 +48,6 @@
         <div class="filter-button">
           <button mat-raised-button color="accent">Search</button>
         </div>
-
-
-        <!-- <mat-form-field class="filter-body">
-          <input matInput maxlength="45" placeholder="City" formControlName="city" />
-        </mat-form-field>
-
-        <mat-form-field class="filter-body filter-state">
-          <mat-select placeholder="Select State" formControlName="state">
-            <mat-option *ngFor="let state of states" [value]="state.id">
-              {{ state.abbreviation }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field> -->
 
       </form>
     </div>
@@ -66,8 +65,8 @@
     </ng-container>
 
     <ng-container matColumnDef="address">
-      <mat-header-cell *matHeaderCellDef>Address</mat-header-cell>
-      <mat-cell *matCellDef="let user">{{ user.address }}</mat-cell>
+      <mat-header-cell *matHeaderCellDef>City,State</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{ user.city +", "+ user.state }}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="firstName">
@@ -98,6 +97,9 @@
           <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
+          <button [routerLink]="['details', user.id]" mat-menu-item>
+            <span>Detail</span>
+          </button>
           <button *ngIf="showActivateAccount(user.status)" (click)="chageAccountStatus(user, 1)" mat-menu-item>
             <span>Activate Account</span>
           </button>

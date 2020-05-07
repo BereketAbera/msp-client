@@ -7,6 +7,8 @@ import { UsersAdminComponent } from "./users-admin/users-admin.component";
 
 import { AdminGuard } from "./admin.guard";
 import { StateResolverService } from '../service/state-resolver.service';
+import { SellerDetailComponent } from './seller-detail/seller-detail.component';
+import { SellerInfoResolverService } from '../_resolvers/seller-info-resolver.service';
 
 // path: "tlgu-admin",
 // component: SystemAdminComponent,
@@ -22,6 +24,13 @@ const sellerRoutes: Routes = [
         component: UsersAdminComponent,
         resolve:{
           states: StateResolverService,
+        }
+      },
+      {
+        path: "details/:id",
+        component: SellerDetailComponent,
+        resolve:{
+          seller: SellerInfoResolverService
         }
       }
     ]

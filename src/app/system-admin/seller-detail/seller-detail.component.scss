@@ -1,0 +1,47 @@
+li {list-style-type: none;}
+
+.orders{
+    display: flex;
+    justify-content: center;
+    border:1px #ddd solid;
+    width:80%;
+    margin:1rem 5rem;
+    flex-direction: column;
+    &__header{
+        font-size: 1.9rem;
+        justify-content: center;
+        display: flex;
+    }
+
+    &__card{
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__content{
+        display: flex;
+        justify-content: space-between;
+
+        .name{
+            display: flex;
+            align-self: center;
+            font-size:1.3rem;
+            padding:0.2rem 1rem;
+
+            b{
+                margin-right: 0.7rem;
+            }
+        }
+        .list{
+            font-size: 1.3rem;
+            // font-style: italic;
+            padding:0 1rem;
+        }
+        &__header{
+            font-size: 1.5rem;
+            color: #777;
+            font-weight: 700;
+
+        }
+    }
+}

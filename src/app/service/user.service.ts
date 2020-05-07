@@ -160,7 +160,7 @@ export class UserService {
           .set("companyName", companyName)
           .set("city", city)
           .set("state", state)
-          .set("status",status)
+          .set("status", status)
           .set("pageNumber", pageNumber.toString())
           .set("pageSize", pageSize.toString()),
       })
@@ -174,6 +174,16 @@ export class UserService {
       );
   }
 
+  getOneSellerInfo(id) {
+    return this.http.get(accountAPI + "/seller/detail", {
+      params: new HttpParams().set("id", id)
+    }).pipe(
+      map((seller) => {
+        return <any>seller;
+      }),
+      catchError(this.handleError)
+    );
+  }
   listMerchants(
     usrId: number,
     filter = "",
