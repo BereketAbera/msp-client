@@ -202,11 +202,7 @@ export class UserService {
       })
       .pipe(
         map((res) => {
-<<<<<<< HEAD
-          // console.log(res)
-=======
-          console.log(res);
->>>>>>> 13053e4744696d33fee9e58126c8ff184bbcf9cd
+         
           this.countSubject.next(res["count"]);
           return res["rows"];
         }),
