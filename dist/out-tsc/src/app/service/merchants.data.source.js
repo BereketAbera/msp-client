@@ -18,7 +18,7 @@ var MerchantsDataSource = /** @class */ (function () {
         });
     };
     MerchantsDataSource.prototype.connect = function (collectionViewer) {
-        console.log("Connecting data source");
+        // console.log("Connecting data source");
         return this.productsSubject.asObservable();
     };
     MerchantsDataSource.prototype.disconnect = function (collectionViewer) {

@@ -14,7 +14,7 @@
   class="add-shop__container"
   (ngSubmit)="onSubmit()"
 >
-  <mat-card>
+  <mat-card class="card">
     <mat-card-title>Create store location</mat-card-title>
     <p>Must create at least one store location to sell products.</p>
     <mat-card-content>
@@ -46,7 +46,7 @@
         >
           <input
             type="tel"
-            maxlength="15"
+            maxlength="17"
             matInput
             placeholder="Telephone"
             formControlName="telephone"
@@ -73,7 +73,7 @@
           <mat-form-field class="add-shop__input zipstatecity">
             <input
               matInput
-              maxlength="45"
+              maxlength="30"
               placeholder="City"
               formControlName="city"
               required

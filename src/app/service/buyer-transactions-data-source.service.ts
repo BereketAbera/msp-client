@@ -40,7 +40,7 @@ export class BuyerTransactionsDataSource implements DataSource<BuyerTransaction>
     }
 
     connect(collectionViewer: CollectionViewer): Observable<BuyerTransaction[]> {
-        console.log("Connecting data source");
+        // console.log("Connecting data source");
         return this.productsSubject.asObservable();
     }
 

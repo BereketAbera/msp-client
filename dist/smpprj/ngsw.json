@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1588767193002,
+  "timestamp": 1588773884073,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -8,19 +8,19 @@
       "installMode": "prefetch",
       "updateMode": "prefetch",
       "urls": [
-        "/1.e40d56f3b75b68685c8a.js",
-        "/10.8995d4e86a9cc71da5b1.js",
-        "/11.eebc06418bd96a66e0b8.js",
+        "/1.6a06c3d3356a514077c3.js",
+        "/10.6be2bb9ce403051f2749.js",
+        "/11.5d00e0420b2493793164.js",
         "/3.62eaa2e97d4ec9f14856.js",
         "/4.02d3f928724bfd3d1c56.js",
-        "/8.5c7cfed7d1f6654dcdb7.js",
-        "/9.4389a44594e17658e748.js",
-        "/common.94a1b5540d9817584674.js",
+        "/8.b8e81d4329c5d955cf03.js",
+        "/9.609f7d5bef65c9a715d9.js",
+        "/common.0ebac9a8c39b11a039b9.js",
         "/favicon.ico",
         "/index.html",
-        "/main.dcd3a68fa142c79c4cd1.js",
+        "/main.e76560caa286059b6bd0.js",
         "/polyfills.f82a709fe3b5111903d3.js",
-        "/runtime.e41da53f4512b21b148c.js"
+        "/runtime.4c5af870149f5d6fb1ea.js"
       ],
       "patterns": []
     },
@@ -7967,13 +7967,13 @@
   ],
   "dataGroups": [],
   "hashTable": {
-    "/1.e40d56f3b75b68685c8a.js": "e273b179c572b73c2fcbe851402cecfebd796832",
-    "/10.8995d4e86a9cc71da5b1.js": "b595f7a60c72545c382a1020298776f88c4f535f",
-    "/11.eebc06418bd96a66e0b8.js": "fbfffaf4d961fec358c3e77cfbec83baec05c20d",
+    "/1.6a06c3d3356a514077c3.js": "3b990f4e4a59572bb7dab8497338fa37311d649b",
+    "/10.6be2bb9ce403051f2749.js": "2267b715db54c0234885644552f32d6f09577d3d",
+    "/11.5d00e0420b2493793164.js": "0347ede0da46e0efe8df926055314443a4fb494c",
     "/3.62eaa2e97d4ec9f14856.js": "75ee09c1236390e546ccc18bb1ca1b8e07d05627",
     "/4.02d3f928724bfd3d1c56.js": "0ab5f931d7a354b2d07d8e0f3f9126deb0aaa049",
-    "/8.5c7cfed7d1f6654dcdb7.js": "7fdf43bbc327c4ab9601feab2cdf938859868391",
-    "/9.4389a44594e17658e748.js": "f32271f4ce0d4e4b36f8532aac7e9368e31dff44",
+    "/8.b8e81d4329c5d955cf03.js": "c20bf64800868f851435ddcdf314672b1f1a0b33",
+    "/9.609f7d5bef65c9a715d9.js": "11583a23d6ad111a8362b6067d2676fc047e8a91",
     "/assets/13.jpg": "920d0e4b545afae1be7dd38f6da8b154e345228d",
     "/assets/14.jpg": "7f63323cb7a9a2a1cd751679f33c56af75ae957a",
     "/assets/credit-cards.jpg": "3c5fc737e72b835554f790b6137fd392b729dccd",
@@ -15880,7 +15880,7 @@
     "/assets/piza1.jpg": "1bd872fde1ed269d44dc1b992d2686163902d46c",
     "/assets/s8.jpg": "d2c1117b22b896e0ead515eed3daa55847f1c5a0",
     "/assets/vmd.jpeg": "ce2ebfb98ce58611bc4338bd396ebc2a03039e8f",
-    "/common.94a1b5540d9817584674.js": "03b474d2669579e935cafb70f9a982789abf7dbe",
+    "/common.0ebac9a8c39b11a039b9.js": "b3cae31f3986d2af0e2ab48b1274fe1bd715804f",
     "/fa-brands-400.4a28c895ffe3bd184490.eot": "cb03ecfd49fa851e59ca164134613fd0483ab376",
     "/fa-brands-400.77ace0fee45b138f0234.ttf": "aaf8f5538024f7379e5352b087aa67dbb3731508",
     "/fa-brands-400.82927ee13ebdbbb7ae72.svg": "bf7ab27a639c80133fd38379cf069a40c7af1817",
@@ -15908,10 +15908,10 @@
     "/fa-solid-900.ff4da5ed81cdfe2b2e68.svg": "848cfc58f09052a4fac1209ca10c0c49ef1c8427",
     "/favicon.ico": "89c35c717758e37a92a3689825c5997cbcf57782",
     "/home_background2.5d15f5ff6232b667401f.svg": "c8cdaa2d89d8ed5a6c758aa369ee3f1f5e66672d",
-    "/index.html": "124f0a7bea58eeb180186260e94bf9b0f6803eb9",
-    "/main.dcd3a68fa142c79c4cd1.js": "184119008505359918f6e42d781b823dfaaa874f",
+    "/index.html": "b92f04f09da0b464dfe624dc8bcf78a8d0de6cd3",
+    "/main.e76560caa286059b6bd0.js": "320ac1f7a6e1c52198bfd4bc3e93ea70c83edd5e",
     "/polyfills.f82a709fe3b5111903d3.js": "2646c0ec00825860c7eeb691e6f1804cab9cf20c",
-    "/runtime.e41da53f4512b21b148c.js": "1a3c9e90f23fcd04bdabc921f4dbacb66d4c1190"
+    "/runtime.4c5af870149f5d6fb1ea.js": "958b44b9eb1efcccea7d91a9fa66f146c38fcbf2"
   },
   "navigationUrls": [
     {

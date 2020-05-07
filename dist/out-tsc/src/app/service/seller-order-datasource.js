@@ -18,7 +18,7 @@ var SellerOrderDataSource = /** @class */ (function () {
         });
     };
     SellerOrderDataSource.prototype.connect = function (collectionViewer) {
-        console.log("Connecting data source");
+        // console.log("Connecting data source");
         return this.productsSubject.asObservable();
     };
     SellerOrderDataSource.prototype.disconnect = function (collectionViewer) {

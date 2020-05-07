@@ -40,7 +40,7 @@ export class RefersDataSource implements DataSource<Refer> {
     }
 
     connect(collectionViewer: CollectionViewer): Observable<Refer[]> {
-        console.log("Connecting data source");
+        //console.log("Connecting data source");
         return this.productsSubject.asObservable();
     }
 

@@ -173,7 +173,7 @@ accountCanScan(){
                      if(result['success']){
                      this.displayChk = "block";
                      this.displayScanner = "none";
-                     console.log("You can now give the item to the buyer.");
+                    //  console.log("You can now give the item to the buyer.");
                      }else{
                       this.showError = true;
                       this.errors = result['messages'];

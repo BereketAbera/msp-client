@@ -23,7 +23,7 @@ export class BuyerNavigationComponent implements OnInit {
     this.router.navigate(["/"]);
   }
   menuOpened() {
-    console.log("Menu is open");
+    //console.log("Menu is open");
   }
 
   drawerLinkClicked() {

@@ -18,7 +18,7 @@ var TransactionsDataSource = /** @class */ (function () {
         });
     };
     TransactionsDataSource.prototype.connect = function () {
-        console.log("Connecting data source");
+        // console.log("Connecting data source");
         return this.productsSubject.asObservable();
     };
     TransactionsDataSource.prototype.disconnect = function (collectionViewer) {

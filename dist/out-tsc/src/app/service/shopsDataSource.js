@@ -18,7 +18,7 @@ var ShopsDataSource = /** @class */ (function () {
         });
     };
     ShopsDataSource.prototype.connect = function (collectionViewer) {
-        console.log("Connecting data source");
+        // console.log("Connecting data source");
         return this.shopsSubject.asObservable();
     };
     ShopsDataSource.prototype.disconnect = function (collectionViewer) {

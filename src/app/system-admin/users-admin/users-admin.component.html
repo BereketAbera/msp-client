@@ -62,30 +62,25 @@
     </ng-container>
     <ng-container matColumnDef="companyName">
       <mat-header-cell *matHeaderCellDef>Company Name</mat-header-cell>
-
       <mat-cell *matCellDef="let user">{{ user.companyName }}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="address">
       <mat-header-cell *matHeaderCellDef>Address</mat-header-cell>
-
       <mat-cell *matCellDef="let user">{{ user.address }}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="firstName">
       <mat-header-cell *matHeaderCellDef>First Name</mat-header-cell>
-
       <mat-cell *matCellDef="let user">{{ user.firstName }}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="lastName">
       <mat-header-cell *matHeaderCellDef>Last Name</mat-header-cell>
-
       <mat-cell *matCellDef="let user">{{ user.lastName }}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="updatedAt">
       <mat-header-cell *matHeaderCellDef>Updated At</mat-header-cell>
-
       <mat-cell *matCellDef="let user">{{
         user.updatedAt | date: "yyyy-MM-dd"
       }}</mat-cell>
@@ -120,5 +115,5 @@
 
     <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
   </mat-table>
-  <mat-paginator [length]="dataSource.count" [pageSize]="20" [pageSizeOptions]="[20, 30,50]"></mat-paginator>
+  <mat-paginator [length]="dataSource.count" [pageSize]="10" [pageSizeOptions]="[10,20, 30,50]"></mat-paginator>
 </div>

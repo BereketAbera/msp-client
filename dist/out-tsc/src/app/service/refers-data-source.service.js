@@ -18,7 +18,7 @@ var RefersDataSource = /** @class */ (function () {
         });
     };
     RefersDataSource.prototype.connect = function (collectionViewer) {
-        console.log("Connecting data source");
+        // console.log("Connecting data source");
         return this.productsSubject.asObservable();
     };
     RefersDataSource.prototype.disconnect = function (collectionViewer) {

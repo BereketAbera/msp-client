@@ -63,12 +63,12 @@ export class UsersAdminComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.dataSource = new MerchantsDataSource(this.userService);
-    this.dataSource.loadMerchants(1, "", "asc", 0, 20);
+    this.dataSource.loadMerchants(1, "", "asc", 0, 10);
 
     this.route.data.subscribe((data: { states: State[] }) => {
       this.states = data.states;
     });
-    console.log(this.dataSource);
+    // console.log(this.dataSource);
     this.filterForm = this.formBuilder.group({
       companyName: [""],
       city: [""],
@@ -145,7 +145,8 @@ export class UsersAdminComponent implements OnInit, AfterViewInit {
                 }
               );
               snackBarRef.afterDismissed().subscribe(() => {
-                this.dataSource.loadMerchants(1, "", "asc", 0, 5);
+                this.dataSource.loadMerchants(1, "", "asc",this.paginator.pageIndex,
+                this.paginator.pageSize);
               });
               //this.router.navigate(["../"], { relativeTo: this.route });
             } else {

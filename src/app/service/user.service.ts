@@ -166,7 +166,7 @@ export class UserService {
       })
       .pipe(
         map((res) => {
-          console.log(res,'res')
+          // console.log(res,'res')
           this.countSubject.next(res["count"]);
           return res["rows"];
         }),
@@ -192,7 +192,7 @@ export class UserService {
       })
       .pipe(
         map((res) => {
-          console.log(res)
+          // console.log(res)
           this.countSubject.next(res["count"]);
           return res["rows"];
         }),

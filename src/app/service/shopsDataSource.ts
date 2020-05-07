@@ -42,7 +42,7 @@ export class ShopsDataSource implements DataSource<Shop> {
     }
 
     connect(collectionViewer: CollectionViewer): Observable<Shop[]> {
-        console.log("Connecting data source");
+        //console.log("Connecting data source");
         return this.shopsSubject.asObservable();
     }
 

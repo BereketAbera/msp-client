@@ -81,7 +81,7 @@ export class PaymentWithBalanceComponent implements OnInit {
       let transction: any = this.paymentForm.value;
       transction.ordrGuid = this.ordrGuid;
       //transction.quantity = this.quantity;
-      console.log(transction);
+      // console.log(transction);
       this.trnsService.createTransaction(transction).subscribe(res => {
         if (res["success"]) {
           this.cartService.resetCart();

@@ -58,10 +58,13 @@ ul {
   padding: 0;
   margin: 0;
 }
+p{
+  font-size: 1.4rem;
+}
 
 .add-shop {
   &__container {
-    width: 80%;
+    width: 90%;
     margin: 0 auto;
   }
 
@@ -94,7 +97,11 @@ ul {
 @media only screen and (min-width: 600px) {
   .add-shop {
     &__container {
-      width: 90%;
+      width: 60%;
+      // padding: 3rem;
+      .card{
+        padding:2rem 6rem;
+      }
     }
 
     &__address {

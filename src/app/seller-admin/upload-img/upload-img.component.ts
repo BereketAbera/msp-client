@@ -60,7 +60,7 @@ export class UploadImgComponent implements OnInit {
     return true;
   }
   onSubmit() {
-    console.log(this.fileSelected);
+    // console.log(this.fileSelected);
     if (this.uploadForm.valid && this.fileSelected) {
       // this.formData.append("name", this.uploadForm.get("name").value);
       let value = this.uploadForm.value;

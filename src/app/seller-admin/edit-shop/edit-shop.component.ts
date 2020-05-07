@@ -82,7 +82,7 @@ export class EditShopComponent implements OnInit {
       });
   }
   displayFn(zipCode: any) {
-    console.log(zipCode);
+    // console.log(zipCode);
   }
   gotoShopList() {
     this.location.back();

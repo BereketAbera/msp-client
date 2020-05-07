@@ -230,7 +230,7 @@ export class NewOffPeakProductComponent implements OnInit {
               this.parseWeekDay(this.product.activeDays);
 
 
-              console.log(this.product)
+              // console.log(this.product)
             },
             (err) => console.log(err)
           );
@@ -381,7 +381,7 @@ export class NewOffPeakProductComponent implements OnInit {
       } else {
         product.isOffPeak = false;
       }
-        console.log(product,'se')
+        // console.log(product,'se')
       if (this.product && !this.clone) {
         // console.log({ ...this.productForm.value }, 'edit')
         // product = { ...this.productForm.value };
@@ -487,7 +487,11 @@ export class NewOffPeakProductComponent implements OnInit {
     }
   }
   gotoSellAdmin() {
-    this.router.navigate(["../"], { relativeTo: this.route });
+    if(this.product){
+      this.router.navigate(["../../../"], { relativeTo: this.route });
+    }else{
+      this.router.navigate(["../"], { relativeTo: this.route });
+    }
   }
   filePreviewHandler(event) {
     var input = event.target;
@@ -872,7 +876,7 @@ export class NewOffPeakProductComponent implements OnInit {
     this.loadingLocalImage = false;
     if (event.width < 550 || event.height < 440) {
       let snackBarRef = this.snackBar.open(
-        "Image is not large enough, Select a larger image.",
+        "Image Width and Height must greater than 550x440.",
         "",
         {
           duration: 4000,

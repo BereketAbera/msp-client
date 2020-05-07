@@ -18,7 +18,7 @@ var DailySalesDataSource = /** @class */ (function () {
         });
     };
     DailySalesDataSource.prototype.connect = function (collectionViewer) {
-        console.log("Connecting data source");
+        // console.log("Connecting data source");
         return this.productsSubject.asObservable();
     };
     DailySalesDataSource.prototype.disconnect = function (collectionViewer) {

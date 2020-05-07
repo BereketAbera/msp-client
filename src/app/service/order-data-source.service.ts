@@ -41,7 +41,7 @@ export class OrderDataSource implements DataSource<Transaction> {
     }
 
     connect(collectionViewer: CollectionViewer): Observable<Transaction[]> {
-        console.log("Connecting data source");
+        // console.log("Connecting data source");
         return this.productsSubject.asObservable();
     }
 
