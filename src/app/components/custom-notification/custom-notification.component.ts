@@ -36,7 +36,7 @@ export class CustomNotificationComponent implements OnInit {
           this.showNotifications.emit(false)
           // this.router.navigate([this.callback]);
         }
-      }, 2000);
+      }, 3000);
     }
   }
 }
