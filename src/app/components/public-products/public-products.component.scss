@@ -1,5 +1,5 @@
 .footer {
-  position: fixed;
+  position: absolute;
   left: 0;
   bottom: 0;
   width: 100%;
@@ -179,6 +179,7 @@ img {
 .container {
   background-color: white;
   margin-top: 12rem;
+  position: relative;
 }
 .company_product {
   width: 100%;

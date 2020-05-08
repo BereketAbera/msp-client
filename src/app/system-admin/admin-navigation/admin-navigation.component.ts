@@ -5,7 +5,7 @@ import { AuthService } from "../../service/auth.service";
 @Component({
   selector: "admin-navigation",
   templateUrl: "./admin-navigation.component.html",
-  styleUrls: ["./admin-navigation.component.scss"]
+  styleUrls: ["./admin-navigation.component.scss"],
 })
 export class AdminNavigationComponent implements OnInit {
   background = "primary";
@@ -14,7 +14,7 @@ export class AdminNavigationComponent implements OnInit {
   constructor(private router: Router, private authService: AuthService) {}
 
   ngOnInit() {
-    this.name = this.authService.getName();
+    this.name = this.authService.getName().split(" ")[0];
   }
   logout() {
     this.authService.logout();

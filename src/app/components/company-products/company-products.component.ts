@@ -58,6 +58,7 @@ export class CompanyProductsComponent implements OnInit {
   }
 
   ngOnInit() {
+    // console.log(this.company);
     this.getCompanyProducts();
   }
 
@@ -98,7 +99,6 @@ export class CompanyProductsComponent implements OnInit {
   }
 
   nextClickScroll(id) {
-    // console.log(id,'id')
     this.showAnimate = true;
     let elm = document.getElementById(`contanier_prods-${id}`);
     elm.scrollLeft += elm.offsetWidth;

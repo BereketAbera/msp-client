@@ -1,4 +1,17 @@
 <admin-navigation></admin-navigation>
-<div>
+<div class="container">
   <router-outlet></router-outlet>
+</div>
+<div class="footer__container">
+  <ul class="footer__sub-container">
+    <li routerLink="/privacy" class="footer__item">
+      <span class="footer__item-text">Privacy Policy</span>
+    </li>
+    <li class="footer__item">
+      <p class="footer__item-text">
+        ManagerSpecial Copyright {{ today }}. All Rights reserved. Worldwide
+        Patent Pending {{ today }}. A business unit of Live Inc. {{ version }}
+      </p>
+    </li>
+  </ul>
 </div>

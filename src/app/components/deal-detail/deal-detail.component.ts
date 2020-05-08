@@ -99,8 +99,8 @@ export class DealDetailComponent implements OnInit {
       reserveProduct.prdid = this.product.id;
       reserveProduct.qty = this.buyForm.get("quantity").value;
       // console.log(this.product.currentQuantity,reserveProduct.qty,'check')
-      if(reserveProduct.qty > this.product.currentQuantity){
-        this.errorMessage = "Quantity must less than available quantity";
+      if (reserveProduct.qty > this.product.currentQuantity) {
+        this.errorMessage = "Quantity must be less than available quantity";
         this.showErrorNotification = true;
         return false;
       }
@@ -165,7 +165,7 @@ export class DealDetailComponent implements OnInit {
     } else {
       alert(
         "quantity can not be less than 0 or greater than " +
-        this.product.quantityOnHand
+          this.product.quantityOnHand
       );
     }
   }

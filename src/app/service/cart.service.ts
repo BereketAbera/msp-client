@@ -66,9 +66,7 @@ export class CartService {
     });
     if (idx < 0) a.products.push(data);
     else {
-      data.qty =
-        parseInt(data.qty.toString()) +
-        parseInt(a.products[idx].qty.toString());
+      data.qty = parseInt(data.qty.toString());
       a.products[idx] = data;
     }
     localStorage.setItem("msp_cart_items", JSON.stringify(a));

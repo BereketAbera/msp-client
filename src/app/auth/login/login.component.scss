@@ -108,7 +108,7 @@ ul {
   align-self: center;
   justify-content: center;
   // width: 40%;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: none;
   transition: 0.3s;
   width: 96%;
   margin: 2rem auto;
@@ -168,6 +168,7 @@ ul {
 @media only screen and (min-width: 732px) {
   .card {
     width: 70%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   }
 }
 
