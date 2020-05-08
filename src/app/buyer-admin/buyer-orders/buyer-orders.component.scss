@@ -1,6 +1,40 @@
+.order_names {
+  display: flex;
+  align-self: center;
+  font-size: 1.3rem;
+  padding: 0.2rem 1rem;
+
+  b {
+    margin-right: 0.7rem;
+  }
+}
+.product_order {
+  width: 100%;
+  margin: 1rem auto;
+  display: flex;
+  border: 0.5px solid #f2f2f2;
+  box-shadow: 1px 1px 5px #eee;
+  .header {
+    margin: 0.5rem 1.5rem;
+    .order_dates {
+      margin-top: 0.7rem;
+      display: flex;
+      flex-direction: row;
+    }
+  }
+
+  .images {
+    display: flex;
+  }
+
+  .detail {
+    // margin: 1.5rem 0;
+  }
+}
+
 .orders {
   &__container {
-    width: 80%;
+    width: 70%;
     margin: 1rem auto;
   }
 }
@@ -18,8 +52,8 @@
   }
 
   &__image {
-    height: 7rem;
-    max-width: 10rem;
+    height: 14rem;
+    max-width: 16rem;
   }
 
   &__left {
@@ -41,15 +75,17 @@
   }
 
   &__name {
-    font-size: 2rem;
-    font-weight: 700;
-    color: #333;
+    font-size: 1.7rem;
+    font-weight: 600;
+    color: #111;
+    text-transform: uppercase;
   }
 
   &__shop-name {
-    font-size: 1.2rem;
-    font-weight: 400;
+    font-size: 1.1rem;
+    font-weight: 200;
     color: #555;
+    font-style: italic;
   }
 
   &__shop-address {
@@ -98,8 +134,39 @@
   }
 }
 @media only screen and (max-width: 700px) {
-
-  .order__address{
-    font-size: 2rem!important;
+  .order__address {
+    font-size: 2rem !important;
   }
+  .orders__container{
+    width: 96%;
+  }
+  .product_order {
+    flex-direction: column;
+    position: relative;
+    .header{
+      z-index: 3;
+      margin: 0.5rem 0.3rem;
+    }
+  }
+
+  .order__image {
+    height: 7rem;
+    max-width: 10rem;
+  }
+
+  .detail{
+    display: flex;
+    flex-direction: row;
+  }
+  .images{
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  .order_dates {
+    margin-top: 0.7rem;
+    display: flex;
+    flex-direction: column!important;
+  }
+
 }

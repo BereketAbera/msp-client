@@ -21,11 +21,11 @@ export class MerchantsDataSource implements DataSource<User> {
 
     }
 
-    filterSeller(companyName,city,state, status, pageIndex, pageSize) {
+    filterSeller(companyName,city,state, status, pageIndex, pageSize,sortOrder) {
         this.loadingSubject.next(true);
 
         this.userService.filterSeller(companyName,city,state,status,
-            pageIndex, pageSize).pipe(
+            pageIndex, pageSize,sortOrder).pipe(
                 catchError(() => of([])),
                 finalize(() => this.loadingSubject.next(false))
             )

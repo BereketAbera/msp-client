@@ -64,7 +64,7 @@ export class UsersAdminComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.dataSource = new MerchantsDataSource(this.userService);
     //this.dataSource.loadMerchants(1, "", "asc", 0, 10);
-    this.dataSource.filterSeller("", "","","", 0, 10);
+    this.dataSource.filterSeller("", "", "", "", 0, 10, "desc");
     this.route.data.subscribe((data: { states: State[] }) => {
       this.states = data.states;
     });
@@ -73,7 +73,7 @@ export class UsersAdminComponent implements OnInit, AfterViewInit {
       companyName: [""],
       city: [""],
       state: [""],
-      status: ["1"],
+      status: [""],
     });
 
   }
@@ -93,7 +93,8 @@ export class UsersAdminComponent implements OnInit, AfterViewInit {
       val.state,
       "",
       this.paginator.pageIndex,
-      this.paginator.pageSize
+      this.paginator.pageSize,
+      this.sort.direction,
     );
   }
 
@@ -116,7 +117,7 @@ export class UsersAdminComponent implements OnInit, AfterViewInit {
     if (status == 1 || status == 2) return true;
     return false;
   }
-  chageAccountStatus(user: User, status: number) {
+  chageAccountStatus(user: any, status: number) {
     let cnfMsg = "";
     if (status == 1) cnfMsg = "Are you sure you want activate this account?";
     else if (status == 2)
@@ -135,8 +136,9 @@ export class UsersAdminComponent implements OnInit, AfterViewInit {
           height: "180px",
           data: { title: "", question: "" },
         });
-        this.userService.changeUserStatus(user.id, status).subscribe(
+        this.userService.changeUserStatus(user.userId, status).subscribe(
           (res) => {
+            console.log(res)
             if (res["success"]) {
               progressDialogRef.close();
               let snackBarRef = this.snackBar.open(
@@ -147,8 +149,14 @@ export class UsersAdminComponent implements OnInit, AfterViewInit {
                 }
               );
               snackBarRef.afterDismissed().subscribe(() => {
-                // this.dataSource.filterSeller(this, "", "asc",this.paginator.pageIndex,
-                // this.paginator.pageSize);
+                var val = this.filterForm.value;
+                // console.log(val)
+                this.dataSource.filterSeller(val.companyName,
+                  val.city,
+                  val.state,
+                  val.status, this.paginator.pageIndex,
+                  this.paginator.pageSize,
+                  "desc");
               });
               //this.router.navigate(["../"], { relativeTo: this.route });
             } else {
@@ -170,12 +178,13 @@ export class UsersAdminComponent implements OnInit, AfterViewInit {
 
   filterSeller() {
     var val = this.filterForm.value;
-    console.log(val)
+    // console.log(val)
     this.dataSource.filterSeller(val.companyName,
       val.city,
       val.state,
       val.status, this.paginator.pageIndex,
-      this.paginator.pageSize);
+      this.paginator.pageSize,
+      "desc");
   }
   onSubmit() { }
 }
