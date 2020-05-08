@@ -52,8 +52,8 @@
       </form>
     </div>
   </div>
-  <mat-table class="mat-elevation-z8" [dataSource]="dataSource" matSort matSortActive="name" matSortDirection="asc"
-    matSortDisableClear>
+  <mat-table class="mat-elevation-z8" [dataSource]="dataSource" matSort matSortActive="updatedAt" matSortDirection="desc"
+    matSortDisableClear matSortDisableClear>
     <ng-container matColumnDef="email">
       <mat-header-cell *matHeaderCellDef>Account</mat-header-cell>
 
@@ -79,9 +79,9 @@
       <mat-cell *matCellDef="let user">{{ user.lastName }}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="updatedAt">
-      <mat-header-cell *matHeaderCellDef>Updated At</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Created date</mat-header-cell>
       <mat-cell *matCellDef="let user">{{
-        user.updatedAt | date: "yyyy-MM-dd"
+        user.createdAt | date: "yyyy-MM-dd"
       }}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="status">

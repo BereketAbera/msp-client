@@ -152,7 +152,8 @@ export class UserService {
     state = "",
     status,
     pageNumber = 0,
-    pageSize = 5
+    pageSize = 5,
+    sortOrder
   ): Observable<any[]> {
     return this.http
       .get(accountAPI + "/seller/filter", {
@@ -162,7 +163,8 @@ export class UserService {
           .set("state", state)
           .set("status", status)
           .set("pageNumber", pageNumber.toString())
-          .set("pageSize", pageSize.toString()),
+          .set("pageSize", pageSize.toString())
+          .set("sortOrder", sortOrder),
       })
       .pipe(
         map((res) => {
