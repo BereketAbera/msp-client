@@ -80,8 +80,8 @@
   }
 
   &__product-image {
-    height: 8rem;
-    max-width: 8rem;
+    height: 9rem;
+    max-width: 9rem;
   }
 
   &__product-title {
@@ -154,6 +154,11 @@
   .tbl {
     display: none;
   }
+
+  .shopping-cart__remove-product{
+    font-size: 1.3rem;
+  
+  }
   .mobile_responsive {
     display: flex;
     flex-direction: column;
@@ -188,6 +193,7 @@
         position: absolute;
         top: 0;
         right: 0;
+        margin-top: -0.7rem;
 
       }
       &__product {
