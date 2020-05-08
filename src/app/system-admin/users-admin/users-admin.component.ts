@@ -91,7 +91,7 @@ export class UsersAdminComponent implements OnInit, AfterViewInit {
       val.companyName,
       val.city,
       val.state,
-      "",
+      val.status,
       this.paginator.pageIndex,
       this.paginator.pageSize,
       this.sort.direction,
