@@ -87,7 +87,7 @@
     <ng-container matColumnDef="status">
       <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
 
-      <mat-cell *matCellDef="let user">{{ getStatus(user.status) }}</mat-cell>
+      <mat-cell *matCellDef="let user">{{ getStatus(user.userStatus) }}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="remove">
