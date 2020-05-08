@@ -73,7 +73,7 @@ export class UsersAdminComponent implements OnInit, AfterViewInit {
       companyName: [""],
       city: [""],
       state: [""],
-      status: ["1"],
+      status: [""],
     });
 
   }
