@@ -14,21 +14,28 @@
       (click)="previousClickScroll(index)"
       *ngIf="navigate"
     >
-      <mat-icon class="material-icons slide__button-icon"
+      <!-- <mat-icon class="material-icons slide__button-icon"
         >navigate_before</mat-icon
-      >
+      > -->
+      <i class="fad fa-chevron-left slide__button-icon"></i>
     </div>
     <app-product
       class="products__product"
       *ngFor="let product of products"
       [product]="product"
     ></app-product>
-    <div class="backward__button slide__button" *ngIf="navigate">
-      <mat-icon
+    <div
+      class="backward__button slide__button"
+      (click)="nextClickScroll(index)"
+      *ngIf="navigate"
+    >
+      <!-- <mat-icon
         (click)="nextClickScroll(index)"
         class="material-icons slide__button-icon"
         >navigate_next</mat-icon
-      >
+      > -->
+      <!-- <i class="far fa-chevron-right"></i> -->
+      <i class="fad fa-chevron-right slide__button-icon"></i>
     </div>
   </div>
 </div>

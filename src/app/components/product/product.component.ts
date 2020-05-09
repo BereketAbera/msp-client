@@ -102,7 +102,7 @@ export class ProductComponent implements OnInit {
     let x = start.split(":");
     let hour = parseInt(x[0]);
     let minute = parseInt(x[1]);
-    let totalMinutes = hour * 60 + minute + d;
+    let totalMinutesS = hour * 60 + minute + d;
 
     let xE = end.split(":");
     let hourE = parseInt(xE[0]);
@@ -111,8 +111,10 @@ export class ProductComponent implements OnInit {
 
     let localMinutes = new Date().getHours() * 60 + new Date().getMinutes();
 
-    if (totalMinutes > localMinutes || totalMinutesE < localMinutes) {
-      return true;
+    if (totalMinutesS < totalMinutesE) {
+      if (totalMinutesS > localMinutes || totalMinutesE < localMinutes) {
+        return true;
+      }
     }
 
     return false;
