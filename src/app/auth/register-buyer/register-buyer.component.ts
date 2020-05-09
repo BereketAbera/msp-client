@@ -59,6 +59,8 @@ export class RegisterBuyerComponent implements OnInit {
           if (res["success"]) {
             const dialogRef = this.dialog.open(RegistrationCompleteComponent, {
               width: "350px",
+              data: { msg: 'Thank you! Now please check your email for our email verfication.' }
+
             });
             dialogRef.afterClosed().subscribe((result) => {
               this.router

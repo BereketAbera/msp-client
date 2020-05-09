@@ -86,6 +86,8 @@ export class RegisterSellerComponent implements OnInit {
                 RegistrationCompleteComponent,
                 {
                   width: "350px",
+                  data: { msg: 'Thank you! Now please check your email for our email verfication.' }
+
                 }
               );
               dialogRef.afterClosed().subscribe((result) => {

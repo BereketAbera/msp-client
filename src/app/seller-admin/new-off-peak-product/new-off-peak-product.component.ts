@@ -404,8 +404,7 @@ export class NewOffPeakProductComponent implements OnInit {
                 if (res["success"]) {
                   progressDialogRef.close();
                   let snackBarRef = this.snackBar.open(
-                    "Successfuly saved",
-                    "Add More",
+                    "Successfuly saved","",
                     {
                       duration: 2000,
                     }
@@ -451,7 +450,7 @@ export class NewOffPeakProductComponent implements OnInit {
                   progressDialogRef.close();
                   let snackBarRef = this.snackBar.open(
                     "Successfuly saved",
-                    "Add More",
+                    "",
                     {
                       duration: 2000,
                     }

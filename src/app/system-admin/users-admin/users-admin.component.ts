@@ -52,6 +52,14 @@ export class UsersAdminComponent implements OnInit, AfterViewInit {
   states: any[];
   page: number;
 
+ 
+  statuses = [
+    { value: "", name: "All" },
+    { value: 1, name: "ACTIVE" },
+    { value: 0, name: "PENDING" },
+    { value: 2, name: "PRODUCT DISABLED" },
+    { value: 3, name: "ACCOUNT DISABLED" },
+  ];
   constructor(
     public snackBar: MatSnackBar,
     public dialog: MatDialog,
@@ -67,6 +75,8 @@ export class UsersAdminComponent implements OnInit, AfterViewInit {
     this.dataSource.filterSeller("", "", "", "", 0, 10, "desc");
     this.route.data.subscribe((data: { states: State[] }) => {
       this.states = data.states;
+      console.log(this.states)
+      this.states.unshift({id: "", name: "", abbreviation: "All"})
     });
     // console.log(this.dataSource);
     this.filterForm = this.formBuilder.group({
@@ -88,10 +98,10 @@ export class UsersAdminComponent implements OnInit, AfterViewInit {
   loadMerchantsPage() {
     var val = this.filterForm.value;
     this.dataSource.filterSeller(
-      val.companyName,
-      val.city,
-      val.state,
-      val.status,
+      val.companyName || "",
+      val.city || "",
+      val.state || "",
+      val.status || "", 
       this.paginator.pageIndex,
       this.paginator.pageSize,
       this.sort.direction,
@@ -151,10 +161,10 @@ export class UsersAdminComponent implements OnInit, AfterViewInit {
               snackBarRef.afterDismissed().subscribe(() => {
                 var val = this.filterForm.value;
                 // console.log(val)
-                this.dataSource.filterSeller(val.companyName,
-                  val.city,
-                  val.state,
-                  val.status, this.paginator.pageIndex,
+                this.dataSource.filterSeller(val.companyName || "",
+                  val.city || "",
+                  val.state || "",
+                  val.status || "", this.paginator.pageIndex,
                   this.paginator.pageSize,
                   "desc");
               });
@@ -176,12 +186,16 @@ export class UsersAdminComponent implements OnInit, AfterViewInit {
     this.showError = false;
   }
 
+  // resetField() {
+  //   this.filterForm.reset();
+  // }
+
   filterSeller() {
     var val = this.filterForm.value;
-    // console.log(val)
-    this.dataSource.filterSeller(val.companyName,
-      val.city,
-      val.state,
+     console.log(val)
+    this.dataSource.filterSeller(val.companyName || "",
+      val.city || "",
+      val.state || "",
       val.status, this.paginator.pageIndex,
       this.paginator.pageSize,
       "desc");

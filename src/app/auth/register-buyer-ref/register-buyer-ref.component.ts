@@ -35,7 +35,7 @@ export class RegisterBuyerRefComponent implements OnInit {
     private userService: UserService,
     private fb: FormBuilder,
     private router: Router
-  ) {}
+  ) { }
   close() {
     this.showError = false;
   }
@@ -61,19 +61,29 @@ export class RegisterBuyerRefComponent implements OnInit {
     this.showError = false;
     this.errors = [];
 
-    if( this.registrationForm.valid){
+    if (this.registrationForm.valid) {
       if (
-        this.registrationForm.get("agreed").value 
-       
+        this.registrationForm.get("agreed").value
+
       ) {
         let usrInfo = this.registrationForm.value;
         usrInfo.tk = this.tk;
         return this.userService
           .registerByrUser(this.registrationForm.value)
           .subscribe((res) => {
-           // console.log(res);
+            // console.log(res);
             if (res["success"]) {
-              this.router.navigate(["/login"]);
+
+              const dialogRef = this.dialog.open(RegistrationCompleteComponent, {
+                width: "350px",
+                data: { msg: 'Thank you! Now you can login' }
+
+              });
+              dialogRef.afterClosed().subscribe((result) => {
+                this.router
+                  .navigateByUrl("/RefrshComponent", { skipLocationChange: true })
+                  .then(() => this.router.navigate(["/login"]));
+              });
             } else {
               this.showError = true;
               this.errors = res["messages"];
@@ -83,19 +93,19 @@ export class RegisterBuyerRefComponent implements OnInit {
         this.showError = true;
         this.errors = ["Please agree to the buyer's terms of use and privacy."];
       }
-    }else{
+    } else {
       this.showError = true;
       this.errors = ["Invalid input! Check again."];
     }
 
   }
-  openTerms() {}
-  openPrivacy() {}
+  openTerms() { }
+  openPrivacy() { }
   getErrorMessage() {
     return this.registrationForm.get("email").hasError("required")
       ? "You must enter a value"
       : this.registrationForm.get("email").hasError("email")
-      ? "Not a valid email"
-      : "";
+        ? "Not a valid email"
+        : "";
   }
 }
