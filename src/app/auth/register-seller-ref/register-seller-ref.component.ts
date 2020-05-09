@@ -101,7 +101,8 @@ export class RegisterSellerRefComponent implements OnInit {
           if (res["success"]) {
             const dialogRef = this.dialog.open(RegistrationCompleteComponent, {
               width: "350px",
-            });
+              data: { msg: 'Thank you! You can login to system.' }
+            }, );
             dialogRef.afterClosed().subscribe((result) => {
               this.router
                 .navigateByUrl("/RefrshComponent", { skipLocationChange: true })

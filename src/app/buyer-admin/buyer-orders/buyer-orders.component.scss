@@ -110,6 +110,13 @@
     color: #333;
   }
 }
+.no_result{
+  font-size: 1.6rem;
+  color: #777;
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+}
 
 @media only screen and (min-width: 600px) {
   .order {

@@ -16,7 +16,7 @@
   <div class="filter">
     <div class="add-shop__address">
 
-      <form class="form" (ngSubmit)="filterSeller()" [formGroup]="filterForm">
+      <form class="form" [formGroup]="filterForm">
         <div *ngIf="errorMessage" class="add-staff__errors">
           <span>{{ errorMessage }}</span>
         </div>
@@ -37,23 +37,33 @@
           </mat-select>
         </mat-form-field>
 
-        <mat-radio-group class="filter-status" formControlName="status">
+        <!-- <mat-radio-group class="filter-status" formControlName="status">
           <label class="product-form__label"> <b>Status </b> </label>
           <mat-radio-button class="items" value="1">Active
           </mat-radio-button>
           <mat-radio-button class="items" value="0">Pending
           </mat-radio-button>
-        </mat-radio-group>
+        </mat-radio-group> -->
+
+        <mat-form-field class="filter-status" >
+          <mat-label>Status</mat-label>
+          <mat-select formControlName="status">
+            <mat-option *ngFor="let item of statuses" [value]="item.value">
+              {{item.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
 
         <div class="filter-button">
-          <button mat-raised-button color="accent">Search</button>
+          <button type="submit" (click)="filterSeller()" mat-raised-button color="accent">Search</button>
+          <!-- <button (click)="resetField()" style="margin-left:0.6rem" mat-raised-button color="basic">Reset</button> -->
         </div>
 
       </form>
     </div>
   </div>
-  <mat-table class="mat-elevation-z8" [dataSource]="dataSource" matSort matSortActive="updatedAt" matSortDirection="desc"
-    matSortDisableClear matSortDisableClear>
+  <mat-table class="mat-elevation-z8" [dataSource]="dataSource" matSort matSortActive="updatedAt"
+    matSortDirection="desc" matSortDisableClear matSortDisableClear>
     <ng-container matColumnDef="email">
       <mat-header-cell *matHeaderCellDef>Account</mat-header-cell>
 
