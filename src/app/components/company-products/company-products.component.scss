@@ -104,12 +104,19 @@
     border-radius: 2rem;
     padding: 0rem;
     user-select: none;
+    // background-color: transparent;
+
+    // &:hover,
+    // &:active {
+    //   background-color: #eee;
+    // }
   }
 
   &__button-icon {
-    font-size: 3rem;
+    font-size: 2rem;
     width: auto;
     height: auto;
+    color: #f94081;
   }
 }
 @media only screen and (min-width: 700px) {
