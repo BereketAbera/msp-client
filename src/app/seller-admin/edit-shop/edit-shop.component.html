@@ -47,7 +47,7 @@
         >
           <input
             type="tel"
-            maxlength="15"
+            maxlength="20"
             matInput
             placeholder="Telephone"
             formControlName="telephone"
@@ -110,7 +110,6 @@
               formControlName="zipCode"
               (keyup)="getlocations($event.target.value)"
               [value]="shop.zipCode"
-             
             />
             <mat-autocomplete #auto="matAutocomplete">
               <mat-option
@@ -130,7 +129,7 @@
     </mat-card-content>
     <mat-card-actions>
       <div class="add-shop__actions">
-        <button mat-flat-button color="accent" [disabled]="!shopForm.valid">
+        <button mat-flat-button color="accent">
           Save
         </button>
         <button mat-flat-button color="accent" (click)="gotoShopList()">

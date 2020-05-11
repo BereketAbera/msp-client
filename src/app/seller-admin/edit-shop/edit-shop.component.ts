@@ -68,18 +68,21 @@ export class EditShopComponent implements OnInit {
     this.searchText$.next(searchInp);
   }
   onSubmit() {
-    let shop = new Shop();
-    shop = { ...this.shopForm.value };
-    this.shopsSrvc
-      .updateShop({ ...shop, id: this.shop.id })
-      .subscribe((res) => {
-        if (res["success"])
-          this.router.navigate(["../../"], { relativeTo: this.route });
-        else {
-          this.showError = true;
-          this.errors = res["messages"];
-        }
-      });
+    console.log(this.shopForm.value);
+    if (this.shopForm.valid) {
+      let shop = new Shop();
+      shop = { ...this.shopForm.value };
+      this.shopsSrvc
+        .updateShop({ ...shop, id: this.shop.id })
+        .subscribe((res) => {
+          if (res["success"])
+            this.router.navigate(["../../"], { relativeTo: this.route });
+          else {
+            this.showError = true;
+            this.errors = res["messages"];
+          }
+        });
+    }
   }
   displayFn(zipCode: any) {
     // console.log(zipCode);

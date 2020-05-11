@@ -1,11 +1,13 @@
 <div class="home">
   <div class="home__section-one">
     <div class="home__search-container">
-      <div class="home__search-header">Looking for discount products?</div>
+      <div class="home__search-header">
+        25%-60% Off Restaurant Food Near You
+      </div>
       <div action="#" mathod="GET" class="home__search-input-container">
         <input
           type="text"
-          placeholder="Enter zipcode..."
+          placeholder="Enter zipcode to search"
           class="home__search-input"
           (keyup)="getlocations($event.target.value)"
           [formControl]="searchInput"
