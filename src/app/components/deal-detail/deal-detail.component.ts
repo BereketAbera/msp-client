@@ -53,8 +53,7 @@ export class DealDetailComponent implements OnInit {
         if (localProduct) {
           localProduct.map((prod) => {
             if (prod.prdid == data.product.id) {
-              data.product.currentQuantity =
-                parseInt(data.product.currentQuantity) - prod.qty;
+              data.product.currentQuantity = (parseInt(data.product.currentQuantity) - prod.qty)<0?0:(parseInt(data.product.currentQuantity) - prod.qty);
             }
           });
         }

@@ -38,6 +38,10 @@ export class LoginComponent implements OnInit {
       ? "Not a valid email"
       : "";
   }
+  get showSingIn(){
+    if(this.type == "normal") return true;
+    return false;
+  }
   get showBuyer() {
     if (this.type == "buyer" || this.type == "normal") return true;
     return false;

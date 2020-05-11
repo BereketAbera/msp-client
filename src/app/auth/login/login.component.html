@@ -11,7 +11,7 @@
 
   <div class="card">
     <mat-tab-group class="card__tab" [selectedIndex]="selectedIndex">
-      <mat-tab label="SIGN IN">
+      <mat-tab label="SIGN IN" *ngIf="showSingIn">
         <form class="form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
           <div class="example-container">
             <div *ngIf="showError" class="errorCntr">
@@ -24,8 +24,8 @@
                 </li>
               </ul>
             </div>
-            <div class="form__group">
-              <mat-form-field>
+            <div >
+              <mat-form-field class="example-full-width">
                 <input class="input"
                   matInput
                   minlength="3"
@@ -40,8 +40,8 @@
               </mat-form-field>
             </div>
 
-            <div class="form__group">
-              <mat-form-field>
+            <div >
+              <mat-form-field class="example-full-width">
                 <input class="input"
                   matInput
                   placeholder="Enter your password"
@@ -74,10 +74,10 @@
               </p>
             </div>
             <div class="form__group__submit">
-              <button
+              <button 
                 type="submit"
                 mat-raised-button
-                class="msp-button"
+                class="msp-button example-full-width"
                 color="accent"
               >
                 Sign IN
