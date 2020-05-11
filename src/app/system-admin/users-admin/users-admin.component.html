@@ -75,8 +75,13 @@
     </ng-container>
 
     <ng-container matColumnDef="address">
-      <mat-header-cell *matHeaderCellDef>City,State</mat-header-cell>
-      <mat-cell *matCellDef="let user">{{ user.city +", "+ user.state }}</mat-cell>
+      <mat-header-cell *matHeaderCellDef>City</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{ user.city }}</mat-cell>
+    </ng-container>
+    
+    <ng-container matColumnDef="state">
+      <mat-header-cell *matHeaderCellDef>State</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{  user.state }}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="firstName">
