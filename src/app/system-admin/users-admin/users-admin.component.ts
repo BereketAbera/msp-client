@@ -37,6 +37,7 @@ export class UsersAdminComponent implements OnInit, AfterViewInit {
     "email",
     "companyName",
     "address",
+    "state",
     "firstName",
     "lastName",
     "updatedAt",
