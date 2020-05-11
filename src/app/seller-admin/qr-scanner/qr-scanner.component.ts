@@ -116,13 +116,8 @@ checkCode(){
     let dialogRef = this.dialog.open(RequestCodeConfirmationComponent,{data: {code:ordCode}});
             dialogRef.afterClosed().subscribe(result => {
               if(result){
-                console.log(result)
-                //this.isScanning = false;
-                //this.video.pause();
-                console.log({code:parseInt(ordCode),qrCode:result.qrCode})
                 this.transactionService.processTransactionQRCdCode({code:parseInt(ordCode),qrCode:result.qrCode}).subscribe(
                    result=>{
-                     console.log(result,'sdf')
                      if(result['success']){
                     this.transactionId = result['transactionId']
                      this.displayChk = "block";

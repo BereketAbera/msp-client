@@ -120,7 +120,7 @@ ul {
   margin: 2rem auto;
   &__tab {
     width: 95%;
-    font-size: 1.5rem;
+    font-size: 2.2rem;
     display: flex;
     justify-content: center;
   }
@@ -136,16 +136,27 @@ ul {
   height: 5vh;
   width: 100%;
 }
+
+
+
+.example-container > * {
+  width: 85%;
+  margin:1rem  2rem ;
+  // align-content: center;
+}
+.example-full-width {
+  width: 100%;
+}
 .form {
-  &__group {
+  &__groups {
     width: 95%;
 
     align-self: center;
-    margin: 1rem 2rem;
-    font-size: 1.2rem;
-    input {
-      font-size: 2.5rem;
-    }
+    margin: 2rem 2rem;
+    // font-size: 1.2rem;
+    // input {
+    //   font-size: 2.5rem;
+    // }
     &__pass {
       margin: 1rem 2rem;
     }
@@ -175,6 +186,10 @@ ul {
   .card {
     width: 70%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    &__tab {
+      font-size: 1.7rem;
+    
+    }
   }
 }
 
@@ -183,5 +198,8 @@ ul {
     width: 50%;
   }
 }
+
+
+
 
 
