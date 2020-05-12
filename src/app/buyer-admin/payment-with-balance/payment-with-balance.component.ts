@@ -13,7 +13,7 @@ import { CartExpiredDialogComponent } from "../../components/cart-expired-dialog
 @Component({
   selector: "app-payment-with-balance",
   templateUrl: "./payment-with-balance.component.html",
-  styleUrls: ["./payment-with-balance.component.scss"]
+  styleUrls: ["./payment-with-balance.component.scss"],
 })
 export class PaymentWithBalanceComponent implements OnInit {
   @Output() payWith = new EventEmitter<any>();
@@ -25,7 +25,7 @@ export class PaymentWithBalanceComponent implements OnInit {
   PAY_WITH_NEW_CARD: string = "PAY_WITH_NEW_CREDIT";
   PAY_WITH_SAVED_CARD: string = "PAY_WITH_SAVED_CREDIT";
   PAY_WITH_BALANCE: string = "PAY_WITH_BALANCE";
-  showSuccessNotification =false
+  showSuccessNotification = false;
   creditInfoAvailable: boolean = false;
   quantity: number = 0;
   ordrGuid: string;
@@ -34,7 +34,7 @@ export class PaymentWithBalanceComponent implements OnInit {
   minimumAmount: string;
   paymentForm = this.fb.group({
     deposit: ["", Validators.required],
-    paymentType: [this.PAY_WITH_BALANCE, Validators.required]
+    paymentType: [this.PAY_WITH_BALANCE, Validators.required],
   });
 
   constructor(
@@ -69,7 +69,7 @@ export class PaymentWithBalanceComponent implements OnInit {
   }
   showResetDialog() {
     const dialogRef = this.dialog.open(CartExpiredDialogComponent);
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       this.cartService.resetCart();
       this.router.navigate(["../"]);
     });
@@ -82,22 +82,23 @@ export class PaymentWithBalanceComponent implements OnInit {
       transction.ordrGuid = this.ordrGuid;
       //transction.quantity = this.quantity;
       // console.log(transction);
-      this.trnsService.createTransaction(transction).subscribe(res => {
+      this.trnsService.createTransaction(transction).subscribe((res) => {
         if (res["success"]) {
           this.cartService.resetCart();
-          this.showSuccessNotification=true;
+          this.showSuccessNotification = true;
           setTimeout(() => {
             this.router.navigate(["../../"], { relativeTo: this.route });
           }, 3500);
-          // 
+          //
         } else {
+          this.cartService.resetCart();
           this.showError = true;
           this.errors = res["messages"];
         }
       });
     }
   }
-  showNotification($event){
+  showNotification($event) {
     this.showSuccessNotification = $event;
   }
 }

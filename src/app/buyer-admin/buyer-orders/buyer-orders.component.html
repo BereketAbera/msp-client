@@ -1,37 +1,45 @@
 <div *ngIf="orders.length > 0" class="orders__container">
-
   <div *ngFor="let order of orders" class="product_order">
     <div class="images">
       <img [src]="order.imagePath" alt="order image" class="order__image" />
     </div>
-    
+
     <div class="header">
       <div class="order__name">{{ order.name }}</div>
-      <div class="order__shop-name">Shop Name: {{ order.shopName }} , {{ order.address }}</div>
+      <div class="order__shop-name">
+        Shop Name: {{ order.shopName }} , {{ order.address }}
+      </div>
       <div class="order_dates">
         <div class="order__time">
           <span class="order_names">
             <!-- <mat-icon>access_time</mat-icon> -->
-            <span class="name"> <b>Order Date :</b>
-              {{ order.purchaseTime | date: "short" }} </span>
+            <span class="name">
+              <b>Order Date :</b> {{ order.purchaseTime | date: "short" }}
+            </span>
           </span>
           <span class="order_names">
             <b>Services </b>
-            From: {{ changeToLocal12Hours(order.pickupStartTime) }} <mat-icon>arrow_right_alt</mat-icon> To:
+            From: {{ changeToLocal12Hours(order.pickupStartTime) }}
+            <mat-icon>arrow_right_alt</mat-icon> To:
             {{ changeToLocal12Hours(order.pickupEndTime) }}
-
           </span>
           <span class="order_names">
             <b>Service Code: </b>
             {{ order.code }}
-
           </span>
         </div>
         <div class="detail">
-            <span class="order_names"> <b>Unit Price: </b> {{ order.discountedPrice | currency }} </span>
-            <span class="order_names"> <b>Quantity: </b> {{ order.quantity }} </span>
-            <span class="order_names"> <b>Total: </b> {{ order.quantity * order.discountedPrice | currency }} </span>
-          </div>
+          <span class="order_names">
+            <b>Unit Price: </b> {{ order.discountedPrice | currency }}
+          </span>
+          <span class="order_names">
+            <b>Quantity: </b> {{ order.quantity }}
+          </span>
+          <span class="order_names">
+            <b>Total: </b>
+            {{ order.quantity * order.discountedPrice | currency }}
+          </span>
+        </div>
       </div>
     </div>
   </div>
@@ -72,7 +80,12 @@
       </div>
     </div>
   </div> -->
-  <mat-paginator [length]="count" [pageSize]="5" [pageSizeOptions]="[5, 10]" (page)="getServerData($event)">
+  <mat-paginator
+    [length]="count"
+    [pageSize]="5"
+    [pageSizeOptions]="[5, 10]"
+    (page)="getServerData($event)"
+  >
   </mat-paginator>
 </div>
 <div class="no_result" *ngIf="orders.length == 0">

@@ -6,35 +6,41 @@
     <div class="balance__icon">
       <mat-icon>attach_money</mat-icon>
     </div>
-    <span class="balance__header">Balance = </span> <span class="balance__header__value"> {{ balance | currency }}
-    </span>
+    <span class="balance__header">Balance = </span>
+    <span class="balance__header__value"> {{ balance | currency }} </span>
   </mat-card>
 
   <h2 class="container__header">Transactions</h2>
-  <mat-table class="table mat-elevation-z2" [dataSource]="dataSource" matSort matSortActive="date"
-    matSortDirection="asc" matSortDisableClear>
+  <mat-table
+    class="table mat-elevation-z2"
+    [dataSource]="dataSource"
+    matSort
+    matSortActive="date"
+    matSortDirection="asc"
+    matSortDisableClear
+  >
     <ng-container matColumnDef="type">
       <mat-header-cell *matHeaderCellDef>Trasaction Type</mat-header-cell>
 
       <mat-cell *matCellDef="let transaction">
-        <span class="mobile-label">Type:</span> {{ transaction.type }}</mat-cell>
+        <span class="mobile-label">Type:</span> {{ transaction.type }}</mat-cell
+      >
     </ng-container>
     <ng-container matColumnDef="date">
       <mat-header-cell *matHeaderCellDef>Date</mat-header-cell>
 
       <mat-cell *matCellDef="let transaction">
-        <span class="mobile-label">Date:</span>{{
-        transaction.transactionDate | date: "yy-MM-dd HH:mm:ss"
-      }}</mat-cell>
-
+        <span class="mobile-label">Date:</span
+        >{{ transaction.transactionDate | date: "yy-MM-dd HH:mm:ss" }}</mat-cell
+      >
     </ng-container>
     <ng-container matColumnDef="amount">
       <mat-header-cell *matHeaderCellDef>Amount</mat-header-cell>
 
       <mat-cell *matCellDef="let transaction">
-        <span class="mobile-label">Amount:</span> {{
-        getAmount(transaction) | currency
-      }}</mat-cell>
+        <span class="mobile-label">Amount:</span>
+        {{ getAmount(transaction) | currency }}</mat-cell
+      >
     </ng-container>
     <!-- <ng-container matColumnDef="name">
       <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
@@ -42,10 +48,16 @@
       <mat-cell *matCellDef="let transaction">
         <span class="mobile-label">Action:</span>
         <div *ngIf="transaction.type == 'DEPOSIT'">
-          <a [routerLink]="['../deposit', transaction.transactionId]">View Detail</a>
+          <a [routerLink]="['../deposit', transaction.transactionId]"
+            >View Detail</a
+          >
         </div>
-        <div *ngIf="transaction.type == 'ORDER' || transaction.type == 'REFUND'">
-          <a [routerLink]="['../trnsctns', transaction.transactionId]">View Detail</a>
+        <div
+          *ngIf="transaction.type == 'ORDER' || transaction.type == 'REFUND'"
+        >
+          <a [routerLink]="['../trnsctns', transaction.transactionId]"
+            >View Detail</a
+          >
         </div>
       </mat-cell>
     </ng-container> -->
@@ -53,32 +65,42 @@
     <ng-container matColumnDef="name" stickyEnd>
       <mat-header-cell *matHeaderCellDef></mat-header-cell>
 
-      <mat-cell *matCellDef="let transaction"><button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-cell *matCellDef="let transaction"
+        ><button mat-icon-button [matMenuTriggerFor]="menu">
           <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
           <div *ngIf="transaction.type == 'DEPOSIT'">
-            <button mat-menu-item [routerLink]="['../deposit', transaction.transactionId]">
+            <button
+              mat-menu-item
+              [routerLink]="['../deposit', transaction.transactionId]"
+            >
               <mat-icon color="accent">info</mat-icon>
               <span>View Detail</span>
             </button>
           </div>
 
-          <div *ngIf="transaction.type == 'ORDER' || transaction.type == 'REFUND'">
-            <button mat-menu-item [routerLink]="['../trnsctns', transaction.transactionId]">
+          <div
+            *ngIf="transaction.type == 'ORDER' || transaction.type == 'REFUND'"
+          >
+            <button
+              mat-menu-item
+              [routerLink]="['../trnsctns', transaction.transactionId]"
+            >
               <mat-icon color="accent">info</mat-icon>
               <span>View Detail</span>
             </button>
           </div>
-
-
         </mat-menu>
-
       </mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
   </mat-table>
-  <mat-paginator [length]="dataSource.count" [pageSize]="5" [pageSizeOptions]="[5, 10]"></mat-paginator>
+  <mat-paginator
+    [length]="dataSource.count"
+    [pageSize]="5"
+    [pageSizeOptions]="[5, 10]"
+  ></mat-paginator>
 </div>
