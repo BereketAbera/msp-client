@@ -42,7 +42,7 @@
         {{ getAmount(transaction) | currency }}</mat-cell
       >
     </ng-container>
-    <ng-container matColumnDef="name">
+    <!-- <ng-container matColumnDef="name">
       <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
 
       <mat-cell *matCellDef="let transaction">
@@ -60,7 +60,41 @@
           >
         </div>
       </mat-cell>
+    </ng-container> -->
+
+    <ng-container matColumnDef="name" stickyEnd>
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+
+      <mat-cell *matCellDef="let transaction"
+        ><button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <div *ngIf="transaction.type == 'DEPOSIT'">
+            <button
+              mat-menu-item
+              [routerLink]="['../deposit', transaction.transactionId]"
+            >
+              <mat-icon color="accent">info</mat-icon>
+              <span>View Detail</span>
+            </button>
+          </div>
+
+          <div
+            *ngIf="transaction.type == 'ORDER' || transaction.type == 'REFUND'"
+          >
+            <button
+              mat-menu-item
+              [routerLink]="['../trnsctns', transaction.transactionId]"
+            >
+              <mat-icon color="accent">info</mat-icon>
+              <span>View Detail</span>
+            </button>
+          </div>
+        </mat-menu>
+      </mat-cell>
     </ng-container>
+
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
   </mat-table>
