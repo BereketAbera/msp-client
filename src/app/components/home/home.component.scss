@@ -7,12 +7,8 @@
     width: 100%;
     height: 80vh;
     max-height: 60rem;
-    background: linear-gradient(
-        -90deg,
-        rgba(116, 30, 60, 0.7),
-        rgba(116, 30, 60, 0.7)
-      ),
-      url("../../../assets/image/home_background2.svg");
+    background: url("../../../assets/image/home_background3.svg"),
+      linear-gradient(0deg, rgba(159, 97, 118, 1), rgba(255, 255, 255, 1));
     background-position-x: 50%;
     background-position-y: 50%;
     background-repeat: no-repeat;
@@ -32,7 +28,7 @@
   &__search-header {
     font-size: 2.5rem;
     font-weight: 700;
-    color: #fff;
+    color: #cc3469;
     padding: 1rem 0rem;
   }
 
@@ -61,7 +57,10 @@
     }
 
     &::placeholder {
-      color: #888;
+      color: #999;
+      font-weight: 600;
+      text-transform: uppercase;
+      // font-size: 1.4rem;
     }
   }
 
@@ -140,16 +139,16 @@
   }
 
   &__section-two {
-    min-height: 80vh;
+    // min-height: 80vh;
     width: 100%;
     background-color: #fff;
     margin-top: -4rem;
-    padding: 3.5rem 2rem;
+    padding: 0rem 2rem;
   }
 
   &__section-three {
     width: 100%;
-    min-height: 40vh;
+    // max-height: 40vh;
     background-color: #eee;
     display: flex;
     flex-direction: column;
@@ -157,13 +156,13 @@
     padding: 3.5rem 2rem;
   }
 
-  &__section-four {
-    min-height: 80vh;
-    width: 100%;
-    background-color: #fff;
-    // margin-top: -4rem;
-    padding: 3.5rem 2rem;
-  }
+  // &__section-four {
+  //   min-height: 80vh;
+  //   width: 100%;
+  //   background-color: #fff;
+  //   // margin-top: -4rem;
+  //   padding: 3.5rem 2rem;
+  // }
 
   &__steps-container {
     display: flex;
