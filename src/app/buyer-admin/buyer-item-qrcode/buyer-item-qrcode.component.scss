@@ -1,102 +1,109 @@
-.invoice{
-    .invoice-header{
-      padding:25px 25px 15px;
-      h1{
-        margin:0
+.invoice {
+  .invoice-header {
+    padding: 25px 25px 15px;
+    h1 {
+      margin: 0;
+    }
+    .media {
+      .media-body {
+        font-size: 0.9em;
+        margin: 0;
       }
-      .media{
-        .media-body{
-          font-size:.9em;
-          margin:0;
-        }
-      }
-    }
-    .invoice-body{
-      border-radius:10px;
-      padding:25px;
-      background:#FFF;
-    }
-    .invoice-footer{
-      padding:15px;
-      font-size:0.9em;
-      text-align:right;
-      color:#999;
     }
   }
-  .logo{
-    max-height:70px;
-    border-radius:10px;
+  .invoice-body {
+    border-radius: 10px;
+    padding: 25px;
+    background: #fff;
   }
-  .dl-horizontal{
-    margin:0;
-    dt{
-          float: left;
-      width: 80px;
-      overflow: hidden;
-      clear: left;
-      text-align: right;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-    dd{
-      margin-left:90px;
-    }
-  }
-  .rowamount{
-    padding-top:15px !important;
-  }
-  .rowtotal{
-    font-size:1.3em;
-  }
-  .colfix{
-    width:12%;
-  }
-  .mono{
-    font-family:monospace;
-  }
-  .tdx{
+  .invoice-footer {
+    padding: 15px;
+    font-size: 0.9em;
     text-align: right;
+    color: #999;
   }
-  .lineTax {
-    border-bottom:1pt dotted black;
-  }
-  #errorCntr {
-    width: 80%;
-    border: 2px solid red;
-    padding: 15px 15px 15px 15px;
-    margin: 20px 20px 20px 20px;
-    background: #A4D3EE;
-    overflow: visible;
-    position: relative;
-  }
-  
-  #errClsBtn {
-      position: absolute;
-      background: red;
-      color: white;
-      top: -10px;
-      right: -10px;
-  }
-  ul {
-    list-style: none; /* Remove list bullets */
-    padding: 0;
-    margin: 0;
 }
-.pat{
-  color:gray;
+.logo {
+  max-height: 70px;
+  border-radius: 10px;
 }
-.infoOrder{
-  padding:15px;
-  font-size:0.9em;
-  text-align:center;
-  color:#999;
+.dl-horizontal {
+  margin: 0;
+  dt {
+    float: left;
+    width: 80px;
+    overflow: hidden;
+    clear: left;
+    text-align: right;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  dd {
+    margin-left: 90px;
+  }
+}
+.rowamount {
+  padding-top: 15px !important;
+}
+.rowtotal {
+  font-size: 1.3em;
+}
+.colfix {
+  width: 12%;
+}
+.mono {
+  font-family: monospace;
+}
+.tdx {
+  text-align: right;
+}
+.lineTax {
+  border-bottom: 1pt dotted black;
+}
+.errorCntr {
+  width: 90%;
+  border: 1px solid rgba(253, 89, 89, 0.74);
+  padding: 1.2rem;
+  margin: 1rem auto;
+  background: #a4d3ee;
+  overflow: visible;
+  position: relative;
+  border-radius: 1rem;
+}
+
+.errClsBtn {
+  position: absolute;
+  background: red;
+  color: white;
+  top: -10px;
+  right: -10px;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 2rem;
+  border: 1px solid #fff;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+ul {
+  list-style: none; /* Remove list bullets */
+  padding: 0;
+  margin: 0;
+}
+.pat {
+  color: gray;
+}
+.infoOrder {
+  padding: 15px;
+  font-size: 0.9em;
+  text-align: center;
+  color: #999;
 }
 .flashbutton {
-  background-color: #004A7F;
+  background-color: #004a7f;
   -webkit-border-radius: 10px;
   border-radius: 10px;
   border: none;
-  color: #FFFFFF;
+  color: #ffffff;
   cursor: pointer;
   display: inline-block;
   font-family: Arial;
@@ -110,27 +117,63 @@
   animation: glowing 1500ms infinite;
 }
 @-webkit-keyframes glowing {
-  0% { background-color: #B20000; -webkit-box-shadow: 0 0 3px #B20000; }
-  50% { background-color: #FF0000; -webkit-box-shadow: 0 0 40px #FF0000; }
-  100% { background-color: #B20000; -webkit-box-shadow: 0 0 3px #B20000; }
+  0% {
+    background-color: #b20000;
+    -webkit-box-shadow: 0 0 3px #b20000;
+  }
+  50% {
+    background-color: #ff0000;
+    -webkit-box-shadow: 0 0 40px #ff0000;
+  }
+  100% {
+    background-color: #b20000;
+    -webkit-box-shadow: 0 0 3px #b20000;
+  }
 }
 
 @-moz-keyframes glowing {
-  0% { background-color: #B20000; -moz-box-shadow: 0 0 3px #B20000; }
-  50% { background-color: #FF0000; -moz-box-shadow: 0 0 40px #FF0000; }
-  100% { background-color: #B20000; -moz-box-shadow: 0 0 3px #B20000; }
+  0% {
+    background-color: #b20000;
+    -moz-box-shadow: 0 0 3px #b20000;
+  }
+  50% {
+    background-color: #ff0000;
+    -moz-box-shadow: 0 0 40px #ff0000;
+  }
+  100% {
+    background-color: #b20000;
+    -moz-box-shadow: 0 0 3px #b20000;
+  }
 }
 
 @-o-keyframes glowing {
-  0% { background-color: #B20000; box-shadow: 0 0 3px #B20000; }
-  50% { background-color: #FF0000; box-shadow: 0 0 40px #FF0000; }
-  100% { background-color: #B20000; box-shadow: 0 0 3px #B20000; }
+  0% {
+    background-color: #b20000;
+    box-shadow: 0 0 3px #b20000;
+  }
+  50% {
+    background-color: #ff0000;
+    box-shadow: 0 0 40px #ff0000;
+  }
+  100% {
+    background-color: #b20000;
+    box-shadow: 0 0 3px #b20000;
+  }
 }
 
 @keyframes glowing {
-  0% { background-color: #B20000; box-shadow: 0 0 3px #B20000; }
-  50% { background-color: #FF0000; box-shadow: 0 0 40px #FF0000; }
-  100% { background-color: #B20000; box-shadow: 0 0 3px #B20000; }
+  0% {
+    background-color: #b20000;
+    box-shadow: 0 0 3px #b20000;
+  }
+  50% {
+    background-color: #ff0000;
+    box-shadow: 0 0 40px #ff0000;
+  }
+  100% {
+    background-color: #b20000;
+    box-shadow: 0 0 3px #b20000;
+  }
 }
 .inputCode {
   width: 160px;

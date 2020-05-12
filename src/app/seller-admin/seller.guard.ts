@@ -5,13 +5,13 @@ import { mapRoutes } from "../mapRoutes";
 import {
   CanActivate,
   ActivatedRouteSnapshot,
-  RouterStateSnapshot
+  RouterStateSnapshot,
 } from "@angular/router";
 import { Observable } from "rxjs";
 import { SellerStaffService } from "../service/seller-staff.service";
 
 @Injectable({
-  providedIn: "root"
+  providedIn: "root",
 })
 export class SellerGuard implements CanActivate {
   user_features = null;
@@ -44,7 +44,7 @@ export class SellerGuard implements CanActivate {
         let found = false;
         if (!this.user_features) {
           return !!this.sellerStaffService.getUserFeatures(user.id).subscribe(
-            response => {
+            (response) => {
               this.user_features = response.features;
               found = this.checkUserFeatures(url);
               if (found) {
@@ -53,7 +53,7 @@ export class SellerGuard implements CanActivate {
                 this.router.navigate(["/tlgu-slr/access_denied"]);
               }
             },
-            err => console.log(err)
+            (err) => console.log(err)
           );
         } else {
           found = this.checkUserFeatures(url);
@@ -64,14 +64,14 @@ export class SellerGuard implements CanActivate {
           }
         }
       } else {
-        this.router.navigate(["/login/seller"]);
+        this.router.navigate(["/login"]);
       }
     } else if (this.authService.isLoggedIn()) {
       this.router.navigate([this.authService.defaultNavigationURL]);
       return false;
     } else {
       this.authService.redirectURL = url;
-      this.router.navigate(["/login/seller"]);
+      this.router.navigate(["/login"]);
       return false;
     }
     // Store the attempted URL for redirecting
@@ -80,7 +80,7 @@ export class SellerGuard implements CanActivate {
   checkUserFeatures(url) {
     let newUrl = this.refactorUrl(url);
     let found = false;
-    this.user_features.map(uf => {
+    this.user_features.map((uf) => {
       if (mapRoutes[newUrl] == uf.description) {
         found = true;
         return;
