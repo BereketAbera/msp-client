@@ -115,14 +115,14 @@
           <button [routerLink]="['details', user.id]" mat-menu-item>
             <span>Detail</span>
           </button>
-          <button *ngIf="showActivateAccount(user.status)" (click)="chageAccountStatus(user, 1)" mat-menu-item>
+          <button *ngIf="showActivateAccount(user.userStatus)" (click)="chageAccountStatus(user, 1)" mat-menu-item>
             <span>Activate Account</span>
           </button>
 
-          <button *ngIf="showDisablePrtlAccount(user.status)" (click)="chageAccountStatus(user, 2)" mat-menu-item>
+          <button *ngIf="showDisablePrtlAccount(user.userStatus)" (click)="chageAccountStatus(user, 2)" mat-menu-item>
             <span>Disable New Products</span>
           </button>
-          <button *ngIf="showDisableAccount(user.status)" (click)="chageAccountStatus(user, 3)" mat-menu-item>
+          <button *ngIf="showDisableAccount(user.userStatus)" (click)="chageAccountStatus(user, 3)" mat-menu-item>
             <span>Disable Account</span>
           </button>
         </mat-menu>
