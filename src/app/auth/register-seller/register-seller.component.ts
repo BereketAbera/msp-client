@@ -40,7 +40,7 @@ export class RegisterSellerComponent implements OnInit {
     confirmPassword: ["", Validators.required],
     agreed: [false, Validators.required],
     role: ["SELLER", Validators.required],
-    subCategoryId: ["", Validators.required],
+    // subCategoryId: ["", Validators.required],
   });
 
   constructor(
@@ -54,7 +54,7 @@ export class RegisterSellerComponent implements OnInit {
   ngOnInit() {
     this.route.data.subscribe(
       (data: { categories: Category[]; states: State[] }) => {
-        this.categories = data.categories;
+        // this.categories = data.categories;
         this.states = data.states;
         // console.log(data);
       }
