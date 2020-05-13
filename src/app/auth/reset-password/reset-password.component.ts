@@ -15,7 +15,7 @@ export class ResetPasswordComponent implements OnInit {
   showError: boolean = false;
 
   resetForm = this.fb.group({
-    email: ["", [Validators.required, Validators.email]],
+    email: ["", [Validators.required]],
   });
   showSuccess = false;
 
@@ -53,8 +53,6 @@ export class ResetPasswordComponent implements OnInit {
   getErrorMessage() {
     return this.resetForm.get("email").hasError("required")
       ? "You must enter a value"
-      : this.resetForm.get("email").hasError("email")
-      ? "Not a valid email"
       : "";
   }
 }

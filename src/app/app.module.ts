@@ -31,7 +31,7 @@ import { PublicComponent } from "./components/public/public.component";
 
 import { httpInterceptorProviders } from "./http-interceptors/index";
 import { ProductComponent } from "./components/product/product.component";
-import { ServiceWorkerModule } from "@angular/service-worker";
+// import { ServiceWorkerModule } from "@angular/service-worker";
 import { environment } from "../environments/environment";
 import { CartComponent } from "./components/cart/cart.component";
 import { CartExpiredDialogComponent } from "./components/cart-expired-dialog/cart-expired-dialog.component";
@@ -82,9 +82,9 @@ import { CustomNotificationComponent } from "./components/custom-notification/cu
     RoutingModule,
     // DragDropDirective,
 
-    ServiceWorkerModule.register("ngsw-worker.js", {
-      enabled: environment.production,
-    }),
+    // ServiceWorkerModule.register("ngsw-worker.js", {
+    //   enabled: environment.production,
+    // }),
   ],
   entryComponents: [
     AppComponent,

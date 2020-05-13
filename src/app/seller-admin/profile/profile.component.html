@@ -5,23 +5,23 @@
     <h2 class="profile__company-name">{{ profile?.companyName }}</h2>
     <div class="profile__address-phonenumber">
       <div class="profile__address">
-        <i class="far fa-dot-circle profile__icon"></i>
+        <i class="fad fa-dot-circle profile__icon"></i>
         <span>{{ profile?.companyAddress }}</span>
       </div>
       <div class="profile__phonenumber">
-        <i class="fas fa-phone-alt profile__icon"></i>
+        <i class="fad fa-phone-alt profile__icon"></i>
         <span>{{ profile?.phoneNumber }}</span>
       </div>
     </div>
     <div class="profile__website">
-      <i class="far fa-share-square profile__icon"></i>
+      <i class="fad fa-share-square profile__icon"></i>
 
       <a target="_blank" href="https://github.com/" class="profile__link"
         >Website: {{ profile?.websiteURL }}</a
       >
     </div>
     <div class="profile__create-date">
-      <i class="far fa-life-ring profile__icon"></i
+      <i class="fad fa-life-ring profile__icon"></i
       ><span>Registered: {{ profile?.createdAt | date }}</span>
     </div>
 

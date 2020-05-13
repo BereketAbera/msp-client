@@ -5,24 +5,24 @@
 
       <div class="product-detail__image-overlay">
         <div class="product-detail__product-name">
-          <!-- <i class="fas fa-chevron-right product-detail__list-icon"></i> -->
+          <!-- <i class="fad fa-chevron-right product-detail__list-icon"></i> -->
           <h3 class="product-detail__name-text">{{ product?.name }}</h3>
         </div>
         <div class="product-detail__reserve-order">
           <div class="reserve_time">
-            <i class="fas fa-chevron-right product-detail__list-icon"></i>
+            <i class="fad fa-chevron-right product-detail__list-icon"></i>
             <h5 class="product-detail__reserve-order-text">Reserve Order</h5>
           </div>
 
           <div class="product-detail__reserve-order-time">
             <h6 class="product-detail__reserve-order-spec">
-              <i class="far fa-clock product-detail__time-icon"></i>
+              <i class="fad fa-clock product-detail__time-icon"></i>
               <span class="product-detail__reserve-order-time-text"
                 >From - {{ product?.offerStartTime }}</span
               >
             </h6>
             <h6 class="product-detail__reserve-order-spec">
-              <i class="far fa-clock product-detail__time-icon"></i>
+              <i class="fad fa-clock product-detail__time-icon"></i>
               <span class="product-detail__reserve-order-time-text"
                 >To - {{ product?.offerEndTime }}</span
               >
@@ -31,19 +31,19 @@
         </div>
         <div class="product-detail__reserve-order">
           <div class="reserve_time">
-            <i class="fas fa-chevron-right product-detail__list-icon"></i>
+            <i class="fad fa-chevron-right product-detail__list-icon"></i>
             <h5 class="product-detail__reserve-order-text">Service Time</h5>
           </div>
 
           <div class="product-detail__reserve-order-time">
             <h6 class="product-detail__reserve-order-spec">
-              <i class="far fa-clock product-detail__time-icon"></i>
+              <i class="fad fa-clock product-detail__time-icon"></i>
               <span class="product-detail__reserve-order-time-text"
                 >From - {{ product?.pickupStartTime }}</span
               >
             </h6>
             <h6 class="product-detail__reserve-order-spec">
-              <i class="far fa-clock product-detail__time-icon"></i>
+              <i class="fad fa-clock product-detail__time-icon"></i>
               <span class="product-detail__reserve-order-time-text"
                 >To - {{ product?.pickupEndTime }}</span
               >
@@ -52,7 +52,7 @@
         </div>
         <div class="product-detail__reserve-order">
           <div class="reserve_time">
-            <i class="fas fa-chevron-right product-detail__list-icon"></i>
+            <i class="fad fa-chevron-right product-detail__list-icon"></i>
             <h5 class="product-detail__reserve-order-text">
               {{ product?.currentQuantity }} Item Remaining
             </h5>
@@ -71,11 +71,11 @@
     <div class="product-detail__middle-container">
       <div class="product-detail__middle-left">
         <div class="product-detail__shop">
-          <i class="fas fa-store-alt product-detail__address-icon"></i>
+          <i class="fad fa-store-alt product-detail__address-icon"></i>
           <h5 class="product-detail__shop-name">{{ product?.shopName }}</h5>
         </div>
         <div class="product-detail__shop">
-          <i class="fas fa-map-marker-alt product-detail__address-icon"></i>
+          <i class="fad fa-map-marker-alt product-detail__address-icon"></i>
           <h5 class="product-detail__address-name">
             {{ product?.shopAddress }}, {{ product?.shopCity }}
           </h5>
@@ -132,7 +132,7 @@
         class="product-detail__button"
         (click)="addToCart()"
       >
-        <i class="far fa-cart-plus product-detail__icon"></i>
+        <i class="fad fa-cart-plus product-detail__icon"></i>
         <span>Add To Reservation</span>
       </button>
       <button
