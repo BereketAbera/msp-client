@@ -11,7 +11,7 @@
 
   <div class="card">
     <mat-tab-group class="card__tab" [selectedIndex]="selectedIndex">
-      <mat-tab label="SIGN IN" *ngIf="showSingIn">
+      <mat-tab label="SIGN IN">
         <form class="form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
           <div class="example-container">
             <div *ngIf="showError" class="errorCntr">

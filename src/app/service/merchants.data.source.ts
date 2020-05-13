@@ -21,16 +21,16 @@ export class MerchantsDataSource implements DataSource<User> {
 
     }
 
-    filterSeller(companyName,city,state, status, pageIndex, pageSize,sortOrder) {
+    filterSeller(companyName,city,state, status, pageIndex, pageSize,sortOrder,sortBy) {
         this.loadingSubject.next(true);
 
         this.userService.filterSeller(companyName,city,state,status,
-            pageIndex, pageSize,sortOrder).pipe(
+            pageIndex, pageSize,sortOrder,sortBy).pipe(
                 catchError(() => of([])),
                 finalize(() => this.loadingSubject.next(false))
             )
             .subscribe(products => {
-                console.log(products,'psdf')
+                // console.log(products,'psdf')
                 this.count = this.userService.countSubject.value;
                 this.productsSubject.next(products);
             });

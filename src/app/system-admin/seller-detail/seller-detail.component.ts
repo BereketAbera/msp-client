@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/app/service/user.service';
 import { State } from 'src/app/model/state';
-
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-seller-detail',
   templateUrl: './seller-detail.component.html',
@@ -13,7 +13,7 @@ export class SellerDetailComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
     private userService: UserService,
-    private router: Router, ) { }
+    private router: Router,private location: Location ) { }
 
   ngOnInit() {
     this.route.data.subscribe((data) => {
@@ -22,7 +22,8 @@ export class SellerDetailComponent implements OnInit {
     });
   }
   gotoSeller() {
-    this.router.navigate(["../../"], { relativeTo: this.route });
+    this.location.back();
+    // this.router.navigate(["../../"], { relativeTo: this.route });
 
   }
 

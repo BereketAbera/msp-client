@@ -20,7 +20,7 @@ import { SaveProgressComponent } from "../../shared/save-progress/save-progress.
 import { User } from "src/app/model/user";
 import { Validators, FormBuilder, FormGroup } from "@angular/forms";
 import { State } from "src/app/model/state";
-
+import { Location } from '@angular/common';
 @Component({
   selector: "app-users-admin",
   templateUrl: "./users-admin.component.html",
@@ -30,7 +30,7 @@ export class UsersAdminComponent implements OnInit, AfterViewInit {
   errors;
   showError: boolean = false;
   errorMessage = "";
-
+  detail = false;
   dataSource: MerchantsDataSource;
 
   displayedColumns = [
@@ -45,7 +45,7 @@ export class UsersAdminComponent implements OnInit, AfterViewInit {
     "remove",
   ];
   filterForm: FormGroup;
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatPaginator,{read:MatPaginator}) paginator: MatPaginator;
 
   @ViewChild(MatSort) sort: MatSort;
 
@@ -53,7 +53,6 @@ export class UsersAdminComponent implements OnInit, AfterViewInit {
   states: any[];
   page: number;
 
- 
   statuses = [
     { value: "", name: "All" },
     { value: 1, name: "ACTIVE" },
@@ -61,24 +60,53 @@ export class UsersAdminComponent implements OnInit, AfterViewInit {
     { value: 2, name: "PRODUCT DISABLED" },
     { value: 3, name: "ACCOUNT DISABLED" },
   ];
+  seller: any;
+  sorted: "";
+  orders: "";
+
   constructor(
     public snackBar: MatSnackBar,
     public dialog: MatDialog,
     private route: ActivatedRoute,
     private userService: UserService,
     private router: Router,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private location: Location
   ) { }
 
   ngOnInit() {
     this.dataSource = new MerchantsDataSource(this.userService);
     //this.dataSource.loadMerchants(1, "", "asc", 0, 10);
-    this.dataSource.filterSeller("", "", "", "", 0, 10, "desc");
+
+
     this.route.data.subscribe((data: { states: State[] }) => {
       this.states = data.states;
-      console.log(this.states)
-      this.states.unshift({id: "", name: "", abbreviation: "All"})
+      // console.log(this.states)
+      this.states.unshift({ id: "", name: "", abbreviation: "All" })
     });
+
+    this.route.queryParams.subscribe(
+      data => {
+        // console.log(data);
+        // console.log(this.paginator);
+        if (this.paginator) {
+          this.paginator.pageIndex = +data.page - 1 >= 0 ? +data.page : 0;
+          this.dataSource.filterSeller("", "", "", "", this.paginator.pageIndex, 3, "desc", "");
+        } else {
+          this.dataSource.filterSeller("", "", "", "", 0, 3, "desc", "");
+          let path = this.location.path();
+          path = path.concat(`?page=${this.paginator.pageIndex}`);
+          this.location.go(path);
+        }
+
+       
+
+
+
+
+      },
+      err => console.log(err)
+    );
     // console.log(this.dataSource);
     this.filterForm = this.formBuilder.group({
       companyName: [""],
@@ -98,15 +126,32 @@ export class UsersAdminComponent implements OnInit, AfterViewInit {
 
   loadMerchantsPage() {
     var val = this.filterForm.value;
+    console.log(this.sort)
     this.dataSource.filterSeller(
       val.companyName || "",
       val.city || "",
       val.state || "",
-      val.status || "", 
+      val.status,
       this.paginator.pageIndex,
       this.paginator.pageSize,
       this.sort.direction,
+      this.sort.active
     );
+    let path = this.location.path();
+    if (path.indexOf('page') >= 0 && this.paginator.pageIndex <= 10) {
+      path = path.replace(/.$/, this.paginator.pageIndex.toString());
+
+      this.location.go(path);
+    } else if (path.indexOf('page') >= 0 && this.paginator.pageIndex >= 10) {
+      path = path.replace(/page=[0-9][0-9]/, `page=${this.paginator.pageIndex.toString()}`);
+
+      this.location.go(path);
+    } else {
+      // path = path.concat(`?sort=${this.sort.active}&order=${this.sort.direction}`)
+      path = path.concat(`?page=${this.paginator.pageIndex}`);
+
+      this.location.go(path);
+    }
   }
 
   getStatus(status: number) {
@@ -147,9 +192,8 @@ export class UsersAdminComponent implements OnInit, AfterViewInit {
           height: "180px",
           data: { title: "", question: "" },
         });
-        this.userService.changeUserStatus(user.userId, status).subscribe(
+        this.userService.changeUserStatus(user.sellerProfileId, status).subscribe(
           (res) => {
-            console.log(res)
             if (res["success"]) {
               progressDialogRef.close();
               let snackBarRef = this.snackBar.open(
@@ -165,9 +209,9 @@ export class UsersAdminComponent implements OnInit, AfterViewInit {
                 this.dataSource.filterSeller(val.companyName || "",
                   val.city || "",
                   val.state || "",
-                  val.status || "", this.paginator.pageIndex,
+                  val.status, this.paginator.pageIndex,
                   this.paginator.pageSize,
-                  "desc");
+                  "desc", this.sort.active);
               });
               //this.router.navigate(["../"], { relativeTo: this.route });
             } else {
@@ -187,19 +231,27 @@ export class UsersAdminComponent implements OnInit, AfterViewInit {
     this.showError = false;
   }
 
-  // resetField() {
-  //   this.filterForm.reset();
-  // }
-
   filterSeller() {
     var val = this.filterForm.value;
-     console.log(val)
     this.dataSource.filterSeller(val.companyName || "",
       val.city || "",
       val.state || "",
-      val.status, this.paginator.pageIndex,
-      this.paginator.pageSize,
-      "desc");
+      val.status, 0,3,
+      "desc", "");
   }
   onSubmit() { }
+
+  getDetail(id, $event) {
+    this.userService.getOneSellerInfo(id).subscribe(
+      data => {
+        this.seller = data[0];
+        this.detail = true;
+        console.log(this.seller, 'sdf');
+      }
+    );
+  }
+
+  cancelAction($event) {
+    this.detail = false;
+  }
 }

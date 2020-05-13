@@ -12,7 +12,6 @@ export class SellerInfoResolverService {
  
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any>  {
     let id = route.paramMap.get('id');
-    console.log(id)
     return this.userSerice.getOneSellerInfo(id);
   }
 }

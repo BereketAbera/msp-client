@@ -142,7 +142,7 @@ export class UserService {
   }
   changeUserStatus(id: number, status: number) {
     return this.http
-      .post(accountAPI + "/seller", { userId: id, status: status })
+      .post(accountAPI + "/seller", { sellerProfileId: id, status: status })
       .pipe(catchError(this.handleError));
   }
 
@@ -153,7 +153,8 @@ export class UserService {
     status,
     pageNumber = 0,
     pageSize = 5,
-    sortOrder
+    sortOrder,
+    sortedBy
   ): Observable<any[]> {
     return this.http
       .get(accountAPI + "/seller/filter", {
@@ -164,7 +165,8 @@ export class UserService {
           .set("status", status)
           .set("pageNumber", pageNumber.toString())
           .set("pageSize", pageSize.toString())
-          .set("sortOrder", sortOrder),
+          .set("sortOrder", sortOrder)
+          .set("sortedBy", sortedBy),
       })
       .pipe(
         map((res) => {

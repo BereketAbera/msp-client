@@ -1,4 +1,4 @@
-<div>
+<div  [class.show]="detail" >
   <div class="spinner-container" *ngIf="dataSource.loading$ | async">
     <mat-spinner></mat-spinner>
   </div>
@@ -64,23 +64,23 @@
   </div>
   <mat-table class="mat-elevation-z8" [dataSource]="dataSource" matSort matSortActive="updatedAt"
     matSortDirection="desc" matSortDisableClear matSortDisableClear>
-    <ng-container matColumnDef="email">
-      <mat-header-cell *matHeaderCellDef>Account</mat-header-cell>
+    <ng-container matColumnDef="email" >
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Account</mat-header-cell>
 
       <mat-cell *matCellDef="let user">{{ user.email }}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="companyName">
-      <mat-header-cell *matHeaderCellDef>Company Name</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Company Name</mat-header-cell>
       <mat-cell *matCellDef="let user">{{ user.companyName }}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="address">
-      <mat-header-cell *matHeaderCellDef>City</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>City</mat-header-cell>
       <mat-cell *matCellDef="let user">{{ user.city }}</mat-cell>
     </ng-container>
     
     <ng-container matColumnDef="state">
-      <mat-header-cell *matHeaderCellDef>State</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>State</mat-header-cell>
       <mat-cell *matCellDef="let user">{{  user.state }}</mat-cell>
     </ng-container>
 
@@ -102,7 +102,7 @@
     <ng-container matColumnDef="status">
       <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
 
-      <mat-cell *matCellDef="let user">{{ getStatus(user.userStatus) }}</mat-cell>
+      <mat-cell *matCellDef="let user">{{ getStatus(user.status) }}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="remove">
@@ -112,17 +112,20 @@
           <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
-          <button [routerLink]="['details', user.id]" mat-menu-item>
+          <!-- <button [routerLink]="['details', user.id]" mat-menu-item>
+            <span>Detail</span>
+          </button> -->
+          <button (click)="getDetail(user.id,event)" mat-menu-item>
             <span>Detail</span>
           </button>
-          <button *ngIf="showActivateAccount(user.userStatus)" (click)="chageAccountStatus(user, 1)" mat-menu-item>
+          <button *ngIf="showActivateAccount(user.status)" (click)="chageAccountStatus(user, 1)" mat-menu-item>
             <span>Activate Account</span>
           </button>
 
-          <button *ngIf="showDisablePrtlAccount(user.userStatus)" (click)="chageAccountStatus(user, 2)" mat-menu-item>
+          <button *ngIf="showDisablePrtlAccount(user.status)" (click)="chageAccountStatus(user, 2)" mat-menu-item>
             <span>Disable New Products</span>
           </button>
-          <button *ngIf="showDisableAccount(user.userStatus)" (click)="chageAccountStatus(user, 3)" mat-menu-item>
+          <button *ngIf="showDisableAccount(user.status)" (click)="chageAccountStatus(user, 3)" mat-menu-item>
             <span>Disable Account</span>
           </button>
         </mat-menu>
@@ -132,5 +135,80 @@
 
     <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
   </mat-table>
-  <mat-paginator [length]="dataSource.count" [pageSize]="10" [pageSizeOptions]="[10,20, 30,50]"></mat-paginator>
+  <mat-paginator [length]="dataSource.count" [pageSize]="3" [pageSizeOptions]="[3,20, 30,50]"></mat-paginator>
+</div>
+
+
+
+<div [class.show]="!detail" class="container ">
+  <mat-card class="orders">
+       <h2 class="orders__header">  {{ seller?. companyName}}</h2>
+    <div class="orders___card">
+    </div>
+  </mat-card>
+
+  <mat-card class="orders">
+    <h2 class="orders__headers">Basic Information</h2>
+    <div class="orders__content">
+      <ul>
+        <li>
+          <span class="name">
+            <mat-icon>person</mat-icon> <span class="name"> {{seller?.firstName +" "+ seller?.lastName}} </span>
+          </span>
+          <span class="name">
+            <mat-icon>phone_number</mat-icon> <span class="name"> {{seller?.phoneNumber}} </span>
+          </span>
+          <span class="name">
+            <mat-icon>location_on</mat-icon> <span class="name"> {{seller?.companyAddress}} </span>
+          </span>
+          <span class="name">
+            <mat-icon>website</mat-icon> <span class="name"> {{seller?.websiteURL}} </span>
+          </span>
+        </li>
+      </ul>
+    </div>
+
+  </mat-card>
+
+  <mat-card class="orders">
+    <h2 class="orders__headers">More Detail</h2>
+
+    <div class="orders__content">
+      <ul>
+        <li>
+          <span class="name">
+            <mat-icon>mail</mat-icon> <span class="name"> <b>Email : </b> {{seller?.email}} </span>
+          </span>
+          <span class="name">
+            <mat-icon>access_time</mat-icon> <span class="name"> <b>Registred at :</b>
+              {{seller?.createdAt | date:'medium' }} </span>
+          </span>
+ 
+          <span class="name">
+            <ul>
+              <b>Locations </b>
+              <li>
+                <span class="name">
+                  <mat-icon>location_city</mat-icon> <span class="name"> <b>City : </b> {{seller?.city}} </span>
+                </span>
+                <span class="name">
+                  <mat-icon>place</mat-icon> <span class="name"> <b>State :</b>
+                    {{seller?.state }}</span>
+                </span>
+                <span class="name">
+                    <mat-icon>pin_drop</mat-icon> <span class="name"> <b>Zipcode :</b>
+                      {{seller?.zipcode }}</span>
+                  </span>
+                
+              </li>
+            </ul>
+          </span>
+
+        </li>
+      </ul>
+    </div>
+    <mat-card-actions>
+      <button type="button" mat-flat-button color="accent" (click)="cancelAction(event)">Cancel</button>
+    </mat-card-actions>
+  </mat-card>
 </div>
