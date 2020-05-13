@@ -115,7 +115,7 @@
           <!-- <button [routerLink]="['details', user.id]" mat-menu-item>
             <span>Detail</span>
           </button> -->
-          <button (click)="getDetail(user.id,event)" mat-menu-item>
+          <button (click)="getDetail(user.id)" mat-menu-item>
             <span>Detail</span>
           </button>
           <button *ngIf="showActivateAccount(user.status)" (click)="chageAccountStatus(user, 1)" mat-menu-item>
@@ -208,7 +208,7 @@
       </ul>
     </div>
     <mat-card-actions>
-      <button type="button" mat-flat-button color="accent" (click)="cancelAction(event)">Cancel</button>
+      <button type="button" mat-flat-button color="accent" (click)="cancelAction()">Cancel</button>
     </mat-card-actions>
   </mat-card>
 </div>

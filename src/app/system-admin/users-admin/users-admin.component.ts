@@ -241,7 +241,7 @@ export class UsersAdminComponent implements OnInit, AfterViewInit {
   }
   onSubmit() { }
 
-  getDetail(id, $event) {
+  getDetail(id) {
     this.userService.getOneSellerInfo(id).subscribe(
       data => {
         this.seller = data[0];
@@ -251,7 +251,7 @@ export class UsersAdminComponent implements OnInit, AfterViewInit {
     );
   }
 
-  cancelAction($event) {
+  cancelAction() {
     this.detail = false;
   }
 }
