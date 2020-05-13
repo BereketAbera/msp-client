@@ -58,8 +58,9 @@ export class ShopListComponent implements OnInit, AfterViewInit {
     try {
       let status = this.authService.getMyStatus();
       let userStatus = parseInt(status.toString());
+      this.router.navigate(["./newshp"], { relativeTo: this.route });
       if (userStatus == 1)
-        this.router.navigate(["./newshp"], { relativeTo: this.route });
+      this.router.navigate(["./newshp"], { relativeTo: this.route });
       else {
         this.showError = true;
         this.errors = [

@@ -91,9 +91,9 @@ export class UsersAdminComponent implements OnInit, AfterViewInit {
         // console.log(this.paginator);
         if (this.paginator) {
           this.paginator.pageIndex = +data.page - 1 >= 0 ? +data.page : 0;
-          this.dataSource.filterSeller("", "", "", "", this.paginator.pageIndex, 3, "desc", "");
+          this.dataSource.filterSeller("", "", "", "", this.paginator.pageIndex, 10, "desc", "");
         } else {
-          this.dataSource.filterSeller("", "", "", "", 0, 3, "desc", "");
+          this.dataSource.filterSeller("", "", "", "", 0, 10, "desc", "");
           let path = this.location.path();
           path = path.concat(`?page=${this.paginator.pageIndex}`);
           this.location.go(path);
@@ -236,7 +236,7 @@ export class UsersAdminComponent implements OnInit, AfterViewInit {
     this.dataSource.filterSeller(val.companyName || "",
       val.city || "",
       val.state || "",
-      val.status, 0,3,
+      val.status, 0,10,
       "desc", "");
   }
   onSubmit() { }
