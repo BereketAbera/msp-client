@@ -6,9 +6,10 @@
       <div class="list">
         <span class="list__header"> Product </span>
         <span class="list__details">
-          <mat-icon style="color:#cf8c9c" class="material-icons md-18"
-            >subdirectory_arrow_right</mat-icon
-          >
+          <i
+            class="fad fa-angle-right table__icon-2"
+            style="color: #cf8c9c;"
+          ></i>
           {{ order.product.name }}
         </span>
       </div>
@@ -16,7 +17,7 @@
       <div class="list">
         <span class="list__header"> Order Date </span>
         <span class="list__details">
-          <mat-icon style="color:#cf8c9c">access_time</mat-icon>
+          <i class="fad fa-stopwatch table__icon" style="color: #cf8c9c;"></i>
           {{ order.purchaseTime | date: "short" }}</span
         >
       </div>
@@ -24,15 +25,16 @@
       <div class="list">
         <span class="list__header"> Service Time </span>
         <span class="list__details">
-          <mat-icon style="color:#cf8c9c">access_time</mat-icon> Starting:
-          {{ order.pickupStartTime }} - Ending: {{ order.pickupEndTime }}
+          <i class="fad fa-stopwatch table__icon" style="color: #cf8c9c;"></i>
+          Starting: {{ order.pickupStartTime }} - Ending:
+          {{ order.pickupEndTime }}
         </span>
       </div>
 
       <div class="list">
         <span class="list__header"> Discounted Unit Price </span>
         <span class="list__details">
-          <mat-icon style="color:#cf8c9c">attach_money</mat-icon>
+          <i class="fad fa-dollar-sign table__icon" style="color: #cf8c9c;"></i>
           {{ order.discountedPrice | currency }}</span
         >
       </div>
@@ -40,9 +42,10 @@
       <div class="list">
         <span class="list__header"> Quantity </span>
         <span class="list__details">
-          <mat-icon style="color:#cf8c9c" class="material-icons md-18"
-            >subdirectory_arrow_right</mat-icon
-          >
+          <i
+            class="fad fa-angle-right table__icon-2"
+            style="color: #cf8c9c;"
+          ></i>
           {{ order.quantity }}
         </span>
       </div>
@@ -50,9 +53,10 @@
       <div class="list">
         <span class="list__header"> Total </span>
         <span class="list__details">
-          <mat-icon style="color:#cf8c9c" class="material-icons md-18"
-            >subdirectory_arrow_right</mat-icon
-          >
+          <i
+            class="fad fa-angle-right table__icon-2"
+            style="color: #cf8c9c;"
+          ></i>
           {{ order.quantity * order.discountedPrice | currency }} plus any tax
         </span>
       </div>

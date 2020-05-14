@@ -260,47 +260,48 @@
     </div>
   </mat-card>
 
-  <mat-card  class="orders">
+  <mat-card class="orders">
     <h2 class="orders__headers">Stores</h2>
 
-    <div *ngIf='shopCount > 0'>
-        <div  class="orders__content" *ngFor="let shop of shops">
-            <ul>
-              <li>
-                <span class="name">
-                    <i class="fad fa-store table__icon"></i>  <span class="name"> <b>Name : </b> {{shop?.name}} </span>
-                </span>
-                <span class="name">
-                    <i class="fad fa-stopwatch table__icon"></i> <span class="name"> <b>Registred at :</b>
-                    {{shop?.createdAt | date:'medium' }} </span>
-                </span>
-       
-                <span class="name">
-                  <ul>
-                   
-                    <li class="shop_locations">
-                        Store Location 
-                      <span class="name">
-                          <i class="fad fa-map-marker table__icon"></i> <span class="name"> <b>City : </b> {{shop?.city}} </span>
-                      </span>
-                      <span class="name">
-                           <span class="name"> <b>State :</b>
-                          {{shop?.state }}</span>
-                      </span>
-                      <span class="name">
-                           <span class="name"> <b>Zipcode :</b>
-                            {{shop?.zipCode }}</span>
-                      </span>
-                      
-                    </li>
-                  </ul>
-                </span>
-      
-              </li>
-            </ul>
-          </div>
+    <div *ngIf="shopCount > 0">
+      <div class="orders__content" *ngFor="let shop of shops">
+        <ul>
+          <li>
+            <span class="name">
+              <i class="fad fa-store table__icon"></i>
+              <span class="name"> <b>Name : </b> {{ shop?.name }} </span>
+            </span>
+            <span class="name">
+              <i class="fad fa-stopwatch table__icon"></i>
+              <span class="name">
+                <b>Registred at :</b> {{ shop?.createdAt | date: "medium" }}
+              </span>
+            </span>
+
+            <span class="name">
+              <ul>
+                <li class="shop_locations">
+                  Store Location
+                  <span class="name">
+                    <i class="fad fa-map-marker table__icon"></i>
+                    <span class="name"> <b>City : </b> {{ shop?.city }} </span>
+                  </span>
+                  <span class="name">
+                    <span class="name"> <b>State :</b> {{ shop?.state }}</span>
+                  </span>
+                  <span class="name">
+                    <span class="name">
+                      <b>Zipcode :</b> {{ shop?.zipCode }}</span
+                    >
+                  </span>
+                </li>
+              </ul>
+            </span>
+          </li>
+        </ul>
+      </div>
     </div>
-    <div *ngIf='shopCount == 0'>
+    <div *ngIf="shopCount == 0">
       <span class="NoResult">No Registred Stores</span>
     </div>
     <mat-card-actions>
