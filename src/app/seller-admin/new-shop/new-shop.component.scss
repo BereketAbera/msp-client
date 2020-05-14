@@ -58,7 +58,7 @@ ul {
   padding: 0;
   margin: 0;
 }
-p{
+p {
   font-size: 1.4rem;
 }
 
@@ -97,24 +97,37 @@ p{
 @media only screen and (min-width: 600px) {
   .add-shop {
     &__container {
-      width: 60%;
+      width: 80%;
       // padding: 3rem;
-      .card{
-        padding:2rem 6rem;
+      .card {
+        padding: 2rem 6rem;
       }
     }
 
     &__address {
       flex-direction: row;
+      justify-content: space-between;
     }
 
     &__input {
-      margin-right: 1rem;
+      width: 30%;
+      &:not(:last-child) {
+        margin-right: 1rem;
+      }
     }
   }
 
   .zipstatecity {
-    width: auto;
-    max-width: 16rem;
+    // width: auto;
+    // max-width: 16rem;
+    width: 30%;
+  }
+}
+
+@media only screen and (min-width: 900px) {
+  .add-shop {
+    &__container {
+      width: 60%;
+    }
   }
 }

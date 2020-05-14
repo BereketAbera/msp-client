@@ -4,10 +4,10 @@
   margin: 0 auto;
 }
 
-.contin{
+.contin {
   display: block;
 }
-.show{
+.show {
   display: none;
 }
 .frmDiv {
@@ -18,7 +18,7 @@
   margin: 20px auto 0 auto;
   display: block;
 }
-.mat-column-remove{
+.mat-column-remove {
   max-width: 3rem;
   margin-right: 4px;
 }
@@ -42,33 +42,39 @@
   max-width: 10rem;
 }
 
-.filter{
+.mat-row {
+  &:hover {
+    background-color: #ddd;
+  }
+}
+
+.filter {
   display: flex;
   justify-content: center;
-  margin:1rem;
-  form{
+  margin: 1rem;
+  form {
     display: flex;
-    width:100%;
+    width: 100%;
   }
-  &-body{
-    padding:0 2rem;
+  &-body {
+    padding: 0 2rem;
     font-size: 1.4rem;
   }
-  &-status{
+  &-status {
     display: flex;
     flex-direction: row;
     align-items: center;
     padding: 0 1rem;
     font-size: 1.3rem;
-    .items{
-      padding:0 1rem;
+    .items {
+      padding: 0 1rem;
     }
   }
-  &-button{
+  &-button {
     display: flex;
     align-items: center;
   }
-  &-state{
+  &-state {
     max-width: 15rem;
   }
 }
@@ -125,50 +131,51 @@ ul {
 .red-icon {
   fill: red;
 }
-li {list-style-type: none;}
+li {
+  list-style-type: none;
+}
 
-.orders{
-    display: flex;
+.orders {
+  display: flex;
+  justify-content: center;
+  border: 1px #ddd solid;
+  width: 85%;
+  margin: 1rem 5rem;
+  flex-direction: column;
+  &__header {
+    font-size: 1.9rem;
     justify-content: center;
-    border:1px #ddd solid;
-    width:85%;
-    margin:1rem 5rem;
+    display: flex;
+  }
+
+  &__card {
+    display: flex;
     flex-direction: column;
-    &__header{
-        font-size: 1.9rem;
-        justify-content: center;
-        display: flex;
+  }
+
+  &__content {
+    display: flex;
+    justify-content: space-between;
+
+    .name {
+      display: flex;
+      align-self: center;
+      font-size: 1.3rem;
+      padding: 0.2rem 1rem;
+
+      b {
+        margin-right: 0.7rem;
+      }
     }
-
-    &__card{
-        display: flex;
-        flex-direction: column;
+    .list {
+      font-size: 1.3rem;
+      // font-style: italic;
+      padding: 0 1rem;
     }
-
-    &__content{
-        display: flex;
-        justify-content: space-between;
-
-        .name{
-            display: flex;
-            align-self: center;
-            font-size:1.3rem;
-            padding:0.2rem 1rem;
-
-            b{
-                margin-right: 0.7rem;
-            }
-        }
-        .list{
-            font-size: 1.3rem;
-            // font-style: italic;
-            padding:0 1rem;
-        }
-        &__header{
-            font-size: 1.5rem;
-            color: #777;
-            font-weight: 700;
-
-        }
+    &__header {
+      font-size: 1.5rem;
+      color: #777;
+      font-weight: 700;
     }
+  }
 }

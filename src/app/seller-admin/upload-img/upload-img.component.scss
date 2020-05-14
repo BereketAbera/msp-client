@@ -268,6 +268,12 @@ ul {
   &__image {
     width: 10rem;
   }
+
+  &__icon {
+    font-size: 4rem;
+    color: #bb1e55;
+    cursor: pointer;
+  }
 }
 
 .mat-form-field {

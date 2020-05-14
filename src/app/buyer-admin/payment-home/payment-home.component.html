@@ -1,63 +1,62 @@
 <div class="container">
-    <mat-card class="card">
-        <mat-card class="balance">
-            <div class="balance__icon">
-              <mat-icon>attach_money</mat-icon>
-            </div>
-            <span class="balance__header"> Balance = </span> <span class="balance__header__value"> {{ balance | currency }}
-            </span>
-          </mat-card>
-          <P class="description">  You can only use these credits on our site and they cannot be converted to
-              cash refunds.
-            </P>
-         
+  <mat-card class="card">
+    <mat-card class="balance">
+      <div class="balance__icon">
+        <i class="fad fa-dollar-sign table__icon-2"></i>
+      </div>
+      <span class="balance__header"> Balance = </span>
+      <span class="balance__header__value"> {{ balance | currency }} </span>
     </mat-card>
-    <mat-card class="card">
-        <h2 class="payment-form__header">ORDER INFORMATION</h2>
-      <mat-card-content>
-        <table class="table">
-          <tr class="table_header">
-            <td>Name</td>
-            <td>QTY</td>
-            <td>REG</td>
-            <td>SAVES</td>
-            <td>FINAL</td>
-          </tr>
-          <tr *ngFor="let product of cartProducts">
-            <td>{{ product.name }}</td>
-            <td>{{ product.qty }}</td>
-            <td>{{ product.regPrice * product.qty | currency }}</td>
-            <td>
-              {{ (product.regPrice - product.disPrice) * product.qty | currency }}
-            </td>
-            <td>{{ product.qty * product.disPrice | currency }}</td>
-          </tr>
-          <tr>
-            <td colspan="5" class="ordcls"></td>
-          </tr>
-          <tr>
-            <td colspan="4">Pay store upon service:</td>
-            <td>{{ total | currency }}</td>
-          </tr>
-          <tr>
-            <td colspan="5"></td>
-          </tr>
-        </table>
-    
-        <p style="padding-top:2rem">
-          You are saving a total of {{ savings | currency }}, pay us only
-          {{ payAmount | currency }} now, for handling reservation(s) and discount
-          code generation.
-        </p>
-        <p>
-          Fees are not refundable for any missed usage or outside of usage time.
-        </p>
-        <br />
-        <p>Discount code(s) available upon payment.</p>
-        <p>Thank you.</p>
-        <br />
-      </mat-card-content>
-    </mat-card>
-    <ng-template  appPaymentType></ng-template>
-</div>
+    <P class="description">
+      You can only use these credits on our site and they cannot be converted to
+      cash refunds.
+    </P>
+  </mat-card>
+  <mat-card class="card">
+    <h2 class="payment-form__header">ORDER INFORMATION</h2>
+    <mat-card-content>
+      <table class="table">
+        <tr class="table_header">
+          <td>Name</td>
+          <td>QTY</td>
+          <td>REG</td>
+          <td>SAVES</td>
+          <td>FINAL</td>
+        </tr>
+        <tr *ngFor="let product of cartProducts">
+          <td>{{ product.name }}</td>
+          <td>{{ product.qty }}</td>
+          <td>{{ product.regPrice * product.qty | currency }}</td>
+          <td>
+            {{ (product.regPrice - product.disPrice) * product.qty | currency }}
+          </td>
+          <td>{{ product.qty * product.disPrice | currency }}</td>
+        </tr>
+        <tr>
+          <td colspan="5" class="ordcls"></td>
+        </tr>
+        <tr>
+          <td colspan="4">Pay store upon service:</td>
+          <td>{{ total | currency }}</td>
+        </tr>
+        <tr>
+          <td colspan="5"></td>
+        </tr>
+      </table>
 
+      <p style="padding-top: 2rem;">
+        You are saving a total of {{ savings | currency }}, pay us only
+        {{ payAmount | currency }} now, for handling reservation(s) and discount
+        code generation.
+      </p>
+      <p>
+        Fees are not refundable for any missed usage or outside of usage time.
+      </p>
+      <br />
+      <p>Discount code(s) available upon payment.</p>
+      <p>Thank you.</p>
+      <br />
+    </mat-card-content>
+  </mat-card>
+  <ng-template appPaymentType></ng-template>
+</div>

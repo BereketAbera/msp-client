@@ -10,19 +10,19 @@
       <ul>
         <li>
           <span class="name">
-            <mat-icon>person</mat-icon>
+            <i class="fad fa-user table__icon"></i>
             <span class="name"> {{ supplier.name }} </span>
           </span>
           <span class="name">
-            <mat-icon>phone_number</mat-icon>
+            <i class="fad fa-phone-alt table__icon"></i>
             <span class="name"> {{ supplier.phoneNumber }} </span>
           </span>
           <span class="name">
-            <mat-icon>location_on</mat-icon>
+            <i class="fad fa-location table__icon"></i>
             <span class="name"> {{ supplier.address }} </span>
           </span>
           <span class="name">
-            <mat-icon>website</mat-icon>
+            <i class="fad fa-link table__icon"></i>
             <span class="name"> {{ supplier.website }} </span>
           </span>
         </li>
@@ -37,49 +37,42 @@
       <ul>
         <li>
           <span class="name">
-            <mat-icon>list</mat-icon>
+            <i class="fad fa-list-ul table__icon"></i>
             <span class="name">
               <b>Product Name : </b> {{ order.product.name }}
             </span>
           </span>
           <span class="name">
-            <mat-icon>access_time</mat-icon>
+            <i class="fad fa-stopwatch table__icon"></i>
             <span class="name">
               <b>Order Date :</b> {{ order.purchaseTime }}
             </span>
           </span>
           <span class="name">
-            <mat-icon>attach_money</mat-icon>
+            <i class="fad fa-sack-dollar table__icon"></i>
             <span class="name">
               <b> Unit Price :</b> {{ order.product.discountPrice | currency }}
             </span>
           </span>
           <span class="name">
-            <mat-icon>label</mat-icon>
+            <i class="fad fa-tag table__icon"></i>
             <span class="name"> <b> Quantity : </b> {{ order.quantity }} </span>
           </span>
 
           <span class="name">
-            <mat-icon>money</mat-icon>
+            <i class="fad fa-check table__icon"></i>
             <span class="name">
               <b> Total : </b>
               {{ order.quantity * order.product.discountPrice | currency }}
             </span>
           </span>
           <span class="name">
-            <ul>
-              <b>Services </b>
-              <li>
-                <span class="name">
-                  <mat-icon>access_time</mat-icon>
-                  <span class="name">
-                    From: {{ order.pickupStartTime }}
-                    <mat-icon>arrow_right_alt</mat-icon> To:
-                    {{ order.pickupEndTime }}
-                  </span>
-                </span>
-              </li>
-            </ul>
+            <i class="fad fa-stopwatch table__icon"></i>
+            <span class="name">
+              <b>Services</b> From: {{ order.pickupStartTime }}
+              - To:
+              {{ order.pickupEndTime }}
+            </span>
           </span>
         </li>
       </ul>

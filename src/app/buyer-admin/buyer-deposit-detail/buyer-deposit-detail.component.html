@@ -10,31 +10,28 @@
       <ul>
         <li>
           <span class="name">
-            <mat-icon>access_time</mat-icon>
+            <i class="fad fa-stopwatch orders__icon"></i>
             <span class="name">
               <b>Deposit Date :</b>
               {{ deposit.depositeDate | date: "yyyy-mm-dd HH:MM:SS" }}
             </span>
           </span>
           <span class="name">
-            <mat-icon>location_on</mat-icon>
+            <i class="fad fa-money-check-edit orders__icon"></i>
             <span class="name"
               ><b>Deposit Amount :</b> {{ deposit.amount }}
               {{ deposit.paymentInfoId == -1 ? " Refferer Credit" : "" }}</span
             >
           </span>
-          <!-- <span class="name">
-            <mat-icon>access_time</mat-icon> <span class="name"> <b>Purchased Time :</b> {{order.purchaseTime }} </span>
-          </span> -->
           <span class="name">
-            <mat-icon>website</mat-icon>
+            <i class="fad fa-credit-card-front orders__icon"></i>
             <span class="name"
               ><b>Credit Card :</b> {{ deposit.paymentInfo?.cardNumber }}
             </span>
           </span>
 
           <span class="name">
-            <mat-icon>attach_money</mat-icon>
+            <i class="fad fa-i-cursor orders__icon"></i>
             <span class="name">
               <b> Card Type: :</b> {{ deposit.paymentInfo?.cardType }}
             </span>

@@ -6,13 +6,13 @@
 
     <div class="header">
       <div class="order__name">{{ order.name }}</div>
-      <div class="order__shop-name">
-        Shop Name: {{ order.shopName }} , {{ order.address }}
+      <div class="order__shop-name name">
+        Shop Name: {{ order.shopName }} , {{ order.address }},
+        {{ order.companyPhoneNumber }}
       </div>
       <div class="order_dates">
         <div class="order__time">
           <span class="order_names">
-            <!-- <mat-icon>access_time</mat-icon> -->
             <span class="name">
               <b>Order Date :</b> {{ order.purchaseTime | date: "short" }}
             </span>
@@ -20,12 +20,8 @@
           <span class="order_names">
             <b>Services </b>
             From: {{ changeToLocal12Hours(order.pickupStartTime) }}
-            <mat-icon>arrow_right_alt</mat-icon> To:
+            - To:
             {{ changeToLocal12Hours(order.pickupEndTime) }}
-          </span>
-          <span class="order_names">
-            <b>Service Code: </b>
-            {{ order.code }}
           </span>
         </div>
         <div class="detail">
@@ -36,50 +32,19 @@
             <b>Quantity: </b> {{ order.quantity }}
           </span>
           <span class="order_names">
-            <b>Total: </b>
+            <b>Pay Seller This Amount Plus any Tax: </b>
             {{ order.quantity * order.discountedPrice | currency }}
           </span>
         </div>
       </div>
     </div>
+    <div class="order_service">
+      Show Seller This Discount Code:
+      <span class="order_service-code">
+        {{ order.code }}
+      </span>
+    </div>
   </div>
-  <!-- <div *ngFor="let order of orders" class="order__container">
-    <div class="order__left">
-      <div class="order__image-container">
-        <img [src]="order.imagePath" alt="order image" class="order__image" />
-      </div>
-      <div class="order__address">
-        <div class="order__name">{{ order.name }}</div>
-        <div class="order__shop-name">Shop Name: {{ order.shopName }}</div>
-        <div class="order__shop-address">Address: {{ order.address }}</div>
-      </div>
-    </div>
-
-    <div class="order__middle">
-      <div class="order__time">
-        <div class="order__order-date">
-          Order Date: {{ order.purchaseTime | date: "short" }}
-        </div>
-        <div class="order__pickTime">
-          Service Starts: {{ changeToLocal12Hours(order.pickupStartTime) }}
-        </div>
-        <div class="order__pickTime">
-          Service Ends: {{ changeToLocal12Hours(order.pickupEndTime) }}
-        </div>
-      </div>
-    </div>
-
-    <div class="order__right">
-      <div class="order__code">Service Code: {{ order.code }}</div>
-      <div class="order__unit-price">
-        Unit Price: {{ order.discountedPrice | currency }}
-      </div>
-      <div class="order__quantity">Quantity: {{ order.quantity }}</div>
-      <div class="order__total">
-        Total: {{ order.quantity * order.discountedPrice | currency }}
-      </div>
-    </div>
-  </div> -->
   <mat-paginator
     [length]="count"
     [pageSize]="5"

@@ -3,7 +3,7 @@ import {
   Component,
   ElementRef,
   OnInit,
-  ViewChild
+  ViewChild,
 } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { MatPaginator, MatSort, MatTableDataSource } from "@angular/material";
@@ -15,7 +15,7 @@ import { Transaction } from "src/app/model/transaction";
 
 @Component({
   templateUrl: "./buyer-orders.component.html",
-  styleUrls: ["./buyer-orders.component.scss"]
+  styleUrls: ["./buyer-orders.component.scss"],
 })
 export class BuyerOrdersComponent implements OnInit {
   orders: Transaction[];
@@ -32,6 +32,7 @@ export class BuyerOrdersComponent implements OnInit {
   ngOnInit() {
     this.route.data.subscribe((data: { orders: Transaction[] }) => {
       this.orders = data.orders;
+      // console.log(this.orders[0]);
       this.count = this.transactionService.countSubject.value;
       // console.log(data);
     });
@@ -71,30 +72,62 @@ export class BuyerOrdersComponent implements OnInit {
     return false;
   }
 
+  // changeToLocal12Hours(time) {
+  //   let d = -new Date().getTimezoneOffset();
+  //   let x = time.split(":");
+  //   let hour = parseInt(x[0]);
+  //   let minute = parseInt(x[1]);
+  //   let totalMinutes = hour * 60 + minute + d;
+  //   hour = Math.floor(totalMinutes / 60);
+  //   minute = totalMinutes % 60;
+
+  //   if (hour < 12) {
+  //     return `${this.returnTwoDigit(hour)}:${this.returnTwoDigit(minute)}:00AM`;
+  //   } else if (hour == 12) {
+  //     return `${this.returnTwoDigit(12)}:${this.returnTwoDigit(minute)}:00PM`;
+  //   } else if (hour > 24) {
+  //     return `${this.returnTwoDigit(hour - 24)}:${this.returnTwoDigit(
+  //       minute
+  //     )}:00AM`;
+  //   } else if (hour == 24) {
+  //     return `${this.returnTwoDigit(12)}:${this.returnTwoDigit(minute)}:00AM`;
+  //   } else {
+  //     return `${this.returnTwoDigit(hour % 12)}:${this.returnTwoDigit(
+  //       minute
+  //     )}:00PM`;
+  //   }
+  // }
+
   changeToLocal12Hours(time) {
     let d = -new Date().getTimezoneOffset();
+    // console.log(d);
     let x = time.split(":");
     let hour = parseInt(x[0]);
     let minute = parseInt(x[1]);
     let totalMinutes = hour * 60 + minute + d;
+    let tempTotalMinutes = totalMinutes;
+    totalMinutes = totalMinutes < 0 ? 24 * 60 + totalMinutes : totalMinutes;
     hour = Math.floor(totalMinutes / 60);
     minute = totalMinutes % 60;
 
+    // console.log(hour);
+    let value = "";
     if (hour < 12) {
-      return `${this.returnTwoDigit(hour)}:${this.returnTwoDigit(minute)}:00AM`;
+      value = `${this.returnTwoDigit(hour)}:${this.returnTwoDigit(minute)}AM`;
     } else if (hour == 12) {
-      return `${this.returnTwoDigit(12)}:${this.returnTwoDigit(minute)}:00PM`;
+      value = `${this.returnTwoDigit(12)}:${this.returnTwoDigit(minute)}PM`;
     } else if (hour > 24) {
-      return `${this.returnTwoDigit(hour - 24)}:${this.returnTwoDigit(
+      value = `${this.returnTwoDigit(hour - 24)}:${this.returnTwoDigit(
         minute
-      )}:00AM`;
+      )}AM`;
     } else if (hour == 24) {
-      return `${this.returnTwoDigit(12)}:${this.returnTwoDigit(minute)}:00AM`;
+      value = `${this.returnTwoDigit(12)}:${this.returnTwoDigit(minute)}AM`;
     } else {
-      return `${this.returnTwoDigit(hour % 12)}:${this.returnTwoDigit(
+      value = `${this.returnTwoDigit(hour % 12)}:${this.returnTwoDigit(
         minute
-      )}:00PM`;
+      )}PM`;
     }
+    return value;
   }
 
   returnTwoDigit(value) {
@@ -104,7 +137,7 @@ export class BuyerOrdersComponent implements OnInit {
   getServerData(event) {
     this.transactionService
       .listTransactions(1, "", "", event.pageIndex, event.pageSize)
-      .subscribe(data => {
+      .subscribe((data) => {
         this.orders = data;
       });
     console.log(event);

@@ -81,12 +81,13 @@
         <ng-container matColumnDef="name" stickyEnd>
           <mat-header-cell *matHeaderCellDef></mat-header-cell>
 
-          <mat-cell *matCellDef="let transaction"><button mat-icon-button [matMenuTriggerFor]="menu">
-              <mat-icon>more_vert</mat-icon>
+          <mat-cell *matCellDef="let transaction"
+            ><button mat-icon-button [matMenuTriggerFor]="menu">
+              <i class="fad fa-ellipsis-v table__icon"></i>
             </button>
             <mat-menu #menu="matMenu">
               <button mat-menu-item [routerLink]="['./', transaction.id]">
-                <mat-icon color="accent">info</mat-icon>
+                <i class="fad fa-info-circle table__icon"></i>
                 <span>Detail</span>
               </button>
             </mat-menu>
