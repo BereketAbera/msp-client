@@ -260,47 +260,54 @@
     </div>
   </mat-card>
 
-  <mat-card  class="orders">
+  <mat-card class="orders">
     <h2 class="orders__headers">Stores</h2>
 
-    <div *ngIf='shopCount > 0'>
-        <div  class="orders__content" *ngFor="let shop of shops">
-            <ul>
-              <li>
-                <span class="name">
-                  <mat-icon>shop</mat-icon> <span class="name"> <b>Name : </b> {{shop?.name}} </span>
-                </span>
-                <span class="name">
-                  <mat-icon>access_time</mat-icon> <span class="name"> <b>Registred at :</b>
-                    {{seller?.createdAt | date:'medium' }} </span>
-                </span>
-       
-                <span class="name">
-                  <ul>
-                   
-                    <li class="shop_locations">
-                        Store Location 
-                      <span class="name">
-                        <mat-icon>location_city</mat-icon> <span class="name"> <b>City : </b> {{seller?.city}} </span>
-                      </span>
-                      <span class="name">
-                        <mat-icon>place</mat-icon> <span class="name"> <b>State :</b>
-                          {{seller?.state }}</span>
-                      </span>
-                      <span class="name">
-                          <mat-icon>pin_drop</mat-icon> <span class="name"> <b>Zipcode :</b>
-                            {{seller?.zipcode }}</span>
-                        </span>
-                      
-                    </li>
-                  </ul>
-                </span>
-      
-              </li>
-            </ul>
-          </div>
+    <div *ngIf="shopCount > 0">
+      <div class="orders__content" *ngFor="let shop of shops">
+        <ul>
+          <li>
+            <span class="name">
+              <mat-icon>shop</mat-icon>
+              <span class="name"> <b>Name : </b> {{ shop?.name }} </span>
+            </span>
+            <span class="name">
+              <mat-icon>access_time</mat-icon>
+              <span class="name">
+                <b>Registred at :</b> {{ seller?.createdAt | date: "medium" }}
+              </span>
+            </span>
+
+            <span class="name">
+              <ul>
+                <li class="shop_locations">
+                  Store Location
+                  <span class="name">
+                    <mat-icon>location_city</mat-icon>
+                    <span class="name">
+                      <b>City : </b> {{ seller?.city }}
+                    </span>
+                  </span>
+                  <span class="name">
+                    <mat-icon>place</mat-icon>
+                    <span class="name">
+                      <b>State :</b> {{ seller?.state }}</span
+                    >
+                  </span>
+                  <span class="name">
+                    <mat-icon>pin_drop</mat-icon>
+                    <span class="name">
+                      <b>Zipcode :</b> {{ seller?.zipcode }}</span
+                    >
+                  </span>
+                </li>
+              </ul>
+            </span>
+          </li>
+        </ul>
+      </div>
     </div>
-    <div *ngIf='shopCount == 0'>
+    <div *ngIf="shopCount == 0">
       <span class="NoResult">No Registred Stores</span>
     </div>
     <mat-card-actions>
