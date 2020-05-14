@@ -247,7 +247,7 @@
                   <span class="name"> <b>State :</b> {{ seller?.state }}</span>
                 </span>
                 <span class="name">
-                  <i class="fad fa-location table__icon"></i>
+                  <i class="fad fa-map-marker table__icon"></i>
                   <span class="name">
                     <b>Zipcode :</b> {{ seller?.zipcode }}</span
                   >
@@ -268,11 +268,11 @@
             <ul>
               <li>
                 <span class="name">
-                  <mat-icon>shop</mat-icon> <span class="name"> <b>Name : </b> {{shop?.name}} </span>
+                    <i class="fad fa-store table__icon"></i>  <span class="name"> <b>Name : </b> {{shop?.name}} </span>
                 </span>
                 <span class="name">
-                  <mat-icon>access_time</mat-icon> <span class="name"> <b>Registred at :</b>
-                    {{seller?.createdAt | date:'medium' }} </span>
+                    <i class="fad fa-stopwatch table__icon"></i> <span class="name"> <b>Registred at :</b>
+                    {{shop?.createdAt | date:'medium' }} </span>
                 </span>
        
                 <span class="name">
@@ -281,16 +281,16 @@
                     <li class="shop_locations">
                         Store Location 
                       <span class="name">
-                        <mat-icon>location_city</mat-icon> <span class="name"> <b>City : </b> {{seller?.city}} </span>
+                          <i class="fad fa-map-marker table__icon"></i> <span class="name"> <b>City : </b> {{shop?.city}} </span>
                       </span>
                       <span class="name">
-                        <mat-icon>place</mat-icon> <span class="name"> <b>State :</b>
-                          {{seller?.state }}</span>
+                           <span class="name"> <b>State :</b>
+                          {{shop?.state }}</span>
                       </span>
                       <span class="name">
-                          <mat-icon>pin_drop</mat-icon> <span class="name"> <b>Zipcode :</b>
-                            {{seller?.zipcode }}</span>
-                        </span>
+                           <span class="name"> <b>Zipcode :</b>
+                            {{shop?.zipCode }}</span>
+                      </span>
                       
                     </li>
                   </ul>

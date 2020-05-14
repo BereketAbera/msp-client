@@ -263,9 +263,9 @@ export class UsersAdminComponent implements OnInit, AfterViewInit {
       data => {
         this.seller = data.seller[0];
         this.shops = data.shops.rows;
+        // console.log(this.shops)
         this.shopCount = data.shops.count;
         this.detail = true;
-        
       }
     );
   }
