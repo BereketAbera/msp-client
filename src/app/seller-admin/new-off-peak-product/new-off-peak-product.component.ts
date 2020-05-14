@@ -340,7 +340,7 @@ export class NewOffPeakProductComponent implements OnInit {
     let defaultPickupEHH = "08"
     if (defaultPickupEHH.length == 1) defaultPickupEHH = "0" + defaultPickupEHH;
 
-    let defaultPickupEMM = "30:AM";
+    let defaultPickupEMM = "30:PM";
     if (defaultPickupEMM.length == 1) defaultPickupEMM = "0" + defaultPickupEMM;
 
     let defaultPickupEAMPM = this.getAMPM(this.pickupEndInitTime);
