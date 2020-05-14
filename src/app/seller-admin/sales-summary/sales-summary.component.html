@@ -3,16 +3,19 @@
     <mat-spinner></mat-spinner>
   </div>
   <div class="summary__search" fxLayoutAlign="center center" fxLayoutGap="20px">
-    <mat-form-field>
-      <input
-        (dateChange)="loadTransactionsPage()"
-        matInput
-        [matDatepicker]="picker"
-        [formControl]="date"
-      />
+    <!-- <mat-form-field>
+      <input (dateChange)="loadTransactionsPage()" matInput [matDatepicker]="picker" [formControl]="date" />
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
+    </mat-form-field> -->
+
+      <div class="filter-container">
+        <input type="text" ngxDaterangepickerMd [formControl]='select'  [alwaysShowCalendars]="true" [ranges]="ranges"
+          class="date-range-input" [locale]="{format: 'YYYY-MM-DD', displayFormat: 'MMM DD, YYYY'}" [minDate]="minDate"
+          [keepCalendarOpeningWithRange]="true" [showClearButton]="true" [maxDate]="maxDate"
+          (datesUpdated)="onDatesUpdated($event)" placeholder="Select Date Range..." />
+      </div>
+
     <button class="button" mat-button (click)="loadTransactionsPage()">
       <mat-icon>search</mat-icon>
       <span>Search</span>
@@ -24,14 +27,8 @@
   </div>
   <div class="summary__container">
     <div *ngIf="dataSource.count != 0" class="summary__table">
-      <mat-table
-        class="mat-elevation-z2"
-        [dataSource]="dataSource"
-        matSort
-        matSortActive="date"
-        matSortDirection="asc"
-        matSortDisableClear
-      >
+      <mat-table class="mat-elevation-z2" [dataSource]="dataSource" matSort matSortActive="date" matSortDirection="asc"
+        matSortDisableClear>
         <ng-container matColumnDef="product">
           <mat-header-cell *matHeaderCellDef>Product</mat-header-cell>
 
@@ -74,14 +71,12 @@
             transaction.discountedPercentage
           }}</mat-cell>
         </ng-container>
+
+      
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
       </mat-table>
-      <mat-paginator
-        [length]="dataSource.count"
-        [pageSize]="5"
-        [pageSizeOptions]="[5, 10]"
-      ></mat-paginator>
+      <mat-paginator [length]="dataSource.count" [pageSize]="5" [pageSizeOptions]="[5, 10]"></mat-paginator>
     </div>
   </div>
 </div>

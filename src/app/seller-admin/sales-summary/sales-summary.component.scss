@@ -3,7 +3,11 @@
   max-width: 390px;
   margin: 0 auto;
 }
-
+.filter-container{
+  display: flex;
+  justify-content: center;
+  // width: 100%;
+}
 .not_found {
   display: flex;
   justify-content: center;

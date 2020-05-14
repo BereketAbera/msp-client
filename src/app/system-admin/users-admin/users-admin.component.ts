@@ -63,6 +63,8 @@ export class UsersAdminComponent implements OnInit, AfterViewInit {
   seller: any;
   sorted: "";
   orders: "";
+  shops: any;
+  shopCount: Number=0;
 
   constructor(
     public snackBar: MatSnackBar,
@@ -244,9 +246,12 @@ export class UsersAdminComponent implements OnInit, AfterViewInit {
   getDetail(id) {
     this.userService.getOneSellerInfo(id).subscribe(
       data => {
-        this.seller = data[0];
+        console.log(data, 'sdf');
+        this.seller = data.seller[0];
+        this.shops = data.shops.rows;
+        this.shopCount = data.shops.count;
         this.detail = true;
-        console.log(this.seller, 'sdf');
+        
       }
     );
   }
