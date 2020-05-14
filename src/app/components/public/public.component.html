@@ -77,16 +77,18 @@
           <button class="header__desktop__login-button">
             <!-- <i class="fas fa-sign-in-alt"></i>  -->
             <!-- <i class="fad fa-sign-in-alt"></i> &nbsp; -->
-            SIGN IN
+            <!-- SIGN IN -->
+            <i class="fad fa-sign-in-alt"></i> &nbsp; SIGN IN
+            <i class="fad fa-ellipsis-v-alt"></i> UP
           </button>
         </div>
-        <div routerLink="/login" class="header__desktop__login-container2">
+        <!-- <div routerLink="/login" class="header__desktop__login-container2">
           <button class="header__desktop__signup-button">
-            <!-- <i class="fas fa-sign-in-alt"></i>  -->
-            <!-- <i class="fad fa-sign-in-alt"></i> &nbsp; -->
+            <i class="fas fa-sign-in-alt"></i>  
+            <i class="fad fa-sign-in-alt"></i> &nbsp;
             SIGN UP
           </button>
-        </div>
+        </div> -->
       </div>
       <div *ngIf="authService.isLoggedIn()" class="header__desktop__right" style="justify-content: flex-end;">
         <div routerLink="/tlgu-byr" class="header__desktop__login-container">

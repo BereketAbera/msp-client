@@ -24,9 +24,10 @@
                 </li>
               </ul>
             </div>
-            <div >
+            <div>
               <mat-form-field class="example-full-width">
-                <input class="input"
+                <input
+                  class="input"
                   matInput
                   minlength="3"
                   type="email"
@@ -40,17 +41,30 @@
               </mat-form-field>
             </div>
 
-            <div >
+            <div>
               <mat-form-field class="example-full-width">
-                <input class="input"
+                <input
+                  class="input"
                   matInput
                   placeholder="Enter your password"
                   formControlName="password"
                   [type]="hide ? 'password' : 'text'"
                 />
-                <mat-icon matSuffix (click)="hide = !hide"
+                <span
+                  (click)="hide = !hide"
+                  style="
+                    position: absolute;
+                    right: 0;
+                    font-size: 2rem;
+                    z-index: 100;
+                  "
+                >
+                  <i *ngIf="hide" class="fad fa-eye-slash"></i>
+                  <i *ngIf="!hide" class="fad fa-eye"></i>
+                </span>
+                <!-- <mat-icon matSuffix (click)="hide = !hide"
                   >{{ hide ? "visibility_off" : "visibility" }}
-                </mat-icon>
+                </mat-icon> -->
               </mat-form-field>
             </div>
 
@@ -74,7 +88,7 @@
               </p>
             </div>
             <div class="form__group__submit">
-              <button 
+              <button
                 type="submit"
                 mat-raised-button
                 class="msp-button example-full-width"

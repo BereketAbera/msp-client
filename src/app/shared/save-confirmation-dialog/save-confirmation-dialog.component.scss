@@ -11,5 +11,14 @@
   color: #333;
 }
 
-.actions {
+.mat-dialog-container {
+  max-height: 16rem !important;
+  height: 16rem;
 }
+
+.cdk-overlay-pane {
+  max-height: 16rem !important;
+  height: 16rem;
+}
+// .actions {
+// }

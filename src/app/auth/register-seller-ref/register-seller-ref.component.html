@@ -173,9 +173,18 @@
             <mat-error *ngIf="registrationForm.controls.password.invalid"
               >No more than 12 characters.</mat-error
             >
-            <mat-icon matSuffix (click)="hide = !hide">{{
-              hide ? "visibility_off" : "visibility"
-            }}</mat-icon>
+            <span
+              (click)="hide = !hide"
+              style="
+                position: absolute;
+                right: 0;
+                font-size: 2rem;
+                z-index: 100;
+              "
+            >
+              <i *ngIf="hide" class="fad fa-eye-slash"></i>
+              <i *ngIf="!hide" class="fad fa-eye"></i>
+            </span>
           </mat-form-field>
           <mat-form-field hintLabel="min 2 characters and max 12 characters">
             <input
@@ -190,9 +199,18 @@
             <mat-error *ngIf="registrationForm.controls.password.invalid"
               >No more than 12 characters.</mat-error
             >
-            <mat-icon matSuffix (click)="hide = !hide">{{
-              hide ? "visibility_off" : "visibility"
-            }}</mat-icon>
+            <span
+              (click)="hide = !hide"
+              style="
+                position: absolute;
+                right: 0;
+                font-size: 2rem;
+                z-index: 100;
+              "
+            >
+              <i *ngIf="hide" class="fad fa-eye-slash"></i>
+              <i *ngIf="!hide" class="fad fa-eye"></i>
+            </span>
           </mat-form-field>
           <br />
           <br />

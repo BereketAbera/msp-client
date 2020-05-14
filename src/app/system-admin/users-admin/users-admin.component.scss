@@ -54,6 +54,12 @@
   color: #777;
 }
 
+.mat-row {
+  &:hover {
+    background-color: #ddd;
+  }
+}
+
 .filter {
   display: flex;
   justify-content: center;

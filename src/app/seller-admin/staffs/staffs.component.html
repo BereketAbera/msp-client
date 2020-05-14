@@ -78,7 +78,7 @@
 
           <mat-cell *matCellDef="let staff"
             ><button mat-icon-button [matMenuTriggerFor]="menu">
-              <mat-icon>more_vert</mat-icon>
+              <i class="fad fa-ellipsis-v table__icon"></i>
             </button>
             <mat-menu #menu="matMenu">
               <button
@@ -89,7 +89,7 @@
                 mat-menu-item
                 (click)="updateStaff(staff.id, 'REMOVED')"
               >
-                <mat-icon color="accent">delete</mat-icon>
+                <i class="fad fa-trash-alt table__icon"></i>
                 <span>Remove</span>
               </button>
 
@@ -101,7 +101,7 @@
                 mat-menu-item
                 (click)="updateStaff(staff.id, 'SUSPENDED')"
               >
-                <mat-icon color="accent">lock</mat-icon>
+                <i class="fad fa-lock-alt table__icon"></i>
                 <span>Suspend</span>
               </button>
               <button
@@ -112,11 +112,11 @@
                 mat-menu-item
                 (click)="updateStaff(staff.id, 'ACTIVE')"
               >
-                <mat-icon color="accent">done</mat-icon>
+                <i class="fad fa-check table__icon"></i>
                 <span>ACTIVATE</span>
               </button>
               <button mat-menu-item (click)="manageStaff(staff.id)">
-                <mat-icon color="accent">edit</mat-icon>
+                <i class="fad fa-edit table__icon"></i>
                 <span>Manage Access</span>
               </button>
             </mat-menu>

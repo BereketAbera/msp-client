@@ -60,58 +60,46 @@ export class UploadImgComponent implements OnInit {
     return true;
   }
   onSubmit() {
-    // console.log(this.fileSelected);
     if (this.uploadForm.valid && this.fileSelected) {
-      // this.formData.append("name", this.uploadForm.get("name").value);
       let value = this.uploadForm.value;
       this.formData.append("name", value["name"]);
       this.formData.append("img", value["img"]);
 
-      const dialogRef = this.dialog.open(SaveConfirmationDialogComponent, {
-        width: "250px",
-        height: "150px",
-        data: { title: "", question: "do you want to upload this Image?" },
+      const progressDialog = this.dialog.open(SaveProgressComponent, {
+        width: "300px",
+        height: "200px",
       });
-
-      dialogRef.afterClosed().subscribe((result) => {
-        if (result == "yes") {
-          const progressDialog = this.dialog.open(SaveProgressComponent, {
-            width: "300px",
-            height: "200px",
-          });
-          this.uploadService.createImage(this.formData).subscribe(
-            (res) => {
-              if (res["success"]) {
-                progressDialog.close();
-                let snackBarRef = this.snackBar.open(
-                  "Successfuly Uploaded File",
-                  "Upload More",
-                  {
-                    duration: 2000,
-                  }
-                );
-                snackBarRef.afterDismissed().subscribe(() => {
-                  this.router.navigate(["../"], {
-                    relativeTo: this.route,
-                  });
-                });
-                snackBarRef.onAction().subscribe(() => {
-                  this.showImage = false;
-                  this.uploadForm.reset();
-                });
-                //this.router.navigate(["../"], { relativeTo: this.route });
-              } else {
-                progressDialog.close();
-                this.showError = true;
-                this.errors = res["messages"];
+      this.uploadService.createImage(this.formData).subscribe(
+        (res) => {
+          if (res["success"]) {
+            progressDialog.close();
+            let snackBarRef = this.snackBar.open(
+              "Successfuly Uploaded File",
+              "",
+              {
+                duration: 2000,
               }
-            },
-            (err) => {
-              progressDialog.close();
-            }
-          );
+            );
+            snackBarRef.afterDismissed().subscribe(() => {
+              this.router.navigate(["../"], {
+                relativeTo: this.route,
+              });
+            });
+            snackBarRef.onAction().subscribe(() => {
+              this.showImage = false;
+              this.uploadForm.reset();
+            });
+            //this.router.navigate(["../"], { relativeTo: this.route });
+          } else {
+            progressDialog.close();
+            this.showError = true;
+            this.errors = res["messages"];
+          }
+        },
+        (err) => {
+          progressDialog.close();
         }
-      });
+      );
     }
   }
   close() {

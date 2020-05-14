@@ -1,4 +1,4 @@
-<div  [class.show]="detail" >
+<div [class.show]="detail">
   <div class="spinner-container" *ngIf="dataSource.loading$ | async">
     <mat-spinner></mat-spinner>
   </div>
@@ -15,18 +15,27 @@
 
   <div class="filter">
     <div class="add-shop__address">
-
       <form class="form" [formGroup]="filterForm">
         <div *ngIf="errorMessage" class="add-staff__errors">
           <span>{{ errorMessage }}</span>
         </div>
 
         <mat-form-field class="filter-body">
-          <input matInput maxlength="45" placeholder="Company Name" formControlName="companyName" />
+          <input
+            matInput
+            maxlength="45"
+            placeholder="Company Name"
+            formControlName="companyName"
+          />
         </mat-form-field>
 
         <mat-form-field class="filter-body">
-          <input matInput maxlength="45" placeholder="City" formControlName="city" />
+          <input
+            matInput
+            maxlength="45"
+            placeholder="City"
+            formControlName="city"
+          />
         </mat-form-field>
 
         <mat-form-field class="filter-body filter-state">
@@ -45,32 +54,49 @@
           </mat-radio-button>
         </mat-radio-group> -->
 
-        <mat-form-field class="filter-status" >
+        <mat-form-field class="filter-status">
           <mat-label>Status</mat-label>
           <mat-select formControlName="status">
             <mat-option *ngFor="let item of statuses" [value]="item.value">
-              {{item.name}}
+              {{ item.name }}
             </mat-option>
           </mat-select>
         </mat-form-field>
 
         <div class="filter-button">
-          <button type="submit" (click)="filterSeller()" mat-raised-button color="accent">Search</button>
+          <button
+            type="submit"
+            (click)="filterSeller()"
+            mat-raised-button
+            color="accent"
+          >
+            Search
+          </button>
           <!-- <button (click)="resetField()" style="margin-left:0.6rem" mat-raised-button color="basic">Reset</button> -->
         </div>
-
       </form>
     </div>
   </div>
-  <mat-table class="mat-elevation-z8" [dataSource]="dataSource" matSort matSortActive="updatedAt"
-    matSortDirection="desc" matSortDisableClear matSortDisableClear>
-    <ng-container matColumnDef="email" >
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Account</mat-header-cell>
+  <mat-table
+    class="mat-elevation-z8"
+    [dataSource]="dataSource"
+    matSort
+    matSortActive="updatedAt"
+    matSortDirection="desc"
+    matSortDisableClear
+    matSortDisableClear
+  >
+    <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+        >Account</mat-header-cell
+      >
 
       <mat-cell *matCellDef="let user">{{ user.email }}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="companyName">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Company Name</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+        >Company Name</mat-header-cell
+      >
       <mat-cell *matCellDef="let user">{{ user.companyName }}</mat-cell>
     </ng-container>
 
@@ -78,10 +104,10 @@
       <mat-header-cell *matHeaderCellDef mat-sort-header>City</mat-header-cell>
       <mat-cell *matCellDef="let user">{{ user.city }}</mat-cell>
     </ng-container>
-    
+
     <ng-container matColumnDef="state">
       <mat-header-cell *matHeaderCellDef mat-sort-header>State</mat-header-cell>
-      <mat-cell *matCellDef="let user">{{  user.state }}</mat-cell>
+      <mat-cell *matCellDef="let user">{{ user.state }}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="firstName">
@@ -94,7 +120,9 @@
       <mat-cell *matCellDef="let user">{{ user.lastName }}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="updatedAt">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Created date</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+        >Created date</mat-header-cell
+      >
       <mat-cell *matCellDef="let user">{{
         user.createdAt | date: "yyyy-MM-dd"
       }}</mat-cell>
@@ -108,8 +136,9 @@
     <ng-container matColumnDef="remove">
       <mat-header-cell *matHeaderCellDef></mat-header-cell>
 
-      <mat-cell *matCellDef="let user"><button mat-icon-button [matMenuTriggerFor]="menu">
-          <mat-icon>more_vert</mat-icon>
+      <mat-cell *matCellDef="let user"
+        ><button mat-icon-button [matMenuTriggerFor]="menu">
+          <i class="fad fa-ellipsis-v table__icon"></i>
         </button>
         <mat-menu #menu="matMenu">
           <!-- <button [routerLink]="['details', user.id]" mat-menu-item>
@@ -118,14 +147,26 @@
           <button (click)="getDetail(user.id)" mat-menu-item>
             <span>Detail</span>
           </button>
-          <button *ngIf="showActivateAccount(user.status)" (click)="chageAccountStatus(user, 1)" mat-menu-item>
+          <button
+            *ngIf="showActivateAccount(user.status)"
+            (click)="chageAccountStatus(user, 1)"
+            mat-menu-item
+          >
             <span>Activate Account</span>
           </button>
 
-          <button *ngIf="showDisablePrtlAccount(user.status)" (click)="chageAccountStatus(user, 2)" mat-menu-item>
+          <button
+            *ngIf="showDisablePrtlAccount(user.status)"
+            (click)="chageAccountStatus(user, 2)"
+            mat-menu-item
+          >
             <span>Disable New Products</span>
           </button>
-          <button *ngIf="showDisableAccount(user.status)" (click)="chageAccountStatus(user, 3)" mat-menu-item>
+          <button
+            *ngIf="showDisableAccount(user.status)"
+            (click)="chageAccountStatus(user, 3)"
+            mat-menu-item
+          >
             <span>Disable Account</span>
           </button>
         </mat-menu>
@@ -135,16 +176,17 @@
 
     <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
   </mat-table>
-  <mat-paginator [length]="dataSource.count" [pageSize]="10" [pageSizeOptions]="[10,20, 30,50]"></mat-paginator>
+  <mat-paginator
+    [length]="dataSource.count"
+    [pageSize]="10"
+    [pageSizeOptions]="[10, 20, 30, 50]"
+  ></mat-paginator>
 </div>
 
-
-
-<div [class.show]="!detail" class="container ">
+<div [class.show]="!detail" class="container">
   <mat-card class="orders">
-       <h2 class="orders__header">  {{ seller?. companyName}}</h2>
-    <div class="orders___card">
-    </div>
+    <h2 class="orders__header">{{ seller?.companyName }}</h2>
+    <div class="orders___card"></div>
   </mat-card>
 
   <mat-card class="orders">
@@ -153,21 +195,26 @@
       <ul>
         <li>
           <span class="name">
-            <mat-icon>person</mat-icon> <span class="name"> {{seller?.firstName +" "+ seller?.lastName}} </span>
+            <i class="fad fa-user table__icon"></i>
+            <span class="name">
+              {{ seller?.firstName + " " + seller?.lastName }}
+            </span>
           </span>
           <span class="name">
-            <mat-icon>phone_number</mat-icon> <span class="name"> {{seller?.phoneNumber}} </span>
+            <i class="fad fa-phone-alt table__icon"></i>
+            <span class="name"> {{ seller?.phoneNumber }} </span>
           </span>
           <span class="name">
-            <mat-icon>location_on</mat-icon> <span class="name"> {{seller?.companyAddress}} </span>
+            <i class="fad fa-location table__icon"></i>
+            <span class="name"> {{ seller?.companyAddress }} </span>
           </span>
           <span class="name">
-            <mat-icon>website</mat-icon> <span class="name"> {{seller?.websiteURL}} </span>
+            <i class="fad fa-link table__icon"></i>
+            <span class="name"> {{ seller?.websiteURL }} </span>
           </span>
         </li>
       </ul>
     </div>
-
   </mat-card>
 
   <mat-card class="orders">
@@ -177,33 +224,37 @@
       <ul>
         <li>
           <span class="name">
-            <mat-icon>mail</mat-icon> <span class="name"> <b>Email : </b> {{seller?.email}} </span>
+            <i class="fad fa-envelope-square table__icon"></i>
+            <span class="name"> <b>Email : </b> {{ seller?.email }} </span>
           </span>
           <span class="name">
-            <mat-icon>access_time</mat-icon> <span class="name"> <b>Registred at :</b>
-              {{seller?.createdAt | date:'medium' }} </span>
+            <i class="fad fa-stopwatch table__icon"></i>
+            <span class="name">
+              <b>Registred at :</b> {{ seller?.createdAt | date: "medium" }}
+            </span>
           </span>
- 
+
           <span class="name">
             <ul>
               <b>Locations </b>
               <li>
                 <span class="name">
-                  <mat-icon>location_city</mat-icon> <span class="name"> <b>City : </b> {{seller?.city}} </span>
+                  <i class="fad fa-location table__icon"></i>
+                  <span class="name"> <b>City : </b> {{ seller?.city }} </span>
                 </span>
                 <span class="name">
-                  <mat-icon>place</mat-icon> <span class="name"> <b>State :</b>
-                    {{seller?.state }}</span>
+                  <i class="fad fa-location table__icon"></i>
+                  <span class="name"> <b>State :</b> {{ seller?.state }}</span>
                 </span>
                 <span class="name">
-                    <mat-icon>pin_drop</mat-icon> <span class="name"> <b>Zipcode :</b>
-                      {{seller?.zipcode }}</span>
-                  </span>
-                
+                  <i class="fad fa-location table__icon"></i>
+                  <span class="name">
+                    <b>Zipcode :</b> {{ seller?.zipcode }}</span
+                  >
+                </span>
               </li>
             </ul>
           </span>
-
         </li>
       </ul>
     </div>
@@ -253,7 +304,14 @@
       <span class="NoResult">No Registred Stores</span>
     </div>
     <mat-card-actions>
-      <button type="button" mat-flat-button color="accent" (click)="cancelAction()">Cancel</button>
+      <button
+        type="button"
+        mat-flat-button
+        color="accent"
+        (click)="cancelAction()"
+      >
+        Cancel
+      </button>
     </mat-card-actions>
   </mat-card>
 </div>

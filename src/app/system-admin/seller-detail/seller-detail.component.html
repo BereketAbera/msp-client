@@ -1,8 +1,7 @@
 <div class="container">
   <mat-card class="orders">
-       <h2 class="orders__header">  {{ seller. companyName}}</h2>
-    <div class="orders___card">
-    </div>
+    <h2 class="orders__header">{{ seller.companyName }}</h2>
+    <div class="orders___card"></div>
   </mat-card>
 
   <mat-card class="orders">
@@ -11,21 +10,26 @@
       <ul>
         <li>
           <span class="name">
-            <mat-icon>person</mat-icon> <span class="name"> {{seller.firstName +" "+ seller.lastName}} </span>
+            <i class="fad fa-user table__icon"></i>
+            <span class="name">
+              {{ seller.firstName + " " + seller.lastName }}
+            </span>
           </span>
           <span class="name">
-            <mat-icon>phone_number</mat-icon> <span class="name"> {{seller.phoneNumber}} </span>
+            <i class="fad fa-phone-alt table__icon"></i>
+            <span class="name"> {{ seller.phoneNumber }} </span>
           </span>
           <span class="name">
-            <mat-icon>location_on</mat-icon> <span class="name"> {{seller.companyAddress}} </span>
+            <i class="fad fa-location table__icon"></i>
+            <span class="name"> {{ seller.companyAddress }} </span>
           </span>
           <span class="name">
-            <mat-icon>website</mat-icon> <span class="name"> {{seller.websiteURL}} </span>
+            <i class="fad fa-link table__icon"></i>
+            <span class="name"> {{ seller.websiteURL }} </span>
           </span>
         </li>
       </ul>
     </div>
-
   </mat-card>
 
   <mat-card class="orders">
@@ -35,38 +39,49 @@
       <ul>
         <li>
           <span class="name">
-            <mat-icon>mail</mat-icon> <span class="name"> <b>Email : </b> {{seller.email}} </span>
+            <i class="fad fa-envelope-square table__icon"></i>
+            <span class="name"> <b>Email : </b> {{ seller.email }} </span>
           </span>
           <span class="name">
-            <mat-icon>access_time</mat-icon> <span class="name"> <b>Registred at :</b>
-              {{seller.createdAt | date:'medium' }} </span>
+            <i class="fad fa-stopwatch table__icon"></i>
+            <span class="name">
+              <b>Registred at :</b> {{ seller.createdAt | date: "medium" }}
+            </span>
           </span>
- 
+
           <span class="name">
             <ul>
               <b>Locations </b>
               <li>
                 <span class="name">
-                  <mat-icon>location_city</mat-icon> <span class="name"> <b>City : </b> {{seller.city}} </span>
+                  <i class="fad fa-location table__icon"></i>
+                  <span class="name"> <b>City : </b> {{ seller.city }} </span>
                 </span>
                 <span class="name">
-                  <mat-icon>place</mat-icon> <span class="name"> <b>State :</b>
-                    {{seller.state }}</span>
+                  <i class="fad fa-location table__icon"></i>
+                  <span class="name"> <b>State :</b> {{ seller.state }}</span>
                 </span>
                 <span class="name">
-                    <mat-icon>pin_drop</mat-icon> <span class="name"> <b>Zipcode :</b>
-                      {{seller.zipcode }}</span>
-                  </span>
-                
+                  <i class="fad fa-location table__icon"></i>
+                  <span class="name">
+                    <b>Zipcode :</b> {{ seller.zipcode }}</span
+                  >
+                </span>
               </li>
             </ul>
           </span>
-
         </li>
       </ul>
     </div>
     <mat-card-actions>
-      <button type="button" mat-flat-button color="accent" (click)="gotoSeller()">Cancel</button>
+      <button
+        type="button"
+        mat-flat-button
+        color="accent"
+        (click)="gotoSeller()"
+      >
+        Cancel
+      </button>
     </mat-card-actions>
   </mat-card>
 </div>

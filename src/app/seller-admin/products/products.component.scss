@@ -101,7 +101,7 @@ ul {
   fill: red;
 }
 
-.mat-column-remove{
+.mat-column-remove {
   max-width: 7rem;
 }
 // .table {
@@ -140,6 +140,7 @@ ul {
   &:last-child {
     padding-right: 0px;
     max-width: 7rem;
+    align-self: stretch;
   }
 }
 

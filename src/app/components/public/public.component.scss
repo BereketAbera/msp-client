@@ -246,7 +246,7 @@
   width: 25rem;
   top: 7rem;
   height: calc(100vh - 7rem);
-  background-color: #ff3c81f2;
+  background-color: rgba(0, 0, 0, 0.87);
   transform: translateX(-25rem);
   padding: 3rem 0rem 3rem 2rem;
 
@@ -380,7 +380,6 @@
     cursor: pointer;
     margin: 0 0.5rem;
     // box-shadow: 0.2px 0.1px 1px #7e7377;
-
   }
 
   &__login-container2 {

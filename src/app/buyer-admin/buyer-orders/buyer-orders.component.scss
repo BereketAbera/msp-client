@@ -1,8 +1,10 @@
 .order_names {
   display: flex;
   align-self: center;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   padding: 0.2rem 1rem;
+  font-weight: 400;
+  color: #333;
 
   b {
     margin-right: 0.7rem;
@@ -14,6 +16,9 @@
   display: flex;
   border: 0.5px solid #f2f2f2;
   box-shadow: 1px 1px 5px #eee;
+  margin-bottom: 6rem;
+  position: relative;
+
   .header {
     margin: 0.5rem 1.5rem;
     .order_dates {
@@ -26,8 +31,6 @@
   .images {
     display: flex;
   }
-
-  
 }
 
 .orders {
@@ -84,6 +87,8 @@
     font-weight: 200;
     color: #555;
     font-style: italic;
+    max-width: 80%;
+    overflow: wrap;
   }
 
   &__shop-address {
@@ -110,12 +115,25 @@
     color: #333;
   }
 }
-.no_result{
+.no_result {
   font-size: 1.6rem;
   color: #777;
   display: flex;
   justify-content: center;
   padding: 2rem;
+}
+
+.order_service {
+  position: absolute;
+  bottom: -4rem;
+  font-size: 1.7rem;
+  color: #555;
+}
+
+.order_service-code {
+  font-size: 2.5rem;
+  color: #111;
+  font-weight: 600;
 }
 
 @media only screen and (min-width: 600px) {
@@ -142,13 +160,13 @@
   .order__address {
     font-size: 2rem !important;
   }
-  .orders__container{
+  .orders__container {
     width: 96%;
   }
   .product_order {
     flex-direction: column;
     position: relative;
-    .header{
+    .header {
       z-index: 3;
       margin: 0.5rem 0.3rem;
     }
@@ -159,11 +177,12 @@
     max-width: 10rem;
   }
 
-  .detail{
-    display: flex;
-    flex-direction: row;
+  .detail {
+    // display: flex;
+    flex-direction: column;
+    align-items: flex-start;
   }
-  .images{
+  .images {
     position: absolute;
     top: 0;
     right: 0;
@@ -171,7 +190,6 @@
   .order_dates {
     margin-top: 0.7rem;
     display: flex;
-    flex-direction: column!important;
+    flex-direction: column !important;
   }
-
 }
