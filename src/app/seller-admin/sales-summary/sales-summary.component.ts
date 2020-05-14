@@ -46,7 +46,8 @@ export class SalesSummaryComponent implements OnInit, AfterViewInit {
   filtered: boolean;
   maxDate = moment().subtract(1, 'days');
   minDate = moment('2018-01-01');
-  date = new FormControl(new Date());
+  dateStart = new FormControl(moment().subtract(7, 'days').toDate());
+  dateEnd = new FormControl(new Date());
   select = new FormControl('');
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -64,7 +65,7 @@ export class SalesSummaryComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.dataSource = new DailySalesDataSource(this.userService);
     // this.dataSource.loadTransactions(this.date.value);
-    this.dataSource.loadTransactions(this.defaultStart, this.defaultEnd);
+    this.dataSource.loadTransactions(this.dateStart.value, this.dateEnd.value);
 
     // console.log(this.dataSource);
   }
@@ -76,11 +77,11 @@ export class SalesSummaryComponent implements OnInit, AfterViewInit {
   }
   search() { }
   loadTransactionsPage() {
-    console.log(this.defaultEnd, this.defaultStart)
-    this.dataSource.loadTransactions(this.defaultStart, this.defaultEnd);
+    // console.log(this.dateStart.value, this.dateEnd.value)
+    this.dataSource.loadTransactions(this.dateStart.value, this.dateEnd.value);
   }
   onDatesUpdated(e) {
-    console.log(e);
+    // console.log(e);
     if (e.startDate && e.endDate) {
       this.dataSource.loadTransactions(e.startDate, e.endDate);
 

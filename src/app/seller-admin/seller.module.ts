@@ -32,7 +32,6 @@ import { ManageStaffAccessComponent } from './manage-staff-access/manage-staff-a
 import { AccessDeniedComponent } from './access-denied/access-denied.component';
 import { EditShopComponent } from './edit-shop/edit-shop.component';
 import { ProfileComponent } from './profile/profile.component';
-import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 
 @NgModule({
   imports: [
@@ -43,7 +42,6 @@ import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
     OwlNativeDateTimeModule,
     SellerRoutingModule,
     ImageCropperModule,
-    NgxDaterangepickerMd.forRoot()
   ],
   declarations: [
     NavigationComponent,
