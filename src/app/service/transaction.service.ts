@@ -86,7 +86,7 @@ export class TransactionService {
       catchError(this.handleError)
     );
   }
-  getCdCodeForTransaction(cd:String|number):Observable<QrCodeData>{
+  getCdCodeForTransaction(cd:String):Observable<QrCodeData>{
     return this.http.get(transactionApi + "/cddata/" +cd ).pipe(
       map(
         transaction => { 

@@ -14,9 +14,9 @@
         <mat-form-field class="inputCode">
           <input
             matInput
-            type="number"
+            type="tel"
             maxlength="7"
-            (keyup)="onKeydownEvent($event)"
+            pattern="[0-9]*"
             placeholder="Buyer's Code"
             [formControl]="code"
             requiredm
