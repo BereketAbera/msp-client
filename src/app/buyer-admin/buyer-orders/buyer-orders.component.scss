@@ -21,11 +21,11 @@
 
   .header {
     margin: 0.5rem 1.5rem;
-    .order_dates {
-      margin-top: 0.7rem;
-      display: flex;
-      flex-direction: row;
-    }
+    // .order_dates {
+    //   margin-top: 0.7rem;
+    //   display: flex;
+    //   flex-direction: row;
+    // }
   }
 
   .images {
@@ -35,7 +35,7 @@
 
 .orders {
   &__container {
-    width: 70%;
+    width: 95%;
     margin: 1rem auto;
   }
 }
@@ -136,7 +136,44 @@
   font-weight: 600;
 }
 
+.product_order {
+  flex-direction: column;
+  position: relative;
+  .header {
+    z-index: 3;
+    margin: 0.5rem 0.3rem;
+  }
+}
+
+.order__image {
+  height: 7rem;
+  max-width: 10rem;
+}
+
+.detail {
+  // display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.images {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.order_dates {
+  margin-top: 0.7rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.order__address {
+  font-size: 2rem;
+}
+
 @media only screen and (min-width: 600px) {
+  .orders__container {
+    width: 90%;
+  }
   .order {
     &__container {
       flex-direction: row;
@@ -154,42 +191,29 @@
     &__right {
       width: auto;
     }
-  }
-}
-@media only screen and (max-width: 700px) {
-  .order__address {
-    font-size: 2rem !important;
-  }
-  .orders__container {
-    width: 96%;
-  }
-  .product_order {
-    flex-direction: column;
-    position: relative;
-    .header {
-      z-index: 3;
-      margin: 0.5rem 0.3rem;
+
+    &_dates {
+      flex-direction: row;
     }
   }
-
-  .order__image {
-    height: 7rem;
-    max-width: 10rem;
+}
+@media only screen and (min-width: 800px) {
+  .orders__container {
+    width: 85%;
   }
 
   .detail {
-    // display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: row;
   }
-  .images {
-    position: absolute;
-    top: 0;
-    right: 0;
-  }
-  .order_dates {
-    margin-top: 0.7rem;
-    display: flex;
-    flex-direction: column !important;
+
+  .order {
+    &__image {
+      // height: 10rem;
+      width: 11rem;
+    }
+
+    // &_dates {
+    //   flex-direction: row;
+    // }
   }
 }

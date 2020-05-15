@@ -246,7 +246,7 @@
   width: 25rem;
   top: 7rem;
   height: calc(100vh - 7rem);
-  background-color: rgba(0, 0, 0, 0.87);
+  background-color: #ff427fde;
   transform: translateX(-25rem);
   padding: 3rem 0rem 3rem 2rem;
 
@@ -396,11 +396,10 @@
     // box-shadow: 0.2px 0.1px 1px #7e7377;
   }
 
-  &__login-container:hover{
-
+  &__login-container:hover {
   }
 
-  &__signup-button{
+  &__signup-button {
     border: none;
     outline: none;
     color: white;

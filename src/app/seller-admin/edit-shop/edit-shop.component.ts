@@ -68,7 +68,7 @@ export class EditShopComponent implements OnInit {
     this.searchText$.next(searchInp);
   }
   onSubmit() {
-    console.log(this.shopForm.value);
+    // console.log(this.shopForm.value);
     if (this.shopForm.valid) {
       let shop = new Shop();
       shop = { ...this.shopForm.value };

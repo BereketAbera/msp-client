@@ -6,14 +6,19 @@ import {
   ViewChild,
 } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { MatPaginator, MatSort, MatTableDataSource, MatDialog } from "@angular/material";
+import {
+  MatPaginator,
+  MatSort,
+  MatTableDataSource,
+  MatDialog,
+} from "@angular/material";
 import { ShopsService } from "../../service/shops.service";
 import { AuthService } from "../../service/auth.service";
 import { tap } from "rxjs/operators";
 import { merge } from "rxjs/observable/merge";
 import { ShopsDataSource } from "../../service/shopsDataSource";
-import { SaveConfirmationDialogComponent } from 'src/app/shared/save-confirmation-dialog/save-confirmation-dialog.component';
-import { SaveProgressComponent } from 'src/app/shared/save-progress/save-progress.component';
+import { SaveConfirmationDialogComponent } from "src/app/shared/save-confirmation-dialog/save-confirmation-dialog.component";
+import { SaveProgressComponent } from "src/app/shared/save-progress/save-progress.component";
 import { MatSnackBar } from "@angular/material";
 
 @Component({
@@ -26,7 +31,16 @@ export class ShopListComponent implements OnInit, AfterViewInit {
   showError: boolean = false;
   dataSource: ShopsDataSource;
 
-  displayedColumns = ["name", "address", "ZipCode", "contact", "phone","city","state", "menu"];
+  displayedColumns = [
+    "name",
+    "address",
+    "ZipCode",
+    "contact",
+    "phone",
+    "city",
+    "state",
+    "menu",
+  ];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -40,7 +54,7 @@ export class ShopListComponent implements OnInit, AfterViewInit {
     private shopsService: ShopsService,
     private router: Router,
     public dialog: MatDialog,
-    public snackBar: MatSnackBar,
+    public snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {
@@ -60,7 +74,7 @@ export class ShopListComponent implements OnInit, AfterViewInit {
       let userStatus = parseInt(status.toString());
       this.router.navigate(["./newshp"], { relativeTo: this.route });
       if (userStatus == 1)
-      this.router.navigate(["./newshp"], { relativeTo: this.route });
+        this.router.navigate(["./newshp"], { relativeTo: this.route });
       else {
         this.showError = true;
         this.errors = [
@@ -97,22 +111,22 @@ export class ShopListComponent implements OnInit, AfterViewInit {
       data: {
         title: "",
         question:
-          "<strong>Please note:</strong> Some buyers might be placing orders on the product in this shop being deleted. You might still get orders after deletion.\n Do you want to remove the product?"
-      }
+          "<strong>Please note:</strong> Some buyers might be placing orders on the product in this shop being deleted. You might still get orders after deletion.\n Do you want to remove the shop?",
+      },
     });
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       if (result == "yes") {
         const progressDialogRef = this.dialog.open(SaveProgressComponent, {
           width: "260px",
           height: "180px",
-          data: { title: "", question: "" }
+          data: { title: "", question: "" },
         });
         this.shopsService.removeShop(shop.id).subscribe(
-          res => {
+          (res) => {
             if (res["success"]) {
               progressDialogRef.close();
               let snackBarRef = this.snackBar.open("Successfuly Removed", "", {
-                duration: 2000
+                duration: 2000,
               });
               snackBarRef.afterDismissed().subscribe(() => {
                 this.dataSource.loadShops(1, "", "asc", 0, 5);
@@ -124,7 +138,7 @@ export class ShopListComponent implements OnInit, AfterViewInit {
               this.errors = res["messages"];
             }
           },
-          err => {
+          (err) => {
             progressDialogRef.close();
           }
         );

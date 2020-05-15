@@ -3,7 +3,7 @@ import {
   Component,
   ElementRef,
   OnInit,
-  ViewChild
+  ViewChild,
 } from "@angular/core";
 import { MatDialog } from "@angular/material";
 import { MatSnackBar } from "@angular/material";
@@ -19,11 +19,11 @@ import { AuthService } from "../../service/auth.service";
 
 import { SaveConfirmationDialogComponent } from "../../shared/save-confirmation-dialog/save-confirmation-dialog.component";
 import { SaveProgressComponent } from "../../shared/save-progress/save-progress.component";
-import { Location } from '@angular/common';
+import { Location } from "@angular/common";
 
 @Component({
   templateUrl: "./products.component.html",
-  styleUrls: ["./products.component.scss"]
+  styleUrls: ["./products.component.scss"],
 })
 export class ProductsComponent implements OnInit, AfterViewInit {
   errors;
@@ -37,7 +37,7 @@ export class ProductsComponent implements OnInit, AfterViewInit {
     "shop",
     "discountPrice",
     "dispercentage",
-    "remove"
+    "remove",
   ];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -54,31 +54,28 @@ export class ProductsComponent implements OnInit, AfterViewInit {
     private router: Router,
     private authService: AuthService,
     private location: Location
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.dataSource = new ProductsDataSource(this.productService);
 
     this.route.queryParams.subscribe(
-      data => {
-
+      (data) => {
         this.paginator.pageIndex = +data.page - 1 >= 0 ? +data.page : 0;
         this.dataSource.loadProducts(1, "", "", this.paginator.pageIndex, 5);
-
       },
-      err => console.log(err)
+      (err) => console.log(err)
     );
   }
 
   ngAfterViewInit() {
     if (this.sort) {
-      console.log()
+      // console.log()
       this.sort.sortChange.subscribe(() => (this.paginator.pageIndex = 0));
       merge(this.sort.sortChange, this.paginator.page)
         .pipe(tap(() => this.loadProductsPage()))
         .subscribe();
     }
-
   }
   gotoAddNewProduct() {
     try {
@@ -89,13 +86,13 @@ export class ProductsComponent implements OnInit, AfterViewInit {
       else {
         this.showError = true;
         this.errors = [
-          "Sorry, your account is either inactive or disabled.Please contact sales@ManagerSpecial.com."
+          "Sorry, your account is either inactive or disabled.Please contact sales@ManagerSpecial.com.",
         ];
       }
     } catch (err) {
       this.showError = true;
       this.errors = [
-        "Sorry, your account is either inactive or disabled.Please contact sales@ManagerSpecial.com."
+        "Sorry, your account is either inactive or disabled.Please contact sales@ManagerSpecial.com.",
       ];
     }
   }
@@ -108,29 +105,28 @@ export class ProductsComponent implements OnInit, AfterViewInit {
       else {
         this.showError = true;
         this.errors = [
-          "Sorry, your account is either inactive or disabled.Please contact sales@ManagerSpecial.com."
+          "Sorry, your account is either inactive or disabled.Please contact sales@ManagerSpecial.com.",
         ];
       }
     } catch (err) {
       this.showError = true;
       this.errors = [
-        "Sorry, your account is either inactive or disabled.Please contact sales@ManagerSpecial.com."
+        "Sorry, your account is either inactive or disabled.Please contact sales@ManagerSpecial.com.",
       ];
     }
   }
 
   editProduct($event) {
     this.router.navigate([`./nwoffpktlgu/edit/${$event.id}`], {
-      relativeTo: this.route
+      relativeTo: this.route,
     });
   }
   cloneProduct($event) {
     this.router.navigate([`./nwoffpktlgu/clone/${$event.id}`], {
-      relativeTo: this.route
+      relativeTo: this.route,
     });
   }
   loadProductsPage() {
-
     this.dataSource.loadProducts(
       1,
       "",
@@ -140,7 +136,7 @@ export class ProductsComponent implements OnInit, AfterViewInit {
     );
 
     let path = this.location.path();
-    if (path.indexOf('page') >= 0) {
+    if (path.indexOf("page") >= 0) {
       path = path.replace(/.$/, this.paginator.pageIndex.toString());
       this.location.go(path);
     } else {
@@ -156,22 +152,22 @@ export class ProductsComponent implements OnInit, AfterViewInit {
       data: {
         title: "",
         question:
-          "<strong>Please note:</strong> Some buyers might be placing orders on the product being deleted. You might still get orders after deletion.\n Do you want to remove the product?"
-      }
+          "<strong>Please note:</strong> Some buyers might be placing orders on the product being deleted. You might still get orders after deletion.\n Do you want to remove the product?",
+      },
     });
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       if (result == "yes") {
         const progressDialogRef = this.dialog.open(SaveProgressComponent, {
           width: "260px",
           height: "180px",
-          data: { title: "", question: "" }
+          data: { title: "", question: "" },
         });
         this.productService.removeProduct(product.id).subscribe(
-          res => {
+          (res) => {
             if (res["success"]) {
               progressDialogRef.close();
               let snackBarRef = this.snackBar.open("Successfuly Removed", "", {
-                duration: 2000
+                duration: 2000,
               });
               snackBarRef.afterDismissed().subscribe(() => {
                 this.dataSource.loadProducts(1, "", "asc", 0, 5);
@@ -183,7 +179,7 @@ export class ProductsComponent implements OnInit, AfterViewInit {
               this.errors = res["messages"];
             }
           },
-          err => {
+          (err) => {
             progressDialogRef.close();
           }
         );

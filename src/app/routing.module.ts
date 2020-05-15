@@ -24,6 +24,7 @@ import { HomeGuard } from "./home.guard";
 import { SellerGuard } from "./seller-admin/seller.guard";
 import { BuyerGuard } from "./buyer-admin/buyer.guard";
 import { AdminGuard } from "./system-admin/admin.guard";
+import { AuthGuard } from "./auth/auth.guard";
 
 const appRoutes: Routes = [
   {
@@ -77,6 +78,7 @@ const appRoutes: Routes = [
   },
   {
     path: "",
+    canActivate: [AuthGuard],
     loadChildren: "./auth/auth.module#AuthModule",
   },
   {

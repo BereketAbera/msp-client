@@ -1,3 +1,4 @@
+import { ZipCode } from "./../../model/zipCode";
 import { ZipcodeService } from "./../../service/zipcode.service";
 import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -16,7 +17,7 @@ import { FormControl, Validators } from "@angular/forms";
 export class HomeComponent implements OnInit {
   @ViewChild("anchor") anchor: ElementRef<HTMLElement>;
   searchInput = new FormControl("");
-  caragories: Category[];
+  categories: Category[];
   lat: number = 0;
   lng: number = 0;
   distance: number = 0;
@@ -31,7 +32,7 @@ export class HomeComponent implements OnInit {
   ) {}
   ngOnInit() {
     this.route.data.subscribe((data: { categories: Category[] }) => {
-      this.caragories = data.categories;
+      this.categories = data.categories;
     });
   }
 
@@ -74,13 +75,24 @@ export class HomeComponent implements OnInit {
       )}, ${address.StateName.toString().replace(/'/g, "")}`
     );
     this.address = address;
+    this.getProducts();
   }
 
   getProducts() {
-    if (!this.address) return;
-    localStorage.setItem("client_address", JSON.stringify(this.address));
-    this.authService.updateClientLocation(this.address);
-    this.router.navigate(["/products"]);
+    if (!this.address) {
+      this.addresses.map((address) => {
+        if (this.searchInput.value == address.ZIPCode) {
+          this.address = address;
+          localStorage.setItem("client_address", JSON.stringify(this.address));
+          this.authService.updateClientLocation(this.address);
+          this.router.navigate(["/products"]);
+        }
+      });
+    } else {
+      localStorage.setItem("client_address", JSON.stringify(this.address));
+      this.authService.updateClientLocation(this.address);
+      this.router.navigate(["/products"]);
+    }
   }
 
   getClientLocation() {

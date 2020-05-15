@@ -1,5 +1,15 @@
 <div *ngIf="orders.length > 0" class="orders__container">
-  <div *ngFor="let order of orders" class="product_order">
+  <div
+    *ngFor="let order of orders"
+    class="product_order"
+    [style.borderLeft]="
+      order.status
+        ? '3px solid green'
+        : getOrderStatus(order) == 'Pending'
+        ? '3px solid orange'
+        : '3px solid red'
+    "
+  >
     <div class="images">
       <img [src]="order.imagePath" alt="order image" class="order__image" />
     </div>
@@ -23,13 +33,16 @@
             - To:
             {{ changeToLocal12Hours(order.pickupEndTime) }}
           </span>
-        </div>
-        <div class="detail">
           <span class="order_names">
             <b>Unit Price: </b> {{ order.discountedPrice | currency }}
           </span>
+        </div>
+        <div class="detail">
           <span class="order_names">
             <b>Quantity: </b> {{ order.quantity }}
+          </span>
+          <span class="order_names">
+            <b>Status: </b> {{ getOrderStatus(order) }}
           </span>
           <span class="order_names">
             <b>Pay Seller This Amount Plus any Tax: </b>

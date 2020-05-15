@@ -43,7 +43,7 @@ export class RegisterSellerRefComponent implements OnInit {
     confirmPassword: ["", Validators.required],
     agreed: [false, Validators.required],
     role: ["SELLER", Validators.required],
-    subCategoryId: ["", Validators.required],
+    subCategoryId: [1, Validators.required],
   });
 
   constructor(
@@ -101,8 +101,8 @@ export class RegisterSellerRefComponent implements OnInit {
           if (res["success"]) {
             const dialogRef = this.dialog.open(RegistrationCompleteComponent, {
               width: "350px",
-              data: { msg: 'Thank you! You can login to system.' }
-            }, );
+              data: { msg: "Thank you! You can login to system." },
+            });
             dialogRef.afterClosed().subscribe((result) => {
               this.router
                 .navigateByUrl("/RefrshComponent", { skipLocationChange: true })

@@ -42,10 +42,11 @@ export let mapRoutes = {
   "/tlgu-slr/shops": "Manage Shop",
   "/tlgu-slr/shops/newshp": "Manage Shop",
 
-  "/tlgu-slr/qr-scanner": "Process Buyer Code",
+  "/tlgu-slr/qr-scanner": "Manage Order",
 
-  "/tlgu-slr/trnsctns": "View Order",
-  "/tlgu-slr/trnsctns/id": "View Order",
+  "/tlgu-slr/trnsctns": "Manage Order",
+  "/tlgu-slr/trnsctns/id": "Manage Order",
+  "/tlgu-slr/trnsctns/process": "Manage Order",
 
-  "/tlgu-slr/slssmry": "View Summary"
+  "/tlgu-slr/slssmry": "View Summary",
 };

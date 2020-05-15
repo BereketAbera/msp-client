@@ -82,7 +82,7 @@ export class NewShopComponent implements OnInit {
     });
   }
   displayFn(zipCode: any) {
-    console.log(zipCode);
+    // console.log(zipCode);
   }
   gotoShopList() {
     this.router.navigate(["../"], { relativeTo: this.route });

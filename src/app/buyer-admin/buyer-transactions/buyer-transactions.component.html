@@ -1,7 +1,7 @@
 <div class="container">
-  <div class="spinner-container" *ngIf="dataSource.loading$ | async">
+  <!-- <div class="spinner-container" *ngIf="dataSource.loading$ | async">
     <mat-spinner></mat-spinner>
-  </div>
+  </div> -->
   <mat-card class="balance">
     <div class="balance__icon">
       <i class="fad fa-dollar-sign table__icon-2"></i>
@@ -42,25 +42,6 @@
         {{ getAmount(transaction) | currency }}</mat-cell
       >
     </ng-container>
-    <!-- <ng-container matColumnDef="name">
-      <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
-
-      <mat-cell *matCellDef="let transaction">
-        <span class="mobile-label">Action:</span>
-        <div *ngIf="transaction.type == 'DEPOSIT'">
-          <a [routerLink]="['../deposit', transaction.transactionId]"
-            >View Detail</a
-          >
-        </div>
-        <div
-          *ngIf="transaction.type == 'ORDER' || transaction.type == 'REFUND'"
-        >
-          <a [routerLink]="['../trnsctns', transaction.transactionId]"
-            >View Detail</a
-          >
-        </div>
-      </mat-cell>
-    </ng-container> -->
 
     <ng-container matColumnDef="name" stickyEnd>
       <mat-header-cell *matHeaderCellDef></mat-header-cell>

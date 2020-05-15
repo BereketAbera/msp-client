@@ -21,5 +21,7 @@ export class AuthGuard implements CanActivate {
       this.router.navigate([this.authService.defaultNavigationURL]);
       return false;
     }
+
+    return true;
   }
 }

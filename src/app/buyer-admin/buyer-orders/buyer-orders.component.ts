@@ -140,6 +140,18 @@ export class BuyerOrdersComponent implements OnInit {
       .subscribe((data) => {
         this.orders = data;
       });
-    console.log(event);
+    // console.log(event);
+  }
+
+  getOrderStatus(order) {
+    if (order.status) {
+      return "Processed";
+    } else {
+      let pDate = order.purchaseTime.split("T")[0];
+      let utcDate = new Date().toISOString().split("T")[0];
+      // console.log(pDate, utcDate);
+      return pDate == utcDate ? "Pending" : "Expired";
+    }
+    // return order.status ? "Processed" : "Pending";
   }
 }

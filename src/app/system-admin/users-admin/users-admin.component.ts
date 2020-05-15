@@ -64,7 +64,7 @@ export class UsersAdminComponent implements OnInit, AfterViewInit {
   sorted: "";
   orders: "";
   shops: any;
-  shopCount: Number=0;
+  shopCount: Number = 0;
 
   constructor(
     public snackBar: MatSnackBar,
@@ -129,7 +129,7 @@ export class UsersAdminComponent implements OnInit, AfterViewInit {
 
   loadMerchantsPage() {
     var val = this.filterForm.value;
-    console.log(this.sort);
+    // console.log(this.sort);
     this.dataSource.filterSeller(
       val.companyName || "",
       val.city || "",
@@ -259,15 +259,13 @@ export class UsersAdminComponent implements OnInit, AfterViewInit {
   onSubmit() {}
 
   getDetail(id) {
-    this.userService.getOneSellerInfo(id).subscribe(
-      data => {
-        this.seller = data.seller[0];
-        this.shops = data.shops.rows;
-        // console.log(this.shops)
-        this.shopCount = data.shops.count;
-        this.detail = true;
-      }
-    );
+    this.userService.getOneSellerInfo(id).subscribe((data) => {
+      this.seller = data.seller[0];
+      this.shops = data.shops.rows;
+      // console.log(this.shops)
+      this.shopCount = data.shops.count;
+      this.detail = true;
+    });
   }
 
   cancelAction() {

@@ -7,7 +7,7 @@ import { environment } from "../../../environments/environment";
 @Component({
   selector: "app-login",
   templateUrl: "./login.component.html",
-  styleUrls: ["./login.component.scss"]
+  styleUrls: ["./login.component.scss"],
 })
 export class LoginComponent implements OnInit {
   selectedIndex: number = 0;
@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   type = "normal";
   loginForm = this.fb.group({
     email: ["", [Validators.required, Validators.minLength(3)]],
-    password: ["", Validators.required]
+    password: ["", Validators.required],
   });
   constructor(
     private authService: AuthService,
@@ -38,8 +38,8 @@ export class LoginComponent implements OnInit {
       ? "Not a valid email"
       : "";
   }
-  get showSingIn(){
-    if(this.type == "normal") return true;
+  get showSingIn() {
+    if (this.type == "normal") return true;
     return false;
   }
   get showBuyer() {
@@ -62,13 +62,15 @@ export class LoginComponent implements OnInit {
     this.showError = false;
   }
   onSubmit() {
+    this.errors = null;
+    this.showError = false;
     return this.authService.login(this.loginForm.value).subscribe(
-      res => {
+      (res) => {
         if (this.authService.redirectURL) {
           this.router.navigateByUrl(this.authService.redirectURL);
         } else this.router.navigate([this.authService.defaultNavigationURL]);
       },
-      error => {
+      (error) => {
         this.showError = true;
         this.errors = error.messages;
       }

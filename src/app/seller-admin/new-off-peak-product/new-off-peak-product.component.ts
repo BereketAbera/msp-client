@@ -21,7 +21,7 @@ import { UploadService } from "src/app/service/upload.service";
 import { ImageCroppedEvent } from "ngx-image-cropper";
 import Compressor from "compressorjs";
 import { stringify } from "querystring";
-import { copyStyles } from '@angular/animations/browser/src/util';
+import { copyStyles } from "@angular/animations/browser/src/util";
 // import { DragDropDirective } from 'src/app/service/drag-drop.directive';
 let uploadClass = null;
 export interface Discount {
@@ -229,7 +229,6 @@ export class NewOffPeakProductComponent implements OnInit {
               this.populateFields();
               this.parseWeekDay(this.product.activeDays);
 
-
               // console.log(this.product)
             },
             (err) => console.log(err)
@@ -327,7 +326,7 @@ export class NewOffPeakProductComponent implements OnInit {
     let defaultOfferEAMPM = this.getAMPM(this.offerEndInitTime);
 
     // let defaultPickupSHH = this.hours12(this.pickupStartInitTime).toString();
-    let defaultPickupSHH = "11"
+    let defaultPickupSHH = "11";
     if (defaultPickupSHH.length == 1) defaultPickupSHH = "0" + defaultPickupSHH;
 
     // let defaultPickupSMM = this.pickupStartInitTime.getMinutes().toString();
@@ -337,7 +336,7 @@ export class NewOffPeakProductComponent implements OnInit {
     let defaultPickupSAMPM = this.getAMPM(this.pickupStartInitTime);
 
     // let defaultPickupEHH = this.hours12(this.pickupEndInitTime).toString();
-    let defaultPickupEHH = "08"
+    let defaultPickupEHH = "08";
     if (defaultPickupEHH.length == 1) defaultPickupEHH = "0" + defaultPickupEHH;
 
     let defaultPickupEMM = "30:PM";
@@ -383,7 +382,7 @@ export class NewOffPeakProductComponent implements OnInit {
       } else {
         product.isOffPeak = false;
       }
-        // console.log(product,'se')
+      // console.log(product,'se')
       if (this.product && !this.clone) {
         // console.log({ ...this.productForm.value }, 'edit')
         // product = { ...this.productForm.value };
@@ -406,7 +405,8 @@ export class NewOffPeakProductComponent implements OnInit {
                 if (res["success"]) {
                   progressDialogRef.close();
                   let snackBarRef = this.snackBar.open(
-                    "Successfuly saved","",
+                    "Successfuly saved",
+                    "",
                     {
                       duration: 2000,
                     }
@@ -488,9 +488,9 @@ export class NewOffPeakProductComponent implements OnInit {
     }
   }
   gotoSellAdmin() {
-    if(this.product){
+    if (this.product) {
       this.router.navigate(["../../../"], { relativeTo: this.route });
-    }else{
+    } else {
       this.router.navigate(["../"], { relativeTo: this.route });
     }
   }
@@ -730,7 +730,7 @@ export class NewOffPeakProductComponent implements OnInit {
       this.productForm
         .get("offerEndHH")
         .setValue(`${this.returnTwoDigit(parseInt(curr))}`);
-      this.productForm.get("offerEndMM").setValue(`30:PM`)
+      this.productForm.get("offerEndMM").setValue(`30:PM`);
     } else if (parseInt(curr) >= parseInt(currY)) {
       this.productForm
         .get("offerEndHH")
@@ -743,8 +743,7 @@ export class NewOffPeakProductComponent implements OnInit {
       this.productForm
         .get("pickupEndHH")
         .setValue(`${this.returnTwoDigit(parseInt(curr))}`);
-      this.productForm.get("pickupEndMM").setValue(`30:PM`)
-
+      this.productForm.get("pickupEndMM").setValue(`30:PM`);
     } else if (parseInt(curr) == 11 && parseInt(curr) >= parseInt(pick)) {
       this.productForm
         .get("pickupStartHH")
@@ -917,7 +916,9 @@ export class NewOffPeakProductComponent implements OnInit {
       success(result) {
         // setLocal(result);
         uploadClass.uploadForm.get("img").setValue(result);
-        uploadClass.uploadForm.get("name").setValue("img_" + Date.now() % 10000);
+        uploadClass.uploadForm
+          .get("name")
+          .setValue("img_" + (Date.now() % 10000));
         if (uploadClass.uploadForm.value) {
           // this.formData.append("name", this.uploadForm.get("name").value);
           let value = uploadClass.uploadForm.value;
@@ -961,8 +962,8 @@ export class NewOffPeakProductComponent implements OnInit {
   }
 
   shopChanged(event) {
-    console.log(event);
+    // console.log(event);
   }
 
-  imageLoad(event) { }
+  imageLoad(event) {}
 }
