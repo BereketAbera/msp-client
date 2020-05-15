@@ -103,6 +103,13 @@
     display: inline-block !important;
     font-weight: bold;
   }
+  .hide{
+    display: none!important;
+  }
+  .mobile-body{
+    display: inline-block!important;
+
+  }
 
   .mat-header-row {
     display: none;
@@ -117,4 +124,8 @@
 
 .mobile-label {
   display: none;
+}
+
+.mobile-body{
+  display:none;
 }

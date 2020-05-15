@@ -19,7 +19,6 @@ const authRoutes: Routes = [
         path: "login/:type",
         component: LoginComponent,
         resolve: {
-          categories: SubCategoryResolverService,
           states: StateResolverService,
         },
       },
@@ -27,7 +26,6 @@ const authRoutes: Routes = [
         path: "login",
         component: LoginComponent,
         resolve: {
-          categories: SubCategoryResolverService,
           states: StateResolverService,
         },
       },
@@ -38,7 +36,6 @@ const authRoutes: Routes = [
         path: "regslrrfr",
         component: RegisterSellerRefComponent,
         resolve: {
-          categories: SubCategoryResolverService,
           states: StateResolverService,
         },
       },

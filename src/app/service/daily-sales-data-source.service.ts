@@ -18,11 +18,11 @@ export class DailySalesDataSource implements DataSource<DailySale> {
     constructor(private userService: UserService) {
 
     }
-    loadTransactions(fltrDate:Date,endDate) {
+    loadTransactions(fltrDate:Date) {
 
         this.loadingSubject.next(true);
 
-        this.userService.getSellerDailySlsSmry(fltrDate,endDate).pipe(
+        this.userService.getSellerDailySlsSmry(fltrDate).pipe(
                 catchError(() => of([])),
                 finalize(() => this.loadingSubject.next(false))
             )

@@ -34,28 +34,13 @@ export class SalesSummaryComponent implements OnInit, AfterViewInit {
     "picked",
     "discount"
   ];
-  selected: { startDate: Moment, endDate: Moment };
-  ranges: any = {
-    'Today': [moment(), moment()],
-    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-    'This Month': [moment().startOf('month'), moment()],
-    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-  }
-  filtered: boolean;
-  maxDate = moment().subtract(1, 'days');
-  minDate = moment('2018-01-01');
-  dateStart = new FormControl(moment().subtract(7, 'days').toDate());
-  dateEnd = new FormControl(new Date());
+  dateStart = new FormControl(new Date());
   select = new FormControl('');
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   @ViewChild(MatSort) sort: MatSort;
 
   @ViewChild("input") input: ElementRef;
-  defaultStart = moment().subtract(7, 'days').toDate();
-  defaultEnd = moment();
   constructor(
     private route: ActivatedRoute,
     private userService: UserService,
@@ -65,7 +50,7 @@ export class SalesSummaryComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.dataSource = new DailySalesDataSource(this.userService);
     // this.dataSource.loadTransactions(this.date.value);
-    this.dataSource.loadTransactions(this.dateStart.value, this.dateEnd.value);
+    this.dataSource.loadTransactions(this.dateStart.value);
 
     // console.log(this.dataSource);
   }
@@ -78,13 +63,13 @@ export class SalesSummaryComponent implements OnInit, AfterViewInit {
   search() { }
   loadTransactionsPage() {
     // console.log(this.dateStart.value, this.dateEnd.value)
-    this.dataSource.loadTransactions(this.dateStart.value, this.dateEnd.value);
+    this.dataSource.loadTransactions(this.dateStart.value);
   }
-  onDatesUpdated(e) {
-    // console.log(e);
-    if (e.startDate && e.endDate) {
-      this.dataSource.loadTransactions(e.startDate, e.endDate);
+  // onDatesUpdated(e) {
+  //   // console.log(e);
+  //   if (e.startDate && e.endDate) {
+  //     this.dataSource.loadTransactions(e.startDate, e.endDate);
 
-    }
-  }
+  //   }
+  // }
 }
