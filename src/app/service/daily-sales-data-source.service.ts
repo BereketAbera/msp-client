@@ -15,17 +15,17 @@ export class DailySalesDataSource implements DataSource<DailySale> {
 
   public count: number;
   constructor(private userService: UserService) {}
-  loadTransactions(fltrDate: Date, endDate) {
+  loadTransactions(fltrDate: Date) {
     this.loadingSubject.next(true);
 
     this.userService
-      .getSellerDailySlsSmry(fltrDate, endDate)
+      .getSellerDailySlsSmry(fltrDate)
       .pipe(
         catchError(() => of([])),
         finalize(() => this.loadingSubject.next(false))
       )
       .subscribe((buyerTrnsct) => {
-        // console.log(buyerTrnsct,'sa');
+        // console.log(buyerTrnsct, "sa");
         this.count = this.userService.countSubject.value;
         this.productsSubject.next(buyerTrnsct);
       });

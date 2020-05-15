@@ -91,11 +91,12 @@ export class RegisterSellerComponent implements OnInit {
                 }
               );
               dialogRef.afterClosed().subscribe((result) => {
-                this.router
-                  .navigateByUrl("/RefrshComponent", {
-                    skipLocationChange: true,
-                  })
-                  .then(() => this.router.navigate(["/login/seller"]));
+                this.router.navigate(["/login/seller"]);
+                // this.router
+                //   .navigateByUrl("/RefrshComponent", {
+                //     skipLocationChange: true,
+                //   })
+                //   .then(() => this.router.navigate(["/login/seller"]));
               });
 
               //this.registeredSlr.emit("seller");

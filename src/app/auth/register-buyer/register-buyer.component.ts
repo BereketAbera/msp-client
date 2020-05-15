@@ -63,9 +63,10 @@ export class RegisterBuyerComponent implements OnInit {
 
             });
             dialogRef.afterClosed().subscribe((result) => {
-              this.router
-                .navigateByUrl("/RefrshComponent", { skipLocationChange: true })
-                .then(() => this.router.navigate(["/login/buyer"]));
+              this.router.navigate(["/login/buyer"]);
+              // this.router
+              //   .navigateByUrl("/RefrshComponent", { skipLocationChange: true })
+              //   .then(() => this.router.navigate(["/login/buyer"]));
             });
 
             //this.registeredByr.emit("Buyer")

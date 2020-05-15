@@ -58,7 +58,6 @@ export class RegisterSellerRefComponent implements OnInit {
   ngOnInit() {
     this.route.data.subscribe(
       (data: { categories: Category[]; states: State[] }) => {
-        this.categories = data.categories;
         this.states = data.states;
         // console.log(data);
       }

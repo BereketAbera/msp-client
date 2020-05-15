@@ -43,11 +43,11 @@ export class LoginComponent implements OnInit {
     return false;
   }
   get showBuyer() {
-    if (this.type == "buyer" || this.type == "normal") return true;
+    if (this.type == "normal") return true;
     return false;
   }
   get showSeller() {
-    if (this.type == "seller" || this.type == "normal") return true;
+    if (this.type == "normal") return true;
     return false;
   }
   setSelectedIndexBuyer() {
