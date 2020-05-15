@@ -131,7 +131,7 @@ export class QrScannerComponent implements OnInit {
       if (result) {
         this.transactionService
           .processTransactionQRCdCode({
-            code: parseInt(ordCode),
+            code: ordCode,
             qrCode: result.qrCode,
           })
           .subscribe((result) => {
