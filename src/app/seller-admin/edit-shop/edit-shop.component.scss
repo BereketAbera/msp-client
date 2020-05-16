@@ -91,7 +91,14 @@ ul {
   margin: 0rem 1rem;
 }
 
+.mat-form-field {
+  font-size: 2rem;
+}
+
 @media only screen and (min-width: 600px) {
+  .mat-form-field {
+    font-size: inherit;
+  }
   .add-shop {
     &__container {
       width: 90%;

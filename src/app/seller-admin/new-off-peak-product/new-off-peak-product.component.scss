@@ -390,47 +390,6 @@
   }
 }
 
-@media only screen and (max-width: 372px) {
-  .contanier {
-    width: 100%;
-    padding: 0;
-  }
-  .product-form__container {
-    margin: 0;
-    width: 100%;
-  }
-  .product-form__sub-container {
-    width: 70%;
-  }
-
-  .product-drag__header {
-    padding: 0;
-
-    .text {
-      // height: 2.5rem;
-      padding: 0 0.5rem;
-      min-width: 15rem;
-      font-size: 1.2rem;
-    }
-  }
-
-  .drag_drop {
-    margin-top: 7rem !important;
-  }
-
-  .form-group-item,
-  .form-group-item-2,
-  .form-group-item-3 {
-    min-width: 20rem;
-    width: 100%;
-  }
-
-  .form-group-content {
-    display: flex;
-    flex-direction: column;
-  }
-}
-
 .image {
   position: fixed;
   top: 0;
@@ -582,4 +541,106 @@
 
 .hidden {
   visibility: hidden;
+}
+
+@media only screen and (max-width: 600px) {
+  .form-group {
+    &-header {
+      font-size: 1.8rem;
+    }
+
+    &-content {
+      font-size: 1.8rem;
+    }
+  }
+
+  .product-drag {
+    &__header {
+      font-size: 1.8rem;
+    }
+
+    .uploadfilecontainer {
+      .drag_drop {
+        .text {
+          font-size: 2rem;
+        }
+        .drag_icons {
+          font-size: 2.5rem;
+        }
+      }
+    }
+  }
+
+  .product-form {
+    &__container {
+      font-size: 1.5rem;
+    }
+
+    &__header {
+      font-size: 2.2rem;
+      &__subtitle {
+        font-size: 1.5rem;
+      }
+    }
+
+    &__radio {
+      font-size: 1.4rem;
+    }
+
+    &__input-container {
+      font-size: 1.8rem;
+    }
+
+    &__input--type-2 {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  }
+
+  .loader {
+    &__text {
+      font-size: 1.8rem;
+    }
+  }
+}
+
+@media only screen and (max-width: 372px) {
+  .contanier {
+    width: 100%;
+    padding: 0;
+  }
+  .product-form__container {
+    margin: 0;
+    width: 100%;
+  }
+  .product-form__sub-container {
+    width: 70%;
+  }
+
+  .product-drag__header {
+    padding: 0;
+
+    .text {
+      // height: 2.5rem;
+      padding: 0 0.5rem;
+      min-width: 15rem;
+      font-size: 1.2rem;
+    }
+  }
+
+  .drag_drop {
+    margin-top: 7rem !important;
+  }
+
+  .form-group-item,
+  .form-group-item-2,
+  .form-group-item-3 {
+    min-width: 20rem;
+    width: 100%;
+  }
+
+  .form-group-content {
+    display: flex;
+    flex-direction: column;
+  }
 }

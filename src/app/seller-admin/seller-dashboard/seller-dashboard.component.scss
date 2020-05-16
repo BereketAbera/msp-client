@@ -31,7 +31,6 @@ td {
     // width: 40%;
     padding: 0.5rem;
     // border: 1px solid #eee;
-    // font-size: 1.2rem;
     font-weight: 600;
     display: flex;
     justify-content: center;
@@ -42,27 +41,28 @@ td {
     margin: 3rem 1rem;
     flex-wrap: wrap;
     flex-direction: column;
+    min-width: 150px;
   }
 
   &__item-text {
     max-width: 8rem;
     align-items: center;
     text-align: center;
-    font-size: 1.1rem;
+    font-size: 1.5rem;
     color: #555;
   }
 
   &__item-value {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     color: #888;
   }
 
   &__item-revenue {
-    font-size: 1.8rem;
+    font-size: 2.2rem;
   }
 
   &__item-percentage {
-    font-size: 1rem;
+    font-size: 1.4rem;
     color: #f94081;
   }
 
@@ -79,11 +79,10 @@ td {
     color: #777;
     padding: 1rem;
     padding-bottom: 0rem;
-    font-size: 1.8rem;
+    font-size: 2.2rem;
   }
 
   &__button {
-    // font-size: 1.3rem;
     border-radius: 0rem;
     padding: 0rem 2rem;
   }
@@ -100,6 +99,27 @@ td {
   .dashboard {
     &__item {
       margin: 1rem;
+    }
+
+    &__item-text {
+      font-size: 1.1rem;
+    }
+
+    &__item-value {
+      font-size: 2.5rem;
+      color: #888;
+    }
+
+    &__item-revenue {
+      font-size: 1.8rem;
+    }
+
+    &__item-percentage {
+      font-size: 1rem;
+    }
+
+    &__header {
+      font-size: 1.8rem;
     }
   }
 }

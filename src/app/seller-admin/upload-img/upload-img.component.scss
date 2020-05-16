@@ -274,8 +274,38 @@ ul {
     color: #bb1e55;
     cursor: pointer;
   }
+  &__text {
+    font-size: 1.8rem;
+  }
 }
 
 .mat-form-field {
   min-width: 30rem;
+  font-size: 1.5rem;
+}
+
+@media only screen and (max-width: 600px) {
+  .errClsBtn {
+    font-size: 1.3rem;
+  }
+
+  .mat-form-field {
+    font-size: 1.8rem;
+  }
+
+  .loader {
+    &__text {
+      font-size: 2rem;
+    }
+
+    &__icon {
+      font-size: 5rem;
+    }
+  }
+
+  .upload-form {
+    &__text {
+      font-size: 1.8rem;
+    }
+  }
 }
