@@ -1,5 +1,5 @@
 <p *ngIf="isOk()"><strong>Order</strong></p>
-<p *ngIf="!data.success"><strong>Don't process this order.</strong></p>
+<p *ngIf="data && !data.success"><strong>Don't process this order.</strong></p>
 <mat-dialog-content class="mat-typography">
   <div *ngIf="data.success">
     <P>Buyer Name: {{ data.firstName }} {{ data.lastName }}</P>

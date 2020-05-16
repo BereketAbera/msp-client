@@ -121,7 +121,6 @@ export class QrScannerComponent implements OnInit {
   // Use facingMode: environment to attemt to get the front camera on phones
   checkCode() {
     //this.stopScanner()
-
     let ordCoded = `${this.code.value}`;
     let ordCode = ordCoded.replace("-", "");
     let dialogRef = this.dialog.open(RequestCodeConfirmationComponent, {
@@ -131,7 +130,7 @@ export class QrScannerComponent implements OnInit {
       if (result) {
         this.transactionService
           .processTransactionQRCdCode({
-            code: parseInt(ordCode),
+            code: ordCode,
             qrCode: result.qrCode,
           })
           .subscribe((result) => {

@@ -29,7 +29,6 @@ export class RequestCodeConfirmationComponent implements OnInit {
       });
   }
   isOk() {
-    // console.log("this status " + this.data.status);
     return this.data.status == "OK";
   }
 }

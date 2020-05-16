@@ -14,5 +14,5 @@ export interface QrCodeData {
     claimEndDate?:Date;
     message?:string;
     success?:boolean;
-    code?:number;
+    code?:String;
   }
