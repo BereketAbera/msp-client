@@ -1,48 +1,61 @@
 <div class="tab-item">
-
-
   <div class="spinner-container" *ngIf="dataSource.loading$ | async">
-
     <mat-spinner></mat-spinner>
-
   </div>
   <div class="container">
+    <h3>Reload to see updates...</h3>
     <div *ngIf="dataSource.count > 0" class="table__container">
-      <mat-table *ngIf="dataSource" class="table mat-elevation-z2" [dataSource]="dataSource" matSort
-        matSortActive="date" matSortDirection="asc" matSortDisableClear>
+      <mat-table
+        *ngIf="dataSource"
+        class="table mat-elevation-z2"
+        [dataSource]="dataSource"
+        matSort
+        matSortActive="date"
+        matSortDirection="asc"
+        matSortDisableClear
+      >
         <ng-container matColumnDef="email">
           <mat-header-cell *matHeaderCellDef>Refered Email</mat-header-cell>
           <mat-cell *matCellDef="let refer">
             <span class="mobile-label">Email:</span>
-            {{refer.referedEmail}}</mat-cell>
+            {{ refer.referedEmail }}</mat-cell
+          >
         </ng-container>
         <ng-container matColumnDef="type">
           <mat-header-cell *matHeaderCellDef>Type</mat-header-cell>
-          <mat-cell *matCellDef="let refer"> <span class="mobile-label">Type:</span>
-            {{getType(refer.type)}}</mat-cell>
+          <mat-cell *matCellDef="let refer">
+            <span class="mobile-label">Type:</span>
+            {{ getType(refer.type) }}</mat-cell
+          >
         </ng-container>
 
         <ng-container matColumnDef="isUsed">
           <mat-header-cell *matHeaderCellDef>Registered</mat-header-cell>
-          <mat-cell *matCellDef="let refer"> 
+          <mat-cell *matCellDef="let refer">
             <span class="mobile-label">Registered:</span>
-            {{isRegistered(refer.isUsed)}}</mat-cell>
+            {{ isRegistered(refer.isUsed) }}</mat-cell
+          >
         </ng-container>
         <ng-container matColumnDef="createdAt">
-          <mat-header-cell  *matHeaderCellDef>Refered At</mat-header-cell>
-          <mat-cell  *matCellDef="let refer">
+          <mat-header-cell *matHeaderCellDef>Refered At</mat-header-cell>
+          <mat-cell *matCellDef="let refer">
             <span class="mobile-label">Date:</span>
-             {{refer.createdAt|date:"yyyy-MM-dd HH:mm:ss"}}</mat-cell>
+            {{ refer.createdAt | date: "yyyy-MM-dd HH:mm:ss" }}</mat-cell
+          >
         </ng-container>
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
       </mat-table>
-      <mat-paginator class="table" [length]="dataSource.count" [pageSize]="5" [pageSizeOptions]="[5, 10]">
+      <mat-paginator
+        class="table"
+        [length]="dataSource.count"
+        [pageSize]="5"
+        [pageSizeOptions]="[5, 10]"
+      >
       </mat-paginator>
     </div>
     <div *ngIf="dataSource.count == 0" class="no_result">
       No Referral yet!
     </div>
   </div>
-
 </div>

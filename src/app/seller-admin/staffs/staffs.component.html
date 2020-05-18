@@ -10,7 +10,7 @@
       </button>
     </div>
   </div>
-  <div *ngIf="!dataSource || dataSource?.length == 0" class="no_result">
+  <div *ngIf="dataSource && dataSource?.length == 0" class="no_result">
     <span>You do not have any staffs yet.</span>
   </div>
   <div class="staff__container">

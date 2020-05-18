@@ -15,10 +15,13 @@ export class RequestCodeConfirmationComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: QrCodeData
   ) {}
 
+  responseRecived = false;
+
   ngOnInit() {
     this.trnsService
       .getCdCodeForTransaction(this.data.code)
       .subscribe((qrData) => {
+        this.responseRecived = true;
         if (qrData["success"]) {
           this.data = qrData["data"];
           this.data.success = true;

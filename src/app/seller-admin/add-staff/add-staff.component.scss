@@ -20,7 +20,7 @@
   }
 
   &__title {
-    font-size: 1.8rem;
+    font-size: 2.2rem;
     font-weight: 600;
     color: #555;
   }
@@ -29,12 +29,12 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     max-width: 40rem;
   }
 
   &__input {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     width: 100%;
   }
 
@@ -44,7 +44,7 @@
   }
 
   &__errors {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     color: red;
     border: 1px solid red;
     padding: 0.5rem 1rem;
@@ -57,58 +57,26 @@
   margin: 0rem 1rem;
 }
 
-// .captureC {
-//   background-color: blueviolet;
-//   text-align: center;
-//   padding: 2px;
-// }
-// .frmDiv {
-//   padding: 10px;
-// }
-// .taxCntrl {
-//   width: 300px;
-// }
-
-// .captureBrdr {
-//   border: 2px dotted white;
-// }
-// .clickCard {
-//   position: absolute;
-//   top: 0;
-//   left: 0;
-//   height: 100%;
-//   width: 100%;
-// }
-
-// .material-icons.orange600 {
-//   color: #f44336;
-// }
-// .material-icons.md-48 {
-//   font-size: 60px;
-// }
-
-// #errorCntr {
-//   width: 80%;
-//   border: 2px solid red;
-//   padding: 15px 15px 15px 15px;
-//   margin: 20px 20px 20px 20px;
-//   background: #a4d3ee;
-//   overflow: visible;
-//   position: relative;
-// }
-
-// #errClsBtn {
-//   position: absolute;
-//   background: red;
-//   color: white;
-//   top: -10px;
-//   right: -10px;
-// }
-
 @media only screen and (min-width: 600px) {
   .add-staff {
     &__container {
       width: 80%;
+    }
+
+    &__title {
+      font-size: 1.8rem;
+    }
+
+    &__inputs {
+      font-size: 1.5rem;
+    }
+
+    &__input {
+      font-size: 1.5rem;
+    }
+
+    &__errors {
+      font-size: 1.5rem;
     }
   }
 }

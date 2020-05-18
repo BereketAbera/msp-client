@@ -25,11 +25,13 @@ import { SellerGuard } from "./seller-admin/seller.guard";
 import { BuyerGuard } from "./buyer-admin/buyer.guard";
 import { AdminGuard } from "./system-admin/admin.guard";
 import { AuthGuard } from "./auth/auth.guard";
+import { CustomPreloadingService } from "./service/custom-preloading.service";
 
 const appRoutes: Routes = [
   {
     path: "",
     component: PublicComponent,
+    data: { preload: true },
     resolve: {
       categories: SubCategoryResolverService,
     },
@@ -79,6 +81,7 @@ const appRoutes: Routes = [
   {
     path: "",
     canActivate: [AuthGuard],
+    data: { preload: true },
     loadChildren: "./auth/auth.module#AuthModule",
   },
   {
@@ -103,7 +106,10 @@ const appRoutes: Routes = [
   exports: [RouterModule],
   imports: [
     CommonModule,
-    RouterModule.forRoot(appRoutes, { onSameUrlNavigation: "reload" }),
+    RouterModule.forRoot(appRoutes, {
+      preloadingStrategy: CustomPreloadingService,
+      onSameUrlNavigation: "reload",
+    }),
   ],
   declarations: [],
 })

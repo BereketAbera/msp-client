@@ -47,8 +47,17 @@ li {
   }
 }
 
-@media only screen and (max-width: 732px) {
+@media only screen and(max-width: 600px) {
+  .list {
+    &__details {
+      font-size: 1.6rem;
+    }
+
+    &__header {
+      font-size: 1.8rem;
+    }
+  }
   .contanier {
-   width: 90%;
+    width: 90%;
   }
 }

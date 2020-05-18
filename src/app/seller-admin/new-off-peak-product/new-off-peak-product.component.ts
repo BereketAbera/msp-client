@@ -938,7 +938,7 @@ export class NewOffPeakProductComponent implements OnInit {
                 //progressDialog.close();
                 let snackBarRef = uploadClass.snackBar.open(
                   "Successfuly Uploaded File",
-                  "Upload More",
+                  "",
                   {
                     duration: 2000,
                   }

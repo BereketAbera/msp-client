@@ -71,7 +71,7 @@
         </mat-option>
       </mat-select>
     </mat-form-field> -->
-    <mat-form-field class="example-full-width" hintLabel="max 15 numbers">
+    <mat-form-field class="example-full-width" hintLabel="max 20 numbers">
       <input
         type="tel"
         matInput
@@ -198,9 +198,12 @@
     <div>
       <mat-checkbox formControlName="agreed"
         >I have read and agreed to the
-        <a routerLink="/seller_terms"> Seller's Terms of Use</a><br />
+        <a target="_blank" routerLink="/seller_terms"> Seller's Terms of Use</a
+        ><br />
         and the
-        <a routerLink="/privacy">Privacy Statement.</a></mat-checkbox
+        <a target="_blank" routerLink="/privacy"
+          >Privacy Statement.</a
+        ></mat-checkbox
       >
     </div>
     <br />
