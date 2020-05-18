@@ -1,20 +1,24 @@
-<p *ngIf="isOk()"><strong>Order</strong></p>
-<p *ngIf="data && !data.success"><strong>Don't process this order.</strong></p>
-<mat-dialog-content class="mat-typography">
-  <div *ngIf="data.success">
-    <P>Buyer Name: {{ data.firstName }} {{ data.lastName }}</P>
-    <p>Product: {{ data.productName }}</p>
-    <p>Quantity: {{ data.quantity }}</p>
-    <p>Discounted Price: {{ data.discountPrice | currency }}/unit + Tax</p>
-    <p>Status: {{ data.status }}</p>
-  </div>
-  <div *ngIf="!data.success">
-    <P>{{ data.message }}</P>
-  </div>
-</mat-dialog-content>
-<mat-dialog-actions align="end">
-  <button mat-button [mat-dialog-close]="false">Cancel</button>
-  <button *ngIf="isOk()" mat-button [mat-dialog-close]="true" cdkFocusInitial>
-    Process Order Now
-  </button>
-</mat-dialog-actions>
+<div *ngIf="responseRecived">
+  <p *ngIf="isOk()"><strong>Order</strong></p>
+  <p *ngIf="data && !data.success">
+    <strong>Don't process this order.</strong>
+  </p>
+  <mat-dialog-content class="mat-typography">
+    <div *ngIf="data.success">
+      <P>Buyer Name: {{ data.firstName }} {{ data.lastName }}</P>
+      <p>Product: {{ data.productName }}</p>
+      <p>Quantity: {{ data.quantity }}</p>
+      <p>Discounted Price: {{ data.discountPrice | currency }}/unit + Tax</p>
+      <p>Status: {{ data.status }}</p>
+    </div>
+    <div *ngIf="!data.success">
+      <P>{{ data.message }}</P>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button [mat-dialog-close]="false">Cancel</button>
+    <button *ngIf="isOk()" mat-button [mat-dialog-close]="true" cdkFocusInitial>
+      Process Order Now
+    </button>
+  </mat-dialog-actions>
+</div>

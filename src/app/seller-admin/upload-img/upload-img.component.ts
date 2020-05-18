@@ -1,15 +1,12 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { FormBuilder, Validators, FormControl } from "@angular/forms";
 import { Router, ActivatedRoute } from "@angular/router";
 import { MatDialog } from "@angular/material";
 import { debounceTime, distinctUntilChanged } from "rxjs/operators";
 import { MatSnackBar } from "@angular/material";
 
-import { Picture } from "../../model/picture";
 import { UploadService } from "../../service/upload.service";
 
-import { SaveConfirmationDialogComponent } from "../../shared/save-confirmation-dialog/save-confirmation-dialog.component";
-import { SaveProgressComponent } from "../../shared/save-progress/save-progress.component";
 import { ImageCroppedEvent } from "ngx-image-cropper";
 import Compressor from "compressorjs";
 
@@ -21,7 +18,7 @@ let uploadClass = null;
   styleUrls: ["./upload-img.component.scss"],
 })
 export class UploadImgComponent implements OnInit {
-  @ViewChild("file") file;
+  @ViewChild("imageInput") imageInput: ElementRef;
 
   imageChangedEvent: any = "";
   croppedImage: any = "";
@@ -60,19 +57,16 @@ export class UploadImgComponent implements OnInit {
     return true;
   }
   onSubmit() {
+    console.log(this.uploadForm.valid && this.fileSelected);
     if (this.uploadForm.valid && this.fileSelected) {
       let value = this.uploadForm.value;
       this.formData.append("name", value["name"]);
       this.formData.append("img", value["img"]);
-
-      const progressDialog = this.dialog.open(SaveProgressComponent, {
-        width: "300px",
-        height: "200px",
-      });
+      this.loadingLocalImage = true;
       this.uploadService.createImage(this.formData).subscribe(
         (res) => {
           if (res["success"]) {
-            progressDialog.close();
+            this.loadingLocalImage = false;
             let snackBarRef = this.snackBar.open(
               "Successfuly Uploaded File",
               "",
@@ -91,13 +85,13 @@ export class UploadImgComponent implements OnInit {
             });
             //this.router.navigate(["../"], { relativeTo: this.route });
           } else {
-            progressDialog.close();
+            this.loadingLocalImage = false;
             this.showError = true;
             this.errors = res["messages"];
           }
         },
         (err) => {
-          progressDialog.close();
+          this.loadingLocalImage = false;
         }
       );
     }
@@ -151,7 +145,14 @@ export class UploadImgComponent implements OnInit {
   loadImageFailed() {}
 
   closeModal() {
+    this.imageInput.nativeElement.value = "";
     uploadClass.imageChangedEvent = "";
+    this.fileSelected = false;
+  }
+
+  closeModalSave() {
+    uploadClass.imageChangedEvent = "";
+    // this.fileSelected = false;
   }
 
   imageLoad(event) {}
@@ -170,19 +171,17 @@ export class UploadImgComponent implements OnInit {
   }
 
   compressImage(image) {
-    let setLocal = this.setLocalImage;
-    let closeModal = this.closeModal;
     new Compressor(image, {
       quality: 0.7,
       minWidth: 550,
       maxWidth: 550,
       mimeType: "JPEG",
-      success(result) {
-        setLocal(result);
+      success: (result) => {
+        this.setLocalImage(result);
         uploadClass.uploadForm.get("img").setValue(result);
-        closeModal();
+        this.closeModalSave();
       },
-      error(err) {
+      error: (err) => {
         console.log(err);
       },
     });

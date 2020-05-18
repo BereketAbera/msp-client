@@ -1,9 +1,16 @@
-
-
-.container{
+.container {
   width: 100%;
   width: 100%;
   overflow-x: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  h3 {
+    color: #555;
+    padding: 1rem 2rem;
+  }
 }
 
 .course-thumbnail {
@@ -39,7 +46,7 @@
   height: 100%;
   width: 100%;
 }
-.no_result{
+.no_result {
   font-size: 1.6rem;
   color: #777;
   display: flex;
@@ -47,13 +54,12 @@
   padding: 2rem;
 }
 @media only screen and (max-width: 600px) {
- 
-  .mat-cell:first-of-type{
+  .mat-cell:first-of-type {
     padding: 0;
   }
   .mobile-label {
     width: 85px;
-    display: inline-block!important;
+    display: inline-block !important;
     font-weight: bold;
   }
 
@@ -61,7 +67,7 @@
     display: none;
   }
 
-  .mat-row { 
+  .mat-row {
     flex-direction: column;
     align-items: start;
     padding: 8px 24px;
@@ -69,5 +75,5 @@
 }
 
 .mobile-label {
-display: none;
+  display: none;
 }

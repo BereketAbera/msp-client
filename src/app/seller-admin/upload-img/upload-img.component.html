@@ -25,6 +25,7 @@
       <label for="file">
         <i class="fad fa-image-polaroid upload-form__icon"></i>
         <input
+          #imageInput
           type="file"
           id="file"
           (change)="fileChangeEvent($event)"
@@ -45,7 +46,6 @@
         [(ngModel)]="selectedImage"
         formControlName="name"
         required
-        (change)="fileChangeEvent($event)"
         maxlength="30"
         minlength="2"
       />
