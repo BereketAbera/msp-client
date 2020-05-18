@@ -83,9 +83,6 @@ export class UploadImgComponent implements OnInit {
             snackBarRef.onAction().subscribe(() => {
               this.showImage = false;
               this.uploadForm.reset();
-              
-             
-
 
             });
             //this.router.navigate(["../"], { relativeTo: this.route });
