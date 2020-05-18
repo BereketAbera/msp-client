@@ -28,6 +28,11 @@ export class StaffsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.route.data.subscribe(({ staff }) => {
+      this.dataSource = staff.staffs.row;
+      this.count = staff.staffs.count;
+    });
+
     this.sellerStaffService.getStaffs(1).subscribe(response => {
       if (response.success) {
         this.dataSource = response.staffs.rows;

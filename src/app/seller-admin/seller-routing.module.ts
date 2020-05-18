@@ -37,6 +37,7 @@ import { ManageStaffAccessComponent } from "./manage-staff-access/manage-staff-a
 import { FeaturesResolverService } from "../service/features-resolver.service";
 import { ShopByIdResolverService } from "../service/shop-by-id-resolver.service";
 import { ProfileResolverService } from "../service/profile-resolver.service";
+import { StaffResolverService } from '../service/staff-resolver.service';
 
 const sellerRoutes: Routes = [
   {
@@ -163,6 +164,7 @@ const sellerRoutes: Routes = [
         path: "staffs",
         canActivate: [SellerGuard],
         component: StaffsComponent,
+        resolve: { staff: StaffResolverService },
       },
       {
         path: "staffs/add",
