@@ -70,7 +70,7 @@
   }
   &-body {
     padding: 0 2rem;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
   }
   &-status {
     display: flex;
@@ -78,6 +78,7 @@
     align-items: center;
     padding: 0 1rem;
     font-size: 1.3rem;
+    max-width: 15rem;
     .items {
       padding: 0 1rem;
     }
@@ -87,7 +88,7 @@
     align-items: center;
   }
   &-state {
-    max-width: 15rem;
+    max-width: 12rem;
   }
 }
 .addNewDiv {

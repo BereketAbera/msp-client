@@ -24,7 +24,7 @@ export class RegisterSellerComponent implements OnInit {
   categories: any;
   zipCodeHints: ZipCode[];
   states: State[];
-
+  loading=false;
   registrationForm = this.fb.group({
     firstName: ["", Validators.required],
     lastName: ["", Validators.required],
@@ -78,9 +78,11 @@ export class RegisterSellerComponent implements OnInit {
     this.errors = [];
     if (this.registrationForm.valid) {
       if (this.registrationForm.get("agreed").value) {
+        this.loading = true;
         return this.userService
           .registerUser(this.registrationForm.value)
           .subscribe((res) => {
+            this.loading=false;
             if (res["success"]) {
               const dialogRef = this.dialog.open(
                 RegistrationCompleteComponent,

@@ -62,7 +62,7 @@ export class ProductsComponent implements OnInit, AfterViewInit {
     this.route.queryParams.subscribe(
       (data) => {
         this.paginator.pageIndex = +data.page - 1 >= 0 ? +data.page : 0;
-        this.dataSource.loadProducts(1, "", "", this.paginator.pageIndex, 5);
+        this.dataSource.loadProducts(1, "", "ASC", this.paginator.pageIndex, 5);
       },
       (err) => console.log(err)
     );

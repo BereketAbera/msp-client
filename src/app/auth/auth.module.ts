@@ -17,6 +17,7 @@ import { RegisterSellerRefComponent } from "./register-seller-ref/register-selle
 import { RegisterBuyerRefComponent } from "./register-buyer-ref/register-buyer-ref.component";
 import { AuthComponent } from "./auth.component";
 import { SharedModule } from "../shared/shared.module";
+import { CustomSubmitComponent } from './custom-submit/custom-submit.component';
 // import { CustomNotificationComponent } from "../components/custom-notification/custom-notification.component";
 
 @NgModule({
@@ -39,6 +40,7 @@ import { SharedModule } from "../shared/shared.module";
     RegisterSellerRefComponent,
     RegisterBuyerRefComponent,
     AuthComponent,
+    CustomSubmitComponent
     // CustomNotificationComponent,
   ],
   entryComponents: [RegistrationCompleteComponent],

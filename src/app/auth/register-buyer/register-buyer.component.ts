@@ -26,7 +26,7 @@ export class RegisterBuyerComponent implements OnInit {
     agreed: [false, Validators.required],
     role: ["BUYER", Validators.required],
   });
-
+  loading=false;
   constructor(
     public dialog: MatDialog,
     private userService: UserService,
@@ -46,6 +46,7 @@ export class RegisterBuyerComponent implements OnInit {
       this.errors = ["Your passwords do not much"];
       return;
     }
+   
     this.showError = false;
     this.errors = [];
     if (
@@ -53,14 +54,15 @@ export class RegisterBuyerComponent implements OnInit {
       this.registrationForm.valid
     ) {
       if(this.registrationForm.get("agreed").value){
+        this.loading=true;
         return this.userService
         .registerUser(this.registrationForm.value)
         .subscribe((res) => {
+          this.loading=false;
           if (res["success"]) {
             const dialogRef = this.dialog.open(RegistrationCompleteComponent, {
               width: "350px",
               data: { msg: 'Thank you! Now please check your email for our email verfication.' }
-
             });
             dialogRef.afterClosed().subscribe((result) => {
               this.router.navigate(["/login/buyer"]);

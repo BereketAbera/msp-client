@@ -62,6 +62,9 @@ export class UploadImgComponent implements OnInit {
   onSubmit() {
     if (this.uploadForm.valid && this.fileSelected) {
       let value = this.uploadForm.value;
+      if(this.formData.has("img")){
+        this.formData.delete("img")
+      }
       this.formData.append("name", value["name"]);
       this.formData.append("img", value["img"]);
 
@@ -69,6 +72,11 @@ export class UploadImgComponent implements OnInit {
         width: "300px",
         height: "200px",
       });
+      // console.log("sdf")
+      // //@ts-ignore
+      // for (var pair of this.formData.entries()){
+      //   console.log(pair[0]+" , "+pair[1]);
+      // }
       this.uploadService.createImage(this.formData).subscribe(
         (res) => {
           if (res["success"]) {
@@ -88,6 +96,10 @@ export class UploadImgComponent implements OnInit {
             snackBarRef.onAction().subscribe(() => {
               this.showImage = false;
               this.uploadForm.reset();
+              
+             
+
+
             });
             //this.router.navigate(["../"], { relativeTo: this.route });
           } else {

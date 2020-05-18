@@ -56,6 +56,7 @@
       <input
         type="tel"
         matInput
+        pattern="^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$"
         placeholder="Telephone"
         maxlength="20"
         formControlName="phoneNumber"
@@ -125,8 +126,11 @@
     >
     <br />
     <br />
-    <button type="submit" mat-raised-button color="accent" class="msp-button">
+    <!-- <button type="submit" mat-raised-button color="accent" class="msp-button">
       Sign Up
-    </button>
+    </button> -->
+
+    <auth-custom-submit class="msp-button example-full-width" [styleObject]="submitBtnStyle" [loading]="loading" text="Sign Up"></auth-custom-submit>
+
   </div>
 </form>

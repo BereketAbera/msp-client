@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
     email: ["", [Validators.required, Validators.minLength(3)]],
     password: ["", Validators.required],
   });
+  loading=false;
   constructor(
     private authService: AuthService,
     private fb: FormBuilder,
@@ -64,8 +65,10 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.errors = null;
     this.showError = false;
+    this.loading=true;
     return this.authService.login(this.loginForm.value).subscribe(
       (res) => {
+        this.loading=false;
         if (this.authService.redirectURL) {
           this.router.navigateByUrl(this.authService.redirectURL);
         } else this.router.navigate([this.authService.defaultNavigationURL]);
@@ -73,6 +76,7 @@ export class LoginComponent implements OnInit {
       (error) => {
         this.showError = true;
         this.errors = error.messages;
+        this.loading=false;
       }
     );
   }

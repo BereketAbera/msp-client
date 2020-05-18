@@ -152,6 +152,7 @@ export class UserService {
     city = "",
     state = "",
     status,
+    shop ="",
     pageNumber = 0,
     pageSize = 5,
     sortOrder,
@@ -164,6 +165,7 @@ export class UserService {
           .set("city", city)
           .set("state", state)
           .set("status", status)
+          .set("shop", shop)
           .set("pageNumber", pageNumber.toString())
           .set("pageSize", pageSize.toString())
           .set("sortOrder", sortOrder)

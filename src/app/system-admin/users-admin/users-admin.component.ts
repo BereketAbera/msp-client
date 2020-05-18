@@ -97,13 +97,14 @@ export class UsersAdminComponent implements OnInit, AfterViewInit {
             "",
             "",
             "",
+            "",
             this.paginator.pageIndex,
             10,
             "desc",
             ""
           );
         } else {
-          this.dataSource.filterSeller("", "", "", "", 0, 10, "desc", "");
+          this.dataSource.filterSeller("", "", "", "","", 0, 10, "desc", "");
           let path = this.location.path();
           path = path.concat(`?page=${this.paginator.pageIndex}`);
           this.location.go(path);
@@ -117,6 +118,7 @@ export class UsersAdminComponent implements OnInit, AfterViewInit {
       city: [""],
       state: [""],
       status: [""],
+      shop:[""]
     });
   }
 
@@ -135,6 +137,7 @@ export class UsersAdminComponent implements OnInit, AfterViewInit {
       val.city || "",
       val.state || "",
       val.status,
+      val.shop,
       this.paginator.pageIndex,
       this.paginator.pageSize,
       this.sort.direction,
@@ -219,6 +222,7 @@ export class UsersAdminComponent implements OnInit, AfterViewInit {
                     val.city || "",
                     val.state || "",
                     val.status,
+                    val.shop,
                     this.paginator.pageIndex,
                     this.paginator.pageSize,
                     "desc",
@@ -250,6 +254,7 @@ export class UsersAdminComponent implements OnInit, AfterViewInit {
       val.city || "",
       val.state || "",
       val.status,
+      val.shop,
       0,
       10,
       "desc",
