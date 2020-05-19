@@ -45,6 +45,7 @@ export class RegisterSellerRefComponent implements OnInit {
     role: ["SELLER", Validators.required],
     subCategoryId: [1, Validators.required],
   });
+  loading: boolean=false;
 
   constructor(
     private route: ActivatedRoute,
@@ -96,7 +97,9 @@ export class RegisterSellerRefComponent implements OnInit {
       if (this.registrationForm.get("agreed").value) {
         let usrInfo = this.registrationForm.value;
         usrInfo.tk = this.tk;
+        this.loading=true;
         return this.userService.registerSlrUser(usrInfo).subscribe((res) => {
+          this.loading=false;
           if (res["success"]) {
             const dialogRef = this.dialog.open(RegistrationCompleteComponent, {
               width: "350px",

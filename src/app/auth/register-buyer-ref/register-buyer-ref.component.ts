@@ -28,6 +28,7 @@ export class RegisterBuyerRefComponent implements OnInit {
     agreed: [false, Validators.required],
     role: ["BUYER", Validators.required],
   });
+  loading: boolean=false;
 
   constructor(
     private route: ActivatedRoute,
@@ -68,10 +69,12 @@ export class RegisterBuyerRefComponent implements OnInit {
       ) {
         let usrInfo = this.registrationForm.value;
         usrInfo.tk = this.tk;
+        this.loading=true;
         return this.userService
           .registerByrUser(this.registrationForm.value)
           .subscribe((res) => {
             // console.log(res);
+            this.loading=false;
             if (res["success"]) {
 
               const dialogRef = this.dialog.open(RegistrationCompleteComponent, {
