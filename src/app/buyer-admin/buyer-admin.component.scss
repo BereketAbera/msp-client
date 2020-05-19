@@ -30,9 +30,24 @@
   }
 }
 
+.mat-progress-bar {
+  position: fixed;
+  top: 9.5rem;
+  z-index: 1000;
+  opacity: 1;
+  height: 3px;
+}
+::ng-deep .mat-progress-bar-fill::after {
+  background-color: #f94081;
+}
+
 @media only screen and (min-width: 700px) {
   .container {
     padding: 2rem 0rem;
     padding-top: 8rem;
+  }
+
+  .mat-progress-bar {
+    top: 7rem;
   }
 }

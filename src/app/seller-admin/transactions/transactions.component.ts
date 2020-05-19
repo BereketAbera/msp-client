@@ -1,3 +1,4 @@
+import { AuthService } from "./../../service/auth.service";
 import {
   AfterViewInit,
   Component,
@@ -32,10 +33,14 @@ export class TransactionsComponent implements OnInit, AfterViewInit {
   constructor(
     private route: ActivatedRoute,
     private transactionService: TransactionService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
   ngOnInit() {
-    this.dataSource = new SellerOrderDataSource(this.transactionService);
+    this.dataSource = new SellerOrderDataSource(
+      this.transactionService,
+      this.authService
+    );
     this.dataSource.loadTransactions(1, "", "asc", 0, 5);
   }
 

@@ -1,4 +1,5 @@
 <app-buyer-navigation></app-buyer-navigation>
+<mat-progress-bar *ngIf="progressBarActive" mode="query"></mat-progress-bar>
 <div class="container">
   <router-outlet></router-outlet>
 </div>
@@ -7,9 +8,6 @@
     <li routerLink="/" class="footer__item">
       <span class="footer__item-text">Home</span>
     </li>
-    <!-- <li class="footer__item">
-      <span class="footer__item-text">About Us</span>
-    </li> -->
     <li routerLink="/privacy" class="footer__item">
       <span class="footer__item-text">Privacy Policy</span>
     </li>
@@ -19,11 +17,5 @@
         Patent Pending {{ today }}. A business unit of Live Inc. {{ version }}
       </p>
     </li>
-    <!-- <li class="footer__item">
-      <span class="footer__item-text">Terms & Conditions</span>
-    </li> -->
-    <!-- <li class="footer__item">
-      <span class="footer__item-text">Contact Us</span>
-    </li> -->
   </ul>
 </div>

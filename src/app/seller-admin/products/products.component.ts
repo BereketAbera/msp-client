@@ -57,7 +57,10 @@ export class ProductsComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngOnInit() {
-    this.dataSource = new ProductsDataSource(this.productService);
+    this.dataSource = new ProductsDataSource(
+      this.productService,
+      this.authService
+    );
 
     this.route.queryParams.subscribe(
       (data) => {

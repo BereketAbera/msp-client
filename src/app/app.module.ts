@@ -23,16 +23,10 @@ import { SharedModule } from "./shared/shared.module";
 
 import { SaveConfirmationDialogComponent } from "./shared/save-confirmation-dialog/save-confirmation-dialog.component";
 import { SaveProgressComponent } from "./shared/save-progress/save-progress.component";
-import { BuyerModule } from "./buyer-admin/buyer.module";
-import { SellerModule } from "./seller-admin/seller.module";
-import { SystemAdminModule } from "./system-admin/system-admin.module";
-import { AuthModule } from "./auth/auth.module";
 import { PublicComponent } from "./components/public/public.component";
 
 import { httpInterceptorProviders } from "./http-interceptors/index";
 import { ProductComponent } from "./components/product/product.component";
-// import { ServiceWorkerModule } from "@angular/service-worker";
-import { environment } from "../environments/environment";
 import { CartComponent } from "./components/cart/cart.component";
 import { CartExpiredDialogComponent } from "./components/cart-expired-dialog/cart-expired-dialog.component";
 import { BeautyComponent } from "./components/beauty/beauty.component";

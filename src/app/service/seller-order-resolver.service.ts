@@ -1,34 +1,45 @@
-import { Injectable }             from '@angular/core';
+import { AuthService } from "./auth.service";
+import { Injectable } from "@angular/core";
 import {
-  Router, Resolve,
+  Router,
+  Resolve,
   RouterStateSnapshot,
-  ActivatedRouteSnapshot
-}                                 from '@angular/router';
-import { Observable, of, EMPTY }  from 'rxjs';
-import { mergeMap, take }         from 'rxjs/operators';
- 
-import { TransactionService }  from './transaction.service';
-import { Transaction } from '../model/transaction';
- 
+  ActivatedRouteSnapshot,
+} from "@angular/router";
+import { Observable, of, EMPTY } from "rxjs";
+import { mergeMap, take } from "rxjs/operators";
+
+import { TransactionService } from "./transaction.service";
+import { Transaction } from "../model/transaction";
+
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class SellerOrderResolverService implements Resolve<Transaction> {
-  constructor(private transactService: TransactionService, private router: Router) {}
- 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Transaction> | Observable<never> {
-    let transactionId = route.paramMap.get('id');
+  constructor(
+    private transactService: TransactionService,
+    private router: Router,
+    private authService: AuthService
+  ) {}
+
+  resolve(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): Observable<Transaction> | Observable<never> {
+    let transactionId = route.paramMap.get("id");
+    this.authService.progressBarActive.next(true);
     return this.transactService.getSellerTransaction(transactionId).pipe(
-        mergeMap(transaction => {
+      mergeMap((transaction) => {
         if (transaction) {
-           return of(transaction);
-        } else { // id not found
-          this.router.navigate(['./']);
+          this.authService.progressBarActive.next(false);
+          return of(transaction);
+        } else {
+          // id not
+          this.authService.progressBarActive.next(false);
+          this.router.navigate(["./"]);
           return EMPTY;
         }
       })
     );
   }
 }
-
-

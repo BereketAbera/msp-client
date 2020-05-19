@@ -1,3 +1,4 @@
+import { AuthService } from "./../service/auth.service";
 import { Component, OnInit } from "@angular/core";
 import { environment } from "../../environments/environment";
 
@@ -9,7 +10,12 @@ import { environment } from "../../environments/environment";
 export class SellerAdminComponent implements OnInit {
   today = new Date().getFullYear();
   version = environment.version;
-  constructor() {}
+  progressBarActive = false;
+  constructor(public authService: AuthService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.authService.progressBarActive.subscribe((value) => {
+      this.progressBarActive = value;
+    });
+  }
 }
