@@ -1,9 +1,10 @@
+import { AuthService } from "./../../service/auth.service";
 import {
   AfterViewInit,
   Component,
   ElementRef,
   OnInit,
-  ViewChild
+  ViewChild,
 } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { MatPaginator, MatSort, MatTableDataSource } from "@angular/material";
@@ -15,7 +16,7 @@ import { BuyerTransactionsDataSource } from "../../service/buyer-transactions-da
 import { Balance } from "../../model/balance";
 @Component({
   templateUrl: "./buyer-transactions.component.html",
-  styleUrls: ["./buyer-transactions.component.scss"]
+  styleUrls: ["./buyer-transactions.component.scss"],
 })
 export class BuyerTransactionsComponent implements OnInit, AfterViewInit {
   dataSource: BuyerTransactionsDataSource;
@@ -32,11 +33,15 @@ export class BuyerTransactionsComponent implements OnInit, AfterViewInit {
   constructor(
     private route: ActivatedRoute,
     private transactionService: TransactionService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
-    this.dataSource = new BuyerTransactionsDataSource(this.transactionService);
+    this.dataSource = new BuyerTransactionsDataSource(
+      this.transactionService,
+      this.authService
+    );
     this.dataSource.loadTransactions(1, "", "asc", 0, 5);
     this.route.data.subscribe((data: { balance: Balance }) => {
       this.balance = data.balance.amount;

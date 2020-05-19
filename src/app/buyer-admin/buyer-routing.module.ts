@@ -21,12 +21,6 @@ import { BuyerOrderDetailComponent } from "./buyer-order-detail/buyer-order-deta
 import { OrdersResolverService } from "../service/orders-resolver.service";
 import { ReferComponent } from "./refer/refer.component";
 
-import { BuyerGuard } from "./buyer.guard";
-
-// path: "tlgu-byr",
-// component: BuyerAdminComponent,
-// canActivate: [BuyerGuard],
-
 const buyerRoutes: Routes = [
   {
     path: "",
@@ -38,21 +32,21 @@ const buyerRoutes: Routes = [
         resolve: {
           transaction: TransactionResolverService,
           supplier: BuyerSupplierResolverService,
-          transStatus: TransactionStatusResolverService
-        }
+          transStatus: TransactionStatusResolverService,
+        },
       },
       {
         path: "trnsctns",
         component: BuyerTransactionsComponent,
-        resolve: { balance: BalanceResolverService }
+        resolve: { balance: BalanceResolverService },
       },
       {
         path: "deposit",
         component: BuyerDepositComponent,
         resolve: {
           balance: BalanceResolverService,
-          creditCards: CreditCardsResolverService
-        }
+          creditCards: CreditCardsResolverService,
+        },
       },
       { path: "rfr", component: ReferComponent },
       {
@@ -60,33 +54,33 @@ const buyerRoutes: Routes = [
         component: BuyerOrderDetailComponent,
         resolve: {
           order: BuyerOrderResolverService,
-          supplier: BuyerSupplierResolverService
-        }
+          supplier: BuyerSupplierResolverService,
+        },
       },
       {
         path: "deposit/:id",
         component: BuyerDepositDetailComponent,
-        resolve: { deposit: BuyerDepositResolverService }
+        resolve: { deposit: BuyerDepositResolverService },
       },
       {
         path: "payment/:id",
         component: PaymentHomeComponent,
         resolve: {
           balance: BalanceResolverService,
-          creditCards: CreditCardsResolverService
-        }
+          creditCards: CreditCardsResolverService,
+        },
       },
       {
         path: "",
         component: BuyerOrdersComponent,
-        resolve: { orders: OrdersResolverService }
-      }
-    ]
-  }
+        resolve: { orders: OrdersResolverService },
+      },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(buyerRoutes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class BuyerRoutingModule {}

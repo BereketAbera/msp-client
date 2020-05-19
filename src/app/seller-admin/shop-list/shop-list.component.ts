@@ -58,7 +58,7 @@ export class ShopListComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngOnInit() {
-    this.dataSource = new ShopsDataSource(this.shopsService);
+    this.dataSource = new ShopsDataSource(this.shopsService, this.authService);
     this.dataSource.loadShops(1, "", "asc", 0, 5);
   }
 
