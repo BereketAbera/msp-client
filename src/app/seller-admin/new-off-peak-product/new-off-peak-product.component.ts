@@ -490,6 +490,7 @@ export class NewOffPeakProductComponent implements OnInit {
     } else {
       this.showErrorNotification = true;
       if (this.errorMessage == "") {
+        window.scrollTo(0,0)
         this.errorMessage = "Invalid form, try again";
       }
       return false;

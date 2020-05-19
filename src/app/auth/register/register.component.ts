@@ -24,6 +24,7 @@ export class RegisterComponent implements OnInit {
       .registerUser(this.registrationForm.value)
       .subscribe((res) => {
        // console.log("user created");
+     
       });
   }
   getErrorMessage() {

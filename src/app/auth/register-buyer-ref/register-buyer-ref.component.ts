@@ -61,8 +61,9 @@ export class RegisterBuyerRefComponent implements OnInit {
     }
     this.showError = false;
     this.errors = [];
-
+    window.scrollTo(0,0);
     if (this.registrationForm.valid) {
+      
       if (
         this.registrationForm.get("agreed").value
 
@@ -97,6 +98,7 @@ export class RegisterBuyerRefComponent implements OnInit {
         this.errors = ["Please agree to the buyer's terms of use and privacy."];
       }
     } else {
+  
       this.showError = true;
       this.errors = ["Invalid input! Check again."];
     }

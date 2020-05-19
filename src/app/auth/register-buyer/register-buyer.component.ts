@@ -53,11 +53,13 @@ export class RegisterBuyerComponent implements OnInit {
       
       this.registrationForm.valid
     ) {
+      window.scrollTo(0,0);
       if(this.registrationForm.get("agreed").value){
         this.loading=true;
         return this.userService
         .registerUser(this.registrationForm.value)
         .subscribe((res) => {
+       
           this.loading=false;
           if (res["success"]) {
             const dialogRef = this.dialog.open(RegistrationCompleteComponent, {

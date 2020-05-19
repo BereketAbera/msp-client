@@ -82,6 +82,7 @@ export class RegisterSellerComponent implements OnInit {
         return this.userService
           .registerUser(this.registrationForm.value)
           .subscribe((res) => {
+            window.scrollTo(0,0);
             this.loading=false;
             if (res["success"]) {
               const dialogRef = this.dialog.open(
