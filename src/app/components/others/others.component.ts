@@ -1,17 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'app-others',
-  templateUrl: './others.component.html',
-  styleUrls: ['./others.component.scss']
+  selector: "app-others",
+  templateUrl: "./others.component.html",
+  styleUrls: ["./others.component.scss"],
 })
 export class OthersComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-  searchByLocation(id:number|string){
-    ;
-  }
+  ngOnInit() {}
+  searchByLocation(id: number | string) {}
 }

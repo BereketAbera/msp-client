@@ -23,7 +23,7 @@ export class RegisterComponent implements OnInit {
     return this.userService
       .registerUser(this.registrationForm.value)
       .subscribe((res) => {
-       // console.log("user created");
+        // console.log("user created");
       });
   }
   getErrorMessage() {

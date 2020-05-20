@@ -26,9 +26,7 @@ const userAPI = environment.APIEndpoint + "register";
 const accountAPI = environment.APIEndpoint + "accounts";
 const profileAPI = environment.APIEndpoint + "profile";
 
-@Injectable({
-  providedIn: "root",
-})
+@Injectable()
 export class UserService {
   public countSubject = new BehaviorSubject<number>(0);
   constructor(private http: HttpClient) {}
@@ -72,8 +70,7 @@ export class UserService {
   getSellerDailySlsSmry(fltrDate: Date | string): Observable<DailySale[]> {
     return this.http
       .get(accountAPI + "/slsdlysmry", {
-        params: new HttpParams()
-        .set("startDate", fltrDate.toString())
+        params: new HttpParams().set("startDate", fltrDate.toString()),
       })
       .pipe(
         map((res) => {
@@ -152,7 +149,7 @@ export class UserService {
     city = "",
     state = "",
     status,
-    shop ="",
+    shop = "",
     pageNumber = 0,
     pageSize = 5,
     sortOrder,
@@ -182,14 +179,16 @@ export class UserService {
   }
 
   getOneSellerInfo(id) {
-    return this.http.get(accountAPI + "/seller/detail", {
-      params: new HttpParams().set("id", id)
-    }).pipe(
-      map((seller) => {
-        return <any>seller;
-      }),
-      catchError(this.handleError)
-    );
+    return this.http
+      .get(accountAPI + "/seller/detail", {
+        params: new HttpParams().set("id", id),
+      })
+      .pipe(
+        map((seller) => {
+          return <any>seller;
+        }),
+        catchError(this.handleError)
+      );
   }
   listMerchants(
     usrId: number,
@@ -209,7 +208,6 @@ export class UserService {
       })
       .pipe(
         map((res) => {
-         
           this.countSubject.next(res["count"]);
           return res["rows"];
         }),

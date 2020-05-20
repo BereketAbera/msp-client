@@ -14,9 +14,7 @@ import { environment } from "../../environments/environment";
 
 const zipcodeApi = environment.APIEndpoint + "zipcods";
 
-@Injectable({
-  providedIn: "root",
-})
+@Injectable()
 export class ZipcodeService {
   public countSubject = new BehaviorSubject<number>(0);
 

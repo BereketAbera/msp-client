@@ -10,7 +10,12 @@ import { UsersAdminComponent } from "./users-admin/users-admin.component";
 
 import { AdminRoutingModule } from "./admin.routing.module";
 import { AdminNavigationComponent } from "./admin-navigation/admin-navigation.component";
-import { SellerDetailComponent } from './seller-detail/seller-detail.component';
+import { SellerDetailComponent } from "./seller-detail/seller-detail.component";
+import { AuthService } from "../service/auth.service";
+import { UserService } from "../service/user.service";
+import { StateResolverService } from "../service/state-resolver.service";
+import { SellerInfoResolverService } from "../_resolvers/seller-info-resolver.service";
+import { StateService } from "../service/state.service";
 
 @NgModule({
   declarations: [
@@ -19,6 +24,17 @@ import { SellerDetailComponent } from './seller-detail/seller-detail.component';
     AdminNavigationComponent,
     SellerDetailComponent,
   ],
-  imports: [CommonModule, ReactiveFormsModule, SharedModule, AdminRoutingModule]
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    SharedModule,
+    AdminRoutingModule,
+  ],
+  providers: [
+    UserService,
+    StateService,
+    StateResolverService,
+    SellerInfoResolverService,
+  ],
 })
 export class SystemAdminModule {}

@@ -2,7 +2,7 @@ import {
   Component,
   OnInit,
   ComponentFactoryResolver,
-  ViewChild
+  ViewChild,
 } from "@angular/core";
 import { PaymentTypeDirective } from "../payment-type/payment-type.directive";
 import { Router, ActivatedRoute } from "@angular/router";
@@ -20,7 +20,7 @@ import { PaymentWithSavedCreditCardComponent } from "../payment-with-saved-credi
 @Component({
   selector: "app-payment-home",
   templateUrl: "./payment-home.component.html",
-  styleUrls: ["./payment-home.component.scss"]
+  styleUrls: ["./payment-home.component.scss"],
 })
 export class PaymentHomeComponent implements OnInit {
   @ViewChild(PaymentTypeDirective) paymentType: PaymentTypeDirective;
@@ -70,7 +70,7 @@ export class PaymentHomeComponent implements OnInit {
           savings: this.savings,
           balance: this.balance,
           savedCreditCard: this.hasCreditCardInfo,
-          creditCards: this.creditCards
+          creditCards: this.creditCards,
         };
         if (this.isFundAvailable) {
           this.loadPaymentWithBalanceComponent();
@@ -91,7 +91,7 @@ export class PaymentHomeComponent implements OnInit {
   }
   getTotalPrice() {
     if (this.cartProducts.length > 0) {
-      this.cartProducts.forEach(element => {
+      this.cartProducts.forEach((element) => {
         this.total += element.disPrice * element.qty;
         this.payAmount +=
           (element.disPrice * element.qty * element.mspMarkup) / 100;
@@ -115,7 +115,7 @@ export class PaymentHomeComponent implements OnInit {
       componentRef.instance
     )).data = this.paymentInfo;
     (<PaymentWithBalanceComponent>componentRef.instance).payWith.subscribe(
-      type => {
+      (type) => {
         if (type == this.PAY_WITH_NEW_CARD)
           this.loadPaymentWithNewCreditCardComponent();
         else if (type == this.PAY_WITH_SAVED_CARD)
@@ -135,7 +135,7 @@ export class PaymentHomeComponent implements OnInit {
     )).data = this.paymentInfo;
     (<PaymentWithSavedCreditCardComponent>(
       componentRef.instance
-    )).payWith.subscribe(type => {
+    )).payWith.subscribe((type) => {
       if (type == this.PAY_WITH_NEW_CARD)
         this.loadPaymentWithNewCreditCardComponent();
       else if (type == this.PAY_WITH_BALANCE)
@@ -153,7 +153,7 @@ export class PaymentHomeComponent implements OnInit {
       componentRef.instance
     )).data = this.paymentInfo;
     (<PaymentWithCreditCardComponent>componentRef.instance).payWith.subscribe(
-      type => {
+      (type) => {
         if (type == this.PAY_WITH_SAVED_CARD)
           this.loadPaymentWithCreditCardComponent();
         else if (type == this.PAY_WITH_BALANCE)
@@ -170,7 +170,7 @@ export class PaymentHomeComponent implements OnInit {
       { regEx: /^4[0-9]{5}/gi, cardType: "VISA" },
       { regEx: /^5[1-5][0-9]{4}/gi, cardType: "MASTERCARD" },
       { regEx: /^3[47][0-9]{3}/gi, cardType: "AMEX" },
-      { regEx: /^(5[06-8]\d{4}|6\d{5})/gi, cardType: "MAESTRO" }
+      { regEx: /^(5[06-8]\d{4}|6\d{5})/gi, cardType: "MAESTRO" },
     ];
 
     for (var j = 0; j < regexMap.length; j++) {

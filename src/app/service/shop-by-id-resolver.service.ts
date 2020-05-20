@@ -9,9 +9,7 @@ import { Observable, EMPTY, of } from "rxjs";
 import { mergeMap } from "rxjs/operators";
 import { Shop } from "../model/shop";
 
-@Injectable({
-  providedIn: "root",
-})
+@Injectable()
 export class ShopByIdResolverService {
   constructor(private shopsService: ShopsService, private router: Router) {}
 

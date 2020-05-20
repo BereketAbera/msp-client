@@ -1,22 +1,21 @@
-import { Directive, Input, Output, EventEmitter } from '@angular/core';
-import { Observable } from 'rxjs/Observable'
-import {of, timer } from 'rxjs';
-import { Subject } from 'rxjs/Subject'
-import 'rxjs/add/operator/takeUntil'
-import 'rxjs/add/operator/startWith'
-import 'rxjs/add/operator/switchMap'
-
+import { Directive, Input, Output, EventEmitter } from "@angular/core";
+import { Observable } from "rxjs/Observable";
+import { of, timer } from "rxjs";
+import { Subject } from "rxjs/Subject";
+import "rxjs/add/operator/takeUntil";
+import "rxjs/add/operator/startWith";
+import "rxjs/add/operator/switchMap";
 
 @Directive({
-  selector: '[bannerCtrl]',
-  exportAs: 'bannerCtrl'
+  selector: "[bannerCtrl]",
+  exportAs: "bannerCtrl",
 })
 export class BannerCtrlDirective {
   @Input() itemsLength: number;
 
   selectedIndex = 0;
-  @Output('selectedIndex')  selectedIndexEmitter = new EventEmitter<number>();
-  @Output('actualIndex')  actualIndexEmitter = new EventEmitter<number>();
+  @Output("selectedIndex") selectedIndexEmitter = new EventEmitter<number>();
+  @Output("actualIndex") actualIndexEmitter = new EventEmitter<number>();
 
   destroyed$ = new Subject();
   resetTimer$ = new Subject();
@@ -25,8 +24,8 @@ export class BannerCtrlDirective {
     this.resetTimer$
       .startWith(null)
       .takeUntil(this.destroyed$)
-      .switchMap(t => timer(5000, 5000))
-      .subscribe(() => this.next())
+      .switchMap((t) => timer(5000, 5000))
+      .subscribe(() => this.next());
   }
   ngOnDestroy() {
     this.destroyed$.next();
@@ -40,23 +39,22 @@ export class BannerCtrlDirective {
 
   setIndex(index: number) {
     this.selectedIndex = index;
-    this.actualIndexEmitter.next(this.actualIndex())
-    this.selectedIndexEmitter.next(index)
+    this.actualIndexEmitter.next(this.actualIndex());
+    this.selectedIndexEmitter.next(index);
     this.resetTimer$.next();
   }
 
   previous() {
-    --this.selectedIndex
+    --this.selectedIndex;
     this.actualIndexEmitter.next(this.actualIndex());
     this.selectedIndexEmitter.next(this.selectedIndex);
     this.resetTimer$.next();
   }
 
   next() {
-    ++this.selectedIndex
-    this.actualIndexEmitter.next(this.actualIndex())
-    this.selectedIndexEmitter.next(this.selectedIndex)
+    ++this.selectedIndex;
+    this.actualIndexEmitter.next(this.actualIndex());
+    this.selectedIndexEmitter.next(this.selectedIndex);
     this.resetTimer$.next();
   }
-
 }

@@ -12,9 +12,7 @@ import { mergeMap, take } from "rxjs/operators";
 import { TransactionService } from "./transaction.service";
 import { Transaction } from "../model/transaction";
 
-@Injectable({
-  providedIn: "root",
-})
+@Injectable()
 export class SellerOrderResolverService implements Resolve<Transaction> {
   constructor(
     private transactService: TransactionService,

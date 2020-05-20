@@ -12,9 +12,7 @@ import { mergeMap, take } from "rxjs/operators";
 import { UploadService } from "./upload.service";
 import { Picture } from "../model/picture";
 
-@Injectable({
-  providedIn: "root",
-})
+@Injectable()
 export class GalleryResolverService implements Resolve<Picture[]> {
   constructor(
     private uploadSerice: UploadService,

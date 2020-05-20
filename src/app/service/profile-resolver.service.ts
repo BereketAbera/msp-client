@@ -11,9 +11,7 @@ import { UserService } from "./user.service";
 import { RevenuRprt } from "../model/revenuRprt";
 import { mergeMap } from "rxjs/operators";
 
-@Injectable({
-  providedIn: "root",
-})
+@Injectable()
 export class ProfileResolverService {
   constructor(
     private userSerice: UserService,

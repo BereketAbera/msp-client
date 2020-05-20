@@ -4,9 +4,7 @@ import { environment } from "../../environments/environment";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 
-@Injectable({
-  providedIn: "root"
-})
+@Injectable()
 export class SellerStaffService {
   constructor(private http: HttpClient) {}
 
@@ -40,7 +38,7 @@ export class SellerStaffService {
   addStaffRouteAccess(userId, featureId): Observable<any> {
     return this.http.post(`${environment.APIEndpoint}route_access/add`, {
       userId,
-      featureId
+      featureId,
     });
   }
 

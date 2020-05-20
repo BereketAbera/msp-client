@@ -57,10 +57,10 @@ export class UploadImgComponent implements OnInit {
     return true;
   }
   onSubmit() {
-    console.log(this.uploadForm.valid && this.fileSelected);
+    // console.log(this.uploadForm.valid && this.fileSelected);
     if (this.uploadForm.valid && this.fileSelected) {
       let value = this.uploadForm.value;
-   
+
       this.formData.append("name", value["name"]);
       this.formData.append("img", value["img"]);
       this.loadingLocalImage = true;
@@ -83,7 +83,6 @@ export class UploadImgComponent implements OnInit {
             snackBarRef.onAction().subscribe(() => {
               this.showImage = false;
               this.uploadForm.reset();
-
             });
             //this.router.navigate(["../"], { relativeTo: this.route });
           } else {

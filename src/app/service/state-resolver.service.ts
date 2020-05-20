@@ -11,9 +11,7 @@ import { mergeMap, take } from "rxjs/operators";
 import { StateService } from "./state.service";
 import { State } from "../model/state";
 
-@Injectable({
-  providedIn: "root",
-})
+@Injectable()
 export class StateResolverService implements Resolve<State[]> {
   constructor(private stateService: StateService, private router: Router) {}
 
