@@ -44,29 +44,28 @@
     </ng-container>
 
     <ng-container matColumnDef="name" stickyEnd>
-      
       <mat-header-cell *matHeaderCellDef></mat-header-cell>
 
-      <mat-cell *matCellDef="let transaction"
-        >
+      <mat-cell *matCellDef="let transaction">
         <span class="mobile-label">Detail:</span>
         <button class="hide" mat-icon-button [matMenuTriggerFor]="menu">
           <i class="fad fa-ellipsis-v table__icon"></i>
         </button>
 
         <div class="mobile-body" *ngIf="transaction.type == 'DEPOSIT'">
-            <a [routerLink]="['../deposit', transaction.transactionId]"
-              >View Detail</a
-            >
-        </div>
-          <div class="mobile-body"
-            *ngIf="transaction.type == 'ORDER' || transaction.type == 'REFUND'"
+          <a [routerLink]="['../deposit', transaction.transactionId]"
+            >View Detail</a
           >
-            <a [routerLink]="['../trnsctns', transaction.transactionId]"
-              >View Detail</a
-            >
-          </div>
-       
+        </div>
+        <div
+          class="mobile-body"
+          *ngIf="transaction.type == 'ORDER' || transaction.type == 'REFUND'"
+        >
+          <a [routerLink]="['../trnsctns', transaction.transactionId]"
+            >View Detail</a
+          >
+        </div>
+
         <mat-menu #menu="matMenu">
           <div *ngIf="transaction.type == 'DEPOSIT'">
             <button

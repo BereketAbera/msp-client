@@ -50,6 +50,7 @@ export class RegisterBuyerComponent implements OnInit {
     this.showError = false;
     this.errors = [];
     if (this.registrationForm.valid) {
+      window.scrollTo(0, 0);
       if (this.registrationForm.get("agreed").value) {
         this.loading = true;
         return this.userService

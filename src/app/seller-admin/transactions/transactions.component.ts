@@ -41,6 +41,7 @@ export class TransactionsComponent implements OnInit, AfterViewInit {
       this.transactionService,
       this.authService
     );
+
     this.dataSource.loadTransactions(1, "", "asc", 0, 5);
   }
 
