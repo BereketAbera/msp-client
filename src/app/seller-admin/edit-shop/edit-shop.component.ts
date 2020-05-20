@@ -69,6 +69,7 @@ export class EditShopComponent implements OnInit {
   }
   onSubmit() {
     // console.log(this.shopForm.value);
+    window.scrollTo(0,0)
     if (this.shopForm.valid) {
       let shop = new Shop();
       shop = { ...this.shopForm.value };
