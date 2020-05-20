@@ -1,13 +1,13 @@
 <div class="order__main-container">
   <div class="order__header-container">
-    <h2 class="order__header">Orders</h2>
+    <h2 class="order__header">Reservations</h2>
     <button
       mat-raised-button
       color="accent"
       class="order__button"
       (click)="goToProcessOrder()"
     >
-      Process Order
+      Process Reservation
     </button>
   </div>
   <div class="order__list-container">
@@ -39,7 +39,7 @@
           <mat-header-cell class="header-align-right" *matHeaderCellDef
             >Trasaction Type</mat-header-cell
           >
-          <mat-cell *matCellDef="let transaction">Order</mat-cell>
+          <mat-cell *matCellDef="let transaction">Reservations</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="product">
@@ -57,7 +57,25 @@
           >
 
           <mat-cell *matCellDef="let transaction">{{
-            transaction.transStatus
+            getOrderStatus(transaction)
+          }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="pickupStartTime">
+          <mat-header-cell class="header-align-right" *matHeaderCellDef
+            >Pick Up Start Time</mat-header-cell
+          >
+
+          <mat-cell *matCellDef="let transaction">{{
+            changeToLocal12Hours(transaction.pickupStartTime)
+          }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="pickupEndTime">
+          <mat-header-cell class="header-align-right" *matHeaderCellDef
+            >Pick Up End Time</mat-header-cell
+          >
+
+          <mat-cell *matCellDef="let transaction">{{
+            changeToLocal12Hours(transaction.pickupEndTime)
           }}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="date">

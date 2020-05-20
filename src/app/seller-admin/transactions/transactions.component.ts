@@ -22,7 +22,16 @@ export class TransactionsComponent implements OnInit, AfterViewInit {
   dataSource: SellerOrderDataSource;
   qrCode;
   balance: number = 0;
-  displayedColumns = ["img", "product", "status", "date", "totalPrice", "name"];
+  displayedColumns = [
+    "img",
+    "product",
+    "status",
+    "pickupStartTime",
+    "pickupEndTime",
+    "date",
+    "totalPrice",
+    "name",
+  ];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -67,5 +76,62 @@ export class TransactionsComponent implements OnInit, AfterViewInit {
 
   goToProcessOrder() {
     this.router.navigate(["./process"], { relativeTo: this.route });
+  }
+
+  changeToLocal12Hours(time) {
+    let d = -new Date().getTimezoneOffset();
+    // console.log(d);
+    let x = time.split(":");
+    let hour = parseInt(x[0]);
+    let minute = parseInt(x[1]);
+    let totalMinutes = hour * 60 + minute + d;
+    let tempTotalMinutes = totalMinutes;
+    totalMinutes = totalMinutes < 0 ? 24 * 60 + totalMinutes : totalMinutes;
+    hour = Math.floor(totalMinutes / 60);
+    minute = totalMinutes % 60;
+
+    // console.log(hour);
+    let value = "";
+    if (hour < 12) {
+      value = `${this.returnTwoDigit(hour)}:${this.returnTwoDigit(minute)}AM`;
+    } else if (hour == 12) {
+      value = `${this.returnTwoDigit(12)}:${this.returnTwoDigit(minute)}PM`;
+    } else if (hour > 24) {
+      value = `${this.returnTwoDigit(hour - 24)}:${this.returnTwoDigit(
+        minute
+      )}AM`;
+    } else if (hour == 24) {
+      value = `${this.returnTwoDigit(12)}:${this.returnTwoDigit(minute)}AM`;
+    } else {
+      value = `${this.returnTwoDigit(hour % 12)}:${this.returnTwoDigit(
+        minute
+      )}PM`;
+    }
+    return value;
+  }
+
+  returnTwoDigit(value) {
+    return value.toString().length == 1 ? "0" + value : value;
+  }
+
+  getOrderStatus(order) {
+    if (order.status) {
+      return "Picked Up";
+    } else {
+      let local = new Date().toISOString();
+      let pDate = order.purchaseTime.split("T")[0];
+      let utcDate = local.split("T")[0];
+      if (pDate == utcDate) {
+        // let pTime = order.pickupEndTime;
+        // let utcTime = local.split("T")[1].split(".")[0];
+        // console.log(pTime, utcTime);
+        // if (pTime == "00:00:00") return "Active";
+        // if (pTime >= utcTime) return "Active";
+        // else return "Expired";
+        return "Active";
+      } else {
+        return "Expired";
+      }
+    }
   }
 }

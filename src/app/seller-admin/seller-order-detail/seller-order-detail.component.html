@@ -18,7 +18,7 @@
         <span class="list__header"> Order Date </span>
         <span class="list__details">
           <i class="fad fa-stopwatch table__icon" style="color: #cf8c9c;"></i>
-          {{ order.purchaseTime | date: "short" }}</span
+          {{ order.purchaseTime | date: "shortDate" }}</span
         >
       </div>
 
@@ -26,8 +26,8 @@
         <span class="list__header"> Service Time </span>
         <span class="list__details">
           <i class="fad fa-stopwatch table__icon" style="color: #cf8c9c;"></i>
-          Starting: {{ order.pickupStartTime }} - Ending:
-          {{ order.pickupEndTime }}
+          Starting: {{ changeToLocal12Hours(order.pickupStartTime) }} - Ending:
+          {{ changeToLocal12Hours(order.pickupEndTime) }}
         </span>
       </div>
 
