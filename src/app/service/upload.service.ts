@@ -13,9 +13,7 @@ const moment = moment_;
 
 const uploadApi = environment.APIEndpoint + "glry";
 
-@Injectable({
-  providedIn: "root"
-})
+@Injectable()
 export class UploadService {
   public countSubject = new BehaviorSubject<number>(0);
 
@@ -25,7 +23,7 @@ export class UploadService {
   }
   removeImage(pictureId: number | String) {
     return this.http.delete(uploadApi + "/" + pictureId).pipe(
-      map(picture => {
+      map((picture) => {
         return <Picture>picture;
       }),
       catchError(this.handleError)
@@ -33,7 +31,7 @@ export class UploadService {
   }
   listImages(): Observable<Picture[]> {
     return this.http.get(uploadApi).pipe(
-      map(res => {
+      map((res) => {
         this.countSubject.next(res["count"]);
         return res["rows"];
       }),

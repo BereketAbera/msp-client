@@ -4,9 +4,7 @@ import { Router } from "@angular/router";
 import { Observable, EMPTY, of } from "rxjs";
 import { mergeMap } from "rxjs/operators";
 
-@Injectable({
-  providedIn: "root"
-})
+@Injectable()
 export class FeaturesResolverService {
   constructor(
     private sellerStaffService: SellerStaffService,
@@ -15,7 +13,7 @@ export class FeaturesResolverService {
 
   resolve(): Observable<any> | Observable<never> {
     return this.sellerStaffService.getFeatures().pipe(
-      mergeMap(data => {
+      mergeMap((data) => {
         if (data.success) {
           return of(data.features);
         } else {

@@ -14,9 +14,7 @@ import { environment } from "../../environments/environment";
 
 const shopCreateApi = environment.APIEndpoint + "shops";
 
-@Injectable({
-  providedIn: "root",
-})
+@Injectable()
 export class ShopsService {
   public countSubject = new BehaviorSubject<number>(0);
 
@@ -94,5 +92,4 @@ export class ShopsService {
       catchError(this.handleError)
     );
   }
-
 }

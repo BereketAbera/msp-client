@@ -29,15 +29,25 @@ import { httpInterceptorProviders } from "./http-interceptors/index";
 import { ProductComponent } from "./components/product/product.component";
 import { CartComponent } from "./components/cart/cart.component";
 import { CartExpiredDialogComponent } from "./components/cart-expired-dialog/cart-expired-dialog.component";
-import { BeautyComponent } from "./components/beauty/beauty.component";
 import { OthersComponent } from "./components/others/others.component";
-import { TestUtcComponent } from "./components/test-utc/test-utc.component";
 import { UtcProductComponent } from "./components/utc-product/utc-product.component";
-import { UtcDealDetailComponent } from "./components/utc-deal-detail/utc-deal-detail.component";
 import { CompanyProductsComponent } from "./components/company-products/company-products.component";
 import { PublicProductsComponent } from "./components/public-products/public-products.component";
 import { BuyerTermsComponent } from "./components/buyer-terms/buyer-terms.component";
 import { CustomNotificationComponent } from "./components/custom-notification/custom-notification.component";
+import { CartService } from "./service/cart.service";
+import { ProductService } from "./service/product.service";
+import { DataStorageService } from "./service/data-storage.service";
+import { AuthService } from "./service/auth.service";
+import { ZipcodeService } from "./service/zipcode.service";
+import { CustomPreloadingService } from "./service/custom-preloading.service";
+import { SubCategoryResolverService } from "./service/sub-category-resolver.service";
+import { SubCategoryService } from "./service/sub-category.service";
+import { WindowRef } from "./service/window.service";
+import { StateService } from "./service/state.service";
+import { SellerStaffService } from "./service/seller-staff.service";
+import { ProductResolverService } from "./service/product-resolver.service";
+import { MspMarkupResolverService } from "./service/msp-markup-resolver.service";
 // import { DragDropDirective } from './service/drag-drop.directive';
 // import { CustomNotificationComponent } from "./components/custom-notification/custom-notification.component";
 
@@ -51,11 +61,8 @@ import { CustomNotificationComponent } from "./components/custom-notification/cu
     BannerCtrlDirective,
     CartComponent,
     CartExpiredDialogComponent,
-    BeautyComponent,
     OthersComponent,
-    TestUtcComponent,
     UtcProductComponent,
-    UtcDealDetailComponent,
     CompanyProductsComponent,
     PublicProductsComponent,
     PrivacyComponent,
@@ -86,7 +93,21 @@ import { CustomNotificationComponent } from "./components/custom-notification/cu
     SaveProgressComponent,
     CartExpiredDialogComponent,
   ],
-  providers: [httpInterceptorProviders],
+  providers: [
+    CartService,
+    ProductService,
+    DataStorageService,
+    AuthService,
+    ZipcodeService,
+    SubCategoryService,
+    SellerStaffService,
+    ProductResolverService,
+    MspMarkupResolverService,
+    CustomPreloadingService,
+    SubCategoryResolverService,
+    WindowRef,
+    httpInterceptorProviders,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

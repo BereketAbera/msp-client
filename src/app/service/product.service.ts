@@ -20,9 +20,7 @@ const moment = moment_;
 
 const productApi = environment.APIEndpoint + "products";
 
-@Injectable({
-  providedIn: "root",
-})
+@Injectable()
 export class ProductService {
   public countSubject = new BehaviorSubject<number>(0);
 

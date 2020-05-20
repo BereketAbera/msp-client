@@ -11,7 +11,7 @@ import { SaveProgressComponent } from "../../shared/save-progress/save-progress.
 @Component({
   selector: "app-gallery",
   templateUrl: "./gallery.component.html",
-  styleUrls: ["./gallery.component.scss"]
+  styleUrls: ["./gallery.component.scss"],
 })
 export class GalleryComponent implements OnInit {
   pictures: Picture[];
@@ -34,41 +34,29 @@ export class GalleryComponent implements OnInit {
       // this.prepareOddEvenPicture();
     });
   }
-  // prepareOddEvenPicture() {
-  //   if (this.picturesEven.length > 0) this.picturesEven = [];
-  //   if (this.picturesOdd.length > 0) this.picturesOdd = [];
-  //   for (var x = 0; x < this.pictures.length; x++) {
-  //     if (x === 0) {
-  //       this.picturesEven.push(this.pictures[x]);
-  //     } else if (x % 2 === 0) {
-  //       this.picturesEven.push(this.pictures[x]);
-  //     } else {
-  //       this.picturesOdd.push(this.pictures[x]);
-  //     }
-  //   }
-  // }
+
   delete(picture: Picture) {
     const dialogRef = this.dialog.open(SaveConfirmationDialogComponent, {
       width: "220px",
       height: "180px",
-      data: { title: "", question: "Do you want to delete this picture?" }
+      data: { title: "", question: "Do you want to delete this picture?" },
     });
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       if (result == "yes") {
         const progressDialogRef = this.dialog.open(SaveProgressComponent, {
           width: "260px",
           height: "180px",
-          data: { title: "", question: "" }
+          data: { title: "", question: "" },
         });
         this.uploadService.removeImage(picture.id).subscribe(
-          res => {
+          (res) => {
             if (res["success"]) {
               progressDialogRef.close();
               let snackBarRef = this.snackBar.open("Successfuly Deleted", "", {
-                duration: 2000
+                duration: 2000,
               });
               snackBarRef.afterDismissed().subscribe(() => {
-                this.uploadService.listImages().subscribe(newPictures => {
+                this.uploadService.listImages().subscribe((newPictures) => {
                   this.pictures = newPictures;
                   // this.prepareOddEvenPicture();
                 });
@@ -81,7 +69,7 @@ export class GalleryComponent implements OnInit {
               this.errors = res["messages"];
             }
           },
-          err => {
+          (err) => {
             progressDialogRef.close();
           }
         );

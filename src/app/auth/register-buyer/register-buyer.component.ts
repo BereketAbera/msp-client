@@ -26,7 +26,7 @@ export class RegisterBuyerComponent implements OnInit {
     agreed: [false, Validators.required],
     role: ["BUYER", Validators.required],
   });
-  loading=false;
+  loading = false;
   constructor(
     public dialog: MatDialog,
     private userService: UserService,
@@ -46,45 +46,46 @@ export class RegisterBuyerComponent implements OnInit {
       this.errors = ["Your passwords do not much"];
       return;
     }
-   
+
     this.showError = false;
     this.errors = [];
-    if (
-      
-      this.registrationForm.valid
-    ) {
-      window.scrollTo(0,0);
-      if(this.registrationForm.get("agreed").value){
-        this.loading=true;
+    if (this.registrationForm.valid) {
+      window.scrollTo(0, 0);
+      if (this.registrationForm.get("agreed").value) {
+        this.loading = true;
         return this.userService
-        .registerUser(this.registrationForm.value)
-        .subscribe((res) => {
-       
-          this.loading=false;
-          if (res["success"]) {
-            const dialogRef = this.dialog.open(RegistrationCompleteComponent, {
-              width: "350px",
-              data: { msg: 'Thank you! Now please check your email for our email verfication.' }
-            });
-            dialogRef.afterClosed().subscribe((result) => {
-              this.router.navigate(["/login/buyer"]);
-              // this.router
-              //   .navigateByUrl("/RefrshComponent", { skipLocationChange: true })
-              //   .then(() => this.router.navigate(["/login/buyer"]));
-            });
+          .registerUser(this.registrationForm.value)
+          .subscribe((res) => {
+            this.loading = false;
+            if (res["success"]) {
+              const dialogRef = this.dialog.open(
+                RegistrationCompleteComponent,
+                {
+                  width: "350px",
+                  data: {
+                    msg:
+                      "Thank you! Now please check your email for our email verfication.",
+                  },
+                }
+              );
+              dialogRef.afterClosed().subscribe((result) => {
+                this.router.navigate(["/login/buyer"]);
+                // this.router
+                //   .navigateByUrl("/RefrshComponent", { skipLocationChange: true })
+                //   .then(() => this.router.navigate(["/login/buyer"]));
+              });
 
-            //this.registeredByr.emit("Buyer")
-            //this.router.navigate(['/login/buyer']);
-          } else {
-            this.showError = true;
-            this.errors = res["messages"];
-          }
-        });
-      }else {
+              //this.registeredByr.emit("Buyer")
+              //this.router.navigate(['/login/buyer']);
+            } else {
+              this.showError = true;
+              this.errors = res["messages"];
+            }
+          });
+      } else {
         this.showError = true;
         this.errors = ["Please agree to the buyer's terms of use and privacy."];
       }
-     
     } else {
       this.showError = true;
       this.errors = ["Invalid Input! Check Again"];

@@ -39,6 +39,7 @@ export class SellerOrderDataSource implements DataSource<Transaction> {
         finalize(() => this.loadingSubject.next(false))
       )
       .subscribe((products) => {
+        // console.log(products);
         this.authService.progressBarActive.next(false);
         this.count = this.transactionService.countSubject.value;
         this.productsSubject.next(products);

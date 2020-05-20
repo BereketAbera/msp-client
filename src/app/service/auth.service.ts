@@ -18,9 +18,7 @@ import { User } from "../model/user";
 const authApi = environment.APIEndpoint + "authenticate";
 const pwdResetReqApi = environment.APIEndpoint + "pwdrstrqt";
 
-@Injectable({
-  providedIn: "root",
-})
+@Injectable()
 export class AuthService {
   private _redirectURL: string;
   private _defaultAdminNav = "./tlgu-admin";

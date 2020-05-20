@@ -3,7 +3,7 @@ import {
   Component,
   ElementRef,
   OnInit,
-  ViewChild
+  ViewChild,
 } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { FormControl } from "@angular/forms";
@@ -13,14 +13,14 @@ import { tap } from "rxjs/operators";
 import { merge } from "rxjs/observable/merge";
 import { DailySalesDataSource } from "../../service/daily-sales-data-source.service";
 import { DailySale } from "../../model/daily-sale";
-import { Moment } from 'moment';
-import * as moment from 'moment';
-import { Location } from '@angular/common';
+import { Moment } from "moment";
+import * as moment from "moment";
+import { Location } from "@angular/common";
 
 @Component({
   selector: "app-sales-summary",
   templateUrl: "./sales-summary.component.html",
-  styleUrls: ["./sales-summary.component.scss"]
+  styleUrls: ["./sales-summary.component.scss"],
 })
 export class SalesSummaryComponent implements OnInit, AfterViewInit {
   dataSource: DailySalesDataSource;
@@ -32,7 +32,7 @@ export class SalesSummaryComponent implements OnInit, AfterViewInit {
     "offeredQty",
     "soldQty",
     "picked",
-    "discount"
+    "discount",
   ];
   dateStart = new FormControl(new Date());
   dateEnd = new FormControl(new Date());
@@ -47,7 +47,7 @@ export class SalesSummaryComponent implements OnInit, AfterViewInit {
     private route: ActivatedRoute,
     private userService: UserService,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.dataSource = new DailySalesDataSource(this.userService);
@@ -62,7 +62,7 @@ export class SalesSummaryComponent implements OnInit, AfterViewInit {
       .pipe(tap(() => this.loadTransactionsPage()))
       .subscribe();
   }
-  search() { }
+  search() {}
   loadTransactionsPage() {
     // console.log(this.dateStart.value, this.dateEnd.value)
     this.dataSource.loadTransactions(this.dateStart.value,this.dateEnd.value);

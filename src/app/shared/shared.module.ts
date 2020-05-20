@@ -10,6 +10,7 @@ import { DecimalInputComponent } from "./decimal-input/decimal-input.component";
 import { ReactiveFormsModule } from "@angular/forms";
 import { CodeInputComponent } from "./code-input/code-input.component";
 import { CustomNotificationComponent } from "../components/custom-notification/custom-notification.component";
+import { AuthService } from "../service/auth.service";
 //import { CustomNotificationComponent } from "./custom-notification/custom-notification.component";
 
 const PRINT_BREAKPOINTS = [
@@ -17,8 +18,8 @@ const PRINT_BREAKPOINTS = [
     alias: "xs.print",
     suffix: "XsPrint",
     mediaQuery: "print and (max-width: 297px)",
-    overlapping: false
-  }
+    overlapping: false,
+  },
 ];
 
 @NgModule({
@@ -26,7 +27,7 @@ const PRINT_BREAKPOINTS = [
     CommonModule,
     ReactiveFormsModule,
     DemoMaterialModule,
-    FlexLayoutModule
+    FlexLayoutModule,
   ],
   exports: [
     DemoMaterialModule,
@@ -34,7 +35,7 @@ const PRINT_BREAKPOINTS = [
     CodeInputComponent,
     FlexLayoutModule,
     SafeHtmlPipe,
-    CustomNotificationComponent
+    CustomNotificationComponent,
   ],
   declarations: [
     SaveConfirmationDialogComponent,
@@ -43,8 +44,10 @@ const PRINT_BREAKPOINTS = [
     SafeHtmlPipe,
     DecimalInputComponent,
     CodeInputComponent,
-    CustomNotificationComponent
+    CustomNotificationComponent,
   ],
-  providers: [{ provide: BREAKPOINT, useValue: PRINT_BREAKPOINTS, multi: true }]
+  providers: [
+    { provide: BREAKPOINT, useValue: PRINT_BREAKPOINTS, multi: true },
+  ],
 })
 export class SharedModule {}

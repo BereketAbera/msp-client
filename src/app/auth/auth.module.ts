@@ -17,7 +17,12 @@ import { RegisterSellerRefComponent } from "./register-seller-ref/register-selle
 import { RegisterBuyerRefComponent } from "./register-buyer-ref/register-buyer-ref.component";
 import { AuthComponent } from "./auth.component";
 import { SharedModule } from "../shared/shared.module";
-import { CustomSubmitComponent } from './custom-submit/custom-submit.component';
+import { CustomSubmitComponent } from "./custom-submit/custom-submit.component";
+import { AuthService } from "../service/auth.service";
+import { UserService } from "../service/user.service";
+import { ZipcodeService } from "../service/zipcode.service";
+import { StateResolverService } from "../service/state-resolver.service";
+import { StateService } from "../service/state.service";
 // import { CustomNotificationComponent } from "../components/custom-notification/custom-notification.component";
 
 @NgModule({
@@ -40,9 +45,10 @@ import { CustomSubmitComponent } from './custom-submit/custom-submit.component';
     RegisterSellerRefComponent,
     RegisterBuyerRefComponent,
     AuthComponent,
-    CustomSubmitComponent
+    CustomSubmitComponent,
     // CustomNotificationComponent,
   ],
   entryComponents: [RegistrationCompleteComponent],
+  providers: [UserService, StateService, StateResolverService],
 })
 export class AuthModule {}

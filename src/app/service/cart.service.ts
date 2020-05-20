@@ -19,9 +19,7 @@ import { Order } from "../model/order";
 import * as moment from "moment";
 const reserveApi = environment.APIEndpoint + "rsrvordr";
 
-@Injectable({
-  providedIn: "root",
-})
+@Injectable()
 export class CartService {
   public countSubject = new BehaviorSubject<number>(0);
   navbarCartCount: number = 0;

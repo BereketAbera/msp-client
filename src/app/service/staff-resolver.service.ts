@@ -10,9 +10,7 @@ import { mergeMap } from "rxjs/operators";
 import { SellerStaffService } from "./seller-staff.service";
 import { AuthService } from "./auth.service";
 
-@Injectable({
-  providedIn: "root",
-})
+@Injectable()
 export class StaffResolverService {
   constructor(
     private sellerStaffService: SellerStaffService,

@@ -174,7 +174,6 @@ export class NewOffPeakProductComponent implements OnInit {
     private router: Router,
     private productService: ProductService,
     private fb: FormBuilder,
-    private uploadService: UploadService,
     private location: Location
   ) {
     uploadClass = this;
@@ -427,7 +426,6 @@ export class NewOffPeakProductComponent implements OnInit {
                   this.errorMessage = res["messages"];
                   this.showError = true;
                   this.errors = res["messages"];
-                 
                 }
               },
               (err) => {
@@ -476,8 +474,6 @@ export class NewOffPeakProductComponent implements OnInit {
                   this.showError = true;
                   this.showErrorNotification = true;
                   this.errorMessage = res["messages"];
-                 
-                 
                 }
               },
               (err) => {
