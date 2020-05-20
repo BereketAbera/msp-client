@@ -4,10 +4,14 @@
   </div>
   <div class="summary__search" fxLayoutAlign="center center" fxLayoutGap="20px">
 
-   
+    <mat-form-field>
+      <input  matInput [matDatepicker]="picker2" [formControl]="dateStart" />
+      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+      <mat-datepicker #picker2></mat-datepicker>
+    </mat-form-field>
 
-    <mat-form-field  >
-      <input (dateChange)="loadTransactionsPage()" matInput [matDatepicker]="picker" [formControl]="dateStart" />
+    <mat-form-field>
+      <input (dateChange)="loadTransactionsPage()" matInput [matDatepicker]="picker" [formControl]="dateEnd" />
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
@@ -15,11 +19,11 @@
 
 
     <!-- <div class="filter-container">
-        <input type="text" ngxDaterangepickerMd [formControl]='select'  [alwaysShowCalendars]="true" [ranges]="ranges"
-          class="date-range-input" [locale]="{format: 'YYYY-MM-DD', displayFormat: 'MMM DD, YYYY'}" [minDate]="minDate"
-          [keepCalendarOpeningWithRange]="true" [showClearButton]="true" [maxDate]="maxDate"
-          (datesUpdated)="onDatesUpdated($event)" placeholder="Select Date Range..." />
-      </div> -->
+      <input type="text" ngxDaterangepickerMd [formControl]='select' [alwaysShowCalendars]="true" [ranges]="ranges"
+        class="date-range-input" [locale]="{format: 'YYYY-MM-DD', displayFormat: 'MMM DD, YYYY'}" [minDate]="minDate"
+        [keepCalendarOpeningWithRange]="true" [showClearButton]="true" [maxDate]="maxDate"
+        (datesUpdated)="onDatesUpdated($event)" placeholder="Select Date Range..." />
+    </div> -->
 
     <button class="button" mat-button (click)="loadTransactionsPage()">
       <i class="fad fa-search table__icon"></i>

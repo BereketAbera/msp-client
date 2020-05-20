@@ -35,6 +35,8 @@ export class SalesSummaryComponent implements OnInit, AfterViewInit {
     "discount"
   ];
   dateStart = new FormControl(new Date());
+  dateEnd = new FormControl(new Date());
+
   select = new FormControl('');
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -50,7 +52,7 @@ export class SalesSummaryComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.dataSource = new DailySalesDataSource(this.userService);
     // this.dataSource.loadTransactions(this.date.value);
-    this.dataSource.loadTransactions(this.dateStart.value);
+    this.dataSource.loadTransactions(this.dateStart.value,this.dateEnd.value);
 
     // console.log(this.dataSource);
   }
@@ -63,7 +65,7 @@ export class SalesSummaryComponent implements OnInit, AfterViewInit {
   search() { }
   loadTransactionsPage() {
     // console.log(this.dateStart.value, this.dateEnd.value)
-    this.dataSource.loadTransactions(this.dateStart.value);
+    this.dataSource.loadTransactions(this.dateStart.value,this.dateEnd.value);
   }
   // onDatesUpdated(e) {
   //   // console.log(e);
