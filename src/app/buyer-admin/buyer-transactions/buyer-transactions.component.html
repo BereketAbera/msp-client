@@ -31,7 +31,9 @@
 
       <mat-cell *matCellDef="let transaction">
         <span class="mobile-label">Date:</span
-        >{{ transaction.transactionDate | date: "yy-MM-dd HH:mm:ss" }}</mat-cell
+        >{{
+          transaction.transactionDate | date: "MMM d y, h:mm:ss a"
+        }}</mat-cell
       >
     </ng-container>
     <ng-container matColumnDef="amount">

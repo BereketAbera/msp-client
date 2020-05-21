@@ -69,9 +69,10 @@
           <span class="name">
             <i class="fad fa-stopwatch table__icon"></i>
             <span class="name">
-              <b>Services</b> From: {{ order.pickupStartTime }}
+              <b>Services</b> From:
+              {{ order.pickupStartTime | date: "MMM d, h:mm:ss a" }}
               - To:
-              {{ order.pickupEndTime }}
+              {{ order.pickupEndTime | date: "MMM d, h:mm:ss a" }}
             </span>
           </span>
         </li>

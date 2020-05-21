@@ -53,11 +53,21 @@
     </div>
   </div>
   <span
-    *ngIf="checkAvailability(product?.offerStartTime, product?.offerEndTime)"
+    *ngIf="
+      product?.prStatus == 'AVAILABLE LETER' ||
+      product?.prStatus == 'AVAILABLE TOMORROW'
+    "
     class="product__tag-container"
   >
    RESERVE LATER
   </span>
+
+  <!-- <span
+    *ngIf="product?.prStatus == 'AVAILABLE TOMORROW'"
+    class="product__tag-container"
+  >
+    Available TOMORROW
+  </span> -->
   <!-- <span
     *ngIf="checkAvailability2(product?.offerEndTime)"
     class="product__tag-container"
