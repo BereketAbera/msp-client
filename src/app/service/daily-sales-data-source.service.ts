@@ -15,7 +15,7 @@ export class DailySalesDataSource implements DataSource<DailySale> {
 
   public count: number;
   constructor(private userService: UserService) {}
-  loadTransactions(fltrDate: Date,fltrEnd:Date) {
+  loadTransactions(fltrDate: Date,fltrEnd:Date,  ) {
     this.loadingSubject.next(true);
 
     this.userService
