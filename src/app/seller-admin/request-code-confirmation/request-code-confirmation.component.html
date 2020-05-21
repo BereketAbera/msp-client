@@ -6,7 +6,10 @@
       <p>Product: {{ data.productName }}</p>
       <p>Quantity: {{ data.quantity }}</p>
       <p>Discounted Price: {{ data.discountPrice | currency }}/unit + Tax</p>
-      <p>Status: {{ data.status }}</p>
+      <p>
+        Status: {{ data.status }}
+        {{ data.status == "PENDING" ? ": Pick Up time has not arrived" : "" }}
+      </p>
     </div>
     <div *ngIf="!data.success">
       <strong>Don't process this order.</strong>

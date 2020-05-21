@@ -93,6 +93,7 @@ export class QrScannerComponent implements OnInit {
     this.transactionService
       .getOrderSeller(this.transactionId)
       .subscribe((transaction) => {
+        console.log(transaction);
         if (transaction.status == 1) {
           this.showResult("You can now give the product to the buyer.");
         } else if (transaction.status == 2) {
@@ -135,6 +136,7 @@ export class QrScannerComponent implements OnInit {
             qrCode: result.qrCode,
           })
           .subscribe((result) => {
+            console.log(result);
             if (result["success"]) {
               this.transactionId = result["transactionId"];
               this.displayChk = "block";

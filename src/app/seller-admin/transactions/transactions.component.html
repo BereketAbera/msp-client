@@ -57,7 +57,7 @@
           >
 
           <mat-cell *matCellDef="let transaction">{{
-            getOrderStatus(transaction)
+            transaction.transStatus
           }}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="pickupStartTime">
@@ -66,7 +66,7 @@
           >
 
           <mat-cell *matCellDef="let transaction">{{
-            changeToLocal12Hours(transaction.pickupStartTime)
+            transaction.pickupStartTime | date: "MMM d, h:mm:ss a"
           }}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="pickupEndTime">
@@ -75,7 +75,7 @@
           >
 
           <mat-cell *matCellDef="let transaction">{{
-            changeToLocal12Hours(transaction.pickupEndTime)
+            transaction.pickupEndTime | date: "MMM d, h:mm:ss a"
           }}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="date">
