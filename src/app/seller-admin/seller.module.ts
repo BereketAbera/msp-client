@@ -53,6 +53,7 @@ import { UserFeaturesResolverService } from "../service/user-features-resolver.s
 import { SellerSummaryResolverService } from "../service/seller-summary-resolver.service";
 import { RevenuRprtResolverService } from "../service/revenu-rprt-resolver.service";
 import { UserService } from "../service/user.service";
+import { StateService } from '../service/state.service';
 
 @NgModule({
   imports: [
@@ -113,6 +114,7 @@ import { UserService } from "../service/user.service";
     UserFeaturesResolverService,
     SellerSummaryResolverService,
     RevenuRprtResolverService,
+    StateService
   ],
 })
 export class SellerModule {}

@@ -23,7 +23,7 @@ import Compressor from "compressorjs";
 import { stringify } from "querystring";
 import { copyStyles } from "@angular/animations/browser/src/util";
 // import { DragDropDirective } from 'src/app/service/drag-drop.directive';
-let uploadClass = null;
+// let uploadClass = null;
 export interface Discount {
   value: string;
   name: string;
@@ -174,9 +174,9 @@ export class NewOffPeakProductComponent implements OnInit {
     private router: Router,
     private productService: ProductService,
     private fb: FormBuilder,
+    private uploadService:UploadService,
     private location: Location
   ) {
-    uploadClass = this;
   }
 
   ngOnInit() {
@@ -486,7 +486,7 @@ export class NewOffPeakProductComponent implements OnInit {
     } else {
       this.showErrorNotification = true;
       if (this.errorMessage == "") {
-        window.scrollTo(0,0)
+        // window.scrollTo(0,0)
         this.errorMessage = "Invalid form, try again";
       }
       return false;
@@ -894,7 +894,7 @@ export class NewOffPeakProductComponent implements OnInit {
   }
 
   closeModal() {
-    uploadClass.imageChangedEvent = "";
+    this.imageChangedEvent = "";
   }
 
   saveImage() {
@@ -918,30 +918,30 @@ export class NewOffPeakProductComponent implements OnInit {
       minWidth: 550,
       maxWidth: 550,
       mimeType: "JPEG",
-      success(result) {
+      success: (result) => {
         // setLocal(result);
-        uploadClass.uploadForm.get("img").setValue(result);
-        uploadClass.uploadForm
+        this.uploadForm.get("img").setValue(result);
+        this.uploadForm
           .get("name")
           .setValue("img_" + (Date.now() % 10000));
-        if (uploadClass.uploadForm.value) {
+        if (this.uploadForm.value) {
           // this.formData.append("name", this.uploadForm.get("name").value);
-          let value = uploadClass.uploadForm.value;
-          uploadClass.formData.append("name", value["name"]);
-          uploadClass.formData.append("img", value["img"]);
-          uploadClass.uploadService.createImage(uploadClass.formData).subscribe(
+          let value = this.uploadForm.value;
+          this.formData.append("name", value["name"]);
+          this.formData.append("img", value["img"]);
+          this.uploadService.createImage(this.formData).subscribe(
             (res) => {
               if (res["success"]) {
                 //progressDialog.close();
-                let snackBarRef = uploadClass.snackBar.open(
+                let snackBarRef = this.snackBar.open(
                   "Successfuly Uploaded File",
                   "",
                   {
                     duration: 2000,
                   }
                 );
-                uploadClass.pictures.unshift(res["image"]);
-                uploadClass.productForm.get("imgId").setValue(res["image"].id);
+                this.pictures.unshift(res["image"]);
+                this.productForm.get("imgId").setValue(res["image"].id);
               } else {
                 this.showError = true;
                 this.errors = res["messages"];
@@ -952,7 +952,7 @@ export class NewOffPeakProductComponent implements OnInit {
             }
           );
         }
-        closeModal();
+        this.closeModal();
       },
       error(err) {
         console.log(err);

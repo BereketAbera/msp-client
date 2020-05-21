@@ -70,6 +70,7 @@ export class NewShopComponent implements OnInit {
     this.searchText$.next(searchInp);
   }
   onSubmit() {
+    window.scrollTo(0,0);
     let shop = new Shop();
     shop = { ...this.shopForm.value };
     this.shopsSrvc.createShope(shop).subscribe((res) => {
