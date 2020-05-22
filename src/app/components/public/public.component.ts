@@ -34,7 +34,7 @@ export class PublicComponent implements OnInit {
   categories: Category[];
   categoryId: any;
   q: any;
-  searchActive: any;
+  searchActive: any = true;
 
   constructor(
     public authService: AuthService,
@@ -63,12 +63,13 @@ export class PublicComponent implements OnInit {
       if (url.url && url.url.includes("/products")) {
         this.searchActive = true;
       } else {
-        this.searchActive = false;
+        if (this.router.url.includes("/products")) {
+          this.searchActive = true;
+        } else {
+          this.searchActive = false;
+        }
       }
     });
-    if (this.router.url.includes("/products")) {
-      this.searchActive = true;
-    }
 
     this.cdr.detectChanges();
   }
