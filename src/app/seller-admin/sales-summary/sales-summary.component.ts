@@ -52,7 +52,7 @@ export class SalesSummaryComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.dataSource = new DailySalesDataSource(this.userService);
     // this.dataSource.loadTransactions(this.date.value);
-    this.dataSource.loadTransactions(this.dateStart.value,this.dateEnd.value);
+    this.dataSource.loadTransactions(this.dateStart.value,this.dateEnd.value,0,10);
 
     // console.log(this.dataSource);
   }
@@ -65,7 +65,8 @@ export class SalesSummaryComponent implements OnInit, AfterViewInit {
   search() {}
   loadTransactionsPage() {
     // console.log(this.dateStart.value, this.dateEnd.value)
-    this.dataSource.loadTransactions(this.dateStart.value,this.dateEnd.value);
+    this.dataSource.loadTransactions(this.dateStart.value,this.dateEnd.value,this.paginator.pageIndex, this.paginator.pageSize);
+   console.log(this.dataSource.count);
   }
   // onDatesUpdated(e) {
   //   // console.log(e);

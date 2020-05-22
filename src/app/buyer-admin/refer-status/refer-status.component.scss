@@ -47,11 +47,13 @@
   width: 100%;
 }
 .no_result {
-  font-size: 1.6rem;
-  color: #777;
   display: flex;
   justify-content: center;
-  padding: 2rem;
+  font-size: 2rem;
+  color: #777;
+  width: 97%;
+  margin: 1rem;
+  border: 1px #ddd solid;
 }
 .table__container{
   width: 100%;

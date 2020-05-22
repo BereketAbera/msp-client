@@ -56,6 +56,7 @@ export class ReferStatusComponent implements OnInit, AfterViewInit {
   }
 
   loadTransactionsPage() {
+    console.log("sdsdf")
     this.dataSource.loadRefers(
       "",
       this.sort.direction,

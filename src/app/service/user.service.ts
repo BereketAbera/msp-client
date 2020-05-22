@@ -67,12 +67,14 @@ export class UserService {
       .post(accountAPI + "/invtslrs", emails)
       .pipe(catchError(this.handleError));
   }
-  getSellerDailySlsSmry(fltrDate: Date | string,fltrEnd): Observable<DailySale[]> {
+  getSellerDailySlsSmry(fltrDate: Date | string,fltrEnd,pageNumber:Number,pageSize:Number): Observable<DailySale[]> {
     return this.http
       .get(accountAPI + "/slsdlysmry", {
         params: new HttpParams()
         .set("startDate", fltrDate.toString())
         .set("endDate", fltrEnd.toString())
+        .set("pageNumber", pageNumber.toString())
+        .set("pageSize", pageSize.toString())
       })
       .pipe(
         map((res) => {
