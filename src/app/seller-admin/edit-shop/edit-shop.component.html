@@ -25,7 +25,7 @@
             placeholder="Store name at this location"
             formControlName="shopName"
             required
-            maxlength="40"
+            maxlength="50"
             [value]="shop.name"
           />
           <mat-error *ngIf="shopForm.controls.shopName.invalid"
@@ -38,7 +38,7 @@
             placeholder="Contact person"
             formControlName="contact"
             [value]="shop.contact"
-            maxlength="40"
+            maxlength="45"
           />
         </mat-form-field>
         <mat-form-field
