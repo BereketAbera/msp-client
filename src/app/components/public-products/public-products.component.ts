@@ -17,7 +17,7 @@ import { FormControl, Validators } from "@angular/forms";
 export class PublicProductsComponent implements OnInit {
   @ViewChild("anchor") anchor: ElementRef<HTMLElement>;
   @ViewChild("locationInput") locationInput: ElementRef<HTMLElement>;
-  query: string;
+  query: string = "";
   searchInput = new FormControl("");
   categories: Category[];
   activeCategories: Category[];
@@ -82,7 +82,8 @@ export class PublicProductsComponent implements OnInit {
           this.page,
           this.address.Latitude,
           this.address.Longitude,
-          this.categoryId
+          this.categoryId,
+          this.query
         )
         .subscribe((company) => {
           this.companies = company;
@@ -100,7 +101,6 @@ export class PublicProductsComponent implements OnInit {
     window.scrollTo(elementPosition - 10, rightPosition);
   }
   loadJobs() {
-    // console.log(this.addlatitude, this.longitude);
     window.onscroll = () => {
       if (!this.router.url.includes("/products")) {
         return;
@@ -109,15 +109,6 @@ export class PublicProductsComponent implements OnInit {
       var elementPosition = this.anchor
         ? this.anchor.nativeElement.offsetTop
         : 0;
-
-      // console.log(
-      //   elementPosition < bottomPosition,
-      //   this.shouldLoad,
-      //   !this.reachedPageEnd,
-      //   !!this.address,
-      //   this.address.Latitude,
-      //   this.address.Longitude
-      // );
 
       if (
         elementPosition < bottomPosition &&
@@ -134,7 +125,8 @@ export class PublicProductsComponent implements OnInit {
             ++this.page,
             this.address.Latitude,
             this.address.Longitude,
-            this.categoryId
+            this.categoryId,
+            this.query
           )
           .subscribe((company) => {
             let l = this.companies.length;

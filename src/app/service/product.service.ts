@@ -99,11 +99,7 @@ export class ProductService {
     storeId,
     query
   ) {
-    // console.log(
-    //   `/company/product?distance=${distance}&lat=${lat}&q=${query}&lng=${lng}&storeId=${storeId}${
-    //     subCategoryId ? "&subCategoryId=" + subCategoryId : ""
-    //   }`
-    // );
+    console.log("from getlist of products");
     return this.http
       .get(
         productApi +
@@ -122,12 +118,13 @@ export class ProductService {
     page,
     latitude,
     longitude,
-    subCategoryId
+    subCategoryId,
+    query
   ): Observable<any> {
     // console.log(latitude, longitude);
     return this.http
       .get(
-        `${productApi}/company?page=${page}&lat=${latitude}&lng=${longitude}&subCategoryId=${subCategoryId}`
+        `${productApi}/company?page=${page}&lat=${latitude}&lng=${longitude}&q=${query}&subCategoryId=${subCategoryId}`
       )
       .pipe(
         map((res) => {

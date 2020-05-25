@@ -72,32 +72,6 @@ export class BuyerOrdersComponent implements OnInit {
     return false;
   }
 
-  // changeToLocal12Hours(time) {
-  //   let d = -new Date().getTimezoneOffset();
-  //   let x = time.split(":");
-  //   let hour = parseInt(x[0]);
-  //   let minute = parseInt(x[1]);
-  //   let totalMinutes = hour * 60 + minute + d;
-  //   hour = Math.floor(totalMinutes / 60);
-  //   minute = totalMinutes % 60;
-
-  //   if (hour < 12) {
-  //     return `${this.returnTwoDigit(hour)}:${this.returnTwoDigit(minute)}:00AM`;
-  //   } else if (hour == 12) {
-  //     return `${this.returnTwoDigit(12)}:${this.returnTwoDigit(minute)}:00PM`;
-  //   } else if (hour > 24) {
-  //     return `${this.returnTwoDigit(hour - 24)}:${this.returnTwoDigit(
-  //       minute
-  //     )}:00AM`;
-  //   } else if (hour == 24) {
-  //     return `${this.returnTwoDigit(12)}:${this.returnTwoDigit(minute)}:00AM`;
-  //   } else {
-  //     return `${this.returnTwoDigit(hour % 12)}:${this.returnTwoDigit(
-  //       minute
-  //     )}:00PM`;
-  //   }
-  // }
-
   changeToLocal12Hours(time) {
     let d = -new Date().getTimezoneOffset();
     // console.log(d);
@@ -149,9 +123,7 @@ export class BuyerOrdersComponent implements OnInit {
     } else {
       let pDate = order.purchaseTime.split("T")[0];
       let utcDate = new Date().toISOString().split("T")[0];
-      // console.log(pDate, utcDate);
       return pDate == utcDate ? "Pending" : "Expired";
     }
-    // return order.status ? "Processed" : "Pending";
   }
 }
