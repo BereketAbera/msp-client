@@ -45,7 +45,7 @@
           <span class="name">
             <i class="fad fa-stopwatch table__icon"></i>
             <span class="name">
-              <b>Order Date :</b> {{ order.purchaseTime }}
+              <b>Order Date :</b> {{ order.purchaseTime | date: "MMM d, y" }}
             </span>
           </span>
           <span class="name">

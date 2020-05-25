@@ -43,20 +43,10 @@ export class DealDetailComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
     this.route.data.subscribe(
       (data: { product: Product; mspMarkup: Markup }) => {
-        //  console.log(JSON.parse(localStorage.getItem("msp_cart_items")).products)
-
-        // let localProduct = this.cartService.getLocalCartProducts();
-        // if (localProduct) {
-        //   localProduct.map((prod) => {
-        //     if (prod.prdid == data.product.id) {
-        //       data.product.currentQuantity = (parseInt(data.product.currentQuantity) - prod.qty)<0?0:(parseInt(data.product.currentQuantity) - prod.qty);
-        //     }
-        //   });
-        // }
+        // document.body.scrollTop = 0;
+        // document.documentElement.scrollTop = 0;
 
         this.product = data.product;
         [

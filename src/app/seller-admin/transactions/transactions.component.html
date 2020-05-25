@@ -12,9 +12,6 @@
   </div>
   <div class="order__list-container">
     <div class="order__sub-list-container">
-      <div class="spinner-container" *ngIf="dataSource.loading$ | async">
-        <mat-spinner></mat-spinner>
-      </div>
       <mat-table
         class="mat-elevation-z2 table"
         [dataSource]="dataSource"
