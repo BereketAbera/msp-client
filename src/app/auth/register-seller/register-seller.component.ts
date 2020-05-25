@@ -104,17 +104,20 @@ export class RegisterSellerComponent implements OnInit {
 
               //this.registeredSlr.emit("seller");
             } else {
+              window.scrollTo(0,0);
               this.showError = true;
               this.errors = res["messages"];
             }
           });
       } else {
+        window.scrollTo(0,0);
         this.showError = true;
         this.errors = [
           "Please agree to the Seller's terms of use and privacy.",
         ];
       }
     } else {
+      window.scrollTo(0,0);
       this.showError = true;
       this.errors = ["Invalid input! Check Again"];
     }
