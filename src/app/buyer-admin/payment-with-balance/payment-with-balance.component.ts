@@ -68,7 +68,14 @@ export class PaymentWithBalanceComponent implements OnInit {
     this.showError = false;
   }
   showResetDialog() {
-    const dialogRef = this.dialog.open(CartExpiredDialogComponent);
+    const dialogRef = this.dialog.open(CartExpiredDialogComponent, {
+      width: "350px",
+      data: {
+        title: "Cart Time Expired",
+        message:
+          "Sorry, your shopping cart time limit of ten minutes has expired",
+      },
+    });
     dialogRef.afterClosed().subscribe((result) => {
       this.cartService.resetCart();
       this.router.navigate(["../"]);
@@ -83,6 +90,7 @@ export class PaymentWithBalanceComponent implements OnInit {
       //transction.quantity = this.quantity;
       // console.log(transction);
       this.trnsService.createTransaction(transction).subscribe((res) => {
+        console.log(res);
         if (res["success"]) {
           this.cartService.resetCart();
           this.showSuccessNotification = true;

@@ -61,7 +61,7 @@ export class RegisterBuyerRefComponent implements OnInit {
     }
     this.showError = false;
     this.errors = [];
-    window.scrollTo(0, 0);
+
     if (this.registrationForm.valid) {
       if (this.registrationForm.get("agreed").value) {
         let usrInfo = this.registrationForm.value;
@@ -72,6 +72,7 @@ export class RegisterBuyerRefComponent implements OnInit {
           .subscribe((res) => {
             // console.log(res);
             this.loading = false;
+            window.scrollTo(0, 0);
             if (res["success"]) {
               const dialogRef = this.dialog.open(
                 RegistrationCompleteComponent,
@@ -95,10 +96,12 @@ export class RegisterBuyerRefComponent implements OnInit {
       } else {
         this.showError = true;
         this.errors = ["Please agree to the buyer's terms of use and privacy."];
+        window.scrollTo(0, 0);
       }
     } else {
       this.showError = true;
       this.errors = ["Invalid input! Check again."];
+      window.scrollTo(0, 0);
     }
   }
   openTerms() {}

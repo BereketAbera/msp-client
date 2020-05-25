@@ -93,7 +93,7 @@ export class RegisterSellerRefComponent implements OnInit {
     }
     this.showError = false;
     this.errors = [];
-    window.scrollTo(0,0)
+
     if (this.registrationForm.valid) {
      
       if (this.registrationForm.get("agreed").value) {
@@ -102,7 +102,7 @@ export class RegisterSellerRefComponent implements OnInit {
         this.loading=true;
         return this.userService.registerSlrUser(usrInfo).subscribe((res) => {
           this.loading=false;
-  
+          window.scrollTo(0,0);
           if (res["success"]) {
             const dialogRef = this.dialog.open(RegistrationCompleteComponent, {
               width: "350px",
@@ -118,13 +118,16 @@ export class RegisterSellerRefComponent implements OnInit {
           } else {
             this.showError = true;
             this.errors = res["messages"];
+            window.scrollTo(0,0);
           }
         });
       } else {
+        window.scrollTo(0,0);
         this.showError = true;
         this.errors = ["Please agree to the buyer's terms of use and privacy."];
       }
     } else {
+      window.scrollTo(0,0)
       this.showError = true;
       this.errors = ["Invalid Input! Check again"];
     }
