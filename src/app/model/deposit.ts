@@ -5,4 +5,5 @@ export interface Deposit {
   amount: number;
   paymentInfo: any;
   paymentInfoId: any;
+  type: any;
 }
