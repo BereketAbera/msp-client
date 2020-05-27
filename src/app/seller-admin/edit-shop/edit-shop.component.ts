@@ -69,7 +69,7 @@ export class EditShopComponent implements OnInit {
   }
   onSubmit() {
     // console.log(this.shopForm.value);
-    window.scrollTo(0,0)
+    window.scrollTo(0, 0);
     if (this.shopForm.valid) {
       let shop = new Shop();
       shop = { ...this.shopForm.value };
@@ -100,9 +100,30 @@ export class EditShopComponent implements OnInit {
       this.zipcodeService.searchAddress(q).subscribe(
         (response) => {
           this.zipCodeHints = response;
+          this.zipCodeHints.map((zipcode) => {
+            if (this.shopForm.get("zipCode").value == zipcode.ZIPCode) {
+              let id = this.getStateId(zipcode.StateAbbr);
+              this.shopForm.get("state").setValue(id);
+            }
+          });
         },
         (err) => console.log(err)
       );
     }
+  }
+
+  getStateId(abbr) {
+    let id = null;
+    this.states.map((state) => {
+      if (state.abbreviation == abbr) {
+        id = state.id;
+      }
+    });
+
+    return id;
+  }
+
+  zipCodeSelected(zipcode) {
+    this.shopForm.get("state").setValue(this.getStateId(zipcode.StateAbbr));
   }
 }

@@ -26,9 +26,9 @@
         <span class="list__header"> Service Time </span>
         <span class="list__details">
           <i class="fad fa-stopwatch table__icon" style="color: #cf8c9c;"></i>
-          Starting: {{ order.pickupStartTime | date: "MMM d, h:mm:ss a" }} -
+          Starting: {{ order.pickupStartTime | date: "MMM d, h:mm a" }} -
           Ending:
-          {{ order.pickupEndTime | date: "MMM d, h:mm:ss a" }}
+          {{ order.pickupEndTime | date: "MMM d, h:mm a" }}
         </span>
       </div>
 

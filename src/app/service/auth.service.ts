@@ -30,6 +30,7 @@ export class AuthService {
   isGPSOn: boolean = false;
   public progressBarActive = new BehaviorSubject<boolean>(false);
   clientLocation = null;
+  newUser = false;
 
   constructor(private http: HttpClient) {
     this.clientLocation = JSON.parse(localStorage.getItem("client_address"));
@@ -39,7 +40,10 @@ export class AuthService {
       .post<HttpResponse<any>>(authApi, useCredential, { observe: "response" })
       .pipe(
         tap((res) => {
-          if (res.body["success"]) this.setSession(res.body);
+          if (res.body["success"]) {
+            this.newUser = true;
+            this.setSession(res.body);
+          }
         }),
         map((res) => {
           if (!res.body["success"]) throw res.body;
@@ -47,6 +51,11 @@ export class AuthService {
         shareReplay()
       );
   }
+
+  setNewUserFalse() {
+    this.newUser = false;
+  }
+
   reqPwdRest(email) {
     return this.http.post(pwdResetReqApi, email, { observe: "response" }).pipe(
       tap((res) => {

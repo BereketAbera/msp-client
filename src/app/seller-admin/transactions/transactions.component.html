@@ -63,7 +63,7 @@
           >
 
           <mat-cell *matCellDef="let transaction">{{
-            transaction.pickupStartTime | date: "MMM d, h:mm:ss a"
+            transaction.pickupStartTime | date: "MMM d, h:mm a"
           }}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="pickupEndTime">
@@ -72,7 +72,7 @@
           >
 
           <mat-cell *matCellDef="let transaction">{{
-            transaction.pickupEndTime | date: "MMM d, h:mm:ss a"
+            transaction.pickupEndTime | date: "MMM d, h:mm a"
           }}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="date">

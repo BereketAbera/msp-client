@@ -70,7 +70,6 @@ export class NewShopComponent implements OnInit {
     this.searchText$.next(searchInp);
   }
   onSubmit() {
-    window.scrollTo(0,0);
     let shop = new Shop();
     shop = { ...this.shopForm.value };
     this.shopsSrvc.createShope(shop).subscribe((res) => {
@@ -97,9 +96,31 @@ export class NewShopComponent implements OnInit {
       this.zipcodeService.searchAddress(q).subscribe(
         (response) => {
           this.zipCodeHints = response;
+          this.zipCodeHints.map((zipcode) => {
+            if (this.shopForm.get("zipCode").value == zipcode.ZIPCode) {
+              this.shopForm
+                .get("state")
+                .setValue(this.getStateId(zipcode.StateAbbr));
+            }
+          });
         },
         (err) => console.log(err)
       );
     }
+  }
+
+  getStateId(abbr) {
+    let id = null;
+    this.states.map((state) => {
+      if (state.abbreviation == abbr) {
+        id = state.id;
+      }
+    });
+
+    return id;
+  }
+
+  zipCodeSelected(zipcode) {
+    this.shopForm.get("state").setValue(this.getStateId(zipcode.StateAbbr));
   }
 }

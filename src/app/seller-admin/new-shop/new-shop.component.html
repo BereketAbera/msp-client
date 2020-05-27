@@ -87,9 +87,10 @@
           </mat-form-field>
           <mat-form-field class="add-shop__input zipstatecity">
             <mat-select
-              placeholder="Select State"
+              placeholder="State"
               formControlName="state"
               required
+              disabled
             >
               <mat-option *ngFor="let state of states" [value]="state.id">
                 {{ state.abbreviation }}
@@ -110,6 +111,7 @@
               <mat-option
                 *ngFor="let result of zipCodeHints"
                 [value]="result.ZIPCode"
+                (click)="zipCodeSelected(result)"
               >
                 <span>{{ result.ZIPCode }}</span>
                 <small>

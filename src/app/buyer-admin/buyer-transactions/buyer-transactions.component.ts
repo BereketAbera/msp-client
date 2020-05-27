@@ -22,7 +22,7 @@ export class BuyerTransactionsComponent implements OnInit, AfterViewInit {
   dataSource: BuyerTransactionsDataSource;
   qrCode;
   balance: number = 0;
-  displayedColumns = ["type", "date", "amount", "name"];
+  displayedColumns = ["type", "date", "amount", "reason", "name"];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -46,7 +46,7 @@ export class BuyerTransactionsComponent implements OnInit, AfterViewInit {
     this.route.data.subscribe((data: { balance: Balance }) => {
       this.balance = data.balance.amount;
     });
-    // console.log(this.dataSource)
+    console.log(this.dataSource);
   }
 
   ngAfterViewInit() {

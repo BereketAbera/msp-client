@@ -131,6 +131,7 @@
                 placeholder="Select State"
                 formControlName="state"
                 required
+                disabled
               >
                 <mat-option *ngFor="let state of states" [value]="state.name">
                   {{ state.name }}
@@ -151,6 +152,7 @@
                 <mat-option
                   *ngFor="let result of zipCodeHints"
                   [value]="result.ZIPCode"
+                  (click)="zipCodeSelected(result)"
                 >
                   <span>{{ result.ZIPCode }}</span>
                   <small>
@@ -234,10 +236,10 @@
             Sign Up
           </button> -->
           <auth-custom-submit
-          class="msp-button example-full-width"
-          [loading]="loading"
-          text="Sign In"
-        ></auth-custom-submit>
+            class="msp-button example-full-width"
+            [loading]="loading"
+            text="Sign In"
+          ></auth-custom-submit>
         </div>
       </form>
     </div>

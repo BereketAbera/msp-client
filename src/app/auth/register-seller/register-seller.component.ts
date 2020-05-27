@@ -24,7 +24,7 @@ export class RegisterSellerComponent implements OnInit {
   categories: any;
   zipCodeHints: ZipCode[];
   states: State[];
-  loading=false;
+  loading = false;
   registrationForm = this.fb.group({
     firstName: ["", Validators.required],
     lastName: ["", Validators.required],
@@ -82,15 +82,17 @@ export class RegisterSellerComponent implements OnInit {
         return this.userService
           .registerUser(this.registrationForm.value)
           .subscribe((res) => {
-            window.scrollTo(0,0);
-            this.loading=false;
+            window.scrollTo(0, 0);
+            this.loading = false;
             if (res["success"]) {
               const dialogRef = this.dialog.open(
                 RegistrationCompleteComponent,
                 {
                   width: "350px",
-                  data: { msg: 'Thank you! Now please check your email for our email verfication.' }
-
+                  data: {
+                    msg:
+                      "Thank you! Now please check your email for our email verfication.",
+                  },
                 }
               );
               dialogRef.afterClosed().subscribe((result) => {
@@ -104,20 +106,20 @@ export class RegisterSellerComponent implements OnInit {
 
               //this.registeredSlr.emit("seller");
             } else {
-              window.scrollTo(0,0);
+              window.scrollTo(0, 0);
               this.showError = true;
               this.errors = res["messages"];
             }
           });
       } else {
-        window.scrollTo(0,0);
+        window.scrollTo(0, 0);
         this.showError = true;
         this.errors = [
           "Please agree to the Seller's terms of use and privacy.",
         ];
       }
     } else {
-      window.scrollTo(0,0);
+      window.scrollTo(0, 0);
       this.showError = true;
       this.errors = ["Invalid input! Check Again"];
     }
@@ -135,9 +137,33 @@ export class RegisterSellerComponent implements OnInit {
       this.zipcodeService.searchAddress(q).subscribe(
         (response) => {
           this.zipCodeHints = response;
+          this.zipCodeHints.map((zipcode) => {
+            if (this.registrationForm.get("zipcode").value == zipcode.ZIPCode) {
+              this.registrationForm
+                .get("state")
+                .setValue(this.getStateName(zipcode.StateAbbr));
+            }
+          });
         },
         (err) => console.log(err)
       );
     }
+  }
+
+  getStateName(abbr) {
+    let name = null;
+    this.states.map((state) => {
+      if (state.abbreviation == abbr) {
+        name = state.name;
+      }
+    });
+
+    return name;
+  }
+
+  zipCodeSelected(zipcode) {
+    this.registrationForm
+      .get("state")
+      .setValue(this.getStateName(zipcode.StateAbbr));
   }
 }

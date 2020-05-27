@@ -28,9 +28,7 @@
 
       <mat-cell *matCellDef="let transaction">
         <span class="mobile-label">Date:</span
-        >{{
-          transaction.transactionDate | date: "MMM d y, h:mm:ss a"
-        }}</mat-cell
+        >{{ transaction.transactionDate | date: "MMM d, h:mm a" }}</mat-cell
       >
     </ng-container>
     <ng-container matColumnDef="amount">
@@ -38,7 +36,27 @@
 
       <mat-cell *matCellDef="let transaction">
         <span class="mobile-label">Amount:</span>
-        {{ getAmount(transaction) | currency }}</mat-cell
+        {{
+          (transaction.type == "ORDER" ? "-" : "+") +
+            (getAmount(transaction) | currency)
+        }}</mat-cell
+      >
+    </ng-container>
+
+    <ng-container matColumnDef="reason">
+      <mat-header-cell *matHeaderCellDef>Reason</mat-header-cell>
+
+      <mat-cell *matCellDef="let transaction">
+        <span class="mobile-label">Amount:</span>
+        {{
+          transaction.type == "ORDER"
+            ? "Reservation"
+            : transaction.type == "DEPOSIT"
+            ? transaction.paymentInfoId == -1
+              ? "Referral"
+              : "Credit"
+            : ""
+        }}</mat-cell
       >
     </ng-container>
 

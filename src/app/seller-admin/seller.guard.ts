@@ -42,7 +42,7 @@ export class SellerGuard implements CanActivate {
       let user = this.authService.getUser();
       if (user) {
         let found = false;
-        if (!this.user_features) {
+        if (!this.user_features || this.authService.newUser) {
           return !!this.sellerStaffService.getUserFeatures(user.id).subscribe(
             (response) => {
               this.user_features = response.features;

@@ -45,7 +45,7 @@ export class RegisterSellerRefComponent implements OnInit {
     role: ["SELLER", Validators.required],
     subCategoryId: [1, Validators.required],
   });
-  loading: boolean=false;
+  loading: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -95,14 +95,13 @@ export class RegisterSellerRefComponent implements OnInit {
     this.errors = [];
 
     if (this.registrationForm.valid) {
-     
       if (this.registrationForm.get("agreed").value) {
         let usrInfo = this.registrationForm.value;
         usrInfo.tk = this.tk;
-        this.loading=true;
+        this.loading = true;
         return this.userService.registerSlrUser(usrInfo).subscribe((res) => {
-          this.loading=false;
-          window.scrollTo(0,0);
+          this.loading = false;
+          window.scrollTo(0, 0);
           if (res["success"]) {
             const dialogRef = this.dialog.open(RegistrationCompleteComponent, {
               width: "350px",
@@ -118,16 +117,16 @@ export class RegisterSellerRefComponent implements OnInit {
           } else {
             this.showError = true;
             this.errors = res["messages"];
-            window.scrollTo(0,0);
+            window.scrollTo(0, 0);
           }
         });
       } else {
-        window.scrollTo(0,0);
+        window.scrollTo(0, 0);
         this.showError = true;
         this.errors = ["Please agree to the buyer's terms of use and privacy."];
       }
     } else {
-      window.scrollTo(0,0)
+      window.scrollTo(0, 0);
       this.showError = true;
       this.errors = ["Invalid Input! Check again"];
     }
@@ -138,9 +137,33 @@ export class RegisterSellerRefComponent implements OnInit {
       this.zipcodeService.searchAddress(q).subscribe(
         (response) => {
           this.zipCodeHints = response;
+          this.zipCodeHints.map((zipcode) => {
+            if (this.registrationForm.get("zipcode").value == zipcode.ZIPCode) {
+              this.registrationForm
+                .get("state")
+                .setValue(this.getStateName(zipcode.StateAbbr));
+            }
+          });
         },
         (err) => console.log(err)
       );
     }
+  }
+
+  getStateName(abbr) {
+    let name = null;
+    this.states.map((state) => {
+      if (state.abbreviation == abbr) {
+        name = state.name;
+      }
+    });
+
+    return name;
+  }
+
+  zipCodeSelected(zipcode) {
+    this.registrationForm
+      .get("state")
+      .setValue(this.getStateName(zipcode.StateAbbr));
   }
 }
