@@ -90,7 +90,7 @@ export class PaymentWithBalanceComponent implements OnInit {
       //transction.quantity = this.quantity;
       // console.log(transction);
       this.trnsService.createTransaction(transction).subscribe((res) => {
-        console.log(res);
+        // console.log(res);
         if (res["success"]) {
           this.cartService.resetCart();
           this.showSuccessNotification = true;
