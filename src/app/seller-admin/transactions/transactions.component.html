@@ -12,9 +12,6 @@
   </div>
   <div class="order__list-container">
     <div class="order__sub-list-container">
-      <div class="spinner-container" *ngIf="dataSource.loading$ | async">
-        <mat-spinner></mat-spinner>
-      </div>
       <mat-table
         class="mat-elevation-z2 table"
         [dataSource]="dataSource"
@@ -66,7 +63,7 @@
           >
 
           <mat-cell *matCellDef="let transaction">{{
-            transaction.pickupStartTime | date: "MMM d, h:mm:ss a"
+            transaction.pickupStartTime | date: "MMM d, h:mm a"
           }}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="pickupEndTime">
@@ -75,7 +72,7 @@
           >
 
           <mat-cell *matCellDef="let transaction">{{
-            transaction.pickupEndTime | date: "MMM d, h:mm:ss a"
+            transaction.pickupEndTime | date: "MMM d, h:mm a"
           }}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="date">

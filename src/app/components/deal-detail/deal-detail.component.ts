@@ -43,8 +43,6 @@ export class DealDetailComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
     this.route.data.subscribe(
       (data: { product: Product; mspMarkup: Markup }) => {
         //  console.log(JSON.parse(localStorage.getItem("msp_cart_items")).products)

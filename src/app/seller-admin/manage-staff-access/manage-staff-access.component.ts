@@ -1,3 +1,4 @@
+import { MatSnackBar } from "@angular/material";
 import { FeaturedDataSource } from "./../../service/featured-data-source";
 import { Location } from "@angular/common";
 import { ActivatedRoute } from "@angular/router";
@@ -21,7 +22,8 @@ export class ManageStaffAccessComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private sellerStaffService: SellerStaffService,
-    private location: Location
+    private location: Location,
+    public snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {
@@ -75,6 +77,13 @@ export class ManageStaffAccessComponent implements OnInit {
   }
 
   goBack() {
+    let snackBarRef = this.snackBar.open(
+      "If the change is not active, ask the affected staffer to refresh his/her screen.",
+      "",
+      {
+        duration: 4000,
+      }
+    );
     this.location.back();
   }
 }

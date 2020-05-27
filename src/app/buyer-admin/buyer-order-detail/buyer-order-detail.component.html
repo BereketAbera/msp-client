@@ -45,7 +45,7 @@
           <span class="name">
             <i class="fad fa-stopwatch table__icon"></i>
             <span class="name">
-              <b>Order Date :</b> {{ order.purchaseTime }}
+              <b>Order Date :</b> {{ order.purchaseTime | date: "MMM d, y" }}
             </span>
           </span>
           <span class="name">
@@ -70,9 +70,9 @@
             <i class="fad fa-stopwatch table__icon"></i>
             <span class="name">
               <b>Services</b> From:
-              {{ order.pickupStartTime | date: "MMM d, h:mm:ss a" }}
+              {{ order.pickupStartTime | date: "MMM d, h:mm a" }}
               - To:
-              {{ order.pickupEndTime | date: "MMM d, h:mm:ss a" }}
+              {{ order.pickupEndTime | date: "MMM d, h:mm a" }}
             </span>
           </span>
         </li>

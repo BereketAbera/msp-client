@@ -29,9 +29,9 @@
           </span>
           <span class="order_names">
             <b>Services </b>
-            From: {{ order.pickupStartTime | date: "MMM d, h:mm:ss a" }}
+            From: {{ order.pickupStartTime | date: "MMM d, h:mm a" }}
             - To:
-            {{ order.pickupEndTime | date: "MMM d, h:mm:ss a" }}
+            {{ order.pickupEndTime | date: "MMM d, h:mm a" }}
           </span>
           <span class="order_names">
             <b>Unit Price: </b> {{ order.discountedPrice | currency }}

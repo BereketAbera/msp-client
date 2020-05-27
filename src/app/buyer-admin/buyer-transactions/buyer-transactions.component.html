@@ -1,10 +1,7 @@
 <div class="container">
-  <!-- <div class="spinner-container" *ngIf="dataSource.loading$ | async">
-    <mat-spinner></mat-spinner>
-  </div> -->
   <mat-card class="balance">
     <div class="balance__icon">
-      <i class="fad fa-dollar-sign table__icon-2" style="color:white"></i>
+      <i class="fad fa-dollar-sign table__icon-2" style="color: white;"></i>
     </div>
     <span class="balance__header">Balance = </span>
     <span class="balance__header__value"> {{ balance | currency }} </span>
@@ -31,9 +28,7 @@
 
       <mat-cell *matCellDef="let transaction">
         <span class="mobile-label">Date:</span
-        >{{
-          transaction.transactionDate | date: "MMM d y, h:mm:ss a"
-        }}</mat-cell
+        >{{ transaction.transactionDate | date: "MMM d, h:mm a" }}</mat-cell
       >
     </ng-container>
     <ng-container matColumnDef="amount">
@@ -41,8 +36,24 @@
 
       <mat-cell *matCellDef="let transaction">
         <span class="mobile-label">Amount:</span>
-        {{ getAmount(transaction) | currency }}</mat-cell
+        {{
+          (transaction.type == "ORDER" ? "-" : "+") +
+            (getAmount(transaction) | currency)
+        }}</mat-cell
       >
+    </ng-container>
+
+    <ng-container matColumnDef="reason">
+      <mat-header-cell *matHeaderCellDef>Reason</mat-header-cell>
+
+      <mat-cell *matCellDef="let transaction">
+        <span class="mobile-label">Amount:</span>
+        <span style="text-transform: capitalize;">
+          {{
+            transaction.type == "ORDER" ? "RESERVATION" : transaction.creditType
+          }}
+        </span>
+      </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="name" stickyEnd>

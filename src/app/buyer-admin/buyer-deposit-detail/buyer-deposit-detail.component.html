@@ -19,8 +19,8 @@
           <span class="name">
             <i class="fad fa-money-check-edit orders__icon"></i>
             <span class="name"
-              ><b>Deposit Amount :</b> {{ deposit.amount }}
-              {{ deposit.paymentInfoId == -1 ? " Refferer Credit" : "" }}</span
+              ><b>Deposit Amount :</b> {{ deposit.amount | currency }}
+              {{ deposit.type }}</span
             >
           </span>
           <span class="name">
