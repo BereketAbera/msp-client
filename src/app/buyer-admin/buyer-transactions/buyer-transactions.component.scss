@@ -103,12 +103,11 @@
     display: inline-block !important;
     font-weight: bold;
   }
-  .hide{
-    display: none!important;
+  .hide {
+    display: none !important;
   }
-  .mobile-body{
-    display: inline-block!important;
-
+  .mobile-body {
+    display: inline-block !important;
   }
 
   .mat-header-row {
@@ -124,8 +123,13 @@
 
 .mobile-label {
   display: none;
+  text-transform: capitalize;
 }
 
-.mobile-body{
-  display:none;
+.table_text {
+  text-transform: capitalize;
+}
+
+.mobile-body {
+  display: none;
 }

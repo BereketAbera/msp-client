@@ -48,16 +48,12 @@
 
       <mat-cell *matCellDef="let transaction">
         <span class="mobile-label">Amount:</span>
-        {{
-          transaction.type == "ORDER"
-            ? "Reservation"
-            : transaction.type == "DEPOSIT"
-            ? transaction.paymentInfoId == -1
-              ? "Referral"
-              : "Credit"
-            : ""
-        }}</mat-cell
-      >
+        <span style="text-transform: capitalize;">
+          {{
+            transaction.type == "ORDER" ? "RESERVATION" : transaction.creditType
+          }}
+        </span>
+      </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="name" stickyEnd>
