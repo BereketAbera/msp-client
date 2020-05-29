@@ -112,6 +112,7 @@
               formControlName="zipCode"
               (keyup)="getlocations($event.target.value)"
               [value]="shop.zipCode"
+              minlength="5"
             />
             <mat-autocomplete #auto="matAutocomplete">
               <mat-option

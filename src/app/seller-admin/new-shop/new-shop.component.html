@@ -106,6 +106,7 @@
               [matAutocomplete]="auto"
               formControlName="zipCode"
               (keyup)="getlocations($event.target.value)"
+              minlength="5"
             />
             <mat-autocomplete #auto="matAutocomplete">
               <mat-option

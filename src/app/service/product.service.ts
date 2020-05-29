@@ -99,7 +99,7 @@ export class ProductService {
     storeId,
     query
   ) {
-    console.log("from getlist of products");
+    // console.log("from getlist of products");
     return this.http
       .get(
         productApi +

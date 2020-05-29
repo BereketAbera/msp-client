@@ -105,12 +105,12 @@
           </div>
         </form>
       </mat-tab>
-      <mat-tab label="NEW BUYER" *ngIf="showBuyer">
+      <mat-tab label="NEW BUYER SIGN UP" *ngIf="showBuyer">
         <app-register-buyer
           (registeredByr)="setSelectedIndexBuyer()"
         ></app-register-buyer>
       </mat-tab>
-      <mat-tab label="NEW SELLER" *ngIf="showSeller">
+      <mat-tab label="NEW SELLER SIGN UP" *ngIf="showSeller">
         <app-register-seller
           (registeredSlr)="setSelectedIndexSeller()"
         ></app-register-seller>
