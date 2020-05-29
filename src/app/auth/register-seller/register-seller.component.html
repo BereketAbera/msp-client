@@ -145,7 +145,17 @@
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>
+
       <mat-form-field class="seller__input zipstatecity">
+        <input
+          matInput
+          placeholder="States"
+          formControlName="state"
+          required
+          disabled
+        />
+      </mat-form-field>
+      <!-- <mat-form-field class="seller__input zipstatecity">
         <mat-select
           placeholder="State"
           formControlName="state"
@@ -156,7 +166,7 @@
             {{ state.name }}
           </mat-option>
         </mat-select>
-      </mat-form-field>
+      </mat-form-field> -->
       
     </div>
     <mat-form-field hintLabel="min 2 characters and max 12 characters">
