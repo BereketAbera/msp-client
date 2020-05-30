@@ -1,0 +1,95 @@
+<div class="profile__container">
+  <h1 class="profile__header">Profile</h1>
+
+  <div *ngIf="!edit" class="profile__display">
+    <h2 class="profile__company-name">
+      {{ profile?.firstName + " " + profile?.lastName }}
+    </h2>
+    <div class="profile__address-phonenumber">
+      <div class="profile__phonenumber">
+        <i class="fad fa-phone-alt profile__icon"></i>
+        <span>{{ profile?.phoneNumber }}</span>
+      </div>
+    </div>
+    <div class="profile__create-date">
+      <i class="fad fa-life-ring profile__icon"></i
+      ><span>Registered: {{ profile?.createdAt | date }}</span>
+    </div>
+
+    <span (click)="toggleEdit()" class="profile__edit-button">Edit</span>
+  </div>
+
+  <div *ngIf="edit" class="profile__edit">
+    <div *ngIf="showError" class="errorCntr">
+      <button class="errClsBtn" (click)="close()">
+        &#215;
+      </button>
+      <ul>
+        <li *ngFor="let error of errors">
+          {{ error }}
+        </li>
+      </ul>
+    </div>
+    <form
+      [formGroup]="profileForm"
+      class="add-shop__container"
+      (ngSubmit)="onSubmit()"
+    >
+      <mat-card>
+        <mat-card-title>Edit Company Profile</mat-card-title>
+        <mat-card-content>
+          <div fxLayout="column" class="frmDiv">
+            <mat-form-field hintLabel="Min 2 characters">
+              <input
+                matInput
+                minlength="2"
+                placeholder="First Name"
+                formControlName="firstName"
+                required
+                maxlength="100"
+                [value]="profile?.firstName"
+              />
+            </mat-form-field>
+            <mat-form-field>
+              <input
+                matInput
+                placeholder="Last Name"
+                formControlName="lastName"
+                [value]="profile?.lastName"
+                maxlength="120"
+              />
+            </mat-form-field>
+            <mat-form-field
+              class="example-full-width"
+              hintLabel="Area code + 7 digits"
+            >
+              <input
+                type="tel"
+                maxlength="24"
+                matInput
+                pattern="^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$"
+                placeholder="Telephone"
+                formControlName="phoneNumber"
+                [value]="profile?.phoneNumber"
+              />
+            </mat-form-field>
+          </div>
+        </mat-card-content>
+        <mat-card-actions>
+          <div class="add-shop__actions">
+            <button
+              mat-flat-button
+              color="accent"
+              [disabled]="!profileForm.valid"
+            >
+              Save
+            </button>
+            <button mat-flat-button color="accent" (click)="toggleEdit()">
+              Cancel
+            </button>
+          </div>
+        </mat-card-actions>
+      </mat-card>
+    </form>
+  </div>
+</div>

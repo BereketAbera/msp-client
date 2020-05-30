@@ -39,7 +39,13 @@ export class RegisterSellerRefComponent implements OnInit {
     zipcode: ["", Validators.required],
     city: ["", Validators.required],
     state: ["", Validators.required],
-    password: ["", Validators.required],
+    password: [
+      "",
+      [
+        Validators.required,
+        Validators.pattern(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/),
+      ],
+    ],
     confirmPassword: ["", Validators.required],
     agreed: [false, Validators.required],
     role: ["SELLER", Validators.required],

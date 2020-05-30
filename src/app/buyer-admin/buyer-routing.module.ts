@@ -20,6 +20,8 @@ import { BuyerDepositDetailComponent } from "./buyer-deposit-detail/buyer-deposi
 import { BuyerOrderDetailComponent } from "./buyer-order-detail/buyer-order-detail.component";
 import { OrdersResolverService } from "../service/orders-resolver.service";
 import { ReferComponent } from "./refer/refer.component";
+import { ProfileComponent } from "./profile/profile.component";
+import { UserProfileResolverService } from "../service/user-profile-resolver.service";
 
 const buyerRoutes: Routes = [
   {
@@ -68,6 +70,13 @@ const buyerRoutes: Routes = [
         resolve: {
           balance: BalanceResolverService,
           creditCards: CreditCardsResolverService,
+        },
+      },
+      {
+        path: "profile",
+        component: ProfileComponent,
+        resolve: {
+          profile: UserProfileResolverService,
         },
       },
       {

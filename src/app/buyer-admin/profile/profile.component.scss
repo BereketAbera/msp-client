@@ -1,0 +1,212 @@
+.profile {
+  &__container {
+    padding: 0rem 1rem;
+    margin-top: -2rem;
+  }
+
+  &__header {
+    font-size: 1.8rem;
+    color: #555;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 2rem;
+  }
+
+  &__display {
+    border: 1px solid #aaa;
+    border-radius: 2rem;
+    padding: 2rem;
+    max-width: 60rem;
+    position: relative;
+  }
+
+  &__company-name {
+    font-size: 2rem;
+    font-size: 900;
+    color: #f94081;
+    text-transform: uppercase;
+  }
+
+  &__address-phonenumber {
+    display: flex;
+    margin: 2rem 1rem;
+    flex-direction: column;
+  }
+
+  &__phonenumber {
+    margin-top: 2rem;
+    white-space: nowrap;
+  }
+
+  &__address,
+  &__phonenumber {
+    font-size: 1.6rem;
+    color: #555;
+    margin-right: 1rem;
+  }
+
+  &__icon {
+    font-size: 1.4rem;
+    color: #f94081;
+    margin-right: 1rem;
+  }
+
+  &__link {
+    color: #555;
+    font-size: 1.2rem;
+    text-decoration: none;
+
+    &:active {
+      color: #555;
+      text-decoration: none;
+    }
+  }
+
+  &__website {
+    margin: 2rem 1rem;
+  }
+
+  &__create-date {
+    color: #555;
+    font-size: 1.2rem;
+    margin: 2rem 1rem;
+  }
+
+  &__edit-button {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    font-size: 1.2rem;
+    font-weight: 900;
+    color: #f94081;
+    cursor: pointer;
+
+    &:active {
+      transform: scale(1.05);
+    }
+  }
+}
+
+.captureC {
+  background-color: blueviolet;
+  text-align: center;
+  padding: 2px;
+}
+.frmDiv {
+  padding: 10px;
+}
+.taxCntrl {
+  width: 300px;
+}
+
+.captureBrdr {
+  border: 2px dotted white;
+}
+.clickCard {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.material-icons.orange600 {
+  color: #f44336;
+}
+.material-icons.md-48 {
+  font-size: 60px;
+}
+
+.errorCntr {
+  width: 90%;
+  border: 1px solid rgba(253, 89, 89, 0.74);
+  padding: 1.2rem;
+  margin: 1rem auto;
+  background: #a4d3ee;
+  overflow: visible;
+  position: relative;
+  border-radius: 1rem;
+}
+
+.errClsBtn {
+  position: absolute;
+  background: red;
+  color: white;
+  top: -10px;
+  right: -10px;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 2rem;
+  border: 1px solid #fff;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+ul {
+  list-style: none; /* Remove list bullets */
+  padding: 0;
+  margin: 0;
+}
+
+.add-shop {
+  &__container {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  &__address {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__input {
+    margin: 1rem 0rem;
+    width: 100%;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__categories {
+    width: 100%;
+  }
+}
+
+.mat-flat-button {
+  border-radius: 0rem;
+  padding: 0rem 3rem;
+  margin: 0rem 1rem;
+}
+
+@media only screen and (min-width: 600px) {
+  .add-shop {
+    &__container {
+      width: 90%;
+    }
+
+    &__address {
+      flex-direction: row;
+    }
+
+    &__input {
+      margin-right: 1rem;
+    }
+  }
+
+  .profile {
+    &__address-phonenumber {
+      flex-direction: row;
+    }
+
+    &__phonenumber {
+      margin-top: 0rem;
+    }
+  }
+
+  .zipstatecity {
+    width: auto;
+    max-width: 16rem;
+  }
+}

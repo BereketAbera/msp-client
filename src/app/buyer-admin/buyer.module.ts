@@ -44,6 +44,8 @@ import { CreditCardsResolverService } from "../service/credit-cards-resolver.ser
 import { BuyerOrderResolverService } from "../service/buyer-order-resolver.service";
 import { BuyerDepositResolverService } from "../service/buyer-deposit-resolver.service";
 import { OrdersResolverService } from "../service/orders-resolver.service";
+import { ProfileComponent } from "./profile/profile.component";
+import { UserProfileResolverService } from "../service/user-profile-resolver.service";
 
 @NgModule({
   imports: [
@@ -79,6 +81,7 @@ import { OrdersResolverService } from "../service/orders-resolver.service";
     ReferSellerComponent,
     ReferBuyerComponent,
     ReferStatusComponent,
+    ProfileComponent,
   ],
   entryComponents: [
     PaymentWithCreditCardComponent,
@@ -98,6 +101,7 @@ import { OrdersResolverService } from "../service/orders-resolver.service";
     BuyerOrderResolverService,
     BuyerDepositResolverService,
     OrdersResolverService,
+    UserProfileResolverService,
   ],
 })
 export class BuyerModule {}

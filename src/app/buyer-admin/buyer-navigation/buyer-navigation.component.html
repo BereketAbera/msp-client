@@ -60,15 +60,16 @@
                 History</a
               >
             </li>
-            <!-- <li (click)="drawerLinkClicked()" class="side_bar_mobile__item">
+            <li (click)="drawerLinkClicked()" class="side_bar_mobile__item">
               <a
-                routerLink="./staffs"
+                routerLink="./profile"
                 [routerLinkActive]="['active-route']"
                 [routerLinkActiveOptions]="{ exact: false }"
                 class="side_bar_mobile__item-text"
-                ><i class="fad fa-sun side_bar_mobile__item-icon"></i> Staff</a
+                ><i class="fad fa-address-card side_bar_mobile__item-icon"></i>
+                Profile</a
               >
-            </li> -->
+            </li>
             <li (click)="drawerLinkClicked()" class="side_bar_mobile__item">
               <a
                 (click)="logout()"
@@ -166,6 +167,15 @@
           [routerLinkActiveOptions]="{ exact: false }"
           class="navigation__item-text"
           ><i class="fad fa-images navigation__item-icon"></i> History</a
+        >
+      </li>
+      <li class="navigation__item">
+        <a
+          routerLink="./profile"
+          [routerLinkActive]="['active-route']"
+          [routerLinkActiveOptions]="{ exact: false }"
+          class="navigation__item-text"
+          ><i class="fad fa-address-card navigation__item-icon"></i> Profile</a
         >
       </li>
       <!-- <li class="navigation__item">

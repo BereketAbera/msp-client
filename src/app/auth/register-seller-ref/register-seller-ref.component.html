@@ -85,6 +85,7 @@
               placeholder="Telephone"
               maxlength="20"
               formControlName="phoneNumber"
+              required
             />
           </mat-form-field>
           <mat-form-field hintLabel="max 120 characters">
@@ -127,17 +128,25 @@
               />
             </mat-form-field>
             <mat-form-field class="seller__input zipstatecity">
+              <input
+                matInput
+                placeholder="State"
+                formControlName="state"
+                readonly
+              />
+            </mat-form-field>
+            <!-- <mat-form-field class="seller__input zipstatecity">
               <mat-select
                 placeholder="Select State"
                 formControlName="state"
                 required
-                disabled
+                
               >
                 <mat-option *ngFor="let state of states" [value]="state.name">
                   {{ state.name }}
                 </mat-option>
               </mat-select>
-            </mat-form-field>
+            </mat-form-field> -->
             <mat-form-field class="seller__input zipstatecity">
               <input
                 matInput
@@ -175,7 +184,8 @@
               required
             />
             <mat-error *ngIf="registrationForm.controls.password.invalid"
-              >No more than 12 characters.</mat-error
+              >At least six characters,one number, one lowercase and one
+              uppercase letter</mat-error
             >
             <span
               (click)="hide = !hide"

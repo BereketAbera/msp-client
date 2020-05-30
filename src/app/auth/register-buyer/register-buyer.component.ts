@@ -21,7 +21,13 @@ export class RegisterBuyerComponent implements OnInit {
     lastName: ["", Validators.required],
     email: ["", [Validators.required, Validators.email]],
     phoneNumber: ["", Validators.required],
-    password: ["", Validators.required],
+    password: [
+      "",
+      [
+        Validators.required,
+        Validators.pattern(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/),
+      ],
+    ],
     confirmPassword: ["", Validators.required],
     agreed: [false, Validators.required],
     role: ["BUYER", Validators.required],
@@ -50,7 +56,6 @@ export class RegisterBuyerComponent implements OnInit {
     this.showError = false;
     this.errors = [];
     if (this.registrationForm.valid) {
-    
       if (this.registrationForm.get("agreed").value) {
         this.loading = true;
         return this.userService
