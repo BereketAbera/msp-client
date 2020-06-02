@@ -95,6 +95,12 @@ ul {
   font-size: 2rem;
 }
 
+.zipstatecity {
+  &:not(:last-child) {
+    margin-right: 1rem;
+  }
+}
+
 @media only screen and (min-width: 600px) {
   .mat-form-field {
     font-size: inherit;
@@ -106,6 +112,7 @@ ul {
 
     &__address {
       flex-direction: row;
+      justify-content: flex-start;
     }
 
     &__input {

@@ -6,6 +6,7 @@
       placeholder="Enter zip code..."
       class="search__search-input"
       [style.width]="categoryId ? '45%' : '85%'"
+      (change)="getlocations($event.target.value)"
       (keyup)="getlocations($event.target.value)"
       (focus)="onFocus()"
       (blur)="onBlur()"

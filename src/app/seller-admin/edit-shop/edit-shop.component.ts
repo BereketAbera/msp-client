@@ -59,7 +59,7 @@ export class EditShopComponent implements OnInit {
       ],
       address: [this.shop.address, Validators.required],
       city: [this.shop.city, Validators.required],
-      state: [this.shop.state, Validators.required],
+      state: [this.shop.state],
       zipCode: [this.shop.zipCode, Validators.required],
       telephone: [this.shop.phone, Validators.required],
       contact: [this.shop.contact, Validators.required],
@@ -98,6 +98,7 @@ export class EditShopComponent implements OnInit {
 
   getlocations(q) {
     if (q.length > 2) {
+      this.shopForm.get("zipCode").setValue(q);
       this.zipcodeService.searchAddress(q).subscribe(
         (response) => {
           this.zipCodeHints = response;

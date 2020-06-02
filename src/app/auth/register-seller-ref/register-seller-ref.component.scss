@@ -165,11 +165,17 @@ a {
   }
 }
 
+.zipstatecity {
+  &:not(:last-child) {
+    margin-right: 1rem;
+  }
+}
+
 @media only screen and (min-width: 600px) {
   .seller {
     &__address {
       flex-direction: row;
-      justify-content: space-between;
+      justify-content: flex-start;
     }
 
     &__input {

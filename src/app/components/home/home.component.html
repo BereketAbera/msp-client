@@ -9,6 +9,7 @@
           type="text"
           placeholder="Enter zip code to search"
           class="home__search-input"
+          (change)="getlocations($event.target.value)"
           (keyup)="getlocations($event.target.value)"
           [formControl]="searchInput"
         />

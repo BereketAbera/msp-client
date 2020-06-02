@@ -129,8 +129,10 @@
           matInput
           [matAutocomplete]="auto"
           formControlName="zipcode"
+          (change)="getlocations($event.target.value)"
           (keyup)="getlocations($event.target.value)"
           minlength="5"
+          maxlength="5"
         />
         <mat-autocomplete #auto="matAutocomplete">
           <mat-option
@@ -147,7 +149,10 @@
         </mat-autocomplete>
       </mat-form-field>
 
-      <mat-form-field class="seller__input zipstatecity">
+      <mat-form-field
+        *ngIf="registrationForm.get('state').value"
+        class="seller__input zipstatecity"
+      >
         <input matInput placeholder="State" formControlName="state" readonly />
       </mat-form-field>
       <!-- <mat-form-field class="seller__input zipstatecity">
@@ -174,8 +179,8 @@
         required
       />
       <mat-error *ngIf="registrationForm.controls.password.invalid"
-        >At least six characters,one number, one lowercase and one uppercase
-        letter</mat-error
+        >At least six characters,one number, one lowercase and one
+        uppercase</mat-error
       >
       <span
         (click)="hide = !hide"

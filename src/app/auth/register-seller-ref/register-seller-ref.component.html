@@ -130,31 +130,12 @@
             <mat-form-field class="seller__input zipstatecity">
               <input
                 matInput
-                placeholder="State"
-                formControlName="state"
-                readonly
-              />
-            </mat-form-field>
-            <!-- <mat-form-field class="seller__input zipstatecity">
-              <mat-select
-                placeholder="Select State"
-                formControlName="state"
-                required
-                
-              >
-                <mat-option *ngFor="let state of states" [value]="state.name">
-                  {{ state.name }}
-                </mat-option>
-              </mat-select>
-            </mat-form-field> -->
-            <mat-form-field class="seller__input zipstatecity">
-              <input
-                matInput
                 type="text"
                 placeholder="Zip / Postal Code"
                 matInput
                 [matAutocomplete]="auto"
                 formControlName="zipcode"
+                (change)="getlocations($event.target.value)"
                 (keyup)="getlocations($event.target.value)"
                 minlength="5"
               />
@@ -171,6 +152,17 @@
                   >
                 </mat-option>
               </mat-autocomplete>
+            </mat-form-field>
+            <mat-form-field
+              *ngIf="registrationForm.get('state').value"
+              class="seller__input zipstatecity"
+            >
+              <input
+                matInput
+                placeholder="State"
+                formControlName="state"
+                readonly
+              />
             </mat-form-field>
           </div>
           <mat-form-field hintLabel="min 2 characters and max 12 characters">

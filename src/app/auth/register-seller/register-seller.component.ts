@@ -35,7 +35,7 @@ export class RegisterSellerComponent implements OnInit {
     email: ["", [Validators.required, Validators.email]],
     zipcode: ["", Validators.required],
     city: ["", Validators.required],
-    state: ["", Validators.required],
+    state: [""],
     password: [
       "",
       [
@@ -140,6 +140,7 @@ export class RegisterSellerComponent implements OnInit {
 
   getlocations(q) {
     if (q.length > 2) {
+      this.registrationForm.get("zipcode").setValue(q);
       this.zipcodeService.searchAddress(q).subscribe(
         (response) => {
           this.zipCodeHints = response;

@@ -1,13 +1,3 @@
-<div *ngIf="showError" class="errorCntr">
-  <button class="errClsBtn" (click)="close()">
-    &#215;
-  </button>
-  <ul>
-    <li *ngFor="let error of errors">
-      {{ error }}
-    </li>
-  </ul>
-</div>
 <form
   *ngIf="showForm()"
   [formGroup]="shopForm"
@@ -17,6 +7,16 @@
   <mat-card class="card">
     <mat-card-title>Create store location</mat-card-title>
     <p>Must create at least one store location to sell products.</p>
+    <div *ngIf="showError" class="errorCntr">
+      <button class="errClsBtn" (click)="close()">
+        &#215;
+      </button>
+      <ul>
+        <li *ngFor="let error of errors">
+          {{ error }}
+        </li>
+      </ul>
+    </div>
     <mat-card-content>
       <div fxLayout="column" class="frmDiv">
         <mat-form-field hintLabel="Min 2 characters">
@@ -85,18 +85,7 @@
               required
             />
           </mat-form-field>
-          <mat-form-field class="add-shop__input zipstatecity">
-            <mat-select
-              placeholder="State"
-              formControlName="state"
-              required
-              disabled
-            >
-              <mat-option *ngFor="let state of states" [value]="state.id">
-                {{ state.abbreviation }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
+
           <mat-form-field class="add-shop__input zipstatecity">
             <input
               matInput
@@ -105,6 +94,7 @@
               matInput
               [matAutocomplete]="auto"
               formControlName="zipCode"
+              (change)="getlocations($event.target.value)"
               (keyup)="getlocations($event.target.value)"
               minlength="5"
             />
@@ -122,6 +112,32 @@
               </mat-option>
             </mat-autocomplete>
           </mat-form-field>
+          <mat-form-field
+            *ngIf="shopForm.get('state').value"
+            class="add-shop__input zipstatecity"
+          >
+            <mat-select
+              placeholder="State"
+              formControlName="state"
+              required
+              disabled
+            >
+              <mat-option *ngFor="let state of states" [value]="state.id">
+                {{ state.abbreviation }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <!-- <mat-form-field
+            *ngIf="shopForm.get('state').value"
+            class="add-shop__input zipstatecity"
+          >
+            <input
+              matInput
+              placeholder="State"
+              formControlName="state"
+              readonly
+            />
+          </mat-form-field> -->
         </div>
       </div>
     </mat-card-content>

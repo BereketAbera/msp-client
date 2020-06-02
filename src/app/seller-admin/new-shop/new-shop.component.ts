@@ -37,7 +37,7 @@ export class NewShopComponent implements OnInit {
     shopName: ["", [Validators.required, Validators.minLength(2)]],
     address: ["", Validators.required],
     city: ["", Validators.required],
-    state: ["", Validators.required],
+    state: [""],
     zipCode: ["", Validators.required],
     telephone: ["", Validators.required],
     contact: ["", Validators.required],
@@ -93,6 +93,7 @@ export class NewShopComponent implements OnInit {
 
   getlocations(q) {
     if (q.length > 2) {
+      this.shopForm.get("zipCode").setValue(q);
       this.zipcodeService.searchAddress(q).subscribe(
         (response) => {
           this.zipCodeHints = response;
