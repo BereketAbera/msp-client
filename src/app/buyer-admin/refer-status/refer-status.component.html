@@ -4,7 +4,7 @@
   </div> -->
   <div class="container">
     <h3>Reload to see updates...</h3>
-    <div  class="table__container">
+    <div class="table__container">
       <mat-table
         *ngIf="dataSource"
         class="table mat-elevation-z2"
@@ -15,7 +15,7 @@
         matSortDisableClear
       >
         <ng-container matColumnDef="email">
-          <mat-header-cell *matHeaderCellDef>Refered Email</mat-header-cell>
+          <mat-header-cell *matHeaderCellDef>Referred Email</mat-header-cell>
           <mat-cell *matCellDef="let refer">
             <span class="mobile-label">Email:</span>
             {{ refer.referedEmail }}</mat-cell
@@ -37,7 +37,7 @@
           >
         </ng-container>
         <ng-container matColumnDef="createdAt">
-          <mat-header-cell *matHeaderCellDef>Refered At</mat-header-cell>
+          <mat-header-cell *matHeaderCellDef>Referred At</mat-header-cell>
           <mat-cell *matCellDef="let refer">
             <span class="mobile-label">Date:</span>
             {{ refer.createdAt | date: "yyyy-MM-dd HH:mm:ss" }}</mat-cell
@@ -57,6 +57,5 @@
       >
       </mat-paginator>
     </div>
-    
   </div>
 </div>

@@ -82,15 +82,30 @@
           </ul>
         </div>
       </div>
-      <img
-        routerLink="/"
-        [routerLinkActive]="['active-routeas']"
-        [routerLinkActiveOptions]="{ exact: false }"
-        src="favicon.ico"
-        alt="Logo"
-        class="navigation__header-image"
-      />
-      <a routerLink="/" class="navigation__header-text">ManagerSpecial</a>
+      <div style="display: flex; justify-content: space-between; flex: 1;">
+        <div style="display: flex;">
+          <img
+            routerLink="/"
+            [routerLinkActive]="['active-routeas']"
+            [routerLinkActiveOptions]="{ exact: false }"
+            src="favicon.ico"
+            alt="Logo"
+            class="navigation__header-image"
+          />
+          <a routerLink="/" class="navigation__header-text">ManagerSpecial</a>
+        </div>
+        <div style="display: flex;">
+          <span class="navigation__item">
+            <a
+              routerLink="/products"
+              class="navigation__item-text navigation__logout"
+              style="font-size: 1.7rem; color: #f94081;"
+            >
+              <i class="fad fa-burn navigation__item-icon"></i>Products</a
+            >
+          </span>
+        </div>
+      </div>
     </div>
     <div
       (click)="drawerLinkClicked()"
@@ -110,7 +125,16 @@
           >ManagerSpecial</a
         >
       </div>
-      <div>
+      <div style="display: flex; align-items: center;">
+        <span class="navigation__item">
+          <a
+            routerLink="/products"
+            class="navigation__item-text navigation__logout"
+            style="font-size: 1.5rem; color: #f94081;"
+          >
+            <i class="fad fa-burn navigation__item-icon"></i>Products</a
+          >
+        </span>
         <span class="navigation__item">
           <a
             (click)="logout()"
