@@ -20,7 +20,13 @@ export class NewPasswordComponent implements OnInit {
   showError: boolean = false;
   passwordRestForm = this.fb.group({
     token: [this.token],
-    password: ["", Validators.required],
+    password: [
+      "",
+      [
+        Validators.required,
+        Validators.pattern(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/),
+      ],
+    ],
     confirmPassword: ["", Validators.required],
   });
 
