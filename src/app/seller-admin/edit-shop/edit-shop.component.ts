@@ -97,6 +97,7 @@ export class EditShopComponent implements OnInit {
   }
 
   getlocations(q) {
+    let zipCodeFound = false;
     if (q.length > 2) {
       this.shopForm.get("zipCode").setValue(q);
       this.zipcodeService.searchAddress(q).subscribe(
@@ -104,10 +105,14 @@ export class EditShopComponent implements OnInit {
           this.zipCodeHints = response;
           this.zipCodeHints.map((zipcode) => {
             if (this.shopForm.get("zipCode").value == zipcode.ZIPCode) {
+              zipCodeFound = true;
               let id = this.getStateId(zipcode.StateAbbr);
               this.shopForm.get("state").setValue(id);
             }
           });
+          if (!zipCodeFound) {
+            this.shopForm.get("state").setValue("");
+          }
         },
         (err) => console.log(err)
       );

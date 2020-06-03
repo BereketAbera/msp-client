@@ -1,8 +1,10 @@
+import { LoginComponent } from "./../login/login.component";
 import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 import { MatDialog } from "@angular/material";
 import { Validators, FormBuilder } from "@angular/forms";
 import { Router } from "@angular/router";
 import { UserService } from "../../service/user.service";
+import { AsYouType } from "libphonenumber-js";
 
 import { RegistrationCompleteComponent } from "../registration-complete/registration-complete.component";
 
@@ -20,7 +22,15 @@ export class RegisterBuyerComponent implements OnInit {
     firstName: ["", Validators.required],
     lastName: ["", Validators.required],
     email: ["", [Validators.required, Validators.email]],
-    phoneNumber: ["", Validators.required],
+    phoneNumber: [
+      "",
+      [
+        Validators.required,
+        Validators.pattern(
+          /1?\s?((\(\d{3}\))|(\d{3}))(-|\s)?\d{3}(-|\s)?\d{4}/
+        ),
+      ],
+    ],
     password: [
       "",
       [
@@ -108,5 +118,14 @@ export class RegisterBuyerComponent implements OnInit {
       : this.registrationForm.get("email").hasError("email")
       ? "Not a valid email"
       : "";
+  }
+
+  phoneNumberChange(event) {
+    let val = event.target.value;
+    let obj = new AsYouType("US");
+    let newVal = obj.input(val);
+    if (obj) {
+      this.registrationForm.controls["phoneNumber"].setValue(newVal);
+    }
   }
 }

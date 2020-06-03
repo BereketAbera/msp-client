@@ -35,6 +35,7 @@
     "credit-card-type": "^8.0.0",
     "jsqr": "^1.1.1",
     "jwt-decode": "^2.2.0",
+    "libphonenumber-js": "^1.7.52",
     "lodash": "^4.17.15",
     "moment": "^2.22.2",
     "ng-pick-datetime": "^7.0.0",

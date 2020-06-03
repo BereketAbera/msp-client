@@ -13,6 +13,8 @@ import { State } from "src/app/model/state";
 import { ZipcodeService } from "src/app/service/zipcode.service";
 import { Category } from "src/app/model/category";
 
+import { AsYouType } from "libphonenumber-js";
+
 @Component({
   selector: "app-register-seller-ref",
   templateUrl: "./register-seller-ref.component.html",
@@ -32,7 +34,15 @@ export class RegisterSellerRefComponent implements OnInit {
     firstName: ["", Validators.required],
     lastName: ["", Validators.required],
     companyName: ["", Validators.required],
-    phoneNumber: ["", Validators.required],
+    phoneNumber: [
+      "",
+      [
+        Validators.required,
+        Validators.pattern(
+          /1?\s?((\(\d{3}\))|(\d{3}))(-|\s)?\d{3}(-|\s)?\d{4}/
+        ),
+      ],
+    ],
     address: ["", Validators.required],
     websiteURL: ["", Validators.required],
     email: ["", [Validators.required, Validators.email]],
@@ -139,6 +149,7 @@ export class RegisterSellerRefComponent implements OnInit {
   }
 
   getlocations(q) {
+    let zipCodeFound = false;
     if (q.length > 2) {
       this.registrationForm.get("zipcode").setValue(q);
       this.zipcodeService.searchAddress(q).subscribe(
@@ -146,11 +157,15 @@ export class RegisterSellerRefComponent implements OnInit {
           this.zipCodeHints = response;
           this.zipCodeHints.map((zipcode) => {
             if (this.registrationForm.get("zipcode").value == zipcode.ZIPCode) {
+              zipCodeFound = true;
               this.registrationForm
                 .get("state")
                 .setValue(this.getStateName(zipcode.StateAbbr));
             }
           });
+          if (!zipCodeFound) {
+            this.registrationForm.get("state").setValue("");
+          }
         },
         (err) => console.log(err)
       );
@@ -172,5 +187,14 @@ export class RegisterSellerRefComponent implements OnInit {
     this.registrationForm
       .get("state")
       .setValue(this.getStateName(zipcode.StateAbbr));
+  }
+
+  phoneNumberChange(event) {
+    let val = event.target.value;
+    let obj = new AsYouType("US");
+    let newVal = obj.input(val);
+    if (obj) {
+      this.registrationForm.controls["phoneNumber"].setValue(newVal);
+    }
   }
 }

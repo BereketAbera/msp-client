@@ -53,15 +53,16 @@
               </td>
             </tr>
           </table>
-          <mat-form-field class="example-full-width" hintLabel="max 20 numbers">
+          <mat-form-field class="example-full-width">
+            <mat-label>Phone Number</mat-label>
             <input
               type="tel"
               matInput
-              pattern="^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$"
-              placeholder="Telephone"
-              maxlength="20"
+              placeholder="000-000-0000"
               formControlName="phoneNumber"
               required
+              (change)="phoneNumberChange($event)"
+              (keyup)="phoneNumberChange($event)"
             />
           </mat-form-field>
           <mat-form-field>
@@ -72,7 +73,7 @@
           </mat-form-field>
 
           <mat-form-field
-            hintLabel="At least six characters,one number, one lowercase and one
+            hintLabel="At least six characters, one number, one lowercase and one
         uppercase"
           >
             <input
@@ -85,7 +86,7 @@
               required
             />
             <mat-error *ngIf="registrationForm.controls.password.invalid"
-              >At least six characters,one number, one lowercase and one
+              >At least six characters, one number, one lowercase and one
               uppercase letter</mat-error
             >
             <span
@@ -129,13 +130,16 @@
           </mat-form-field>
           <br />
           <br />
-          <mat-checkbox matInput formControlName="agreed"
+          <mat-checkbox
+            style="color: gray; font-size: 14px;"
+            matInput
+            formControlName="agreed"
             >I have read and agreed to the<a
               target="_blank"
               routerLink="/buyer_terms"
             >
               Buyer's Terms of Use</a
-            ><br />and the
+            ><br />and
             <a target="_blank" routerLink="/privacy"
               >Privacy Statement.</a
             ></mat-checkbox

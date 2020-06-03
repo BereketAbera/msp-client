@@ -104,3 +104,18 @@ ul {
     }
   }
 }
+
+::ng-deep .mat-form-field-subscript-wrapper {
+  font-size: 60%;
+}
+
+@media only screen and (max-width: 732px) {
+  ::ng-deep .mat-form-field-subscript-wrapper {
+    font-size: 55%;
+  }
+}
+@media only screen and (max-width: 450px) {
+  ::ng-deep .mat-form-field-subscript-wrapper {
+    font-size: 45% !important;
+  }
+}

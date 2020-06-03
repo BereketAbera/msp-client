@@ -2,6 +2,7 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { UserService } from "src/app/service/user.service";
+import { AsYouType } from "libphonenumber-js";
 
 @Component({
   selector: "app-profile",
@@ -32,7 +33,15 @@ export class ProfileComponent implements OnInit {
         [Validators.required, Validators.minLength(2)],
       ],
       lastName: [this.profile.lastName, Validators.required],
-      phoneNumber: [this.profile.phoneNumber, Validators.required],
+      phoneNumber: [
+        this.profile.phoneNumber,
+        [
+          Validators.required,
+          Validators.pattern(
+            /1?\s?((\(\d{3}\))|(\d{3}))(-|\s)?\d{3}(-|\s)?\d{4}/
+          ),
+        ],
+      ],
     });
   }
 
@@ -54,6 +63,15 @@ export class ProfileComponent implements OnInit {
           },
           (err) => console.log(err)
         );
+    }
+  }
+
+  phoneNumberChange(event) {
+    let val = event.target.value;
+    let obj = new AsYouType("US");
+    let newVal = obj.input(val);
+    if (obj) {
+      this.profileForm.controls["phoneNumber"].setValue(newVal);
     }
   }
 }

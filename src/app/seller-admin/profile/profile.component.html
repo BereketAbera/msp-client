@@ -68,18 +68,17 @@
                 maxlength="120"
               />
             </mat-form-field>
-            <mat-form-field
-              class="example-full-width"
-              hintLabel="Area code + 7 digits"
-            >
+            <mat-form-field class="example-full-width">
+              <mat-label>Phone Number</mat-label>
+              <!-- <span style="color: #555;" matPrefix>+1&nbsp;</span> -->
               <input
                 type="tel"
-                maxlength="24"
                 matInput
-                pattern="^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$"
-                placeholder="Telephone"
+                placeholder="000-000-0000"
                 formControlName="phoneNumber"
-                [value]="profile?.phoneNumber"
+                required
+                (change)="phoneNumberChange($event)"
+                (keyup)="phoneNumberChange($event)"
               />
             </mat-form-field>
             <mat-form-field>
