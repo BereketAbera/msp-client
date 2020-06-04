@@ -46,7 +46,7 @@ export class QrScannerComponent implements OnInit {
     private authService: AuthService,
     public dialog: MatDialog,
     private transactionService: TransactionService
-  ) {}
+  ) { }
 
   ngOnInit() {
     //if(!this.authService.accountCanScan())
@@ -59,7 +59,7 @@ export class QrScannerComponent implements OnInit {
       filter((text) => text.length > 2)
     );
 
-    typeahead.subscribe((data) => {});
+    typeahead.subscribe((data) => { });
   }
   onKeydownEvent(event: KeyboardEvent): void {
     if (
@@ -77,7 +77,7 @@ export class QrScannerComponent implements OnInit {
       data: { title: "Status", question: msg },
     });
   }
-  openConfirmation(qrData: QrCodeData) {}
+  openConfirmation(qrData: QrCodeData) { }
   close() {
     this.showError = false;
     this.displayScanner = "block";
@@ -123,33 +123,37 @@ export class QrScannerComponent implements OnInit {
   checkCode() {
     //this.stopScanner()
     this.displayChk = "none";
-    let ordCoded = `${this.code.value}`;
-    let ordCode = ordCoded.replace("-", "");
-    let dialogRef = this.dialog.open(RequestCodeConfirmationComponent, {
-      data: { code: ordCode },
-    });
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        this.transactionService
-          .processTransactionQRCdCode({
-            code: ordCode,
-            qrCode: result.qrCode,
-          })
-          .subscribe((result) => {
-            // console.log(result);
-            if (result["success"]) {
-              this.transactionId = result["transactionId"];
-              this.displayChk = "block";
-              this.displayScanner = "none";
-              //console.log("You can now give the item to the buyer.");
-            } else {
-              this.showError = true;
-              this.errors = result["messages"];
-              this.displayScanner = "none";
-            }
-          });
-      }
-    });
+    // console.log(this.code.value)
+    if (this.code.value) {
+      let ordCoded = `${this.code.value}`;
+      let ordCode = ordCoded.replace("-", "");
+      let dialogRef = this.dialog.open(RequestCodeConfirmationComponent, {
+        data: { code: ordCode },
+      });
+      dialogRef.afterClosed().subscribe((result) => {
+        if (result) {
+          this.transactionService
+            .processTransactionQRCdCode({
+              code: ordCode,
+              qrCode: result.qrCode,
+            })
+            .subscribe((result) => {
+              // console.log(result);
+              if (result["success"]) {
+                this.transactionId = result["transactionId"];
+                this.displayChk = "block";
+                this.displayScanner = "none";
+                //console.log("You can now give the item to the buyer.");
+              } else {
+                this.showError = true;
+                this.errors = result["messages"];
+                this.displayScanner = "none";
+              }
+            });
+        }
+      });
+    }
+
   }
   accountCanScan() {
     return this.authService.accountCanScan();

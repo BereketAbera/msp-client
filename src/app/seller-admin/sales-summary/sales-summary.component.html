@@ -29,11 +29,8 @@
     </button>
   </div>
 
-  <div *ngIf="dataSource.count == 0" class="not_found">
-    No Transactions on this date!
-  </div>
   <div class="summary__container">
-    <div *ngIf="dataSource.count != 0" class="summary__table">
+    <div class="summary__table">
       <mat-table
         class="mat-elevation-z2"
         [dataSource]="dataSource"
@@ -88,6 +85,10 @@
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
       </mat-table>
+      <div *ngIf="dataSource.count == 0" class="no_result">
+        No Transactions on this date!
+      </div>
+
       <mat-paginator
         [length]="dataSource.count"
         [pageSize]="10"

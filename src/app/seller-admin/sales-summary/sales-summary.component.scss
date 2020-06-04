@@ -15,6 +15,19 @@
   font-size: 1.5rem;
   padding-bottom: 1rem;
 }
+.no_result {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  color: #888;
+  font-size: 1.5rem;
+  padding-bottom: 1rem;
+  font-size: 2rem;
+  color: #777;
+  width: 97%;
+  margin: 1rem;
+  border: 1px #ddd solid;
+}
 .summary {
   &__search {
     flex-direction: row;

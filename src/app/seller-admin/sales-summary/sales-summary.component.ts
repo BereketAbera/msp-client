@@ -66,7 +66,7 @@ export class SalesSummaryComponent implements OnInit, AfterViewInit {
   loadTransactionsPage() {
     // console.log(this.dateStart.value, this.dateEnd.value)
     this.dataSource.loadTransactions(this.dateStart.value,this.dateEnd.value,this.paginator.pageIndex, this.paginator.pageSize);
-   console.log(this.dataSource.count);
+  //  console.log(this.dataSource.count);
   }
   // onDatesUpdated(e) {
   //   // console.log(e);
