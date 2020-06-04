@@ -55,20 +55,6 @@
             [value]="shop.phone"
           />
         </mat-form-field>
-        <!-- <mat-form-field class="add-shop__categories add-shop__input">
-          <mat-select
-            placeholder="Select Restaurant Type"
-            formControlName="subCategoryId"
-            required
-          >
-            <mat-option
-              *ngFor="let category of categories"
-              [value]="category.id"
-            >
-              {{ category.name }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field> -->
         <mat-form-field>
           <input
             matInput
@@ -132,17 +118,6 @@
               </mat-option>
             </mat-select>
           </mat-form-field>
-          <!-- <mat-form-field
-            *ngIf="shopForm.get('state').value"
-            class="add-shop__input zipstatecity"
-          >
-            <input
-              matInput
-              placeholder="State"
-              formControlName="state"
-              readonly
-            />
-          </mat-form-field> -->
         </div>
       </div>
     </mat-card-content>

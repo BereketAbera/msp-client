@@ -21,7 +21,6 @@ export class EditShopComponent implements OnInit {
   [x: string]: any;
   showError: boolean = false;
   errors = [];
-  // zipCodeHints$ = new Observable<ZipCode[]>();
   zipCodeHints: ZipCode[];
   states: State[];
   private searchText$ = new Subject<string>();
@@ -49,7 +48,7 @@ export class EditShopComponent implements OnInit {
     this.route.data.subscribe((data: { states: State[]; shop: any }) => {
       this.states = data.states;
       this.shop = data.shop;
-      // console.log(this.shop);
+      console.log(this.shop);
     });
 
     this.shopForm = this.fb.group({
@@ -107,11 +106,12 @@ export class EditShopComponent implements OnInit {
             if (this.shopForm.get("zipCode").value == zipcode.ZIPCode) {
               zipCodeFound = true;
               let id = this.getStateId(zipcode.StateAbbr);
+              this.shop.stateId = id;
               this.shopForm.get("state").setValue(id);
             }
           });
           if (!zipCodeFound) {
-            this.shopForm.get("state").setValue("");
+            this.shopForm.get("state").setValue(null);
           }
         },
         (err) => console.log(err)
@@ -126,7 +126,6 @@ export class EditShopComponent implements OnInit {
         id = state.id;
       }
     });
-
     return id;
   }
 
