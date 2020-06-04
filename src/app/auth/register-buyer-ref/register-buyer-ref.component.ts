@@ -3,7 +3,7 @@ import { MatDialog } from "@angular/material";
 import { Validators, FormBuilder } from "@angular/forms";
 import { Router, ActivatedRoute } from "@angular/router";
 import { UserService } from "../../service/user.service";
-import { AsYouType } from "libphonenumber-js";
+import { AsYouType, parsePhoneNumberFromString } from "libphonenumber-js";
 
 import { RegistrationCompleteComponent } from "../registration-complete/registration-complete.component";
 
@@ -79,6 +79,10 @@ export class RegisterBuyerRefComponent implements OnInit {
 
     if (this.registrationForm.valid) {
       if (this.registrationForm.get("agreed").value) {
+        let phoneNumber = this.registrationForm.controls["phoneNumber"];
+        phoneNumber.setValue(
+          parsePhoneNumberFromString(phoneNumber.value, "US").number
+        );
         let usrInfo = this.registrationForm.value;
         usrInfo.tk = this.tk;
         this.loading = true;

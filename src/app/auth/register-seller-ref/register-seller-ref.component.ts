@@ -13,7 +13,7 @@ import { State } from "src/app/model/state";
 import { ZipcodeService } from "src/app/service/zipcode.service";
 import { Category } from "src/app/model/category";
 
-import { AsYouType } from "libphonenumber-js";
+import { AsYouType, parsePhoneNumberFromString } from "libphonenumber-js";
 
 @Component({
   selector: "app-register-seller-ref",
@@ -44,7 +44,7 @@ export class RegisterSellerRefComponent implements OnInit {
       ],
     ],
     address: ["", Validators.required],
-    websiteURL: ["", Validators.required],
+    websiteURL: [""],
     email: ["", [Validators.required, Validators.email]],
     zipcode: ["", Validators.required],
     city: ["", Validators.required],
@@ -112,6 +112,10 @@ export class RegisterSellerRefComponent implements OnInit {
 
     if (this.registrationForm.valid) {
       if (this.registrationForm.get("agreed").value) {
+        let phoneNumber = this.registrationForm.controls["phoneNumber"];
+        phoneNumber.setValue(
+          parsePhoneNumberFromString(phoneNumber.value, "US").number
+        );
         let usrInfo = this.registrationForm.value;
         usrInfo.tk = this.tk;
         this.loading = true;

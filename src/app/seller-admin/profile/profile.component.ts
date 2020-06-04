@@ -2,7 +2,7 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { UserService } from "src/app/service/user.service";
-import { AsYouType } from "libphonenumber-js";
+import { AsYouType, parsePhoneNumberFromString } from "libphonenumber-js";
 
 @Component({
   selector: "app-profile",
@@ -52,6 +52,10 @@ export class ProfileComponent implements OnInit {
 
   onSubmit() {
     if (this.profileForm.valid) {
+      let phoneNumber = this.profileForm.controls["phoneNumber"];
+      phoneNumber.setValue(
+        parsePhoneNumberFromString(phoneNumber.value, "US").number
+      );
       this.userService.updateSellerProfile(this.profileForm.value).subscribe(
         (res) => {
           if (res.success) {

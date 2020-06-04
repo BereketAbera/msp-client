@@ -10,7 +10,7 @@ import { RegistrationCompleteComponent } from "../registration-complete/registra
 import { Category } from "src/app/model/category";
 import { ZipCode } from "src/app/model/zipCode";
 import { State } from "src/app/model/state";
-import { AsYouType } from "libphonenumber-js";
+import { AsYouType, parsePhoneNumberFromString } from "libphonenumber-js";
 
 @Component({
   selector: "app-register-seller",
@@ -40,7 +40,7 @@ export class RegisterSellerComponent implements OnInit {
       ],
     ],
     address: ["", Validators.required],
-    websiteURL: ["", Validators.required],
+    websiteURL: [""],
     email: ["", [Validators.required, Validators.email]],
     zipcode: ["", Validators.required],
     city: ["", Validators.required],
@@ -91,9 +91,14 @@ export class RegisterSellerComponent implements OnInit {
     }
     this.showError = false;
     this.errors = [];
+
     if (this.registrationForm.valid) {
       if (this.registrationForm.get("agreed").value) {
         this.loading = true;
+        let phoneNumber = this.registrationForm.controls["phoneNumber"];
+        phoneNumber.setValue(
+          parsePhoneNumberFromString(phoneNumber.value, "US").number
+        );
         return this.userService
           .registerUser(this.registrationForm.value)
           .subscribe((res) => {

@@ -28,8 +28,6 @@ export class EditShopComponent implements OnInit {
   shop: any;
   shopForm: FormGroup;
 
-  //shopName = new FormControl("",Validators.required);
-
   constructor(
     private authService: AuthService,
     private shopsSrvc: ShopsService,
