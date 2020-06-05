@@ -1,40 +1,13 @@
-.push {
-  margin-left: auto;
-  text-align: end;
-}
-.errorCnt {
-  width: 100%;
-  border: 2px solid red;
-}
-.spaceTrms {
-  color: rgb(0, 147, 234);
-}
-span:hover {
-  text-decoration: underline;
-}
-.example-container > * {
-  width: 100%;
-  margin-left: 5px;
-  margin-left: 5px;
-}
-label {
-  font-family: Open Sans, OpenSans, system, -apple-system, BlinkMacSystemFont,
-    Roboto, Arial, FreeSans, sans-serif;
-}
-.example-right-align {
-  text-align: right;
-}
-.example-full-width {
-  width: 100%;
-}
-input.example-right-align::-webkit-outer-spin-button,
-input.example-right-align::-webkit-inner-spin-button {
-  display: none;
+example-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 126px;
+  padding: 66px;
+  border-radius: 8px;
 }
 
-input.example-right-align {
-  -moz-appearance: textfield;
-}
 .errorCntr {
   width: 90%;
   border: 1px solid rgba(253, 89, 89, 0.74);
@@ -58,106 +31,89 @@ input.example-right-align {
   border: 1px solid #fff;
   font-size: 1.3rem;
 }
-
-ul {
-  list-style: none;
-  padding-left: 0px;
+.errorCnt {
+  width: 100%;
+  border: 2px solid red;
 }
-a {
-  text-decoration: none;
-  // color: white;
-  font-size: 14px;
+.spaceTrms {
+  color: rgb(0, 147, 234);
 }
-
-.contanier {
-  display: flex;
-  flex-direction: column;
-  // justify-content: flex-end;
-  min-height: 100vh;
-  position: relative;
+span:hover {
+  text-decoration: underline;
 }
-.card {
-  margin: 2rem;
-  padding: 2rem 0rem;
-  display: flex;
-  // justify-content: flex-end;
-  flex-direction: column;
-  align-content: center;
-  align-items: center;
-  align-self: center;
-  justify-content: center;
-  // width: 40%;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  transition: 0.3s;
-  width: 96%;
-  margin: 2rem auto;
-  &__tab {
-    width: 95%;
-    font-size: 1.5rem;
-    display: flex;
-    justify-content: center;
-  }
+.example-container > * {
+  width: 100%;
+  margin-left: 5px;
+  margin-left: 5px;
 }
-
-.footer {
-  background: #ddd;
-  position: absolute;
-  bottom: 0rem;
-  top: 100%;
-  padding: 2rem 4rem;
-  margin-top: 3rem;
-  height: 5vh;
+.example-full-width {
   width: 100%;
 }
+.example-right-align {
+  text-align: right;
+}
+
+input.example-right-align::-webkit-outer-spin-button,
+input.example-right-align::-webkit-inner-spin-button {
+  display: none;
+}
+
+input.example-right-align {
+  -moz-appearance: textfield;
+}
+ul {
+  list-style: none; /* Remove list bullets */
+  padding: 0;
+  margin: 0;
+}
+
 .form {
-  &__group {
-    width: 95%;
-
-    align-self: center;
-    margin: 1rem 2rem;
-    font-size: 1.2rem;
-    input {
-      font-size: 2.5rem;
-    }
-    &__pass {
-      margin: 1rem 2rem;
-    }
-
-    &__agreed {
-      margin: 1rem 2rem;
-    }
-
-    &__submit {
-      width: 90%;
-      margin: 1rem 2rem;
-    }
-    &__submit > * {
-      width: 95%;
-    }
-  }
-  &__group > * {
-    width: 90%;
-    font-size: 1.2rem;
-  }
-}
-.custom_tab {
-  border: 1px solid red;
+  width: 95%;
 }
 
-@media only screen and (min-width: 732px) {
-  .card {
-    width: 70%;
-  }
+.container {
+  padding: 1rem;
+  margin: 1rem 0rem;
+  font-size: 2rem;
+  min-height: 80vh;
 }
 
-@media only screen and (min-width: 1000px) {
-  .card {
-    width: 50%;
+.fullname {
+  display: flex;
+  flex-direction: column;
+}
+
+.name {
+  width: 100%;
+}
+
+@media only screen and (min-width: 600px) {
+  .fullname {
+    display: flex;
+    flex-direction: row;
+    // width: 48%;
+    justify-content: space-between;
+  }
+
+  .name {
+    width: 100%;
+  }
+
+  .container {
+    padding: 0rem;
+    margin: 0rem auto;
+    font-size: 1.5rem;
+    width: 80%;
   }
 }
 
 ::ng-deep .mat-form-field-subscript-wrapper {
   font-size: 60%;
+}
+
+::ng-deep .mat-checkbox-label {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 @media only screen and (max-width: 732px) {

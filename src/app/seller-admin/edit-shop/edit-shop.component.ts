@@ -4,13 +4,20 @@ import { Location } from "@angular/common";
 import { ActivatedRoute, Router } from "@angular/router";
 import { State } from "src/app/model/state";
 import { ZipCode } from "src/app/model/zipCode";
-import { Subject } from "rxjs";
-import { Validators, FormBuilder, FormGroup } from "@angular/forms";
+import { Subject, of } from "rxjs";
+import {
+  Validators,
+  FormBuilder,
+  FormGroup,
+  FormControl,
+} from "@angular/forms";
 import { AuthService } from "src/app/service/auth.service";
 import { MatSnackBar } from "@angular/material";
 import { GeocoderService } from "src/app/service/geocoder.service";
 import { ZipcodeService } from "src/app/service/zipcode.service";
 import { Shop } from "src/app/model/shop";
+
+let zipCodeHints = [];
 
 @Component({
   selector: "app-edit-shop",
@@ -57,7 +64,7 @@ export class EditShopComponent implements OnInit {
       address: [this.shop.address, Validators.required],
       city: [this.shop.city, Validators.required],
       state: [this.shop.state],
-      zipCode: [this.shop.zipCode, Validators.required],
+      zipCode: [this.shop.zipCode, Validators.required, zipCodeValidator],
       telephone: [this.shop.phone, Validators.required],
       contact: [this.shop.contact, Validators.required],
     });
@@ -100,6 +107,8 @@ export class EditShopComponent implements OnInit {
       this.zipcodeService.searchAddress(q).subscribe(
         (response) => {
           this.zipCodeHints = response;
+          zipCodeHints = this.zipCodeHints;
+          this.shopForm.get("zipCode").setValue(q);
           this.zipCodeHints.map((zipcode) => {
             if (this.shopForm.get("zipCode").value == zipcode.ZIPCode) {
               zipCodeFound = true;
@@ -130,4 +139,30 @@ export class EditShopComponent implements OnInit {
   zipCodeSelected(zipcode) {
     this.shopForm.get("state").setValue(this.getStateId(zipcode.StateAbbr));
   }
+
+  checkInput(event) {
+    if (
+      !(
+        (event.keyCode >= 48 && event.keyCode <= 57) ||
+        (event.keyCode >= 96 && event.keyCode <= 105) ||
+        event.keyCode == 8
+      )
+    ) {
+      return false;
+    }
+  }
+}
+
+function zipCodeValidator(control: FormControl) {
+  let zipCode = control.value;
+
+  let found = false;
+
+  zipCodeHints.map((zch) => {
+    if (zch.ZIPCode == zipCode) {
+      found = true;
+    }
+  });
+
+  return found ? of(null) : of({ error: "zipcode is not valid" });
 }

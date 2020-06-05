@@ -1,6 +1,6 @@
 import { Component, ViewChild, ElementRef, OnInit } from "@angular/core";
-import { FormBuilder, Validators } from "@angular/forms";
-import { Observable, Subject } from "rxjs";
+import { FormBuilder, Validators, FormControl } from "@angular/forms";
+import { Observable, Subject, of } from "rxjs";
 import { debounceTime } from "rxjs/operators/debounceTime";
 import { distinctUntilChanged } from "rxjs/operators/distinctUntilChanged";
 import { filter } from "rxjs/operators/filter";
@@ -17,6 +17,8 @@ import { StateService } from "../../service/state.service";
 
 import { AuthService } from "../../service/auth.service";
 import { Category } from "src/app/model/category";
+
+let zipCodeHints = [];
 
 @Component({
   selector: "app-new-shop",
@@ -38,7 +40,7 @@ export class NewShopComponent implements OnInit {
     address: ["", Validators.required],
     city: ["", Validators.required],
     state: [""],
-    zipCode: ["", Validators.required],
+    zipCode: ["", Validators.required, zipCodeValidator],
     telephone: ["", Validators.required],
     contact: ["", Validators.required],
     subCategoryId: ["", Validators.required],
@@ -98,6 +100,8 @@ export class NewShopComponent implements OnInit {
       this.zipcodeService.searchAddress(q).subscribe(
         (response) => {
           this.zipCodeHints = response;
+          zipCodeHints = this.zipCodeHints;
+          this.shopForm.get("zipCode").setValue(q);
           this.zipCodeHints.map((zipcode) => {
             if (this.shopForm.get("zipCode").value == zipcode.ZIPCode) {
               zipCodeFound = true;
@@ -130,4 +134,18 @@ export class NewShopComponent implements OnInit {
   zipCodeSelected(zipcode) {
     this.shopForm.get("state").setValue(this.getStateId(zipcode.StateAbbr));
   }
+}
+
+function zipCodeValidator(control: FormControl) {
+  let zipCode = control.value;
+
+  let found = false;
+
+  zipCodeHints.map((zch) => {
+    if (zch.ZIPCode == zipCode) {
+      found = true;
+    }
+  });
+
+  return found ? of(null) : of({ error: "zipcode is not valid" });
 }

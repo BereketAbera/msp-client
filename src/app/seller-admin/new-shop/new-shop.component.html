@@ -94,9 +94,11 @@
               matInput
               [matAutocomplete]="auto"
               formControlName="zipCode"
+              (keydown)="checkInput($event)"
               (change)="getlocations($event.target.value)"
               (keyup)="getlocations($event.target.value)"
               minlength="5"
+              maxlength="5"
             />
             <mat-autocomplete #auto="matAutocomplete">
               <mat-option

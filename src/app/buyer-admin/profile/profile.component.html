@@ -61,14 +61,18 @@
             </mat-form-field>
             <mat-form-field class="example-full-width">
               <mat-label>Phone Number</mat-label>
-              <!-- <span style="color: #555;" matPrefix>+1&nbsp;</span> -->
+              <span style="color: #555;" matPrefix>+1&nbsp;</span>
               <input
                 type="tel"
                 matInput
                 placeholder="000-000-0000"
-                formControlName="phoneNumber"
                 required
-                (change)="phoneNumberChange($event)"
+                maxlength="14"
+                formControlName="phoneNumber"
+                (paste)="preventPaste($event)"
+                (keydown)="checkInput($event)"
+                (change)="phoneNumberChangeEvent($event)"
+                (keypress)="phoneNumberChange($event)"
                 (keyup)="phoneNumberChange($event)"
               />
             </mat-form-field>

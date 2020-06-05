@@ -73,14 +73,19 @@
     </mat-form-field> -->
     <mat-form-field class="example-full-width">
       <mat-label>Phone Number</mat-label>
+      <span style="color: #555;" matPrefix>+1&nbsp;</span>
       <input
         type="tel"
         matInput
-        (change)="phoneNumberChange($event)"
-        (keyup)="phoneNumberChange($event)"
         placeholder="000-000-0000"
-        formControlName="phoneNumber"
         required
+        maxlength="14"
+        formControlName="phoneNumber"
+        (paste)="preventPaste($event)"
+        (keydown)="checkInput($event)"
+        (change)="phoneNumberChangeEvent($event)"
+        (keypress)="phoneNumberChange($event)"
+        (keyup)="phoneNumberChange($event)"
       />
     </mat-form-field>
     <mat-form-field hintLabel="max 120 characters">
@@ -129,6 +134,7 @@
           matInput
           [matAutocomplete]="auto"
           formControlName="zipcode"
+          (keydown)="checkInput($event)"
           (change)="getlocations($event.target.value)"
           (keyup)="getlocations($event.target.value)"
           minlength="5"
@@ -222,8 +228,7 @@
         formControlName="agreed"
         >I have read and agreed to the
         <a target="_blank" routerLink="/seller_terms"> Seller's Terms of Use</a
-        ><br />
-        and
+        >&nbsp; and
         <a target="_blank" routerLink="/privacy"
           >Privacy Statement.</a
         ></mat-checkbox

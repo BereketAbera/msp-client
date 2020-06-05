@@ -1,163 +1,182 @@
-<div *ngIf="showError" class="errorCntr">
-  <button class="errClsBtn" (click)="close()">
-    &#215;
-  </button>
-  <ul>
-    <li *ngFor="let error of errors">
-      {{ error }}
-    </li>
-  </ul>
-</div>
 <div class="container">
-  <mat-card class="card">
-    <div class="card__tab">
-      <form class="form" [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
-        <div class="example-container">
-          <table class="example-full-width" cellspacing="0">
-            <tr>
-              <td>
-                <mat-form-field
-                  class="example-full-width"
-                  hintLabel="min 2 characters"
-                >
-                  <input
-                    matInput
-                    placeholder="First Name"
-                    minlength="2"
-                    maxlength="20"
-                    formControlName="firstName"
-                    required
-                  />
-                  <mat-error *ngIf="registrationForm.controls.firstName.invalid"
-                    >No more than 20 characters.</mat-error
+  <div *ngIf="showError" class="errorCntr">
+    <button class="errClsBtn" (click)="close()">
+      &#215;
+    </button>
+    <ul>
+      <li *ngFor="let error of errors">
+        {{ error }}
+      </li>
+    </ul>
+  </div>
+  <div class="container">
+    <mat-card class="card">
+      <div class="card__tab">
+        <form
+          class="form"
+          [formGroup]="registrationForm"
+          (ngSubmit)="onSubmit()"
+        >
+          <div class="example-container">
+            <table class="example-full-width" cellspacing="0">
+              <tr class="fullname">
+                <td class="name">
+                  <mat-form-field
+                    class="example-full-width"
+                    hintLabel="min 2 characters"
                   >
-                </mat-form-field>
-              </td>
-              <td>
-                <mat-form-field
-                  class="example-full-width"
-                  hintLabel="min 2 characters"
-                >
-                  <input
-                    matInput
-                    placeholder="Last Name"
-                    minlength="2"
-                    maxlength="20"
-                    formControlName="lastName"
-                    required
-                  />
-                  <mat-error *ngIf="registrationForm.controls.lastName.invalid"
-                    >No more than 20 characters.</mat-error
+                    <input
+                      matInput
+                      placeholder="First Name"
+                      minlength="2"
+                      maxlength="20"
+                      formControlName="firstName"
+                      required
+                    />
+                    <mat-error
+                      *ngIf="registrationForm.controls.firstName.invalid"
+                      >No more than 20 characters.</mat-error
+                    >
+                  </mat-form-field>
+                </td>
+                <td class="name">
+                  <mat-form-field
+                    class="example-full-width"
+                    hintLabel="min 2 characters"
                   >
-                </mat-form-field>
-              </td>
-            </tr>
-          </table>
-          <mat-form-field class="example-full-width">
-            <mat-label>Phone Number</mat-label>
-            <input
-              type="tel"
-              matInput
-              placeholder="000-000-0000"
-              formControlName="phoneNumber"
-              required
-              (change)="phoneNumberChange($event)"
-              (keyup)="phoneNumberChange($event)"
-            />
-          </mat-form-field>
-          <mat-form-field>
-            <input matInput disabled formControlName="email" required />
-            <mat-error *ngIf="registrationForm.controls.email.invalid">{{
-              getErrorMessage()
-            }}</mat-error>
-          </mat-form-field>
+                    <input
+                      matInput
+                      placeholder="Last Name"
+                      minlength="2"
+                      maxlength="20"
+                      formControlName="lastName"
+                      required
+                    />
+                    <mat-error
+                      *ngIf="registrationForm.controls.lastName.invalid"
+                      >No more than 20 characters.</mat-error
+                    >
+                  </mat-form-field>
+                </td>
+              </tr>
+            </table>
+            <mat-form-field class="example-full-width">
+              <mat-label>Phone Number</mat-label>
+              <span style="color: #555;" matPrefix>+1&nbsp;</span>
+              <input
+                type="tel"
+                matInput
+                placeholder="000-000-0000"
+                required
+                maxlength="14"
+                formControlName="phoneNumber"
+                (paste)="preventPaste($event)"
+                (keydown)="checkInput($event)"
+                (change)="phoneNumberChangeEvent($event)"
+                (keypress)="phoneNumberChange($event)"
+                (keyup)="phoneNumberChange($event)"
+              />
+            </mat-form-field>
+            <mat-form-field>
+              <input
+                placeholder="Enter your email"
+                matInput
+                disabled
+                formControlName="email"
+                required
+              />
+              <mat-error *ngIf="registrationForm.controls.email.invalid">{{
+                getErrorMessage()
+              }}</mat-error>
+            </mat-form-field>
 
-          <mat-form-field
-            hintLabel="At least six characters, one number, one lowercase and one
-        uppercase"
-          >
-            <input
+            <mat-form-field
+              hintLabel="At least six characters, one number, one lowercase and one
+          uppercase"
+            >
+              <input
+                matInput
+                placeholder="Enter your password"
+                minlength="2"
+                maxlength="12"
+                formControlName="password"
+                [type]="hide ? 'password' : 'text'"
+                required
+              />
+              <mat-error *ngIf="registrationForm.controls.password.invalid"
+                >At least six characters, one number, one lowercase and one
+                uppercase letter</mat-error
+              >
+              <span
+                (click)="hide = !hide"
+                style="
+                  position: absolute;
+                  right: 0;
+                  font-size: 2rem;
+                  z-index: 100;
+                "
+              >
+                <i *ngIf="hide" class="fad fa-eye-slash"></i>
+                <i *ngIf="!hide" class="fad fa-eye"></i>
+              </span>
+            </mat-form-field>
+            <mat-form-field>
+              <input
+                matInput
+                placeholder="Confirm your password"
+                minlength="2"
+                maxlength="12"
+                formControlName="confirmPassword"
+                [type]="hide ? 'password' : 'text'"
+                required
+              />
+              <!-- <mat-error *ngIf="registrationForm.controls.password.invalid"
+                >Invalid password</mat-error
+              > -->
+              <span
+                (click)="hide = !hide"
+                style="
+                  position: absolute;
+                  right: 0;
+                  font-size: 2rem;
+                  z-index: 100;
+                "
+              >
+                <i *ngIf="hide" class="fad fa-eye-slash"></i>
+                <i *ngIf="!hide" class="fad fa-eye"></i>
+              </span>
+            </mat-form-field>
+            <br />
+            <br />
+            <mat-checkbox
+              style="color: gray; font-size: 14px;"
               matInput
-              placeholder="Enter your password"
-              minlength="2"
-              maxlength="12"
-              formControlName="password"
-              [type]="hide ? 'password' : 'text'"
-              required
-            />
-            <mat-error *ngIf="registrationForm.controls.password.invalid"
-              >At least six characters, one number, one lowercase and one
-              uppercase letter</mat-error
+              formControlName="agreed"
+              >I have read and agreed to the<a
+                target="_blank"
+                routerLink="/buyer_terms"
+              >
+                Buyer's Terms of Use</a
+              >&nbsp;and
+              <a target="_blank" routerLink="/privacy"
+                >Privacy Statement.</a
+              ></mat-checkbox
             >
-            <span
-              (click)="hide = !hide"
-              style="
-                position: absolute;
-                right: 0;
-                font-size: 2rem;
-                z-index: 100;
-              "
-            >
-              <i *ngIf="hide" class="fad fa-eye-slash"></i>
-              <i *ngIf="!hide" class="fad fa-eye"></i>
-            </span>
-          </mat-form-field>
-          <mat-form-field>
-            <input
-              matInput
-              placeholder="Confirm your password"
-              minlength="2"
-              maxlength="12"
-              formControlName="confirmPassword"
-              [type]="hide ? 'password' : 'text'"
-              required
-            />
-            <!-- <mat-error *ngIf="registrationForm.controls.password.invalid"
-              >Invalid password</mat-error
-            > -->
-            <span
-              (click)="hide = !hide"
-              style="
-                position: absolute;
-                right: 0;
-                font-size: 2rem;
-                z-index: 100;
-              "
-            >
-              <i *ngIf="hide" class="fad fa-eye-slash"></i>
-              <i *ngIf="!hide" class="fad fa-eye"></i>
-            </span>
-          </mat-form-field>
-          <br />
-          <br />
-          <mat-checkbox
-            style="color: gray; font-size: 14px;"
-            matInput
-            formControlName="agreed"
-            >I have read and agreed to the<a
-              target="_blank"
-              routerLink="/buyer_terms"
-            >
-              Buyer's Terms of Use</a
-            ><br />and
-            <a target="_blank" routerLink="/privacy"
-              >Privacy Statement.</a
-            ></mat-checkbox
-          >
-          <br />
-          <br />
-          <!-- <button type="submit" mat-raised-button color="accent">
-            Sign Up
-          </button> -->
+            <br />
+            <br />
+            <!-- <button type="submit" mat-raised-button color="accent">
+              Sign Up
+            </button> -->
 
-          <auth-custom-submit
-            class="msp-button example-full-width"
-            [loading]="loading"
-            text="Sign In"
-          >
-          </auth-custom-submit>
-        </div>
-      </form>
-    </div>
-  </mat-card>
+            <auth-custom-submit
+              class="msp-button example-full-width"
+              [loading]="loading"
+              text="Sign In"
+            >
+            </auth-custom-submit>
+          </div>
+        </form>
+      </div>
+    </mat-card>
+  </div>
 </div>

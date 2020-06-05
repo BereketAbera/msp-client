@@ -2,7 +2,7 @@ import { ZipcodeService } from "./../../service/zipcode.service";
 import { ActivatedRoute } from "@angular/router";
 import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 import { MatDialog } from "@angular/material";
-import { Validators, FormBuilder } from "@angular/forms";
+import { Validators, FormBuilder, FormControl } from "@angular/forms";
 import { Router } from "@angular/router";
 import { UserService } from "../../service/user.service";
 
@@ -10,7 +10,9 @@ import { RegistrationCompleteComponent } from "../registration-complete/registra
 import { Category } from "src/app/model/category";
 import { ZipCode } from "src/app/model/zipCode";
 import { State } from "src/app/model/state";
-import { AsYouType, parsePhoneNumberFromString } from "libphonenumber-js";
+import { of } from "rxjs";
+
+let zipCodeHints = [];
 
 @Component({
   selector: "app-register-seller",
@@ -26,23 +28,19 @@ export class RegisterSellerComponent implements OnInit {
   zipCodeHints: ZipCode[];
   states: State[];
   loading = false;
+  prevValue = "";
   registrationForm = this.fb.group({
     firstName: ["", Validators.required],
     lastName: ["", Validators.required],
     companyName: ["", Validators.required],
     phoneNumber: [
       "",
-      [
-        Validators.required,
-        Validators.pattern(
-          /1?\s?((\(\d{3}\))|(\d{3}))(-|\s)?\d{3}(-|\s)?\d{4}/
-        ),
-      ],
+      [Validators.required, Validators.pattern(/(\(\d{3}\))(\s)\d{3}(-)\d{4}/)],
     ],
     address: ["", Validators.required],
     websiteURL: [""],
     email: ["", [Validators.required, Validators.email]],
-    zipcode: ["", Validators.required],
+    zipcode: ["", Validators.required, zipCodeValidator],
     city: ["", Validators.required],
     state: [""],
     password: [
@@ -55,6 +53,7 @@ export class RegisterSellerComponent implements OnInit {
     confirmPassword: ["", Validators.required],
     agreed: [false, Validators.required],
     role: ["SELLER", Validators.required],
+
     // subCategoryId: ["", Validators.required],
   });
 
@@ -96,11 +95,12 @@ export class RegisterSellerComponent implements OnInit {
       if (this.registrationForm.get("agreed").value) {
         this.loading = true;
         let phoneNumber = this.registrationForm.controls["phoneNumber"];
-        phoneNumber.setValue(
-          parsePhoneNumberFromString(phoneNumber.value, "US").number
-        );
+        // phoneNumber.setValue(this.phoneChangeFormat(phoneNumber.value, "db"));
         return this.userService
-          .registerUser(this.registrationForm.value)
+          .registerUser({
+            ...this.registrationForm.value,
+            phoneNumber: this.phoneChangeFormat(phoneNumber.value, "db"),
+          })
           .subscribe((res) => {
             window.scrollTo(0, 0);
             this.loading = false;
@@ -159,6 +159,8 @@ export class RegisterSellerComponent implements OnInit {
       this.zipcodeService.searchAddress(q).subscribe(
         (response) => {
           this.zipCodeHints = response;
+          zipCodeHints = this.zipCodeHints;
+          this.registrationForm.get("zipcode").setValue(q);
           this.zipCodeHints.map((zipcode) => {
             if (this.registrationForm.get("zipcode").value == zipcode.ZIPCode) {
               zipCodeFound = true;
@@ -195,10 +197,90 @@ export class RegisterSellerComponent implements OnInit {
 
   phoneNumberChange(event) {
     let val = event.target.value;
-    let obj = new AsYouType("US");
-    let newVal = obj.input(val);
-    if (obj) {
-      this.registrationForm.controls["phoneNumber"].setValue(newVal);
+    if (val.length != this.prevValue.length) {
+      if (
+        (event.keyCode >= 48 && event.keyCode <= 57) ||
+        (event.keyCode >= 96 && event.keyCode <= 105) ||
+        event.keyCode == 8
+      ) {
+        if (val.length > this.prevValue.length) {
+          if (val.length == 3) {
+            if (val[0] == "1" || val[0] == "0") {
+              this.registrationForm.controls["phoneNumber"].setValue(
+                val.slice(1)
+              );
+            }
+          } else if (val.length == 4) {
+            this.registrationForm.controls["phoneNumber"].setValue(
+              `(${val.slice(0, 3)}) ${val[3]}`
+            );
+          } else if (val.length == 10) {
+            this.registrationForm.controls["phoneNumber"].setValue(
+              `${val.slice(0, 9)}-${val[9]}`
+            );
+          }
+        } else {
+          if (this.prevValue[this.prevValue.length - 1] == " ") {
+            this.registrationForm.controls["phoneNumber"].setValue(
+              `${val.slice(1, 4)}`
+            );
+          }
+        }
+      }
+    }
+
+    this.prevValue = event.target.value;
+  }
+
+  phoneNumberChangeEvent(event) {
+    let val = event.target.value;
+    if (val.length >= 14) {
+      let x = val.search(/(\(\d{3}\))(\s)\d{3}(-)\d{4}/);
+      if (x != -1) {
+        let str = val.slice(x, x + 14);
+        this.registrationForm.controls["phoneNumber"].setValue(str);
+      } else {
+        this.registrationForm.controls["phoneNumber"].setValue("");
+      }
     }
   }
+
+  preventPaste(event) {
+    event.preventDefault();
+  }
+
+  checkInput(event) {
+    if (
+      !(
+        (event.keyCode >= 48 && event.keyCode <= 57) ||
+        (event.keyCode >= 96 && event.keyCode <= 105) ||
+        event.keyCode == 8
+      )
+    ) {
+      return false;
+    }
+  }
+
+  phoneChangeFormat(value, type) {
+    if (type == "db") {
+      return "+1" + value.replace(/[()-\s]/g, "");
+    } else {
+      let v = value.replace("+1", "").replace(/[()-\s]/g, "");
+      return `(${v.slice(0, 3)}) ${v.slice(3, 6)}-${v.slice(6)}`;
+    }
+  }
+}
+
+function zipCodeValidator(control: FormControl) {
+  let zipCode = control.value;
+
+  let found = false;
+
+  zipCodeHints.map((zch) => {
+    if (zch.ZIPCode == zipCode) {
+      found = true;
+    }
+  });
+
+  return found ? of(null) : of({ error: "zipcode is not valid" });
 }
