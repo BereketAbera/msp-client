@@ -23,20 +23,25 @@ export class HomeComponent implements OnInit {
   distance: number = 0;
   addresses = [];
   address;
+  videosC = true
+  @ViewChild('videoPlayer') videoplayer: ElementRef;
+  @ViewChild('videoPlayerB') videoplayerB: ElementRef;
+  play: boolean;
+  play2: any;
   constructor(
     private winRef: WindowRef,
     private route: ActivatedRoute,
     private authService: AuthService,
     private zipcodeService: ZipcodeService,
     private router: Router
-  ) {}
+  ) { }
   ngOnInit() {
     this.route.data.subscribe((data: { categories: Category[] }) => {
       this.categories = data.categories;
     });
   }
 
-  ngAfterViewChecked() {}
+  ngAfterViewChecked() { }
   isIE() {
     const match = this.winRef.nativeWindow.navigator.userAgent.search(
       /(?:Edge|MSIE|Trident\/.*; rv:)/
@@ -52,7 +57,26 @@ export class HomeComponent implements OnInit {
   isLoggedIn() {
     return this.authService.isLoggedIn();
   }
+  playVideo(event: any) {
+    if(this.play){
+      this.videoplayer.nativeElement.pause();
+      this.play=false;
+    }else{
+      this.videoplayer.nativeElement.play();
+      this.play=true;
+    }
+  }
 
+  playVideo2(event: any) {
+
+    if(this.play2){
+      this.videoplayerB.nativeElement.pause();
+      this.play2=false;
+    }else{
+      this.videoplayerB.nativeElement.play();
+      this.play2=true;
+    }
+  }
   getlocations(q) {
     if (q.length > 2) {
       this.zipcodeService.searchAddress(q).subscribe(
