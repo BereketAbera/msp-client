@@ -5,48 +5,32 @@
         25%-60% Off Restaurant Food Near You
       </div>
       <div action="#" mathod="GET" class="home__search-input-container">
-        <input
-          type="text"
-          placeholder="Enter zip code to search"
-          class="home__search-input"
-          (change)="getlocations($event.target.value)"
-          (keyup)="getlocations($event.target.value)"
-          [formControl]="searchInput"
-        />
+        <input type="text" placeholder="Enter zip code to search" class="home__search-input"
+          (change)="getlocations($event.target.value)" (keyup)="getlocations($event.target.value)"
+          [formControl]="searchInput" />
         <div class="home__search-input-results">
           <div class="home__search-input-result" (click)="getClientLocation()">
             <div>
               <!-- <i
                 class="fas fa-map-marker-alt home__search-input-result-icon"
               ></i> -->
-              <i
-                class="fad fa-map-marker-alt home__search-input-result-icon"
-              ></i>
-              <span class="home__search-input-result-name"
-                >Use Current Location</span
-              >
+              <i class="fad fa-map-marker-alt home__search-input-result-icon"></i>
+              <span class="home__search-input-result-name">Use Current Location</span>
             </div>
           </div>
-          <div
-            *ngFor="let address of addresses"
-            class="home__search-input-result"
-            (click)="addressChanged(address)"
-          >
+          <div *ngFor="let address of addresses" class="home__search-input-result" (click)="addressChanged(address)">
             <div>
               <!-- <i
                 class="fas fa-map-marker-alt home__search-input-result-icon"
               ></i> -->
-              <i
-                class="fad fa-map-marker-alt home__search-input-result-icon"
-              ></i>
+              <i class="fad fa-map-marker-alt home__search-input-result-icon"></i>
               <span class="home__search-input-result-name">
                 {{ address.CityName }}
               </span>
             </div>
 
             <div class="home__search-input-county-state">
-              <span class="home__search-input-result-county"
-                >{{ address.StateName }},
+              <span class="home__search-input-result-county">{{ address.StateName }},
               </span>
               <span class="home__search-input-result-state">
                 {{ address.ZIPCode }}
@@ -54,11 +38,7 @@
             </div>
           </div>
         </div>
-        <button
-          (click)="getProducts()"
-          class="home__search-submit"
-          type="submit"
-        >
+        <button (click)="getProducts()" class="home__search-submit" type="submit">
           <!-- <i class="fad fa-hand-point-right home__search-submit-icon"></i> -->
           <i class="fad fa-search-location home__search-submit-icon"></i>
         </button>
@@ -71,81 +51,80 @@
       <div class="home__step">
         <div class="home__step-icon"><i class="fad fa-french-fries"></i></div>
         <h1 class="home__step-header">Become a Seller</h1>
+        <div class="home__video__container">
+          <video class="home__video" width="342" height="190" poster="../../../assets/image/SellerVideoFrame.JPG"
+          preload="metadata"  (click)="playVideo()" #videoPlayer >
+            <source src="https://msp-prd.s3-us-west-2.amazonaws.com/videos/MSP_Seller_Intro.mp4" type="video/mp4">
+            <source src="video.ogg" type="video/ogg">
+            <source src="video.webm" type="video/webm">
+            <object data="https://msp-prd.s3-us-west-2.amazonaws.com/videos/MSP_Seller_Intro.mp4" width="340" height="175">
+              <embed src="video.swf" width="340" height="190">
+            </object>
+          </video>
+
+          <div *ngIf="!play" class="home__icon">
+            <img src="../../../assets/image/vidoeicon.png" alt="">
+          </div>
+        </div>
         <p class="home__step-description">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolore,
-          expedita ipsa facere aut cumque quis veritatis esse ex vero eaque,
+          No Membership Fee
         </p>
+
       </div>
       <div class="home__step">
         <div class="home__step-icon"><i class="fad fa-cheeseburger"></i></div>
         <h1 class="home__step-header">Become a Buyer</h1>
+        <div class="home__video__container">
+          <video class="home__video" width="342" height="190" poster="../../../assets/image/BuyerVideoFrame.JPG"
+          (click)="playVideo2()" #videoPlayerB  >
+            <source src="https://msp-prd.s3-us-west-2.amazonaws.com/videos/MSP_Buyer_Intro.mp4" type="video/mp4">
+            <source src="video.ogg" type="video/ogg">
+            <source src="video.webm" type="video/webm">
+            <object data="https://msp-prd.s3-us-west-2.amazonaws.com/videos/MSP_Buyer_Intro.mp4" width="340" height="190">
+              <embed src="video.swf" width="340" height="190">
+            </object>
+          </video>
+          <div *ngIf="!play2" class="home__icon">
+            <img src="../../../assets/image/vidoeicon.png" alt="">
+          </div>
+        </div>
+
         <p class="home__step-description">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Suscipit,
-          eius, maiores facilis odio dolorem nulla consequatur adipisci
+          No Fee, No Deductions
         </p>
       </div>
       <div class="home__step">
         <div class="home__step-icon"><i class="fad fa-user-friends"></i></div>
         <h1 class="home__step-header">Refer a Friend</h1>
-        <p class="home__step-description">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
-          distinctio omnis ducimus, voluptates maiores a porro impedit
+        <p class="home__step-description home__refer">
+          “Earn $5, $10, or $20 credit <br>
+          for each friend you refer to <br>
+          us. Just email them to join,<br>
+          it is that simple.
         </p>
       </div>
     </div>
   </div>
   <div class="home__section-three">
-    <h1 class="home__secton-header">Active Locations</h1>
+    <h1 class="home__secton-header">ADD NEW CITIES EVERYDAY</h1>
     <div class="home__cities-container">
-      <span class="home__city"
-        ><i class="fad fa-angle-double-right home__list-icon"></i>New York</span
-      >
-      <span class="home__city"
-        ><i class="fad fa-angle-double-right home__list-icon"></i
-        >California</span
-      >
-      <span class="home__city"
-        ><i class="fad fa-angle-double-right home__list-icon"></i>Chicago</span
-      >
-      <span class="home__city"
-        ><i class="fad fa-angle-double-right home__list-icon"></i>Houston</span
-      >
-      <span class="home__city"
-        ><i class="fad fa-angle-double-right home__list-icon"></i>Phoenix</span
-      >
-      <span class="home__city"
-        ><i class="fad fa-angle-double-right home__list-icon"></i>San
-        Antonio</span
-      >
-      <span class="home__city"
-        ><i class="fad fa-angle-double-right home__list-icon"></i>Dallas</span
-      >
-      <span class="home__city"
-        ><i class="fad fa-angle-double-right home__list-icon"></i>San Jose</span
-      >
-      <span class="home__city"
-        ><i class="fad fa-angle-double-right home__list-icon"></i>New York</span
-      >
-      <span class="home__city"
-        ><i class="fad fa-angle-double-right home__list-icon"></i
-        >California</span
-      >
-      <span class="home__city"
-        ><i class="fad fa-angle-double-right home__list-icon"></i>Chicago</span
-      >
-      <span class="home__city"
-        ><i class="fad fa-angle-double-right home__list-icon"></i>Houston</span
-      >
-      <span class="home__city"
-        ><i class="fad fa-angle-double-right home__list-icon"></i>Phoenix</span
-      >
-      <span class="home__city"
-        ><i class="fad fa-angle-double-right home__list-icon"></i>San
-        Antonio</span
-      >
-      <span class="home__city"
-        ><i class="fad fa-angle-double-right home__list-icon"></i>Dallas</span
-      >
+      <span class="home__city"><i class="fad fa-angle-double-right home__list-icon"></i>New York</span>
+      <span class="home__city"><i class="fad fa-angle-double-right home__list-icon"></i>California</span>
+      <span class="home__city"><i class="fad fa-angle-double-right home__list-icon"></i>Chicago</span>
+      <span class="home__city"><i class="fad fa-angle-double-right home__list-icon"></i>Houston</span>
+      <span class="home__city"><i class="fad fa-angle-double-right home__list-icon"></i>Phoenix</span>
+      <span class="home__city"><i class="fad fa-angle-double-right home__list-icon"></i>San
+        Antonio</span>
+      <span class="home__city"><i class="fad fa-angle-double-right home__list-icon"></i>Dallas</span>
+      <span class="home__city"><i class="fad fa-angle-double-right home__list-icon"></i>San Jose</span>
+      <span class="home__city"><i class="fad fa-angle-double-right home__list-icon"></i>New York</span>
+      <span class="home__city"><i class="fad fa-angle-double-right home__list-icon"></i>California</span>
+      <span class="home__city"><i class="fad fa-angle-double-right home__list-icon"></i>Chicago</span>
+      <span class="home__city"><i class="fad fa-angle-double-right home__list-icon"></i>Houston</span>
+      <span class="home__city"><i class="fad fa-angle-double-right home__list-icon"></i>Phoenix</span>
+      <span class="home__city"><i class="fad fa-angle-double-right home__list-icon"></i>San
+        Antonio</span>
+      <span class="home__city"><i class="fad fa-angle-double-right home__list-icon"></i>Dallas</span>
     </div>
   </div>
   <!-- <div class="home__section-four"></div> -->
