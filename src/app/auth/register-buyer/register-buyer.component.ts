@@ -4,7 +4,6 @@ import { MatDialog } from "@angular/material";
 import { Validators, FormBuilder } from "@angular/forms";
 import { Router } from "@angular/router";
 import { UserService } from "../../service/user.service";
-import { AsYouType, parsePhoneNumberFromString } from "libphonenumber-js";
 
 import { RegistrationCompleteComponent } from "../registration-complete/registration-complete.component";
 
@@ -24,12 +23,7 @@ export class RegisterBuyerComponent implements OnInit {
     email: ["", [Validators.required, Validators.email]],
     phoneNumber: [
       "",
-      [
-        Validators.required,
-        Validators.pattern(
-          /1?\s?((\(\d{3}\))|(\d{3}))(-|\s)?\d{3}(-|\s)?\d{4}/
-        ),
-      ],
+      [Validators.required, Validators.pattern(/(\(\d{3}\))(\s)\d{3}(-)\d{4}/)],
     ],
     password: [
       "",
@@ -43,6 +37,8 @@ export class RegisterBuyerComponent implements OnInit {
     role: ["BUYER", Validators.required],
   });
   loading = false;
+  prevValue = "";
+
   constructor(
     public dialog: MatDialog,
     private userService: UserService,
@@ -68,12 +64,12 @@ export class RegisterBuyerComponent implements OnInit {
     if (this.registrationForm.valid) {
       if (this.registrationForm.get("agreed").value) {
         let phoneNumber = this.registrationForm.controls["phoneNumber"];
-        phoneNumber.setValue(
-          parsePhoneNumberFromString(phoneNumber.value, "US").number
-        );
         this.loading = true;
         return this.userService
-          .registerUser(this.registrationForm.value)
+          .registerUser({
+            ...this.registrationForm.value,
+            phoneNumber: this.phoneChangeFormat(phoneNumber.value, "db"),
+          })
           .subscribe((res) => {
             this.loading = false;
             window.scrollTo(0, 0);
@@ -126,10 +122,76 @@ export class RegisterBuyerComponent implements OnInit {
 
   phoneNumberChange(event) {
     let val = event.target.value;
-    let obj = new AsYouType("US");
-    let newVal = obj.input(val);
-    if (obj) {
-      this.registrationForm.controls["phoneNumber"].setValue(newVal);
+    if (val.length != this.prevValue.length) {
+      if (
+        (event.keyCode >= 48 && event.keyCode <= 57) ||
+        (event.keyCode >= 96 && event.keyCode <= 105) ||
+        event.keyCode == 8
+      ) {
+        if (val.length > this.prevValue.length) {
+          if (val.length == 3) {
+            if (val[0] == "1" || val[0] == "0") {
+              this.registrationForm.controls["phoneNumber"].setValue(
+                val.slice(1)
+              );
+            }
+          } else if (val.length == 4) {
+            this.registrationForm.controls["phoneNumber"].setValue(
+              `(${val.slice(0, 3)}) ${val[3]}`
+            );
+          } else if (val.length == 10) {
+            this.registrationForm.controls["phoneNumber"].setValue(
+              `${val.slice(0, 9)}-${val[9]}`
+            );
+          }
+        } else {
+          if (this.prevValue[this.prevValue.length - 1] == " ") {
+            this.registrationForm.controls["phoneNumber"].setValue(
+              `${val.slice(1, 4)}`
+            );
+          }
+        }
+      }
+    }
+
+    this.prevValue = event.target.value;
+  }
+
+  phoneNumberChangeEvent(event) {
+    let val = event.target.value;
+    if (val.length >= 14) {
+      let x = val.search(/(\(\d{3}\))(\s)\d{3}(-)\d{4}/);
+      if (x != -1) {
+        let str = val.slice(x, x + 14);
+        this.registrationForm.controls["phoneNumber"].setValue(str);
+      } else {
+        this.registrationForm.controls["phoneNumber"].setValue("");
+      }
+    }
+  }
+
+  preventPaste(event) {
+    event.preventDefault();
+  }
+
+  checkInput(event) {
+    if (
+      !(
+        (event.keyCode >= 48 && event.keyCode <= 57) ||
+        (event.keyCode >= 96 && event.keyCode <= 105) ||
+        event.keyCode == 8
+      )
+    ) {
+      return false;
+    }
+  }
+
+  phoneChangeFormat(value, type) {
+    if (type == "db") {
+      return "+1" + value.replace(/[()-\s]/g, "");
+    } else {
+      let v = value.replace("+1", "").replace(/[()-\s]/g, "");
+      return `(${v.slice(0, 3)}) ${v.slice(3, 6)}-${v.slice(6)}`;
     }
   }
 }

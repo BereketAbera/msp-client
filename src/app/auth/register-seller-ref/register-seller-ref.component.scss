@@ -7,11 +7,6 @@ example-container {
   padding: 66px;
   border-radius: 8px;
 }
-
-.push {
-  margin-left: auto;
-  text-align: end;
-}
 .errorCnt {
   width: 100%;
   border: 2px solid red;
@@ -45,6 +40,7 @@ input.example-right-align::-webkit-inner-spin-button {
 input.example-right-align {
   -moz-appearance: textfield;
 }
+
 .errorCntr {
   width: 90%;
   border: 1px solid rgba(253, 89, 89, 0.74);
@@ -70,88 +66,13 @@ input.example-right-align {
 }
 
 ul {
-  list-style: none;
-  padding-left: 0px;
-}
-a {
-  // text-decoration: underline;
-  // color: rgb(0, 147, 234);
-  font-size: 14px;
+  list-style: none; /* Remove list bullets */
+  padding: 0;
+  margin: 0;
 }
 
-.contanier {
-  display: flex;
-  flex-direction: column;
-  // justify-content: flex-end;
-  min-height: 100vh;
-  position: relative;
-}
-.card {
-  margin: 2rem;
-  padding: 2rem 0rem;
-  display: flex;
-  // justify-content: flex-end;
-  flex-direction: column;
-  align-content: center;
-  align-items: center;
-  align-self: center;
-  justify-content: center;
-  // width: 40%;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  transition: 0.3s;
-  width: 96%;
-  margin: 2rem auto;
-  &__tab {
-    width: 95%;
-    font-size: 1.5rem;
-    display: flex;
-    justify-content: center;
-  }
-}
-
-.footer {
-  background: #ddd;
-  position: relative;
-  bottom: 0rem;
-  top: 100%;
-  padding: 2rem 4rem;
-  margin-top: 3rem;
-  height: 5vh;
-  width: 100%;
-}
 .form {
-  &__group {
-    width: 95%;
-
-    align-self: center;
-    margin: 1rem 2rem;
-    font-size: 1.2rem;
-    input {
-      font-size: 2.5rem;
-    }
-    &__pass {
-      margin: 1rem 2rem;
-    }
-
-    &__agreed {
-      margin: 1rem 2rem;
-    }
-
-    &__submit {
-      width: 90%;
-      margin: 1rem 2rem;
-    }
-    &__submit > * {
-      width: 95%;
-    }
-  }
-  &__group > * {
-    width: 90%;
-    font-size: 1.2rem;
-  }
-}
-.custom_tab {
-  border: 1px solid red;
+  width: 95%;
 }
 
 .seller {
@@ -171,6 +92,21 @@ a {
   }
 }
 
+.container {
+  padding: 1rem;
+  margin: 1rem 0rem;
+  font-size: 2rem;
+}
+
+.fullname {
+  display: flex;
+  flex-direction: column;
+}
+
+.name {
+  width: 100%;
+}
+
 @media only screen and (min-width: 600px) {
   .seller {
     &__address {
@@ -182,22 +118,29 @@ a {
       width: 30%;
     }
   }
-}
 
-@media only screen and (min-width: 732px) {
-  .card {
-    width: 70%;
+  .fullname {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
   }
-}
 
-@media only screen and (min-width: 1000px) {
-  .card {
-    width: 50%;
+  .container {
+    padding: 0rem;
+    margin: 0rem auto;
+    font-size: 1.5rem;
+    width: 80%;
   }
 }
 
 ::ng-deep .mat-form-field-subscript-wrapper {
   font-size: 60%;
+}
+
+::ng-deep .mat-checkbox-label {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 @media only screen and (max-width: 732px) {

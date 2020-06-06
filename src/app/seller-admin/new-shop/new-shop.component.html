@@ -41,17 +41,21 @@
             required
           />
         </mat-form-field>
-        <mat-form-field
-          class="example-full-width"
-          hintLabel="Area code + 7 digits"
-        >
+        <mat-form-field class="example-full-width">
+          <mat-label>Phone Number</mat-label>
+          <span style="color: #555;" matPrefix>+1&nbsp;</span>
           <input
             type="tel"
-            maxlength="20"
             matInput
-            pattern="^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$"
-            placeholder="Telephone"
+            placeholder="000-000-0000"
+            required
+            maxlength="14"
             formControlName="telephone"
+            (paste)="preventPaste($event)"
+            (keydown)="checkInput($event)"
+            (change)="phoneNumberChangeEvent($event)"
+            (keypress)="phoneNumberChange($event)"
+            (keyup)="phoneNumberChange($event)"
             required
           />
         </mat-form-field>
@@ -92,16 +96,21 @@
           <mat-form-field class="add-shop__input zipstatecity">
             <input
               matInput
-              type="text"
+              type="tel"
               placeholder="Zip / Postal Code"
               matInput
               [matAutocomplete]="auto"
               formControlName="zipCode"
+              (keydown)="checkInput($event)"
               (change)="getlocations($event.target.value)"
               (keyup)="getlocations($event.target.value)"
               minlength="5"
+              maxlength="5"
               required
             />
+            <mat-error *ngIf="shopForm.controls.zipCode.invalid"
+              >Zip code is not valid</mat-error
+            >
             <mat-autocomplete #auto="matAutocomplete">
               <mat-option
                 *ngFor="let result of zipCodeHints"

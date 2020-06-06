@@ -54,14 +54,18 @@
 
     <mat-form-field class="example-full-width">
       <mat-label>Phone Number</mat-label>
-      <!-- <span style="color: #555;" matPrefix>+1&nbsp;</span> -->
+      <span style="color: #555;" matPrefix>+1&nbsp;</span>
       <input
         type="tel"
         matInput
         placeholder="000-000-0000"
-        formControlName="phoneNumber"
         required
-        (change)="phoneNumberChange($event)"
+        maxlength="14"
+        formControlName="phoneNumber"
+        (paste)="preventPaste($event)"
+        (keydown)="checkInput($event)"
+        (change)="phoneNumberChangeEvent($event)"
+        (keypress)="phoneNumberChange($event)"
         (keyup)="phoneNumberChange($event)"
       />
     </mat-form-field>
@@ -84,8 +88,8 @@
       <input
         matInput
         placeholder="Enter your password"
-        minlength="2"
-        maxlength="12"
+        minlength="6"
+        maxlength="20"
         formControlName="password"
         [type]="hide ? 'password' : 'text'"
         required
@@ -106,8 +110,8 @@
       <input
         matInput
         placeholder="Confirm your password"
-        minlength="2"
-        maxlength="12"
+        minlength="6"
+        maxlength="20"
         formControlName="confirmPassword"
         [type]="hide ? 'password' : 'text'"
         required
@@ -134,7 +138,7 @@
         routerLink="/buyer_terms"
       >
         Buyer's Terms of Use</a
-      ><br />and
+      >&nbsp;and
       <a target="_blank" routerLink="/privacy"
         >Privacy Statement.</a
       ></mat-checkbox

@@ -3,6 +3,7 @@ export class Shop {
   name: string;
   address?: string;
   phone?: string;
+  telephone?: string;
   contact?: string;
   city?: string;
   state?: string;

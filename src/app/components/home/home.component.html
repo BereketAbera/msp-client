@@ -5,32 +5,48 @@
         25%-60% Off Restaurant Food Near You
       </div>
       <div action="#" mathod="GET" class="home__search-input-container">
-        <input type="text" placeholder="Enter zip code to search" class="home__search-input"
-          (change)="getlocations($event.target.value)" (keyup)="getlocations($event.target.value)"
-          [formControl]="searchInput" />
+        <input
+          type="text"
+          placeholder="Enter zip code to search"
+          class="home__search-input"
+          (change)="getlocations($event.target.value)"
+          (keyup)="getlocations($event.target.value)"
+          [formControl]="searchInput"
+        />
         <div class="home__search-input-results">
           <div class="home__search-input-result" (click)="getClientLocation()">
             <div>
               <!-- <i
                 class="fas fa-map-marker-alt home__search-input-result-icon"
               ></i> -->
-              <i class="fad fa-map-marker-alt home__search-input-result-icon"></i>
-              <span class="home__search-input-result-name">Use Current Location</span>
+              <i
+                class="fad fa-map-marker-alt home__search-input-result-icon"
+              ></i>
+              <span class="home__search-input-result-name"
+                >Use Current Location</span
+              >
             </div>
           </div>
-          <div *ngFor="let address of addresses" class="home__search-input-result" (click)="addressChanged(address)">
+          <div
+            *ngFor="let address of addresses"
+            class="home__search-input-result"
+            (click)="addressChanged(address)"
+          >
             <div>
               <!-- <i
                 class="fas fa-map-marker-alt home__search-input-result-icon"
               ></i> -->
-              <i class="fad fa-map-marker-alt home__search-input-result-icon"></i>
+              <i
+                class="fad fa-map-marker-alt home__search-input-result-icon"
+              ></i>
               <span class="home__search-input-result-name">
                 {{ address.CityName }}
               </span>
             </div>
 
             <div class="home__search-input-county-state">
-              <span class="home__search-input-result-county">{{ address.StateName }},
+              <span class="home__search-input-result-county"
+                >{{ address.StateName }},
               </span>
               <span class="home__search-input-result-state">
                 {{ address.ZIPCode }}
@@ -38,7 +54,11 @@
             </div>
           </div>
         </div>
-        <button (click)="getProducts()" class="home__search-submit" type="submit">
+        <button
+          (click)="getProducts()"
+          class="home__search-submit"
+          type="submit"
+        >
           <!-- <i class="fad fa-hand-point-right home__search-submit-icon"></i> -->
           <i class="fad fa-search-location home__search-submit-icon"></i>
         </button>
@@ -73,13 +93,12 @@
           </video>
 
           <div *ngIf="!play" class="home__icon">
-            <img src="../../../assets/image/vidoeicon.png" alt="">
+            <img src="../../../assets/image/vidoeicon.png" alt="" />
           </div>
         </div>
         <p class="home__step-description">
           No Membership Fee
         </p>
-
       </div>
       <div class="home__step">
         <div class="home__step-icon"><i class="fad fa-cheeseburger"></i></div>
@@ -95,7 +114,7 @@
             </object>
           </video>
           <div *ngIf="!play2" class="home__icon">
-            <img src="../../../assets/image/vidoeicon.png" alt="">
+            <img src="../../../assets/image/vidoeicon.png" alt="" />
           </div>
         </div>
 
