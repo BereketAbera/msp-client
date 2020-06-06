@@ -140,6 +140,9 @@
           minlength="5"
           maxlength="5"
         />
+        <mat-error *ngIf="registrationForm.controls.zipcode.invalid"
+          >Zip code is not valid</mat-error
+        >
         <mat-autocomplete #auto="matAutocomplete">
           <mat-option
             *ngFor="let result of zipCodeHints"
@@ -181,8 +184,8 @@
       <input
         matInput
         placeholder="Enter your password"
-        minlength="2"
-        maxlength="12"
+        minlength="6"
+        maxlength="20"
         formControlName="password"
         [type]="hide ? 'password' : 'text'"
         required
@@ -203,8 +206,8 @@
       <input
         matInput
         placeholder="Confirm your password"
-        minlength="2"
-        maxlength="12"
+        minlength="6"
+        maxlength="20"
         formControlName="confirmPassword"
         [type]="hide ? 'password' : 'text'"
         required

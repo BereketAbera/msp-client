@@ -151,12 +151,14 @@ export class RegisterSellerRefComponent implements OnInit {
   getlocations(q) {
     let zipCodeFound = false;
     if (q.length > 2) {
-      this.registrationForm.get("zipcode").setValue(q);
+      // this.registrationForm.get("zipcode").setValue(q);
       this.zipcodeService.searchAddress(q).subscribe(
         (response) => {
           this.zipCodeHints = response;
           zipCodeHints = this.zipCodeHints;
-          this.registrationForm.get("zipcode").setValue(q);
+          if (q.length == 5) {
+            this.registrationForm.get("zipcode").setValue(q);
+          }
           this.zipCodeHints.map((zipcode) => {
             if (this.registrationForm.get("zipcode").value == zipcode.ZIPCode) {
               zipCodeFound = true;
