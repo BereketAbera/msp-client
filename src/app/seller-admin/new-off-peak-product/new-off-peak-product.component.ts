@@ -308,7 +308,8 @@ export class NewOffPeakProductComponent implements OnInit {
     return date.getHours() >= 12 ? "PM" : "AM";
   }
   initOfferPickupTime() {
-    let defaultOfferSHH = this.hours12(this.offerStartInitTime).toString();
+    // let defaultOfferSHH = this.hours12(this.offerStartInitTime).toString();
+    let defaultOfferSHH="02"
     if (defaultOfferSHH.length == 1) defaultOfferSHH = "0" + defaultOfferSHH;
 
     let defaultOfferSMM = "00:AM";
@@ -316,29 +317,30 @@ export class NewOffPeakProductComponent implements OnInit {
 
     let defaultOfferSAMPM = this.getAMPM(this.offerStartInitTime);
 
-    let defaultOfferEHH = this.hours12(this.offerEndInitTime).toString();
+    // let defaultOfferEHH = this.hours12(this.offerEndInitTime).toString();
+    let defaultOfferEHH ="10"
     if (defaultOfferEHH.length == 1) defaultOfferEHH = "0" + defaultOfferEHH;
 
-    let defaultOfferEMM = "00:AM";
+    let defaultOfferEMM = "00:PM";
     if (defaultOfferEMM.length == 1) defaultOfferEMM = "0" + defaultOfferEMM;
 
     let defaultOfferEAMPM = this.getAMPM(this.offerEndInitTime);
 
     // let defaultPickupSHH = this.hours12(this.pickupStartInitTime).toString();
-    let defaultPickupSHH = "11";
+    let defaultPickupSHH = "05";
     if (defaultPickupSHH.length == 1) defaultPickupSHH = "0" + defaultPickupSHH;
 
     // let defaultPickupSMM = this.pickupStartInitTime.getMinutes().toString();
-    let defaultPickupSMM = "30:AM";
+    let defaultPickupSMM = "00:PM";
     if (defaultPickupSMM.length == 1) defaultPickupSMM = "0" + defaultPickupSMM;
 
     let defaultPickupSAMPM = this.getAMPM(this.pickupStartInitTime);
 
     // let defaultPickupEHH = this.hours12(this.pickupEndInitTime).toString();
-    let defaultPickupEHH = "08";
+    let defaultPickupEHH = "11";
     if (defaultPickupEHH.length == 1) defaultPickupEHH = "0" + defaultPickupEHH;
 
-    let defaultPickupEMM = "30:PM";
+    let defaultPickupEMM = "00:PM";
     if (defaultPickupEMM.length == 1) defaultPickupEMM = "0" + defaultPickupEMM;
 
     let defaultPickupEAMPM = this.getAMPM(this.pickupEndInitTime);
@@ -407,7 +409,7 @@ export class NewOffPeakProductComponent implements OnInit {
                     "Successfuly saved",
                     "",
                     {
-                      duration: 2000,
+                      duration: 5000,
                     }
                   );
                   snackBarRef.afterDismissed().subscribe(() => {
@@ -456,7 +458,7 @@ export class NewOffPeakProductComponent implements OnInit {
                     "Successfuly saved",
                     "",
                     {
-                      duration: 2000,
+                      duration: 5000,
                     }
                   );
                   snackBarRef.afterDismissed().subscribe(() => {
@@ -871,7 +873,7 @@ export class NewOffPeakProductComponent implements OnInit {
       } else {
         this.loadingLocalImage = false;
         this.snackBar.open("The file type should be PNG or JPEG", "", {
-          duration: 4000,
+          duration: 5000,
         });
       }
     }
@@ -884,7 +886,7 @@ export class NewOffPeakProductComponent implements OnInit {
         "Image Width and Height must greater than 550x440.",
         "",
         {
-          duration: 4000,
+          duration: 5000,
         }
       );
       this.imageChangedEvent = "";
@@ -937,7 +939,7 @@ export class NewOffPeakProductComponent implements OnInit {
                   "Successfuly Uploaded File",
                   "",
                   {
-                    duration: 2000,
+                    duration: 5000,
                   }
                 );
                 this.pictures.unshift(res["image"]);

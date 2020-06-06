@@ -1,3 +1,47 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  transition: all 0.4s;
+
+  &__close {
+    position: absolute;
+    top: 8rem;
+    right: 8rem;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    z-index: 9500;
+    cursor: pointer;
+    transition: all 0.2s;
+
+    &-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      font-size: 2.5rem;
+      color: #ddd;
+    }
+
+    &:active {
+      background-color: #aaa;
+    }
+  }
+}
+
+.overlay.active {
+  z-index: 2500;
+  background-color: rgba(black, 0.5);
+
+  .overlay__close-icon {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
 .home {
   width: 100%;
   // min-height: 100vh;
@@ -5,7 +49,7 @@
 
   &__section-one {
     width: 100%;
-    height:55vh;
+    height: 55vh;
     max-height: 60rem;
     background: url("../../../assets/image/home_background3.svg"),
       linear-gradient(0deg, rgba(159, 97, 118, 1), rgba(255, 255, 255, 1));
@@ -18,26 +62,42 @@
     justify-content: center;
     // color: rgb(249, 64, 129);
   }
-  &__video__container{
+  &__video__container {
     position: relative;
     margin-bottom: -1rem;
   }
-  &__icon{
+
+  &__icon_cancel{
+   font-size: 3rem;
+    color: white;
+  }
+  &__icon {
     position: absolute;
     width: 3rem;
     top: 3.5rem;
-    left:0.5rem;
+    left: 0.5rem;
 
-    img{
+    img {
       width: 3rem;
     }
   }
-  &__video{
+  &__video {
     width: 40rem;
   }
+  &__full {
+    position: fixed!important;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3000;
+  }
+  &__fullscreen {
+    width: 40rem !important;
+    height: 45rem !important;
+  }
 
-  &__refer{
-    padding:3.6rem 0;
+  &__refer {
+    padding: 3.6rem 0;
   }
 
   &__search-container {
@@ -174,7 +234,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top:3rem;
+    margin-top: 3rem;
     padding: 3.5rem 2rem;
   }
 
@@ -298,25 +358,36 @@
       width: 25%;
     }
 
-    &__video__container{
+    &__video__container {
       position: relative;
     }
-    &__icon{
+    &__full {
+      position: fixed!important;
+      top: 55%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 3000;
+    }
+    &__fullscreen {
+      width: 100% !important;
+      height: 45rem !important;
+    }
+    &__icon {
       position: absolute;
       width: 3rem;
       top: 3.5rem;
-      left:0.5rem;
-  
-      img{
+      left: 0.5rem;
+
+      img {
         width: 2.5rem;
       }
     }
-    &__video{
+    &__video {
       width: 20rem;
     }
-  
-    &__refer{
-      padding:3.7rem 0;
+
+    &__refer {
+      padding: 3.7rem 0;
     }
   }
 }

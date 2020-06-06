@@ -173,7 +173,7 @@ export class BuyerItemQrcodeComponent implements OnInit {
             if (res["success"]) {
               progressDialogRef.close();
               let snackBarRef = this.snackBar.open(ordMsg, "", {
-                duration: 2000,
+                duration: 4000,
               });
               snackBarRef.afterDismissed().subscribe(() => {
                 this.router.navigate(["../../"], { relativeTo: this.route });

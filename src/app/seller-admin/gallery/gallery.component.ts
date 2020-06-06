@@ -53,7 +53,7 @@ export class GalleryComponent implements OnInit {
             if (res["success"]) {
               progressDialogRef.close();
               let snackBarRef = this.snackBar.open("Successfuly Deleted", "", {
-                duration: 2000,
+                duration: 6000,
               });
               snackBarRef.afterDismissed().subscribe(() => {
                 this.uploadService.listImages().subscribe((newPictures) => {

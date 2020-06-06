@@ -211,7 +211,7 @@ export class UsersAdminComponent implements OnInit, AfterViewInit {
                   "You have successfuly changed the account status.",
                   "",
                   {
-                    duration: 2000,
+                    duration: 5000,
                   }
                 );
                 snackBarRef.afterDismissed().subscribe(() => {

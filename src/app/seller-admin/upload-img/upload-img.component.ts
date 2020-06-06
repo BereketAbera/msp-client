@@ -72,7 +72,7 @@ export class UploadImgComponent implements OnInit {
               "Successfuly Uploaded File",
               "",
               {
-                duration: 2000,
+                duration: 5000,
               }
             );
             snackBarRef.afterDismissed().subscribe(() => {

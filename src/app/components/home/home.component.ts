@@ -63,6 +63,7 @@ export class HomeComponent implements OnInit {
       this.play=false;
     }else{
       this.videoplayer.nativeElement.play();
+      // this.videoplayer.nativeElement.requestFullscreen();
       this.play=true;
     }
   }
@@ -74,6 +75,7 @@ export class HomeComponent implements OnInit {
       this.play2=false;
     }else{
       this.videoplayerB.nativeElement.play();
+      // this.videoplayer.nativeElement.requestFullscreen();
       this.play2=true;
     }
   }

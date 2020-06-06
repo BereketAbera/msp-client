@@ -39,6 +39,7 @@
             formControlName="contact"
             [value]="shop.contact"
             maxlength="45"
+            required
           />
         </mat-form-field>
         <mat-form-field
@@ -53,6 +54,7 @@
             placeholder="Telephone"
             formControlName="telephone"
             [value]="shop.phone"
+            required
           />
         </mat-form-field>
         <mat-form-field>
@@ -62,6 +64,7 @@
             formControlName="address"
             [value]="shop.address"
             maxlength="50"
+            required
           />
         </mat-form-field>
         <div class="add-shop__address">
@@ -73,6 +76,7 @@
               required
               [value]="shop.city"
               maxlength="30"
+              required
             />
           </mat-form-field>
           <mat-form-field class="add-shop__input zipstatecity">
@@ -87,6 +91,7 @@
               (keyup)="getlocations($event.target.value)"
               [value]="shop.zipCode"
               minlength="5"
+              required
             />
             <mat-autocomplete #auto="matAutocomplete">
               <mat-option

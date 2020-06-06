@@ -316,9 +316,9 @@ export class AddNewAdComponent implements OnInit {
                 progressDialogRef.close();
                 let snackBarRef = this.snackBar.open(
                   "Successfuly saved",
-                  "Add More",
+                  "",
                   {
-                    duration: 2000,
+                    duration: 6000,
                   }
                 );
                 snackBarRef.afterDismissed().subscribe(() => {

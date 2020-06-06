@@ -181,7 +181,7 @@ export class ProductsComponent implements OnInit, AfterViewInit {
             if (res["success"]) {
               progressDialogRef.close();
               let snackBarRef = this.snackBar.open("Successfuly Removed", "", {
-                duration: 2000,
+                duration: 5000,
               });
               snackBarRef.afterDismissed().subscribe(() => {
                 this.dataSource.loadProducts(1, "", "asc", 0, 5);

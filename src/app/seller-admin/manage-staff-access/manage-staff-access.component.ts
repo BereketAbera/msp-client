@@ -81,7 +81,7 @@ export class ManageStaffAccessComponent implements OnInit {
       "If the change is not active, ask the affected staffer to refresh his/her screen.",
       "",
       {
-        duration: 4000,
+        duration: 5000,
       }
     );
     this.location.back();
