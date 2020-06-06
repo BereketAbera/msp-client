@@ -57,7 +57,7 @@ export class HomeComponent implements OnInit {
   isLoggedIn() {
     return this.authService.isLoggedIn();
   }
-  playVideo(event: any) {
+  playVideo() {
     if(this.play){
       this.videoplayer.nativeElement.pause();
       this.play=false;
@@ -68,7 +68,7 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  playVideo2(event: any) {
+  playVideo2() {
 
     if(this.play2){
       this.videoplayerB.nativeElement.pause();
