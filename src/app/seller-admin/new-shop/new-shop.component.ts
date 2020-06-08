@@ -32,7 +32,8 @@ export class NewShopComponent implements OnInit {
   // zipCodeHints$ = new Observable<ZipCode[]>();
   zipCodeHints: ZipCode[];
   states: State[];
-  prevValue = "";
+  // prevValue = "";
+  valueSet = false;
   private searchText$ = new Subject<string>();
 
   //shopName = new FormControl("",Validators.required);
@@ -41,7 +42,11 @@ export class NewShopComponent implements OnInit {
     address: ["", Validators.required],
     city: ["", Validators.required],
     state: [""],
-    zipCode: ["", Validators.required, zipCodeValidator],
+    zipCode: [
+      "",
+      [Validators.required, Validators.pattern(/\d{5}/)],
+      zipCodeValidator,
+    ],
     telephone: ["", Validators.required],
     contact: ["", Validators.required],
     subCategoryId: ["", Validators.required],
@@ -68,6 +73,13 @@ export class NewShopComponent implements OnInit {
         this.categories = data.categories;
       }
     );
+
+    this.shopForm.controls["zipCode"].valueChanges
+      .pipe(
+        debounceTime(200),
+        switchMap((term) => this.zipcodeService.searchAddress(term))
+      )
+      .subscribe((zipCodeHints) => this.getlocations(zipCodeHints));
   }
   searchZipCods(searchInp: string) {
     this.searchText$.next(searchInp);
@@ -98,32 +110,25 @@ export class NewShopComponent implements OnInit {
     return this.authService.isAccountActive();
   }
 
-  getlocations(q) {
+  getlocations(zipCodes) {
     let zipCodeFound = false;
-    if (q.length > 2) {
-      // this.shopForm.get("zipCode").setValue(q);
-      this.zipcodeService.searchAddress(q).subscribe(
-        (response) => {
-          this.zipCodeHints = response;
-          zipCodeHints = this.zipCodeHints;
-          if (q.length == 5) {
-            this.shopForm.get("zipCode").setValue(q);
-          }
-          this.zipCodeHints.map((zipcode) => {
-            if (this.shopForm.get("zipCode").value == zipcode.ZIPCode) {
-              zipCodeFound = true;
-              this.shopForm
-                .get("state")
-                .setValue(this.getStateId(zipcode.StateAbbr));
-            }
-          });
+    this.zipCodeHints = zipCodes;
+    zipCodeHints = this.zipCodeHints;
+    if (this.shopForm.get("zipCode").value.length == 5 && !this.valueSet) {
+      this.valueSet = true;
+      this.shopForm.get("zipCode").setValue(this.shopForm.get("zipCode").value);
+    } else {
+      this.valueSet = false;
+    }
+    this.zipCodeHints.map((zipcode) => {
+      if (this.shopForm.get("zipCode").value == zipcode.ZIPCode) {
+        zipCodeFound = true;
+        this.shopForm.get("state").setValue(this.getStateId(zipcode.StateAbbr));
+      }
+    });
 
-          if (!zipCodeFound) {
-            this.shopForm.get("state").setValue("");
-          }
-        },
-        (err) => console.log(err)
-      );
+    if (!zipCodeFound) {
+      this.shopForm.get("state").setValue("");
     }
   }
 

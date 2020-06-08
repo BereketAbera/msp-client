@@ -16,6 +16,8 @@ import { MatSnackBar } from "@angular/material";
 import { GeocoderService } from "src/app/service/geocoder.service";
 import { ZipcodeService } from "src/app/service/zipcode.service";
 import { Shop } from "src/app/model/shop";
+import { debounceTime } from "rxjs/operators/debounceTime";
+import { switchMap } from "rxjs/operators/switchMap";
 
 let zipCodeHints = [];
 
@@ -34,7 +36,8 @@ export class EditShopComponent implements OnInit {
   lng: any = 24.9433353;
   shop: any;
   shopForm: FormGroup;
-  prevValue = "";
+  // prevValue = "";
+  valueSet = false;
 
   constructor(
     private authService: AuthService,
@@ -46,17 +49,12 @@ export class EditShopComponent implements OnInit {
     private geocoderService: GeocoderService,
     private zipcodeService: ZipcodeService,
     private location: Location
-  ) {}
-  close() {
-    this.showError = false;
-  }
-  ngOnInit() {
+  ) {
     this.route.data.subscribe((data: { states: State[]; shop: any }) => {
       this.states = data.states;
       this.shop = data.shop;
-      console.log(this.shop);
+      // console.log(this.shop);
     });
-    this.getlocations(this.shop.zipCode);
 
     this.shopForm = this.fb.group({
       shopName: [
@@ -66,7 +64,11 @@ export class EditShopComponent implements OnInit {
       address: [this.shop.address, Validators.required],
       city: [this.shop.city, Validators.required],
       state: [this.shop.state],
-      zipCode: [this.shop.zipCode, Validators.required, zipCodeValidator],
+      zipCode: [
+        this.shop.zipCode,
+        [Validators.required, Validators.pattern(/\d{5}/)],
+        zipCodeValidator,
+      ],
       telephone: [
         this.phoneChangeFormat(this.shop.phone, "form"),
         [
@@ -76,6 +78,19 @@ export class EditShopComponent implements OnInit {
       ],
       contact: [this.shop.contact, Validators.required],
     });
+  }
+  close() {
+    this.showError = false;
+  }
+  ngOnInit() {
+    // this.getlocations(this.shop.zipCode);
+
+    this.shopForm.controls["zipCode"].valueChanges
+      .pipe(
+        debounceTime(200),
+        switchMap((term) => this.zipcodeService.searchAddress(term))
+      )
+      .subscribe((zipCodeHints) => this.getlocations(zipCodeHints));
   }
   searchZipCods(searchInp: string) {
     this.searchText$.next(searchInp);
@@ -115,31 +130,25 @@ export class EditShopComponent implements OnInit {
     return this.authService.isAccountActive();
   }
 
-  getlocations(q) {
+  getlocations(zipCodes) {
     let zipCodeFound = false;
-    if (q.length > 2) {
-      // this.shopForm.get("zipCode").setValue(q);
-      this.zipcodeService.searchAddress(q).subscribe(
-        (response) => {
-          this.zipCodeHints = response;
-          zipCodeHints = this.zipCodeHints;
-          if (q.length == 5) {
-            this.shopForm.get("zipCode").setValue(q);
-          }
-          this.zipCodeHints.map((zipcode) => {
-            if (this.shopForm.get("zipCode").value == zipcode.ZIPCode) {
-              zipCodeFound = true;
-              let id = this.getStateId(zipcode.StateAbbr);
-              this.shop.stateId = id;
-              this.shopForm.get("state").setValue(id);
-            }
-          });
-          if (!zipCodeFound) {
-            this.shopForm.get("state").setValue(null);
-          }
-        },
-        (err) => console.log(err)
-      );
+    this.zipCodeHints = zipCodes;
+    zipCodeHints = this.zipCodeHints;
+    if (this.shopForm.get("zipCode").value.length == 5 && !this.valueSet) {
+      this.valueSet = true;
+      this.shopForm.get("zipCode").setValue(this.shopForm.get("zipCode").value);
+    } else {
+      this.valueSet = false;
+    }
+    this.zipCodeHints.map((zipcode) => {
+      if (this.shopForm.get("zipCode").value == zipcode.ZIPCode) {
+        zipCodeFound = true;
+        this.shopForm.get("state").setValue(this.getStateId(zipcode.StateAbbr));
+      }
+    });
+
+    if (!zipCodeFound) {
+      this.shopForm.get("state").setValue("");
     }
   }
 

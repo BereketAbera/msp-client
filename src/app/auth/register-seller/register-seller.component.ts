@@ -1,3 +1,4 @@
+import { Subscription } from "rxjs/Subscription";
 import { ZipcodeService } from "./../../service/zipcode.service";
 import { ActivatedRoute } from "@angular/router";
 import { Component, OnInit, Output, EventEmitter } from "@angular/core";
@@ -11,6 +12,9 @@ import { Category } from "src/app/model/category";
 import { ZipCode } from "src/app/model/zipCode";
 import { State } from "src/app/model/state";
 import { of } from "rxjs";
+import { switchMap } from "rxjs/operators/switchMap";
+import { filter } from "rxjs/operators/filter";
+import { debounceTime } from "rxjs/operators/debounceTime";
 
 let zipCodeHints = [];
 
@@ -40,7 +44,11 @@ export class RegisterSellerComponent implements OnInit {
     address: ["", Validators.required],
     websiteURL: [""],
     email: ["", [Validators.required, Validators.email]],
-    zipcode: ["", Validators.required, zipCodeValidator],
+    zipcode: [
+      "",
+      [Validators.required, Validators.pattern(/\d{5}/)],
+      zipCodeValidator,
+    ],
     city: ["", Validators.required],
     state: [""],
     password: [
@@ -56,6 +64,8 @@ export class RegisterSellerComponent implements OnInit {
 
     // subCategoryId: ["", Validators.required],
   });
+  valueSet = true;
+  subscription: Subscription;
 
   constructor(
     public dialog: MatDialog,
@@ -73,6 +83,13 @@ export class RegisterSellerComponent implements OnInit {
         // console.log(data);
       }
     );
+
+    this.registrationForm.controls["zipcode"].valueChanges
+      .pipe(
+        debounceTime(200),
+        switchMap((term) => this.zipcodeService.searchAddress(term))
+      )
+      .subscribe((zipCodeHints) => this.getlocations(zipCodeHints));
   }
   openTerms() {}
   openPrivacy() {}
@@ -152,30 +169,32 @@ export class RegisterSellerComponent implements OnInit {
       : "";
   }
 
-  getlocations(q) {
+  getlocations(zipCodes) {
+    // console.log(zipCodes);
     let zipCodeFound = false;
-    if (q.length > 2) {
-      this.zipcodeService.searchAddress(q).subscribe(
-        (response) => {
-          this.zipCodeHints = response;
-          zipCodeHints = this.zipCodeHints;
-          if (q.length == 5) {
-            this.registrationForm.get("zipcode").setValue(q);
-          }
-          this.zipCodeHints.map((zipcode) => {
-            if (this.registrationForm.get("zipcode").value == zipcode.ZIPCode) {
-              zipCodeFound = true;
-              this.registrationForm
-                .get("state")
-                .setValue(this.getStateName(zipcode.StateAbbr));
-            }
-          });
-          if (!zipCodeFound) {
-            this.registrationForm.get("state").setValue("");
-          }
-        },
-        (err) => console.log(err)
-      );
+    this.zipCodeHints = zipCodes;
+    zipCodeHints = this.zipCodeHints;
+    if (
+      this.registrationForm.controls["zipcode"].value.length == 5 &&
+      !this.valueSet
+    ) {
+      this.valueSet = true;
+      this.registrationForm
+        .get("zipcode")
+        .setValue(this.registrationForm.controls["zipcode"].value);
+    } else {
+      this.valueSet = false;
+    }
+    this.zipCodeHints.map((zipcode) => {
+      if (this.registrationForm.get("zipcode").value == zipcode.ZIPCode) {
+        zipCodeFound = true;
+        this.registrationForm
+          .get("state")
+          .setValue(this.getStateName(zipcode.StateAbbr));
+      }
+    });
+    if (!zipCodeFound) {
+      this.registrationForm.get("state").setValue("");
     }
   }
 
