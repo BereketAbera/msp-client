@@ -144,10 +144,14 @@
                   [matAutocomplete]="auto"
                   formControlName="zipcode"
                   (keydown)="checkInput($event)"
-                  (change)="getlocations($event.target.value)"
-                  (keyup)="getlocations($event.target.value)"
+                  (change)="
+                    registrationForm.controls['zipcode'].setValue(
+                      $event.target.value
+                    )
+                  "
                   minlength="5"
                   maxlength="5"
+                  required
                 />
                 <mat-error *ngIf="registrationForm.controls.zipcode.invalid"
                   >Zip code is not valid</mat-error

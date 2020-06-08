@@ -102,8 +102,9 @@
               [matAutocomplete]="auto"
               formControlName="zipCode"
               (keydown)="checkInput($event)"
-              (change)="getlocations($event.target.value)"
-              (keyup)="getlocations($event.target.value)"
+              (change)="
+                shopForm.controls['zipCode'].setValue($event.target.value)
+              "
               minlength="5"
               maxlength="5"
               required

@@ -135,8 +135,9 @@
           [matAutocomplete]="auto"
           formControlName="zipcode"
           (keydown)="checkInput($event)"
-          (change)="getlocations($event.target.value)"
-          (keyup)="getlocations($event.target.value)"
+          (change)="
+            registrationForm.controls['zipcode'].setValue($event.target.value)
+          "
           minlength="5"
           maxlength="5"
           required
@@ -179,7 +180,7 @@
       </mat-form-field> -->
     </div>
     <mat-form-field
-      hintLabel="At least six characters, one number, one lowercase and one
+      hintLabel="At least six characters, one number, one lowercase, and one
         uppercase"
     >
       <input
@@ -192,7 +193,7 @@
         required
       />
       <mat-error *ngIf="registrationForm.controls.password.invalid"
-        >At least six characters, one number, one lowercase and one
+        >At least six characters, one number, one lowercase, and one
         uppercase</mat-error
       >
       <span
