@@ -108,6 +108,7 @@ video::-webkit-media-controls {
   &__refer {
     padding: 1.6rem 0;
     min-width: 20rem;
+    cursor: pointer;
   }
 
   &__search-container {
