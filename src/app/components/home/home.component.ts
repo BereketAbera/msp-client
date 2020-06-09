@@ -69,7 +69,6 @@ export class HomeComponent implements OnInit {
   }
 
   playVideo2() {
-
     if(this.play2){
       this.videoplayerB.nativeElement.pause();
       this.play2=false;

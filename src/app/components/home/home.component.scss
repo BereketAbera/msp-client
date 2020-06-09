@@ -9,8 +9,8 @@
 
   &__close {
     position: absolute;
-    top: 8rem;
-    right: 8rem;
+    right: 5rem;
+    top: 4rem;
     width: 4rem;
     height: 4rem;
     border-radius: 50%;
@@ -42,6 +42,10 @@
   }
 }
 
+video::-webkit-media-controls {
+  display: none;
+}
+
 .home {
   width: 100%;
   // min-height: 100vh;
@@ -67,8 +71,8 @@
     margin-bottom: -1rem;
   }
 
-  &__icon_cancel{
-   font-size: 3rem;
+  &__icon_cancel {
+    font-size: 3rem;
     color: white;
   }
   &__icon {
@@ -84,9 +88,13 @@
   &__video {
     width: 40rem;
   }
+
+  &__video2 {
+    width: 41rem;
+  }
   &__full {
-    position: fixed!important;
-    top: 55%;
+    position: fixed !important;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 3000;
@@ -96,8 +104,11 @@
     height: 45rem !important;
   }
 
+
   &__refer {
-    padding: 3.6rem 0;
+    padding: 1.6rem 0;
+    min-width: 20rem;
+    cursor: pointer;
   }
 
   &__search-container {
@@ -331,6 +342,17 @@
       width: 33%;
     }
   }
+  .overlay__close {
+    position: fixed;
+    right: 18rem;
+    top: 11rem;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    z-index: 9500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
 }
 
 @media only screen and (min-width: 600px) {
@@ -360,9 +382,10 @@
 
     &__video__container {
       position: relative;
+      margin: 1rem 0;
     }
     &__full {
-      position: fixed!important;
+      position: fixed !important;
       top: 55%;
       left: 50%;
       transform: translate(-50%, -50%);
@@ -370,12 +393,12 @@
     }
     &__fullscreen {
       width: 100% !important;
-      height: 45rem !important;
+      height: 30rem !important;
     }
     &__icon {
       position: absolute;
       width: 3rem;
-      top: 3.5rem;
+      top: 0.5rem;
       left: 0.5rem;
 
       img {
@@ -383,11 +406,36 @@
       }
     }
     &__video {
-      width: 20rem;
+      width: 19.8rem;
+      height: 10rem;
+      cursor: pointer;
+      border: 0.5px solid #bbb;
+      padding: 0.3rem 0;
+    }
+    &__video2 {
+      width: 21rem;
+      height: 10rem;
+      cursor: pointer;
+      border: 0.5px solid #bbb;
+      padding: 0.3rem;
     }
 
+
     &__refer {
-      padding: 3.7rem 0;
+      padding: 2.7rem 0;
+      min-width: 20rem;
     }
+  }
+
+  .overlay__close {
+    position: fixed;
+    right: 22%;
+    top: 7rem;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    z-index: 9500;
+    cursor: pointer;
+    transition: all 0.2s;
   }
 }
