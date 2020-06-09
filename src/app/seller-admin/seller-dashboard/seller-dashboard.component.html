@@ -51,7 +51,7 @@
           <circle
             class="dashboard__circle"
             stroke-dasharray="439.82 439.82"
-            [style.stroke-dashoffset]="439.82 - soldPercentage * 4.3982"
+            [style.stroke-dashoffset]="439.82 - reservedPercentage * 4.3982"
             stroke-width="4"
             fill="transparent"
             r="70"
@@ -60,8 +60,12 @@
           ></circle>
         </svg>
         <span class="dashboard__item-text">Units Reserved</span>
-        <span class="dashboard__item-value">{{ summary.totalSoldQty }}</span>
-        <span class="dashboard__item-percentage"> {{ soldPercentage }}%</span>
+        <span class="dashboard__item-value">{{
+          summary.totalReservedQty
+        }}</span>
+        <span class="dashboard__item-percentage">
+          {{ reservedPercentage }}%</span
+        >
       </div>
 
       <div class="dashboard__item dashboard__total-revenue">

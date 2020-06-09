@@ -24,7 +24,7 @@ export class SellerDashboardComponent implements OnInit {
 
   sdate = new Date(moment().subtract(6, "M").format("YYYY-MM-DD"));
 
-  soldPercentage: any = 0;
+  reservedPercentage: any = 0;
   fullCircle: any = 0;
   totalRevenue: any = 0;
   eData = new Date();
@@ -42,11 +42,11 @@ export class SellerDashboardComponent implements OnInit {
   ngOnInit() {
     this.route.data.subscribe(
       (data: { summary: SellerSummary; rvnuRprt: RevenuRprt[] }) => {
-        // console.log(this.summary,'sdf')
+        // console.log(data.summary);
         this.summary = data.summary;
         if (this.summary.totalQty > 0) {
-          this.soldPercentage = Math.ceil(
-            (this.summary.totalSoldQty / this.summary.totalQty) * 100
+          this.reservedPercentage = Math.ceil(
+            (this.summary.totalReservedQty / this.summary.totalQty) * 100
           );
         }
 
