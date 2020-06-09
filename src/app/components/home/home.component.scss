@@ -102,6 +102,7 @@ video::-webkit-media-controls {
   &__fullscreen {
     width: 40rem !important;
     height: 45rem !important;
+    border: none!important;
   }
 
 
@@ -394,6 +395,7 @@ video::-webkit-media-controls {
     &__fullscreen {
       width: 100% !important;
       height: 30rem !important;
+      border: none!important;
     }
     &__icon {
       position: absolute;
@@ -409,15 +411,15 @@ video::-webkit-media-controls {
       width: 19.8rem;
       height: 10rem;
       cursor: pointer;
-      border: 0.5px solid #bbb;
+      border: 0.5px solid rgba(0, 0, 0, 0.5);
       padding: 0.3rem 0;
     }
     &__video2 {
       width: 21rem;
       height: 10rem;
       cursor: pointer;
-      border: 0.5px solid #bbb;
-      padding: 0.3rem;
+      border: 0.5px solid rgba(0, 0, 0, 0.5);
+      // padding: 0.3rem;
     }
 
 
