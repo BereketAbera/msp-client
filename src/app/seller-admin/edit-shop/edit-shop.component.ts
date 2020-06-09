@@ -36,7 +36,7 @@ export class EditShopComponent implements OnInit {
   lng: any = 24.9433353;
   shop: any;
   shopForm: FormGroup;
-  // prevValue = "";
+  prevValue = "";
   valueSet = false;
 
   constructor(
