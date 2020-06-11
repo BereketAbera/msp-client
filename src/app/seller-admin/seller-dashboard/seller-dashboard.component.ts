@@ -1,13 +1,14 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
-import { FormBuilder, Validators } from "@angular/forms";
-import { ActivatedRoute, Router } from "@angular/router";
+import { FormBuilder, Validators, FormControl } from "@angular/forms";
+import { ActivatedRoute, Router, Params } from "@angular/router";
 import * as moment from "moment";
 
 import { Chart } from "chart.js";
 
 import { SellerSummary } from "../../model/sellerySummary";
 import { RevenuRprt } from "../../model/revenuRprt";
-import { ThrowStmt } from "@angular/compiler";
+import { ThrowStmt, ReturnStatement } from "@angular/compiler";
+import { UserService } from "src/app/service/user.service";
 
 @Component({
   selector: "app-seller-dashboard",
@@ -18,30 +19,49 @@ export class SellerDashboardComponent implements OnInit {
   @ViewChild("lineChart") private chartRef;
   chart: any;
   summary: SellerSummary;
-  revenuReport: RevenuRprt[];
+  actualRevenuReport: RevenuRprt[];
+  estimateRvnuRprt: RevenuRprt[];
   lables: string[];
-  revenus: number[];
+  actualRevenu: number[];
+  estimateRevenu: number[];
 
-  sdate = new Date(moment().subtract(6, "M").format("YYYY-MM-DD"));
+  // sdate = new Date(moment().subtract(6, "M").format("YYYY-MM-DD"));
 
   reservedPercentage: any = 0;
   fullCircle: any = 0;
   totalRevenue: any = 0;
-  eData = new Date();
-  revenuForm = this.fb.group({
-    startDate: [this.sdate, Validators.required],
-    endDate: [this.eData, Validators.required],
-  });
+  // eData = new Date();
+  // revenuForm = this.fb.group({
+  //   startDate: [this.sdate, Validators.required],
+  //   endDate: [this.eData, Validators.required],
+  // });
+  sDate = new FormControl();
+  eDate = new FormControl(new Date());
+  sDateValue = "";
+  eDateValue = "";
 
   constructor(
     private route: ActivatedRoute,
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private userService: UserService
   ) {}
 
   ngOnInit() {
+    // this.route.queryParamMap.subscribe((params) => {
+    //   this.sDateValue = params.get("sDate");
+    //   this.eDateValue = params.get("eDate");
+
+    //   this.filterDashboard();
+    // });
     this.route.data.subscribe(
-      (data: { summary: SellerSummary; rvnuRprt: RevenuRprt[] }) => {
+      (data: {
+        summary: SellerSummary;
+        rvnuRprt: {
+          actualRvnuRprt: RevenuRprt[];
+          estimateRvnuRprt: RevenuRprt[];
+        };
+      }) => {
         // console.log(data.summary);
         this.summary = data.summary;
         if (this.summary.totalQty > 0) {
@@ -50,19 +70,58 @@ export class SellerDashboardComponent implements OnInit {
           );
         }
 
-        this.revenuReport = data.rvnuRprt;
-        this.lables = this.revenuReport.map((value) => {
-          return value.year + "|" + value.month + "|" + value.day;
-        });
-        // console.log(this.revenuReport);
-        this.revenus = this.revenuReport.map((value) => {
-          return +value.revenu;
-        });
-
-        this.drawRevenuChart();
+        this.actualRevenuReport = data.rvnuRprt.actualRvnuRprt;
+        this.estimateRvnuRprt = data.rvnuRprt.estimateRvnuRprt;
+        this.revenuChart();
       }
     );
   }
+
+  revenuChart() {
+    this.lables = this.actualRevenuReport.map((value) => {
+      return value.year + "|" + value.month + "|" + value.day;
+    });
+    // console.log(this.revenuReport);
+    this.actualRevenu = this.actualRevenuReport.map((value) => {
+      return +value.revenu;
+    });
+    this.estimateRevenu = this.estimateRvnuRprt.map((value) => {
+      return +value.revenu;
+    });
+
+    this.drawRevenuChart();
+  }
+
+  filterDashboard() {
+    let startDate = moment(this.sDate.value).isValid
+      ? moment(this.sDate.value).format("MM/DD/YYYY")
+      : null;
+    let endDate = moment(this.eDate.value).isValid
+      ? moment(this.eDate.value).format("MM/DD/YYYY")
+      : null;
+    if (!startDate || !endDate) {
+      return;
+    }
+
+    this.userService
+      .getSellerSummary(startDate, endDate)
+      .subscribe((response) => {
+        this.summary = response;
+        if (this.summary.totalQty > 0) {
+          this.reservedPercentage = Math.ceil(
+            (this.summary.totalReservedQty / this.summary.totalQty) * 100
+          );
+        }
+      });
+    this.userService
+      .getRevenuReport(startDate, endDate)
+      .subscribe((response: any) => {
+        this.actualRevenuReport = response.actualRvnuRprt;
+        this.estimateRvnuRprt = response.estimateRvnuRprt;
+        this.revenuChart();
+      });
+  }
+
   drawRevenuChart() {
     this.chart = new Chart(this.chartRef.nativeElement, {
       type: "line",
@@ -70,24 +129,17 @@ export class SellerDashboardComponent implements OnInit {
         labels: this.lables,
         datasets: [
           {
-            label: "Revenue",
-            data: this.revenus,
-            backgroundColor: [
-              "rgba(255, 99, 132, 0.2)",
-              "rgba(54, 162, 235, 0.2)",
-              "rgba(255, 206, 86, 0.2)",
-              "rgba(75, 192, 192, 0.2)",
-              "rgba(153, 102, 255, 0.2)",
-              "rgba(255, 159, 64, 0.2)",
-            ],
-            borderColor: [
-              "rgba(255,99,132,1)",
-              "rgba(54, 162, 235, 1)",
-              "rgba(255, 206, 86, 1)",
-              "rgba(75, 192, 192, 1)",
-              "rgba(153, 102, 255, 1)",
-              "rgba(255, 159, 64, 1)",
-            ],
+            label: "Actual Revenue",
+            data: this.actualRevenu,
+            backgroundColor: ["rgba(255, 99, 132, 0.2)"],
+            borderColor: ["rgba(255, 99, 132,1)"],
+            borderWidth: 1,
+          },
+          {
+            label: "Estimated Revenue",
+            data: this.estimateRevenu,
+            backgroundColor: ["rgba(76, 187, 185, 0.2)"],
+            borderColor: ["rgba(76, 187, 185,1)"],
             borderWidth: 1,
           },
         ],
@@ -121,4 +173,31 @@ export class SellerDashboardComponent implements OnInit {
   goToSellSummary() {
     this.router.navigate(["./slssmry"], { relativeTo: this.route });
   }
+
+  // setUrlValues(sObj) {
+  //   let keys = Object.keys(sObj);
+  //   let pObj = {};
+  //   keys.map((key) => {
+  //     pObj[key] = sObj[key];
+  //   });
+  //   const queryParams: Params = {
+  //     ...pObj,
+  //   };
+
+  //   this.router.navigate([], {
+  //     relativeTo: this.route,
+  //     queryParams: queryParams,
+  //     queryParamsHandling: "merge",
+  //   });
+  // }
+
+  // submitFilter() {
+  //   if (moment(this.sDate.value).isValid && moment(this.eDateValue).isValid) {
+  //     let obj = {
+  //       sDate: moment(this.sDate.value).format("MM/DD/YYYY"),
+  //       eDate: moment(this.eDate.value).format("MM/DD/YYYY"),
+  //     };
+  //     this.setUrlValues(obj);
+  //   }
+  // }
 }

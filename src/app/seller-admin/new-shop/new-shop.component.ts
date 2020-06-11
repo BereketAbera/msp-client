@@ -32,7 +32,7 @@ export class NewShopComponent implements OnInit {
   // zipCodeHints$ = new Observable<ZipCode[]>();
   zipCodeHints: ZipCode[];
   states: State[];
-  // prevValue = "";
+  prevValue = "";
   valueSet = false;
   private searchText$ = new Subject<string>();
 
@@ -47,7 +47,10 @@ export class NewShopComponent implements OnInit {
       [Validators.required, Validators.pattern(/\d{5}/)],
       zipCodeValidator,
     ],
-    telephone: ["", Validators.required],
+    telephone: [
+      "",
+      [Validators.required, Validators.pattern(/(\(\d{3}\))(\s)\d{3}(-)\d{4}/)],
+    ],
     contact: ["", Validators.required],
     subCategoryId: ["", Validators.required],
   });
@@ -160,6 +163,7 @@ export class NewShopComponent implements OnInit {
   }
 
   phoneNumberChange(event) {
+    // console.log(event);
     let val = event.target.value;
     if (val.length != this.prevValue.length) {
       if (

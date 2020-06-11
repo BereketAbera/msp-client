@@ -1,6 +1,14 @@
 <div class="dashboard">
   <div class="dashboard__header-container">
     <h2 class="dashboard__header">Dashboard</h2>
+    <!-- <button
+      mat-raised-button
+      color="accent"
+      class="dashboard__button"
+      (click)="toggleFilter()"
+    >
+      Date Filter
+    </button> -->
     <button
       mat-raised-button
       color="accent"
@@ -8,6 +16,40 @@
       (click)="goToSellSummary()"
     >
       Date Summary
+    </button>
+  </div>
+  <div class="dashboard__date-range">
+    <h4 class="dashboard__date-range-text">Date Filter</h4>
+    <mat-form-field class="dashboard__date-input">
+      <mat-label>Start Date</mat-label>
+      <input
+        matInput
+        [matDatepicker]="picker2"
+        [formControl]="sDate"
+        placeholder="MM/DD/YYYY"
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+      <mat-datepicker #picker2></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field class="dashboard__date-input">
+      <mat-label>End Date</mat-label>
+      <input
+        matInput
+        [matDatepicker]="picker"
+        [formControl]="eDate"
+        placeholder="MM/DD/YYYY"
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <button
+      mat-raised-button
+      color="accent"
+      class="dashboard__date-range-button"
+      (click)="filterDashboard()"
+    >
+      <i class="fad fa-filter"></i>
     </button>
   </div>
   <div class="dashboard__container">
@@ -81,9 +123,28 @@
             cy="75"
           ></circle>
         </svg>
-        <span class="dashboard__item-text">Total Revenue</span>
+        <span class="dashboard__item-text">Actual Revenue</span>
         <span class="dashboard__item-value dashboard__item-revenue">{{
           summary.totalRevenu | currency
+        }}</span>
+        <!-- <span class="dashboard__item-percentage">50%</span> -->
+      </div>
+      <div class="dashboard__item dashboard__total-revenue">
+        <svg class="dashboard__item-circle" height="150" width="150">
+          <circle
+            class="dashboard__circle"
+            stroke-dasharray="20 5 20 5 20"
+            style="stroke-dashoffset: 0;"
+            stroke-width="4"
+            fill="transparent"
+            r="70"
+            cx="75"
+            cy="75"
+          ></circle>
+        </svg>
+        <span class="dashboard__item-text">Estimated Revenue</span>
+        <span class="dashboard__item-value dashboard__item-revenue">{{
+          summary.totalEstimatedRevenu | currency
         }}</span>
         <!-- <span class="dashboard__item-percentage">50%</span> -->
       </div>
