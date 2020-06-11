@@ -4,4 +4,5 @@ export class SellerSummary {
   products: number;
   totalQty: number;
   totalReservedQty: number;
+  totalEstimatedRevenu:number;
 }
