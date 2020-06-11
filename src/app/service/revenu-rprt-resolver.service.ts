@@ -17,6 +17,6 @@ export class RevenuRprtResolverService implements Resolve<RevenuRprt[]> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<RevenuRprt[]> | Observable<never> {
-    return this.userSerice.getRevenuReport();
+    return this.userSerice.getRevenuReport(null, null);
   }
 }

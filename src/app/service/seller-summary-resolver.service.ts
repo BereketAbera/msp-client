@@ -18,6 +18,9 @@ export class SellerSummaryResolverService implements Resolve<SellerSummary> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<SellerSummary> | Observable<never> {
-    return this.userSerice.getSellerSummary();
+    let eDate = route.queryParamMap.get("eDate");
+    let sDate = route.queryParamMap.get("sDate");
+
+    return this.userSerice.getSellerSummary(sDate, eDate);
   }
 }

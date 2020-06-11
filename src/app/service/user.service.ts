@@ -21,6 +21,7 @@ import { DailySale } from "../model/daily-sale";
 import { Refer } from "../model/refer";
 
 import { RevenuRprt } from "../model/revenuRprt";
+import { KeyRegistry } from "@angular/core/src/di/reflective_key";
 
 const userAPI = environment.APIEndpoint + "register";
 const accountAPI = environment.APIEndpoint + "accounts";
@@ -123,8 +124,9 @@ export class UserService {
       catchError(this.handleError)
     );
   }
-  getSellerSummary(): Observable<SellerSummary> {
-    return this.http.get(accountAPI + "/slrsmry").pipe(
+  getSellerSummary(sDate, eDate): Observable<SellerSummary> {
+    let queryParams = this.getQueryParams({ sDate, eDate });
+    return this.http.get(accountAPI + "/slrsmry" + queryParams).pipe(
       map((serllerSummary) => {
         return <SellerSummary>serllerSummary;
       }),
@@ -224,17 +226,15 @@ export class UserService {
       );
   }
   getRevenuReport(sDate = "", eDate = ""): Observable<RevenuRprt[]> {
-    return this.http
-      .get(accountAPI + "/rvnurpt", {
-        params: new HttpParams().set("sDate", sDate).set("eDate", eDate),
-      })
-      .pipe(
-        map((revenuRprt) => {
-          return <RevenuRprt[]>revenuRprt;
-        }),
-        catchError(this.handleError)
-      );
+    let queryParams = this.getQueryParams({ sDate, eDate });
+    return this.http.get(accountAPI + "/rvnurpt" + queryParams).pipe(
+      map((revenuRprt) => {
+        return <RevenuRprt[]>revenuRprt;
+      }),
+      catchError(this.handleError)
+    );
   }
+
   getGreditCards(): Observable<CreditCard[]> {
     return this.http.get(accountAPI + "/crdtCrds").pipe(
       map((res) => {
@@ -277,5 +277,17 @@ export class UserService {
 
   getUserProfile(): Observable<any> {
     return this.http.get(accountAPI + "/user");
+  }
+
+  getQueryParams(obj) {
+    let keys = Object.keys(obj);
+    let url = "?";
+    keys.map((key) => {
+      if (obj[key]) {
+        url = url + `${key}=${obj[key]}&`;
+      }
+    });
+
+    return url.slice(0, url.length - 1);
   }
 }
