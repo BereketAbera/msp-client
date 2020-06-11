@@ -33,6 +33,21 @@
     }
   }
 
+  &__signup-button {
+    border: none;
+    outline: none;
+    color: #fff;
+    font-size: 2rem;
+    text-transform: uppercase;
+    font-weight: 900;
+    background-color: #f94081;
+    cursor: pointer;
+
+    &:active {
+      transform: scale(1.05);
+    }
+  }
+
   &__menu_button {
     width: 3rem;
     position: relative;
@@ -382,7 +397,7 @@
     // box-shadow: 0.2px 0.1px 1px #7e7377;
   }
 
-  &__login-container2 {
+  &__singup-container{
     display: flex;
     justify-content: flex-end;
     border: 1.4px solid #f94081;
@@ -420,6 +435,20 @@
     text-transform: uppercase;
     font-weight: 700;
     background-color: #fff;
+    cursor: pointer;
+
+    &:active {
+      transform: scale(1.05);
+    }
+  }
+  &__signup-button {
+    border: none;
+    outline: none;
+    color: #fff;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    background-color: #f94081;
     cursor: pointer;
 
     &:active {

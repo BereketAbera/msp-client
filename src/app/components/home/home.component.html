@@ -58,6 +58,30 @@
   <div class="home__section-two">
     <h1 class="home__secton-header"></h1>
     <div class="home__steps-container">
+      
+      <div class="home__step">
+        <div class="home__step-icon"><i class="fad fa-cheeseburger"></i></div>
+        <h1 class="home__step-header">Become a Buyer</h1>
+        <div class="home__video__container" [class.home__full]="play2">
+          <video class="home__video2" [class.home__fullscreen]="play2" width="342" height="190"
+            poster="../../../assets/image/BuyerVideoFrame.JPG" (click)="playVideo2()"  #videoPlayerB>
+            <source src="https://msp-prd.s3-us-west-2.amazonaws.com/videos/MSP_Buyer_Intro.mp4" type="video/mp4">
+            <source src="video.ogg" type="video/ogg">
+            <source src="video.webm" type="video/webm">
+            <object data="https://msp-prd.s3-us-west-2.amazonaws.com/videos/MSP_Buyer_Intro.mp4" width="340"
+              height="190">
+              <embed src="video.swf" width="340" height="190">
+            </object>
+          </video>
+          <div *ngIf="!play2" class="home__icon">
+            <img src="../../../assets/image/vidoeicon.png" alt="" />
+          </div>
+        </div>
+
+        <p class="home__step-description">
+          No Fee, No Deductions
+        </p>
+      </div>
       <div class="home__step">
         <div class="home__step-icon"><i class="fad fa-french-fries"></i></div>
         <h1 class="home__step-header">Become a Seller</h1>
@@ -83,29 +107,7 @@
           No Membership Fee
         </p>
       </div>
-      <div class="home__step">
-        <div class="home__step-icon"><i class="fad fa-cheeseburger"></i></div>
-        <h1 class="home__step-header">Become a Buyer</h1>
-        <div class="home__video__container" [class.home__full]="play2">
-          <video class="home__video2" [class.home__fullscreen]="play2" width="342" height="190"
-            poster="../../../assets/image/BuyerVideoFrame.JPG" (click)="playVideo2()"  #videoPlayerB>
-            <source src="https://msp-prd.s3-us-west-2.amazonaws.com/videos/MSP_Buyer_Intro.mp4" type="video/mp4">
-            <source src="video.ogg" type="video/ogg">
-            <source src="video.webm" type="video/webm">
-            <object data="https://msp-prd.s3-us-west-2.amazonaws.com/videos/MSP_Buyer_Intro.mp4" width="340"
-              height="190">
-              <embed src="video.swf" width="340" height="190">
-            </object>
-          </video>
-          <div *ngIf="!play2" class="home__icon">
-            <img src="../../../assets/image/vidoeicon.png" alt="" />
-          </div>
-        </div>
-
-        <p class="home__step-description">
-          No Fee, No Deductions
-        </p>
-      </div>
+     
       <div class="home__step">
         <div class="home__step-icon"><i class="fad fa-user-friends"></i></div>
         <h1 class="home__step-header">Refer a Friend</h1>

@@ -1,13 +1,13 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input, OnInit, ViewEncapsulation } from "@angular/core";
 import { Validators, FormBuilder } from "@angular/forms";
 import { Router, ActivatedRoute } from "@angular/router";
 import { AuthService } from "../../service/auth.service";
 import { environment } from "../../../environments/environment";
-
 @Component({
   selector: "app-login",
   templateUrl: "./login.component.html",
   styleUrls: ["./login.component.scss"],
+  encapsulation: ViewEncapsulation.None
 })
 export class LoginComponent implements OnInit {
   selectedIndex: number = 0;
@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private route: ActivatedRoute
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.type = this.route.snapshot.paramMap.get("type");
@@ -36,8 +36,8 @@ export class LoginComponent implements OnInit {
     return this.loginForm.get("email").hasError("required")
       ? "You must enter a value"
       : this.loginForm.get("email").hasError("email")
-      ? "Not a valid email"
-      : "";
+        ? "Not a valid email"
+        : "";
   }
   get showSingIn() {
     if (this.type == "normal") return true;
@@ -79,5 +79,36 @@ export class LoginComponent implements OnInit {
         this.loading = false;
       }
     );
+  }
+
+  // this.selectedIndex: number = 1;
+
+  selectChange(): void {
+    console.log("Selected INDEX: " + this.selectedIndex);
+  }
+
+  SWIPE_ACTION = { LEFT: 'swipeleft', RIGHT: 'swiperight' };
+
+  // Action triggered when user swipes
+  swipe(selectedIndex: number, action = this.SWIPE_ACTION.RIGHT) {
+    console.log("swipe");
+    console.log("number", selectedIndex);
+    console.log("action", action);
+    // Out of range
+    if (this.selectedIndex < 0 || this.selectedIndex > 1) return;
+
+    // Swipe left, next tab
+    if (action === this.SWIPE_ACTION.LEFT) {
+      const isLast = this.selectedIndex === 1;
+      this.selectedIndex = isLast ? 0 : this.selectedIndex + 1;
+      console.log("Swipe right - INDEX: " + this.selectedIndex);
+    }
+
+    // Swipe right, previous tab
+    if (action === this.SWIPE_ACTION.RIGHT) {
+      const isFirst = this.selectedIndex === 0;
+      this.selectedIndex = isFirst ? 1 : this.selectedIndex - 1;
+      console.log("Swipe left - INDEX: " + this.selectedIndex);
+    }
   }
 }

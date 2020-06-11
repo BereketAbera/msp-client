@@ -33,6 +33,7 @@ export class SalesSummaryComponent implements OnInit, AfterViewInit {
     "soldQty",
     "picked",
     "discount",
+    "revenue"
   ];
   dateStart = new FormControl(new Date());
   dateEnd = new FormControl(new Date());
@@ -54,7 +55,7 @@ export class SalesSummaryComponent implements OnInit, AfterViewInit {
     // this.dataSource.loadTransactions(this.date.value);
     this.dataSource.loadTransactions(this.dateStart.value,this.dateEnd.value,0,10);
 
-    // console.log(this.dataSource);
+     console.log(this.dataSource);
   }
   ngAfterViewInit() {
     this.sort.sortChange.subscribe(() => (this.paginator.pageIndex = 0));

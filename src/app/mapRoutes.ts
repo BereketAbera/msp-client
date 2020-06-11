@@ -46,7 +46,7 @@ export let mapRoutes = {
 
   "/tlgu-slr/trnsctns": "Manage Order",
   "/tlgu-slr/trnsctns/id": "Manage Order",
-  "/tlgu-slr/trnsctns/process": "Manage Order",
+  "/tlgu-slr/trnscts/process": "Manage Order",
 
   "/tlgu-slr/slssmry": "View Summary",
 };

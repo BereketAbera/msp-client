@@ -116,7 +116,7 @@ const sellerRoutes: Routes = [
         component: TransactionsComponent,
       },
       {
-        path: "trnsctns/process",
+        path: "trnscts/process",
         canActivate: [SellerGuard],
         component: QrScannerComponent,
       },

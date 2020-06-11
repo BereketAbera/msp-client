@@ -8,9 +8,10 @@ example-container {
   border-radius: 8px;
 }
 
-.mat-form-field-label {
-  font-size: 1.5rem !important;
-}
+
+
+
+
 .push {
   margin-left: auto;
   text-align: end;
@@ -37,11 +38,11 @@ ul {
   list-style: none;
   padding-left: 0px;
 }
-a {
-  text-decoration: none;
-  color: white;
-  font-size: 14px;
-}
+// a {
+//   text-decoration: none;
+//   color: white;
+//   font-size: 14px;
+// }
 .errorCntr {
   width: 90%;
   border: 1px solid rgba(253, 89, 89, 0.74);
@@ -100,9 +101,12 @@ ul {
   min-height: 100vh;
   position: relative;
 }
-.mat-form-field-label {
-  font-size: 2.5rem !important;
-}
+// .mat-form-field-label {
+//   font-size: 2.5rem !important;
+// }
+// .mat-form-field-label {
+//   font-size: 1.3rem !important;
+// }
 .card {
   margin: 2rem;
   padding: 2rem 0rem;
@@ -120,7 +124,7 @@ ul {
   margin: 2rem auto;
   &__tab {
     width: 95%;
-    font-size: 2.2rem;
+    font-size: 1.8rem;
     display: flex;
     justify-content: center;
   }
@@ -140,9 +144,14 @@ ul {
 
 
 .example-container > * {
+   width: 85%;
+  //  margin:1rem  2rem ;
+   align-content: center;
+}
+.login-container {
   width: 85%;
-  margin:1rem  2rem ;
   // align-content: center;
+  margin:1rem 2rem;
 }
 .example-full-width {
   width: 100%;
@@ -152,7 +161,7 @@ ul {
     width: 95%;
 
     align-self: center;
-    margin: 2rem 2rem;
+     margin: 0rem 2rem;
     // font-size: 1.2rem;
     // input {
     //   font-size: 2.5rem;
@@ -182,6 +191,15 @@ ul {
   border: 1px solid red;
 }
 
+.mat-tab-label-container {
+  overflow: scroll!important;
+}
+
+.mat-tab-body-content {
+  height: 100%;
+   overflow: hidden!important; 
+}
+
 @media only screen and (min-width: 732px) {
   .card {
     width: 70%;
@@ -191,6 +209,17 @@ ul {
     
     }
   }
+
+  .mat-tab-label-container {
+    overflow: hidden!important;
+  }
+
+  .example-container > * {
+     width: 85%;
+     margin:0rem  2rem !important;
+     align-content: center;
+  }
+  
 }
 
 @media only screen and (min-width: 1000px) {

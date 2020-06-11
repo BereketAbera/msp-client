@@ -1,14 +1,14 @@
 <div class="order__main-container">
   <div class="order__header-container">
     <h2 class="order__header">Reservations</h2>
-    <button
+    <!-- <button
       mat-raised-button
       color="accent"
       class="order__button"
       (click)="goToProcessOrder()"
     >
       Process Reservation
-    </button>
+    </button> -->
   </div>
   <div class="order__list-container">
     <div class="order__sub-list-container">
@@ -19,6 +19,7 @@
         matSortActive="date"
         matSortDirection="asc"
         matSortDisableClear
+
       >
         <ng-container matColumnDef="img">
           <mat-header-cell

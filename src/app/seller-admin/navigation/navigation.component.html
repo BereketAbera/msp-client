@@ -31,6 +31,18 @@
                 >Reservations</a
               >
             </li>
+
+            <li (click)="drawerLinkClicked()" class="side_bar_mobile__item">
+              <a
+                routerLink="./trnscts/process"
+                [routerLinkActive]="['active-route']"
+                [routerLinkActiveOptions]="{ exact: false }"
+                class="side_bar_mobile__item-text"
+                ><i class="fad fa-envelope-open navigation__item-icon"></i
+                >Process Reservations</a
+              >
+            </li>
+
             <li (click)="drawerLinkClicked()" class="side_bar_mobile__item">
               <a
                 routerLink="./prdcts"
@@ -146,6 +158,17 @@
       </li>
       <li class="navigation__item">
         <a
+          routerLink="./trnscts/process"
+          [routerLinkActive]="['active-route']"
+          [routerLinkActiveOptions]="{ exact: false }"
+          class="navigation__item-text"
+          ><i class="fad fa-envelope-open navigation__item-icon"></i
+          >Process Reservations</a
+        >
+      </li>
+     
+      <li class="navigation__item">
+        <a
           routerLink="./prdcts"
           [routerLinkActive]="['active-route']"
           [routerLinkActiveOptions]="{ exact: false }"
@@ -205,13 +228,13 @@
       </li>
       <li class="navigation__item">
         <a
-          routerLink="./trnsctns"
+          routerLink="./trnscts/process"
           [routerLinkActive]="['active-route']"
           [routerLinkActiveOptions]="{ exact: false }"
           class="navigation__item-text"
         >
           <!-- <i class="fad fa-envelope-open navigation__item-icon"></i> -->
-          Reservations</a
+          Process Code</a
         >
       </li>
       <li class="navigation__item">

@@ -61,14 +61,14 @@
           }}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="soldQty">
-          <mat-header-cell *matHeaderCellDef>Sold Qty</mat-header-cell>
+          <mat-header-cell *matHeaderCellDef>Reserved Qty</mat-header-cell>
 
           <mat-cell *matCellDef="let transaction">{{
             transaction.soldQty
           }}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="picked">
-          <mat-header-cell *matHeaderCellDef>Picked-Up</mat-header-cell>
+          <mat-header-cell *matHeaderCellDef>Sold Qty</mat-header-cell>
 
           <mat-cell *matCellDef="let transaction">{{
             transaction.picked
@@ -79,6 +79,14 @@
 
           <mat-cell *matCellDef="let transaction">{{
             transaction.discountedPercentage
+          }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="revenue">
+          <mat-header-cell *matHeaderCellDef>Est. Revenue</mat-header-cell>
+
+          <mat-cell *matCellDef="let transaction">{{
+            transaction.totalRevenus
           }}</mat-cell>
         </ng-container>
 

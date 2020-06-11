@@ -174,7 +174,7 @@ export class NewOffPeakProductComponent implements OnInit {
     private router: Router,
     private productService: ProductService,
     private fb: FormBuilder,
-    private uploadService:UploadService,
+    private uploadService: UploadService,
     private location: Location
   ) {
   }
@@ -309,7 +309,7 @@ export class NewOffPeakProductComponent implements OnInit {
   }
   initOfferPickupTime() {
     // let defaultOfferSHH = this.hours12(this.offerStartInitTime).toString();
-    let defaultOfferSHH="02"
+    let defaultOfferSHH = "08"
     if (defaultOfferSHH.length == 1) defaultOfferSHH = "0" + defaultOfferSHH;
 
     let defaultOfferSMM = "00:AM";
@@ -318,7 +318,7 @@ export class NewOffPeakProductComponent implements OnInit {
     let defaultOfferSAMPM = this.getAMPM(this.offerStartInitTime);
 
     // let defaultOfferEHH = this.hours12(this.offerEndInitTime).toString();
-    let defaultOfferEHH ="10"
+    let defaultOfferEHH = "10"
     if (defaultOfferEHH.length == 1) defaultOfferEHH = "0" + defaultOfferEHH;
 
     let defaultOfferEMM = "00:PM";
@@ -769,16 +769,17 @@ export class NewOffPeakProductComponent implements OnInit {
   }
 
   consumptionTimesOnChanges($event) {
-    let curr = this.productForm.get("pickupStartHH").value;
+    console.log(this.productForm.get("pickupEndHH").value)
     let currY = this.productForm.get("pickupEndHH").value;
-    if (parseInt(curr) == 12 && parseInt(curr) >= parseInt(currY)) {
+    if (parseInt(currY) <= 12 && parseInt(currY) !=1 ) {
       this.productForm
-        .get("pickupEndHH")
-        .setValue(`${this.returnTwoDigit(parseInt(curr))}`);
-    } else if (parseInt(curr) >= parseInt(currY)) {
-      this.productForm
-        .get("pickupEndHH")
-        .setValue(`${this.returnTwoDigit(parseInt(curr) + 1)}`);
+        .get("offerEndHH")
+        .setValue(`${this.returnTwoDigit(parseInt(currY) - 1)}`);
+    } else if (parseInt(currY) == 1) {
+      // this.productForm
+      //   .get("offerEndHH")
+      //   .setValue(`${this.returnTwoDigit(parseInt(currY) - 1)}`);
+      this.productForm.get("offerEndMM").setValue(`00:AM`);
     }
   }
   parseWeekDay(weekDays) {
@@ -972,5 +973,5 @@ export class NewOffPeakProductComponent implements OnInit {
     // console.log(event);
   }
 
-  imageLoad(event) {}
+  imageLoad(event) { }
 }
