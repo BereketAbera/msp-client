@@ -30,7 +30,7 @@ export class EditShopComponent implements OnInit {
   [x: string]: any;
   showError: boolean = false;
   errors = [];
-  zipCodeHints: ZipCode[];
+  zipCodeHints: ZipCode[] = [];
   states: State[];
   private searchText$ = new Subject<string>();
   lng: any = 24.9433353;
@@ -46,7 +46,6 @@ export class EditShopComponent implements OnInit {
     public snackBar: MatSnackBar,
     private router: Router,
     private fb: FormBuilder,
-    private geocoderService: GeocoderService,
     private zipcodeService: ZipcodeService,
     private location: Location
   ) {
@@ -83,14 +82,14 @@ export class EditShopComponent implements OnInit {
     this.showError = false;
   }
   ngOnInit() {
-    // this.getlocations(this.shop.zipCode);
-
     this.shopForm.controls["zipCode"].valueChanges
       .pipe(
         debounceTime(200),
         switchMap((term) => this.zipcodeService.searchAddress(term))
       )
       .subscribe((zipCodeHints) => this.getlocations(zipCodeHints));
+
+    this.shopForm.controls["zipCode"].setValue(this.shop.zipCode);
   }
   searchZipCods(searchInp: string) {
     this.searchText$.next(searchInp);

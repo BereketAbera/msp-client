@@ -34,7 +34,7 @@ export class PublicComponent implements OnInit {
   categories: Category[];
   categoryId: any;
   q: any;
-  searchActive: any = true;
+  searchActive: any = false;
 
   constructor(
     public authService: AuthService,
@@ -60,6 +60,7 @@ export class PublicComponent implements OnInit {
     });
 
     this.router.events.subscribe((url: any) => {
+      console.log("checking products route....", url, this.router.url);
       if (url.url && url.url.includes("/products")) {
         this.searchActive = true;
       } else {
