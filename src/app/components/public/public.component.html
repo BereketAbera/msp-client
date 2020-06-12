@@ -28,9 +28,9 @@
             <i class="fad fa-sign-in-alt"></i>
           </button>
         </div> -->
-        <div routerLink="/login" class="header__desktop__login-container">
+        <div *ngIf="!authService.isLoggedIn()" routerLink="/login" class="header__desktop__login-container">
           <button class="header__desktop__login-button">
-            <i class="fad fa-sign-in-alt"></i> &nbsp; LOG IN
+            LOG IN
             <!-- <i class="fad fa-ellipsis-v-alt"></i> UP -->
           </button>
         </div>
