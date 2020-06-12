@@ -13,7 +13,7 @@
         >
           <i class="fad fa-search header_mobile__search-icon"></i>
         </div>
-        <div
+        <!-- <div
           *ngIf="mobileSearchActive"
           (click)="searchClick()"
           class="header_mobile__search-icon-container"
@@ -32,7 +32,14 @@
               LOG IN
             </button>
           </button>
+        </div> -->
+        <div *ngIf="!authService.isLoggedIn()" routerLink="/login" class="header__desktop__login-container">
+          <button class="header__desktop__login-button">
+            LOG IN
+            <!-- <i class="fad fa-ellipsis-v-alt"></i> UP -->
+          </button>
         </div>
+       
         <div
           *ngIf="authService.isLoggedIn()"
           class="header_mobile__search-icon-container"
