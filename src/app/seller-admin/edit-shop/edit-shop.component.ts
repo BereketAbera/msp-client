@@ -52,7 +52,7 @@ export class EditShopComponent implements OnInit {
     this.route.data.subscribe((data: { states: State[]; shop: any }) => {
       this.states = data.states;
       this.shop = data.shop;
-      // console.log(this.shop);
+      console.log(this.shop);
     });
 
     this.shopForm = this.fb.group({
@@ -138,6 +138,7 @@ export class EditShopComponent implements OnInit {
       this.shopForm.get("zipCode").setValue(this.shopForm.get("zipCode").value);
     } else {
       this.valueSet = false;
+      return;
     }
     this.zipCodeHints.map((zipcode) => {
       if (this.shopForm.get("zipCode").value == zipcode.ZIPCode) {
@@ -145,6 +146,8 @@ export class EditShopComponent implements OnInit {
         this.shopForm.get("state").setValue(this.getStateId(zipcode.StateAbbr));
       }
     });
+
+    console.log(zipCodeFound);
 
     if (!zipCodeFound) {
       this.shopForm.get("state").setValue("");

@@ -41,7 +41,19 @@ export class PublicComponent implements OnInit {
     private router: Router,
     private cdr: ChangeDetectorRef,
     private route: ActivatedRoute
-  ) {}
+  ) {
+    this.router.events.subscribe((url: any) => {
+      if (url.url && url.url.includes("/products")) {
+        this.searchActive = true;
+      } else {
+        if (this.router.url.toString().includes("/products")) {
+          this.searchActive = true;
+        } else {
+          this.searchActive = false;
+        }
+      }
+    });
+  }
 
   ngOnInit() {
     if (this.isLoggedIn()) this.name = this.authService.getName();
@@ -57,19 +69,6 @@ export class PublicComponent implements OnInit {
     this.route.queryParamMap.subscribe((res) => {
       this.categoryId = res.get("categoryId");
       this.q = res.get("q");
-    });
-
-    this.router.events.subscribe((url: any) => {
-      console.log("checking products route....", url, this.router.url);
-      if (url.url && url.url.includes("/products")) {
-        this.searchActive = true;
-      } else {
-        if (this.router.url.includes("/products")) {
-          this.searchActive = true;
-        } else {
-          this.searchActive = false;
-        }
-      }
     });
 
     this.cdr.detectChanges();
