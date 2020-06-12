@@ -10,13 +10,17 @@
   &__close {
     position: absolute;
     right: 2%;
-    top: 30%;
+    top: 26%;
     width: 4rem;
     height: 4rem;
-    border-radius: 50%;
+    // border-radius: 50%;
     z-index: 9500;
     cursor: pointer;
     transition: all 0.2s;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     &-icon {
       position: absolute;
@@ -25,10 +29,11 @@
       transform: translate(-50%, -50%) scale(0);
       font-size: 2.5rem;
       color: #ddd;
+      
     }
 
     &:active {
-      background-color: #aaa;
+      background-color: #999;
     }
   }
 }
@@ -73,7 +78,7 @@ video::-webkit-media-controls {
 
   &__icon_cancel {
     font-size: 3rem;
-    color: white;
+    color:#cc3469;
   }
   &__icon {
     position: absolute;
@@ -359,11 +364,10 @@ video::-webkit-media-controls {
   }
   .overlay__close {
     position: fixed;
-    right: 18rem;
-    top: 11rem;
+    right: 5rem;
+    top: 20%;
     width: 4rem;
     height: 4rem;
-    border-radius: 50%;
     z-index: 9500;
     cursor: pointer;
     transition: all 0.2s;
@@ -449,7 +453,7 @@ video::-webkit-media-controls {
     top: 7rem;
     width: 4rem;
     height: 4rem;
-    border-radius: 50%;
+    // border-radius: 50%;
     z-index: 9500;
     cursor: pointer;
     transition: all 0.2s;
