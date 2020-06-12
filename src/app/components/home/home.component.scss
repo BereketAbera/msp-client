@@ -50,6 +50,7 @@ video::-webkit-media-controls {
   width: 100%;
   // min-height: 100vh;
   margin-top: 5rem;
+  overflow: hidden;
 
   &__section-one {
     width: 100%;
@@ -95,16 +96,15 @@ video::-webkit-media-controls {
   &__full {
     position: fixed !important;
     top: 50%;
-     left: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
     z-index: 3000;
   }
   &__fullscreen {
     width: 40rem !important;
     height: 45rem !important;
-    border: none!important;
+    border: none !important;
   }
-
 
   &__refer {
     padding: 1.6rem 0;
@@ -262,8 +262,6 @@ video::-webkit-media-controls {
     cursor: pointer;
   }
 
-
-
   // &__section-four {
   //   min-height: 80vh;
   //   width: 100%;
@@ -402,14 +400,14 @@ video::-webkit-media-controls {
     &__full {
       position: fixed !important;
       top: 55%;
-       left: 50%;
+      left: 50%;
       transform: translate(-50%, -50%);
       z-index: 3000;
     }
     &__fullscreen {
       width: 100% !important;
       height: 30rem !important;
-      border: none!important;
+      border: none !important;
     }
     &__icon {
       position: absolute;
@@ -435,7 +433,6 @@ video::-webkit-media-controls {
       border: 0.5px solid #bbb;
       // padding: 0.3rem;
     }
-
 
     &__refer {
       padding: 2.7rem 0;
