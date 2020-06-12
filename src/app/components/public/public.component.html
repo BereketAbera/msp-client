@@ -13,7 +13,7 @@
         >
           <i class="fad fa-search header_mobile__search-icon"></i>
         </div>
-        <div
+        <!-- <div
           *ngIf="mobileSearchActive"
           (click)="searchClick()"
           class="header_mobile__search-icon-container"
@@ -27,7 +27,14 @@
           <button routerLink="/login" class="header_mobile__login-button">
             <i class="fad fa-sign-in-alt"></i>
           </button>
+        </div> -->
+        <div routerLink="/login" class="header__desktop__login-container">
+          <button class="header__desktop__login-button">
+            <i class="fad fa-sign-in-alt"></i> &nbsp; LOG IN
+            <!-- <i class="fad fa-ellipsis-v-alt"></i> UP -->
+          </button>
         </div>
+       
         <div
           *ngIf="authService.isLoggedIn()"
           class="header_mobile__search-icon-container"
