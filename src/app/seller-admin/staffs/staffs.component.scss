@@ -132,11 +132,9 @@ ul {
     width: 100%;
   }
 }
-// @media(hover: hover) and (pointer: fine) {
-//   button:hover {
-//       background: yellow;
-//   }
-// }
+.mobile-hint{
+  display: none;
+}
 
 .mat-cell {
   word-break: break-word;
@@ -153,3 +151,18 @@ ul {
     max-width: 5rem;
   }
 }
+.home__icon{
+  color: deeppink;
+  font-size: 2.5rem;
+  padding-right: 0.5rem;
+}
+
+@media only screen and (max-width: 600px) {
+  .mobile-hint{
+    display: flex;
+    width: 70%;
+    float: right;
+    margin-top:-1rem;
+  }
+}
+
