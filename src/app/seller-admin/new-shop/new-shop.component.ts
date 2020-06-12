@@ -122,6 +122,7 @@ export class NewShopComponent implements OnInit {
       this.shopForm.get("zipCode").setValue(this.shopForm.get("zipCode").value);
     } else {
       this.valueSet = false;
+      return;
     }
     this.zipCodeHints.map((zipcode) => {
       if (this.shopForm.get("zipCode").value == zipcode.ZIPCode) {

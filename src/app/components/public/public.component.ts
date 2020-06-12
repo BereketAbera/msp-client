@@ -60,7 +60,7 @@ export class PublicComponent implements OnInit {
     });
 
     this.router.events.subscribe((url: any) => {
-      console.log("checking products route....", url, this.router.url);
+      // console.log("checking products route....", url, this.router.url);
       if (url.url && url.url.includes("/products")) {
         this.searchActive = true;
       } else {
