@@ -55,6 +55,7 @@ video::-webkit-media-controls {
   width: 100%;
   // min-height: 100vh;
   margin-top: 5rem;
+  overflow: hidden;
 
   &__section-one {
     width: 100%;
