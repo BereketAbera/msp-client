@@ -13,17 +13,15 @@
       >
         Add New Staff
       </button>
-      
     </div>
   </div>
   <div class="mobile-hint">
-     <i class="fad fa-info home__icon"></i> 
-    <div>  
-     
-      Add members of your staff who will
-       help you with the management and administration of ManagerSpecial.com. 
-      (They have to use their usernames to login)</div>
-
+    <i class="fad fa-info home__icon"></i>
+    <div>
+      Add members of your staff who will help you with the management and
+      administration of ManagerSpecial.com. (They have to use their usernames to
+      login)
+    </div>
   </div>
   <div *ngIf="dataSource && dataSource?.length == 0" class="no_result">
     <span>You do not have any staff yet.</span>
@@ -96,16 +94,24 @@
               <i class="fad fa-ellipsis-v table__icon"></i>
             </button>
             <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="manageStaff(staff.id)">
+                <i class="fad fa-edit table__icon"></i>
+                <span>Manage Access</span>
+              </button>
+              <!-- <button mat-menu-item (click)="editStaff(staff.id)">
+                <i class="fad fa-edit table__icon"></i>
+                <span>Edit</span>
+              </button> -->
               <button
                 *ngIf="
-                  staff.staff_status != 'REMOVED' &&
+                  staff.staff_status != 'ACTIVE' &&
                   staff.staff_status != 'INVITED'
                 "
                 mat-menu-item
-                (click)="updateStaff(staff.id, 'REMOVED')"
+                (click)="updateStaff(staff.id, 'ACTIVE')"
               >
-                <i class="fad fa-trash-alt table__icon"></i>
-                <span>Remove</span>
+                <i class="fad fa-check table__icon"></i>
+                <span>ACTIVATE</span>
               </button>
 
               <button
@@ -121,18 +127,14 @@
               </button>
               <button
                 *ngIf="
-                  staff.staff_status != 'ACTIVE' &&
+                  staff.staff_status != 'REMOVED' &&
                   staff.staff_status != 'INVITED'
                 "
                 mat-menu-item
-                (click)="updateStaff(staff.id, 'ACTIVE')"
+                (click)="deleteStaff(staff.id, 'REMOVED')"
               >
-                <i class="fad fa-check table__icon"></i>
-                <span>ACTIVATE</span>
-              </button>
-              <button mat-menu-item (click)="manageStaff(staff.id)">
-                <i class="fad fa-edit table__icon"></i>
-                <span>Manage Access</span>
+                <i class="fad fa-trash-alt table__icon"></i>
+                <span>Remove</span>
               </button>
             </mat-menu>
           </mat-cell>

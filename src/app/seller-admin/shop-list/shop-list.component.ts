@@ -101,7 +101,7 @@ export class ShopListComponent implements OnInit, AfterViewInit {
     this.showError = false;
   }
 
-  editProduct(shop) {
+  editShop(shop) {
     this.router.navigate([`/tlgu-slr/shops/edit/${shop.id}`]);
   }
   removeShop(shop) {
