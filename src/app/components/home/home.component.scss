@@ -193,6 +193,7 @@ video::-webkit-media-controls {
     border: 1px solid #eee;
     border-top: none;
     margin-left: 1rem;
+    z-index: 10000;
   }
 
   &__search-input:focus + .home__search-input-results,
