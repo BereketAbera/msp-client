@@ -61,6 +61,15 @@ export class RegisterBuyerComponent implements OnInit {
     this.registrationForm.controls["phoneNumber"].valueChanges
       .pipe((debounceTime(200), switchMap((term) => of(term))))
       .subscribe((res) => this.phoneNumberChange(res));
+
+    this.registrationForm.controls["code"].valueChanges
+      .pipe((debounceTime(200), switchMap((term) => of(term))))
+      .subscribe((res) => {
+        if (res.length > 5) {
+          let control = this.registrationForm.controls["code"];
+          control.setValue(res.slice(0, res.length - 1));
+        }
+      });
   }
   onSubmit() {
     if (

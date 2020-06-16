@@ -10,6 +10,7 @@
   &__code-list {
     display: flex;
     flex-wrap: wrap;
+    width: 100%;
     // justify-content: space-between;
     &:after {
       content: "";
@@ -25,6 +26,8 @@
     margin: 0.5rem;
     max-width: 45%;
     min-width: 45%;
+    display: flex;
+    align-items: center;
   }
 
   &__code-text {
@@ -70,6 +73,7 @@
     border: 1px solid #aaa;
     padding: 0.3rem 2rem;
     color: #888;
+    text-align: center;
   }
 }
 
