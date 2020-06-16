@@ -116,7 +116,7 @@ export class RegisterSellerComponent implements OnInit {
         return this.userService
           .registerUser({
             ...this.registrationForm.value,
-            phoneNumber: this.phoneChangeFormat(phoneNumber.value, "db"),
+            phoneNumber:"+251931644114"
           })
           .subscribe((res) => {
             window.scrollTo(0, 0);
