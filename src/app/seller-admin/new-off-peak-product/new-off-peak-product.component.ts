@@ -327,7 +327,7 @@ export class NewOffPeakProductComponent implements OnInit {
     let defaultOfferEAMPM = this.getAMPM(this.offerEndInitTime);
 
     // let defaultPickupSHH = this.hours12(this.pickupStartInitTime).toString();
-    let defaultPickupSHH = "05";
+    let defaultPickupSHH = "01";
     if (defaultPickupSHH.length == 1) defaultPickupSHH = "0" + defaultPickupSHH;
 
     // let defaultPickupSMM = this.pickupStartInitTime.getMinutes().toString();
@@ -337,7 +337,7 @@ export class NewOffPeakProductComponent implements OnInit {
     let defaultPickupSAMPM = this.getAMPM(this.pickupStartInitTime);
 
     // let defaultPickupEHH = this.hours12(this.pickupEndInitTime).toString();
-    let defaultPickupEHH = "11";
+    let defaultPickupEHH = "05";
     if (defaultPickupEHH.length == 1) defaultPickupEHH = "0" + defaultPickupEHH;
 
     let defaultPickupEMM = "00:PM";
