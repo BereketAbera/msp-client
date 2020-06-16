@@ -1,0 +1,37 @@
+<div class="socialref__main-container">
+  <div class="socialref__generate-code-container">
+    <p class="socialref__info-text">
+      <i class="fad fa-info-circle"></i>
+      <strong>Via Social Media:</strong> Create a post or blog, ask your friends
+      to join ManagerSpecial.com, ask them to enter your unique Bonus Credit
+      Code when thy sign up. They will each get $15 credit because of your
+      referral, and you will get $2 referral credit in your account for each new
+      sign up from your social media mentions, such as FB, Twitter, Instagram,
+      Snapchat or any social media you have. Generate a unique code below for
+      you to use. We will use this unique code to know which new sign up's are
+      due to your referral and we will add credits to your account immediately.
+    </p>
+    <button
+      (click)="generateCode()"
+      mat-flat-button
+      color="accent"
+      class="socialref__generate-btn"
+      [disabled]="buttonDisable"
+    >
+      Generate Bonus Code
+    </button>
+  </div>
+  <h4 class="socialref__code-list-title">Previous Codes</h4>
+  <div class="socialref__code-list">
+    <div *ngFor="let code of codes" class="socialref__code-container">
+      <span class="socialref__code-text">{{ code.code }}</span
+      ><span class="socialref__code-exp"
+        >Expires {{ getExpDate(code.createdAt) }}</span
+      >
+    </div>
+    <div *ngIf="codes.length == 0" class="socialref__code-list-empty">
+      No Codes Yet
+    </div>
+    <!-- <div style="flex: 1;"></div> -->
+  </div>
+</div>

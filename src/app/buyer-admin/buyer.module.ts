@@ -46,6 +46,7 @@ import { BuyerDepositResolverService } from "../service/buyer-deposit-resolver.s
 import { OrdersResolverService } from "../service/orders-resolver.service";
 import { ProfileComponent } from "./profile/profile.component";
 import { UserProfileResolverService } from "../service/user-profile-resolver.service";
+import { SocialReferralComponent } from './social-referral/social-referral.component';
 
 @NgModule({
   imports: [
@@ -82,6 +83,7 @@ import { UserProfileResolverService } from "../service/user-profile-resolver.ser
     ReferBuyerComponent,
     ReferStatusComponent,
     ProfileComponent,
+    SocialReferralComponent,
   ],
   entryComponents: [
     PaymentWithCreditCardComponent,

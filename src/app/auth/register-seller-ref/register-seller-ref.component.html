@@ -66,6 +66,17 @@
                 required
               />
             </mat-form-field>
+            <mat-form-field>
+              <input
+                matInput
+                placeholder="Enter your email"
+                formControlName="email"
+                required
+              />
+              <mat-error *ngIf="registrationForm.controls.email.invalid">{{
+                getErrorMessage()
+              }}</mat-error>
+            </mat-form-field>
             <!-- <mat-form-field class="seller__categories seller__input">
               <mat-select
                 placeholder="Select Restaurant Type"
@@ -84,19 +95,17 @@
               <mat-label>Phone Number</mat-label>
               <span style="color: #555;" matPrefix>+1&nbsp;</span>
               <input
-                type="tel"
+                type="text"
                 matInput
                 placeholder="000-000-0000"
                 required
                 maxlength="14"
                 formControlName="phoneNumber"
                 (paste)="preventPaste($event)"
-                (keydown)="checkInput($event)"
                 (change)="phoneNumberChangeEvent($event)"
-                (keypress)="phoneNumberChange($event)"
-                (keyup)="phoneNumberChange($event)"
               />
             </mat-form-field>
+
             <mat-form-field hintLabel="max 120 characters">
               <input
                 matInput
@@ -105,25 +114,6 @@
                 formControlName="address"
                 required
               />
-            </mat-form-field>
-            <mat-form-field>
-              <input
-                matInput
-                placeholder="Website Address"
-                maxlength="50"
-                formControlName="websiteURL"
-              />
-            </mat-form-field>
-            <mat-form-field>
-              <input
-                matInput
-                placeholder="Enter your email"
-                formControlName="email"
-                required
-              />
-              <mat-error *ngIf="registrationForm.controls.email.invalid">{{
-                getErrorMessage()
-              }}</mat-error>
             </mat-form-field>
             <div class="seller__address">
               <mat-form-field class="seller__input zipstatecity">
@@ -182,6 +172,14 @@
                 />
               </mat-form-field>
             </div>
+            <mat-form-field>
+              <input
+                matInput
+                placeholder="Website Address"
+                maxlength="50"
+                formControlName="websiteURL"
+              />
+            </mat-form-field>
             <mat-form-field
               hintLabel="At least six characters, one number, one lowercase, and one uppercase"
             >

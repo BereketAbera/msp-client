@@ -32,7 +32,11 @@
               >
             </li>
 
-            <li (click)="drawerLinkClicked()" class="side_bar_mobile__item" style="min-width: 13rem;">
+            <li
+              (click)="drawerLinkClicked()"
+              class="side_bar_mobile__item"
+              style="min-width: 13rem;"
+            >
               <a
                 routerLink="./trnscts/process"
                 [routerLinkActive]="['active-route']"
@@ -113,12 +117,12 @@
     </div>
     <div routerLink="/" class="navigation__header-container">
       <div class="navigation__sub-header-container">
-        <img
+        <!-- <img
           routerLink="./"
           src="favicon.ico"
           alt="Logo"
           class="navigation__desktop-header-image"
-        />
+        /> -->
         <a routerLink="./" class="navigation__desktop-header-text"
           >ManagerSpecial</a
         >
@@ -162,11 +166,11 @@
           [routerLinkActive]="['active-route']"
           [routerLinkActiveOptions]="{ exact: false }"
           class="navigation__item-text"
-          ><i class="fad fa-envelope-open navigation__item-icon"></i
-          >Process Code</a
+          ><i class="fad fa-envelope-open navigation__item-icon"></i>Process
+          Code</a
         >
       </li>
-     
+
       <li class="navigation__item">
         <a
           routerLink="./prdcts"
@@ -200,7 +204,7 @@
           [routerLinkActive]="['active-route']"
           [routerLinkActiveOptions]="{ exact: false }"
           class="navigation__item-text"
-          ><i class="fad fa-sun navigation__item-icon"></i> Staff</a
+          ><i class="fad fa-sun navigation__item-icon"></i> Employees</a
         >
       </li>
       <li class="navigation__item">

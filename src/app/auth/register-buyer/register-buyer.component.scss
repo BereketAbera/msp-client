@@ -83,6 +83,19 @@ ul {
   font-size: 60%;
 }
 
+.code {
+  &__input {
+    // width: 50% !important;
+  }
+
+  &__toggle {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #555;
+    text-transform: uppercase;
+  }
+}
+
 @media only screen and (max-width: 732px) {
   ::ng-deep .mat-form-field-subscript-wrapper {
     font-size: 55%;
