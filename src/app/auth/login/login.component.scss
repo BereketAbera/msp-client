@@ -8,10 +8,6 @@ example-container {
   border-radius: 8px;
 }
 
-
-
-
-
 .push {
   margin-left: auto;
   text-align: end;
@@ -141,17 +137,15 @@ ul {
   width: 100%;
 }
 
-
-
 .example-container > * {
-   width: 85%;
+  width: 85%;
   //  margin:1rem  2rem ;
-   align-content: center;
+  align-content: center;
 }
 .login-container {
   width: 85%;
   // align-content: center;
-  margin:1rem 2rem;
+  margin: 1rem 2rem;
 }
 .example-full-width {
   width: 100%;
@@ -161,7 +155,7 @@ ul {
     width: 95%;
 
     align-self: center;
-     margin: 0rem 2rem;
+    margin: 0rem 2rem;
     // font-size: 1.2rem;
     // input {
     //   font-size: 2.5rem;
@@ -192,12 +186,12 @@ ul {
 }
 
 .mat-tab-label-container {
-  overflow: scroll!important;
+  overflow: auto !important;
 }
 
 .mat-tab-body-content {
   height: 100%;
-   overflow: hidden!important; 
+  overflow: hidden !important;
 }
 
 @media only screen and (min-width: 732px) {
@@ -206,20 +200,18 @@ ul {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     &__tab {
       font-size: 1.7rem;
-    
     }
   }
 
   .mat-tab-label-container {
-    overflow: hidden!important;
+    overflow: hidden !important;
   }
 
   .example-container > * {
-     width: 85%;
-     margin:0rem  2rem !important;
-     align-content: center;
+    width: 85%;
+    margin: 0rem 2rem !important;
+    align-content: center;
   }
-  
 }
 
 @media only screen and (min-width: 1000px) {
@@ -227,8 +219,3 @@ ul {
     width: 50%;
   }
 }
-
-
-
-
-

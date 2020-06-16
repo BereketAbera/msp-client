@@ -20,7 +20,10 @@
       <mat-header-cell *matHeaderCellDef>Transaction Type</mat-header-cell>
 
       <mat-cell *matCellDef="let transaction">
-        <span class="mobile-label">Type:</span> {{ transaction.type=="ORDER"?"RESERVATION":transaction.type }}</mat-cell
+        <span class="mobile-label">Type:</span>
+        {{
+          transaction.type == "ORDER" ? "RESERVATION" : transaction.type
+        }}</mat-cell
       >
     </ng-container>
     <ng-container matColumnDef="date">
@@ -50,7 +53,11 @@
         <span class="mobile-label">Amount:</span>
         <span style="text-transform: capitalize;">
           {{
-            transaction.type == "ORDER" ? "DISCOUNT CODE" : transaction.creditType
+            transaction.type == "ORDER"
+              ? "DISCOUNT CODE"
+              : transaction.creditType == "REFERRAL"
+              ? "EMAIL REFERRAL"
+              : transaction.creditType
           }}
         </span>
       </mat-cell>

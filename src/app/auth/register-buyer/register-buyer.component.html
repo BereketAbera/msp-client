@@ -56,17 +56,14 @@
       <mat-label>Phone Number</mat-label>
       <span style="color: #555;" matPrefix>+1&nbsp;</span>
       <input
-        type="tel"
+        type="text"
         matInput
         placeholder="000-000-0000"
         required
         maxlength="14"
         formControlName="phoneNumber"
         (paste)="preventPaste($event)"
-        (keydown)="checkInput($event)"
         (change)="phoneNumberChangeEvent($event)"
-        (keypress)="phoneNumberChange($event)"
-        (keyup)="phoneNumberChange($event)"
       />
     </mat-form-field>
     <mat-form-field>
@@ -106,6 +103,7 @@
         <i *ngIf="!hide" class="fad fa-eye"></i>
       </span>
     </mat-form-field>
+
     <mat-form-field>
       <input
         matInput
@@ -126,6 +124,32 @@
         <i *ngIf="hide" class="fad fa-eye-slash"></i>
         <i *ngIf="!hide" class="fad fa-eye"></i>
       </span>
+    </mat-form-field>
+    <div
+      style="
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin: 0.5rem;
+      "
+    >
+      <mat-slide-toggle
+        (change)="changeWidthCodeStatus($event)"
+        class="code__toggle"
+        >I have a Code</mat-slide-toggle
+      >
+    </div>
+    <mat-form-field *ngIf="withCode">
+      <input
+        matInput
+        placeholder="Enter Code"
+        minlength="5"
+        maxlength="5"
+        formControlName="code"
+        (change)="capitalize('code')"
+        type="text"
+        class="code__input"
+      />
     </mat-form-field>
     <br />
     <br />

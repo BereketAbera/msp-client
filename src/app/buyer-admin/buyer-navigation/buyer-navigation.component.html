@@ -47,7 +47,8 @@
                 [routerLinkActive]="['active-route']"
                 [routerLinkActiveOptions]="{ exact: false }"
                 class="side_bar_mobile__item-text"
-                ><i class="fad fa-map side_bar_mobile__item-icon"></i>Referral(s)
+                ><i class="fad fa-map side_bar_mobile__item-icon"></i
+                >Referral(s)
               </a>
             </li>
             <li (click)="drawerLinkClicked()" class="side_bar_mobile__item">
@@ -84,14 +85,14 @@
       </div>
       <div style="display: flex; justify-content: space-between; flex: 1;">
         <div style="display: flex;">
-          <img
+          <!-- <img
             routerLink="/"
             [routerLinkActive]="['active-routeas']"
             [routerLinkActiveOptions]="{ exact: false }"
             src="favicon.ico"
             alt="Logo"
             class="navigation__header-image"
-          />
+          /> -->
           <a routerLink="/" class="navigation__header-text">ManagerSpecial</a>
         </div>
         <div style="display: flex;">
@@ -115,12 +116,12 @@
       class="navigation__header-container"
     >
       <div class="navigation__sub-header-container">
-        <img
+        <!-- <img
           routerLink="./"
           src="favicon.ico"
           alt="Logo"
           class="navigation__desktop-header-image"
-        />
+        /> -->
         <a routerLink="./" class="navigation__desktop-header-text"
           >ManagerSpecial</a
         >
@@ -163,7 +164,8 @@
           [routerLinkActive]="['active-route']"
           [routerLinkActiveOptions]="{ exact: true }"
           class="navigation__item-text"
-          ><i class="fad fa-envelope-open navigation__item-icon"></i>Reservation(s)</a
+          ><i class="fad fa-envelope-open navigation__item-icon"></i
+          >Reservation(s)</a
         >
       </li>
       <li class="navigation__item">
@@ -229,7 +231,8 @@
           [routerLinkActive]="['active-route']"
           [routerLinkActiveOptions]="{ exact: true }"
           class="navigation__item-text"
-          ><i class="fad fa-envelope-open navigation__item-icon"></i>Reservation(s)</a
+          ><i class="fad fa-envelope-open navigation__item-icon"></i
+          >Reservation(s)</a
         >
       </li>
       <li class="navigation__item">

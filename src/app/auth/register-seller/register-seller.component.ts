@@ -90,6 +90,9 @@ export class RegisterSellerComponent implements OnInit {
         switchMap((term) => this.zipcodeService.searchAddress(term))
       )
       .subscribe((zipCodeHints) => this.getlocations(zipCodeHints));
+    this.registrationForm.controls["phoneNumber"].valueChanges
+      .pipe((debounceTime(200), switchMap((term) => of(term))))
+      .subscribe((res) => this.phoneNumberChange(res));
   }
   openTerms() {}
   openPrivacy() {}
@@ -215,41 +218,62 @@ export class RegisterSellerComponent implements OnInit {
       .setValue(this.getStateName(zipcode.StateAbbr));
   }
 
-  phoneNumberChange(event) {
-    let val = event.target.value;
-    if (val.length != this.prevValue.length) {
+  phoneNumberChange(value) {
+    let val = value;
+    if (val.length > 14) {
+      this.registrationForm.controls["phoneNumber"].setValue(
+        val.slice(0, val.length - 1)
+      );
+      return;
+    }
+    let lk = val[val.length - 1];
+    if (this.prevValue.length < val.length) {
       if (
-        (event.keyCode >= 48 && event.keyCode <= 57) ||
-        (event.keyCode >= 96 && event.keyCode <= 105) ||
-        event.keyCode == 8
+        lk &&
+        ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"].includes(lk)
       ) {
-        if (val.length > this.prevValue.length) {
-          if (val.length == 3) {
-            if (val[0] == "1" || val[0] == "0") {
-              this.registrationForm.controls["phoneNumber"].setValue(
-                val.slice(1)
-              );
-            }
-          } else if (val.length == 4) {
+        if (val.length == 3) {
+          if (val[0] == "1" || val[0] == "0") {
             this.registrationForm.controls["phoneNumber"].setValue(
-              `(${val.slice(0, 3)}) ${val[3]}`
-            );
-          } else if (val.length == 10) {
-            this.registrationForm.controls["phoneNumber"].setValue(
-              `${val.slice(0, 9)}-${val[9]}`
+              val.slice(1)
             );
           }
-        } else {
-          if (this.prevValue[this.prevValue.length - 1] == " ") {
-            this.registrationForm.controls["phoneNumber"].setValue(
-              `${val.slice(1, 4)}`
-            );
-          }
+        } else if (val.length == 4) {
+          this.registrationForm.controls["phoneNumber"].setValue(
+            `(${val.slice(0, 3)}) ${val[3]}`
+          );
+        } else if (val.length == 10) {
+          this.registrationForm.controls["phoneNumber"].setValue(
+            `${val.slice(0, 9)}-${val[9]}`
+          );
+        }
+      } else if (lk) {
+        this.registrationForm.controls["phoneNumber"].setValue(
+          val.slice(0, val.length - 1)
+        );
+      }
+      if (["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"].includes(lk)) {
+        this.prevValue = value;
+      }
+    } else {
+      if (val.length == 3) {
+        if (val[0] == "1" || val[0] == "0") {
+          this.registrationForm.controls["phoneNumber"].setValue(val.slice(1));
         }
       }
+      if (val[val.length - 1] == " " && val.length == 6) {
+        this.registrationForm.controls["phoneNumber"].setValue(
+          `${val.slice(1, 4)}`
+        );
+        this.prevValue = val.slice(1, 4);
+      } else if (isNaN(val) && val.length <= 4) {
+        this.registrationForm.controls["phoneNumber"].setValue(
+          `${val.replace(/\D/g, "")}`
+        );
+      } else {
+        this.prevValue = this.registrationForm.controls["phoneNumber"].value;
+      }
     }
-
-    this.prevValue = event.target.value;
   }
 
   phoneNumberChangeEvent(event) {

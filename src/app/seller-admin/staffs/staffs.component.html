@@ -4,23 +4,23 @@
     </div> -->
   <div fxLayout="row" fxLayoutAlign="end center" class="addNewDiv">
     <div class="staff__header-container">
-      <h2 class="staff__header">Staffs</h2>
+      <h2 class="staff__header">Employees</h2>
       <button
         mat-raised-button
         color="accent"
         (click)="goToAddStaff()"
-        title="Add members of your staff who will help you with the management and administration of ManagerSpecial.com. (They have to use their usernames to login)"
+        title="Add your employees who will help you with reservation processing and management of ManagerSpecial.com. You can assign privileges and create individual usernames for them to use"
       >
-        Add New Staff
+        Add New Employee
       </button>
     </div>
   </div>
   <div class="mobile-hint">
     <i class="fad fa-info home__icon"></i>
     <div>
-      Add members of your staff who will help you with the management and
-      administration of ManagerSpecial.com. (They have to use their usernames to
-      login)
+      Add your employees who will help you with reservation processing and
+      management of ManagerSpecial.com. You can assign privileges and create
+      individual usernames for them to use
     </div>
   </div>
   <div *ngIf="dataSource && dataSource?.length == 0" class="no_result">
@@ -74,7 +74,7 @@
         </ng-container>
         <ng-container matColumnDef="status">
           <mat-header-cell class="header-align-right" *matHeaderCellDef
-            >Staffer Status</mat-header-cell
+            >Employee Status</mat-header-cell
           >
 
           <mat-cell

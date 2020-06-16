@@ -23,6 +23,7 @@ import { UserService } from "../service/user.service";
 import { ZipcodeService } from "../service/zipcode.service";
 import { StateResolverService } from "../service/state-resolver.service";
 import { StateService } from "../service/state.service";
+import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 // import { CustomNotificationComponent } from "../components/custom-notification/custom-notification.component";
 
 @NgModule({
@@ -32,6 +33,7 @@ import { StateService } from "../service/state.service";
     DemoMaterialModule,
     SharedModule,
     AuthRoutingModule,
+    MatSlideToggleModule,
   ],
   declarations: [
     LoginComponent,
