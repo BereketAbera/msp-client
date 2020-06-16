@@ -318,7 +318,7 @@ export class NewOffPeakProductComponent implements OnInit {
     let defaultOfferSAMPM = this.getAMPM(this.offerStartInitTime);
 
     // let defaultOfferEHH = this.hours12(this.offerEndInitTime).toString();
-    let defaultOfferEHH = "10"
+    let defaultOfferEHH = "04"
     if (defaultOfferEHH.length == 1) defaultOfferEHH = "0" + defaultOfferEHH;
 
     let defaultOfferEMM = "00:PM";
