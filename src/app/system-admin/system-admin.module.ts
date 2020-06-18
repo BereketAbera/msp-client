@@ -1,3 +1,4 @@
+import { CodesDetailComponent } from "./codes-detail/codes-detail.component";
 import { ConfigComponent } from "./config/config.component";
 import { CodesComponent } from "./codes/codes.component";
 import { BuyersComponent } from "./buyers/buyers.component";
@@ -29,6 +30,7 @@ import { StateService } from "../service/state.service";
     BuyersComponent,
     CodesComponent,
     ConfigComponent,
+    CodesDetailComponent,
   ],
   imports: [
     CommonModule,

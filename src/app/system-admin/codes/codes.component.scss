@@ -29,10 +29,18 @@
 
   &__form {
     padding: 1rem 4rem;
-    // border: 1px solid #aaa;
+  }
+
+  &__form-button {
+    border-radius: 5rem;
+    width: 100%;
   }
 
   &__table {
     width: 100%;
+  }
+
+  &__action {
+    text-decoration: none;
   }
 }

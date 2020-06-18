@@ -10,13 +10,13 @@ import { FormControl } from "@angular/forms";
 })
 export class CodesComponent implements OnInit {
   referredCredit = new FormControl();
-  codes = [];
+  codes: any = [];
   buttonDisable = false;
   pageNumber = 0;
   pageSize = 5;
   count;
 
-  displayedColumns = ["code", "credit", "createdAt", "status"];
+  displayedColumns = ["code", "credit", "createdAt", "status", "action"];
 
   constructor(
     private referralService: SocialReferralService,
@@ -28,14 +28,18 @@ export class CodesComponent implements OnInit {
     this.route.queryParamMap.subscribe((params) => {
       this.pageNumber = parseInt(params.get("pageNumber")) || 1;
       this.pageSize = parseInt(params.get("pageSize")) || 0;
-      this.referralService
-        .getAdminCodeList(this.pageNumber, this.pageSize)
-        .subscribe((res) => {
-          // console.log(res);
-          this.count = res.count;
-          this.codes = res.rows;
-        });
+      this.getCodes();
     });
+  }
+
+  getCodes() {
+    this.referralService
+      .getAdminCodeList(this.pageNumber, this.pageSize)
+      .subscribe((res) => {
+        // console.log(res);
+        this.count = res.count;
+        this.codes = res.rows;
+      });
   }
 
   generateNewCode() {
@@ -45,7 +49,8 @@ export class CodesComponent implements OnInit {
         .generateNewAdminCode(this.referredCredit.value)
         .subscribe((code) => {
           this.buttonDisable = false;
-          this.codes.unshift(code);
+          this.referredCredit.reset();
+          this.getCodes();
         });
     }
   }
