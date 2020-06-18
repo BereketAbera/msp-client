@@ -118,7 +118,7 @@ export class RegisterSellerRefComponent implements OnInit {
       this.registrationForm.get("confirmPassword").value
     ) {
       this.showError = true;
-      this.errors = ["Your passwords do not much"];
+      this.errors = ["Your passwords do not match"];
       return;
     }
     this.showError = false;

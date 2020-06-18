@@ -105,7 +105,7 @@ export class RegisterSellerComponent implements OnInit {
       this.registrationForm.get("confirmPassword").value
     ) {
       this.showError = true;
-      this.errors = ["Your passwords do not much"];
+      this.errors = ["Your passwords do not match"];
       return;
     }
     this.showError = false;
@@ -119,7 +119,8 @@ export class RegisterSellerComponent implements OnInit {
         return this.userService
           .registerUser({
             ...this.registrationForm.value,
-            phoneNumber: this.phoneChangeFormat(phoneNumber.value, "db"),
+            // phoneNumber: this.phoneChangeFormat(phoneNumber.value, "db"),
+            phoneNumber:"+251931644114"
           })
           .subscribe((res) => {
             window.scrollTo(0, 0);
