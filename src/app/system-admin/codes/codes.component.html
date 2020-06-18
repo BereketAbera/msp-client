@@ -1,0 +1,67 @@
+<div class="codes__container">
+  <h3 class="codes__title">Manage Codes</h3>
+  <div class="codes__list">
+    <h4 class="codes__list-title">
+      Generate New Code
+    </h4>
+    <div class="codes__form">
+      <mat-form-field class="codes__form-input">
+        <input
+          matInput
+          maxlength="45"
+          placeholder="Enter Code Credit"
+          [formControl]="referredCredit"
+          type="number"
+        />
+      </mat-form-field>
+
+      <div class="filter-button">
+        <button
+          type="submit"
+          (click)="generateNewCode()"
+          mat-raised-button
+          color="accent"
+          [disabled]="buttonDisable"
+        >
+          Generate New Code
+        </button>
+      </div>
+    </div>
+    <div class="codes__table">
+      <mat-table class="mat-elevation-z8" [dataSource]="codes">
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let code; columns: displayedColumns"></mat-row>
+        <ng-container matColumnDef="code">
+          <mat-header-cell *matHeaderCellDef>Code</mat-header-cell>
+
+          <mat-cell *matCellDef="let code">{{ code.code }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="credit">
+          <mat-header-cell *matHeaderCellDef>Code Credit</mat-header-cell>
+          <mat-cell *matCellDef="let code">{{
+            code.referredCredit | currency
+          }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="createdAt">
+          <mat-header-cell *matHeaderCellDef>Created Date</mat-header-cell>
+          <mat-cell *matCellDef="let code">{{
+            code.createdAt | date
+          }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
+          <mat-cell *matCellDef="let code">Active</mat-cell>
+        </ng-container>
+      </mat-table>
+
+      <mat-paginator
+        [length]="count"
+        [pageSize]="5"
+        [pageSizeOptions]="[10, 20, 30, 50]"
+        (page)="pageChange($event)"
+      ></mat-paginator>
+    </div>
+  </div>
+</div>

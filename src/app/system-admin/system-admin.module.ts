@@ -1,3 +1,6 @@
+import { ConfigComponent } from "./config/config.component";
+import { CodesComponent } from "./codes/codes.component";
+import { BuyersComponent } from "./buyers/buyers.component";
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 
@@ -23,6 +26,9 @@ import { StateService } from "../service/state.service";
     UsersAdminComponent,
     AdminNavigationComponent,
     SellerDetailComponent,
+    BuyersComponent,
+    CodesComponent,
+    ConfigComponent,
   ],
   imports: [
     CommonModule,

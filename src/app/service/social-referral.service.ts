@@ -15,7 +15,21 @@ export class SocialReferralService {
     return this.http.get(referralEndPoint);
   }
 
+  getAdminCodeList(pageNumber, pageSize): Observable<any> {
+    return this.http.get(
+      referralEndPoint +
+        `/admin_codes?pageNumber=${pageNumber}&pageSize=${pageSize}`
+    );
+  }
+
   generateNewCode(): Observable<any> {
     return this.http.get(referralEndPoint + "/generate_code?type=BUYER");
+  }
+
+  generateNewAdminCode(referredCredit): Observable<any> {
+    return this.http.get(
+      referralEndPoint +
+        `/generate_admin_code?type=ADMIN&referredCredit=${referredCredit}`
+    );
   }
 }
