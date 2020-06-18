@@ -136,7 +136,7 @@
       <mat-slide-toggle
         (change)="changeWidthCodeStatus($event)"
         class="code__toggle"
-        >I have a Code</mat-slide-toggle
+        >I have a bonus credit code</mat-slide-toggle
       >
     </div>
     <mat-form-field *ngIf="withCode">
@@ -152,19 +152,19 @@
       />
     </mat-form-field>
     <br />
-    <br />
+
     <mat-checkbox
-      style="color: gray; font-size: 14px;"
+      style="color: gray; font-size: 16px;"
       matInput
       formControlName="agreed"
-      >I have read and agreed to the<a
+      >I have read and agreed to the &nbsp;<a
         target="_blank"
         routerLink="/buyer_terms"
       >
         Buyer's Terms of Use</a
-      >&nbsp;and
-      <a target="_blank" routerLink="/privacy"
-        >Privacy Statement.</a
+      >&nbsp;and &nbsp;
+      <a target="_blank" routerLink="/privacy">
+        Privacy Statement.</a
       ></mat-checkbox
     >
     <br />
