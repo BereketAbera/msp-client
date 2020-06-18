@@ -1,0 +1,117 @@
+<div class="main-container">
+  <div class="filter">
+    <div class="add-shop__address">
+      <form class="form" [formGroup]="filterForm">
+        <mat-form-field class="filter-body">
+          <input
+            matInput
+            maxlength="45"
+            placeholder="Email"
+            formControlName="email"
+          />
+        </mat-form-field>
+        <mat-form-field class="filter-body filter-state">
+          <mat-select
+            placeholder="Select registrationType"
+            formControlName="registrationType"
+          >
+            <mat-option
+              *ngFor="let registrationType of registrationTypes"
+              [value]="registrationType.value"
+            >
+              {{ registrationType.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="filter-body">
+          <input
+            matInput
+            maxlength="45"
+            placeholder="Sign Up Credit"
+            formControlName="signUpCredit"
+            type="number"
+          />
+        </mat-form-field>
+
+        <!-- <mat-form-field class="filter-body">
+          <mat-label>Created Date Starting From</mat-label>
+          <input
+            formControlName="date"
+            matInput
+            [matDatepicker]="date"
+            placeholder="MM/DD/YYYY"
+            #dateValue
+          />
+          <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
+          <mat-datepicker
+            [startAt]="date"
+            #date
+            disabled="false"
+          ></mat-datepicker>
+        </mat-form-field> -->
+
+        <div class="filter-button">
+          <button
+            type="submit"
+            (click)="filterBuyer()"
+            mat-raised-button
+            color="accent"
+          >
+            Search
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <mat-table class="mat-elevation-z8" [dataSource]="dataSource">
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef>First Name</mat-header-cell>
+
+      <mat-cell *matCellDef="let user">{{
+        user.firstName + " " + user.lastName
+      }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef>Email</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{ user.email }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="phoneNumber">
+      <mat-header-cell *matHeaderCellDef>Phone Number</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{ user.phoneNumber }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="registrationType">
+      <mat-header-cell *matHeaderCellDef>Registration Type</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{ user.registrationType }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="signUpCredit">
+      <mat-header-cell *matHeaderCellDef>Sign Up Credit</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{ user.signUpCredit }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="createdAt">
+      <mat-header-cell *matHeaderCellDef>Created date</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{
+        user.createdAt | date: "MM/dd/yyyy"
+      }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
+
+      <mat-cell *matCellDef="let user">{{ getStatus(user.status) }}</mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+  <mat-paginator
+    [length]="count"
+    [pageSize]="10"
+    [pageSizeOptions]="[10, 20, 30, 50]"
+    (page)="pageChange($event)"
+  ></mat-paginator>
+</div>

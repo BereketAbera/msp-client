@@ -1,5 +1,5 @@
 <header class="navigation">
-  <div routerLink="/" class="navigation__header-container">
+  <div class="navigation__header-container">
     <div class="navigation__sub-header-container">
       <!-- <img
         routerLink="./"
@@ -7,10 +7,49 @@
         alt="Logo"
         class="navigation__desktop-header-image"
       /> -->
-      <a routerLink="./" class="navigation__desktop-header-text"
+      <a routerLink="/" class="navigation__desktop-header-text"
         >ManagerSpecial</a
       >
     </div>
+    <ul class="navigation__sub-container">
+      <li class="navigation__item svg-wrapper">
+        <a
+          routerLink="./"
+          [routerLinkActive]="['active-route']"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="navigation__item-text"
+          ><i class="fad fa-chart-bar navigation__item-icon"></i> Sellers
+        </a>
+      </li>
+      <li class="navigation__item">
+        <a
+          routerLink="./buyers"
+          [routerLinkActive]="['active-route']"
+          [routerLinkActiveOptions]="{ exact: false }"
+          class="navigation__item-text"
+          ><i class="fad fa-envelope-open navigation__item-icon"></i>Buyers</a
+        >
+      </li>
+
+      <li class="navigation__item">
+        <a
+          routerLink="./codes"
+          [routerLinkActive]="['active-route']"
+          [routerLinkActiveOptions]="{ exact: false }"
+          class="navigation__item-text"
+          ><i class="fad fa-envelope-open navigation__item-icon"></i> Codes</a
+        >
+      </li>
+      <li class="navigation__item">
+        <a
+          routerLink="./config"
+          [routerLinkActive]="['active-route']"
+          [routerLinkActiveOptions]="{ exact: false }"
+          class="navigation__item-text"
+          ><i class="fad fa-cog navigation__item-icon"></i>Config</a
+        >
+      </li>
+    </ul>
     <div>
       <span class="navigation__item">
         <a (click)="logout()" class="navigation__item-text navigation__logout">
@@ -21,5 +60,5 @@
       </span>
     </div>
   </div>
-  <div class="navigation__divider navigation__divider-middle"></div>
+  <!-- <div class="navigation__divider navigation__divider-middle"></div> -->
 </header>
