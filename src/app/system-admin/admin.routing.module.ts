@@ -1,3 +1,4 @@
+import { CodesDetailComponent } from "./codes-detail/codes-detail.component";
 import { ConfigComponent } from "./config/config.component";
 import { CodesComponent } from "./codes/codes.component";
 import { BuyersComponent } from "./buyers/buyers.component";
@@ -46,6 +47,13 @@ const sellerRoutes: Routes = [
       {
         path: "codes",
         component: CodesComponent,
+        // resolve:{
+        //   seller: SellerInfoResolverService
+        // }
+      },
+      {
+        path: "codes/detail/:code",
+        component: CodesDetailComponent,
         // resolve:{
         //   seller: SellerInfoResolverService
         // }
