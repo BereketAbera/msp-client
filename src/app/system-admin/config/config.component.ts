@@ -10,7 +10,7 @@ import { MatDialog, MatSnackBar } from '@angular/material';
 })
 export class ConfigComponent implements OnInit {
   confg;
-  editmode: boolean = false;
+  // editmode: boolean = false;
   constructor(private adminsService: AdminService,private dialog:MatDialog,private snackBar:MatSnackBar) { }
 
   ngOnInit() {
@@ -24,7 +24,6 @@ export class ConfigComponent implements OnInit {
 
   editConfig(key,value) {
  
-    this.editmode = true;
     // this.adminsService.updateActiveConfiguration(body).subscribe(data=>{
     //   console.log(data)
     // })
