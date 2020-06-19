@@ -18,9 +18,8 @@
     cursor: pointer;
     transition: all 0.2s;
     background: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: none;
+  
 
     &-icon {
       position: absolute;
@@ -41,7 +40,11 @@
 .overlay.active {
   z-index: 2500;
   background-color: rgba(black, 0.5);
-
+  .overlay__close{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
   .overlay__close-icon {
     transform: translate(-50%, -50%) scale(1);
   }
