@@ -48,7 +48,6 @@ import { StateService } from "./service/state.service";
 import { SellerStaffService } from "./service/seller-staff.service";
 import { ProductResolverService } from "./service/product-resolver.service";
 import { MspMarkupResolverService } from "./service/msp-markup-resolver.service";
-import { EditConfigsModalComponent } from './system-admin/edit-configs-modal/edit-configs-modal.component';
 import { EditConfigModalComponent } from './system-admin/edit-config-modal/edit-config-modal.component';
 // import { DragDropDirective } from './service/drag-drop.directive';
 // import { CustomNotificationComponent } from "./components/custom-notification/custom-notification.component";
@@ -71,7 +70,6 @@ import { EditConfigModalComponent } from './system-admin/edit-config-modal/edit-
     BuyerTermsComponent,
     SellerTermsComponent,
     RefundComponent,
-    EditConfigsModalComponent,
     EditConfigModalComponent
     //  DragDropDirective
     // CustomNotificationComponent,
