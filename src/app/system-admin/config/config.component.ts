@@ -15,7 +15,7 @@ export class ConfigComponent implements OnInit {
 
   ngOnInit() {
     this.adminsService.getActiveConfiguration().subscribe(data => {
-      console.log(data);
+      // console.log(data);
       if (data) {
         this.confg = data;
       }
@@ -23,9 +23,8 @@ export class ConfigComponent implements OnInit {
   }
 
   editConfig(key,value) {
-    console.log(key,value)
+ 
     this.editmode = true;
-    console.log(this.editmode)
     // this.adminsService.updateActiveConfiguration(body).subscribe(data=>{
     //   console.log(data)
     // })
