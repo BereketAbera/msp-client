@@ -19,6 +19,8 @@ import { UserService } from "../service/user.service";
 import { StateResolverService } from "../service/state-resolver.service";
 import { SellerInfoResolverService } from "../_resolvers/seller-info-resolver.service";
 import { StateService } from "../service/state.service";
+import { EditConfigModalComponent } from './edit-config-modal/edit-config-modal.component';
+import { MatDialogModule } from "@angular/material/dialog";
 
 @NgModule({
   declarations: [
@@ -35,6 +37,7 @@ import { StateService } from "../service/state.service";
     ReactiveFormsModule,
     SharedModule,
     AdminRoutingModule,
+    MatDialogModule
   ],
   providers: [
     UserService,

@@ -1,0 +1,55 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &__field {
+        width: 100%;
+    }
+
+    // &__btn {
+    //     justify-content: center;
+    //     width: 100%;
+    //     font-size: 1rem;
+    //     background-color: $color-tertiary;
+    //     color: $color-white;
+    //     border-radius: 2rem;
+    //     margin-top: 1rem;
+    // }
+
+    .input-icon {
+        color: #f94081;
+        margin-right: .8rem;
+    }
+
+    &__error {
+        margin-bottom: .5rem;
+        background-color: red;
+        color: white;
+        padding: .2rem .5rem;
+        border-radius: 3px;
+        white-space: nowrap;
+    }
+}
+
+.btn-container {
+    position: relative;
+    margin-bottom: 0;
+    .btn {
+        font-weight: 600;
+        
+        &--edit {
+            background-color: #f94081;
+        }
+        &--delete {
+            margin-right: 8px
+        }
+        .icon {
+            margin-bottom: 5px;
+        }
+    }
+    .progress {
+        position: absolute;
+        bottom: -5px;
+    }
+}

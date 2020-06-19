@@ -1,3 +1,116 @@
-<p>
-  config works!
-</p>
+<div class="content">
+  <div class="content__header">
+    Acitve Configuration of MSP
+  </div>
+
+  <div class="content__body">
+    <ul >
+      <li class="content__item">
+        <span class="label">Distance </span>
+       <b><span *ngIf="!editMode"> {{ confg?.distanceKM }}</span>  </b> 
+        <div class="action">
+          <button
+          type="submit"
+          (click)="editConfig('distanceKM',confg?.distanceKM)"
+          mat-flat-button   
+          color="default"    
+        >
+        <i style="font-size:1.8rem;" class="fad fa-edit"></i>  
+        </button>
+        
+        </div>
+      </li>
+      <li class="content__item">
+        <span class="label">Talguu Markup </span>
+       <b><span> {{ confg?.talguuMarkup }}</span>  </b>  
+        <div class="action">
+          <button
+          type="submit"
+          (click)="editConfig('talguuMarkup',confg?.talguuMarkup)"
+          mat-flat-button
+          color="default"
+          
+        >
+        <i style="font-size:1.8rem;" class="fad fa-edit"></i>  
+        </button>
+        </div>
+      </li>
+      <li class="content__item">
+        <span class="label">Normal Register Credit </span>
+         <b> <span> {{ confg?.noRefCredit }}</span>  </b>
+        <div class="action">
+          <button
+          type="submit"
+          (click)="editConfig('noRefCredit',confg?.noRefCredit)"
+          mat-flat-button
+          color="default"
+          
+        >
+        <i style="font-size:1.8rem;" class="fad fa-edit"></i>  
+        </button>
+        </div>
+      </li>
+      <li class="content__item">
+        <span class="label">Seller Referrer Credit </span>
+       <b> <span> {{ confg?.sellerRefReferrerCredit }}</span>  </b> 
+        <div class="action">
+          <button
+          type="submit"
+          (click)="editConfig('sellerRefReferrerCredit',confg?.sellerRefReferrerCredit)"
+          mat-flat-button
+          color="default"
+          
+        >
+        <i style="font-size:1.8rem;" class="fad fa-edit"></i>  
+        </button>
+        </div>
+      </li>
+      <li class="content__item">
+        <span class="label">Buyer Refferred Credit </span>
+        <b><span> {{ confg?.buyerRefReferredCredit }}</span>  </b> 
+        <div class="action">
+          <button
+          type="submit"
+          (click)="editConfig('buyerRefReferredCredit',confg?.buyerRefReferredCredit)"
+          mat-flat-button
+          color="default"
+          
+        >
+        <i style="font-size:1.8rem;" class="fad fa-edit"></i>  
+        </button>
+        </div>
+      </li>
+      <li class="content__item">
+        <span class="label">Buyer Refferrer Credit </span>
+        <b> <span> {{ confg?.buyerRefReferrerCredit }}</span>  </b>
+        <div class="action">
+          <button
+          type="submit"
+          (click)="editConfig('buyerRefReferrerCredit',confg?.buyerRefReferrerCredit)"
+          mat-flat-button
+          color="default"
+          
+        >
+        <i style="font-size:1.8rem;" class="fad fa-edit"></i>  
+        </button>
+        </div>
+      </li>
+      <li class="content__item">
+        <span class="label">Social Reffered Credit </span>
+       <b> <span> {{ confg?.socialRefReferredCredit }}</span>  </b> 
+        <div class="action">
+          <button
+          type="submit"
+          (click)="editConfig('socialRefReferredCredit',confg?.socialRefReferredCredit)"
+          mat-flat-button
+          color="default"
+          
+        >
+        <i style="font-size:1.8rem;" class="fad fa-edit"></i>  
+        </button>
+        </div>
+      </li>
+      
+    </ul>
+  </div>
+</div>

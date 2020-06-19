@@ -16,6 +16,14 @@ export class AdminService {
     return this.http.get(adminApi + `accounts/buyer/filter?${param}`);
   }
 
+  getActiveConfiguration():Observable<any>{
+    return this.http.get(adminApi+`config`)
+  }
+
+  updateActiveConfiguration(body): Observable<any>{
+    return this.http.put(adminApi+`config`, body)
+  }
+
   generateParams(params) {
     let url = "";
     let keys = Object.keys(params);

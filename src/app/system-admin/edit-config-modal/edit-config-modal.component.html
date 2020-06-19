@@ -1,0 +1,41 @@
+<h2 mat-dialog-title>Edit Configuration</h2>
+<div mat-dialog-content>
+  <form class="form" [formGroup]="editForm" (ngSubmit)="onSubmit()">
+    <mat-error class="form__error" *ngIf="error">{{ error }}</mat-error>
+    <mat-form-field class="form__field">
+      <mat-label>{{ data.key }}</mat-label>
+      <input
+      style="font-size: 1.8rem;"
+        matInput
+        placeholder="Enter Code Credit"
+        formControlName="configF"
+        type="number"
+      />
+      <!-- <i matPrefix class="fad fa-comment-alt-dots input-icon"></i> -->
+      <mat-error *ngIf="f.configF.hasError('required')"
+        >input is required</mat-error
+      >
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions class="btn-container" align="end">
+  <button class="btn" type="button" mat-flat-button (click)="onCancel()">
+    Cancel
+  </button>
+  <button
+    style="font-weight: 600; background-color: #f94081;"
+    class="btn btn--edit"
+    (click)="onSubmit()"
+    class="form__btn"
+    color="primary"
+    mat-flat-button
+    [disabled]="loading"
+  >
+    <i class="fad fa-edit"></i> Edit
+  </button>
+  <mat-progress-bar
+    class="progress"
+    *ngIf="loading"
+    mode="indeterminate"
+  ></mat-progress-bar>
+</div>
