@@ -31,6 +31,8 @@ export class SocialReferralComponent implements OnInit {
   }
 
   getExpDate(val) {
-    return moment(val).add(30, "days").fromNow();
+    return moment(new Date()) < moment(val).add(30, "days")
+      ? moment(val).add(30, "days")
+      : null;
   }
 }

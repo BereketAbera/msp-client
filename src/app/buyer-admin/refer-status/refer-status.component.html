@@ -40,7 +40,7 @@
           <mat-header-cell *matHeaderCellDef>Invitation Date</mat-header-cell>
           <mat-cell *matCellDef="let refer">
             <span class="mobile-label">Date:</span>
-            {{ refer.createdAt | date: "yyyy-MM-dd HH:mm:ss" }}</mat-cell
+            {{ refer.createdAt | date }}</mat-cell
           >
         </ng-container>
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

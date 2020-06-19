@@ -78,7 +78,7 @@ export class ManageStaffAccessComponent implements OnInit {
 
   goBack() {
     let snackBarRef = this.snackBar.open(
-      "If the change is not active, ask the affected staffer to refresh his/her screen.",
+      "If the change is not active, ask the affected employee to refresh his/her screen.",
       "",
       {
         duration: 5000,
