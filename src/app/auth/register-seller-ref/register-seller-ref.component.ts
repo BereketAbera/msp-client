@@ -131,6 +131,7 @@ export class RegisterSellerRefComponent implements OnInit {
         let usrInfo = this.registrationForm.value;
         usrInfo.tk = this.tk;
         usrInfo.phoneNumber = this.phoneChangeFormat(phoneNumber.value, "db");
+        // usrInfo.phoneNumber = "+251931644114"
         this.loading = true;
         return this.userService.registerSlrUser(usrInfo).subscribe((res) => {
           this.loading = false;
