@@ -44,7 +44,7 @@ export class NewOffPeakProductComponent implements OnInit {
     { name: "SAT", selected: true, id: 6 },
     { name: "SUN", selected: true, id: 7 },
   ];
-  @ViewChild("file") file;
+  @ViewChild("file", { static: false }) file;
   section1 = false;
   section2 = false;
   showErrorNotification = false;

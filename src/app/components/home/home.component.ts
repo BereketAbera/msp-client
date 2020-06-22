@@ -15,7 +15,7 @@ import { FormControl, Validators } from "@angular/forms";
   styleUrls: ["./home.component.scss"],
 })
 export class HomeComponent implements OnInit {
-  @ViewChild("anchor") anchor: ElementRef<HTMLElement>;
+  @ViewChild("anchor", { static: false }) anchor: ElementRef<HTMLElement>;
   searchInput = new FormControl("");
   categories: Category[];
   lat: number = 0;
@@ -24,8 +24,8 @@ export class HomeComponent implements OnInit {
   addresses = [];
   address;
   videosC = true
-  @ViewChild('videoPlayer') videoplayer: ElementRef;
-  @ViewChild('videoPlayerB') videoplayerB: ElementRef;
+  @ViewChild('videoPlayer', { static: true }) videoplayer: ElementRef;
+  @ViewChild('videoPlayerB', { static: true }) videoplayerB: ElementRef;
   play: boolean;
   play2: any;
   constructor(

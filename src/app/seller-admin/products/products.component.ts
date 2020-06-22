@@ -40,11 +40,11 @@ export class ProductsComponent implements OnInit, AfterViewInit {
     "remove",
   ];
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-  @ViewChild("input") input: ElementRef;
+  @ViewChild("input", { static: false }) input: ElementRef;
 
   constructor(
     public snackBar: MatSnackBar,

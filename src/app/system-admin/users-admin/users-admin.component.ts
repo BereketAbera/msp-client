@@ -45,11 +45,11 @@ export class UsersAdminComponent implements OnInit, AfterViewInit {
     "remove",
   ];
   filterForm: FormGroup;
-  @ViewChild(MatPaginator, { read: MatPaginator }) paginator: MatPaginator;
+  @ViewChild(MatPaginator, { read: MatPaginator, static: true }) paginator: MatPaginator;
 
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-  @ViewChild("input") input: ElementRef;
+  @ViewChild("input", { static: false }) input: ElementRef;
   states: any[];
   page: number;
 

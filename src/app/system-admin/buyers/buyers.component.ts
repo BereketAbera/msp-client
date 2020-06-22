@@ -34,8 +34,8 @@ export class BuyersComponent implements OnInit {
   ];
   filterForm: FormGroup;
   // @ViewChild("dateValue") dateValue;
-  @ViewChild("sDate") sDatePicker;
-  @ViewChild("eDate") eDatePicker;
+  @ViewChild("sDate", { static: true }) sDatePicker;
+  @ViewChild("eDate", { static: true }) eDatePicker;
 
   constructor(
     private adminService: AdminService,

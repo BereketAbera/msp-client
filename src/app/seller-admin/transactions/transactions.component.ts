@@ -33,11 +33,11 @@ export class TransactionsComponent implements OnInit, AfterViewInit {
     "name",
   ];
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-  @ViewChild("input") input: ElementRef;
+  @ViewChild("input", { static: false }) input: ElementRef;
 
   constructor(
     private route: ActivatedRoute,

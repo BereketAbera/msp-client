@@ -19,7 +19,7 @@ import { DepositeWithSavedCreditCardComponent } from "../deposite-with-saved-cre
   styleUrls: ["./buyer-deposit.component.scss"],
 })
 export class BuyerDepositComponent implements OnInit {
-  @ViewChild(PaymentTypeDirective) paymentType: PaymentTypeDirective;
+  @ViewChild(PaymentTypeDirective, { static: true }) paymentType: PaymentTypeDirective;
 
   creditCards: CreditCard[];
   balance: number = 0;

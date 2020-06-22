@@ -24,11 +24,11 @@ export class BuyerTransactionsComponent implements OnInit, AfterViewInit {
   balance: number = 0;
   displayedColumns = ["type", "date", "amount", "reason", "name"];
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-  @ViewChild("input") input: ElementRef;
+  @ViewChild("input", { static: false }) input: ElementRef;
 
   constructor(
     private route: ActivatedRoute,

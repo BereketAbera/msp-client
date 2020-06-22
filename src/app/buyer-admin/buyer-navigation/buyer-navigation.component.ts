@@ -11,7 +11,7 @@ export class BuyerNavigationComponent implements OnInit {
   background = "primary";
   links = [];
   name: string = "";
-  @ViewChild("drawerCheckbox") drawerCheckbox: ElementRef;
+  @ViewChild("drawerCheckbox", { static: true }) drawerCheckbox: ElementRef;
 
   constructor(private authService: AuthService, private router: Router) {}
 

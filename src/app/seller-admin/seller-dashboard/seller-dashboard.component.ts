@@ -16,7 +16,7 @@ import { UserService } from "src/app/service/user.service";
   styleUrls: ["./seller-dashboard.component.scss"],
 })
 export class SellerDashboardComponent implements OnInit {
-  @ViewChild("lineChart") private chartRef;
+  @ViewChild("lineChart", { static: true }) private chartRef;
   chart: any;
   summary: SellerSummary;
   actualRevenuReport: RevenuRprt[];

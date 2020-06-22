@@ -18,7 +18,7 @@ let uploadClass = null;
   styleUrls: ["./upload-img.component.scss"],
 })
 export class UploadImgComponent implements OnInit {
-  @ViewChild("imageInput") imageInput: ElementRef;
+  @ViewChild("imageInput", { static: true }) imageInput: ElementRef;
 
   imageChangedEvent: any = "";
   croppedImage: any = "";

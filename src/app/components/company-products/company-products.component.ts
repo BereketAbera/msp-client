@@ -21,7 +21,7 @@ export class CompanyProductsComponent implements OnInit {
   @Input() categoryId: number;
   catId: number;
   q = "";
-  @ViewChild("anchor") anchor: ElementRef<HTMLElement>;
+  @ViewChild("anchor", { static: false }) anchor: ElementRef<HTMLElement>;
   page = 0;
   pageSize = 6;
   shouldLoad: boolean = true;

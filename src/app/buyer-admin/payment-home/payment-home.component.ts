@@ -23,7 +23,7 @@ import { PaymentWithSavedCreditCardComponent } from "../payment-with-saved-credi
   styleUrls: ["./payment-home.component.scss"],
 })
 export class PaymentHomeComponent implements OnInit {
-  @ViewChild(PaymentTypeDirective) paymentType: PaymentTypeDirective;
+  @ViewChild(PaymentTypeDirective, { static: true }) paymentType: PaymentTypeDirective;
   product: Product;
   cartProducts: ReserveProduct[];
   creditCards: CreditCard[];

@@ -13,7 +13,7 @@ export class NavigationComponent implements OnInit {
   links = [];
   name: string = "";
   role: string = "";
-  @ViewChild("drawerCheckbox") drawerCheckbox: ElementRef;
+  @ViewChild("drawerCheckbox", { static: true }) drawerCheckbox: ElementRef;
   currentUser: any = {};
   features: any = [];
   // role = 'SELLER';

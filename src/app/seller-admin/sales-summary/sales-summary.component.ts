@@ -39,11 +39,11 @@ export class SalesSummaryComponent implements OnInit, AfterViewInit {
   dateEnd = new FormControl(new Date());
 
   select = new FormControl('');
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-  @ViewChild("input") input: ElementRef;
+  @ViewChild("input", { static: false }) input: ElementRef;
   constructor(
     private route: ActivatedRoute,
     private userService: UserService,

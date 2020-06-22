@@ -15,8 +15,8 @@ import { FormControl, Validators } from "@angular/forms";
   styleUrls: ["./public-products.component.scss"],
 })
 export class PublicProductsComponent implements OnInit {
-  @ViewChild("anchor") anchor: ElementRef<HTMLElement>;
-  @ViewChild("locationInput") locationInput: ElementRef<HTMLElement>;
+  @ViewChild("anchor", { static: true }) anchor: ElementRef<HTMLElement>;
+  @ViewChild("locationInput", { static: true }) locationInput: ElementRef<HTMLElement>;
   query: string = "";
   searchInput = new FormControl("");
   categories: Category[];
