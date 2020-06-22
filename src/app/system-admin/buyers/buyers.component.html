@@ -34,22 +34,37 @@
           />
         </mat-form-field>
 
-        <!-- <mat-form-field class="filter-body">
-          <mat-label>Created Date Starting From</mat-label>
+        <mat-form-field class="filter-body">
+          <mat-label>Date From</mat-label>
           <input
-            formControlName="date"
+            formControlName="sDate"
             matInput
-            [matDatepicker]="date"
+            [matDatepicker]="sDate"
             placeholder="MM/DD/YYYY"
             #dateValue
           />
-          <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
-          <mat-datepicker
-            [startAt]="date"
-            #date
-            disabled="false"
-          ></mat-datepicker>
-        </mat-form-field> -->
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="sDate"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #sDate disabled="false"></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field class="filter-body">
+          <mat-label>Date To</mat-label>
+          <input
+            formControlName="eDate"
+            matInput
+            [matDatepicker]="eDate"
+            placeholder="MM/DD/YYYY"
+            #dateValue
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="eDate"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #eDate disabled="false"></mat-datepicker>
+        </mat-form-field>
 
         <div class="filter-button">
           <button

@@ -16,7 +16,8 @@ export class BuyersComponent implements OnInit {
   pageSize = 10;
   email = "";
   signUpCredit = "";
-  date = "";
+  sDate = "";
+  eDate = "";
   registrationType = "";
   displayedColumns = [
     "name",
@@ -29,10 +30,12 @@ export class BuyersComponent implements OnInit {
   registrationTypes = [
     { name: "EMAIL REFERRAL", value: "EMAIL REFERRAL" },
     { name: "NORMAL", value: "NORMAL" },
-    { name: "SOCIAL MEDIA", value: "REFERRAL CODE" },
+    { name: "SOCIAL MEDIA", value: "SOCIAL MEDIA" },
   ];
   filterForm: FormGroup;
-  @ViewChild("dateValue") dateValue;
+  // @ViewChild("dateValue") dateValue;
+  @ViewChild("sDate") sDatePicker;
+  @ViewChild("eDate") eDatePicker;
 
   constructor(
     private adminService: AdminService,
@@ -46,7 +49,8 @@ export class BuyersComponent implements OnInit {
       email: [""],
       signUpCredit: [""],
       registrationType: [""],
-      date: [""],
+      sDate: [""],
+      eDate: [new Date()],
     });
     this.route.queryParamMap.subscribe((params) => {
       this.pageNumber = parseInt(params.get("pageNumber")) || 1;
@@ -54,7 +58,8 @@ export class BuyersComponent implements OnInit {
       this.registrationType = params.get("registrationType") || "";
       this.email = params.get("email") || "";
       this.signUpCredit = params.get("signUpCredit") || "";
-      this.date = params.get("date") || "";
+      this.sDate = params.get("sDate") || "";
+      this.eDate = params.get("eDate") || "";
 
       this.filterForm.controls["email"].setValue(this.email);
       this.filterForm.controls["signUpCredit"].setValue(this.signUpCredit);
@@ -74,7 +79,8 @@ export class BuyersComponent implements OnInit {
         email: this.email,
         signUpCredit: this.signUpCredit,
         registrationType: this.registrationType,
-        date: this.date,
+        sDate: this.sDate,
+        eDate: this.eDate,
       })
       .subscribe((res) => {
         this.count = res.count;
@@ -114,9 +120,19 @@ export class BuyersComponent implements OnInit {
       email: controls["email"].value,
       signUpCredit: controls["signUpCredit"].value,
       registrationType: controls["registrationType"].value,
-      date: moment(controls["date"].value).isValid()
-        ? moment(controls["date"].value).format("YYYY-MM-DD")
+      sDate: moment(controls["sDate"].value).isValid()
+        ? moment(controls["sDate"].value).format("YYYY-MM-DD")
         : "",
+      eDate: moment(controls["eDate"].value).isValid()
+        ? moment(controls["eDate"].value).format("YYYY-MM-DD")
+        : "",
+    });
+  }
+
+  ngAfterViewInit() {
+    setTimeout(() => {
+      this.filterForm.controls["sDate"].setValue(this.sDate);
+      this.filterForm.controls["eDate"].setValue(this.eDate);
     });
   }
 }

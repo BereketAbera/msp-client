@@ -72,6 +72,7 @@
                 [routerLinkActive]="['active-route']"
                 [routerLinkActiveOptions]="{ exact: false }"
                 class="side_bar_mobile__item-text"
+                [class.not-active]="checkHaveAccess('gallery')"
                 ><i class="fad fa-images side_bar_mobile__item-icon"></i>
                 Gallery</a
               >
@@ -148,6 +149,9 @@
           [routerLinkActive]="['active-route']"
           [routerLinkActiveOptions]="{ exact: true }"
           class="navigation__item-text"
+          [class.not-active]="
+            role == 'SELLER_STAFF' && !checkHaveAccess('View Summary')
+          "
           ><i class="fad fa-chart-bar navigation__item-icon"></i> Dashboard
         </a>
       </li>
@@ -157,6 +161,9 @@
           [routerLinkActive]="['active-route']"
           [routerLinkActiveOptions]="{ exact: false }"
           class="navigation__item-text"
+          [class.not-active]="
+            role == 'SELLER_STAFF' && !checkHaveAccess('Manage Order')
+          "
           ><i class="fad fa-envelope-open navigation__item-icon"></i
           >Reservations</a
         >
@@ -167,6 +174,9 @@
           [routerLinkActive]="['active-route']"
           [routerLinkActiveOptions]="{ exact: false }"
           class="navigation__item-text"
+          [class.not-active]="
+            role == 'SELLER_STAFF' && !checkHaveAccess('Manage Order')
+          "
           ><i class="fad fa-envelope-open navigation__item-icon"></i>Process
           Code</a
         >
@@ -178,6 +188,9 @@
           [routerLinkActive]="['active-route']"
           [routerLinkActiveOptions]="{ exact: false }"
           class="navigation__item-text"
+          [class.not-active]="
+            role == 'SELLER_STAFF' && !checkHaveAccess('View Products')
+          "
           ><i class="fad fa-clone navigation__item-icon"></i>Products</a
         >
       </li>
@@ -187,6 +200,9 @@
           [routerLinkActive]="['active-route']"
           [routerLinkActiveOptions]="{ exact: false }"
           class="navigation__item-text"
+          [class.not-active]="
+            role == 'SELLER_STAFF' && !checkHaveAccess('Manage Shop')
+          "
           ><i class="fad fa-map navigation__item-icon"></i>Stores
         </a>
       </li>
@@ -196,19 +212,23 @@
           [routerLinkActive]="['active-route']"
           [routerLinkActiveOptions]="{ exact: false }"
           class="navigation__item-text"
+          [class.not-active]="
+            role == 'SELLER_STAFF' && !checkHaveAccess('Manage Gallery')
+          "
           ><i class="fad fa-images navigation__item-icon"></i> Gallery</a
         >
       </li>
-      <li class="navigation__item">
+      <li *ngIf="role != 'SELLER_STAFF'" class="navigation__item">
         <a
           routerLink="./staffs"
           [routerLinkActive]="['active-route']"
           [routerLinkActiveOptions]="{ exact: false }"
           class="navigation__item-text"
+          [class.not-active]="role == 'SELLER_STAFF'"
           ><i class="fad fa-sun navigation__item-icon"></i> Employees</a
         >
       </li>
-      <li class="navigation__item">
+      <li *ngIf="role != 'SELLER_STAFF'" class="navigation__item">
         <a
           routerLink="./profile"
           [routerLinkActive]="['active-route']"

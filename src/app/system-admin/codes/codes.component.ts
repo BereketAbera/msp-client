@@ -10,7 +10,7 @@ import { FormControl } from "@angular/forms";
 })
 export class CodesComponent implements OnInit {
   referredCredit = new FormControl();
-  codes: any = [];
+  codes: any = null;
   buttonDisable = false;
   pageNumber = 0;
   pageSize = 5;

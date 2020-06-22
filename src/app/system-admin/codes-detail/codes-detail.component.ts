@@ -12,7 +12,7 @@ export class CodesDetailComponent implements OnInit {
   pageNumber = 1;
   pageSize = 5;
   count = 0;
-  dataSource = [];
+  dataSource: any = null;
   displayedColumns = [
     "name",
     "email",
@@ -47,8 +47,10 @@ export class CodesDetailComponent implements OnInit {
         registrationType: this.registrationType,
       })
       .subscribe((res) => {
+        // console.log(res);
         this.count = res.count;
         this.dataSource = res.rows || [];
+        // console.log(this.dataSource);
       });
   }
 

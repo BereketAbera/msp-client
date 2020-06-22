@@ -1,6 +1,7 @@
+import { AuthService } from "./../../service/auth.service";
+import { SellerStaffService } from "./../../service/seller-staff.service";
 import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
-import { AuthService } from "../../service/auth.service";
 
 @Component({
   selector: "app-navigation",
@@ -13,16 +14,30 @@ export class NavigationComponent implements OnInit {
   name: string = "";
   role: string = "";
   @ViewChild("drawerCheckbox") drawerCheckbox: ElementRef;
+  currentUser: any = {};
+  features: any = [];
+  // role = 'SELLER';
 
   constructor(
     private router: Router,
     private authService: AuthService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private sellerStaffService: SellerStaffService
   ) {}
 
   ngOnInit() {
-    this.name = this.authService.getName();
     this.role = this.authService.getRole();
+    this.currentUser = this.authService.getUser();
+    this.sellerStaffService
+      .getUserFeatures(this.currentUser.id)
+      .subscribe((response) => {
+        if (response.success) {
+          this.features = response.features;
+        }
+        console.log(response);
+      });
+    this.name = this.authService.getName();
+    console.log(this.role);
   }
   gotoOrderHistory() {
     this.router.navigate(["./trnsctns"], { relativeTo: this.route });
@@ -50,5 +65,16 @@ export class NavigationComponent implements OnInit {
 
   drawerLinkClicked() {
     this.drawerCheckbox.nativeElement.checked = false;
+  }
+
+  checkHaveAccess(description) {
+    let x = false;
+    this.features.map((feature) => {
+      if (feature.description.includes(description)) {
+        x = true;
+      }
+    });
+
+    return x;
   }
 }

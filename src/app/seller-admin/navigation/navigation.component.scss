@@ -411,6 +411,18 @@
   }
 }
 
+.not-active {
+  &:hover,
+  &:active {
+    color: #888;
+    clip-path: none;
+    background-color: #fff;
+  }
+  cursor: default;
+  text-decoration: none;
+  color: #888;
+}
+
 @media only screen and (min-width: 900px) {
   .navigation {
     position: fixed;

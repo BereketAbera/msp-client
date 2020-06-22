@@ -28,7 +28,7 @@
         </button>
       </div>
     </div>
-    <div *ngIf="codes.length > 0" class="codes__table">
+    <div *ngIf="codes && codes.length > 0" class="codes__table">
       <mat-table class="mat-elevation-z8" [dataSource]="codes">
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let code; columns: displayedColumns"></mat-row>
@@ -81,7 +81,7 @@
         border: 1px solid #aaa;
         padding: 1rem;
       "
-      *ngIf="codes.length == 0"
+      *ngIf="codes && codes.length == 0"
     >
       No Bonus Codes Yet
     </div>
