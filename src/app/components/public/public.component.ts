@@ -30,7 +30,7 @@ export class PublicComponent implements OnInit {
   mobileSearchActive = false;
   mobileSearchValue = new FormControl("");
   desktopSearchValue = new FormControl("");
-  @ViewChild("deskInput", { static: false }) deskInput: ElementRef;
+  @ViewChild("deskInput") deskInput: ElementRef;
   categories: Category[];
   categoryId: any;
   q: any;

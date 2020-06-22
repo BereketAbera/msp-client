@@ -46,7 +46,7 @@ export class ProductsComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-  @ViewChild("input", { static: false }) input: ElementRef;
+  @ViewChild("input") input: ElementRef;
 
   constructor(
     public snackBar: MatSnackBar,

@@ -30,7 +30,7 @@ import { QrCodeData } from "../../model/qrCodeData";
 export class QrScannerComponent implements OnInit {
   video: any;
   @ViewChild("mycode", { static: true }) myCodeElementHTML: any;
-  @ViewChild("canvasElementHTML", { static: false }) canvasElementHTML: any;
+  @ViewChild("canvasElementHTML") canvasElementHTML: any;
   canvas: any;
   canvasElement: any;
   isScanning: boolean = false;

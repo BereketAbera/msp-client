@@ -45,7 +45,7 @@ export class SalesSummaryComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-  @ViewChild("input", { static: false }) input: ElementRef;
+  @ViewChild("input") input: ElementRef;
   constructor(
     private route: ActivatedRoute,
     private userService: UserService,

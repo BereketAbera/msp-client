@@ -17,7 +17,7 @@ import { SaveProgressComponent } from "../../shared/save-progress/save-progress.
   styleUrls: ["./buyer-item-qrcode.component.scss"],
 })
 export class BuyerItemQrcodeComponent implements OnInit {
-  @ViewChild("qrImg", { static: false }) image;
+  @ViewChild("qrImg") image;
   transaction;
   transStatus: TransactionStatus;
   supplier: Supplier;

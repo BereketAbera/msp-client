@@ -51,7 +51,7 @@ export class UsersAdminComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-  @ViewChild("input", { static: false }) input: ElementRef;
+  @ViewChild("input") input: ElementRef;
   states: any[];
   page: number;
 

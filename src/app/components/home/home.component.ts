@@ -15,7 +15,7 @@ import { FormControl, Validators } from "@angular/forms";
   styleUrls: ["./home.component.scss"],
 })
 export class HomeComponent implements OnInit {
-  @ViewChild("anchor", { static: false }) anchor: ElementRef<HTMLElement>;
+  @ViewChild("anchor") anchor: ElementRef<HTMLElement>;
   searchInput = new FormControl("");
   categories: Category[];
   lat: number = 0;

@@ -39,7 +39,7 @@ export class TransactionsComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-  @ViewChild("input", { static: false }) input: ElementRef;
+  @ViewChild("input") input: ElementRef;
 
   constructor(
     private route: ActivatedRoute,
