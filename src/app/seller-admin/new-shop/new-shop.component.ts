@@ -1,9 +1,7 @@
 import { Component, ViewChild, ElementRef, OnInit } from "@angular/core";
 import { FormBuilder, Validators, FormControl } from "@angular/forms";
-import { Observable, Subject, of } from "rxjs";
+import { Subject, of } from "rxjs";
 import { debounceTime } from "rxjs/operators/debounceTime";
-import { distinctUntilChanged } from "rxjs/operators/distinctUntilChanged";
-import { filter } from "rxjs/operators/filter";
 import { switchMap } from "rxjs/operators/switchMap";
 import { Shop } from "../../model/shop";
 import { ZipCode } from "../../model/zipCode";
@@ -29,14 +27,13 @@ export class NewShopComponent implements OnInit {
   [x: string]: any;
   showError: boolean = false;
   errors = [];
-  // zipCodeHints$ = new Observable<ZipCode[]>();
   zipCodeHints: ZipCode[];
   states: State[];
   prevValue = "";
   valueSet = false;
+  categories: any;
   private searchText$ = new Subject<string>();
 
-  //shopName = new FormControl("",Validators.required);
   shopForm = this.fb.group({
     shopName: ["", [Validators.required, Validators.minLength(2)]],
     address: ["", Validators.required],

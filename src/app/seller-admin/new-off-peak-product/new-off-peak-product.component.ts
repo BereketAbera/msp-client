@@ -20,8 +20,8 @@ import { RequestResultComponent } from "../request-result/request-result.compone
 import { UploadService } from "src/app/service/upload.service";
 import { ImageCroppedEvent } from "ngx-image-cropper";
 import Compressor from "compressorjs";
-import { stringify } from "querystring";
-import { copyStyles } from "@angular/animations/browser/src/util";
+// import { stringify } from "querystring";
+// import { copyStyles } from "@angular/animations/browser/src/util";
 // import { DragDropDirective } from 'src/app/service/drag-drop.directive';
 // let uploadClass = null;
 export interface Discount {
@@ -176,8 +176,7 @@ export class NewOffPeakProductComponent implements OnInit {
     private fb: FormBuilder,
     private uploadService: UploadService,
     private location: Location
-  ) {
-  }
+  ) {}
 
   ngOnInit() {
     this.route.params.subscribe(
@@ -309,7 +308,7 @@ export class NewOffPeakProductComponent implements OnInit {
   }
   initOfferPickupTime() {
     // let defaultOfferSHH = this.hours12(this.offerStartInitTime).toString();
-    let defaultOfferSHH = "08"
+    let defaultOfferSHH = "08";
     if (defaultOfferSHH.length == 1) defaultOfferSHH = "0" + defaultOfferSHH;
 
     let defaultOfferSMM = "00:AM";
@@ -318,7 +317,7 @@ export class NewOffPeakProductComponent implements OnInit {
     let defaultOfferSAMPM = this.getAMPM(this.offerStartInitTime);
 
     // let defaultOfferEHH = this.hours12(this.offerEndInitTime).toString();
-    let defaultOfferEHH = "04"
+    let defaultOfferEHH = "04";
     if (defaultOfferEHH.length == 1) defaultOfferEHH = "0" + defaultOfferEHH;
 
     let defaultOfferEMM = "00:PM";
@@ -769,9 +768,9 @@ export class NewOffPeakProductComponent implements OnInit {
   }
 
   consumptionTimesOnChanges($event) {
-    console.log(this.productForm.get("pickupEndHH").value)
+    console.log(this.productForm.get("pickupEndHH").value);
     let currY = this.productForm.get("pickupEndHH").value;
-    if (parseInt(currY) <= 12 && parseInt(currY) !=1 ) {
+    if (parseInt(currY) <= 12 && parseInt(currY) != 1) {
       this.productForm
         .get("offerEndHH")
         .setValue(`${this.returnTwoDigit(parseInt(currY) - 1)}`);
@@ -924,9 +923,7 @@ export class NewOffPeakProductComponent implements OnInit {
       success: (result) => {
         // setLocal(result);
         this.uploadForm.get("img").setValue(result);
-        this.uploadForm
-          .get("name")
-          .setValue("img_" + (Date.now() % 10000));
+        this.uploadForm.get("name").setValue("img_" + (Date.now() % 10000));
         if (this.uploadForm.value) {
           // this.formData.append("name", this.uploadForm.get("name").value);
           let value = this.uploadForm.value;
@@ -973,5 +970,5 @@ export class NewOffPeakProductComponent implements OnInit {
     // console.log(event);
   }
 
-  imageLoad(event) { }
+  imageLoad(event) {}
 }
