@@ -67,22 +67,22 @@ const appRoutes: Routes = [
     path: "",
     canActivate: [AuthGuard],
     data: { preload: true },
-    loadChildren: "./auth/auth.module#AuthModule",
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),
   },
   {
     path: "tlgu-slr",
     canActivate: [SellerGuard],
-    loadChildren: "./seller-admin/seller.module#SellerModule",
+    loadChildren: () => import('./seller-admin/seller.module').then(m => m.SellerModule),
   },
   {
     path: "tlgu-byr",
     canActivate: [BuyerGuard],
-    loadChildren: "./buyer-admin/buyer.module#BuyerModule",
+    loadChildren: () => import('./buyer-admin/buyer.module').then(m => m.BuyerModule),
   },
   {
     path: "tlgu-admin",
     canActivate: [AdminGuard],
-    loadChildren: "./system-admin/system-admin.module#SystemAdminModule",
+    loadChildren: () => import('./system-admin/system-admin.module').then(m => m.SystemAdminModule),
   },
   { path: "**", redirectTo: "", pathMatch: "full" },
 ];
