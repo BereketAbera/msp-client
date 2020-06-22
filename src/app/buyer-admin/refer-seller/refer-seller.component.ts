@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { UserService } from '../../service/user.service'
+import { ConfiguartionService } from 'src/app/service/configuartion.service';
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -26,7 +27,8 @@ export class ReferSellerComponent implements OnInit {
     Validators.email,
   ]);
   matcher = new MyErrorStateMatcher();
-  constructor(private userService: UserService) { }
+  config: any;
+  constructor(private userService: UserService,private configService:ConfiguartionService) { }
   addEmail() {
     if (this.emailFormControl.valid && (this.emails.indexOf(this.emailFormControl.value) < 0)) {
       this.userService.isEmailUsed(this.emailFormControl.value).subscribe(rslt => {
@@ -54,6 +56,7 @@ export class ReferSellerComponent implements OnInit {
     })
   }
   ngOnInit() {
+    this.config=this.configService.configData;
   }
 
   showNotification($event){

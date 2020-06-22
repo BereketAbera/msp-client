@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AdminService } from 'src/app/service/admin.service';
 import { EditConfigModalComponent } from '../edit-config-modal/edit-config-modal.component';
 import { MatDialog, MatSnackBar } from '@angular/material';
+import { ConfiguartionService } from 'src/app/service/configuartion.service';
 
 @Component({
   selector: 'app-config',
@@ -11,18 +12,21 @@ import { MatDialog, MatSnackBar } from '@angular/material';
 export class ConfigComponent implements OnInit {
   confg;
   // editmode: boolean = false;
-  constructor(private adminsService: AdminService,private dialog:MatDialog,private snackBar:MatSnackBar) { }
+  constructor(private adminsService: AdminService,private configService:ConfiguartionService, private dialog:MatDialog,private snackBar:MatSnackBar) { }
 
   ngOnInit() {
-    this.adminsService.getActiveConfiguration().subscribe(data => {
-      // console.log(data);
-      if (data) {
-        this.confg = data;
-      }
-    })
+   
+  //  console.log(this.configService.configData);
+   this.confg = this.configService.configData;
+    // this.adminsService.getActiveConfiguration().subscribe(data => {
+    //   // console.log(data);
+    //   if (data) {
+    //     this.confg = data;
+    //   }
+    // })
   }
 
-  editConfig(key,value) {
+  editConfig(key,value,label) {
  
     // this.adminsService.updateActiveConfiguration(body).subscribe(data=>{
     //   console.log(data)
@@ -32,7 +36,7 @@ export class ConfigComponent implements OnInit {
       // height: '250px',
       disableClose: true,
       autoFocus: true,
-       data: { key,value }
+       data: { key,value,label }
     });
 
     dialogRef.afterClosed().subscribe(result => {

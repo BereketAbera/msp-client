@@ -42,10 +42,10 @@ export class EditConfigModalComponent implements OnInit {
     // let val = {...this.editForm.get('configF').value, id: this.data.key};
     this.key=this.data.key;
     val[this.data.key]=this.editForm.get("configF").value;
-    console.log(val)
+    // console.log(val)
     this.adminService.updateActiveConfiguration(val).subscribe(
       data => {
-         console.log(data)
+        //  console.log(data)
         this.loading = false;
         this.dialogRef.close({event:'editted', data});
       },

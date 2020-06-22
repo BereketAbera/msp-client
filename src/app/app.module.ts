@@ -3,7 +3,7 @@ import { SellerTermsComponent } from "./components/seller-terms/seller-terms.com
 import { PrivacyComponent } from "./components/privacy/privacy.component";
 import "../polyfills";
 import { BrowserModule } from "@angular/platform-browser";
-import { NgModule } from "@angular/core";
+import { NgModule, APP_INITIALIZER } from "@angular/core";
 
 import { AppComponent } from "./app.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -49,6 +49,7 @@ import { SellerStaffService } from "./service/seller-staff.service";
 import { ProductResolverService } from "./service/product-resolver.service";
 import { MspMarkupResolverService } from "./service/msp-markup-resolver.service";
 import { EditConfigModalComponent } from './system-admin/edit-config-modal/edit-config-modal.component';
+import { ConfiguartionService } from './service/configuartion.service';
 // import { DragDropDirective } from './service/drag-drop.directive';
 // import { CustomNotificationComponent } from "./components/custom-notification/custom-notification.component";
 
@@ -109,7 +110,16 @@ import { EditConfigModalComponent } from './system-admin/edit-config-modal/edit-
     SubCategoryResolverService,
     WindowRef,
     httpInterceptorProviders,
+    ConfiguartionService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: (configService: ConfiguartionService) =>
+        () => configService.loadConfigurationData(),
+      deps: [ConfiguartionService],
+      multi: true
+    }
   ],
+
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -3,7 +3,7 @@
   <form class="form" [formGroup]="editForm" (ngSubmit)="onSubmit()">
     <mat-error class="form__error" *ngIf="error">{{ error }}</mat-error>
     <mat-form-field class="form__field">
-      <mat-label>{{ data.key }}</mat-label>
+      <mat-label>{{ data.label }}</mat-label>
       <input
       style="font-size: 1.8rem;"
         matInput
