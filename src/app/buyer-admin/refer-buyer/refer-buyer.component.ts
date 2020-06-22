@@ -7,6 +7,7 @@ import {
 } from "@angular/forms";
 import { ErrorStateMatcher } from "@angular/material/core";
 import { UserService } from "../../service/user.service";
+import { ConfiguartionService } from 'src/app/service/configuartion.service';
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
@@ -37,8 +38,9 @@ export class ReferBuyerComponent implements OnInit {
   ]);
   matcher = new MyErrorStateMatcher();
   showSuccessNotification = false;
+  config: any;
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService,private configService:ConfiguartionService) {}
   addEmail() {
     if (
       this.emailFormControl.valid &&
@@ -68,7 +70,9 @@ export class ReferBuyerComponent implements OnInit {
       this.emails = [];
     });
   }
-  ngOnInit() {}
+  ngOnInit() {
+    this.config=this.configService.configData;
+  }
   showNotification($event) {
     this.showErrorNotification = $event;
     this.showSuccessNotification = $event;
