@@ -6,12 +6,10 @@ import {
   ViewChild,
 } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import {
-  MatPaginator,
-  MatSort,
-  MatTableDataSource,
-  MatDialog,
-} from "@angular/material";
+import { MatDialog } from "@angular/material/dialog";
+import { MatPaginator } from "@angular/material/paginator";
+import { MatSort } from "@angular/material/sort";
+import { MatTableDataSource } from "@angular/material/table";
 import { ShopsService } from "../../service/shops.service";
 import { AuthService } from "../../service/auth.service";
 import { tap } from "rxjs/operators";
@@ -19,7 +17,7 @@ import { merge } from "rxjs/observable/merge";
 import { ShopsDataSource } from "../../service/shopsDataSource";
 import { SaveConfirmationDialogComponent } from "src/app/shared/save-confirmation-dialog/save-confirmation-dialog.component";
 import { SaveProgressComponent } from "src/app/shared/save-progress/save-progress.component";
-import { MatSnackBar } from "@angular/material";
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Component({
   selector: "app-shop-list",

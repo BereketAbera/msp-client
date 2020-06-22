@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from "@angular/core";
-import { MatDialog } from "@angular/material";
+import { MatDialog } from "@angular/material/dialog";
 import { Validators, FormBuilder } from "@angular/forms";
 import { Router, ActivatedRoute } from "@angular/router";
 import { UserService } from "../../service/user.service";

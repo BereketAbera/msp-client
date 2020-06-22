@@ -2,7 +2,7 @@ import { FocusMonitor } from "@angular/cdk/a11y";
 import { coerceBooleanProperty } from "@angular/cdk/coercion";
 import { Component, ElementRef, Input, OnDestroy } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
-import { MatFormFieldControl } from "@angular/material";
+import { MatFormFieldControl } from "@angular/material/form-field";
 import { Subject } from "rxjs";
 
 import { MyDecimalInput } from "../../model/my-decimal-input";

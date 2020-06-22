@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { FormBuilder, Validators, FormControl } from "@angular/forms";
 import { Router, ActivatedRoute } from "@angular/router";
-import { MatDialog } from "@angular/material";
+import { MatDialog } from "@angular/material/dialog";
 import { debounceTime, distinctUntilChanged } from "rxjs/operators";
-import { MatSnackBar } from "@angular/material";
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 import { UploadService } from "../../service/upload.service";
 

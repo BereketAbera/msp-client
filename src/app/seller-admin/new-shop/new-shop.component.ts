@@ -11,7 +11,7 @@ import { State } from "../../model/state";
 import { Router, ActivatedRoute } from "@angular/router";
 import { GeocoderService } from "../../service/geocoder.service";
 import { ShopsService } from "../../service/shops.service";
-import { MatSnackBar } from "@angular/material";
+import { MatSnackBar } from "@angular/material/snack-bar";
 import { ZipcodeService } from "../../service/zipcode.service";
 import { StateService } from "../../service/state.service";
 

@@ -1,4 +1,4 @@
-import { MatSnackBar } from "@angular/material";
+import { MatSnackBar } from "@angular/material/snack-bar";
 import { FeaturedDataSource } from "./../../service/featured-data-source";
 import { Location } from "@angular/common";
 import { ActivatedRoute } from "@angular/router";

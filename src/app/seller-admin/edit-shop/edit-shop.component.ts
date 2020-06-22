@@ -12,7 +12,7 @@ import {
   FormControl,
 } from "@angular/forms";
 import { AuthService } from "src/app/service/auth.service";
-import { MatSnackBar } from "@angular/material";
+import { MatSnackBar } from "@angular/material/snack-bar";
 import { GeocoderService } from "src/app/service/geocoder.service";
 import { ZipcodeService } from "src/app/service/zipcode.service";
 import { Shop } from "src/app/model/shop";

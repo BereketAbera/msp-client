@@ -7,7 +7,9 @@ import {
   ViewChild,
 } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { MatPaginator, MatSort, MatTableDataSource } from "@angular/material";
+import { MatPaginator } from "@angular/material/paginator";
+import { MatSort } from "@angular/material/sort";
+import { MatTableDataSource } from "@angular/material/table";
 import { TransactionService } from "../../service/transaction.service";
 import { tap } from "rxjs/operators";
 import { merge } from "rxjs/observable/merge";

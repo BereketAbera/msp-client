@@ -14,7 +14,7 @@ import {
   ControlValueAccessor,
   NgControl,
 } from "@angular/forms";
-import { MatFormFieldControl } from "@angular/material";
+import { MatFormFieldControl } from "@angular/material/form-field";
 import { Subject } from "rxjs";
 export class MyCode {
   constructor(public first: string, public second: string) {}

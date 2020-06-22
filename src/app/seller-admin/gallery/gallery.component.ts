@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { MatDialog } from "@angular/material";
-import { MatSnackBar } from "@angular/material";
+import { MatDialog } from "@angular/material/dialog";
+import { MatSnackBar } from "@angular/material/snack-bar";
 import { UploadService } from "../../service/upload.service";
 
 import { Picture } from "../../model/picture";

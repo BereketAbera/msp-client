@@ -8,7 +8,7 @@ import { NgModule, APP_INITIALIZER } from "@angular/core";
 import { AppComponent } from "./app.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
-import { MatNativeDateModule } from "@angular/material";
+import { MatNativeDateModule } from "@angular/material/core";
 
 import { RoutingModule } from "./routing.module";
 
@@ -48,8 +48,8 @@ import { StateService } from "./service/state.service";
 import { SellerStaffService } from "./service/seller-staff.service";
 import { ProductResolverService } from "./service/product-resolver.service";
 import { MspMarkupResolverService } from "./service/msp-markup-resolver.service";
-import { EditConfigModalComponent } from './system-admin/edit-config-modal/edit-config-modal.component';
-import { ConfiguartionService } from './service/configuartion.service';
+import { EditConfigModalComponent } from "./system-admin/edit-config-modal/edit-config-modal.component";
+import { ConfiguartionService } from "./service/configuartion.service";
 // import { DragDropDirective } from './service/drag-drop.directive';
 // import { CustomNotificationComponent } from "./components/custom-notification/custom-notification.component";
 
@@ -71,7 +71,7 @@ import { ConfiguartionService } from './service/configuartion.service';
     BuyerTermsComponent,
     SellerTermsComponent,
     RefundComponent,
-    EditConfigModalComponent
+    EditConfigModalComponent,
     //  DragDropDirective
     // CustomNotificationComponent,
   ],
@@ -94,7 +94,7 @@ import { ConfiguartionService } from './service/configuartion.service';
     SaveConfirmationDialogComponent,
     SaveProgressComponent,
     CartExpiredDialogComponent,
-    EditConfigModalComponent
+    EditConfigModalComponent,
   ],
   providers: [
     CartService,
@@ -113,11 +113,11 @@ import { ConfiguartionService } from './service/configuartion.service';
     ConfiguartionService,
     {
       provide: APP_INITIALIZER,
-      useFactory: (configService: ConfiguartionService) =>
-        () => configService.loadConfigurationData(),
+      useFactory: (configService: ConfiguartionService) => () =>
+        configService.loadConfigurationData(),
       deps: [ConfiguartionService],
-      multi: true
-    }
+      multi: true,
+    },
   ],
 
   bootstrap: [AppComponent],

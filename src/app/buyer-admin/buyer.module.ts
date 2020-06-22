@@ -3,7 +3,8 @@ import { CommonModule } from "@angular/common";
 
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { MatTabsModule } from "@angular/material/tabs";
-import { MatInputModule, MatFormFieldModule } from "@angular/material";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
 
 import { SharedModule } from "../shared/shared.module";
 

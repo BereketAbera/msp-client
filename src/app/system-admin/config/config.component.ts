@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminService } from 'src/app/service/admin.service';
 import { EditConfigModalComponent } from '../edit-config-modal/edit-config-modal.component';
-import { MatDialog, MatSnackBar } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConfiguartionService } from 'src/app/service/configuartion.service';
 
 @Component({
