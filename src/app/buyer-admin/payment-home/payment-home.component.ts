@@ -1,29 +1,29 @@
 import {
   Component,
-  OnInit,
   ComponentFactoryResolver,
+  OnInit,
   ViewChild,
 } from "@angular/core";
-import { PaymentTypeDirective } from "../payment-type/payment-type.directive";
-import { Router, ActivatedRoute } from "@angular/router";
-import { Product } from "../../model/product";
+import { ActivatedRoute, Router } from "@angular/router";
 import { Balance } from "../../model/balance";
 import { CreditCard } from "../../model/creditCard";
 import { PaymentInfo } from "../../model/paymentInfo";
-
-import { CartService } from "../../service/cart.service";
+import { Product } from "../../model/product";
 import { ReserveProduct } from "../../model/reserve-product";
-
-import { PaymentWithCreditCardComponent } from "../payment-with-credit-card/payment-with-credit-card.component";
+import { CartService } from "../../service/cart.service";
+import { PaymentTypeDirective } from "../payment-type/payment-type.directive";
 import { PaymentWithBalanceComponent } from "../payment-with-balance/payment-with-balance.component";
+import { PaymentWithCreditCardComponent } from "../payment-with-credit-card/payment-with-credit-card.component";
 import { PaymentWithSavedCreditCardComponent } from "../payment-with-saved-credit-card/payment-with-saved-credit-card.component";
+
 @Component({
   selector: "app-payment-home",
   templateUrl: "./payment-home.component.html",
   styleUrls: ["./payment-home.component.scss"],
 })
 export class PaymentHomeComponent implements OnInit {
-  @ViewChild(PaymentTypeDirective, { static: true }) paymentType: PaymentTypeDirective;
+  @ViewChild(PaymentTypeDirective, { static: true })
+  paymentType: PaymentTypeDirective;
   product: Product;
   cartProducts: ReserveProduct[];
   creditCards: CreditCard[];

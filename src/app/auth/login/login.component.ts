@@ -1,13 +1,13 @@
-import { Component, Input, OnInit, ViewEncapsulation } from "@angular/core";
-import { Validators, FormBuilder } from "@angular/forms";
-import { Router, ActivatedRoute } from "@angular/router";
-import { AuthService } from "../../service/auth.service";
+import { Component, OnInit, ViewEncapsulation } from "@angular/core";
+import { FormBuilder, Validators } from "@angular/forms";
+import { ActivatedRoute, Router } from "@angular/router";
 import { environment } from "../../../environments/environment";
+import { AuthService } from "../../service/auth.service";
 @Component({
   selector: "app-login",
   templateUrl: "./login.component.html",
   styleUrls: ["./login.component.scss"],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class LoginComponent implements OnInit {
   selectedIndex: number = 0;
@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private route: ActivatedRoute
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.type = this.route.snapshot.paramMap.get("type");
@@ -36,8 +36,8 @@ export class LoginComponent implements OnInit {
     return this.loginForm.get("email").hasError("required")
       ? "You must enter a value"
       : this.loginForm.get("email").hasError("email")
-        ? "Not a valid email"
-        : "";
+      ? "Not a valid email"
+      : "";
   }
   get showSingIn() {
     if (this.type == "normal") return true;
@@ -80,5 +80,4 @@ export class LoginComponent implements OnInit {
       }
     );
   }
-  
 }

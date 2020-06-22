@@ -1,13 +1,12 @@
-import { ShopsService } from "./shops.service";
 import { Injectable } from "@angular/core";
 import {
   ActivatedRouteSnapshot,
-  RouterStateSnapshot,
   Router,
+  RouterStateSnapshot,
 } from "@angular/router";
-import { Observable, EMPTY, of } from "rxjs";
+import { EMPTY, Observable, of } from "rxjs";
 import { mergeMap } from "rxjs/operators";
-import { Shop } from "../model/shop";
+import { ShopsService } from "./shops.service";
 
 @Injectable()
 export class ShopByIdResolverService {

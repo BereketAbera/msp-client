@@ -1,12 +1,11 @@
-import { Component, OnInit, Output, EventEmitter } from "@angular/core";
+import { Component, EventEmitter, OnInit, Output } from "@angular/core";
+import { FormBuilder, Validators } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
-import { Validators, FormBuilder } from "@angular/forms";
-import { Router, ActivatedRoute } from "@angular/router";
-import { UserService } from "../../service/user.service";
-
-import { RegistrationCompleteComponent } from "../registration-complete/registration-complete.component";
-import { debounceTime, switchMap } from "rxjs/operators";
+import { ActivatedRoute, Router } from "@angular/router";
 import { of } from "rxjs";
+import { debounceTime, switchMap } from "rxjs/operators";
+import { UserService } from "../../service/user.service";
+import { RegistrationCompleteComponent } from "../registration-complete/registration-complete.component";
 
 @Component({
   selector: "app-register-buyer-ref",

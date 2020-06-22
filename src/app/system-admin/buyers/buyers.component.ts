@@ -1,8 +1,8 @@
-import { FormBuilder, FormGroup } from "@angular/forms";
-import { ActivatedRoute, Router, Params } from "@angular/router";
-import { AdminService } from "./../../service/admin.service";
 import { Component, OnInit, ViewChild } from "@angular/core";
+import { FormBuilder, FormGroup } from "@angular/forms";
+import { ActivatedRoute, Params, Router } from "@angular/router";
 import * as moment from "moment";
+import { AdminService } from "./../../service/admin.service";
 
 @Component({
   selector: "app-buyers",

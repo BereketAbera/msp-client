@@ -1,13 +1,11 @@
-import { ZipcodeService } from "./../../service/zipcode.service";
-import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
-import { ActivatedRoute, Router, Params } from "@angular/router";
-
-import { ProductService } from "../../service/product.service";
-import { AuthService } from "../../service/auth.service";
+import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
+import { FormControl } from "@angular/forms";
+import { ActivatedRoute, Params, Router } from "@angular/router";
 import { Category } from "../../model/category";
-
+import { AuthService } from "../../service/auth.service";
+import { ProductService } from "../../service/product.service";
 import { WindowRef } from "../../service/window.service";
-import { FormControl, Validators } from "@angular/forms";
+import { ZipcodeService } from "./../../service/zipcode.service";
 
 @Component({
   selector: "app-public-products",
@@ -16,7 +14,9 @@ import { FormControl, Validators } from "@angular/forms";
 })
 export class PublicProductsComponent implements OnInit {
   @ViewChild("anchor", { static: true }) anchor: ElementRef<HTMLElement>;
-  @ViewChild("locationInput", { static: true }) locationInput: ElementRef<HTMLElement>;
+  @ViewChild("locationInput", { static: true }) locationInput: ElementRef<
+    HTMLElement
+  >;
   query: string = "";
   searchInput = new FormControl("");
   categories: Category[];

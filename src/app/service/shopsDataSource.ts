@@ -1,11 +1,11 @@
 import { CollectionViewer, DataSource } from "@angular/cdk/collections";
-import { Observable } from "rxjs/Observable";
-import { Shop } from "../model/shop";
-import { ShopsService } from "./shops.service";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
-import { catchError, finalize, map } from "rxjs/operators";
+import { Observable } from "rxjs/Observable";
 import { of } from "rxjs/observable/of";
+import { catchError, finalize } from "rxjs/operators";
+import { Shop } from "../model/shop";
 import { AuthService } from "./auth.service";
+import { ShopsService } from "./shops.service";
 
 export class ShopsDataSource implements DataSource<Shop> {
   private shopsSubject = new BehaviorSubject<Shop[]>([]);

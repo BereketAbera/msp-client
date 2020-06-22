@@ -1,15 +1,13 @@
 import { Injectable } from "@angular/core";
 import {
-  Router,
-  Resolve,
-  RouterStateSnapshot,
   ActivatedRouteSnapshot,
+  Resolve,
+  Router,
+  RouterStateSnapshot,
 } from "@angular/router";
-import { Observable, of, EMPTY } from "rxjs";
-import { mergeMap, take } from "rxjs/operators";
-
-import { UserService } from "./user.service";
+import { Observable } from "rxjs";
 import { Balance } from "../model/balance";
+import { UserService } from "./user.service";
 
 @Injectable()
 export class BalanceResolverService implements Resolve<Balance> {

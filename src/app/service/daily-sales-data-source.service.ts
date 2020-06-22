@@ -1,10 +1,10 @@
 import { CollectionViewer, DataSource } from "@angular/cdk/collections";
+import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import { Observable } from "rxjs/Observable";
+import { of } from "rxjs/observable/of";
+import { catchError, finalize } from "rxjs/operators";
 import { DailySale } from "../model/daily-sale";
 import { UserService } from "./user.service";
-import { BehaviorSubject } from "rxjs/BehaviorSubject";
-import { catchError, finalize, map } from "rxjs/operators";
-import { of } from "rxjs/observable/of";
 
 export class DailySalesDataSource implements DataSource<DailySale> {
   private productsSubject = new BehaviorSubject<DailySale[]>([]);
@@ -15,11 +15,16 @@ export class DailySalesDataSource implements DataSource<DailySale> {
 
   public count: number;
   constructor(private userService: UserService) {}
-  loadTransactions(fltrDate: Date,fltrEnd:Date,pageNumber:Number,pageSize:Number  ) {
+  loadTransactions(
+    fltrDate: Date,
+    fltrEnd: Date,
+    pageNumber: Number,
+    pageSize: Number
+  ) {
     this.loadingSubject.next(true);
 
     this.userService
-      .getSellerDailySlsSmry(fltrDate,fltrEnd,pageNumber,pageSize)
+      .getSellerDailySlsSmry(fltrDate, fltrEnd, pageNumber, pageSize)
       .pipe(
         catchError(() => of([])),
         finalize(() => this.loadingSubject.next(false))

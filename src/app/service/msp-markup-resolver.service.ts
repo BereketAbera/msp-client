@@ -1,13 +1,13 @@
 import { Injectable } from "@angular/core";
 import {
-  Router,
-  Resolve,
-  RouterStateSnapshot,
   ActivatedRouteSnapshot,
+  Resolve,
+  Router,
+  RouterStateSnapshot,
 } from "@angular/router";
-import { Observable, of, EMPTY } from "rxjs";
-import { ProductService } from "./product.service";
+import { Observable } from "rxjs";
 import { Markup } from "../model/markup";
+import { ProductService } from "./product.service";
 
 @Injectable()
 export class MspMarkupResolverService implements Resolve<Markup> {

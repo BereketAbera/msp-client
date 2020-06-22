@@ -1,20 +1,17 @@
-import { Subscription } from "rxjs/Subscription";
-import { ZipcodeService } from "./../../service/zipcode.service";
-import { ActivatedRoute } from "@angular/router";
-import { Component, OnInit, Output, EventEmitter } from "@angular/core";
+import { Component, EventEmitter, OnInit, Output } from "@angular/core";
+import { FormBuilder, FormControl, Validators } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
-import { Validators, FormBuilder, FormControl } from "@angular/forms";
-import { Router } from "@angular/router";
-import { UserService } from "../../service/user.service";
-
-import { RegistrationCompleteComponent } from "../registration-complete/registration-complete.component";
-import { Category } from "src/app/model/category";
-import { ZipCode } from "src/app/model/zipCode";
-import { State } from "src/app/model/state";
+import { ActivatedRoute, Router } from "@angular/router";
 import { of } from "rxjs";
-import { switchMap } from "rxjs/operators/switchMap";
-import { filter } from "rxjs/operators/filter";
 import { debounceTime } from "rxjs/operators/debounceTime";
+import { switchMap } from "rxjs/operators/switchMap";
+import { Subscription } from "rxjs/Subscription";
+import { Category } from "src/app/model/category";
+import { State } from "src/app/model/state";
+import { ZipCode } from "src/app/model/zipCode";
+import { UserService } from "../../service/user.service";
+import { RegistrationCompleteComponent } from "../registration-complete/registration-complete.component";
+import { ZipcodeService } from "./../../service/zipcode.service";
 
 let zipCodeHints = [];
 

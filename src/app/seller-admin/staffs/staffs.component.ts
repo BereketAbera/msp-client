@@ -1,9 +1,8 @@
 import { Component, OnInit } from "@angular/core";
-import { SellerStaffService } from "src/app/service/seller-staff.service";
-import { Router, ActivatedRoute } from "@angular/router";
-import { SaveConfirmationDialogComponent } from "src/app/shared/save-confirmation-dialog/save-confirmation-dialog.component";
 import { MatDialog } from "@angular/material/dialog";
-import { repeat } from "rxjs/operators";
+import { ActivatedRoute, Router } from "@angular/router";
+import { SellerStaffService } from "src/app/service/seller-staff.service";
+import { SaveConfirmationDialogComponent } from "src/app/shared/save-confirmation-dialog/save-confirmation-dialog.component";
 
 @Component({
   selector: "app-staffs",

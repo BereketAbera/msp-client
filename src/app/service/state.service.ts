@@ -1,16 +1,11 @@
+import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import {
-  HttpClient,
-  HttpErrorResponse,
-  HttpParams,
-} from "@angular/common/http";
-import { Observable } from "rxjs/Observable";
 import { throwError } from "rxjs";
-import { catchError, map } from "rxjs/operators";
-import { State } from "../model/state";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
-
+import { Observable } from "rxjs/Observable";
+import { catchError, map } from "rxjs/operators";
 import { environment } from "../../environments/environment";
+import { State } from "../model/state";
 
 const stateApi = environment.APIEndpoint + "states";
 

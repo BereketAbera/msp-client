@@ -1,6 +1,7 @@
-import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
+import { Component, EventEmitter, OnInit, Output } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
-import { Router, ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
+import { CreditCardValidators } from "angular-cc-library";
 import { Observable } from "rxjs";
 import {
   debounceTime,
@@ -8,13 +9,10 @@ import {
   filter,
   switchMap,
 } from "rxjs/operators";
-
-import { ZipcodeService } from "../../service/zipcode.service";
 import { ZipCode } from "../../model/zipCode";
-
-import { CreditCardValidator } from "angular-cc-library";
 import { DataStorageService } from "../../service/data-storage.service";
 import { TransactionService } from "../../service/transaction.service";
+import { ZipcodeService } from "../../service/zipcode.service";
 
 @Component({
   selector: "app-deposite-with-new-credit-card",
@@ -43,8 +41,8 @@ export class DepositeWithNewCreditCardComponent implements OnInit {
     city: ["", Validators.required],
     state: ["", Validators.required],
     zipCode: ["", Validators.required],
-    creditCard: ["", [<any>CreditCardValidator.validateCCNumber]],
-    expirationDate: ["", [<any>CreditCardValidator.validateExpDate]],
+    creditCard: ["", [<any>CreditCardValidators.validateCCNumber]],
+    expirationDate: ["", [<any>CreditCardValidators.validateExpDate]],
     cvc: [
       "",
       [

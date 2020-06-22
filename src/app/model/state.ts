@@ -1,5 +1,5 @@
-export interface State{
-    id:number,
-    name:string,
-    abbreviation:string
+export interface State {
+  id: number;
+  name: string;
+  abbreviation: string;
 }

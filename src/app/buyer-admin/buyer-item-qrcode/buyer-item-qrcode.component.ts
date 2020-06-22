@@ -2,12 +2,10 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { ActivatedRoute, Router } from "@angular/router";
-
-import { Transaction } from "../../model/transaction";
 import { Supplier } from "../../model/supplier";
+import { Transaction } from "../../model/transaction";
 import { TransactionStatus } from "../../model/transactionStatus";
 import { TransactionService } from "../../service/transaction.service";
-
 import { SaveConfirmationDialogComponent } from "../../shared/save-confirmation-dialog/save-confirmation-dialog.component";
 import { SaveProgressComponent } from "../../shared/save-progress/save-progress.component";
 

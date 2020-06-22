@@ -1,6 +1,5 @@
 export class Picture {
-    id:number;
-    name:string;
-    file:string;
-    
+  id: number;
+  name: string;
+  file: string;
 }

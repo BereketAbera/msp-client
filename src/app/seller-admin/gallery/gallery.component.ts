@@ -1,10 +1,9 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
 import { MatDialog } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
-import { UploadService } from "../../service/upload.service";
-
+import { ActivatedRoute, Router } from "@angular/router";
 import { Picture } from "../../model/picture";
+import { UploadService } from "../../service/upload.service";
 import { SaveConfirmationDialogComponent } from "../../shared/save-confirmation-dialog/save-confirmation-dialog.component";
 import { SaveProgressComponent } from "../../shared/save-progress/save-progress.component";
 

@@ -1,13 +1,11 @@
 import { Injectable } from "@angular/core";
 import {
-  Router,
-  Resolve,
-  RouterStateSnapshot,
   ActivatedRouteSnapshot,
+  Resolve,
+  Router,
+  RouterStateSnapshot,
 } from "@angular/router";
-import { Observable, of, EMPTY } from "rxjs";
-import { mergeMap, take } from "rxjs/operators";
-
+import { Observable } from "rxjs";
 import { ProductService } from "./product.service";
 
 @Injectable()

@@ -5,14 +5,13 @@ import {
   OnInit,
   ViewChild,
 } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
 import { MatPaginator } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
-import { MatTableDataSource } from "@angular/material/table";
-import { UserService } from "../../service/user.service";
-import { RefersDataSource } from "../../service/refers-data-source.service";
-import { tap } from "rxjs/operators";
+import { ActivatedRoute, Router } from "@angular/router";
 import { merge } from "rxjs/observable/merge";
+import { tap } from "rxjs/operators";
+import { RefersDataSource } from "../../service/refers-data-source.service";
+import { UserService } from "../../service/user.service";
 
 @Component({
   selector: "app-refer-status",
@@ -58,7 +57,7 @@ export class ReferStatusComponent implements OnInit, AfterViewInit {
   }
 
   loadTransactionsPage() {
-    console.log("sdsdf")
+    console.log("sdsdf");
     this.dataSource.loadRefers(
       "",
       this.sort.direction,

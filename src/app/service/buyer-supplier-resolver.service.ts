@@ -1,13 +1,13 @@
 import { Injectable } from "@angular/core";
 import {
-  Router,
-  Resolve,
-  RouterStateSnapshot,
   ActivatedRouteSnapshot,
+  Resolve,
+  Router,
+  RouterStateSnapshot,
 } from "@angular/router";
 import { Observable } from "rxjs/Observable";
-import { TransactionService } from "./transaction.service";
 import { Supplier } from "../model/supplier";
+import { TransactionService } from "./transaction.service";
 
 @Injectable()
 export class BuyerSupplierResolverService implements Resolve<Supplier> {

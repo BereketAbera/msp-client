@@ -1,13 +1,12 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
 import { environment } from "../../environments/environment";
 
 const adminApi = environment.APIEndpoint;
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
-
 export class ConfiguartionService {
   configData: any = {
     id: 1,
@@ -19,16 +18,18 @@ export class ConfiguartionService {
     socialRefReferredCredit: 15,
     socialRefReferrerCredit: 2,
     noRefCredit: 15,
-    active: true
+    active: true,
   };
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   loadConfigurationData(): Promise<any> {
-    return this.http.get<any>(adminApi + `config`).toPromise().then((result) => {
-      // console.log(result)
-      this.configData = result;
-    })
+    return this.http
+      .get<any>(adminApi + `config`)
+      .toPromise()
+      .then((result) => {
+        // console.log(result)
+        this.configData = result;
+      });
   }
-
 }

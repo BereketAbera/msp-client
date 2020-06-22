@@ -1,15 +1,11 @@
+import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import {
-  HttpClient,
-  HttpErrorResponse,
-  HttpParams,
-} from "@angular/common/http";
-import { environment } from "../../environments/environment";
-import { Observable } from "rxjs/Observable";
 import { throwError } from "rxjs";
-import { catchError, map } from "rxjs/operators";
-import { SubCategory } from "../model/sub-category";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
+import { Observable } from "rxjs/Observable";
+import { catchError, map } from "rxjs/operators";
+import { environment } from "../../environments/environment";
+import { SubCategory } from "../model/sub-category";
 
 const subcategoryApi = environment.APIEndpoint + "subcategory";
 

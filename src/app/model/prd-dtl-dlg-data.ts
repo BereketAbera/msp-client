@@ -1,4 +1,4 @@
-export interface PrdDtlDlgData{
-    title:string,
-    message:string;
+export interface PrdDtlDlgData {
+  title: string;
+  message: string;
 }

@@ -1,3 +1,4 @@
+import { Location } from "@angular/common";
 import {
   AfterViewInit,
   Component,
@@ -6,22 +7,18 @@ import {
   ViewChild,
 } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
-import { MatSnackBar } from "@angular/material/snack-bar";
-import { ActivatedRoute, Router } from "@angular/router";
 import { MatPaginator } from "@angular/material/paginator";
+import { MatSnackBar } from "@angular/material/snack-bar";
 import { MatSort } from "@angular/material/sort";
-import { MatTableDataSource } from "@angular/material/table";
-import { ProductService } from "../../service/product.service";
-import { tap } from "rxjs/operators";
+import { ActivatedRoute, Router } from "@angular/router";
 import { merge } from "rxjs/observable/merge";
-import { ProductsDataSource } from "../../service/products-data-source.service";
+import { tap } from "rxjs/operators";
 import { Product } from "../../model/product";
-
 import { AuthService } from "../../service/auth.service";
-
+import { ProductService } from "../../service/product.service";
+import { ProductsDataSource } from "../../service/products-data-source.service";
 import { SaveConfirmationDialogComponent } from "../../shared/save-confirmation-dialog/save-confirmation-dialog.component";
 import { SaveProgressComponent } from "../../shared/save-progress/save-progress.component";
-import { Location } from "@angular/common";
 
 @Component({
   templateUrl: "./products.component.html",
@@ -132,7 +129,7 @@ export class ProductsComponent implements OnInit, AfterViewInit {
     });
   }
   loadProductsPage() {
-    if(this.sort.active){
+    if (this.sort.active) {
       this.dataSource.loadProducts(
         1,
         "",
@@ -140,7 +137,7 @@ export class ProductsComponent implements OnInit, AfterViewInit {
         this.paginator.pageIndex,
         this.paginator.pageSize
       );
-    }else{
+    } else {
       this.dataSource.loadProducts(
         1,
         "",
@@ -149,7 +146,6 @@ export class ProductsComponent implements OnInit, AfterViewInit {
         this.paginator.pageSize
       );
     }
-  
 
     let path = this.location.path();
     if (path.indexOf("page") >= 0) {

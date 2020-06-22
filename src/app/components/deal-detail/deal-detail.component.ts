@@ -1,21 +1,13 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute, Router, NavigationExtras } from "@angular/router";
-
 import { FormBuilder, Validators } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
-
-import { Product } from "../../model/product";
-
-import { DataStorageService } from "../../service/data-storage.service";
-
-import { CartService } from "../../service/cart.service";
-import { ReserveProduct } from "../../model/reserve-product";
-import { Order } from "../../model/order";
+import { ActivatedRoute, NavigationExtras, Router } from "@angular/router";
 import { Markup } from "../../model/markup";
-
-import { CartExpiredDialogComponent } from "../cart-expired-dialog/cart-expired-dialog.component";
-
-import * as moment from "moment";
+import { Order } from "../../model/order";
+import { Product } from "../../model/product";
+import { ReserveProduct } from "../../model/reserve-product";
+import { CartService } from "../../service/cart.service";
+import { DataStorageService } from "../../service/data-storage.service";
 
 @Component({
   selector: "app-deal-detail",
@@ -51,7 +43,10 @@ export class DealDetailComponent implements OnInit {
         if (localProduct) {
           localProduct.map((prod) => {
             if (prod.prdid == data.product.id) {
-              data.product.currentQuantity = (parseInt(data.product.currentQuantity) + prod.qty)<0?0:(parseInt(data.product.currentQuantity) + prod.qty);
+              data.product.currentQuantity =
+                parseInt(data.product.currentQuantity) + prod.qty < 0
+                  ? 0
+                  : parseInt(data.product.currentQuantity) + prod.qty;
             }
           });
         }

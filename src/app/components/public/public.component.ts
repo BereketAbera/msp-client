@@ -1,20 +1,16 @@
-import { environment } from "../../../environments/environment";
 import {
-  Component,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
   OnInit,
   ViewChild,
-  ElementRef,
-  ChangeDetectorRef,
 } from "@angular/core";
-import { Router, Params, ActivatedRoute } from "@angular/router";
-import { timer } from "rxjs/observable/timer";
-import * as moment from "moment";
-import { AuthService } from "../../service/auth.service";
-
-import { BannerCtrlDirective } from "../bannerCtrl/banner-ctrl.directive";
 import { FormControl } from "@angular/forms";
+import { ActivatedRoute, Params, Router } from "@angular/router";
 import { Category } from "src/app/model/category";
+import { environment } from "../../../environments/environment";
+import { AuthService } from "../../service/auth.service";
 
 @Component({
   selector: "app-public",

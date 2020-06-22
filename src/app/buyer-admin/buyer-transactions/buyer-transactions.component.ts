@@ -1,4 +1,3 @@
-import { AuthService } from "./../../service/auth.service";
 import {
   AfterViewInit,
   Component,
@@ -6,16 +5,16 @@ import {
   OnInit,
   ViewChild,
 } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
 import { MatPaginator } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
-import { MatTableDataSource } from "@angular/material/table";
-import { TransactionService } from "../../service/transaction.service";
-import { tap } from "rxjs/operators";
+import { ActivatedRoute, Router } from "@angular/router";
 import { merge } from "rxjs/observable/merge";
+import { tap } from "rxjs/operators";
+import { Balance } from "../../model/balance";
 import { BuyerTransaction } from "../../model/buyer-transaction";
 import { BuyerTransactionsDataSource } from "../../service/buyer-transactions-data-source.service";
-import { Balance } from "../../model/balance";
+import { TransactionService } from "../../service/transaction.service";
+import { AuthService } from "./../../service/auth.service";
 @Component({
   templateUrl: "./buyer-transactions.component.html",
   styleUrls: ["./buyer-transactions.component.scss"],

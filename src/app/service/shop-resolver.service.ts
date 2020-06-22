@@ -1,15 +1,14 @@
 import { Injectable } from "@angular/core";
 import {
-  Router,
-  Resolve,
-  RouterStateSnapshot,
   ActivatedRouteSnapshot,
+  Resolve,
+  Router,
+  RouterStateSnapshot,
 } from "@angular/router";
-import { Observable, of, EMPTY } from "rxjs";
-import { mergeMap, take } from "rxjs/operators";
-
-import { ShopsService } from "./shops.service";
+import { EMPTY, Observable, of } from "rxjs";
+import { mergeMap } from "rxjs/operators";
 import { Shop } from "../model/shop";
+import { ShopsService } from "./shops.service";
 
 @Injectable()
 export class ShopResolverService implements Resolve<Shop[]> {

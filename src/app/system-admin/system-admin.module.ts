@@ -1,26 +1,21 @@
-import { CodesDetailComponent } from "./codes-detail/codes-detail.component";
-import { ConfigComponent } from "./config/config.component";
-import { CodesComponent } from "./codes/codes.component";
-import { BuyersComponent } from "./buyers/buyers.component";
-import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-
+import { NgModule } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
-
+import { MatDialogModule } from "@angular/material/dialog";
+import { StateResolverService } from "../service/state-resolver.service";
+import { StateService } from "../service/state.service";
+import { UserService } from "../service/user.service";
 import { SharedModule } from "../shared/shared.module";
-
+import { SellerInfoResolverService } from "../_resolvers/seller-info-resolver.service";
+import { AdminNavigationComponent } from "./admin-navigation/admin-navigation.component";
+import { AdminRoutingModule } from "./admin.routing.module";
+import { BuyersComponent } from "./buyers/buyers.component";
+import { CodesDetailComponent } from "./codes-detail/codes-detail.component";
+import { CodesComponent } from "./codes/codes.component";
+import { ConfigComponent } from "./config/config.component";
+import { SellerDetailComponent } from "./seller-detail/seller-detail.component";
 import { SystemAdminComponent } from "./system-admin.component";
 import { UsersAdminComponent } from "./users-admin/users-admin.component";
-
-import { AdminRoutingModule } from "./admin.routing.module";
-import { AdminNavigationComponent } from "./admin-navigation/admin-navigation.component";
-import { SellerDetailComponent } from "./seller-detail/seller-detail.component";
-import { AuthService } from "../service/auth.service";
-import { UserService } from "../service/user.service";
-import { StateResolverService } from "../service/state-resolver.service";
-import { SellerInfoResolverService } from "../_resolvers/seller-info-resolver.service";
-import { StateService } from "../service/state.service";
-import { MatDialogModule } from "@angular/material/dialog";
 
 @NgModule({
   declarations: [
@@ -38,7 +33,7 @@ import { MatDialogModule } from "@angular/material/dialog";
     ReactiveFormsModule,
     SharedModule,
     AdminRoutingModule,
-    MatDialogModule
+    MatDialogModule,
   ],
   providers: [
     UserService,

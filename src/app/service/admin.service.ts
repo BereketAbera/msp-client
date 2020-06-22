@@ -1,7 +1,7 @@
-import { Injectable } from "@angular/core";
-import { environment } from "src/environments/environment";
 import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { environment } from "src/environments/environment";
 
 const adminApi = environment.APIEndpoint;
 
@@ -16,12 +16,12 @@ export class AdminService {
     return this.http.get(adminApi + `accounts/buyer/filter?${param}`);
   }
 
-  getActiveConfiguration():Observable<any>{
-    return this.http.get(adminApi+`config`)
+  getActiveConfiguration(): Observable<any> {
+    return this.http.get(adminApi + `config`);
   }
 
-  updateActiveConfiguration(body): Observable<any>{
-    return this.http.put(adminApi+`config`, body)
+  updateActiveConfiguration(body): Observable<any> {
+    return this.http.put(adminApi + `config`, body);
   }
 
   generateParams(params) {

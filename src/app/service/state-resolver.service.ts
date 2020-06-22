@@ -1,15 +1,14 @@
 import { Injectable } from "@angular/core";
 import {
-  Router,
-  Resolve,
-  RouterStateSnapshot,
   ActivatedRouteSnapshot,
+  Resolve,
+  Router,
+  RouterStateSnapshot,
 } from "@angular/router";
-import { Observable, of, EMPTY } from "rxjs";
-import { mergeMap, take } from "rxjs/operators";
-
-import { StateService } from "./state.service";
+import { EMPTY, Observable, of } from "rxjs";
+import { mergeMap } from "rxjs/operators";
 import { State } from "../model/state";
+import { StateService } from "./state.service";
 
 @Injectable()
 export class StateResolverService implements Resolve<State[]> {

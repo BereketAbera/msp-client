@@ -1,8 +1,7 @@
-import { Component, Input, OnInit, AfterViewChecked } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { Product } from "src/app/model/product";
 import { ProductService } from "../../service/product.service";
-import { Observable } from "rxjs/Observable";
 
 @Component({
   selector: "app-utc-product",

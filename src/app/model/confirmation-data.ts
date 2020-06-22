@@ -1,4 +1,4 @@
 export interface ConfirmationData {
-    title: string;
-    question: string;
-  }
+  title: string;
+  question: string;
+}

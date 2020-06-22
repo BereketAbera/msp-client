@@ -1,26 +1,15 @@
-import { Component, ViewChild, OnInit } from "@angular/core";
-import { MatDialog } from "@angular/material/dialog";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { FormControl } from "@angular/forms";
-
-import { fromEvent } from "rxjs";
-import { ajax } from "rxjs/ajax";
-import {
-  map,
-  filter,
-  debounceTime,
-  distinctUntilChanged,
-  switchMap,
-} from "rxjs/operators";
-
-import { RequestResultComponent } from "../request-result/request-result.component";
-import { RequestConfirmationComponent } from "../request-confirmation/request-confirmation.component";
-import { RequestCodeConfirmationComponent } from "../request-code-confirmation/request-code-confirmation.component";
+import { MatDialog } from "@angular/material/dialog";
 import jsQR from "jsqr";
-
-import { TransactionService } from "../../service/transaction.service";
-import { AuthService } from "../../service/auth.service";
-
+import { fromEvent } from "rxjs";
+import { filter, map } from "rxjs/operators";
 import { QrCodeData } from "../../model/qrCodeData";
+import { AuthService } from "../../service/auth.service";
+import { TransactionService } from "../../service/transaction.service";
+import { RequestCodeConfirmationComponent } from "../request-code-confirmation/request-code-confirmation.component";
+import { RequestConfirmationComponent } from "../request-confirmation/request-confirmation.component";
+import { RequestResultComponent } from "../request-result/request-result.component";
 
 @Component({
   selector: "app-qr-scanner",
@@ -46,7 +35,7 @@ export class QrScannerComponent implements OnInit {
     private authService: AuthService,
     public dialog: MatDialog,
     private transactionService: TransactionService
-  ) { }
+  ) {}
 
   ngOnInit() {
     //if(!this.authService.accountCanScan())
@@ -59,7 +48,7 @@ export class QrScannerComponent implements OnInit {
       filter((text) => text.length > 2)
     );
 
-    typeahead.subscribe((data) => { });
+    typeahead.subscribe((data) => {});
   }
   onKeydownEvent(event: KeyboardEvent): void {
     if (
@@ -77,7 +66,7 @@ export class QrScannerComponent implements OnInit {
       data: { title: "Status", question: msg },
     });
   }
-  openConfirmation(qrData: QrCodeData) { }
+  openConfirmation(qrData: QrCodeData) {}
   close() {
     this.showError = false;
     this.displayScanner = "block";
@@ -153,7 +142,6 @@ export class QrScannerComponent implements OnInit {
         }
       });
     }
-
   }
   accountCanScan() {
     return this.authService.accountCanScan();

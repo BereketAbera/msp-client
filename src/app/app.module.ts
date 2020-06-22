@@ -1,55 +1,46 @@
+import { HttpClientModule } from "@angular/common/http";
+import { APP_INITIALIZER, NgModule } from "@angular/core";
+import { ReactiveFormsModule } from "@angular/forms";
+import { MatNativeDateModule } from "@angular/material/core";
+import { BrowserModule } from "@angular/platform-browser";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import "../polyfills";
+import { AppComponent } from "./app.component";
+import { BannerCtrlDirective } from "./components/bannerCtrl/banner-ctrl.directive";
+import { BuyerTermsComponent } from "./components/buyer-terms/buyer-terms.component";
+import { CartExpiredDialogComponent } from "./components/cart-expired-dialog/cart-expired-dialog.component";
+import { CartComponent } from "./components/cart/cart.component";
+import { CompanyProductsComponent } from "./components/company-products/company-products.component";
+import { DealDetailComponent } from "./components/deal-detail/deal-detail.component";
+import { HomeComponent } from "./components/home/home.component";
+import { OthersComponent } from "./components/others/others.component";
+import { PrivacyComponent } from "./components/privacy/privacy.component";
+import { ProductComponent } from "./components/product/product.component";
+import { PublicProductsComponent } from "./components/public-products/public-products.component";
+import { PublicComponent } from "./components/public/public.component";
 import { RefundComponent } from "./components/refund/refund.component";
 import { SellerTermsComponent } from "./components/seller-terms/seller-terms.component";
-import { PrivacyComponent } from "./components/privacy/privacy.component";
-import "../polyfills";
-import { BrowserModule } from "@angular/platform-browser";
-import { NgModule, APP_INITIALIZER } from "@angular/core";
-
-import { AppComponent } from "./app.component";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-
-import { MatNativeDateModule } from "@angular/material/core";
-
-import { RoutingModule } from "./routing.module";
-
-import { HttpClientModule } from "@angular/common/http";
-import { ReactiveFormsModule } from "@angular/forms";
-
-import { HomeComponent } from "./components/home/home.component";
-import { DealDetailComponent } from "./components/deal-detail/deal-detail.component";
-import { BannerCtrlDirective } from "./components/bannerCtrl/banner-ctrl.directive";
-
-import { SharedModule } from "./shared/shared.module";
-
-import { SaveConfirmationDialogComponent } from "./shared/save-confirmation-dialog/save-confirmation-dialog.component";
-import { SaveProgressComponent } from "./shared/save-progress/save-progress.component";
-import { PublicComponent } from "./components/public/public.component";
-
-import { httpInterceptorProviders } from "./http-interceptors/index";
-import { ProductComponent } from "./components/product/product.component";
-import { CartComponent } from "./components/cart/cart.component";
-import { CartExpiredDialogComponent } from "./components/cart-expired-dialog/cart-expired-dialog.component";
-import { OthersComponent } from "./components/others/others.component";
 import { UtcProductComponent } from "./components/utc-product/utc-product.component";
-import { CompanyProductsComponent } from "./components/company-products/company-products.component";
-import { PublicProductsComponent } from "./components/public-products/public-products.component";
-import { BuyerTermsComponent } from "./components/buyer-terms/buyer-terms.component";
-import { CustomNotificationComponent } from "./components/custom-notification/custom-notification.component";
-import { CartService } from "./service/cart.service";
-import { ProductService } from "./service/product.service";
-import { DataStorageService } from "./service/data-storage.service";
+import { httpInterceptorProviders } from "./http-interceptors/index";
+import { RoutingModule } from "./routing.module";
 import { AuthService } from "./service/auth.service";
-import { ZipcodeService } from "./service/zipcode.service";
+import { CartService } from "./service/cart.service";
+import { ConfiguartionService } from "./service/configuartion.service";
 import { CustomPreloadingService } from "./service/custom-preloading.service";
+import { DataStorageService } from "./service/data-storage.service";
+import { MspMarkupResolverService } from "./service/msp-markup-resolver.service";
+import { ProductResolverService } from "./service/product-resolver.service";
+import { ProductService } from "./service/product.service";
+import { SellerStaffService } from "./service/seller-staff.service";
 import { SubCategoryResolverService } from "./service/sub-category-resolver.service";
 import { SubCategoryService } from "./service/sub-category.service";
 import { WindowRef } from "./service/window.service";
-import { StateService } from "./service/state.service";
-import { SellerStaffService } from "./service/seller-staff.service";
-import { ProductResolverService } from "./service/product-resolver.service";
-import { MspMarkupResolverService } from "./service/msp-markup-resolver.service";
+import { ZipcodeService } from "./service/zipcode.service";
+import { SaveConfirmationDialogComponent } from "./shared/save-confirmation-dialog/save-confirmation-dialog.component";
+import { SaveProgressComponent } from "./shared/save-progress/save-progress.component";
+import { SharedModule } from "./shared/shared.module";
 import { EditConfigModalComponent } from "./system-admin/edit-config-modal/edit-config-modal.component";
-import { ConfiguartionService } from "./service/configuartion.service";
+
 // import { DragDropDirective } from './service/drag-drop.directive';
 // import { CustomNotificationComponent } from "./components/custom-notification/custom-notification.component";
 

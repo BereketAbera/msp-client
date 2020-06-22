@@ -1,16 +1,15 @@
-import { Injectable } from "@angular/core";
 import {
   HttpClient,
   HttpErrorResponse,
   HttpParams,
 } from "@angular/common/http";
-import { Observable } from "rxjs/Observable";
+import { Injectable } from "@angular/core";
 import { throwError } from "rxjs";
-import { catchError, map } from "rxjs/operators";
-import { ZipCode } from "../model/zipCode";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
-
+import { Observable } from "rxjs/Observable";
+import { catchError, map } from "rxjs/operators";
 import { environment } from "../../environments/environment";
+import { ZipCode } from "../model/zipCode";
 
 const zipcodeApi = environment.APIEndpoint + "zipcods";
 

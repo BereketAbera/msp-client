@@ -1,16 +1,15 @@
-import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { FlexLayoutModule, BREAKPOINT } from "@angular/flex-layout";
-import { DemoMaterialModule } from "../material/material.module";
-import { SaveConfirmationDialogComponent } from "./save-confirmation-dialog/save-confirmation-dialog.component";
-import { SaveSuccessNotifierComponent } from "./save-success-notifier/save-success-notifier.component";
-import { SaveProgressComponent } from "./save-progress/save-progress.component";
-import { SafeHtmlPipe } from "./safe-html-pipe.pipe";
-import { DecimalInputComponent } from "./decimal-input/decimal-input.component";
+import { NgModule } from "@angular/core";
+import { BREAKPOINT, FlexLayoutModule } from "@angular/flex-layout";
 import { ReactiveFormsModule } from "@angular/forms";
-import { CodeInputComponent } from "./code-input/code-input.component";
 import { CustomNotificationComponent } from "../components/custom-notification/custom-notification.component";
-import { AuthService } from "../service/auth.service";
+import { DemoMaterialModule } from "../material/material.module";
+import { CodeInputComponent } from "./code-input/code-input.component";
+import { DecimalInputComponent } from "./decimal-input/decimal-input.component";
+import { SafeHtmlPipe } from "./safe-html-pipe.pipe";
+import { SaveConfirmationDialogComponent } from "./save-confirmation-dialog/save-confirmation-dialog.component";
+import { SaveProgressComponent } from "./save-progress/save-progress.component";
+import { SaveSuccessNotifierComponent } from "./save-success-notifier/save-success-notifier.component";
 //import { CustomNotificationComponent } from "./custom-notification/custom-notification.component";
 
 const PRINT_BREAKPOINTS = [

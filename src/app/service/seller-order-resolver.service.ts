@@ -1,16 +1,15 @@
-import { AuthService } from "./auth.service";
 import { Injectable } from "@angular/core";
 import {
-  Router,
-  Resolve,
-  RouterStateSnapshot,
   ActivatedRouteSnapshot,
+  Resolve,
+  Router,
+  RouterStateSnapshot,
 } from "@angular/router";
-import { Observable, of, EMPTY } from "rxjs";
-import { mergeMap, take } from "rxjs/operators";
-
-import { TransactionService } from "./transaction.service";
+import { EMPTY, Observable, of } from "rxjs";
+import { mergeMap } from "rxjs/operators";
 import { Transaction } from "../model/transaction";
+import { AuthService } from "./auth.service";
+import { TransactionService } from "./transaction.service";
 
 @Injectable()
 export class SellerOrderResolverService implements Resolve<Transaction> {

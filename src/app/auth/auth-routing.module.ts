@@ -1,14 +1,13 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { LoginComponent } from "./login/login.component";
-import { ResetPasswordComponent } from "./reset-password/reset-password.component";
-import { NewPasswordComponent } from "./new-password/new-password.component";
+import { StateResolverService } from "../service/state-resolver.service";
+import { AuthComponent } from "./auth.component";
 import { InvalidTokenComponent } from "./invalid-token/invalid-token.component";
+import { LoginComponent } from "./login/login.component";
+import { NewPasswordComponent } from "./new-password/new-password.component";
 import { RegisterBuyerRefComponent } from "./register-buyer-ref/register-buyer-ref.component";
 import { RegisterSellerRefComponent } from "./register-seller-ref/register-seller-ref.component";
-import { AuthComponent } from "./auth.component";
-import { SubCategoryResolverService } from "../service/sub-category-resolver.service";
-import { StateResolverService } from "../service/state-resolver.service";
+import { ResetPasswordComponent } from "./reset-password/reset-password.component";
 
 const authRoutes: Routes = [
   {

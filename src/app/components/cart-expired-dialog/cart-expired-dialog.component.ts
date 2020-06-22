@@ -1,11 +1,7 @@
-import { Component, OnInit, Inject } from "@angular/core";
-import {
-  MatDialog,
-  MatDialogRef,
-  MAT_DIALOG_DATA,
-} from "@angular/material/dialog";
-
+import { Component, Inject, OnInit } from "@angular/core";
+import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { PrdDtlDlgData } from "../../model/prd-dtl-dlg-data";
+
 @Component({
   selector: "app-cart-expired-dialog",
   templateUrl: "./cart-expired-dialog.component.html",

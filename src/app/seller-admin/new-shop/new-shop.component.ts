@@ -1,20 +1,19 @@
-import { Component, ViewChild, ElementRef, OnInit } from "@angular/core";
-import { FormBuilder, Validators, FormControl } from "@angular/forms";
-import { Subject, of } from "rxjs";
+import { Component, OnInit } from "@angular/core";
+import { FormBuilder, FormControl, Validators } from "@angular/forms";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { ActivatedRoute, Router } from "@angular/router";
+import { of, Subject } from "rxjs";
 import { debounceTime } from "rxjs/operators/debounceTime";
 import { switchMap } from "rxjs/operators/switchMap";
+import { Category } from "src/app/model/category";
 import { Shop } from "../../model/shop";
-import { ZipCode } from "../../model/zipCode";
 import { State } from "../../model/state";
-import { Router, ActivatedRoute } from "@angular/router";
+import { ZipCode } from "../../model/zipCode";
+import { AuthService } from "../../service/auth.service";
 import { GeocoderService } from "../../service/geocoder.service";
 import { ShopsService } from "../../service/shops.service";
-import { MatSnackBar } from "@angular/material/snack-bar";
-import { ZipcodeService } from "../../service/zipcode.service";
 import { StateService } from "../../service/state.service";
-
-import { AuthService } from "../../service/auth.service";
-import { Category } from "src/app/model/category";
+import { ZipcodeService } from "../../service/zipcode.service";
 
 let zipCodeHints = [];
 

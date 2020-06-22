@@ -1,21 +1,19 @@
-import { Injectable } from "@angular/core";
 import {
   HttpClient,
   HttpErrorResponse,
   HttpParams,
-  HttpHeaders,
 } from "@angular/common/http";
-import { Observable } from "rxjs/Observable";
+import { Injectable } from "@angular/core";
+import * as moment_ from "moment";
 import { throwError } from "rxjs";
+import { BehaviorSubject } from "rxjs/BehaviorSubject";
+import { Observable } from "rxjs/Observable";
 import { catchError, map } from "rxjs/operators";
+import { environment } from "../../environments/environment";
+import { Markup } from "../model/markup";
 import { Product } from "../model/product";
 import { ShopInfo } from "../model/shop-info";
-import { Markup } from "../model/markup";
-import { BehaviorSubject } from "rxjs/BehaviorSubject";
 
-import { environment } from "../../environments/environment";
-
-import * as moment_ from "moment";
 const moment = moment_;
 
 const productApi = environment.APIEndpoint + "products";

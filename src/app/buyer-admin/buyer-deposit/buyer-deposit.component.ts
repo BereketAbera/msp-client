@@ -1,17 +1,16 @@
 import {
   Component,
-  OnInit,
   ComponentFactoryResolver,
+  OnInit,
   ViewChild,
 } from "@angular/core";
-import { PaymentTypeDirective } from "../payment-type/payment-type.directive";
-import { Router, ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { Balance } from "../../model/balance";
 import { CreditCard } from "../../model/creditCard";
 import { PaymentInfo } from "../../model/paymentInfo";
-
 import { DepositeWithNewCreditCardComponent } from "../deposite-with-new-credit-card/deposite-with-new-credit-card.component";
 import { DepositeWithSavedCreditCardComponent } from "../deposite-with-saved-credit-card/deposite-with-saved-credit-card.component";
+import { PaymentTypeDirective } from "../payment-type/payment-type.directive";
 
 @Component({
   selector: "app-buyer-deposit",
@@ -19,7 +18,8 @@ import { DepositeWithSavedCreditCardComponent } from "../deposite-with-saved-cre
   styleUrls: ["./buyer-deposit.component.scss"],
 })
 export class BuyerDepositComponent implements OnInit {
-  @ViewChild(PaymentTypeDirective, { static: true }) paymentType: PaymentTypeDirective;
+  @ViewChild(PaymentTypeDirective, { static: true })
+  paymentType: PaymentTypeDirective;
 
   creditCards: CreditCard[];
   balance: number = 0;

@@ -1,15 +1,14 @@
 import { Injectable } from "@angular/core";
 import {
-  Router,
-  Resolve,
-  RouterStateSnapshot,
   ActivatedRouteSnapshot,
+  Resolve,
+  Router,
+  RouterStateSnapshot,
 } from "@angular/router";
-import { Observable, of, EMPTY } from "rxjs";
-import { mergeMap, take } from "rxjs/operators";
-
-import { SubCategoryService } from "./sub-category.service";
+import { EMPTY, Observable, of } from "rxjs";
+import { mergeMap } from "rxjs/operators";
 import { SubCategory } from "../model/sub-category";
+import { SubCategoryService } from "./sub-category.service";
 
 @Injectable()
 export class SubCategoryResolverService implements Resolve<SubCategory[]> {

@@ -1,3 +1,4 @@
+import { Location } from "@angular/common";
 import {
   AfterViewInit,
   Component,
@@ -5,24 +6,20 @@ import {
   OnInit,
   ViewChild,
 } from "@angular/core";
+import { FormBuilder, FormGroup } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
-import { MatSnackBar } from "@angular/material/snack-bar";
-import { ActivatedRoute, Router } from "@angular/router";
 import { MatPaginator } from "@angular/material/paginator";
+import { MatSnackBar } from "@angular/material/snack-bar";
 import { MatSort } from "@angular/material/sort";
-import { MatTableDataSource } from "@angular/material/table";
-import { UserService } from "../../service/user.service";
-import { tap } from "rxjs/operators";
+import { ActivatedRoute, Router } from "@angular/router";
 import { merge } from "rxjs/observable/merge";
+import { tap } from "rxjs/operators";
+import { State } from "src/app/model/state";
 import { MerchantsDataSource } from "../../service/merchants.data.source";
-import { Product } from "src/app/model/product";
-
+import { UserService } from "../../service/user.service";
 import { SaveConfirmationDialogComponent } from "../../shared/save-confirmation-dialog/save-confirmation-dialog.component";
 import { SaveProgressComponent } from "../../shared/save-progress/save-progress.component";
-import { User } from "src/app/model/user";
-import { Validators, FormBuilder, FormGroup } from "@angular/forms";
-import { State } from "src/app/model/state";
-import { Location } from "@angular/common";
+
 @Component({
   selector: "app-users-admin",
   templateUrl: "./users-admin.component.html",
@@ -47,7 +44,8 @@ export class UsersAdminComponent implements OnInit, AfterViewInit {
     "remove",
   ];
   filterForm: FormGroup;
-  @ViewChild(MatPaginator, { read: MatPaginator, static: true }) paginator: MatPaginator;
+  @ViewChild(MatPaginator, { read: MatPaginator, static: true })
+  paginator: MatPaginator;
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 

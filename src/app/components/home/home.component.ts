@@ -1,14 +1,10 @@
-import { ZipCode } from "./../../model/zipCode";
-import { ZipcodeService } from "./../../service/zipcode.service";
-import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
+import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
+import { FormControl } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
-
-import { ProductService } from "../../service/product.service";
-import { AuthService } from "../../service/auth.service";
 import { Category } from "../../model/category";
-
+import { AuthService } from "../../service/auth.service";
 import { WindowRef } from "../../service/window.service";
-import { FormControl, Validators } from "@angular/forms";
+import { ZipcodeService } from "./../../service/zipcode.service";
 
 @Component({
   templateUrl: "./home.component.html",
@@ -23,9 +19,9 @@ export class HomeComponent implements OnInit {
   distance: number = 0;
   addresses = [];
   address;
-  videosC = true
-  @ViewChild('videoPlayer', { static: true }) videoplayer: ElementRef;
-  @ViewChild('videoPlayerB', { static: true }) videoplayerB: ElementRef;
+  videosC = true;
+  @ViewChild("videoPlayer", { static: true }) videoplayer: ElementRef;
+  @ViewChild("videoPlayerB", { static: true }) videoplayerB: ElementRef;
   play: boolean;
   play2: any;
   constructor(
@@ -34,14 +30,14 @@ export class HomeComponent implements OnInit {
     private authService: AuthService,
     private zipcodeService: ZipcodeService,
     private router: Router
-  ) { }
+  ) {}
   ngOnInit() {
     this.route.data.subscribe((data: { categories: Category[] }) => {
       this.categories = data.categories;
     });
   }
 
-  ngAfterViewChecked() { }
+  ngAfterViewChecked() {}
   isIE() {
     const match = this.winRef.nativeWindow.navigator.userAgent.search(
       /(?:Edge|MSIE|Trident\/.*; rv:)/
@@ -58,24 +54,24 @@ export class HomeComponent implements OnInit {
     return this.authService.isLoggedIn();
   }
   playVideo() {
-    if(this.play){
+    if (this.play) {
       this.videoplayer.nativeElement.pause();
-      this.play=false;
-    }else{
+      this.play = false;
+    } else {
       this.videoplayer.nativeElement.play();
       // this.videoplayer.nativeElement.requestFullscreen();
-      this.play=true;
+      this.play = true;
     }
   }
 
   playVideo2() {
-    if(this.play2){
+    if (this.play2) {
       this.videoplayerB.nativeElement.pause();
-      this.play2=false;
-    }else{
+      this.play2 = false;
+    } else {
       this.videoplayerB.nativeElement.play();
       // this.videoplayer.nativeElement.requestFullscreen();
-      this.play2=true;
+      this.play2 = true;
     }
   }
   getlocations(q) {

@@ -1,15 +1,13 @@
-import { AuthService } from "./auth.service";
 import { Injectable } from "@angular/core";
 import {
-  Router,
-  Resolve,
-  RouterStateSnapshot,
   ActivatedRouteSnapshot,
+  Router,
+  RouterStateSnapshot,
 } from "@angular/router";
-import { Observable, EMPTY, of } from "rxjs";
-import { UserService } from "./user.service";
-import { RevenuRprt } from "../model/revenuRprt";
+import { EMPTY, Observable, of } from "rxjs";
 import { mergeMap } from "rxjs/operators";
+import { AuthService } from "./auth.service";
+import { UserService } from "./user.service";
 
 @Injectable()
 export class ProfileResolverService {

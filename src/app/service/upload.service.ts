@@ -1,14 +1,13 @@
-import { Injectable } from "@angular/core";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
-import { Observable } from "rxjs/Observable";
-import { throwError } from "rxjs";
-import { catchError, map } from "rxjs/operators";
-import { Picture } from "../model/picture";
-import { BehaviorSubject } from "rxjs/BehaviorSubject";
-
-import { environment } from "../../environments/environment";
-
+import { Injectable } from "@angular/core";
 import * as moment_ from "moment";
+import { throwError } from "rxjs";
+import { BehaviorSubject } from "rxjs/BehaviorSubject";
+import { Observable } from "rxjs/Observable";
+import { catchError, map } from "rxjs/operators";
+import { environment } from "../../environments/environment";
+import { Picture } from "../model/picture";
+
 const moment = moment_;
 
 const uploadApi = environment.APIEndpoint + "glry";

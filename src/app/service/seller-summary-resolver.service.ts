@@ -1,14 +1,13 @@
 import { Injectable } from "@angular/core";
 import {
-  Router,
-  Resolve,
-  RouterStateSnapshot,
   ActivatedRouteSnapshot,
+  Resolve,
+  Router,
+  RouterStateSnapshot,
 } from "@angular/router";
 import { Observable } from "rxjs";
-
-import { UserService } from "./user.service";
 import { SellerSummary } from "../model/sellerySummary";
+import { UserService } from "./user.service";
 
 @Injectable()
 export class SellerSummaryResolverService implements Resolve<SellerSummary> {

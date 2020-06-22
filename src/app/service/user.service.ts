@@ -1,26 +1,24 @@
-import { Injectable } from "@angular/core";
 import {
   HttpClient,
   HttpErrorResponse,
   HttpParams,
 } from "@angular/common/http";
-import { User } from "../model/user";
-import { Observable } from "rxjs/Observable";
+import { Injectable } from "@angular/core";
+import { throwError } from "rxjs";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
-import { throwError, fromEventPattern } from "rxjs";
+import { Observable } from "rxjs/Observable";
 import { catchError, map } from "rxjs/operators";
-
 import { environment } from "../../environments/environment";
-
 import { Balance } from "../model/balance";
-import { SellerSummary } from "../model/sellerySummary";
 import { CreditCard } from "../model/creditCard";
-import { Transaction } from "../model/transaction";
-import { Deposit } from "../model/deposit";
 import { DailySale } from "../model/daily-sale";
+import { Deposit } from "../model/deposit";
 import { Refer } from "../model/refer";
-
 import { RevenuRprt } from "../model/revenuRprt";
+import { SellerSummary } from "../model/sellerySummary";
+import { Transaction } from "../model/transaction";
+import { User } from "../model/user";
+
 // import { KeyRegistry } from "@angular/core/src/di/reflective_key";
 
 const userAPI = environment.APIEndpoint + "register";

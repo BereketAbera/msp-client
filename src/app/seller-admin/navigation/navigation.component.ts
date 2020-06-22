@@ -1,7 +1,7 @@
+import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
 import { AuthService } from "./../../service/auth.service";
 import { SellerStaffService } from "./../../service/seller-staff.service";
-import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
-import { Router, ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-navigation",
@@ -34,10 +34,10 @@ export class NavigationComponent implements OnInit {
         if (response.success) {
           this.features = response.features;
         }
-        console.log(response);
+        // console.log(response);
       });
     this.name = this.authService.getName();
-    console.log(this.role);
+    // console.log(this.role);
   }
   gotoOrderHistory() {
     this.router.navigate(["./trnsctns"], { relativeTo: this.route });

@@ -1,12 +1,12 @@
+import { Location } from "@angular/common";
 import {
   Component,
-  OnInit,
-  Input,
-  SimpleChanges,
   EventEmitter,
+  Input,
+  OnInit,
   Output,
+  SimpleChanges,
 } from "@angular/core";
-import { Location } from "@angular/common";
 import { Router } from "@angular/router";
 
 @Component({

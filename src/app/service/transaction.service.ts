@@ -1,21 +1,19 @@
-import { Injectable } from "@angular/core";
 import {
   HttpClient,
   HttpErrorResponse,
   HttpParams,
 } from "@angular/common/http";
-import { Observable } from "rxjs/Observable";
-import { throwError, observable } from "rxjs";
-import { catchError, map } from "rxjs/operators";
-import { Transaction } from "../model/transaction";
-import { DailySale } from "../model/daily-sale";
-import { TransactionStatus } from "../model/transactionStatus";
-import { Supplier } from "../model/supplier";
-import { BuyerTransaction } from "../model/buyer-transaction";
+import { Injectable } from "@angular/core";
+import { throwError } from "rxjs";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
-import { QrCodeData } from "../model/qrCodeData";
-
+import { Observable } from "rxjs/Observable";
+import { catchError, map } from "rxjs/operators";
 import { environment } from "../../environments/environment";
+import { BuyerTransaction } from "../model/buyer-transaction";
+import { QrCodeData } from "../model/qrCodeData";
+import { Supplier } from "../model/supplier";
+import { Transaction } from "../model/transaction";
+import { TransactionStatus } from "../model/transactionStatus";
 
 const transactionApi = environment.APIEndpoint + "transactions";
 @Injectable()

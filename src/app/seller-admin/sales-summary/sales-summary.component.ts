@@ -5,19 +5,14 @@ import {
   OnInit,
   ViewChild,
 } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
 import { FormControl } from "@angular/forms";
 import { MatPaginator } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
-import { MatTableDataSource } from "@angular/material/table";
-import { UserService } from "../../service/user.service";
-import { tap } from "rxjs/operators";
+import { ActivatedRoute, Router } from "@angular/router";
 import { merge } from "rxjs/observable/merge";
+import { tap } from "rxjs/operators";
 import { DailySalesDataSource } from "../../service/daily-sales-data-source.service";
-import { DailySale } from "../../model/daily-sale";
-import { Moment } from "moment";
-import * as moment from "moment";
-import { Location } from "@angular/common";
+import { UserService } from "../../service/user.service";
 
 @Component({
   selector: "app-sales-summary",
@@ -35,12 +30,12 @@ export class SalesSummaryComponent implements OnInit, AfterViewInit {
     "soldQty",
     "picked",
     "discount",
-    "revenue"
+    "revenue",
   ];
   dateStart = new FormControl(new Date());
   dateEnd = new FormControl(new Date());
 
-  select = new FormControl('');
+  select = new FormControl("");
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -55,9 +50,14 @@ export class SalesSummaryComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.dataSource = new DailySalesDataSource(this.userService);
     // this.dataSource.loadTransactions(this.date.value);
-    this.dataSource.loadTransactions(this.dateStart.value,this.dateEnd.value,0,10);
+    this.dataSource.loadTransactions(
+      this.dateStart.value,
+      this.dateEnd.value,
+      0,
+      10
+    );
 
-     console.log(this.dataSource);
+    console.log(this.dataSource);
   }
   ngAfterViewInit() {
     this.sort.sortChange.subscribe(() => (this.paginator.pageIndex = 0));
@@ -68,8 +68,13 @@ export class SalesSummaryComponent implements OnInit, AfterViewInit {
   search() {}
   loadTransactionsPage() {
     // console.log(this.dateStart.value, this.dateEnd.value)
-    this.dataSource.loadTransactions(this.dateStart.value,this.dateEnd.value,this.paginator.pageIndex, this.paginator.pageSize);
-  //  console.log(this.dataSource.count);
+    this.dataSource.loadTransactions(
+      this.dateStart.value,
+      this.dateEnd.value,
+      this.paginator.pageIndex,
+      this.paginator.pageSize
+    );
+    //  console.log(this.dataSource.count);
   }
   // onDatesUpdated(e) {
   //   // console.log(e);

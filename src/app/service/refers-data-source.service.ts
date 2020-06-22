@@ -1,10 +1,10 @@
 import { CollectionViewer, DataSource } from "@angular/cdk/collections";
+import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import { Observable } from "rxjs/Observable";
+import { of } from "rxjs/observable/of";
+import { catchError, finalize } from "rxjs/operators";
 import { Refer } from "../model/refer";
 import { UserService } from "./user.service";
-import { BehaviorSubject } from "rxjs/BehaviorSubject";
-import { catchError, finalize, map } from "rxjs/operators";
-import { of } from "rxjs/observable/of";
 
 export class RefersDataSource implements DataSource<Refer> {
   private productsSubject = new BehaviorSubject<Refer[]>([]);

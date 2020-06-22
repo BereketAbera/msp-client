@@ -1,8 +1,7 @@
-import { SocialReferralService } from "./../../service/social-referral.service";
 import { Component, OnInit } from "@angular/core";
-
 import * as moment from "moment";
-import { ConfiguartionService } from 'src/app/service/configuartion.service';
+import { ConfiguartionService } from "src/app/service/configuartion.service";
+import { SocialReferralService } from "./../../service/social-referral.service";
 
 @Component({
   selector: "app-social-referral",
@@ -13,13 +12,16 @@ export class SocialReferralComponent implements OnInit {
   codes: any = [];
   buttonDisable = false;
   config: any;
-  constructor(private referralService: SocialReferralService,private configService:ConfiguartionService) {}
+  constructor(
+    private referralService: SocialReferralService,
+    private configService: ConfiguartionService
+  ) {}
 
   ngOnInit() {
     this.referralService.getBuyerReferralList().subscribe((res) => {
       this.codes = res;
     });
-    this.config=this.configService.configData;
+    this.config = this.configService.configData;
   }
 
   generateCode() {

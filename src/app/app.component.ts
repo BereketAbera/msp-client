@@ -1,18 +1,18 @@
-import { Component, ViewEncapsulation, Version } from "@angular/core";
+import { Component } from "@angular/core";
 import { VERSION } from "@angular/flex-layout";
 import {
-  Router,
   Event,
-  NavigationStart,
-  NavigationEnd,
   NavigationCancel,
-  NavigationError
+  NavigationEnd,
+  NavigationError,
+  NavigationStart,
+  Router,
 } from "@angular/router";
 
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.scss"]
+  styleUrls: ["./app.component.scss"],
 })
 export class AppComponent {
   title = "MSP";

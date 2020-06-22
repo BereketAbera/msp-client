@@ -1,11 +1,11 @@
-import { AuthService } from "./auth.service";
 import { CollectionViewer, DataSource } from "@angular/cdk/collections";
-import { Observable } from "rxjs/Observable";
-import { Transaction } from "../model/transaction";
-import { TransactionService } from "./transaction.service";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
-import { catchError, finalize, map } from "rxjs/operators";
+import { Observable } from "rxjs/Observable";
 import { of } from "rxjs/observable/of";
+import { catchError, finalize } from "rxjs/operators";
+import { Transaction } from "../model/transaction";
+import { AuthService } from "./auth.service";
+import { TransactionService } from "./transaction.service";
 
 export class SellerOrderDataSource implements DataSource<Transaction> {
   private productsSubject = new BehaviorSubject<Transaction[]>([]);

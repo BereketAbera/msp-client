@@ -1,14 +1,14 @@
 import { Injectable } from "@angular/core";
 import {
-  Router,
   ActivatedRouteSnapshot,
+  Router,
   RouterStateSnapshot,
 } from "@angular/router";
-import { Observable, of, EMPTY } from "rxjs";
-import { State } from "../model/state";
+import { EMPTY, Observable, of } from "rxjs";
 import { mergeMap } from "rxjs/operators";
-import { SellerStaffService } from "./seller-staff.service";
+import { State } from "../model/state";
 import { AuthService } from "./auth.service";
+import { SellerStaffService } from "./seller-staff.service";
 
 @Injectable()
 export class StaffResolverService {

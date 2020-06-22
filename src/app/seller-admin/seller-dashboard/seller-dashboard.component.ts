@@ -1,14 +1,11 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
-import { FormBuilder, Validators, FormControl } from "@angular/forms";
-import { ActivatedRoute, Router, Params } from "@angular/router";
-import * as moment from "moment";
-
+import { FormBuilder, FormControl } from "@angular/forms";
+import { ActivatedRoute, Router } from "@angular/router";
 import { Chart } from "chart.js";
-
-import { SellerSummary } from "../../model/sellerySummary";
-import { RevenuRprt } from "../../model/revenuRprt";
-import { ThrowStmt, ReturnStatement } from "@angular/compiler";
+import * as moment from "moment";
 import { UserService } from "src/app/service/user.service";
+import { RevenuRprt } from "../../model/revenuRprt";
+import { SellerSummary } from "../../model/sellerySummary";
 
 @Component({
   selector: "app-seller-dashboard",

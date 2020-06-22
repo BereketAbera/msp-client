@@ -1,10 +1,8 @@
-import { MatSnackBar } from "@angular/material/snack-bar";
-import { FeaturedDataSource } from "./../../service/featured-data-source";
 import { Location } from "@angular/common";
-import { ActivatedRoute } from "@angular/router";
 import { Component, OnInit } from "@angular/core";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { ActivatedRoute } from "@angular/router";
 import { SellerStaffService } from "src/app/service/seller-staff.service";
-import { ifStmt } from "@angular/compiler/src/output/output_ast";
 
 @Component({
   selector: "app-manage-staff-access",

@@ -1,18 +1,16 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
-import { FormBuilder, Validators, FormControl } from "@angular/forms";
-import { Router, ActivatedRoute } from "@angular/router";
-import { ProductService } from "../../service/product.service";
-import { AuthService } from "../../service/auth.service";
-import { Product } from "src/app/model/product";
+import { Component, OnInit } from "@angular/core";
+import { FormBuilder, Validators } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
-import { debounceTime, distinctUntilChanged } from "rxjs/operators";
 import { MatSnackBar } from "@angular/material/snack-bar";
-import { Shop } from "../../model/shop";
+import { ActivatedRoute, Router } from "@angular/router";
+import * as moment from "moment";
+import { debounceTime } from "rxjs/operators";
+import { Product } from "src/app/model/product";
 import { Category } from "../../model/category";
 import { Picture } from "../../model/picture";
-
-import * as moment from "moment";
-
+import { Shop } from "../../model/shop";
+import { AuthService } from "../../service/auth.service";
+import { ProductService } from "../../service/product.service";
 import { SaveConfirmationDialogComponent } from "../../shared/save-confirmation-dialog/save-confirmation-dialog.component";
 import { SaveProgressComponent } from "../../shared/save-progress/save-progress.component";
 import { RequestResultComponent } from "../request-result/request-result.component";
@@ -314,13 +312,9 @@ export class AddNewAdComponent implements OnInit {
             (res) => {
               if (res["success"]) {
                 progressDialogRef.close();
-                let snackBarRef = this.snackBar.open(
-                  "Successfuly saved",
-                  "",
-                  {
-                    duration: 6000,
-                  }
-                );
+                let snackBarRef = this.snackBar.open("Successfuly saved", "", {
+                  duration: 6000,
+                });
                 snackBarRef.afterDismissed().subscribe(() => {
                   this.router.navigate(["../"], { relativeTo: this.route });
                 });

@@ -1,13 +1,13 @@
 import { Injectable } from "@angular/core";
 import {
-  Router,
-  Resolve,
-  RouterStateSnapshot,
   ActivatedRouteSnapshot,
+  Resolve,
+  Router,
+  RouterStateSnapshot,
 } from "@angular/router";
 import { Observable } from "rxjs";
-import { UserService } from "./user.service";
 import { RevenuRprt } from "../model/revenuRprt";
+import { UserService } from "./user.service";
 
 @Injectable()
 export class RevenuRprtResolverService implements Resolve<RevenuRprt[]> {

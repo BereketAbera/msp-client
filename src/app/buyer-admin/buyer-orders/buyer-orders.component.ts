@@ -1,19 +1,8 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  OnInit,
-  ViewChild,
-} from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { MatPaginator } from "@angular/material/paginator";
-import { MatSort } from "@angular/material/sort";
-import { MatTableDataSource } from "@angular/material/table";
-import { TransactionService } from "../../service/transaction.service";
-import { tap } from "rxjs/operators";
-import { merge } from "rxjs/observable/merge";
-import { TransactionsDataSource } from "../../service/transaction-data-source.service";
 import { Transaction } from "src/app/model/transaction";
+import { TransactionsDataSource } from "../../service/transaction-data-source.service";
+import { TransactionService } from "../../service/transaction.service";
 
 @Component({
   templateUrl: "./buyer-orders.component.html",

@@ -1,22 +1,13 @@
+import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-
-import {
-  HttpClient,
-  HttpErrorResponse,
-  HttpParams,
-} from "@angular/common/http";
-import { Observable } from "rxjs/Observable";
-import { throwError } from "rxjs";
-import { catchError, map } from "rxjs/operators";
-import { Shop } from "../model/shop";
-import { BehaviorSubject } from "rxjs/BehaviorSubject";
-
-import { environment } from "../../environments/environment";
-import { ReserveProduct } from "../model/reserve-product";
-import { OrderedProduct } from "../model/ordered-product";
-import { Order } from "../model/order";
-
 import * as moment from "moment";
+import { throwError } from "rxjs";
+import { BehaviorSubject } from "rxjs/BehaviorSubject";
+import { catchError } from "rxjs/operators";
+import { environment } from "../../environments/environment";
+import { Order } from "../model/order";
+import { ReserveProduct } from "../model/reserve-product";
+
 const reserveApi = environment.APIEndpoint + "rsrvordr";
 
 @Injectable()

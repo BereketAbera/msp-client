@@ -1,10 +1,9 @@
-import { Directive, Input, Output, EventEmitter } from "@angular/core";
-import { Observable } from "rxjs/Observable";
-import { of, timer } from "rxjs";
-import { Subject } from "rxjs/Subject";
-import "rxjs/add/operator/takeUntil";
+import { Directive, EventEmitter, Input, Output } from "@angular/core";
+import { timer } from "rxjs";
 import "rxjs/add/operator/startWith";
 import "rxjs/add/operator/switchMap";
+import "rxjs/add/operator/takeUntil";
+import { Subject } from "rxjs/Subject";
 
 @Directive({
   selector: "[bannerCtrl]",

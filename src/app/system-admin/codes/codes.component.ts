@@ -1,7 +1,7 @@
-import { ActivatedRoute, Router, Params } from "@angular/router";
-import { SocialReferralService } from "./../../service/social-referral.service";
 import { Component, OnInit } from "@angular/core";
 import { FormControl } from "@angular/forms";
+import { ActivatedRoute, Params, Router } from "@angular/router";
+import { SocialReferralService } from "./../../service/social-referral.service";
 
 @Component({
   selector: "app-codes",

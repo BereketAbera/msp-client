@@ -1,12 +1,10 @@
 import { CollectionViewer, DataSource } from "@angular/cdk/collections";
-import { Observable } from "rxjs/Observable";
-import { Product } from "../model/product";
-import { ProductService } from "./product.service";
-import { Subscription } from "rxjs/Subscription";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
+import { Observable } from "rxjs/Observable";
+import { Subscription } from "rxjs/Subscription";
+import { Product } from "../model/product";
 import { AuthService } from "../service/auth.service";
-import { catchError, finalize, map } from "rxjs/operators";
-import { of } from "rxjs/observable/of";
+import { ProductService } from "./product.service";
 
 export class FeaturedDataSource extends DataSource<Product | undefined> {
   private length = 6;

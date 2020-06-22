@@ -1,19 +1,14 @@
-import { Injectable } from "@angular/core";
 import {
   HttpClient,
-  HttpResponse,
   HttpErrorResponse,
+  HttpResponse,
 } from "@angular/common/http";
-
-import { throwError, BehaviorSubject } from "rxjs";
-import { environment } from "../../environments/environment";
-
-import * as moment from "moment";
+import { Injectable } from "@angular/core";
 import jwt_decode from "jwt-decode";
-
-import { catchError, tap, shareReplay, map } from "rxjs/operators";
-
-import { User } from "../model/user";
+import * as moment from "moment";
+import { BehaviorSubject, throwError } from "rxjs";
+import { map, shareReplay, tap } from "rxjs/operators";
+import { environment } from "../../environments/environment";
 
 const authApi = environment.APIEndpoint + "authenticate";
 const pwdResetReqApi = environment.APIEndpoint + "pwdrstrqt";

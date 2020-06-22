@@ -1,9 +1,9 @@
-import { Component, OnInit, Output, Input, EventEmitter } from "@angular/core";
-import { Router, ActivatedRoute } from "@angular/router";
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
-import { TransactionService } from "../../service/transaction.service";
-import { PaymentInfo } from "../../model/paymentInfo";
+import { ActivatedRoute, Router } from "@angular/router";
 import { debounceTime } from "rxjs/operators";
+import { PaymentInfo } from "../../model/paymentInfo";
+import { TransactionService } from "../../service/transaction.service";
 
 @Component({
   selector: "app-deposite-with-saved-credit-card",

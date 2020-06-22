@@ -1,16 +1,15 @@
-import { AuthService } from "./auth.service";
 import { Injectable } from "@angular/core";
 import {
-  Router,
-  Resolve,
-  RouterStateSnapshot,
   ActivatedRouteSnapshot,
+  Resolve,
+  Router,
+  RouterStateSnapshot,
 } from "@angular/router";
-import { Observable, of, EMPTY } from "rxjs";
-import { mergeMap, take } from "rxjs/operators";
-
-import { UploadService } from "./upload.service";
+import { EMPTY, Observable, of } from "rxjs";
+import { mergeMap } from "rxjs/operators";
 import { Picture } from "../model/picture";
+import { AuthService } from "./auth.service";
+import { UploadService } from "./upload.service";
 
 @Injectable()
 export class GalleryResolverService implements Resolve<Picture[]> {

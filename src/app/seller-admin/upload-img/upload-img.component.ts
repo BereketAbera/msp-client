@@ -1,14 +1,11 @@
-import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
-import { FormBuilder, Validators, FormControl } from "@angular/forms";
-import { Router, ActivatedRoute } from "@angular/router";
+import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
+import { FormBuilder, Validators } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
-import { debounceTime, distinctUntilChanged } from "rxjs/operators";
 import { MatSnackBar } from "@angular/material/snack-bar";
-
-import { UploadService } from "../../service/upload.service";
-
-import { ImageCroppedEvent } from "ngx-image-cropper";
+import { ActivatedRoute, Router } from "@angular/router";
 import Compressor from "compressorjs";
+import { ImageCroppedEvent } from "ngx-image-cropper";
+import { UploadService } from "../../service/upload.service";
 
 let uploadClass = null;
 

@@ -1,11 +1,10 @@
-import { stringify } from "querystring";
 import {
   Component,
-  OnInit,
-  Input,
-  ViewChild,
   ElementRef,
+  Input,
+  OnInit,
   SimpleChanges,
+  ViewChild,
 } from "@angular/core";
 import { ProductService } from "src/app/service/product.service";
 

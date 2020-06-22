@@ -1,3 +1,3 @@
 export class MyDecimalInput {
-    constructor(public beforeDecimal: string, public afterDecimal: string) {}
-  }
+  constructor(public beforeDecimal: string, public afterDecimal: string) {}
+}

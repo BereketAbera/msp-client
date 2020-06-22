@@ -1,15 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'app-buyer-dashboard',
-  templateUrl: './buyer-dashboard.component.html',
-  styleUrls: ['./buyer-dashboard.component.scss']
+  selector: "app-buyer-dashboard",
+  templateUrl: "./buyer-dashboard.component.html",
+  styleUrls: ["./buyer-dashboard.component.scss"],
 })
 export class BuyerDashboardComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

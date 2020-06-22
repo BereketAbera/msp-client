@@ -1,12 +1,12 @@
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder, Validators, FormGroup } from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { ActivatedRoute, Router } from "@angular/router";
 import { SellerStaffService } from "src/app/service/seller-staff.service";
-import { Router, ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-add-staff",
   templateUrl: "./add-staff.component.html",
-  styleUrls: ["./add-staff.component.scss"]
+  styleUrls: ["./add-staff.component.scss"],
 })
 export class AddStaffComponent implements OnInit {
   addStaffForm: FormGroup;
@@ -16,7 +16,7 @@ export class AddStaffComponent implements OnInit {
     private formBuilder: FormBuilder,
     private sellerStaffSerevice: SellerStaffService,
     private router: Router,
-    private route:ActivatedRoute
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
@@ -25,7 +25,7 @@ export class AddStaffComponent implements OnInit {
       username: ["", Validators.required],
       firstName: ["", Validators.required],
       lastName: ["", Validators.required],
-      phoneNumber: ["", Validators.required]
+      phoneNumber: ["", Validators.required],
     });
   }
   gotoSellAdmin() {
@@ -35,7 +35,7 @@ export class AddStaffComponent implements OnInit {
     if (this.addStaffForm.valid) {
       this.sellerStaffSerevice
         .addStaff(this.addStaffForm.value)
-        .subscribe(response => {
+        .subscribe((response) => {
           if (response.success) {
             this.router.navigate(["/tlgu-slr/staffs"]);
           } else {
