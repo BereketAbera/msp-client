@@ -5,6 +5,7 @@ import { Category } from "../../model/category";
 import { AuthService } from "../../service/auth.service";
 import { WindowRef } from "../../service/window.service";
 import { ZipcodeService } from "./../../service/zipcode.service";
+import { ConfiguartionService } from 'src/app/service/configuartion.service';
 
 @Component({
   templateUrl: "./home.component.html",
@@ -24,17 +25,20 @@ export class HomeComponent implements OnInit {
   @ViewChild("videoPlayerB", { static: true }) videoplayerB: ElementRef;
   play: boolean;
   play2: any;
+  config: any;
   constructor(
     private winRef: WindowRef,
     private route: ActivatedRoute,
     private authService: AuthService,
     private zipcodeService: ZipcodeService,
-    private router: Router
+    private router: Router,
+    private configService:ConfiguartionService
   ) {}
   ngOnInit() {
     this.route.data.subscribe((data: { categories: Category[] }) => {
       this.categories = data.categories;
     });
+    this.config = this.configService.configData;
   }
 
   ngAfterViewChecked() {}
