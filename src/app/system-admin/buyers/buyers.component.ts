@@ -120,6 +120,7 @@ export class BuyersComponent implements OnInit {
   filterBuyer() {
     let controls = this.filterForm.controls;
     this.setUrlValues({
+      pageNumber: 1,
       email: controls["email"].value,
       signUpCredit: controls["signUpCredit"].value,
       registrationType: controls["registrationType"].value,
