@@ -35,7 +35,11 @@ export class SellerDashboardComponent implements OnInit {
   sDate = new FormControl();
   eDate = new FormControl(new Date());
   sDateValue = "";
-  eDateValue = "";
+  eDateValue = new Date();
+
+  minDate = new Date(2020, 1, 1);
+  maxDate = new Date();
+  eDateValue2: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -46,8 +50,8 @@ export class SellerDashboardComponent implements OnInit {
 
   ngOnInit() {
     // this.route.queryParamMap.subscribe((params) => {
-    //   this.sDateValue = params.get("sDate");
-    //   this.eDateValue = params.get("eDate");
+    this.sDateValue = this.sDate.value;
+    this.eDateValue2 = this.sDate.value;
 
     //   this.filterDashboard();
     // });
@@ -74,6 +78,10 @@ export class SellerDashboardComponent implements OnInit {
     );
   }
 
+  changeDateValue(){
+    // console.log(this.eDate.value);
+    this.maxDate=this.eDate.value
+  }
   revenuChart() {
     this.lables = this.actualRevenuReport.map((value) => {
       return value.year + "|" + value.month + "|" + value.day;
