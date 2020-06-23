@@ -82,14 +82,17 @@ export class BuyersComponent implements OnInit {
         sDate: this.sDate,
         eDate: this.eDate,
       })
-      .subscribe((res) => {
-        this.count = res.count;
-        this.dataSource = res.rows;
-      });
+      .subscribe(
+        (res) => {
+          this.count = res.count;
+          this.dataSource = res.rows;
+        },
+        (err) => console.log(err)
+      );
   }
 
   setUrlValues(sObj) {
-    console.log(sObj);
+    // console.log(sObj);
     let keys = Object.keys(sObj);
     let pObj = {};
     keys.map((key) => {
