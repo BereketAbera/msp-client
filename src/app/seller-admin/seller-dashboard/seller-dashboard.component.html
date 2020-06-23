@@ -23,10 +23,13 @@
     <mat-form-field class="dashboard__date-input">
       <mat-label>Start Date</mat-label>
       <input
+
         matInput
         [matDatepicker]="picker2"
         [formControl]="sDate"
         placeholder="MM/DD/YYYY"
+        [min]="minDate"
+        [max]="maxDate"
       />
       <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
       <mat-datepicker #picker2></mat-datepicker>

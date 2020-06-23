@@ -37,6 +37,9 @@ export class SellerDashboardComponent implements OnInit {
   sDateValue = "";
   eDateValue = "";
 
+  minDate = new Date(2020, 1, 1);
+  maxDate = new Date();
+
   constructor(
     private route: ActivatedRoute,
     private fb: FormBuilder,
