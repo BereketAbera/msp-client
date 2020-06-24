@@ -44,10 +44,10 @@
           }}</mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="createdAt">
-          <mat-header-cell *matHeaderCellDef>Created Date</mat-header-cell>
+        <ng-container matColumnDef="expiresAt">
+          <mat-header-cell *matHeaderCellDef>Expiration Date</mat-header-cell>
           <mat-cell *matCellDef="let code">{{
-            code.createdAt | date
+            getExpDate(code.createdAt) | date
           }}</mat-cell>
         </ng-container>
 

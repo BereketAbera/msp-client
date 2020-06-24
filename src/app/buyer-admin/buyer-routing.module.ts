@@ -1,3 +1,5 @@
+import { SocialReferralsComponent } from "./social-referrals/social-referrals.component";
+import { ReferStatusComponent } from "./refer-status/refer-status.component";
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { BalanceResolverService } from "../service/balance-resolver.service";
@@ -48,6 +50,8 @@ const buyerRoutes: Routes = [
         },
       },
       { path: "rfr", component: ReferComponent },
+      { path: "rfr/email_referral", component: ReferStatusComponent },
+      { path: "rfr/social_referral", component: SocialReferralsComponent },
       {
         path: "trnsctns/:id",
         component: BuyerOrderDetailComponent,

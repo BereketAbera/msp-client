@@ -35,13 +35,16 @@
         </mat-form-field>
 
         <mat-form-field class="filter-body">
-          <mat-label>Date From</mat-label>
+          <mat-label>From</mat-label>
           <input
             formControlName="sDate"
             matInput
             [matDatepicker]="sDate"
             placeholder="MM/DD/YYYY"
             #dateValue
+            [min]="sDate ? sDate : minDate"
+            [max]="maxDate"
+            (dateChange)="dateChanged('sDate')"
           />
           <mat-datepicker-toggle
             matSuffix
@@ -51,13 +54,16 @@
         </mat-form-field>
 
         <mat-form-field class="filter-body">
-          <mat-label>Date To</mat-label>
+          <mat-label>To</mat-label>
           <input
             formControlName="eDate"
             matInput
             [matDatepicker]="eDate"
             placeholder="MM/DD/YYYY"
             #dateValue
+            [min]="minDate"
+            [max]="eDate ? eDate : maxDate"
+            (dateChange)="dateChanged('eDate')"
           />
           <mat-datepicker-toggle
             matSuffix

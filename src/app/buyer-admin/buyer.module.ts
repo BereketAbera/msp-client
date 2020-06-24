@@ -42,6 +42,7 @@ import { ReferSellerComponent } from "./refer-seller/refer-seller.component";
 import { ReferStatusComponent } from "./refer-status/refer-status.component";
 import { ReferComponent } from "./refer/refer.component";
 import { SocialReferralComponent } from "./social-referral/social-referral.component";
+import { SocialReferralsComponent } from './social-referrals/social-referrals.component';
 
 @NgModule({
   imports: [
@@ -79,6 +80,7 @@ import { SocialReferralComponent } from "./social-referral/social-referral.compo
     ReferStatusComponent,
     ProfileComponent,
     SocialReferralComponent,
+    SocialReferralsComponent,
   ],
   entryComponents: [
     PaymentWithCreditCardComponent,

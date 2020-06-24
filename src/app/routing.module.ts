@@ -1,3 +1,4 @@
+import { StafferGuard } from "./staffer.guard";
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
@@ -67,7 +68,7 @@ const appRoutes: Routes = [
   },
   {
     path: "tlgu-slr",
-    canActivate: [SellerGuard],
+    // canActivate: [],
     loadChildren: () =>
       import("./seller-admin/seller.module").then((m) => m.SellerModule),
   },

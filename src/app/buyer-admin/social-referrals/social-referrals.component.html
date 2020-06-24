@@ -1,0 +1,54 @@
+<div class="tab-item">
+  <div class="container">
+    <h3>Social Media Referrals</h3>
+    <div class="table__container">
+      <mat-table
+        *ngIf="dataSource"
+        class="table mat-elevation-z2"
+        [dataSource]="dataSource.rows"
+        matSort
+        matSortActive="date"
+        matSortDirection="asc"
+        matSortDisableClear
+      >
+        <ng-container matColumnDef="bonusCode">
+          <mat-header-cell *matHeaderCellDef>Bonus Code</mat-header-cell>
+          <mat-cell *matCellDef="let refer">
+            <span class="mobile-label">Bonus Code</span
+            >{{ refer.referralCode }}</mat-cell
+          >
+        </ng-container>
+        <ng-container matColumnDef="newRegistrations">
+          <mat-header-cell *matHeaderCellDef
+            >New Registration(s)</mat-header-cell
+          >
+          <mat-cell *matCellDef="let refer"
+            ><span class="mobile-label">Registration(s)</span>
+            {{ refer.count }}</mat-cell
+          >
+        </ng-container>
+
+        <ng-container matColumnDef="registrationDate">
+          <mat-header-cell *matHeaderCellDef>Date</mat-header-cell>
+          <mat-cell *matCellDef="let refer"
+            ><span class="mobile-label">Registration Date</span>
+            {{ refer.createdDate | date }}</mat-cell
+          >
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+      </mat-table>
+      <div *ngIf="dataSource.count == 0" class="no_result">
+        No Referrals yet!
+      </div>
+      <mat-paginator
+        class="table"
+        [length]="dataSource.count"
+        [pageSize]="5"
+        [pageSizeOptions]="[5, 10]"
+        (page)="getReferrals($event)"
+      >
+      </mat-paginator>
+    </div>
+  </div>
+</div>

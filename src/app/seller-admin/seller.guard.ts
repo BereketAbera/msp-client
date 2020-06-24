@@ -15,6 +15,7 @@ import { SellerStaffService } from "../service/seller-staff.service";
 })
 export class SellerGuard implements CanActivate {
   user_features = null;
+  alreadyRouted = false;
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -47,9 +48,18 @@ export class SellerGuard implements CanActivate {
             (response) => {
               this.user_features = response.features;
               found = this.checkUserFeatures(url);
+              // console.log(found);
               if (found) {
                 return found;
+              } else if (
+                !this.alreadyRouted &&
+                this.user_features.length != 0
+              ) {
+                let route = this.getAccessibleRoute(this.user_features[0]);
+                this.alreadyRouted = true;
+                this.router.navigate([route]);
               } else {
+                this.authService.progressBarActive.next(false);
                 this.router.navigate(["/tlgu-slr/access_denied"]);
               }
             },
@@ -59,7 +69,12 @@ export class SellerGuard implements CanActivate {
           found = this.checkUserFeatures(url);
           if (found) {
             return found;
+          } else if (!this.alreadyRouted && this.user_features.length != 0) {
+            let route = this.getAccessibleRoute(this.user_features[0]);
+            this.alreadyRouted = true;
+            this.router.navigate([route]);
           } else {
+            this.authService.progressBarActive.next(false);
             this.router.navigate(["/tlgu-slr/access_denied"]);
           }
         }
@@ -74,10 +89,10 @@ export class SellerGuard implements CanActivate {
       this.router.navigate(["/login"]);
       return false;
     }
-    // Store the attempted URL for redirecting
   }
 
   checkUserFeatures(url) {
+    // console.log(url);
     let newUrl = this.refactorUrl(url);
     let found = false;
     this.user_features.map((uf) => {
@@ -96,6 +111,17 @@ export class SellerGuard implements CanActivate {
       return url;
     }
 
+    return url;
+  }
+
+  getAccessibleRoute(feature) {
+    let url = "";
+    let keys = Object.keys(mapRoutes);
+    keys.map((key) => {
+      if (mapRoutes[key] == feature.description) {
+        url = key;
+      }
+    });
     return url;
   }
 }

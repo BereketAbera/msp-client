@@ -16,8 +16,8 @@ export class BuyersComponent implements OnInit {
   pageSize = 10;
   email = "";
   signUpCredit = "";
-  sDate = "";
-  eDate = "";
+  sDate;
+  eDate;
   registrationType = "";
   displayedColumns = [
     "name",
@@ -33,9 +33,8 @@ export class BuyersComponent implements OnInit {
     { name: "SOCIAL MEDIA", value: "SOCIAL MEDIA" },
   ];
   filterForm: FormGroup;
-  // @ViewChild("dateValue") dateValue;
-  @ViewChild("sDate", { static: true }) sDatePicker;
-  @ViewChild("eDate", { static: true }) eDatePicker;
+  minDate = new Date(2020, 1, 1);
+  maxDate = new Date();
 
   constructor(
     private adminService: AdminService,
@@ -49,8 +48,8 @@ export class BuyersComponent implements OnInit {
       email: [""],
       signUpCredit: [""],
       registrationType: [""],
-      sDate: [""],
-      eDate: [new Date()],
+      sDate: [],
+      eDate: [],
     });
     this.route.queryParamMap.subscribe((params) => {
       this.pageNumber = parseInt(params.get("pageNumber")) || 1;
@@ -138,5 +137,13 @@ export class BuyersComponent implements OnInit {
       this.filterForm.controls["sDate"].setValue(this.sDate);
       this.filterForm.controls["eDate"].setValue(this.eDate);
     });
+  }
+
+  dateChanged(date) {
+    if (date == "eDate") {
+      this.maxDate = this.filterForm.controls["eDate"].value;
+    } else {
+      this.minDate = this.filterForm.controls["sDate"].value;
+    }
   }
 }

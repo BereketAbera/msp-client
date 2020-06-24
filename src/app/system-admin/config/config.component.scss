@@ -10,7 +10,6 @@
     display: flex;
     color: #777;
     font-size: 2rem;
-
   }
 
   &__body {
@@ -22,11 +21,16 @@
     justify-content: space-around;
     align-content: center;
     align-items: center;
+
+    b {
+      font-size: 1.4rem;
+      color: #555;
+    }
   }
 
-  .label{
+  .label {
     display: flex;
-    flex-basis:  20rem;
+    flex-basis: 20rem;
   }
 }
 
@@ -43,4 +47,9 @@ li {
   color: #555;
   background: #f7f7f7;
   box-shadow: 2px 1px 3px #ddd;
+}
+
+.icon {
+  font-size: 1.2rem;
+  // color: #888;
 }

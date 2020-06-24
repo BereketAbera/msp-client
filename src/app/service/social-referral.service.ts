@@ -32,4 +32,11 @@ export class SocialReferralService {
         `/generate_admin_code?type=ADMIN&referredCredit=${referredCredit}`
     );
   }
+
+  getUserSocialReferrals(pageSize, pageNumber): Observable<any> {
+    return this.http.get(
+      environment.APIEndpoint +
+        `accounts/lstsocialrfrs?pageSize=${pageSize}&pageNumber=${pageNumber}`
+    );
+  }
 }

@@ -1,10 +1,21 @@
 <div class="tab-item">
   <mat-card class="mat-elevation-z2">
+    <div style="display: flex; width: 100%; justify-content: flex-end;">
+      <button
+        mat-raised-button
+        routerLink="./email_referral"
+        mat-button
+        color="accent"
+      >
+        Referrals List
+      </button>
+    </div>
     <p>
-      Refer a seller and get a {{ config.sellerRefReferrerCredit | currency }} credit for each new seller/restaurant sign
-      up. It is easy, just enter their email address and we will do the rest.
-      You can only use these credits on our site and they cannot be converted to
-      cash.
+      Refer a seller and get a
+      {{ config.sellerRefReferrerCredit | currency }} credit for each new
+      seller/restaurant sign up. It is easy, just enter their email address and
+      we will do the rest. You can only use these credits on our site and they
+      cannot be converted to cash.
     </p>
     <mat-card-content>
       <form>

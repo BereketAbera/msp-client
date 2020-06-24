@@ -8,12 +8,13 @@
       <li class="content__item">
         <span class="label">Distance </span>
         <b
-          ><span> {{ confg?.distanceKM }}</span>
+          ><span> {{ confg?.distanceKM }}</span
+          >KM
         </b>
         <div class="action">
           <button
             type="submit"
-            (click)="editConfig('distanceKM', confg?.distanceKM,'Distance')"
+            (click)="editConfig('distanceKM', confg?.distanceKM, 'Distance')"
             mat-flat-button
             color="default"
           >
@@ -24,12 +25,15 @@
       <li class="content__item">
         <span class="label">MSP Markup </span>
         <b
+          ><i class="fad fa-percent icon"></i
           ><span> {{ confg?.talguuMarkup }}</span>
         </b>
         <div class="action">
           <button
             type="submit"
-            (click)="editConfig('talguuMarkup', confg?.talguuMarkup,'MSP Markup')"
+            (click)="
+              editConfig('talguuMarkup', confg?.talguuMarkup, 'MSP Markup')
+            "
             mat-flat-button
             color="default"
           >
@@ -40,12 +44,19 @@
       <li class="content__item">
         <span class="label">Normal Register Credit </span>
         <b>
-          <span> {{ confg?.noRefCredit }}</span>
+          <i class="fad fa-dollar-sign icon"></i
+          ><span> {{ confg?.noRefCredit }}</span>
         </b>
         <div class="action">
           <button
             type="submit"
-            (click)="editConfig('noRefCredit', confg?.noRefCredit,'Normal Register Credit')"
+            (click)="
+              editConfig(
+                'noRefCredit',
+                confg?.noRefCredit,
+                'Normal Register Credit'
+              )
+            "
             mat-flat-button
             color="default"
           >
@@ -56,7 +67,8 @@
       <li class="content__item">
         <span class="label">Seller Email Referrer Credit </span>
         <b>
-          <span> {{ confg?.sellerRefReferrerCredit }}</span>
+          <i class="fad fa-dollar-sign icon"></i
+          ><span> {{ confg?.sellerRefReferrerCredit }}</span>
         </b>
         <div class="action">
           <button
@@ -64,7 +76,8 @@
             (click)="
               editConfig(
                 'sellerRefReferrerCredit',
-                confg?.sellerRefReferrerCredit,'Seller Email Referrer Credit '
+                confg?.sellerRefReferrerCredit,
+                'Seller Email Referrer Credit '
               )
             "
             mat-flat-button
@@ -77,6 +90,7 @@
       <li class="content__item">
         <span class="label">Buyer Email Referee Credit </span>
         <b
+          ><i class="fad fa-dollar-sign icon"></i
           ><span> {{ confg?.buyerRefReferredCredit }}</span>
         </b>
         <div class="action">
@@ -85,7 +99,8 @@
             (click)="
               editConfig(
                 'buyerRefReferredCredit',
-                confg?.buyerRefReferredCredit,'Buyer Email Referee Credit'
+                confg?.buyerRefReferredCredit,
+                'Buyer Email Referee Credit'
               )
             "
             mat-flat-button
@@ -98,7 +113,8 @@
       <li class="content__item">
         <span class="label">Buyer Email Referrer Credit</span>
         <b>
-          <span> {{ confg?.buyerRefReferrerCredit }}</span>
+          <i class="fad fa-dollar-sign icon"></i
+          ><span> {{ confg?.buyerRefReferrerCredit }}</span>
         </b>
         <div class="action">
           <button
@@ -106,7 +122,8 @@
             (click)="
               editConfig(
                 'buyerRefReferrerCredit',
-                confg?.buyerRefReferrerCredit,'Buyer Email Referrer Credit'
+                confg?.buyerRefReferrerCredit,
+                'Buyer Email Referrer Credit'
               )
             "
             mat-flat-button
@@ -119,7 +136,8 @@
       <li class="content__item">
         <span class="label">Social media Referee credit</span>
         <b>
-          <span> {{ confg?.socialRefReferredCredit }}</span>
+          <i class="fad fa-dollar-sign icon"></i
+          ><span> {{ confg?.socialRefReferredCredit }}</span>
         </b>
         <div class="action">
           <button
@@ -127,7 +145,8 @@
             (click)="
               editConfig(
                 'socialRefReferredCredit',
-                confg?.socialRefReferredCredit,'Social Reffered Credit'
+                confg?.socialRefReferredCredit,
+                'Social Reffered Credit'
               )
             "
             mat-flat-button
@@ -140,7 +159,8 @@
       <li class="content__item">
         <span class="label">Social Media Refferrer Credit </span>
         <b>
-          <span> {{ confg?.socialRefReferrerCredit }}</span>
+          <i class="fad fa-dollar-sign icon"></i
+          ><span> {{ confg?.socialRefReferrerCredit }}</span>
         </b>
         <div class="action">
           <button
@@ -148,7 +168,8 @@
             (click)="
               editConfig(
                 'socialRefReferrerCredit',
-                confg?.socialRefReferrerCredit,'Social Refferrer Credit'
+                confg?.socialRefReferrerCredit,
+                'Social Refferrer Credit'
               )
             "
             mat-flat-button

@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormControl } from "@angular/forms";
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { SocialReferralService } from "./../../service/social-referral.service";
+import * as moment from "moment";
 
 @Component({
   selector: "app-codes",
@@ -16,7 +17,7 @@ export class CodesComponent implements OnInit {
   pageSize = 5;
   count;
 
-  displayedColumns = ["code", "credit", "createdAt", "status", "action"];
+  displayedColumns = ["code", "credit", "expiresAt", "status", "action"];
 
   constructor(
     private referralService: SocialReferralService,
@@ -78,5 +79,9 @@ export class CodesComponent implements OnInit {
       pageSize: pageSize,
     };
     this.setUrlValues(sObj);
+  }
+
+  getExpDate(createdDate) {
+    return moment(createdDate).add(30, "days");
   }
 }

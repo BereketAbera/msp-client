@@ -188,6 +188,7 @@ const sellerRoutes: Routes = [
         path: "access_denied",
         component: AccessDeniedComponent,
       },
+      { path: "**", redirectTo: "", pathMatch: "full" },
     ],
   },
 ];
