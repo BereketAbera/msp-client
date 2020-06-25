@@ -69,6 +69,7 @@ export class LoginComponent implements OnInit {
     return this.authService.login(this.loginForm.value).subscribe(
       (res) => {
         this.loading = false;
+        this.authService.progressBarActive.next(true);
         if (this.authService.redirectURL) {
           this.router.navigateByUrl(this.authService.redirectURL);
         } else this.router.navigate([this.authService.defaultNavigationURL]);

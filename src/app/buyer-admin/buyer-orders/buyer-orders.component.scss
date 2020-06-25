@@ -131,7 +131,7 @@
 }
 
 .order_service-code {
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   color: #111;
   font-weight: 600;
 }
@@ -168,6 +168,12 @@
 
 .order__address {
   font-size: 2rem;
+}
+
+@media only screen and (min-width: 320px) {
+  .order_service {
+    bottom: -4rem;
+  }
 }
 
 @media only screen and (min-width: 600px) {

@@ -23,9 +23,7 @@ export class BuyerOrdersComponent implements OnInit {
   ngOnInit() {
     this.route.data.subscribe((data: { orders: Transaction[] }) => {
       this.orders = data.orders;
-      // console.log(this.orders[0]);
       this.count = this.transactionService.countSubject.value;
-      // console.log(data);
     });
   }
 
@@ -103,6 +101,7 @@ export class BuyerOrdersComponent implements OnInit {
     this.transactionService
       .listTransactions(1, "", "", event.pageIndex, event.pageSize)
       .subscribe((data) => {
+        window.scroll(0, 0);
         this.orders = data;
       });
     // console.log(event);

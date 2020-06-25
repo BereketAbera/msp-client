@@ -20,6 +20,7 @@ import { RegisterSellerComponent } from "./register-seller/register-seller.compo
 import { RegisterComponent } from "./register/register.component";
 import { RegistrationCompleteComponent } from "./registration-complete/registration-complete.component";
 import { ResetPasswordComponent } from "./reset-password/reset-password.component";
+import { AuthService } from "../service/auth.service";
 
 // import { CustomNotificationComponent } from "../components/custom-notification/custom-notification.component";
 
@@ -48,6 +49,6 @@ import { ResetPasswordComponent } from "./reset-password/reset-password.componen
     // CustomNotificationComponent,
   ],
   entryComponents: [RegistrationCompleteComponent],
-  providers: [UserService, StateService, StateResolverService],
+  providers: [UserService, StateService, StateResolverService, AuthService],
 })
 export class AuthModule {}

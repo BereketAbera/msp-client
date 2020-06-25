@@ -411,8 +411,8 @@
     // box-shadow: 0.2px 0.1px 1px #7e7377;
   }
 
-  &__login-container:hover {
-  }
+  // &__login-container:hover {
+  // }
 
   &__signup-button {
     border: none;
@@ -535,6 +535,7 @@
     background-color: #111;
     list-style: none;
     flex-wrap: wrap;
+    flex-direction: column;
   }
 
   &__item {
@@ -557,22 +558,22 @@
 
 @media only screen and (min-width: 600px) {
   .header_mobile {
-    &__search-input-container {
-    }
+    // &__search-input-container {
+    // }
 
     &__search-input {
       padding: 1rem;
       font-size: 1.5rem;
     }
 
-    &__search-button {
-    }
+    // &__search-button {
+    // }
   }
 
   .footer {
-    // &__sub-container {
-    //   background-color: #000;
-    // }
+    &__sub-container {
+      flex-direction: row;
+    }
     &__item {
       padding: 0rem;
     }

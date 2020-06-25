@@ -34,8 +34,9 @@
     display: flex;
     list-style: none;
     margin-left: -2rem;
-    padding: 1.8rem;
+    padding: 1.8rem 0rem;
     background-color: #fff;
+    overflow: scroll;
   }
 
   &__item {

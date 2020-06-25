@@ -28,6 +28,7 @@ export class SocialReferralsComponent implements OnInit {
       .getUserSocialReferrals(this.pageSize, this.pageNumber)
       .subscribe((res) => {
         this.dataSource = res;
+        window.scroll(0, 0);
       });
   }
 }

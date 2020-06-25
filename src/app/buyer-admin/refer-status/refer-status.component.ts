@@ -57,12 +57,12 @@ export class ReferStatusComponent implements OnInit, AfterViewInit {
   }
 
   loadTransactionsPage() {
-    console.log("sdsdf");
     this.dataSource.loadRefers(
       "",
       this.sort.direction,
       this.paginator.pageIndex,
       this.paginator.pageSize
     );
+    window.scroll(0, 0);
   }
 }

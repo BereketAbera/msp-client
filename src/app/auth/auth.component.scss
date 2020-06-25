@@ -2,6 +2,13 @@
   margin-top: 8rem;
 }
 
+.main-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 .header_mobile {
   width: 100%;
   display: flex;
@@ -95,6 +102,7 @@
     background-color: #111;
     list-style: none;
     flex-wrap: wrap;
+    flex-direction: column;
   }
 
   &__item {
@@ -109,24 +117,35 @@
   }
 }
 
+.mat-progress-bar {
+  position: fixed;
+  top: 6.8rem;
+  z-index: 1000;
+  opacity: 1;
+  height: 3px;
+}
+::ng-deep .mat-progress-bar-fill::after {
+  background-color: #f94081;
+}
+
 @media only screen and (min-width: 600px) {
   .header_mobile {
-    &__search-input-container {
-    }
+    // &__search-input-container {
+    // }
 
     &__search-input {
       padding: 1rem;
       font-size: 1.5rem;
     }
 
-    &__search-button {
-    }
+    // &__search-button {
+    // }
   }
 
   .footer {
-    // &__sub-container {
-    //   background-color: #000;
-    // }
+    &__sub-container {
+      flex-direction: row;
+    }
     &__item {
       padding: 0rem;
     }
@@ -134,6 +153,10 @@
     &__item-text {
       font-size: 1.1rem;
     }
+  }
+
+  .mat-progress-bar {
+    top: 7rem;
   }
 }
 
@@ -152,5 +175,9 @@
 
   .header__desktop {
     display: flex;
+  }
+
+  .mat-progress-bar {
+    top: 4.8rem;
   }
 }
