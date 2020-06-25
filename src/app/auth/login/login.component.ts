@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.authService.progressBarActive.next(false);
     this.type = this.route.snapshot.paramMap.get("type");
     if (!this.type) this.type = "normal";
   }

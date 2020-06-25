@@ -55,9 +55,14 @@ export class SellerGuard implements CanActivate {
                 !this.alreadyRouted &&
                 this.user_features.length != 0
               ) {
-                let route = this.getAccessibleRoute(this.user_features[0]);
+                let route = this.getAccessibleRoute(this.user_features);
                 this.alreadyRouted = true;
-                this.router.navigate([route]);
+                // this.router.navigate([route]);
+                if (route) {
+                  this.router.navigate([route]);
+                } else {
+                  this.router.navigate(["/tlgu-slr/access_denied"]);
+                }
               } else {
                 this.authService.progressBarActive.next(false);
                 this.router.navigate(["/tlgu-slr/access_denied"]);
@@ -70,9 +75,13 @@ export class SellerGuard implements CanActivate {
           if (found) {
             return found;
           } else if (!this.alreadyRouted && this.user_features.length != 0) {
-            let route = this.getAccessibleRoute(this.user_features[0]);
+            let route = this.getAccessibleRoute(this.user_features);
             this.alreadyRouted = true;
-            this.router.navigate([route]);
+            if (route) {
+              this.router.navigate([route]);
+            } else {
+              this.router.navigate(["/tlgu-slr/access_denied"]);
+            }
           } else {
             this.authService.progressBarActive.next(false);
             this.router.navigate(["/tlgu-slr/access_denied"]);
@@ -114,7 +123,16 @@ export class SellerGuard implements CanActivate {
     return url;
   }
 
-  getAccessibleRoute(feature) {
+  getAccessibleRoute(features) {
+    let feature: any;
+    features.map((f) => {
+      if (f.description != "Add Product" && f.description != "Update Product") {
+        feature = f;
+      }
+    });
+    if (!feature) {
+      return null;
+    }
     let url = "";
     let keys = Object.keys(mapRoutes);
     keys.map((key) => {
