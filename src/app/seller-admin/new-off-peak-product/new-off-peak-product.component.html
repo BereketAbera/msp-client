@@ -368,7 +368,7 @@
 
 <div class="image" *ngIf="imageChangedEvent" [class.hidden]="loadingLocalImage">
   <image-cropper class="image__cropper" [imageFile]="imageChangedEvent" [maintainAspectRatio]="true"
-    [aspectRatio]="550 / 440" [maintainAspectRatio]="false" [hideResizeSquares]="true"
+    [aspectRatio]="550 / 440" [hideResizeSquares]="true"
     (imageCropped)="imageCropped($event)" (cropperReady)="imageLoad($event)"></image-cropper>
 
   <div class="image__actions">
