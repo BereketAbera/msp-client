@@ -87,6 +87,34 @@
   &__logo_icon {
     width: 2.5rem;
   }
+
+  &__login-container {
+    display: flex;
+    justify-content: flex-end;
+    border: 1.4px solid #b41b51;
+    padding: 0.2rem 1rem;
+    border-radius: 10rem;
+    align-items: center;
+    align-content: center;
+    cursor: pointer;
+    margin: 0 0.5rem;
+    // box-shadow: 0.2px 0.1px 1px #7e7377;
+  }
+
+  &__login-button {
+    border: none;
+    outline: none;
+    color: #f94081;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    background-color: #fff;
+    cursor: pointer;
+
+    &:active {
+      transform: scale(1.05);
+    }
+  }
 }
 
 .footer {

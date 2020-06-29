@@ -1,0 +1,66 @@
+.contanier {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
+}
+
+.card {
+  margin: 2rem;
+  padding: 2rem 0rem;
+  display: flex;
+  // justify-content: flex-end;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  align-self: center;
+  justify-content: center;
+  // width: 40%;
+  box-shadow: none;
+  transition: 0.3s;
+  width: 96%;
+  margin: 2rem auto;
+  &__tab {
+    width: 95%;
+    font-size: 1.8rem;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.footer {
+  background: #ddd;
+  position: absolute;
+  bottom: 0rem;
+  top: 100%;
+  padding: 2rem 4rem;
+  margin-top: 3rem;
+  height: 5vh;
+  width: 100%;
+}
+
+@media only screen and (min-width: 732px) {
+  .card {
+    width: 70%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    &__tab {
+      font-size: 1.7rem;
+    }
+  }
+
+  .mat-tab-label-container {
+    overflow: hidden !important;
+  }
+
+  .example-container > * {
+    width: 85%;
+    margin: 0rem 2rem !important;
+    align-content: center;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  .card {
+    width: 50%;
+  }
+}

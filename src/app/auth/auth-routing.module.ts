@@ -1,3 +1,4 @@
+import { SignupComponent } from "./signup/signup.component";
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { StateResolverService } from "../service/state-resolver.service";
@@ -24,6 +25,13 @@ const authRoutes: Routes = [
       {
         path: "login",
         component: LoginComponent,
+        resolve: {
+          states: StateResolverService,
+        },
+      },
+      {
+        path: "signup",
+        component: SignupComponent,
         resolve: {
           states: StateResolverService,
         },

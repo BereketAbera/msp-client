@@ -41,6 +41,7 @@ export let mapRoutes = {
 
   "/tlgu-slr/shops": "Manage Shop",
   "/tlgu-slr/shops/newshp": "Manage Shop",
+  "/tlgu-slr/shops/edit/id": "Manage Shop",
 
   "/tlgu-slr/qr-scanner": "Manage Order",
 
