@@ -423,7 +423,7 @@
   color: #888;
 }
 
-@media only screen and (min-width: 900px) {
+@media only screen and (min-width: 950px) {
   .navigation {
     position: fixed;
     padding: 0rem 2rem;
@@ -432,7 +432,16 @@
     height: 8rem;
 
     &__sub-container {
+      // display: none;
+      list-style: none;
       display: flex;
+      position: fixed;
+      right: -2rem;
+      top: 3.1rem;
+      left: -1rem;
+      padding: 1rem;
+      background-color: #fff;
+      width: auto;
     }
 
     &__mobile-sub-container {
@@ -444,14 +453,20 @@
       font-size: 1.4rem;
     }
 
+    &__mobile-container {
+      display: none;
+    }
+
     &__header-container {
       position: fixed;
-      top: 0.2rem;
-      left: 1rem;
+      top: -0.5rem;
+      left: 0rem;
+      right: 0rem;
       display: flex;
       margin-top: 0.1rem;
       justify-content: space-between;
-      width: 98%;
+      padding: 0.8rem;
+      padding-left: 0rem;
       background-color: #fff;
     }
 
@@ -487,7 +502,7 @@
     }
 
     &__item-text {
-      font-size: 1rem;
+      font-size: 0.8rem;
     }
   }
 

@@ -24,7 +24,7 @@ export class AppComponent {
       switch (true) {
         case event instanceof NavigationStart: {
           this.routing = true;
-          window.scrollTo(0, 0);
+          // window.scrollTo(0, 0);
           break;
         }
         case event instanceof NavigationEnd:

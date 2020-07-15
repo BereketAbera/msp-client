@@ -19,7 +19,6 @@
     transition: all 0.2s;
     background: white;
     display: none;
-  
 
     &-icon {
       position: absolute;
@@ -28,7 +27,6 @@
       transform: translate(-50%, -50%) scale(0);
       font-size: 2.5rem;
       color: #ddd;
-      
     }
 
     &:active {
@@ -40,7 +38,7 @@
 .overlay.active {
   z-index: 2500;
   background-color: rgba(black, 0.5);
-  .overlay__close{
+  .overlay__close {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -82,7 +80,7 @@ video::-webkit-media-controls {
 
   &__icon_cancel {
     font-size: 3rem;
-    color:#cc3469;
+    color: #cc3469;
   }
   &__icon {
     position: absolute;
@@ -197,6 +195,10 @@ video::-webkit-media-controls {
     border-top: none;
     margin-left: 1rem;
     z-index: 10000;
+    &:hover,
+    &:active {
+      display: block;
+    }
   }
 
   &__search-input:focus + .home__search-input-results,
@@ -260,7 +262,7 @@ video::-webkit-media-controls {
   }
 
   &__section-four {
-    width: 100%;
+    width: 150%;
     // max-height: 40vh;
     background-color: white;
     display: flex;
@@ -269,25 +271,30 @@ video::-webkit-media-controls {
     margin-top: 3rem;
     padding: 1rem 2rem 4rem 2rem;
     cursor: pointer;
-    justify-content: space-around;
+    justify-content: space-between;
+    margin-left: -25%;
+    margin-right: -25%;
 
-    .line{
-      align-content: center;
-      background: #444;
-      height: 2px;
-      width: 33%;
+    &-left,
+    &-right {
+      height: 3px;
+      flex: 1;
+      background-color: #555;
     }
-    .singup-box{
-      padding:1rem 3rem;
-      align-content: center;
-      background: #444;
-      align-content: center;
-      font-size: 1.6rem;
-      min-width: 12rem;
-      border-radius: 5rem;
-      color: white;
-      font-weight: 800;
 
+    &-middle {
+      height: 100%;
+      font-size: 2.5rem;
+      font-weight: 600;
+      min-width: 10rem;
+      margin: 0rem 1.5rem;
+      background-color: #555;
+      color: #fff;
+      border-radius: 1rem;
+      padding: 0.2rem 2rem;
+      text-align: center;
+      // text-transform: uppercase;
+      // margin-top: -0.2rem;
     }
   }
 

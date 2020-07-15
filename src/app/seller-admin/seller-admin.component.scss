@@ -53,7 +53,9 @@
     padding: 2rem 0rem;
     padding-top: 8rem;
   }
+}
 
+@media only screen and (min-width: 950px) {
   .mat-progress-bar {
     top: 7rem;
   }

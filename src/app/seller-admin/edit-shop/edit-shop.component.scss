@@ -107,7 +107,11 @@ ul {
   }
   .add-shop {
     &__container {
-      width: 90%;
+      width: 80%;
+      // padding: 3rem;
+      .card {
+        padding: 2rem 6rem;
+      }
     }
 
     &__address {
@@ -123,5 +127,13 @@ ul {
   .zipstatecity {
     width: auto;
     max-width: 16rem;
+  }
+}
+
+@media only screen and (min-width: 900px) {
+  .add-shop {
+    &__container {
+      width: 55rem;
+    }
   }
 }
