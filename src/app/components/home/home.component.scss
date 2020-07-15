@@ -19,7 +19,6 @@
     transition: all 0.2s;
     background: white;
     display: none;
-  
 
     &-icon {
       position: absolute;
@@ -28,7 +27,6 @@
       transform: translate(-50%, -50%) scale(0);
       font-size: 2.5rem;
       color: #ddd;
-      
     }
 
     &:active {
@@ -40,7 +38,7 @@
 .overlay.active {
   z-index: 2500;
   background-color: rgba(black, 0.5);
-  .overlay__close{
+  .overlay__close {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -82,7 +80,7 @@ video::-webkit-media-controls {
 
   &__icon_cancel {
     font-size: 3rem;
-    color:#cc3469;
+    color: #cc3469;
   }
   &__icon {
     position: absolute;
@@ -197,6 +195,10 @@ video::-webkit-media-controls {
     border-top: none;
     margin-left: 1rem;
     z-index: 10000;
+    &:hover,
+    &:active {
+      display: block;
+    }
   }
 
   &__search-input:focus + .home__search-input-results,

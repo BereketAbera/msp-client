@@ -21,11 +21,11 @@ export class CartService {
       .post(reserveApi + "/order", rsrvPrdct)
       .pipe(catchError(this.handleError));
   }
-  addToCartTest(rsrvPrdct: ReserveProduct) {
-    return this.http
-      .post(reserveApi + "/tstorder", rsrvPrdct)
-      .pipe(catchError(this.handleError));
-  }
+  // addToCartTest(rsrvPrdct: ReserveProduct) {
+  //   return this.http
+  //     .post(reserveApi + "/tstorder", rsrvPrdct)
+  //     .pipe(catchError(this.handleError));
+  // }
   removeFromCart(rsrvPrdct: ReserveProduct) {
     return this.http
       .post(reserveApi + "/rmvrsrvdtl", rsrvPrdct)
