@@ -262,15 +262,40 @@ video::-webkit-media-controls {
   }
 
   &__section-four {
-    width: 100%;
+    width: 150%;
     // max-height: 40vh;
     background-color: white;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     margin-top: 3rem;
     padding: 1rem 2rem 4rem 2rem;
     cursor: pointer;
+    justify-content: space-between;
+    margin-left: -25%;
+    margin-right: -25%;
+
+    &-left,
+    &-right {
+      height: 3px;
+      flex: 1;
+      background-color: #555;
+    }
+
+    &-middle {
+      height: 100%;
+      font-size: 2.5rem;
+      font-weight: 600;
+      min-width: 10rem;
+      margin: 0rem 1.5rem;
+      background-color: #555;
+      color: #fff;
+      border-radius: 1rem;
+      padding: 0.2rem 2rem;
+      text-align: center;
+      // text-transform: uppercase;
+      // margin-top: -0.2rem;
+    }
   }
 
   // &__section-four {
