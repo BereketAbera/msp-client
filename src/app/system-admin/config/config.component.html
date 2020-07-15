@@ -42,8 +42,8 @@
       <li class="content__item">
         <span class="label">Normal Register Credit </span>
         <b>
-          <i class="fad fa-dollar-sign icon"></i
-          ><span> {{ confg?.noRefCredit }}</span>
+          
+          <span> {{ confg?.noRefCredit | currency }}</span>
         </b>
         <div class="action">
           <button
@@ -65,8 +65,7 @@
       <li class="content__item">
         <span class="label">Seller Email Referrer Credit </span>
         <b>
-          <i class="fad fa-dollar-sign icon"></i
-          ><span> {{ confg?.sellerRefReferrerCredit }}</span>
+          <span> {{ confg?.sellerRefReferrerCredit | currency }}</span>
         </b>
         <div class="action">
           <button
@@ -88,8 +87,7 @@
       <li class="content__item">
         <span class="label">Buyer Email Referee Credit </span>
         <b
-          ><i class="fad fa-dollar-sign icon"></i
-          ><span> {{ confg?.buyerRefReferredCredit }}</span>
+          ><span> {{ confg?.buyerRefReferredCredit | currency }}</span>
         </b>
         <div class="action">
           <button
@@ -111,8 +109,7 @@
       <li class="content__item">
         <span class="label">Buyer Email Referrer Credit</span>
         <b>
-          <i class="fad fa-dollar-sign icon"></i
-          ><span> {{ confg?.buyerRefReferrerCredit }}</span>
+         <span> {{ confg?.buyerRefReferrerCredit | currency }}</span>
         </b>
         <div class="action">
           <button
@@ -134,8 +131,7 @@
       <li class="content__item">
         <span class="label">Social media Referee credit</span>
         <b>
-          <i class="fad fa-dollar-sign icon"></i
-          ><span> {{ confg?.socialRefReferredCredit }}</span>
+         <span> {{ confg?.socialRefReferredCredit | currency }}</span>
         </b>
         <div class="action">
           <button
@@ -157,8 +153,7 @@
       <li class="content__item">
         <span class="label">Social Media Refferrer Credit </span>
         <b>
-          <i class="fad fa-dollar-sign icon"></i
-          ><span> {{ confg?.socialRefReferrerCredit }}</span>
+          <span> {{ confg?.socialRefReferrerCredit | currency }}</span>
         </b>
         <div class="action">
           <button

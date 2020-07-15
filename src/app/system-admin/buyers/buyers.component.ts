@@ -28,6 +28,7 @@ export class BuyersComponent implements OnInit {
     "createdAt",
   ];
   registrationTypes = [
+    {name:"ALL",value:""},
     { name: "EMAIL REFERRAL", value: "EMAIL REFERRAL" },
     { name: "NORMAL", value: "NORMAL" },
     { name: "SOCIAL MEDIA", value: "SOCIAL MEDIA" },

@@ -36,17 +36,20 @@ export class ResetPasswordComponent implements OnInit {
 
   onSubmit() {
     this.showSuccess = false;
-    return this.authService.reqPwdRest(this.resetForm.value).subscribe(
-      (res) => {
-        this.showSuccess = true;
-        // alert("Password reset instructions have been sent to your account email.");
-        // this.router.navigate(["/"]);
-      },
-      (error) => {
-        this.showError = true;
-        this.errors = error.messages;
-      }
-    );
+    if(this.resetForm.valid){
+      return this.authService.reqPwdRest(this.resetForm.value).subscribe(
+        (res) => {
+          this.showSuccess = true;
+          // alert("Password reset instructions have been sent to your account email.");
+          // this.router.navigate(["/"]);
+        },
+        (error) => {
+          this.showError = true;
+          this.errors = error.messages;
+        }
+      );
+    }
+   
   }
 
   getErrorMessage() {

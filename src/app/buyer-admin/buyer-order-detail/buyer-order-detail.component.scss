@@ -10,7 +10,7 @@ li {
   margin: 1rem 5rem;
   flex-direction: column;
   &__header {
-    font-size: 1.5rem;
+    font-size: 2rem;
   }
 
   &__card {
@@ -26,7 +26,7 @@ li {
       display: flex;
       align-self: center;
       font-size: 1.3rem;
-      padding: 0rem 1rem;
+      padding: 0.2rem 1rem;
 
       b {
         margin-right: 0.7rem;
@@ -37,10 +37,28 @@ li {
       // font-style: italic;
       padding: 0 1rem;
     }
-    &__header {
+    &__headers {
       font-size: 1.7rem;
       color: #777;
       font-weight: 700;
+      padding:1rem 0;
     }
   }
+}
+@media only screen and (max-width: 700px) {
+  .orders {
+    display: flex;
+    justify-content: center;
+    border: 1px #ddd solid;
+    width: 90%;
+    margin: 1rem 2rem;
+    flex-direction: column;
+   .name * {
+      font-size: 1.8rem;
+    }
+    &__headers {
+      font-size: 2rem;
+    }
+  }
+  
 }

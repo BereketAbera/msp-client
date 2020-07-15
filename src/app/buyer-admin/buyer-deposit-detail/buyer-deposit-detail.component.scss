@@ -10,7 +10,7 @@ li {
   margin: 1rem 5rem;
   flex-direction: column;
   &__header {
-    font-size: 1.5rem;
+    font-size: 1.9rem;
   }
 
   &__card {
@@ -50,4 +50,21 @@ li {
     color: #bb1e55;
     min-width: 2rem;
   }
+}
+@media only screen and (max-width: 700px) {
+  .orders {
+    display: flex;
+    justify-content: center;
+    border: 1px #ddd solid;
+    width: 95%;
+    margin: 1rem 1rem;
+    flex-direction: column;
+   .name * {
+      font-size: 1.7rem;
+    }
+    &__headers {
+      font-size: 2rem;
+    }
+  }
+  
 }
