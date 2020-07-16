@@ -1,3 +1,4 @@
+import { SellerHomeComponent } from "./components/seller-home/seller-home.component";
 import { StafferGuard } from "./staffer.guard";
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
@@ -58,6 +59,7 @@ const appRoutes: Routes = [
       { path: "buyer_terms", component: BuyerTermsComponent },
       { path: "seller_terms", component: SellerTermsComponent },
       { path: "refund", component: RefundComponent },
+      { path: "slr", component: SellerHomeComponent },
     ],
   },
   {

@@ -19,6 +19,7 @@ import { ProductComponent } from "./components/product/product.component";
 import { PublicProductsComponent } from "./components/public-products/public-products.component";
 import { PublicComponent } from "./components/public/public.component";
 import { RefundComponent } from "./components/refund/refund.component";
+import { SellerHomeComponent } from "./components/seller-home/seller-home.component";
 import { SellerTermsComponent } from "./components/seller-terms/seller-terms.component";
 import { UtcProductComponent } from "./components/utc-product/utc-product.component";
 import { httpInterceptorProviders } from "./http-interceptors/index";
@@ -63,6 +64,7 @@ import { EditConfigModalComponent } from "./system-admin/edit-config-modal/edit-
     SellerTermsComponent,
     RefundComponent,
     EditConfigModalComponent,
+    SellerHomeComponent,
     //  DragDropDirective
     // CustomNotificationComponent,
   ],
