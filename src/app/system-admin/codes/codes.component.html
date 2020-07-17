@@ -2,14 +2,14 @@
   <h3 class="codes__title">Manage Codes</h3>
   <div class="codes__list">
     <h4 class="codes__list-title">
-      NEW BONUS CREDIT CODE
+      Unique codes for target marketing
     </h4>
     <div class="codes__form">
       <mat-form-field class="codes__form-input">
         <input
           matInput
           maxlength="45"
-          placeholder="Enter Code Credit"
+          placeholder="Enter Desired Credit Amount"
           [formControl]="referredCredit"
           type="number"
         />
@@ -56,10 +56,10 @@
           <mat-cell *matCellDef="let code">Active</mat-cell>
         </ng-container>
         <ng-container matColumnDef="action">
-          <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
+          <mat-header-cell *matHeaderCellDef></mat-header-cell>
           <mat-cell *matCellDef="let code"
             ><a [routerLink]="['detail', code.code]" class="codes__action"
-              >Users</a
+              >Signups</a
             >
           </mat-cell>
         </ng-container>

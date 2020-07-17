@@ -20,4 +20,8 @@ export class AdminNavigationComponent implements OnInit {
     this.authService.logout();
     this.router.navigate(["/"]);
   }
+
+  sellerClicked() {
+    window.location.reload();
+  }
 }
