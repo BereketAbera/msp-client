@@ -46,3 +46,17 @@
     text-decoration: none;
   }
 }
+
+.filter {
+  display: flex;
+  align-items: center;
+
+  &__input {
+    margin: 0.5rem;
+    font-size: 1.5rem;
+  }
+
+  &__button {
+    height: 35px;
+  }
+}

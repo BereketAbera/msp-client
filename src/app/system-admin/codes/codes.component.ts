@@ -1,8 +1,9 @@
 import { Component, OnInit } from "@angular/core";
-import { FormControl } from "@angular/forms";
+import { FormControl, FormGroup, FormBuilder } from "@angular/forms";
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { SocialReferralService } from "./../../service/social-referral.service";
 import * as moment from "moment";
+import { ThrowStmt } from "@angular/compiler";
 
 @Component({
   selector: "app-codes",
@@ -15,27 +16,42 @@ export class CodesComponent implements OnInit {
   buttonDisable = false;
   pageNumber = 0;
   pageSize = 5;
+  code = "";
+  createdDate = "";
   count;
-
+  maxDate = new Date();
   displayedColumns = ["code", "credit", "expiresAt", "status", "action"];
+  filterForm: FormGroup;
 
   constructor(
     private referralService: SocialReferralService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private formBuilder: FormBuilder
   ) {}
 
   ngOnInit() {
+    this.filterForm = this.formBuilder.group({
+      code: [""],
+      createdDate: [""],
+    });
     this.route.queryParamMap.subscribe((params) => {
       this.pageNumber = parseInt(params.get("pageNumber")) || 1;
       this.pageSize = parseInt(params.get("pageSize")) || 0;
+      this.code = params.get("code") || "";
+      this.createdDate = params.get("createdDate") || "";
       this.getCodes();
     });
   }
 
   getCodes() {
     this.referralService
-      .getAdminCodeList(this.pageNumber, this.pageSize)
+      .getAdminCodeList({
+        pageNumber: this.pageNumber,
+        pageSize: this.pageSize,
+        code: this.code,
+        createdDate: this.createdDate,
+      })
       .subscribe((res) => {
         // console.log(res);
         this.count = res.count;
@@ -83,5 +99,30 @@ export class CodesComponent implements OnInit {
 
   getExpDate(createdDate) {
     return moment(createdDate).add(30, "days");
+  }
+
+  checkExp(createdDate) {
+    return moment(createdDate).add(30, "days") < moment(new Date())
+      ? "Expired"
+      : "Active";
+  }
+
+  filterCode() {
+    this.setUrlValues({
+      code: this.filterForm.controls["code"].value,
+      createdDate: moment(
+        this.filterForm.controls["createdDate"].value
+      ).isValid()
+        ? moment(this.filterForm.controls["createdDate"].value).format(
+            "YYYY-MM-DD"
+          )
+        : "",
+    });
+  }
+
+  ngAfterViewInit() {
+    setTimeout(() => {
+      this.filterForm.controls["createdDate"].setValue(this.createdDate);
+    });
   }
 }
