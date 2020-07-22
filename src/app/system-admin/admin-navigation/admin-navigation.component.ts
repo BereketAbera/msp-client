@@ -22,6 +22,8 @@ export class AdminNavigationComponent implements OnInit {
   }
 
   sellerClicked() {
-    window.location.reload();
+    if (this.router.url == "/tlgu-admin") {
+      window.location.reload();
+    }
   }
 }
