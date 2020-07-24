@@ -1,6 +1,8 @@
 <div class="main_contanier">
   <mat-card class="mat-elevation-z2 contanier">
-    <mat-card-title class="contanier__header">Reservation Detail</mat-card-title>
+    <mat-card-title class="contanier__header"
+      >Reservation Detail</mat-card-title
+    >
     <!-- <mat-card-subtitle>Order</mat-card-subtitle> -->
     <mat-card-content>
       <div class="list">
@@ -61,6 +63,17 @@
           {{ order.quantity * order.discountedPrice | currency }} plus any tax
         </span>
       </div>
+      <div *ngIf="order.takeOut" class="list">
+        <div class="order__takeout">
+          <img
+            src="assets/image/take_out.jpg"
+            alt=""
+            class="order__takeout__img"
+          />
+          <span>{{ order.specialRequirements }}</span>
+          <span>{{ order.phoneNumber }}</span>
+        </div>
+      </div>
     </mat-card-content>
     <mat-card-actions>
       <button
@@ -69,7 +82,7 @@
         color="accent"
         (click)="gotoSellerTrans()"
       >
-      <i class="fad fa-chevron-left"></i> &nbsp;Back
+        <i class="fad fa-chevron-left"></i> &nbsp;Back
       </button>
     </mat-card-actions>
   </mat-card>

@@ -3,7 +3,7 @@
   max-width: 390px;
   margin: 0 auto;
 }
-.table{
+.table {
   min-width: 81rem;
 }
 .no_result {
@@ -100,6 +100,12 @@
     display: flex;
     justify-content: space-between;
     padding: 0rem 1rem;
+  }
+
+  &__image-button {
+    outline: none;
+    border: none;
+    cursor: pointer;
   }
 }
 

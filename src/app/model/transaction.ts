@@ -9,4 +9,7 @@ export class Transaction {
   discountedPrice: number;
   isScanneded: boolean;
   product: any;
+  takeOut?: boolean;
+  specialRequirements?: boolean;
+  phoneNumber?: string;
 }

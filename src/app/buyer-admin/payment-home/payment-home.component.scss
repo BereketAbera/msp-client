@@ -4,14 +4,13 @@
 .spaceLeft {
   margin-left: 20px;
 }
-.table{
+.table {
   padding: 2rem;
   width: 100%;
-  &_header{
+  &_header {
     font-weight: 700;
   }
 }
-
 
 .zipstatecity {
   width: 120px;
@@ -30,11 +29,16 @@
 
 .container {
   margin: 1rem 2rem;
-  .description{
+  .description {
     font-size: 1.4rem;
   }
   .card {
     margin: 1rem;
+
+    td,
+    p {
+      font-size: 1.5rem;
+    }
   }
   &__header {
     color: #666;
@@ -44,7 +48,7 @@
   .balance {
     display: flex;
     justify-content: center;
-    width: 21rem;
+    width: 26rem;
     align-items: center;
     background: #f2f2f2;
     border-radius: 1rem;
@@ -71,5 +75,30 @@
       justify-content: flex-end;
       color: white;
     }
+  }
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+  align-items: flex-start;
+  align-self: flex-start;
+  justify-content: flex-start;
+}
+
+@media only screen and (min-width: 732px) {
+  .card {
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  .card {
+    width: 100%;
   }
 }

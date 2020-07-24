@@ -19,7 +19,6 @@
         matSortActive="date"
         matSortDirection="asc"
         matSortDisableClear
-
       >
         <ng-container matColumnDef="img">
           <mat-header-cell
@@ -29,7 +28,12 @@
             >Image</mat-header-cell
           >
           <mat-cell *matCellDef="let transaction">
-            <img class="img" [src]="transaction.imagePath" alt="" />
+            <button
+              class="order__image-button"
+              [routerLink]="['./', transaction.id]"
+            >
+              <img class="img" [src]="transaction.imagePath" alt="" />
+            </button>
           </mat-cell>
         </ng-container>
 

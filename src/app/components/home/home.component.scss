@@ -313,6 +313,7 @@ video::-webkit-media-controls {
     width: 100%;
     padding: 1rem;
     flex-direction: column;
+    cursor: pointer;
   }
 
   &__step {

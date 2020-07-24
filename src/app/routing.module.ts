@@ -59,7 +59,7 @@ const appRoutes: Routes = [
       { path: "buyer_terms", component: BuyerTermsComponent },
       { path: "seller_terms", component: SellerTermsComponent },
       { path: "refund", component: RefundComponent },
-      { path: "slr", component: SellerHomeComponent },
+      { path: "seller", component: SellerHomeComponent },
     ],
   },
   {

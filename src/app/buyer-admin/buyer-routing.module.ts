@@ -71,6 +71,7 @@ const buyerRoutes: Routes = [
         resolve: {
           balance: BalanceResolverService,
           creditCards: CreditCardsResolverService,
+          profile: UserProfileResolverService,
         },
       },
       {
@@ -83,7 +84,9 @@ const buyerRoutes: Routes = [
       {
         path: "",
         component: BuyerOrdersComponent,
-        resolve: { orders: OrdersResolverService },
+        resolve: {
+          orders: OrdersResolverService,
+        },
       },
     ],
   },

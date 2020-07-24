@@ -4,13 +4,15 @@
       <div class="balance__icon">
         <i class="fad fa-dollar-sign table__icon-2"></i>
       </div>
-      <span class="balance__header"> Balance = </span>
-      <span class="balance__header__value"> {{ balance | currency }} </span>
+      <div style="width: auto;">
+        <span class="balance__header"> Balance = </span>
+        <span class="balance__header__value"> {{ balance | currency }} </span>
+      </div>
     </mat-card>
-    <P class="description">
+    <p class="description">
       You can only use these credits on our site and they cannot be converted to
       cash refunds.
-    </P>
+    </p>
   </mat-card>
   <mat-card class="card">
     <h2 class="payment-form__header">RESERVATION INFORMATION</h2>
@@ -36,14 +38,13 @@
           <td colspan="5" class="ordcls"></td>
         </tr>
         <tr>
-          <td colspan="4">Pay store upon service:</td>
+          <td colspan="4">Pay store this amount plus taxes upon service:</td>
           <td>{{ total | currency }}</td>
         </tr>
         <tr>
           <td colspan="5"></td>
         </tr>
       </table>
-
       <p style="padding-top: 2rem;">
         You are saving a total of {{ savings | currency }}, pay us only
         {{ payAmount | currency }} now, for handling reservation(s) and discount
