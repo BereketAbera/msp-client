@@ -10,7 +10,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { MatPaginator } from "@angular/material/paginator";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { MatSort } from "@angular/material/sort";
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute, Router, Params } from "@angular/router";
 import { merge } from "rxjs/observable/merge";
 import { tap } from "rxjs/operators";
 import { Product } from "../../model/product";
@@ -19,6 +19,7 @@ import { ProductService } from "../../service/product.service";
 import { ProductsDataSource } from "../../service/products-data-source.service";
 import { SaveConfirmationDialogComponent } from "../../shared/save-confirmation-dialog/save-confirmation-dialog.component";
 import { SaveProgressComponent } from "../../shared/save-progress/save-progress.component";
+import { ThrowStmt } from "@angular/compiler";
 
 @Component({
   templateUrl: "./products.component.html",
@@ -27,6 +28,10 @@ import { SaveProgressComponent } from "../../shared/save-progress/save-progress.
 export class ProductsComponent implements OnInit, AfterViewInit {
   errors;
   showError: boolean = false;
+  sortBy = "";
+  direction = "asc";
+  page = 0;
+  pageSize = 5;
 
   dataSource: ProductsDataSource;
 
@@ -34,8 +39,9 @@ export class ProductsComponent implements OnInit, AfterViewInit {
     "img",
     "name",
     "shop",
-    "discountPrice",
+    "regularPrice",
     "dispercentage",
+    "createdDate",
     "remove",
   ];
 
@@ -63,8 +69,22 @@ export class ProductsComponent implements OnInit, AfterViewInit {
 
     this.route.queryParams.subscribe(
       (data) => {
+        this.page = data.page;
+        this.pageSize = data.pageSize;
+        this.sortBy = data.sortBy;
+        this.direction = data.direction;
         this.paginator.pageIndex = +data.page - 1 >= 0 ? +data.page : 0;
-        this.dataSource.loadProducts(1, "", "", this.paginator.pageIndex, 5);
+        this.paginator.pageSize = data.pageSize || 5;
+        this.sort.active = data.sortBy || "";
+        this.sort.direction = data.direction || "asc";
+        this.dataSource.loadProducts(
+          1,
+          "",
+          this.sort.active,
+          this.sort.direction,
+          this.paginator.pageIndex,
+          this.paginator.pageSize
+        );
       },
       (err) => console.log(err)
     );
@@ -72,10 +92,21 @@ export class ProductsComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     if (this.sort) {
-      // console.log()
-      this.sort.sortChange.subscribe(() => (this.paginator.pageIndex = 0));
+      this.sort.sortChange.subscribe((res) => {
+        this.paginator.pageIndex = 0;
+      });
       merge(this.sort.sortChange, this.paginator.page)
-        .pipe(tap(() => this.loadProductsPage()))
+        .pipe(
+          tap((res: any) => {
+            this.setUrlValues({
+              sortBy: res.active || this.sortBy,
+              direction: res.direction || this.direction,
+              page: res.pageIndex || (res.pageIndex == 0 ? 0 : this.page),
+              pageSize: res.pageSize || this.pageSize,
+            });
+            // this.loadProductsPage();
+          })
+        )
         .subscribe();
     }
   }
@@ -133,6 +164,7 @@ export class ProductsComponent implements OnInit, AfterViewInit {
       this.dataSource.loadProducts(
         1,
         "",
+        this.sort.active,
         this.sort.direction,
         this.paginator.pageIndex,
         this.paginator.pageSize
@@ -142,19 +174,30 @@ export class ProductsComponent implements OnInit, AfterViewInit {
         1,
         "",
         "",
+        "",
         this.paginator.pageIndex,
         this.paginator.pageSize
       );
     }
+    this.setUrlValues({ page: this.paginator.pageIndex });
+  }
 
-    let path = this.location.path();
-    if (path.indexOf("page") >= 0) {
-      path = path.replace(/.$/, this.paginator.pageIndex.toString());
-      this.location.go(path);
-    } else {
-      path = path.concat(`?page=${this.paginator.pageIndex}`);
-      this.location.go(path);
-    }
+  setUrlValues(sObj) {
+    // console.log(sObj);
+    let keys = Object.keys(sObj);
+    let pObj = {};
+    keys.map((key) => {
+      pObj[key] = sObj[key];
+    });
+    const queryParams: Params = {
+      ...pObj,
+    };
+
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: queryParams,
+      queryParamsHandling: "merge",
+    });
   }
 
   removeProduct(product: Product) {
@@ -182,7 +225,14 @@ export class ProductsComponent implements OnInit, AfterViewInit {
                 duration: 5000,
               });
               snackBarRef.afterDismissed().subscribe(() => {
-                this.dataSource.loadProducts(1, "", "asc", 0, 5);
+                this.dataSource.loadProducts(
+                  1,
+                  "",
+                  this.sort.active,
+                  this.sort.direction,
+                  this.paginator.pageIndex,
+                  5
+                );
               });
               //this.router.navigate(["../"], { relativeTo: this.route });
             } else {

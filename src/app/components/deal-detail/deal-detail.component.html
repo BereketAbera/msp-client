@@ -54,7 +54,8 @@
           <div class="reserve_time">
             <i class="fad fa-chevron-right product-detail__list-icon"></i>
             <h5 class="product-detail__reserve-order-text">
-              {{ product?.currentQuantity }}  {{ product?.currentQuantity>1?"Items":"Item" }} Remaining
+              {{ product?.currentQuantity }}
+              {{ product?.currentQuantity > 1 ? "Items" : "Item" }} Remaining
             </h5>
           </div>
           <div class="product-detail__reserve-order-time"></div>
@@ -80,6 +81,12 @@
             {{ product?.shopAddress }}, {{ product?.shopCity }}
           </h5>
         </div>
+        <div class="product-detail__shop">
+          <i class="fad fa-phone product-detail__address-icon"></i>
+          <h5 class="product-detail__address-name">
+            {{ product.companyPhoneNumber }}
+          </h5>
+        </div>
       </div>
       <div class="product-detail__middle-right">
         <div class="product-detail__price">
@@ -91,36 +98,64 @@
           }}</span>
         </div>
         <div class="product-detail__rating">
-            <i class="fad fa-star product-detail__time-icon"></i>
-            <i class="fad fa-star product-detail__time-icon"></i>
-            <i class="fad fa-star product-detail__time-icon"></i>
-            <i class="fad fa-star product-detail__time-icon"></i>
-            <i class="fad fa-star-half product-detail__time-icon"></i>
+          <i class="fad fa-star product-detail__time-icon"></i>
+          <i class="fad fa-star product-detail__time-icon"></i>
+          <i class="fad fa-star product-detail__time-icon"></i>
+          <i class="fad fa-star product-detail__time-icon"></i>
+          <i class="fad fa-star-half product-detail__time-icon"></i>
         </div>
       </div>
     </div>
   </div>
-  <div class="product-detail__bottom">
-    <div class="product-detail__bottom-container">
-      <div [formGroup]="buyForm" class="product-detail__input-container">
-        <label for="quantity" class="product-detail__input-label"
-          >Reserve Quantity</label
-        >
-        <input
-          id="quantity"
-          class="product-detail__input"
-          type="number"
-          formControlName="quantity"
-          value="1"
-          min="1"
-          [max]="product.currentQuantity"
-        />
+  <div class="product-detail__bottom" [formGroup]="buyForm">
+    <div class="product-detail__bottom-1">
+      <div class="product-detail__bottom-container">
+        <div class="product-detail__input-container">
+          <label for="quantity" class="product-detail__input-label"
+            >Reserve Quantity</label
+          >
+          <input
+            id="quantity"
+            class="product-detail__input"
+            type="number"
+            formControlName="quantity"
+            value="1"
+            min="1"
+            [max]="product.currentQuantity"
+          />
+        </div>
       </div>
-      <!-- <div class="product-detail__total">
-        Total:
-        {{ product?.discountPrice * buyForm.value["quantity"] | currency }}, pay
-        seller directly at store
-      </div> -->
+      <div class="user-request">
+        <div class="user-request__takeout">
+          <img
+            (click)="toggleCheckbox()"
+            src="assets/image/take_out.jpg"
+            alt=""
+            class="user-request__img"
+          />
+          <mat-checkbox
+            name="takeOut"
+            formControlName="takeOut"
+            style="width: 2.5rem; height: 2.5rem;"
+          >
+          </mat-checkbox>
+        </div>
+        <div
+          *ngIf="buyForm.controls['takeOut'].value"
+          class="user-request__inputs"
+        >
+          <mat-form-field class="user-request__input user-request__input-req">
+            <mat-label>Note for seller</mat-label>
+            <input
+              formControlName="specialRequirements"
+              matInput
+              placeholder="Note for seller"
+              maxlength="255"
+              type="text"
+            />
+          </mat-form-field>
+        </div>
+      </div>
     </div>
     <div class="product-detail__bottom-container">
       <button

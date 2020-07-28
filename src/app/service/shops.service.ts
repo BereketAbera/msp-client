@@ -49,6 +49,7 @@ export class ShopsService {
   listShops(
     usrId: number,
     filter = "",
+    sortBy = "",
     sortOrder = "asc",
     pageNumber = 0,
     pageSize = 3
@@ -58,6 +59,7 @@ export class ShopsService {
         params: new HttpParams()
           .set("usrId", usrId.toString())
           .set("filter", filter)
+          .set("sortBy", sortBy)
           .set("sortOrder", sortOrder)
           .set("pageNumber", pageNumber.toString())
           .set("pageSize", pageSize.toString()),

@@ -26,7 +26,11 @@
           <td>FINAL</td>
         </tr>
         <tr *ngFor="let product of cartProducts">
-          <td>{{ product.name }}</td>
+          <td>
+            <a (click)="productDetail(product)" class="table_link">{{
+              product.name
+            }}</a>
+          </td>
           <td>{{ product.qty }}</td>
           <td>{{ product.regPrice * product.qty | currency }}</td>
           <td>

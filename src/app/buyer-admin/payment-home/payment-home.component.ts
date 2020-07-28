@@ -240,4 +240,14 @@ export class PaymentHomeComponent implements OnInit {
   }
 
   onSubmit() {}
+
+  productDetail(p) {
+    this.router.navigate(["/deal", p.prdid], {
+      queryParams: {
+        takeOut: p.takeOut,
+        specialRequirements: p.specialRequirements,
+        quantity: p.qty,
+      },
+    });
+  }
 }

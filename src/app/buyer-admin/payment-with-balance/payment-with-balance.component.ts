@@ -38,12 +38,7 @@ export class PaymentWithBalanceComponent implements OnInit {
   paymentForm = this.fb.group({
     deposit: ["", Validators.required],
     paymentType: [this.PAY_WITH_BALANCE, Validators.required],
-    // takeOut: [false],
-    // specialRequirements: [""],
-    // phoneNumber: [
-    //   "",
-    //   [Validators.required, Validators.pattern(/(\(\d{3}\))(\s)\d{3}(-)\d{4}/)],
-    // ],
+    allowCallPhoneNumber: [true],
   });
 
   prevValue = "";
@@ -105,27 +100,8 @@ export class PaymentWithBalanceComponent implements OnInit {
     if (this.cartService.isCartExpired()) {
       this.showResetDialog();
     } else {
-      // if (
-      //   this.paymentForm.controls["takeOut"].value &&
-      //   this.paymentForm.controls["phoneNumber"].invalid
-      // ) {
-      //   this.errors.push("Invalid phone number");
-      //   this.showError = true;
-      //   return;
-      // }
-
       let transaction: any = this.paymentForm.value;
       transaction.ordrGuid = this.ordrGuid;
-      // transaction.takeOut = this.paymentForm.controls["takeOut"].value;
-      // transaction.specialRequirements = this.paymentForm.controls[
-      //   "specialRequirements"
-      // ].value;
-      // transaction.phoneNumber = this.phoneChangeFormat(
-      //   this.paymentForm.controls["phoneNumber"].value,
-      //   "db"
-      // );
-      //transction.quantity = this.quantity;
-      // console.log(transaction);
       this.trnsService.createTransaction(transaction).subscribe((res) => {
         // console.log(res);
         if (res["success"]) {

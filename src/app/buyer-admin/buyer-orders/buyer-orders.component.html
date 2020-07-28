@@ -63,7 +63,7 @@
           class="order__takeout__img"
         />
         <span>{{ order.specialRequirements }}</span>
-        <span>{{ order.phoneNumber }}</span>
+        <span *ngIf="order.phoneNumber">{{ order.phoneNumber }}</span>
       </div>
     </div>
   </div>

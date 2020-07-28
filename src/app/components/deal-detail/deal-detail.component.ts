@@ -19,6 +19,8 @@ export class DealDetailComponent implements OnInit {
   markup: Markup;
   buyForm = this.fb.group({
     quantity: ["1", Validators.required],
+    takeOut: [false],
+    specialRequirements: [""],
   });
   total: any;
   showErrorNotification = false;
@@ -35,6 +37,18 @@ export class DealDetailComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    let takeOut = this.route.snapshot.queryParamMap.get("takeOut");
+    let quantity = this.route.snapshot.queryParamMap.get("quantity");
+    let specialRequirements = this.route.snapshot.queryParamMap.get(
+      "specialRequirements"
+    );
+    if (takeOut && quantity && specialRequirements) {
+      let cnt = this.buyForm.controls;
+      cnt["takeOut"].setValue(takeOut);
+      cnt["quantity"].setValue(quantity);
+      cnt["specialRequirements"].setValue(specialRequirements);
+    }
+
     this.route.data.subscribe(
       (data: { product: Product; mspMarkup: Markup }) => {
         //  console.log(JSON.parse(localStorage.getItem("msp_cart_items")).products)
@@ -93,6 +107,10 @@ export class DealDetailComponent implements OnInit {
       reserveProduct.ordruid = order.guid;
       reserveProduct.prdid = this.product.id;
       reserveProduct.qty = this.buyForm.get("quantity").value;
+      reserveProduct.takeOut = this.buyForm.controls["takeOut"].value;
+      reserveProduct.specialRequirements = this.buyForm.controls[
+        "specialRequirements"
+      ].value;
       // console.log(this.product.currentQuantity,reserveProduct.qty,'check')
       if (reserveProduct.qty > this.product.currentQuantity) {
         this.errorMessage = "Quantity must be less than available quantity";
@@ -199,5 +217,11 @@ export class DealDetailComponent implements OnInit {
 
   returnTwoDigit(value) {
     return value.toString().length == 1 ? "0" + value : value;
+  }
+
+  toggleCheckbox() {
+    this.buyForm.controls["takeOut"].setValue(
+      !this.buyForm.controls["takeOut"].value
+    );
   }
 }

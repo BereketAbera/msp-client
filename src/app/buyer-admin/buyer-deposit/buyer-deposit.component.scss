@@ -16,8 +16,11 @@
     width: 26rem;
     align-items: center;
     background: #f2f2f2;
+    border-radius: 1rem;
+    overflow: hidden;
     &__header {
       font-size: 1.5rem;
+      margin-left: 2rem;
 
       &__value {
         font-size: 1.5rem;

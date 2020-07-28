@@ -23,6 +23,7 @@ export class ShopsDataSource implements DataSource<Shop> {
   loadShops(
     usrId: number,
     filter: string,
+    sortBy: string,
     sortDirection: string,
     pageIndex: number,
     pageSize: number
@@ -30,7 +31,7 @@ export class ShopsDataSource implements DataSource<Shop> {
     this.authService.progressBarActive.next(true);
     this.loadingSubject.next(true);
     this.shopService
-      .listShops(usrId, filter, sortDirection, pageIndex, pageSize)
+      .listShops(usrId, filter, sortBy, sortDirection, pageIndex, pageSize)
       .pipe(
         catchError(() => {
           this.authService.progressBarActive.next(false);

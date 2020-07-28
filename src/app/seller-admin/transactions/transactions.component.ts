@@ -28,6 +28,7 @@ export class TransactionsComponent implements OnInit, AfterViewInit {
     "status",
     "pickupStartTime",
     "pickupEndTime",
+    // "phoneNumber",
     "date",
     "totalPrice",
     "name",

@@ -1,7 +1,4 @@
 <div>
-  <!-- <div class="spinner-container" *ngIf="dataSource.loading$ | async">
-    <mat-spinner></mat-spinner>
-  </div> -->
   <div *ngIf="showError" class="errorCntr">
     <button class="errClsBtn" (click)="close()">
       &#215;
@@ -55,23 +52,38 @@
         </ng-container>
 
         <ng-container matColumnDef="shop">
-          <mat-header-cell *matHeaderCellDef>Store</mat-header-cell>
+          <mat-header-cell *matHeaderCellDef mat-sort-header
+            >Store</mat-header-cell
+          >
 
           <mat-cell *matCellDef="let product">{{ product.shop.name }}</mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="discountPrice">
-          <mat-header-cell *matHeaderCellDef>Regular Price</mat-header-cell>
+        <ng-container matColumnDef="regularPrice">
+          <mat-header-cell *matHeaderCellDef mat-sort-header
+            >Regular Price</mat-header-cell
+          >
 
           <mat-cell *matCellDef="let product">{{
             product.normalPrice | currency
           }}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="dispercentage">
-          <mat-header-cell *matHeaderCellDef>Disc %</mat-header-cell>
+          <mat-header-cell *matHeaderCellDef mat-sort-header
+            >Disc %</mat-header-cell
+          >
 
           <mat-cell *matCellDef="let product">{{
             product.discountPercentage
+          }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="createdDate">
+          <mat-header-cell *matHeaderCellDef mat-sort-header
+            >Created Date</mat-header-cell
+          >
+
+          <mat-cell *matCellDef="let product">{{
+            product.createdAt | date
           }}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="remove" stickyEnd>

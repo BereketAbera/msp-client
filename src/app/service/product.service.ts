@@ -63,6 +63,7 @@ export class ProductService {
   listProductsSeller(
     usrId: number,
     filter = "",
+    sortBy,
     sortOrder,
     pageNumber = 0,
     pageSize = 5
@@ -72,6 +73,7 @@ export class ProductService {
         params: new HttpParams()
           .set("usrId", usrId.toString())
           .set("filter", filter)
+          .set("sortBy", sortBy)
           .set("sortOrder", sortOrder)
           .set("pageNumber", pageNumber.toString())
           .set("pageSize", pageSize.toString()),

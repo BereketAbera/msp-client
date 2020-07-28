@@ -33,6 +33,13 @@
               [routerLink]="['./', transaction.id]"
             >
               <img class="img" [src]="transaction.imagePath" alt="" />
+              <img
+                *ngIf="transaction.takeOut"
+                style="height: 3rem;"
+                src="assets/image/take_out.jpg"
+                alt=""
+                class="img"
+              />
             </button>
           </mat-cell>
         </ng-container>
@@ -80,6 +87,13 @@
             transaction.pickupEndTime | date: "MMM d, h:mm a"
           }}</mat-cell>
         </ng-container>
+        <!-- <ng-container matColumnDef="phoneNumber">
+          <mat-header-cell class="header-align-right" *matHeaderCellDef
+            >Phone Number</mat-header-cell
+          >
+
+          <mat-cell *matCellDef="let transaction">-------</mat-cell>
+        </ng-container> -->
         <ng-container matColumnDef="date">
           <mat-header-cell class="header-align-right" *matHeaderCellDef
             >Date</mat-header-cell

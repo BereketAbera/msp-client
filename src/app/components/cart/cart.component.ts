@@ -4,6 +4,7 @@ import { Router } from "@angular/router";
 import { ReserveProduct } from "../../model/reserve-product";
 import { CartService } from "../../service/cart.service";
 import { CartExpiredDialogComponent } from "../cart-expired-dialog/cart-expired-dialog.component";
+import { ThrowStmt } from "@angular/compiler";
 
 // import { copyStyles } from "@angular/animations/browser/src/util";
 
@@ -19,6 +20,7 @@ export class CartComponent implements OnInit {
   normal: number = 0;
   totalMSPMarkup: number = 0;
   empty = true;
+  showDetail = {};
 
   // Not Found Message
   messageTitle = "No Products Found in Cart";
@@ -31,6 +33,7 @@ export class CartComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    window.scrollTo(0, 0);
     this.getCartProduct();
     this.getTotalPrice();
     if (this.cartService.isCartExpired()) {
@@ -42,6 +45,7 @@ export class CartComponent implements OnInit {
       if (rmvRes["success"]) {
         this.cartService.removeLocalCartProduct(product);
         this.getCartProduct();
+        window.scrollTo(0, 0);
       }
     });
   }
@@ -98,5 +102,15 @@ export class CartComponent implements OnInit {
         alert("");
       }
     }
+  }
+
+  showProductDetail(prdid) {
+    let pre = this.showDetail[`pr${prdid}`];
+    this.showDetail = {};
+    this.showDetail[`pr${prdid}`] = !pre;
+  }
+
+  getProductShow(prdid) {
+    return this.showDetail[`pr${prdid}`];
   }
 }

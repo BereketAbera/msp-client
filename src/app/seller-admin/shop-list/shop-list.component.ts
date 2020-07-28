@@ -9,7 +9,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { MatPaginator } from "@angular/material/paginator";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { MatSort } from "@angular/material/sort";
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute, Router, Params } from "@angular/router";
 import { merge } from "rxjs/observable/merge";
 import { tap } from "rxjs/operators";
 import { SaveConfirmationDialogComponent } from "src/app/shared/save-confirmation-dialog/save-confirmation-dialog.component";
@@ -27,6 +27,10 @@ export class ShopListComponent implements OnInit, AfterViewInit {
   errors;
   showError: boolean = false;
   dataSource: ShopsDataSource;
+  sortBy = "";
+  direction = "asc";
+  page = 0;
+  pageSize = 5;
 
   displayedColumns = [
     "name",
@@ -56,13 +60,41 @@ export class ShopListComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.dataSource = new ShopsDataSource(this.shopsService, this.authService);
-    this.dataSource.loadShops(1, "", "asc", 0, 5);
+    this.dataSource.loadShops(1, "", "", "asc", 0, 5);
+    this.route.queryParams.subscribe((data) => {
+      this.sortBy = data.sortBy;
+      this.direction = data.direction;
+      this.page = data.page;
+      this.pageSize = data.pageSize;
+      this.paginator.pageIndex = +data.page - 1 >= 0 ? +data.page : 0;
+      this.paginator.pageSize = data.pageSize || 5;
+      this.sort.active = data.sortBy || "";
+      this.sort.direction = data.direction || "asc";
+
+      this.dataSource.loadShops(
+        1,
+        "",
+        this.sort.active,
+        this.sort.direction,
+        this.paginator.pageIndex,
+        this.paginator.pageSize
+      );
+    });
   }
 
   ngAfterViewInit() {
     this.sort.sortChange.subscribe(() => (this.paginator.pageIndex = 0));
     merge(this.sort.sortChange, this.paginator.page)
-      .pipe(tap(() => this.loadShopsPage()))
+      .pipe(
+        tap((res: any) => {
+          this.setUrlValues({
+            sortBy: res.active || this.sortBy,
+            direction: res.direction || this.direction,
+            page: res.pageIndex || (res.pageIndex == 0 ? 0 : this.page),
+            pageSize: res.pageSize || this.pageSize,
+          });
+        })
+      )
       .subscribe();
   }
   gotoAddNewShop() {
@@ -89,10 +121,29 @@ export class ShopListComponent implements OnInit, AfterViewInit {
     this.dataSource.loadShops(
       1,
       "",
+      "",
       this.sort.direction,
       this.paginator.pageIndex,
       this.paginator.pageSize
     );
+  }
+
+  setUrlValues(sObj) {
+    // console.log(sObj);
+    let keys = Object.keys(sObj);
+    let pObj = {};
+    keys.map((key) => {
+      pObj[key] = sObj[key];
+    });
+    const queryParams: Params = {
+      ...pObj,
+    };
+
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: queryParams,
+      queryParamsHandling: "merge",
+    });
   }
   close() {
     this.showError = false;
@@ -126,7 +177,7 @@ export class ShopListComponent implements OnInit, AfterViewInit {
                 duration: 5000,
               });
               snackBarRef.afterDismissed().subscribe(() => {
-                this.dataSource.loadShops(1, "", "asc", 0, 5);
+                this.dataSource.loadShops(1, "", "", "asc", 0, 5);
               });
               //this.router.navigate(["../"], { relativeTo: this.route });
             } else {

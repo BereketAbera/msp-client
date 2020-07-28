@@ -22,14 +22,25 @@ export class ProductsDataSource implements DataSource<Product> {
   loadProducts(
     usrId: number,
     filter: string,
+    sortBy: string,
     sortDirection: string,
     pageIndex: number,
     pageSize: number
   ) {
+    // console.log(
+    // `userId=${usrId}, filter=${filter}, sortBy=${sortBy}, sortDirection=${sortDirection}, pageIndex=${pageIndex}, pageSize=${pageSize}`
+    // );
     this.authService.progressBarActive.next(true);
     this.loadingSubject.next(true);
     this.productService
-      .listProductsSeller(usrId, filter, sortDirection, pageIndex, pageSize)
+      .listProductsSeller(
+        usrId,
+        filter,
+        sortBy,
+        sortDirection,
+        pageIndex,
+        pageSize
+      )
       .pipe(
         catchError(() => {
           this.authService.progressBarActive.next(true);

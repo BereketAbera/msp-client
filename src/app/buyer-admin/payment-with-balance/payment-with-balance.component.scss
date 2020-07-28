@@ -33,19 +33,15 @@ ul {
   padding: 1rem;
   margin-top: -1rem;
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   // justify-content: center;
   // border: 1px solid #333;
-  &__takeout {
+  &__allow-call-phone-number {
     display: flex;
     align-items: center;
-    margin: 1rem;
-  }
-
-  &__img {
-    width: 3rem;
-    margin-right: 1rem;
-    cursor: pointer;
+    margin: 1rem 0rem;
+    margin-bottom: 7rem;
   }
 
   &__inputs {
@@ -78,4 +74,22 @@ ul {
 .mat-checkbox ::ng-deep .mat-checkbox-inner-container {
   height: 2.5rem;
   width: 2.5rem;
+}
+
+.mat-checkbox ::ng-deep .mat-checkbox-layout {
+  display: flex;
+  width: 70vw;
+  white-space: normal;
+}
+
+@media only screen and (min-width: 600px) {
+  .user-request {
+    &__allow-call-phone-number {
+      margin-bottom: 1rem;
+    }
+  }
+
+  .mat-checkbox ::ng-deep .mat-checkbox-layout {
+    align-items: center;
+  }
 }

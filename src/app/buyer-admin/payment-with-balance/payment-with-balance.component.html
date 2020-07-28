@@ -12,7 +12,7 @@
   <mat-card>
     <mat-card-content>
       <div fxLayout="column">
-        <div>
+        <div class="user-request">
           <span
             style="
               display: block;
@@ -25,57 +25,20 @@
             >Payment Amount</span
           >
           <label style="font-size: 1.5rem;">{{ orderAmount | currency }}</label>
-          <!-- <div class="user-request">
-            <div class="user-request__takeout">
-              <img
-                (click)="toggleCheckbox()"
-                src="assets/image/take_out.jpg"
-                alt=""
-                class="user-request__img"
-              />
+          <div>
+            <div class="user-request__allow-call-phone-number">
               <mat-checkbox
-                name="takeOut"
-                formControlName="takeOut"
+                name="allowCallPhoneNumber"
+                formControlName="allowCallPhoneNumber"
                 style="width: 2.5rem; height: 2.5rem;"
               >
+                Allow Seller To Call Your Number If there Is Any Question About
+                This Order
               </mat-checkbox>
             </div>
-            <div
-              *ngIf="paymentForm.controls['takeOut'].value"
-              class="user-request__inputs"
-            >
-              <mat-form-field
-                class="user-request__input user-request__input-req"
-              >
-                <mat-label>Special requirements</mat-label>
-                <input
-                  formControlName="specialRequirements"
-                  matInput
-                  placeholder="Place special requirements"
-                  maxlength="255"
-                  type="text"
-                />
-              </mat-form-field>
-              <mat-form-field
-                class="user-request__input user-request__input-phone"
-              >
-                <mat-label>Phone number</mat-label>
-                <input
-                  formControlName="phoneNumber"
-                  matInput
-                  type="text"
-                  matInput
-                  placeholder="000-000-0000"
-                  required
-                  maxlength="14"
-                  (paste)="preventPaste($event)"
-                  (change)="phoneNumberChangeEvent($event)"
-                />
-              </mat-form-field>
-            </div>
-          </div> -->
+          </div>
         </div>
-        <div fxLayout="row" fxLayoutGap="3px">
+        <div fxLayout="row" fxLayoutGap="3px" style="justify-content: center;">
           <div>
             <button
               type="button"

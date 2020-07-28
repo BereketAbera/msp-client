@@ -12,4 +12,5 @@ export class Transaction {
   takeOut?: boolean;
   specialRequirements?: boolean;
   phoneNumber?: string;
+  allowCallPhoneNumber?: boolean;
 }
