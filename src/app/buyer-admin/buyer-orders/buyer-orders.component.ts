@@ -116,4 +116,13 @@ export class BuyerOrdersComponent implements OnInit {
       return pDate == utcDate ? "Pending" : "Expired";
     }
   }
+
+  phoneChangeFormat(value, type) {
+    if (type == "db") {
+      return "+1" + value.replace(/[()-\s]/g, "");
+    } else {
+      let v = value.replace("+1", "").replace(/[()-\s]/g, "");
+      return `(${v.slice(0, 3)}) ${v.slice(3, 6)}-${v.slice(6)}`;
+    }
+  }
 }

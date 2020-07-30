@@ -14,4 +14,5 @@ export class ReserveProduct {
   lng: number;
   takeOut?: boolean;
   specialRequirements?: string;
+  pickUpTime?: any;
 }

@@ -42,6 +42,8 @@ ul {
     align-items: center;
     margin: 1rem 0rem;
     margin-bottom: 7rem;
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   &__inputs {
@@ -86,6 +88,8 @@ ul {
   .user-request {
     &__allow-call-phone-number {
       margin-bottom: 1rem;
+      flex-direction: row;
+      align-items: center;
     }
   }
 

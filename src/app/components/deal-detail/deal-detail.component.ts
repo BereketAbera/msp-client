@@ -8,6 +8,7 @@ import { Product } from "../../model/product";
 import { ReserveProduct } from "../../model/reserve-product";
 import { CartService } from "../../service/cart.service";
 import { DataStorageService } from "../../service/data-storage.service";
+import * as moment from "moment";
 
 @Component({
   selector: "app-deal-detail",
@@ -21,11 +22,31 @@ export class DealDetailComponent implements OnInit {
     quantity: ["1", Validators.required],
     takeOut: [false],
     specialRequirements: [""],
+    pickupHH: ["", Validators.required],
+    pickupMM: ["", Validators.required],
   });
   total: any;
   showErrorNotification = false;
   errorMessage = "";
   current;
+  hhmm: string[] = ["00:AM", "30:AM", "00:PM", "30:PM"];
+  hhlst: string[] = [
+    "01",
+    "02",
+    "03",
+    "04",
+    "05",
+    "06",
+    "07",
+    "08",
+    "09",
+    "10",
+    "11",
+    "12",
+  ];
+  pickUpTime: any;
+  pickUpStartTime: any;
+  pickUpEndTime: any;
 
   constructor(
     public dialog: MatDialog,
@@ -42,17 +63,28 @@ export class DealDetailComponent implements OnInit {
     let specialRequirements = this.route.snapshot.queryParamMap.get(
       "specialRequirements"
     );
-    if (takeOut && quantity && specialRequirements) {
-      let cnt = this.buyForm.controls;
+    let pickUpTime = this.route.snapshot.queryParamMap.get("pickUpTime");
+    let cnt = this.buyForm.controls;
+    if (takeOut && quantity) {
       cnt["takeOut"].setValue(takeOut);
       cnt["quantity"].setValue(quantity);
       cnt["specialRequirements"].setValue(specialRequirements);
+      this.pickUpTime = pickUpTime;
+      cnt["pickupHH"].setValue(
+        this.changeToLocal12Hours(pickUpTime.split("T")[1].split(".")[0]).split(
+          ":"
+        )[0]
+      );
+      let ampm = this.changeToLocal12Hours(
+        pickUpTime.split("T")[1].split(".")[0]
+      ).split(":")[1];
+      cnt["pickupMM"].setValue(ampm.slice(0, 2) + ":" + ampm.slice(2));
+    } else if (quantity) {
+      cnt["quantity"].setValue(quantity);
     }
 
     this.route.data.subscribe(
       (data: { product: Product; mspMarkup: Markup }) => {
-        //  console.log(JSON.parse(localStorage.getItem("msp_cart_items")).products)
-
         let localProduct = this.cartService.getLocalCartProducts();
         if (localProduct) {
           localProduct.map((prod) => {
@@ -67,6 +99,8 @@ export class DealDetailComponent implements OnInit {
             }
           });
         }
+        this.pickUpStartTime = data.product["pickupStartTime"];
+        this.pickUpEndTime = data.product["pickupEndTime"];
 
         this.product = data.product;
         [
@@ -91,11 +125,76 @@ export class DealDetailComponent implements OnInit {
     this.router.navigate(["../"]);
   }
 
+  validatePickUpTime() {
+    let cntr = this.buyForm.controls;
+    if (!(cntr["pickupHH"].valid && cntr["pickupMM"].valid)) return false;
+    let offset = this.getOffset(this.product.offerStartDate);
+    let fCont = this.buyForm.controls;
+    this.pickUpTime = new Date(
+      moment(
+        new Date().toISOString().split("T")[0] +
+          " " +
+          fCont["pickupHH"].value +
+          ":" +
+          fCont["pickupMM"].value.split(":")[0] +
+          ":00" +
+          " " +
+          fCont["pickupMM"].value.split(":")[1]
+      )
+        .subtract(offset, "seconds")
+        .valueOf()
+    ).toISOString();
+    let pickUpStartTime = new Date(
+      moment(
+        new Date().toISOString().split("T")[0] + " " + this.pickUpStartTime
+      )
+        .subtract(offset, "seconds")
+        .valueOf()
+    ).toISOString();
+    let pickUpEndTime = new Date(
+      moment(new Date().toISOString().split("T")[0] + " " + this.pickUpEndTime)
+        .subtract(offset, "seconds")
+        .valueOf()
+    ).toISOString();
+    let valid =
+      this.pickUpTime.split("T")[1].split(".")[0] >=
+        pickUpStartTime.split("T")[1].split(".")[0] &&
+      this.pickUpTime.split("T")[1].split(".")[0] <=
+        pickUpEndTime.split("T")[1].split(".")[0];
+    if (valid) {
+      this.pickUpTime = moment(this.pickUpTime)
+        .add(offset, "seconds")
+        .utcOffset(offset / 60);
+    }
+    return valid;
+  }
+
+  getOffset(d) {
+    let h = d.split("T")[1].split(":")[0];
+    let m = d.split("T")[1].split(":")[1];
+    let s = 0;
+    if (parseInt(h) < 12) {
+      s = parseInt(h) * 60 * 60 + parseInt(m) * 60;
+    } else {
+      s = -((24 - parseInt(h)) * 60 * 60 - parseInt(m) * 60);
+    }
+
+    return s;
+  }
+
   addToCart() {
     this.showErrorNotification = false;
     this.errorMessage = "";
     if (this.cartService.isCartExpired()) {
       this.cartService.resetCart();
+    }
+    let fCont = this.buyForm.controls;
+    if (fCont["takeOut"].value) {
+      if (!this.validatePickUpTime()) {
+        this.showErrorNotification = true;
+        this.errorMessage = "Invalid pick up time";
+        return;
+      }
     }
     let order: Order;
     if (
@@ -111,7 +210,7 @@ export class DealDetailComponent implements OnInit {
       reserveProduct.specialRequirements = this.buyForm.controls[
         "specialRequirements"
       ].value;
-      // console.log(this.product.currentQuantity,reserveProduct.qty,'check')
+      reserveProduct.pickUpTime = this.pickUpTime;
       if (reserveProduct.qty > this.product.currentQuantity) {
         this.errorMessage = "Quantity must be less than available quantity";
         this.showErrorNotification = true;
@@ -130,7 +229,6 @@ export class DealDetailComponent implements OnInit {
           lng: clientAddress.Longitude,
         })
         .subscribe((rsrvdPrd) => {
-          // console.log(rsrvdPrd);
           if (rsrvdPrd["success"]) {
             reserveProduct.name = this.product.name;
             reserveProduct.imagePath = this.product.imagePath;

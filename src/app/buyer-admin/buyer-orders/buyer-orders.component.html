@@ -50,21 +50,33 @@
           </span>
         </div>
       </div>
-    </div>
-    <div class="order_service">
-      Show Seller This Discount Code:
-      <span class="order_service-code">
-        {{ order.code }}
-      </span>
       <div *ngIf="order.takeOut" class="order__takeout">
         <img
           src="assets/image/take_out.jpg"
           alt=""
           class="order__takeout__img"
         />
-        <span>{{ order.specialRequirements }}</span>
-        <span *ngIf="order.phoneNumber">{{ order.phoneNumber }}</span>
+        <div>
+          <span
+            style="display: inline-block; margin: 0rem 0.5rem; width: 100%;"
+            *ngIf="order.specialRequirements"
+            >Seller Message: {{ order.specialRequirements }}</span
+          >
+          <span *ngIf="order.phoneNumber"
+            >Phone Number:
+            {{ phoneChangeFormat(order.phoneNumber, "form") }}</span
+          ><br />
+          <span *ngIf="order.pickupTime"
+            >Pick Up Time: {{ order.pickupTime | date: "MMMM d h:mm a" }}</span
+          >
+        </div>
       </div>
+    </div>
+    <div class="order_service">
+      Show Seller This Discount Code:
+      <span class="order_service-code">
+        {{ order.code }}
+      </span>
     </div>
   </div>
   <mat-paginator

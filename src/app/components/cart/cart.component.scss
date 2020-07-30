@@ -5,8 +5,11 @@
 .row {
   display: flex;
   min-height: 50px;
-  border-bottom: 1px solid #aaa;
+  // border-bottom: 1px solid #ddd;
   padding: 1rem 0rem;
+  &:first-child {
+    border-top: 1px solid #ddd;
+  }
 }
 
 .header {
@@ -82,6 +85,7 @@
   &__product-image {
     height: 9rem;
     max-width: 9rem;
+    cursor: pointer;
   }
 
   &__product-title {
@@ -172,9 +176,10 @@
   display: none;
   padding: 1rem;
   width: 100%;
-  border: 1px solid #eee;
+  border-bottom: 1px solid #aaa;
   font-size: 1.4rem;
   color: #555;
+  margin-top: -2rem;
 }
 
 .show {

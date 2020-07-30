@@ -70,8 +70,29 @@
             alt=""
             class="order__takeout__img"
           />
-          <span>{{ order.specialRequirements }}</span>
-          <span *ngIf="order.phoneNumber">{{ order.phoneNumber }}</span>
+          <div>
+            <span
+              style="display: inline-block;"
+              *ngIf="order.specialRequirements"
+              >Message: {{ order.specialRequirements }}</span
+            ><br />
+            <button
+              *ngIf="
+                order.phoneNumber &&
+                !show &&
+                !order.status &&
+                pickupEndTime > now
+              "
+              (click)="showPhoneNumber()"
+              mat-button
+              color="accent"
+            >
+              Show Phone Number
+            </button>
+            <span *ngIf="(order.phoneNumber && show) || order.status"
+              >Phone Number: {{ order.phoneNumber }}</span
+            >
+          </div>
         </div>
       </div>
     </mat-card-content>

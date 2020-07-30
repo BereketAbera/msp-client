@@ -20,6 +20,12 @@ const transactionApi = environment.APIEndpoint + "transactions";
 export class TransactionService {
   public countSubject = new BehaviorSubject<number>(0);
   constructor(private http: HttpClient) {}
+
+  processTakeOutTransaction(transactionId) {
+    return this.http
+      .post(transactionApi + "/processtransaction", { transactionId })
+      .pipe(catchError(this.handleError));
+  }
   createTransaction(transaction: Transaction) {
     return this.http
       .post(transactionApi, transaction)

@@ -95,6 +95,10 @@ body {
   justify-content: flex-start;
 }
 
+::ng-deep .example-full-width {
+  width: auto;
+}
+
 @media only screen and (min-width: 732px) {
   .card {
     width: 100%;

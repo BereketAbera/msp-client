@@ -17,7 +17,7 @@
   <mat-card class="card">
     <h2 class="payment-form__header">RESERVATION INFORMATION</h2>
     <mat-card-content>
-      <table class="table">
+      <table style="border-collapse: collapse;" class="table">
         <tr class="table_header">
           <td>Name</td>
           <td>QTY</td>
@@ -25,19 +25,35 @@
           <td>SAVINGS</td>
           <td>FINAL</td>
         </tr>
-        <tr *ngFor="let product of cartProducts">
-          <td>
-            <a (click)="productDetail(product)" class="table_link">{{
-              product.name
-            }}</a>
-          </td>
-          <td>{{ product.qty }}</td>
-          <td>{{ product.regPrice * product.qty | currency }}</td>
-          <td>
-            {{ (product.regPrice - product.disPrice) * product.qty | currency }}
-          </td>
-          <td>{{ product.qty * product.disPrice | currency }}</td>
-        </tr>
+        <ng-container *ngFor="let product of cartProducts">
+          <tr style="border-top: 1px solid #aaa;">
+            <td>
+              <a (click)="productDetail(product)" class="table_link">{{
+                product.name
+              }}</a>
+            </td>
+            <td>{{ product.qty }}</td>
+            <td>{{ product.regPrice * product.qty | currency }}</td>
+            <td>
+              {{
+                (product.regPrice - product.disPrice) * product.qty | currency
+              }}
+            </td>
+            <td>{{ product.qty * product.disPrice | currency }}</td>
+          </tr>
+          <tr *ngIf="product.specialRequirements">
+            <td style="font-size: 1.3rem;" colspan="5">
+              Seller Message:
+              {{ product.specialRequirements }}
+            </td>
+          </tr>
+          <tr *ngIf="product.pickUpTime">
+            <td style="font-size: 1.3rem;" colspan="5">
+              Pick Up Time:
+              {{ product.pickUpTime | date: "shortTime" }}
+            </td>
+          </tr>
+        </ng-container>
         <tr>
           <td colspan="5" class="ordcls"></td>
         </tr>

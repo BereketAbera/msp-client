@@ -7,7 +7,7 @@ import {
 } from "@angular/core";
 import { MatPaginator } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute, Router, Params } from "@angular/router";
 import { merge } from "rxjs/observable/merge";
 import { tap } from "rxjs/operators";
 import { SellerOrderDataSource } from "../../service/seller-order-datasource";
@@ -28,11 +28,13 @@ export class TransactionsComponent implements OnInit, AfterViewInit {
     "status",
     "pickupStartTime",
     "pickupEndTime",
-    // "phoneNumber",
+    "pickupTime",
     "date",
     "totalPrice",
     "name",
   ];
+  pageSize = 5;
+  pageIndex = 0;
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
@@ -47,18 +49,38 @@ export class TransactionsComponent implements OnInit, AfterViewInit {
     private authService: AuthService
   ) {}
   ngOnInit() {
+    this.pageIndex =
+      parseInt(this.route.snapshot.queryParamMap.get("pageIndex")) || 0;
+    this.pageSize =
+      parseInt(this.route.snapshot.queryParamMap.get("pageSize")) || 5;
     this.dataSource = new SellerOrderDataSource(
       this.transactionService,
       this.authService
     );
+    this.paginator.pageIndex = this.pageIndex;
+    this.paginator.pageSize = this.pageSize;
 
-    this.dataSource.loadTransactions(1, "", "asc", 0, 5);
+    this.dataSource.loadTransactions(
+      1,
+      "",
+      "asc",
+      this.pageIndex,
+      this.pageSize
+    );
   }
 
   ngAfterViewInit() {
     this.sort.sortChange.subscribe(() => (this.paginator.pageIndex = 0));
     merge(this.sort.sortChange, this.paginator.page)
-      .pipe(tap(() => this.loadTransactionsPage()))
+      .pipe(
+        tap((res: any) => {
+          this.setUrlValues({
+            pageIndex: this.paginator.pageIndex,
+            pageSize: this.paginator.pageSize,
+          });
+          this.loadTransactionsPage();
+        })
+      )
       .subscribe();
   }
   gotoAddNewProduct() {
@@ -134,5 +156,23 @@ export class TransactionsComponent implements OnInit, AfterViewInit {
         return "Expired";
       }
     }
+  }
+
+  setUrlValues(sObj) {
+    // console.log(sObj);
+    let keys = Object.keys(sObj);
+    let pObj = {};
+    keys.map((key) => {
+      pObj[key] = sObj[key];
+    });
+    const queryParams: Params = {
+      ...pObj,
+    };
+
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: queryParams,
+      queryParamsHandling: "merge",
+    });
   }
 }

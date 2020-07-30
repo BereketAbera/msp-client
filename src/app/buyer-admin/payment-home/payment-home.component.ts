@@ -247,6 +247,7 @@ export class PaymentHomeComponent implements OnInit {
         takeOut: p.takeOut,
         specialRequirements: p.specialRequirements,
         quantity: p.qty,
+        pickUpTime: p.pickUpTime,
       },
     });
   }

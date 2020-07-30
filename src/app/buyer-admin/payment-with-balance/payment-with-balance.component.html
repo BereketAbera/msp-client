@@ -27,14 +27,22 @@
           <label style="font-size: 1.5rem;">{{ orderAmount | currency }}</label>
           <div>
             <div class="user-request__allow-call-phone-number">
-              <mat-checkbox
-                name="allowCallPhoneNumber"
-                formControlName="allowCallPhoneNumber"
-                style="width: 2.5rem; height: 2.5rem;"
-              >
-                Allow Seller To Call Your Number If there Is Any Question About
-                This Order
-              </mat-checkbox>
+              Seller will call&nbsp;&nbsp;
+              <mat-form-field class="example-full-width">
+                <mat-label>Phone Number</mat-label>
+                <span style="color: #555;" matPrefix>+1&nbsp;</span>
+                <input
+                  type="text"
+                  matInput
+                  placeholder="000-000-0000"
+                  required
+                  maxlength="14"
+                  formControlName="phoneNumber"
+                  (paste)="preventPaste($event)"
+                  (change)="phoneNumberChangeEvent($event)"
+                />
+              </mat-form-field>
+              &nbsp;&nbsp;if there is any question about this order.
             </div>
           </div>
         </div>
@@ -69,7 +77,7 @@
 <app-custom-notification
   [show]="showSuccessNotification"
   type="success"
-  text="You Have Succesfully Ordered The product"
+  text="You Have Succesfully Reserved The Product"
   (showNotifications)="showNotification($event)"
 >
 </app-custom-notification>

@@ -144,16 +144,38 @@
           *ngIf="buyForm.controls['takeOut'].value"
           class="user-request__inputs"
         >
-          <mat-form-field class="user-request__input user-request__input-req">
-            <mat-label>Note for seller</mat-label>
-            <input
-              formControlName="specialRequirements"
-              matInput
-              placeholder="Note for seller"
-              maxlength="255"
-              type="text"
-            />
-          </mat-form-field>
+          <div class="user-request__input">
+            <mat-form-field class="user-request__input-req">
+              <mat-label>Note for seller</mat-label>
+              <textarea
+                formControlName="specialRequirements"
+                matInput
+                placeholder="Note for seller"
+                maxlength="166"
+                type="text"
+              ></textarea>
+            </mat-form-field>
+          </div>
+          <div class="user-request__input">
+            <div class="user-request__label" fxFlexAlign="center">
+              Pick Up Time
+            </div>
+            <mat-form-field class="user-request__input-1">
+              <mat-select matInput formControlName="pickupHH" placeholder="HH">
+                <mat-option *ngFor="let hh of hhlst" [value]="hh">
+                  {{ hh }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <div fxFlexAlign="center">:</div>
+            <mat-form-field class="user-request__input-1">
+              <mat-select matInput formControlName="pickupMM" placeholder="MM">
+                <mat-option *ngFor="let min of hhmm" [value]="min">
+                  {{ min }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
         </div>
       </div>
     </div>

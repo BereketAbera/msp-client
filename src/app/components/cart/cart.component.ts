@@ -113,4 +113,15 @@ export class CartComponent implements OnInit {
   getProductShow(prdid) {
     return this.showDetail[`pr${prdid}`];
   }
+
+  productDetail(p) {
+    this.router.navigate(["/deal", p.prdid], {
+      queryParams: {
+        takeOut: p.takeOut,
+        specialRequirements: p.specialRequirements,
+        quantity: p.qty,
+        pickUpTime: p.pickUpTime,
+      },
+    });
+  }
 }
