@@ -330,6 +330,7 @@ video::-webkit-media-controls {
     text-transform: uppercase;
     font-weight: 900;
     color: #555;
+    cursor: pointer;
   }
 
   &__step-description {
@@ -342,6 +343,7 @@ video::-webkit-media-controls {
   &__step-icon {
     font-size: 4rem;
     color: #f94081;
+    cursor: pointer;
   }
 
   &__cities-container {

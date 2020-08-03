@@ -60,10 +60,10 @@
           <span
             style="display: inline-block; margin: 0rem 0.5rem; width: 100%;"
             *ngIf="order.specialRequirements"
-            >Seller Message: {{ order.specialRequirements }}</span
+            >Message To Seller: {{ order.specialRequirements }}</span
           >
           <span *ngIf="order.phoneNumber"
-            >Phone Number:
+            >My Contact No:
             {{ phoneChangeFormat(order.phoneNumber, "form") }}</span
           ><br />
           <span *ngIf="order.pickupTime"

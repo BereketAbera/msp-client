@@ -75,7 +75,7 @@
               style="display: inline-block;"
               *ngIf="order.specialRequirements"
               >Message: {{ order.specialRequirements }}</span
-            ><br />
+            ><br *ngIf="order.specialRequirements" />
             <button
               *ngIf="
                 order.phoneNumber &&

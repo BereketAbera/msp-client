@@ -24,11 +24,11 @@ export class TransactionsComponent implements OnInit, AfterViewInit {
   balance: number = 0;
   displayedColumns = [
     "img",
+    "pickupTime",
     "product",
     "status",
     "pickupStartTime",
     "pickupEndTime",
-    "pickupTime",
     "date",
     "totalPrice",
     "name",

@@ -47,6 +47,8 @@ export class DealDetailComponent implements OnInit {
   pickUpTime: any;
   pickUpStartTime: any;
   pickUpEndTime: any;
+  validPickUpStartTime: any;
+  validPickUpEndTime: any;
 
   constructor(
     public dialog: MatDialog,
@@ -112,9 +114,14 @@ export class DealDetailComponent implements OnInit {
           (key) =>
             (this.product[key] = this.changeToLocal12Hours(this.product[key]))
         );
+        this.product["companyPhoneNumber"] = this.phoneChangeFormat(
+          this.product["companyPhoneNumber"],
+          "form"
+        );
         this.markup = data.mspMarkup;
       }
     );
+    this.getValidStartNPickTimes();
   }
 
   gotoCart() {
@@ -149,11 +156,13 @@ export class DealDetailComponent implements OnInit {
         new Date().toISOString().split("T")[0] + " " + this.pickUpStartTime
       )
         .subtract(offset, "seconds")
+        .add(30, "minutes")
         .valueOf()
     ).toISOString();
     let pickUpEndTime = new Date(
       moment(new Date().toISOString().split("T")[0] + " " + this.pickUpEndTime)
         .subtract(offset, "seconds")
+        .add(30, "minutes")
         .valueOf()
     ).toISOString();
     let valid =
@@ -167,6 +176,26 @@ export class DealDetailComponent implements OnInit {
         .utcOffset(offset / 60);
     }
     return valid;
+  }
+
+  getValidStartNPickTimes() {
+    let tempTimeStart = this.getPlus30Min(this.pickUpStartTime);
+    let tempTimeEnd = this.getPlus30Min(this.pickUpEndTime);
+
+    this.validPickUpStartTime = this.changeToLocal12Hours(tempTimeStart);
+    this.validPickUpEndTime = this.changeToLocal12Hours(tempTimeEnd);
+  }
+
+  getPlus30Min(time) {
+    let m = 0;
+    time.split(":").map((x, i) => {
+      m = m + parseInt(x) * (60 * (1 - i));
+    });
+    m = m + 30;
+    m = m % (60 * 60 * 24);
+    return `${this.returnTwoDigit(Math.floor(m / 60))}:${this.returnTwoDigit(
+      m % 60
+    )}`;
   }
 
   getOffset(d) {
@@ -321,5 +350,14 @@ export class DealDetailComponent implements OnInit {
     this.buyForm.controls["takeOut"].setValue(
       !this.buyForm.controls["takeOut"].value
     );
+  }
+
+  phoneChangeFormat(value, type) {
+    if (type == "db") {
+      return "+1" + value.replace(/[()-\s]/g, "");
+    } else {
+      let v = value.replace("+1", "").replace(/[()-\s]/g, "");
+      return `(${v.slice(0, 3)}) ${v.slice(3, 6)}-${v.slice(6)}`;
+    }
   }
 }

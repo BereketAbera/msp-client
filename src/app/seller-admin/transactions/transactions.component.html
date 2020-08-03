@@ -43,6 +43,15 @@
             </button>
           </mat-cell>
         </ng-container>
+        <ng-container matColumnDef="pickupTime">
+          <mat-header-cell class="header-align-right" *matHeaderCellDef
+            >Pick Up Time</mat-header-cell
+          >
+
+          <mat-cell *matCellDef="let transaction">{{
+            (transaction.pickupTime | date: "MMM d, h:mm a") || "----------"
+          }}</mat-cell>
+        </ng-container>
 
         <ng-container matColumnDef="type">
           <mat-header-cell class="header-align-right" *matHeaderCellDef
@@ -85,15 +94,6 @@
 
           <mat-cell *matCellDef="let transaction">{{
             transaction.pickupEndTime | date: "MMM d, h:mm a"
-          }}</mat-cell>
-        </ng-container>
-        <ng-container matColumnDef="pickupTime">
-          <mat-header-cell class="header-align-right" *matHeaderCellDef
-            >Pick Up Time</mat-header-cell
-          >
-
-          <mat-cell *matCellDef="let transaction">{{
-            (transaction.pickupTime | date: "MMM d, h:mm a") || "----------"
           }}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="date">
