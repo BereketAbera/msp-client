@@ -84,7 +84,7 @@
         <div class="product-detail__shop">
           <i class="fad fa-phone product-detail__address-icon"></i>
           <h5 class="product-detail__address-name">
-            {{ product.companyPhoneNumber }}
+            {{ product?.companyPhoneNumber }}
           </h5>
         </div>
       </div>
@@ -121,7 +121,7 @@
             formControlName="quantity"
             value="1"
             min="1"
-            [max]="product.currentQuantity"
+            [max]="product?.currentQuantity"
           />
         </div>
       </div>
@@ -182,13 +182,13 @@
                 font-size: 1.3rem;
                 color: #333;
                 padding: 0rem 1rem;
-                max-width: 32rem;
+                max-width: 35rem;
                 text-align: center;
                 margin-top: -2rem;
               "
             >
               Valid pick up time is between
-              <strong>{{ validPickUpStartTime }}</strong> and
+              <strong>{{ validPickUpStartTime }}</strong> -
               <strong>{{ validPickUpEndTime }}</strong>
             </div>
           </div>

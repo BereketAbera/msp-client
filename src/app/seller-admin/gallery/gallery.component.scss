@@ -103,6 +103,11 @@
   border-radius: 0rem;
 }
 
+::ng-deep .mat-dialog-content {
+  font-size: 1.6rem;
+  text-align: center;
+}
+
 @media only screen and (min-width: 700px) {
   .gallery {
     &__container {

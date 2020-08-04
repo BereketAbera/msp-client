@@ -67,7 +67,7 @@ export class DealDetailComponent implements OnInit {
     );
     let pickUpTime = this.route.snapshot.queryParamMap.get("pickUpTime");
     let cnt = this.buyForm.controls;
-    if (takeOut && quantity) {
+    if (takeOut && quantity && pickUpTime) {
       cnt["takeOut"].setValue(takeOut);
       cnt["quantity"].setValue(quantity);
       cnt["specialRequirements"].setValue(specialRequirements);
@@ -105,6 +105,7 @@ export class DealDetailComponent implements OnInit {
         this.pickUpEndTime = data.product["pickupEndTime"];
 
         this.product = data.product;
+        // console.log(data.product);
         [
           "offerStartTime",
           "offerEndTime",
