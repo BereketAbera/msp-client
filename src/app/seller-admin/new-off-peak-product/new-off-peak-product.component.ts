@@ -692,17 +692,17 @@ export class NewOffPeakProductComponent implements OnInit {
     }
     if (!(this.pickupEndTime.getTime() > this.pickupStartTime.getTime())) {
       this.errorMessage =
-        "Consumption end time must be greater than consumption start time.";
+        "Service end time must be greater than service start time.";
       return false;
     }
     if (!(this.pickupStartTime.getTime() > this.offerStartTime.getTime())) {
       this.errorMessage =
-        "Consumption start time must be greater than reservation start time.";
+        "Service start time must be greater than reservation start time.";
       return false;
     }
     if (!(this.pickupEndTime.getTime() >= this.offerEndTime.getTime())) {
       this.errorMessage =
-        "Consumption end time must be greater than or equal to reservation end time.";
+        "Service end time must be greater than or equal to reservation end time.";
       return false;
     }
     return true;

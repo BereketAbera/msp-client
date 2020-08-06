@@ -35,7 +35,7 @@
               <img class="img" [src]="transaction.imagePath" alt="" />
               <img
                 *ngIf="transaction.takeOut"
-                style="height: 3rem;"
+                style="height: 3rem; width: 3rem;"
                 src="assets/image/take_out.jpg"
                 alt=""
                 class="img"
@@ -80,7 +80,7 @@
         </ng-container>
         <ng-container matColumnDef="pickupStartTime">
           <mat-header-cell class="header-align-right" *matHeaderCellDef
-            >Pick Up Start Time</mat-header-cell
+            >Service Start Time</mat-header-cell
           >
 
           <mat-cell *matCellDef="let transaction">{{
@@ -89,7 +89,7 @@
         </ng-container>
         <ng-container matColumnDef="pickupEndTime">
           <mat-header-cell class="header-align-right" *matHeaderCellDef
-            >Pick Up End Time</mat-header-cell
+            >Service End Time</mat-header-cell
           >
 
           <mat-cell *matCellDef="let transaction">{{

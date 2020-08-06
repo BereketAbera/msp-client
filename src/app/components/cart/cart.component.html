@@ -95,8 +95,9 @@
               <span>Qty</span> {{ product.qty }}
             </div>
           </div>
-          <div *ngIf="product.specialRequirements" class="card__req">
-            Message To Seller: {{ product.specialRequirements }} <br />
+          <div *ngIf="product.takeOut" class="card__req">
+            Message To Seller: {{ product.specialRequirements || "None" }}
+            <br />
             Pick Up Time: {{ product.pickUpTime | date: "shortTime" }}
           </div>
         </div>

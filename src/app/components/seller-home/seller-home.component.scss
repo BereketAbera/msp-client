@@ -114,7 +114,7 @@ video::-webkit-media-controls {
   &__refer {
     padding: 1.6rem 0;
     min-width: 20rem;
-    cursor: pointer;
+    // cursor: pointer;
   }
 
   &__search-container {
@@ -330,7 +330,7 @@ video::-webkit-media-controls {
     text-transform: uppercase;
     font-weight: 900;
     color: #555;
-    cursor: pointer;
+    // cursor: pointer;
   }
 
   &__step-description {
