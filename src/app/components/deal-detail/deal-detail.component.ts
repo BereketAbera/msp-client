@@ -54,6 +54,7 @@ export class DealDetailComponent implements OnInit {
   resolvedDays = [0, 0];
   resolvedOfferDays = [0, 0];
   resolvedPickupDays = [0, 0];
+  pickUpInput;
 
   constructor(
     public dialog: MatDialog,
@@ -148,146 +149,12 @@ export class DealDetailComponent implements OnInit {
     this.router.navigate(["../"]);
   }
 
-  // validatePickUpTime() {
-  //   let different = false;
-  //   let pickUpTime2;
-  //   let cntr = this.buyForm.controls;
-  //   if (!(cntr["pickupHH"].valid && cntr["pickupMM"].valid)) return false;
-  //   let localoffset = this.product.utcoffset + new Date().getTimezoneOffset();
-  //   let offset = this.product.utcoffset;
-  //   let fCont = this.buyForm.controls;
-
-  //   let sTemp = moment(
-  //     moment(new Date()).format("YYYY-MM-DD") + " " + this.pickUpStartTime
-  //   ).add(offset, "minutes");
-  //   let startPick = sTemp.format("HH:MM");
-  //   let eTemp = moment(
-  //     moment(new Date()).format("YYYY-MM-DD") + " " + this.pickUpEndTime
-  //   ).add(offset, "minutes");
-  //   let endPick = eTemp.format("HH:MM");
-  //   let pickUpInput = moment(
-  //     new Date().toISOString().split("T")[0] +
-  //       " " +
-  //       fCont["pickupHH"].value +
-  //       ":" +
-  //       fCont["pickupMM"].value.split(":")[0] +
-  //       ":00" +
-  //       " " +
-  //       fCont["pickupMM"].value.split(":")[1]
-  //   );
-
-  //   if (
-  //     this.resolvedPickupDays[0] == this.resolvedPickupDays[1] &&
-  //     this.resolvedPickupDays[0] == 0
-  //   ) {
-  //     this.pickUpTime = new Date(
-  //       pickUpInput
-  //         .add(localoffset, "minutes")
-  //         .add(this.resolvedPickupDays[0], "day")
-  //         .valueOf()
-  //     ).toISOString();
-  //   } else if (this.resolvedPickupDays[0] == this.resolvedPickupDays[1]) {
-  //     this.pickUpTime = new Date(
-  //       pickUpInput
-  //         .subtract(localoffset, "minutes")
-  //         .add(this.resolvedPickupDays[0], "day")
-  //         .valueOf()
-  //     ).toISOString();
-  //   } else {
-  //     different = true;
-  //     this.pickUpTime = new Date(
-  //       pickUpInput
-  //         .add(localoffset, "minutes")
-  //         .add(Math.max(...this.resolvedPickupDays), "day")
-  //         .valueOf()
-  //     ).toISOString();
-  //     pickUpTime2 = new Date(
-  //       pickUpInput
-  //         .add(localoffset, "minutes")
-  //         .add(Math.min(...this.resolvedPickupDays), "day")
-  //         .valueOf()
-  //     ).toISOString();
-  //   }
-  //   let pickUpStartTime;
-  //   let pickUpEndTime;
-  //   console.log(24 * 60 - localoffset);
-  //   if (
-  //     this.resolvedPickupDays[0] == this.resolvedPickupDays[1] &&
-  //     this.resolvedPickupDays[0]
-  //   ) {
-  //     pickUpStartTime = new Date(
-  //       moment(new Date().toISOString().split("T")[0] + " " + startPick)
-  //         .add(30, "minutes")
-  //         .subtract(localoffset * 2, "minutes")
-  //         .valueOf()
-  //     ).toISOString();
-  //     pickUpEndTime = new Date(
-  //       moment(new Date().toISOString().split("T")[0] + " " + endPick)
-  //         .add(30, "minutes")
-  //         .subtract(localoffset * 2, "minutes")
-  //         .valueOf()
-  //     ).toISOString();
-  //   } else {
-  //     console.log("---------------from else----------------");
-  //     pickUpStartTime = new Date(
-  //       moment(new Date().toISOString().split("T")[0] + " " + startPick)
-  //         .add(30, "minutes")
-  //         .add(this.resolvedPickupDays[0], "day")
-  //         .valueOf()
-  //     ).toISOString();
-  //     pickUpEndTime = new Date(
-  //       moment(new Date().toISOString().split("T")[0] + " " + endPick)
-  //         .add(30, "minutes")
-  //         .add(this.resolvedPickupDays[1], "day")
-  //         .valueOf()
-  //     ).toISOString();
-  //   }
-  //   // console.log(this.pickUpTime, pickUpStartTime, pickUpEndTime);
-  //   let valid = false;
-  //   if (!different) {
-  //     valid =
-  //       this.pickUpTime >= pickUpStartTime && this.pickUpTime <= pickUpEndTime;
-  //   } else {
-  //     if (
-  //       this.pickUpTime >= pickUpStartTime &&
-  //       this.pickUpTime <= pickUpEndTime
-  //     ) {
-  //       valid = true;
-  //     } else if (
-  //       (valid = pickUpTime2 >= pickUpStartTime && pickUpTime2 <= pickUpEndTime)
-  //     ) {
-  //       valid = true;
-  //       this.pickUpTime = pickUpTime2;
-  //     }
-  //   }
-  //   console.log(
-  //     this.pickUpTime,
-  //     "\n",
-  //     pickUpStartTime,
-  //     "\n",
-  //     pickUpEndTime,
-  //     "\n",
-  //     different,
-  //     "\n",
-  //     localoffset,
-  //     "\n",
-  //     offset,
-  //     "\n"
-  //   );
-  //   if (valid) {
-  //     this.pickUpTime = moment(this.pickUpTime).subtract(
-  //       localoffset,
-  //       "minutes"
-  //     );
-  //   }
-  //   return valid;
-  // }
-
   validatePickUpTime() {
-    let [dayStart, dayEnd] = this.resolvedPickupDays;
+    // let [dayStart, dayEnd] = this.resolvedPickupDays;
     let fCont = this.buyForm.controls;
-    let offset = this.product.utcoffset + 30;
-    let pickUpInput = moment(
+    let offset = this.product.utcoffset;
+    // let localoffset = this.product.utcoffset - new Date().getTimezoneOffset();
+    this.pickUpInput = moment(
       moment().format("YYYY-MM-DD") +
         " " +
         fCont["pickupHH"].value +
@@ -297,23 +164,26 @@ export class DealDetailComponent implements OnInit {
         " " +
         fCont["pickupMM"].value.split(":")[1]
     );
-    let pickUpInputNew = pickUpInput
+    let pickUpInputNew = this.pickUpInput
       .add(this.product.utcoffset, "minutes")
       .add(new Date().getTimezoneOffset(), "minutes");
     let sTemp = moment(
       moment().format("YYYY-MM-DD") + " " + this.pickUpStartTime
-    ).add(offset, "minutes");
+    ).add(offset + 30, "minutes");
     let eTemp = moment(
       moment().format("YYYY-MM-DD") + " " + this.pickUpEndTime
     ).add(offset, "minutes");
 
-    let inputPrTime = pickUpInputNew.format("HH:MM");
-    let startPickPrTime = this.add30Min(sTemp.format("HH:MM"));
-    let endPickPrTime = this.add30Min(eTemp.format("HH:MM"));
+    let inputPrTime = pickUpInputNew.format("HH:mm");
+    let startPickPrTime = sTemp.format("HH:mm");
+    let endPickPrTime = this.add30Min(eTemp.format("HH:mm"));
     let valid = inputPrTime >= startPickPrTime && inputPrTime <= endPickPrTime;
-    console.log(inputPrTime, startPickPrTime, endPickPrTime);
+    // console.log(inputPrTime, startPickPrTime, endPickPrTime);
+    console.log(new Date().getTimezoneOffset());
     if (valid) {
-      this.pickUpTime = pickUpInput;
+      this.pickUpTime = this.pickUpInput
+        .subtract(this.product.utcoffset, "minutes")
+        .subtract(new Date().getTimezoneOffset(), "minutes");
     }
     return valid;
   }
@@ -379,7 +249,7 @@ export class DealDetailComponent implements OnInit {
       reserveProduct.specialRequirements = this.buyForm.controls[
         "specialRequirements"
       ].value;
-      reserveProduct.pickUpTime = this.pickUpTime;
+      reserveProduct.pickUpTime = this.pickUpInput;
       if (reserveProduct.qty > this.product.currentQuantity) {
         this.errorMessage = "Quantity must be less than available quantity";
         this.showErrorNotification = true;
@@ -511,12 +381,12 @@ export class DealDetailComponent implements OnInit {
     let sTemp = moment(
       moment(new Date()).format("YYYY-MM-DD") + " " + start
     ).add(offset, "minutes");
-    let startTemp = sTemp.format("HH:MM");
+    let startTemp = sTemp.format("HH:mm");
     let eTemp = moment(moment(new Date()).format("YYYY-MM-DD") + " " + end).add(
       offset,
       "minutes"
     );
-    let endTemp = eTemp.format("HH:MM");
+    let endTemp = eTemp.format("HH:mm");
     let startTime = moment(
       moment(new Date()).format("YYYY-MM-DD") + " " + startTemp
     ).subtract(localNProductOffsetDiff, "minutes");

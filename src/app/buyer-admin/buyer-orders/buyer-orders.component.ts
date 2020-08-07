@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { Transaction } from "src/app/model/transaction";
 import { TransactionsDataSource } from "../../service/transaction-data-source.service";
 import { TransactionService } from "../../service/transaction.service";
+import * as moment from "moment";
 
 @Component({
   templateUrl: "./buyer-orders.component.html",
@@ -125,4 +126,12 @@ export class BuyerOrdersComponent implements OnInit {
       return `(${v.slice(0, 3)}) ${v.slice(3, 6)}-${v.slice(6)}`;
     }
   }
+
+  // addOffset(time) {
+  //   console.log(time);
+
+  //   return moment(time)
+  //     .subtract(new Date().getTimezoneOffset(), "minutes")
+  //     .toISOString();
+  // }
 }

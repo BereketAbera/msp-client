@@ -67,7 +67,7 @@
             {{ phoneChangeFormat(order.phoneNumber, "form") }}</span
           ><br />
           <span *ngIf="order.pickupTime"
-            >Pick Up Time: {{ order.pickupTime | date: "MMMM d h:mm a" }}</span
+            >Pick Up Time: {{ order.pickupTime | date: "h:mm a" }}</span
           >
         </div>
       </div>
