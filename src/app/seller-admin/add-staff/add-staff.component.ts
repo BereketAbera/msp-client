@@ -132,4 +132,17 @@ export class AddStaffComponent implements OnInit {
       }
     }
   }
+
+  phoneNumberChangeEvent(event) {
+    let val = event.target.value;
+    if (val.length >= 14) {
+      let x = val.search(/(\(\d{3}\))(\s)\d{3}(-)\d{4}/);
+      if (x != -1) {
+        let str = val.slice(x, x + 14);
+        this.addStaffForm.controls["phoneNumber"].setValue(str);
+      } else {
+        this.addStaffForm.controls["phoneNumber"].setValue("");
+      }
+    }
+  }
 }
