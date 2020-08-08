@@ -219,7 +219,9 @@
               <strong
                 >{{ validPickUpStartTime }}
                 {{
-                  resolvedPickupDays[0] == 1
+                  startTimeUpdated
+                    ? ""
+                    : resolvedPickupDays[0] == 1
                     ? "d+1"
                     : resolvedPickupDays[0] == -1
                     ? "d-1"

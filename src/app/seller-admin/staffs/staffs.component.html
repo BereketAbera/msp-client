@@ -70,7 +70,9 @@
         <ng-container matColumnDef="phoneNumber">
           <mat-header-cell *matHeaderCellDef>Phone Number</mat-header-cell>
 
-          <mat-cell *matCellDef="let staff">{{ staff.phoneNumber }}</mat-cell>
+          <mat-cell *matCellDef="let staff">{{
+            phoneChangeFormat(staff.phoneNumber, "form")
+          }}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="status">
           <mat-header-cell class="header-align-right" *matHeaderCellDef

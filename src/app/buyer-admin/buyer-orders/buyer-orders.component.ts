@@ -22,8 +22,10 @@ export class BuyerOrdersComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    window.scroll(0, 0);
     this.route.data.subscribe((data: { orders: Transaction[] }) => {
       this.orders = data.orders;
+      console.log(this.orders);
       this.count = this.transactionService.countSubject.value;
     });
   }

@@ -65,7 +65,9 @@
             >Phone</mat-header-cell
           >
 
-          <mat-cell *matCellDef="let shop">{{ shop.phone }}</mat-cell>
+          <mat-cell *matCellDef="let shop">{{
+            phoneChangeFormat(shop.phone, "form")
+          }}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="ZipCode">
           <mat-header-cell class="header-align-right" *matHeaderCellDef

@@ -147,9 +147,6 @@ ul {
   // align-content: center;
   margin: 1rem 2rem;
 }
-.example-full-width {
-  width: 100%;
-}
 .form {
   &__groups {
     width: 95%;
@@ -194,8 +191,8 @@ ul {
   overflow: hidden !important;
 }
 
-.example-full-width {
-  width: 100%;
+.example-full-width-login {
+  width: 100% !important;
 }
 
 @media only screen and (min-width: 732px) {

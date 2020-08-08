@@ -55,6 +55,7 @@ export class DealDetailComponent implements OnInit {
   resolvedOfferDays = [0, 0];
   resolvedPickupDays = [0, 0];
   pickUpInput;
+  startTimeUpdated = false;
 
   constructor(
     public dialog: MatDialog,
@@ -138,6 +139,7 @@ export class DealDetailComponent implements OnInit {
         this.markup = data.mspMarkup;
       }
     );
+    this.checkNAdjustStartTime();
     this.getValidStartNPickTimes();
   }
 
@@ -149,11 +151,47 @@ export class DealDetailComponent implements OnInit {
     this.router.navigate(["../"]);
   }
 
+  checkNAdjustStartTime() {
+    let currentTime = moment().format("HH:mm:ss");
+    let currentUtcTime = moment()
+      .add(new Date().getTimezoneOffset(), "minutes")
+      .format("HH:mm:ss");
+    let sTemp = moment(
+      moment().format("YYYY-MM-DD") + " " + this.pickUpStartTime
+    )
+      .add(this.product.utcoffset, "minutes")
+      .format("HH:mm:ss");
+
+    let eTemp = moment(moment().format("YYYY-MM-DD") + " " + this.pickUpEndTime)
+      .add(this.product.utcoffset, "minutes")
+      .format("HH:mm:ss");
+
+    let sCurTemp = moment(moment().format("YYYY-MM-DD") + " " + currentUtcTime)
+      .add(this.product.utcoffset, "minutes")
+      .format("HH:mm:ss");
+
+    if (sCurTemp > sTemp && sCurTemp < eTemp) {
+      this.pickUpStartTime = this.changeToNearest30Min(sCurTemp);
+      this.startTimeUpdated = true;
+    }
+    console.log(sTemp, eTemp, sCurTemp);
+  }
+
+  changeToNearest30Min(time) {
+    let h = time.split(":")[0];
+    let m = time.split(":")[1];
+    if (parseInt(m) > 30) {
+      return `${this.returnTwoDigit(parseInt(h) + 1)}:00:00`;
+    } else if (parseInt(m) == 0) {
+      return `${h}:${m}:00`;
+    } else {
+      return `${this.returnTwoDigit(parseInt(h))}:30:00`;
+    }
+  }
+
   validatePickUpTime() {
-    // let [dayStart, dayEnd] = this.resolvedPickupDays;
     let fCont = this.buyForm.controls;
     let offset = this.product.utcoffset;
-    // let localoffset = this.product.utcoffset - new Date().getTimezoneOffset();
     this.pickUpInput = moment(
       moment().format("YYYY-MM-DD") +
         " " +
@@ -164,6 +202,7 @@ export class DealDetailComponent implements OnInit {
         " " +
         fCont["pickupMM"].value.split(":")[1]
     );
+
     let pickUpInputNew = this.pickUpInput
       .add(this.product.utcoffset, "minutes")
       .add(new Date().getTimezoneOffset(), "minutes");
@@ -178,8 +217,6 @@ export class DealDetailComponent implements OnInit {
     let startPickPrTime = sTemp.format("HH:mm");
     let endPickPrTime = this.add30Min(eTemp.format("HH:mm"));
     let valid = inputPrTime >= startPickPrTime && inputPrTime <= endPickPrTime;
-    // console.log(inputPrTime, startPickPrTime, endPickPrTime);
-    console.log(new Date().getTimezoneOffset());
     if (valid) {
       this.pickUpTime = this.pickUpInput
         .subtract(this.product.utcoffset, "minutes")
@@ -206,8 +243,10 @@ export class DealDetailComponent implements OnInit {
   }
 
   getPlus30Min(time) {
+    console.log(time);
     let m = 0;
     time.split(":").map((x, i) => {
+      if (i == 2) return;
       if (!i) {
         m = m + parseInt(x) * 60;
       } else {

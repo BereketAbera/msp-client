@@ -10,7 +10,7 @@
       </div>
       <div class="profile__phonenumber">
         <i class="fad fa-phone-alt profile__icon"></i>
-        <span>{{ profile?.phoneNumber }}</span>
+        <span>{{ phoneChangeFormat(profile?.phoneNumber, "form") }}</span>
       </div>
     </div>
     <div class="profile__website">
@@ -72,17 +72,14 @@
               <mat-label>Phone Number</mat-label>
               <span style="color: #555;" matPrefix>+1&nbsp;</span>
               <input
-                type="tel"
+                type="text"
                 matInput
                 placeholder="000-000-0000"
                 required
                 maxlength="14"
                 formControlName="phoneNumber"
                 (paste)="preventPaste($event)"
-                (keydown)="checkInput($event)"
                 (change)="phoneNumberChangeEvent($event)"
-                (keypress)="phoneNumberChange($event)"
-                (keyup)="phoneNumberChange($event)"
               />
             </mat-form-field>
             <mat-form-field>

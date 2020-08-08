@@ -30,7 +30,7 @@ export class SellerHomeComponent implements OnInit {
   smallTextDisplayed = true;
   sellerTextSmall = "";
   sellerText = `You keep 100% of the sales. No fees, no deductions, no equipment to buy.
-  You decide the time, date, and quantities to discount to our members. You will know ahead of time how many orders have been ordered by our members. Each member will present you with a unique discount code and pay your directly. Your regular customers will not be affected.
+  You decide the time, date, and quantities to discount to our members. You will know ahead of time how many orders have been ordered by our members. Each member will present you with a unique discount code and pay you directly. Your regular customers will not be affected.
   Just upload your product photos, offer a discount, quantity, time and date. We will notify our members near you immediately. It is that simple.
   We only charge the buyers a small processing fee for generating discount codes and making reservations for them.`;
 

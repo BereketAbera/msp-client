@@ -101,4 +101,20 @@ export class StaffsComponent implements OnInit {
   manageStaff(staffId) {
     this.router.navigate([`tlgu-slr/staffs/manage_access/${staffId}`]);
   }
+
+  phoneChangeFormat(value, type) {
+    if (value.includes("(")) {
+      let v = value.replace("+1", "");
+      v = `${v.slice(0, 3)} ${v.slice(3, 6)}-${v.slice(6)}`;
+      v = v.replace("-", " ");
+      v = v.replace(" ", "");
+      return v;
+    }
+    if (type == "db") {
+      return "+1" + value.replace(/[()-\s]/g, "");
+    } else {
+      let v = value.replace("+1", "");
+      return `(${v.slice(0, 3)}) ${v.slice(3, 6)}-${v.slice(6)}`;
+    }
+  }
 }
