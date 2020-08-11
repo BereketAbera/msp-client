@@ -39,6 +39,7 @@ export class HomeComponent implements OnInit {
       this.categories = data.categories;
     });
     this.config = this.configService.configData;
+    // this.videoplayer.nativeElement.pause();
   }
 
   ngAfterViewChecked() {}
