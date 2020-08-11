@@ -531,7 +531,15 @@
 
   <div class="image__actions">
     <button
+      *ngIf="!savingImage"
       (click)="saveImage()"
+      class="mat-flat-button mat-accent image__submit"
+    >
+      Add Image
+    </button>
+
+    <button
+      *ngIf="savingImage"
       class="mat-flat-button mat-accent image__submit"
     >
       Add Image
