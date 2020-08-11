@@ -5,8 +5,11 @@
 .row {
   display: flex;
   min-height: 50px;
-  border-bottom: 1px solid #aaa;
+  // border-bottom: 1px solid #ddd;
   padding: 1rem 0rem;
+  &:first-child {
+    border-top: 1px solid #ddd;
+  }
 }
 
 .header {
@@ -82,6 +85,7 @@
   &__product-image {
     height: 9rem;
     max-width: 9rem;
+    cursor: pointer;
   }
 
   &__product-title {
@@ -168,7 +172,21 @@
   }
 }
 
-@media only screen and (max-width: 600px) {
+.row-detail {
+  display: none;
+  padding: 1rem;
+  width: 100%;
+  border-bottom: 1px solid #aaa;
+  font-size: 1.4rem;
+  color: #555;
+  margin-top: -2rem;
+}
+
+.show {
+  display: flex;
+}
+
+@media only screen and (max-width: 700px) {
   .tbl {
     display: none;
   }
@@ -196,6 +214,11 @@
       position: relative;
       margin: 1rem 0;
       min-height: 12rem;
+      &__req {
+        font-size: 1.3rem;
+        color: #555;
+      }
+
       &__action {
         display: flex;
         flex-direction: row;
@@ -242,7 +265,7 @@
   }
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 800px) {
   .mobile_responsive {
     font-size: 2rem;
   }

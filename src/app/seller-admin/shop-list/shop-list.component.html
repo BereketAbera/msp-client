@@ -32,7 +32,10 @@
         matSortDisableClear
       >
         <ng-container matColumnDef="name">
-          <mat-header-cell class="header-align-right" *matHeaderCellDef
+          <mat-header-cell
+            class="header-align-right"
+            *matHeaderCellDef
+            mat-sort-header
             >Name</mat-header-cell
           >
 
@@ -62,7 +65,9 @@
             >Phone</mat-header-cell
           >
 
-          <mat-cell *matCellDef="let shop">{{ shop.phone }}</mat-cell>
+          <mat-cell *matCellDef="let shop">{{
+            phoneChangeFormat(shop.phone, "form")
+          }}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="ZipCode">
           <mat-header-cell class="header-align-right" *matHeaderCellDef
@@ -73,7 +78,10 @@
         </ng-container>
 
         <ng-container matColumnDef="city">
-          <mat-header-cell class="header-align-right" *matHeaderCellDef
+          <mat-header-cell
+            class="header-align-right"
+            *matHeaderCellDef
+            mat-sort-header
             >City</mat-header-cell
           >
 
@@ -81,7 +89,10 @@
         </ng-container>
 
         <ng-container matColumnDef="state">
-          <mat-header-cell class="header-align-right" *matHeaderCellDef
+          <mat-header-cell
+            class="header-align-right"
+            *matHeaderCellDef
+            mat-sort-header
             >State</mat-header-cell
           >
 

@@ -1,6 +1,10 @@
+import { TransactionService } from "./../../service/transaction.service";
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Transaction } from "../../model/transaction";
+import { Location } from "@angular/common";
+
+import * as moment from "moment";
 
 @Component({
   selector: "app-seller-order-detail",
@@ -9,15 +13,26 @@ import { Transaction } from "../../model/transaction";
 })
 export class SellerOrderDetailComponent implements OnInit {
   order: Transaction;
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  show = false;
+  now = moment().format("YYYY-MM-DD HH:mm:ss");
+  pickupEndTime: any;
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private transactionService: TransactionService,
+    private location: Location
+  ) {}
 
   ngOnInit() {
     this.route.data.subscribe((data: { order: Transaction }) => {
       this.order = data.order;
+      this.pickupEndTime = moment(this.order.pickupEndTime).format(
+        "YYYY-MM-DD HH:MM:SS"
+      );
     });
   }
   gotoSellerTrans() {
-    this.router.navigate(["../"], { relativeTo: this.route });
+    this.location.back();
   }
 
   changeToLocal12Hours(time) {
@@ -54,5 +69,15 @@ export class SellerOrderDetailComponent implements OnInit {
 
   returnTwoDigit(value) {
     return value.toString().length == 1 ? "0" + value : value;
+  }
+
+  showPhoneNumber() {
+    this.transactionService
+      .processTakeOutTransaction(this.order.id)
+      .subscribe((res: any) => {
+        if (res.success) {
+          this.show = true;
+        }
+      });
   }
 }

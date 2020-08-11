@@ -19,7 +19,11 @@
     <ng-container matColumnDef="type">
       <mat-header-cell *matHeaderCellDef>Transaction Type</mat-header-cell>
 
-      <mat-cell *matCellDef="let transaction">
+      <mat-cell
+        [routerLink]="['../trnsctns', transaction.transactionId]"
+        style="cursor: pointer;"
+        *matCellDef="let transaction"
+      >
         <span class="mobile-label">Type:</span>
         {{
           transaction.type == "ORDER" ? "RESERVATION" : transaction.type

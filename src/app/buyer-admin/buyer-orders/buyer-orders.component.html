@@ -17,8 +17,8 @@
     <div class="header">
       <div class="order__name">{{ order.name }}</div>
       <div class="order__shop-name name">
-        Shop Name: {{ order.shopName }} , {{ order.address }},
-        {{ order.companyPhoneNumber }}
+        {{ order.shopName }} , {{ order.address }},
+        {{ phoneChangeFormat(order.companyPhoneNumber, "form") }}
       </div>
       <div class="order_dates">
         <div class="order__time">
@@ -48,6 +48,27 @@
             <b>Pay Seller This Amount Plus any Tax: </b>
             {{ order.quantity * order.discountedPrice | currency }}
           </span>
+        </div>
+      </div>
+      <div *ngIf="order.takeOut" class="order__takeout">
+        <img
+          src="assets/image/take_out.jpg"
+          alt=""
+          class="order__takeout__img"
+        />
+        <div>
+          <span
+            style="display: inline-block; margin: 0rem 0.5rem; width: 100%;"
+            *ngIf="order.specialRequirements"
+            >Message To Seller: {{ order.specialRequirements }}</span
+          >
+          <span *ngIf="order.phoneNumber"
+            >My Contact No:
+            {{ phoneChangeFormat(order.phoneNumber, "form") }}</span
+          ><br />
+          <span *ngIf="order.pickupTime"
+            >Pick Up Time: {{ order.pickupTime | date: "h:mm a" }}</span
+          >
         </div>
       </div>
     </div>

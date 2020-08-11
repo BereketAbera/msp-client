@@ -56,12 +56,17 @@
         >
       </mat-form-field>
       <mat-form-field class="add-staff__input">
+        <mat-label>Employee phone number</mat-label>
+        <span style="color: #555;" matPrefix>+1&nbsp;</span>
         <input
+          type="text"
           matInput
-          placeholder="Employee phone number"
-          formControlName="phoneNumber"
+          placeholder="000-000-0000"
           required
-          maxlength="24"
+          maxlength="14"
+          formControlName="phoneNumber"
+          (paste)="preventPaste($event)"
+          (change)="phoneNumberChangeEvent($event)"
         />
         <mat-error *ngIf="addStaffForm.controls.phoneNumber.invalid"
           >Invalid phone number.</mat-error

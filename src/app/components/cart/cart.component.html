@@ -13,53 +13,64 @@
         <div class="cell header">Remove</div>
         <div class="cell header">Total</div>
       </div>
-      <div *ngFor="let product of cartProducts" class="row">
-        <div class="cell">
-          <div class="shopping-cart__product-image-container">
-            <img
-              class="shopping-cart__product-image"
-              src="{{ product.imagePath }}"
-            />
+      <div *ngFor="let product of cartProducts">
+        <div>
+          <div class="row">
+            <div class="cell">
+              <div class="shopping-cart__product-image-container">
+                <img
+                  (click)="productDetail(product)"
+                  class="shopping-cart__product-image"
+                  src="{{ product.imagePath }}"
+                />
+              </div>
+            </div>
+            <div class="cell">
+              <div class="shopping-cart__product-title">{{ product.name }}</div>
+              <!-- <p class="shopping-cart__product-description">
+                {{ product.description }}
+              </p> -->
+            </div>
+            <div class="cell">
+              <div class="shopping-cart__product-price">
+                {{ product.regPrice | currency }}
+              </div>
+            </div>
+            <div class="cell">
+              <div class="shopping-cart__product-discount">
+                -{{ product.regPrice - product.disPrice | currency }}
+              </div>
+            </div>
+            <div class="cell">
+              <div class="shopping-cart__product-price">
+                {{ product.disPrice | currency }}
+              </div>
+            </div>
+            <div class="cell">
+              <div class="shopping-cart__product-quantity">
+                {{ product.qty }}
+              </div>
+            </div>
+            <div class="cell">
+              <button
+                class="shopping-cart__remove-product"
+                (click)="removeCartProduct(product)"
+              >
+                Remove
+              </button>
+            </div>
+            <div class="cell">
+              <div class="shopping-cart__product-line-price">
+                {{ product.unitPrice * product.qty | currency }}
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="cell">
-          <div class="shopping-cart__product-title">{{ product.name }}</div>
-          <!-- <p class="shopping-cart__product-description">
-            {{ product.description }}
-          </p> -->
-        </div>
-        <div class="cell">
-          <div class="shopping-cart__product-price">
-            {{ product.regPrice | currency }}
+          <div *ngIf="product.takeOut" class="row-detail show">
+            Message To Seller: {{ product.specialRequirements || "None" }}
+            <br />
+            Pick Up Time: {{ product.pickUpTime | date: "shortTime" }}
           </div>
-        </div>
-        <div class="cell">
-          <div class="shopping-cart__product-discount">
-            -{{ product.regPrice - product.disPrice | currency }}
-          </div>
-        </div>
-        <div class="cell">
-          <div class="shopping-cart__product-price">
-            {{ product.disPrice | currency }}
-          </div>
-        </div>
-        <div class="cell">
-          <div class="shopping-cart__product-quantity">
-            {{ product.qty }}
-          </div>
-        </div>
-        <div class="cell">
-          <button
-            class="shopping-cart__remove-product"
-            (click)="removeCartProduct(product)"
-          >
-            Remove
-          </button>
-        </div>
-        <div class="cell">
-          <div class="shopping-cart__product-line-price">
-            {{ product.unitPrice * product.qty | currency }}
-          </div>
+          <div *ngIf="!product.takeOut" class="row-detail show"></div>
         </div>
       </div>
     </div>
@@ -84,6 +95,11 @@
               <span>Qty</span> {{ product.qty }}
             </div>
           </div>
+          <div *ngIf="product.takeOut" class="card__req">
+            Message To Seller: {{ product.specialRequirements || "None" }}
+            <br />
+            Pick Up Time: {{ product.pickUpTime | date: "shortTime" }}
+          </div>
         </div>
         <div class="card__action">
           <div class="shopping-cart__product-line-price">
@@ -96,11 +112,12 @@
             class="shopping-cart__remove-product"
             (click)="removeCartProduct(product)"
           >
-            Cancel
+            Remove
           </button>
         </div>
         <div class="card__header">
           <img
+            (click)="productDetail(product)"
             class="shopping-cart__product-image"
             src="{{ product.imagePath }}"
           />

@@ -137,16 +137,29 @@ p {
   }
 }
 
+.mat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.mat-card-content {
+  width: 80% !important;
+}
+
 @media only screen and (min-width: 900px) {
   .add-shop {
     &__container {
-      width: 55rem;
+      max-width: 55rem;
     }
   }
 }
 
 @media only screen and (min-width: 1000px) {
-  // .card {
-  //   width: 70%;
-  // }
+  .card {
+    width: 100% !important;
+  }
+
+  .mat-card-content {
+    width: 100% !important;
+  }
 }

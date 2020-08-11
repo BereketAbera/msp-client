@@ -25,10 +25,12 @@
 
   &__form-input {
     font-size: 1.6rem;
+    width: 100%;
   }
 
   &__form {
     padding: 1rem 4rem;
+    width: 40%;
   }
 
   &__form-button {
@@ -42,5 +44,19 @@
 
   &__action {
     text-decoration: none;
+  }
+}
+
+.filter {
+  display: flex;
+  align-items: center;
+
+  &__input {
+    margin: 0.5rem;
+    font-size: 1.5rem;
+  }
+
+  &__button {
+    height: 35px;
   }
 }

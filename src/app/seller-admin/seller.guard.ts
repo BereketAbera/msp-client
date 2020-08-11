@@ -7,6 +7,7 @@ import {
 } from "@angular/router";
 import { Observable } from "rxjs";
 import { mapRoutes } from "../mapRoutes";
+import { mapRoutesMajor } from "../mapRoutesMajor";
 import { AuthService } from "../service/auth.service";
 import { SellerStaffService } from "../service/seller-staff.service";
 
@@ -48,14 +49,18 @@ export class SellerGuard implements CanActivate {
             (response) => {
               this.user_features = response.features;
               found = this.checkUserFeatures(url);
-              // console.log(found);
               if (found) {
                 return found;
               } else if (
                 !this.alreadyRouted &&
                 this.user_features.length != 0
               ) {
-                let route = this.getAccessibleRoute(this.user_features);
+                console.log(this.user_features);
+                let route = this.getAccessibleRoute(
+                  this.user_features,
+                  "redirect"
+                );
+
                 this.alreadyRouted = true;
                 // this.router.navigate([route]);
                 if (route) {
@@ -75,7 +80,8 @@ export class SellerGuard implements CanActivate {
           if (found) {
             return found;
           } else if (!this.alreadyRouted && this.user_features.length != 0) {
-            let route = this.getAccessibleRoute(this.user_features);
+            let route = this.getAccessibleRoute(this.user_features, "redirect");
+            console.log(this.user_features);
             this.alreadyRouted = true;
             if (route) {
               this.router.navigate([route]);
@@ -123,8 +129,13 @@ export class SellerGuard implements CanActivate {
     return url;
   }
 
-  getAccessibleRoute(features) {
+  getAccessibleRoute(features, type = "default") {
     let feature: any;
+    let map = mapRoutes;
+
+    if (type != "default") {
+      map = mapRoutesMajor;
+    }
     features.map((f) => {
       if (f.description != "Add Product" && f.description != "Update Product") {
         feature = f;
@@ -134,9 +145,9 @@ export class SellerGuard implements CanActivate {
       return null;
     }
     let url = "";
-    let keys = Object.keys(mapRoutes);
+    let keys = Object.keys(map);
     keys.map((key) => {
-      if (mapRoutes[key] == feature.description) {
+      if (map[key] == feature.description) {
         url = key;
       }
     });

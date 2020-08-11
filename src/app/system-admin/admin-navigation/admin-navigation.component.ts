@@ -20,4 +20,10 @@ export class AdminNavigationComponent implements OnInit {
     this.authService.logout();
     this.router.navigate(["/"]);
   }
+
+  sellerClicked() {
+    if (this.router.url == "/tlgu-admin") {
+      window.location.reload();
+    }
+  }
 }

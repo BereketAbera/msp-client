@@ -11,11 +11,12 @@
       </button>
     </div>
     <p style="padding: 0.5rem 0rem !important;">
-      Refer a seller and get a
-      {{ config.sellerRefReferrerCredit | currency }} credit for each new
-      seller/restaurant sign up. It is easy, just enter their email address and
-      we will do the rest. You can only use these credits on our site and they
-      cannot be converted to cash.
+      Refer a seller and get a ${{
+        config.sellerRefReferrerCredit | number
+      }}
+      credit for each new seller/restaurant sign up. It is easy, just enter
+      their email address and we will do the rest. You can only use these
+      credits on our site and they cannot be converted to cash.
     </p>
     <mat-card-content>
       <form>

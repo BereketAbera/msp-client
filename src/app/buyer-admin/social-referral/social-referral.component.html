@@ -7,21 +7,22 @@
         mat-button
         color="accent"
       >
-        Referrals List
+        Social Media Referrals List
       </button>
     </div>
     <p class="socialref__info-text">
-      <i class="fad fa-info-circle"></i>
-      <strong>Social Media Referrals: </strong> Create a post or blog, ask your
-      friends to join ManagerSpecial.com, ask them to enter your unique Bonus
-      Credit Code when they sign up. They will each get
-      {{ config.socialRefReferredCredit | currency }} credit because of your
-      referral, and you will get
-      {{ config.socialRefReferrerCredit | currency }} referral credit in your
-      account for each new sign up from your social media mentions, such as FB,
-      Twitter, Instagram, Snapchat or any social media you have. Generate a
-      unique code below for you to use in your posts. We will use this unique
-      code to add credits to your account accordingly.
+      <strong>Social Media Referrals: </strong> Create a post or blog and
+      encourage your friends to join ManagerSpecial.com. Ask them to enter your
+      unique Bonus Credit Code when they sign up. They will each get a ${{
+        config.socialRefReferredCredit | number
+      }}
+      credit because of your referral, and you will get a ${{
+        config.socialRefReferrerCredit | number
+      }}
+      referral credit in your account for each new sign up from your social
+      media mentions, such as FB, Twitter, Instagram, Snapchat or any social
+      media you have. Generate a unique code below for you to use in your posts.
+      We will use this unique code to add credits to your account accordingly.
     </p>
     <button
       (click)="generateCode()"
@@ -32,6 +33,12 @@
     >
       Generate Bonus Code
     </button>
+  </div>
+  <div style="padding-top: 1rem;">
+    <p style="color: #555; font-size: 1.3rem; text-align: center;">
+      Remind your friends to enter this code at sign up for you to get your
+      credits.
+    </p>
   </div>
   <h4 *ngIf="codes.length > 0" class="socialref__code-list-title">
     BONUS CREDIT CODE(S)

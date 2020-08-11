@@ -12,4 +12,7 @@ export class ReserveProduct {
   utcTime: string;
   lat: number;
   lng: number;
+  takeOut?: boolean;
+  specialRequirements?: string;
+  pickUpTime?: any;
 }

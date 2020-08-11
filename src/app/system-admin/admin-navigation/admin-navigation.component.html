@@ -18,6 +18,7 @@
           [routerLinkActive]="['active-route']"
           [routerLinkActiveOptions]="{ exact: true }"
           class="navigation__item-text"
+          (click)="sellerClicked()"
           ><i class="fad fa-chart-bar navigation__item-icon"></i> Sellers
         </a>
       </li>

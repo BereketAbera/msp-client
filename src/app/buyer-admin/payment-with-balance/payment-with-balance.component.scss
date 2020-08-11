@@ -27,3 +27,73 @@ ul {
   padding: 0;
   margin: 0;
 }
+
+.user-request {
+  width: 100%;
+  padding: 1rem;
+  margin-top: -1rem;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  // justify-content: center;
+  // border: 1px solid #333;
+  &__allow-call-phone-number {
+    display: flex;
+    align-items: center;
+    margin: 1rem 0rem;
+    margin-bottom: 7rem;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  &__inputs {
+    display: flex;
+    // align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex: 1;
+    margin-top: -1rem;
+  }
+  &__input {
+    padding: 0.1rem 0.5rem;
+    font-size: 1.5rem;
+    color: #555;
+    margin: 0.8rem;
+    margin-left: 1rem;
+    height: 3.2rem;
+
+    &-req {
+      flex: 3;
+      min-width: 20rem;
+    }
+    &-phone {
+      flex: 2;
+      min-width: 15rem;
+    }
+  }
+}
+
+.mat-checkbox ::ng-deep .mat-checkbox-inner-container {
+  height: 2.5rem;
+  width: 2.5rem;
+}
+
+.mat-checkbox ::ng-deep .mat-checkbox-layout {
+  display: flex;
+  width: 70vw;
+  white-space: normal;
+}
+
+@media only screen and (min-width: 600px) {
+  .user-request {
+    &__allow-call-phone-number {
+      margin-bottom: 1rem;
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+
+  .mat-checkbox ::ng-deep .mat-checkbox-layout {
+    align-items: center;
+  }
+}

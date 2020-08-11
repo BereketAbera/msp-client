@@ -15,11 +15,9 @@ export class SocialReferralService {
     return this.http.get(referralEndPoint);
   }
 
-  getAdminCodeList(pageNumber, pageSize): Observable<any> {
-    return this.http.get(
-      referralEndPoint +
-        `/admin_codes?pageNumber=${pageNumber}&pageSize=${pageSize}`
-    );
+  getAdminCodeList(obj): Observable<any> {
+    let queryParams = this.generateParams(obj);
+    return this.http.get(referralEndPoint + `/admin_codes?${queryParams}`);
   }
 
   generateNewCode(): Observable<any> {
@@ -38,5 +36,17 @@ export class SocialReferralService {
       environment.APIEndpoint +
         `accounts/lstsocialrfrs?pageSize=${pageSize}&pageNumber=${pageNumber}`
     );
+  }
+
+  generateParams(params) {
+    let url = "";
+    let keys = Object.keys(params);
+    keys.map((key) => {
+      if (params[key]) {
+        url = url + `${key}=${params[key]}&`;
+      }
+    });
+
+    return url.slice(0, url.length - 1);
   }
 }

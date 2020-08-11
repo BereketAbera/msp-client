@@ -2,14 +2,14 @@
   <h3 class="codes__title">Manage Codes</h3>
   <div class="codes__list">
     <h4 class="codes__list-title">
-      NEW BONUS CREDIT CODE
+      Unique codes for target marketing
     </h4>
     <div class="codes__form">
       <mat-form-field class="codes__form-input">
         <input
           matInput
           maxlength="45"
-          placeholder="Enter Code Credit"
+          placeholder="Enter Desired Credit Amount"
           [formControl]="referredCredit"
           type="number"
         />
@@ -28,6 +28,41 @@
         </button>
       </div>
     </div>
+    <form [formGroup]="filterForm" class="filter">
+      <mat-form-field class="filter__input">
+        <input
+          matInput
+          maxlength="45"
+          placeholder="Search code"
+          formControlName="code"
+        />
+      </mat-form-field>
+      <mat-form-field class="filter__input">
+        <mat-label>Created Date</mat-label>
+        <input
+          formControlName="createdDate"
+          matInput
+          [matDatepicker]="createdDate"
+          placeholder="MM/DD/YYYY"
+          #dateValue
+          [max]="maxDate"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="createdDate"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #createdDate disabled="false"></mat-datepicker>
+      </mat-form-field>
+      <button
+        type="submit"
+        (click)="filterCode()"
+        mat-raised-button
+        color="accent"
+        class="filter__button"
+      >
+        Search
+      </button>
+    </form>
     <div *ngIf="codes && codes.length > 0" class="codes__table">
       <mat-table class="mat-elevation-z8" [dataSource]="codes">
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
@@ -53,13 +88,15 @@
 
         <ng-container matColumnDef="status">
           <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
-          <mat-cell *matCellDef="let code">Active</mat-cell>
+          <mat-cell *matCellDef="let code">{{
+            checkExp(code.createdAt)
+          }}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="action">
-          <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
+          <mat-header-cell *matHeaderCellDef></mat-header-cell>
           <mat-cell *matCellDef="let code"
             ><a [routerLink]="['detail', code.code]" class="codes__action"
-              >Users</a
+              >Signups</a
             >
           </mat-cell>
         </ng-container>
@@ -83,7 +120,7 @@
       "
       *ngIf="codes && codes.length == 0"
     >
-      No Bonus Codes Yet
+      No Bonus Codes Found
     </div>
   </div>
 </div>

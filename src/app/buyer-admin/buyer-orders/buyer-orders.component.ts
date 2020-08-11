@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { Transaction } from "src/app/model/transaction";
 import { TransactionsDataSource } from "../../service/transaction-data-source.service";
 import { TransactionService } from "../../service/transaction.service";
+import * as moment from "moment";
 
 @Component({
   templateUrl: "./buyer-orders.component.html",
@@ -21,8 +22,10 @@ export class BuyerOrdersComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    window.scroll(0, 0);
     this.route.data.subscribe((data: { orders: Transaction[] }) => {
       this.orders = data.orders;
+      console.log(this.orders);
       this.count = this.transactionService.countSubject.value;
     });
   }
@@ -116,4 +119,21 @@ export class BuyerOrdersComponent implements OnInit {
       return pDate == utcDate ? "Pending" : "Expired";
     }
   }
+
+  phoneChangeFormat(value, type) {
+    if (type == "db") {
+      return "+1" + value.replace(/[()-\s]/g, "");
+    } else {
+      let v = value.replace("+1", "").replace(/[()-\s]/g, "");
+      return `(${v.slice(0, 3)}) ${v.slice(3, 6)}-${v.slice(6)}`;
+    }
+  }
+
+  // addOffset(time) {
+  //   console.log(time);
+
+  //   return moment(time)
+  //     .subtract(new Date().getTimezoneOffset(), "minutes")
+  //     .toISOString();
+  // }
 }

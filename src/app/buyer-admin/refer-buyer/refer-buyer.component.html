@@ -11,12 +11,15 @@
       </button>
     </div>
     <p style="padding: 0.5rem 0rem !important;">
-      Refer a friend and get a
-      {{ config.buyerRefReferrerCredit | currency }} credit for each new buyer
-      sign up. Your referred friend will get a
-      {{ config.buyerRefReferredCredit | currency }} credit. It is easy, just
-      enter their email address and we will do the rest. You can only use these
-      credits on our site and they cannot be converted to cash.
+      Refer a friend and get a ${{
+        config.buyerRefReferrerCredit | number
+      }}
+      credit for each new buyer sign up. Your referred friend will get a ${{
+        config.buyerRefReferredCredit | number
+      }}
+      credit. It is easy, just enter their email address and we will do the
+      rest. You can only use these credits on our site and they cannot be
+      converted to cash.
     </p>
     <mat-card-content>
       <form>

@@ -1,17 +1,18 @@
-import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { FormControl } from "@angular/forms";
+import { Category } from "@app/model/category";
+import { WindowRef } from "@app/service/window.service";
 import { ActivatedRoute, Router } from "@angular/router";
-import { Category } from "../../model/category";
-import { AuthService } from "../../service/auth.service";
-import { WindowRef } from "../../service/window.service";
-import { ZipcodeService } from "./../../service/zipcode.service";
-import { ConfiguartionService } from "src/app/service/configuartion.service";
+import { AuthService } from "@app/service/auth.service";
+import { ZipcodeService } from "@app/service/zipcode.service";
+import { ConfiguartionService } from "@app/service/configuartion.service";
 
 @Component({
-  templateUrl: "./home.component.html",
-  styleUrls: ["./home.component.scss"],
+  selector: "app-seller-home",
+  templateUrl: "./seller-home.component.html",
+  styleUrls: ["./seller-home.component.scss"],
 })
-export class HomeComponent implements OnInit {
+export class SellerHomeComponent implements OnInit {
   @ViewChild("anchor") anchor: ElementRef<HTMLElement>;
   searchInput = new FormControl("");
   categories: Category[];
@@ -26,6 +27,13 @@ export class HomeComponent implements OnInit {
   play: boolean;
   play2: any;
   config: any;
+  smallTextDisplayed = true;
+  sellerTextSmall = "";
+  sellerText = `You keep 100% of the sales. No fees, no deductions, no equipment to buy.
+  You decide the time, date, and quantities to discount to our members. You will know ahead of time how many orders have been ordered by our members. Each member will present you with a unique discount code and pay you directly. Your regular customers will not be affected.
+  Just upload your product photos, offer a discount, quantity, time and date. We will notify our members near you immediately. It is that simple.
+  We only charge the buyers a small processing fee for generating discount codes and making reservations for them.`;
+
   constructor(
     private winRef: WindowRef,
     private route: ActivatedRoute,
@@ -40,7 +48,7 @@ export class HomeComponent implements OnInit {
       this.categories = data.categories;
     });
     this.config = this.configService.configData;
-    // this.videoplayer.nativeElement.pause();
+    this.sellerTextSmall = this.sellerText.slice(0, 230) + "...";
   }
 
   ngAfterViewChecked() {}
@@ -142,6 +150,15 @@ export class HomeComponent implements OnInit {
         },
         (err) => console.log(err)
       );
+    }
+  }
+
+  displayFullText() {
+    this.smallTextDisplayed = !this.smallTextDisplayed;
+    if (this.smallTextDisplayed) {
+      this.sellerTextSmall = this.sellerText.slice(0, 230) + "...";
+    } else {
+      this.sellerTextSmall = this.sellerText;
     }
   }
 }

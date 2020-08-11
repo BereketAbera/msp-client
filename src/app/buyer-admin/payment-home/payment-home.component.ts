@@ -41,8 +41,8 @@ export class PaymentHomeComponent implements OnInit {
   PAY_WITH_NEW_CARD: string = "PAY_WITH_NEW_CREDIT";
   PAY_WITH_SAVED_CARD: string = "PAY_WITH_SAVED_CREDIT";
   PAY_WITH_BALANCE: string = "PAY_WITH_BALANCE";
-
   paymentInfo: PaymentInfo;
+  // profile = {};
 
   constructor(
     private cartService: CartService,
@@ -56,7 +56,7 @@ export class PaymentHomeComponent implements OnInit {
     this.quantity = 1; //+this.route.snapshot.queryParamMap.get('quantity');
     this.productId = 2; //+this.route.snapshot.queryParamMap.get('productId');
     this.route.data.subscribe(
-      (data: { balance: Balance; creditCards: CreditCard[] }) => {
+      (data: { balance: Balance; creditCards: CreditCard[]; profile: any }) => {
         //this.product = data.product;
         this.creditCards = data.creditCards;
         this.tax = 0; //this.product.shop.tax;
@@ -71,7 +71,9 @@ export class PaymentHomeComponent implements OnInit {
           balance: this.balance,
           savedCreditCard: this.hasCreditCardInfo,
           creditCards: this.creditCards,
+          phoneNumber: data.profile["phoneNumber"],
         };
+        // this.profile = data.profile;
         if (this.isFundAvailable) {
           this.loadPaymentWithBalanceComponent();
         } else {
@@ -238,4 +240,15 @@ export class PaymentHomeComponent implements OnInit {
   }
 
   onSubmit() {}
+
+  productDetail(p) {
+    this.router.navigate(["/deal", p.prdid], {
+      queryParams: {
+        takeOut: p.takeOut,
+        specialRequirements: p.specialRequirements,
+        quantity: p.qty,
+        pickUpTime: p.pickUpTime,
+      },
+    });
+  }
 }

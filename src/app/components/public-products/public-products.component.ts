@@ -51,6 +51,7 @@ export class PublicProductsComponent implements OnInit {
     document.documentElement.scrollTop = 0;
 
     this.address = JSON.parse(localStorage.getItem("client_address"));
+    this.searchInput.setValue(this.address?.CityName || "Your Location");
     if (!this.address) {
       this.router.navigate(["/"]);
     }
@@ -197,6 +198,7 @@ export class PublicProductsComponent implements OnInit {
 
   addressChanged(address) {
     this.address = address;
+    this.searchInput.setValue(this.address?.CityName || "Your Location");
     this.reachedPageEnd = false;
     this.getProducts();
     this.onBlur();
@@ -248,7 +250,7 @@ export class PublicProductsComponent implements OnInit {
 
   onBlur() {
     this.searchInput.setValue(
-      this.address.CityName ? this.address.CityName : "Your Location"
+      this.address?.CityName ? this.address?.CityName : "Your Location"
     );
     this.locationInputActive = false;
   }

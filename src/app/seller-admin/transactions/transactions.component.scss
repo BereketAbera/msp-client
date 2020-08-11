@@ -3,7 +3,7 @@
   max-width: 390px;
   margin: 0 auto;
 }
-.table{
+.table {
   min-width: 81rem;
 }
 .no_result {
@@ -22,7 +22,7 @@
 // }
 
 .img {
-  max-width: 8rem;
+  max-width: 4rem;
   height: 4rem;
 }
 // .mat-column-img {
@@ -100,6 +100,14 @@
     display: flex;
     justify-content: space-between;
     padding: 0rem 1rem;
+  }
+
+  &__image-button {
+    outline: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
   }
 }
 

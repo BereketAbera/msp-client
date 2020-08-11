@@ -6,4 +6,7 @@ export interface PaymentInfo {
   savings: number;
   savedCreditCard: boolean;
   creditCards: CreditCard[];
+  take_out?: boolean;
+  special_requirements?: string;
+  phoneNumber?: string;
 }

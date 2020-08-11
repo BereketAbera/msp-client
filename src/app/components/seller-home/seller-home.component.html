@@ -17,8 +17,8 @@
           <div class="home__search-input-result" (click)="getClientLocation()">
             <div>
               <!-- <i
-                class="fas fa-map-marker-alt home__search-input-result-icon"
-              ></i> -->
+                  class="fas fa-map-marker-alt home__search-input-result-icon"
+                ></i> -->
               <i
                 class="fad fa-map-marker-alt home__search-input-result-icon"
               ></i>
@@ -34,8 +34,8 @@
           >
             <div>
               <!-- <i
-                class="fas fa-map-marker-alt home__search-input-result-icon"
-              ></i> -->
+                  class="fas fa-map-marker-alt home__search-input-result-icon"
+                ></i> -->
               <i
                 class="fad fa-map-marker-alt home__search-input-result-icon"
               ></i>
@@ -78,66 +78,56 @@
   <div class="home__section-two">
     <h1 class="home__secton-header"></h1>
     <div class="home__steps-container">
-      <div class="home__step home__step-video">
+      <div class="home__step">
         <div class="home__step-icon" routerLink="/signup">
-          <i class="fad fa-cheeseburger"></i>
+          <i class="fad fa-french-fries"></i>
         </div>
-        <h1 class="home__step-header" routerLink="/signup">BECOME A MEMBER</h1>
-        <div class="home__video__container" [class.home__full]="play2">
+        <h1 class="home__step-header" routerLink="/signup">Become a Seller</h1>
+        <div class="home__video__container" [class.home__full]="play">
           <video
-            class="home__video2"
-            [class.home__fullscreen]="play2"
-            poster="../../../assets/image/BuyerVideoFrame.JPG"
-            (click)="playVideo2()"
-            #videoPlayerB
+            class="home__video"
+            [class.home__fullscreen]="play"
+            width="342"
+            height="190"
+            poster="../../../assets/image/SellerVideoFrame.JPG"
+            preload="metadata"
+            (click)="playVideo()"
+            #videoPlayer
           >
             <source
-              src="https://msp-prd.s3-us-west-2.amazonaws.com/videos/MSP_Buyer_Intro.mp4"
+              src="https://msp-prd.s3-us-west-2.amazonaws.com/videos/MSP_Seller_Intro.mp4"
               type="video/mp4"
             />
             <source src="video.ogg" type="video/ogg" />
             <source src="video.webm" type="video/webm" />
             <object
-              data="https://msp-prd.s3-us-west-2.amazonaws.com/videos/MSP_Buyer_Intro.mp4"
+              data="https://msp-prd.s3-us-west-2.amazonaws.com/videos/MSP_Seller_Intro.mp4"
+              width="340"
+              height="175"
             >
               <embed src="video.swf" width="340" height="190" />
             </object>
           </video>
-          <div (click)="playVideo2()" *ngIf="!play2" class="home__icon">
+
+          <div (click)="playVideo()" *ngIf="!play" class="home__icon">
             <img src="../../../assets/image/vidoeicon.png" alt="" />
           </div>
         </div>
-
         <p class="home__step-description">
           No Membership Fee
         </p>
       </div>
-
-      <div class="home__step" routerLink="/signup">
-        <div class="home__step-icon"><i class="fad fa-french-fries"></i></div>
-        <h1 class="home__step-header">SIGN UP NOW</h1>
-        <p class="home__step-description home__refer">
-          To enjoy the hourly discounted <br />
-          deals from your local restaurants.<br />
-          Up to 60% off.
-        </p>
-      </div>
-      <div class="home__step" routerLink="/signup">
+      <div class="home__step">
         <div class="home__step-icon"><i class="fad fa-user-friends"></i></div>
-        <h1 class="home__step-header">
-          GET ${{ config.noRefCredit }} CREDIT TODAY
-        </h1>
+        <h1 class="home__step-header">BENEFITS</h1>
         <p class="home__step-description home__refer">
-          Get ${{ config.noRefCredit }} sign up credit <br />
-          for the first 100 new <br />
-          members today
-          <!-- Earn {{ config.buyerRefReferrerCredit }}$,
-          {{ config.socialRefReferredCredit }}$,
-          {{ config.sellerRefReferrerCredit }}$ credit <br />
-          for each friend you refer to <br />
-          us. Just email them to join,<br />
-          it is that simple. -->
+          {{ sellerTextSmall }}
         </p>
+        <span
+          (click)="displayFullText()"
+          style="font-size: 1.4rem; color: #f94081; cursor: pointer;"
+          >{{ smallTextDisplayed ? "Read More" : "Read Less" }}</span
+        >
       </div>
     </div>
   </div>
@@ -149,8 +139,8 @@
     <!-- <img src="../../../assets/image/signUp.JPG" alt="" /> -->
   </div>
   <!-- <div class="home__section-four"  routerLink="/login">
-    <img src="../../../assets/image/signUp.JPG" alt="">
-  </div> -->
+      <img src="../../../assets/image/signUp.JPG" alt="">
+    </div> -->
   <div class="home__section-three">
     <h1 class="home__secton-header">MORE CITIES JOINING EACH DAY</h1>
     <div class="home__cities-container">

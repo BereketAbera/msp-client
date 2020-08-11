@@ -110,6 +110,9 @@
     font-weight: 700;
     background-color: #fff;
     cursor: pointer;
+    border-radius: 5rem;
+    border: 1px solid #f94081;
+    padding: 0.2rem 1rem;
 
     &:active {
       transform: scale(1.05);

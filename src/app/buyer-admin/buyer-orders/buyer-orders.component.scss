@@ -16,7 +16,7 @@
   display: flex;
   border: 0.5px solid #f2f2f2;
   box-shadow: 1px 1px 5px #eee;
-  margin-bottom: 6rem;
+  margin-bottom: 8rem;
   position: relative;
 
   .header {
@@ -83,12 +83,13 @@
   }
 
   &__shop-name {
-    font-size: 1.1rem;
+    font-size: 1.6rem;
     font-weight: 200;
     color: #555;
     font-style: italic;
     max-width: 80%;
     overflow: wrap;
+    font-weight: 600;
   }
 
   &__shop-address {
@@ -114,6 +115,28 @@
     font-weight: 600;
     color: #333;
   }
+
+  &__takeout {
+    margin-left: 1rem;
+    display: flex;
+    align-items: center;
+
+    span {
+      padding: 0.2rem 1rem;
+      // border: 1px solid #ddd;
+      margin: 0.5rem;
+      font-size: 1.3rem;
+    }
+
+    div {
+      margin-top: 2rem;
+    }
+
+    &__img {
+      height: 2.5rem;
+      // margin-bottom: -1rem;
+    }
+  }
 }
 .no_result {
   font-size: 1.6rem;
@@ -125,15 +148,19 @@
 
 .order_service {
   position: absolute;
-  bottom: -4rem;
+  bottom: -8rem;
   font-size: 1.7rem;
   color: #555;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 .order_service-code {
   font-size: 2.2rem;
   color: #111;
   font-weight: 600;
+  margin-left: 1rem;
 }
 
 .product_order {
@@ -170,13 +197,16 @@
   font-size: 2rem;
 }
 
-@media only screen and (min-width: 320px) {
-  .order_service {
-    bottom: -4rem;
-  }
-}
+// @media only screen and (min-width: 320px) {
+//   .order_service {
+//     bottom: -8rem;
+//   }
+// }
 
 @media only screen and (min-width: 600px) {
+  .order_service {
+    bottom: -6rem;
+  }
   .orders__container {
     width: 90%;
   }

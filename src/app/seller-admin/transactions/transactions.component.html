@@ -19,7 +19,6 @@
         matSortActive="date"
         matSortDirection="asc"
         matSortDisableClear
-
       >
         <ng-container matColumnDef="img">
           <mat-header-cell
@@ -29,8 +28,29 @@
             >Image</mat-header-cell
           >
           <mat-cell *matCellDef="let transaction">
-            <img class="img" [src]="transaction.imagePath" alt="" />
+            <button
+              class="order__image-button"
+              [routerLink]="['./', transaction.id]"
+            >
+              <img class="img" [src]="transaction.imagePath" alt="" />
+              <img
+                *ngIf="transaction.takeOut"
+                style="height: 3rem; width: 3rem;"
+                src="assets/image/take_out.jpg"
+                alt=""
+                class="img"
+              />
+            </button>
           </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="pickupTime">
+          <mat-header-cell class="header-align-right" *matHeaderCellDef
+            >Pick Up Time</mat-header-cell
+          >
+
+          <mat-cell *matCellDef="let transaction">{{
+            (transaction.pickupTime | date: "MMM d, h:mm a") || "----------"
+          }}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="type">
@@ -60,7 +80,7 @@
         </ng-container>
         <ng-container matColumnDef="pickupStartTime">
           <mat-header-cell class="header-align-right" *matHeaderCellDef
-            >Pick Up Start Time</mat-header-cell
+            >Service Start Time</mat-header-cell
           >
 
           <mat-cell *matCellDef="let transaction">{{
@@ -69,7 +89,7 @@
         </ng-container>
         <ng-container matColumnDef="pickupEndTime">
           <mat-header-cell class="header-align-right" *matHeaderCellDef
-            >Pick Up End Time</mat-header-cell
+            >Service End Time</mat-header-cell
           >
 
           <mat-cell *matCellDef="let transaction">{{

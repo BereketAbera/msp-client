@@ -47,6 +47,26 @@ li {
   }
 }
 
+.order {
+  &__takeout {
+    margin-left: 1rem;
+    display: flex;
+    align-items: center;
+
+    span {
+      padding: 0.2rem 1rem;
+      // border: 1px solid #ddd;
+      margin: 0.5rem;
+      font-size: 1.3rem;
+    }
+
+    &__img {
+      width: 3rem;
+      // margin-bottom: -1rem;
+    }
+  }
+}
+
 @media only screen and(max-width: 600px) {
   .list {
     &__details {

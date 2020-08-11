@@ -147,9 +147,6 @@ ul {
   // align-content: center;
   margin: 1rem 2rem;
 }
-.example-full-width {
-  width: 100%;
-}
 .form {
   &__groups {
     width: 95%;
@@ -192,6 +189,10 @@ ul {
 .mat-tab-body-content {
   height: 100%;
   overflow: hidden !important;
+}
+
+.example-full-width-login {
+  width: 100% !important;
 }
 
 @media only screen and (min-width: 732px) {
