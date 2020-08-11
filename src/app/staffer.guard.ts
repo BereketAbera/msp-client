@@ -62,6 +62,7 @@ export class StafferGuard implements CanActivate {
               found = this.checkUserFeatures(url);
               if (!found) {
                 let route = this.getAccessibleRoute(this.user_features[0]);
+                console.log(route);
                 this.accessibleRoute = route;
               } else {
                 return true;
@@ -78,6 +79,7 @@ export class StafferGuard implements CanActivate {
           found = this.checkUserFeatures(url);
           if (!found) {
             let route = this.getAccessibleRoute(this.user_features[0]);
+            console.log(route);
             this.router.navigateByUrl(route);
             return false;
           } else {
@@ -115,6 +117,7 @@ export class StafferGuard implements CanActivate {
   getAccessibleRoute(feature) {
     let url = "";
     let keys = Object.keys(mapRoutes);
+    console.log(mapRoutes);
     keys.map((key) => {
       if (mapRoutes[key] == feature.description) {
         url = key;
