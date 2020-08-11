@@ -1,3 +1,4 @@
+import { AuthService } from "@app/service/auth.service";
 import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
@@ -34,6 +35,7 @@ export class UploadImgComponent implements OnInit {
   loadingFile = false;
   loadingLocalImage = false;
   fileSelected = false;
+  eventRecieved = false;
 
   constructor(
     private uploadService: UploadService,
@@ -41,7 +43,8 @@ export class UploadImgComponent implements OnInit {
     public dialog: MatDialog,
     private route: ActivatedRoute,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private authService: AuthService
   ) {
     uploadClass = this;
   }
@@ -73,9 +76,11 @@ export class UploadImgComponent implements OnInit {
               }
             );
             snackBarRef.afterDismissed().subscribe(() => {
-              this.router.navigate(["../"], {
-                relativeTo: this.route,
-              });
+              if (this.authService.isLoggedIn()) {
+                this.router.navigate(["../"], {
+                  relativeTo: this.route,
+                });
+              }
             });
             snackBarRef.onAction().subscribe(() => {
               this.showImage = false;
@@ -156,6 +161,8 @@ export class UploadImgComponent implements OnInit {
   imageLoad(event) {}
 
   saveImage() {
+    if (this.eventRecieved) return;
+    this.eventRecieved = true;
     this.tempImg = this.croppedImage.base64;
     let byteCharacters = atob(this.tempImg.split(",")[1]);
     let byteNumbers = new Array(byteCharacters.length);
@@ -175,11 +182,13 @@ export class UploadImgComponent implements OnInit {
       maxWidth: 550,
       mimeType: "JPEG",
       success: (result) => {
+        this.eventRecieved = false;
         this.setLocalImage(result);
         uploadClass.uploadForm.get("img").setValue(result);
         this.closeModalSave();
       },
       error: (err) => {
+        this.eventRecieved = false;
         console.log(err);
       },
     });

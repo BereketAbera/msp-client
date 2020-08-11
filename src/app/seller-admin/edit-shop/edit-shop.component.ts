@@ -186,7 +186,7 @@ export class EditShopComponent implements OnInit {
   phoneNumberChange(value) {
     let val = value;
     if (val.length > 14) {
-      this.registrationForm.controls["phoneNumber"].setValue(
+      this.shopForm.controls["telephone"].setValue(
         val.slice(0, val.length - 1)
       );
       return;
@@ -236,6 +236,7 @@ export class EditShopComponent implements OnInit {
       }
     }
   }
+
   phoneNumberChangeEvent(event) {
     let val = event.target.value;
     if (val.length >= 14) {

@@ -1,5 +1,5 @@
 import { Location } from "@angular/common";
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit, ViewChild, ApplicationRef } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
@@ -54,8 +54,9 @@ export class NewOffPeakProductComponent implements OnInit {
   errors = [];
   offerStartInitTime = new Date(moment().valueOf());
   offerEndInitTime = new Date(moment().add(30, "m").valueOf());
-
+  savingImage = false;
   fileIn;
+  eventRecieved = false;
 
   pickupStartInitTime = new Date(
     moment(this.offerStartInitTime).add(10, "m").valueOf()
@@ -175,7 +176,8 @@ export class NewOffPeakProductComponent implements OnInit {
     private productService: ProductService,
     private fb: FormBuilder,
     private uploadService: UploadService,
-    private location: Location
+    private location: Location,
+    private appRef: ApplicationRef
   ) {}
 
   ngOnInit() {
@@ -408,11 +410,13 @@ export class NewOffPeakProductComponent implements OnInit {
                     "Successfuly saved",
                     "",
                     {
-                      duration: 5000,
+                      duration: 2000,
                     }
                   );
                   snackBarRef.afterDismissed().subscribe(() => {
-                    this.location.back();
+                    if (this.authService.isLoggedIn()) {
+                      this.location.back();
+                    }
                     // this.router.navigate(["../"], { relativeTo: this.route });
                   });
                   snackBarRef.onAction().subscribe(() => {
@@ -457,11 +461,13 @@ export class NewOffPeakProductComponent implements OnInit {
                     "Successfuly saved",
                     "",
                     {
-                      duration: 5000,
+                      duration: 2000,
                     }
                   );
                   snackBarRef.afterDismissed().subscribe(() => {
-                    this.location.back();
+                    if (this.authService.isLoggedIn()) {
+                      this.location.back();
+                    }
                     // this.router.navigate(["../"], { relativeTo: this.route });
                   });
                   snackBarRef.onAction().subscribe(() => {
@@ -873,7 +879,7 @@ export class NewOffPeakProductComponent implements OnInit {
       } else {
         this.loadingLocalImage = false;
         this.snackBar.open("The file type should be PNG or JPEG", "", {
-          duration: 5000,
+          duration: 2000,
         });
       }
     }
@@ -886,7 +892,7 @@ export class NewOffPeakProductComponent implements OnInit {
         "Image Width and Height must greater than 550x440.",
         "",
         {
-          duration: 5000,
+          duration: 2000,
         }
       );
       this.imageChangedEvent = "";
@@ -900,6 +906,9 @@ export class NewOffPeakProductComponent implements OnInit {
   }
 
   saveImage() {
+    if (this.eventRecieved) return;
+    this.eventRecieved = true;
+    this.savingImage = true;
     this.tempImg = this.croppedImage.base64;
     let byteCharacters = atob(this.tempImg.split(",")[1]);
     let byteNumbers = new Array(byteCharacters.length);
@@ -922,6 +931,7 @@ export class NewOffPeakProductComponent implements OnInit {
       mimeType: "JPEG",
       success: (result) => {
         // setLocal(result);
+        this.savingImage = false;
         this.uploadForm.get("img").setValue(result);
         this.uploadForm.get("name").setValue("img_" + (Date.now() % 10000));
         if (this.uploadForm.value) {
@@ -931,24 +941,22 @@ export class NewOffPeakProductComponent implements OnInit {
           this.formData.append("img", value["img"]);
           this.uploadService.createImage(this.formData).subscribe(
             (res) => {
+              // console.log(res);
+              this.eventRecieved = false;
               if (res["success"]) {
-                //progressDialog.close();
-                let snackBarRef = this.snackBar.open(
-                  "Successfuly Uploaded File",
-                  "",
-                  {
-                    duration: 5000,
-                    verticalPosition:"bottom"
-                  }
-                );
-                this.pictures.unshift(res["image"]);
+                this.pictures = [res["image"], ...this.pictures];
                 this.productForm.get("imgId").setValue(res["image"].id);
+                this.snackBar.open("Successfuly Uploaded File", "", {
+                  duration: 2000,
+                });
+                this.appRef.tick();
               } else {
                 this.showError = true;
                 this.errors = res["messages"];
               }
             },
             (err) => {
+              this.eventRecieved = false;
               console.log(err);
             }
           );

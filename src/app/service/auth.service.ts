@@ -155,6 +155,7 @@ export class AuthService {
   }
   get defaultNavigationURL(): string {
     const role = localStorage.getItem("role");
+    console.log(this._defaultSellerNav);
     if (role && role == "BUYER") return this._defaultBuyerNav;
     if (role && role == "SELLER") return this._defaultSellerNav;
     if (role && role == "SELLER_STAFF") return this._defaultSellerNav;
