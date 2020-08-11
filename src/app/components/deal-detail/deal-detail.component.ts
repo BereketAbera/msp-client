@@ -56,6 +56,7 @@ export class DealDetailComponent implements OnInit {
   resolvedPickupDays = [0, 0];
   pickUpInput;
   startTimeUpdated = false;
+  // pickUpStartChanged = false;
 
   constructor(
     public dialog: MatDialog,
@@ -152,7 +153,7 @@ export class DealDetailComponent implements OnInit {
   }
 
   checkNAdjustStartTime() {
-    let currentTime = moment().format("HH:mm:ss");
+    let currentTime = moment().utc().format("HH:mm:ss");
     let currentUtcTime = moment()
       .add(new Date().getTimezoneOffset(), "minutes")
       .format("HH:mm:ss");
@@ -170,22 +171,25 @@ export class DealDetailComponent implements OnInit {
       .add(this.product.utcoffset, "minutes")
       .format("HH:mm:ss");
 
+    // console.log(currentUtcTime, console.log(this.product.utcoffset));
+
+    // console.log(sTemp, eTemp, sCurTemp);
     if (sCurTemp > sTemp && sCurTemp < eTemp) {
-      this.pickUpStartTime = this.changeToNearest30Min(sCurTemp);
+      this.pickUpStartTime = this.changeToNearest30Min(currentUtcTime);
       this.startTimeUpdated = true;
     }
-    console.log(sTemp, eTemp, sCurTemp);
   }
 
   changeToNearest30Min(time) {
+    // console.log(time);
     let h = time.split(":")[0];
     let m = time.split(":")[1];
     if (parseInt(m) > 30) {
-      return `${this.returnTwoDigit(parseInt(h) + 1)}:00:00`;
+      return `${this.returnTwoDigit(parseInt(h) + 1)}:00`;
     } else if (parseInt(m) == 0) {
-      return `${h}:${m}:00`;
+      return `${h}:${m}`;
     } else {
-      return `${this.returnTwoDigit(parseInt(h))}:30:00`;
+      return `${this.returnTwoDigit(parseInt(h))}:30`;
     }
   }
 
@@ -236,14 +240,20 @@ export class DealDetailComponent implements OnInit {
 
   getValidStartNPickTimes() {
     let tempTimeStart = this.getPlus30Min(this.pickUpStartTime);
+
     let tempTimeEnd = this.getPlus30Min(this.pickUpEndTime);
 
-    this.validPickUpStartTime = this.changeToLocal12Hours(tempTimeStart);
+    if (this.startTimeUpdated) {
+      this.validPickUpStartTime = this.changeToLocal12Hours(tempTimeStart);
+    } else {
+      this.validPickUpStartTime = this.changeToLocal12Hours(tempTimeStart);
+    }
+
     this.validPickUpEndTime = this.changeToLocal12Hours(tempTimeEnd);
   }
 
   getPlus30Min(time) {
-    console.log(time);
+    // console.log(time);
     let m = 0;
     time.split(":").map((x, i) => {
       if (i == 2) return;
@@ -370,6 +380,36 @@ export class DealDetailComponent implements OnInit {
     let hour = parseInt(x[0]);
     let minute = parseInt(x[1]);
     let totalMinutes = hour * 60 + minute + d;
+    totalMinutes = totalMinutes < 0 ? 24 * 60 + totalMinutes : totalMinutes;
+    hour = Math.floor(totalMinutes / 60);
+    minute = totalMinutes % 60;
+
+    if (hour < 12) {
+      if (hour == 0) {
+        return `${this.returnTwoDigit(12)}:${this.returnTwoDigit(minute)}AM`;
+      }
+      return `${this.returnTwoDigit(hour)}:${this.returnTwoDigit(minute)}AM`;
+    } else if (hour == 12) {
+      return `${this.returnTwoDigit(12)}:${this.returnTwoDigit(minute)}PM`;
+    } else if (hour > 24) {
+      return `${this.returnTwoDigit(hour - 24)}:${this.returnTwoDigit(
+        minute
+      )}AM`;
+    } else if (hour == 24) {
+      return `${this.returnTwoDigit(12)}:${this.returnTwoDigit(minute)}AM`;
+    } else {
+      return `${this.returnTwoDigit(hour % 12)}:${this.returnTwoDigit(
+        minute
+      )}PM`;
+    }
+  }
+
+  changeStartPickUpTo12Hours(time) {
+    console.log(time);
+    let x = time.split(":");
+    let hour = parseInt(x[0]);
+    let minute = parseInt(x[1]);
+    let totalMinutes = hour * 60 + minute;
     totalMinutes = totalMinutes < 0 ? 24 * 60 + totalMinutes : totalMinutes;
     hour = Math.floor(totalMinutes / 60);
     minute = totalMinutes % 60;
