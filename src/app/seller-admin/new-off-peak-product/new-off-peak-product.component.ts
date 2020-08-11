@@ -938,6 +938,7 @@ export class NewOffPeakProductComponent implements OnInit {
                   "",
                   {
                     duration: 5000,
+                    verticalPosition:"bottom"
                   }
                 );
                 this.pictures.unshift(res["image"]);
