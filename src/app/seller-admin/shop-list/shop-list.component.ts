@@ -172,12 +172,13 @@ export class ShopListComponent implements OnInit, AfterViewInit {
         this.shopsService.removeShop(shop.id).subscribe(
           (res) => {
             if (res["success"]) {
+              this.dataSource.loadShops(1, "", "", "asc", 0, 5);
               progressDialogRef.close();
               let snackBarRef = this.snackBar.open("Successfuly Removed", "", {
                 duration: 5000,
               });
               snackBarRef.afterDismissed().subscribe(() => {
-                this.dataSource.loadShops(1, "", "", "asc", 0, 5);
+                
               });
               //this.router.navigate(["../"], { relativeTo: this.route });
             } else {
