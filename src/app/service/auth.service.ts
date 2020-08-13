@@ -86,6 +86,9 @@ export class AuthService {
   }
   logout() {
     this.redirectURL = null;
+    // this._redirectURL = null;
+    // console.log(this.redirectURL, this._redirectURL);
+    localStorage.removeItem("rd_url");
     localStorage.removeItem("id_token");
     localStorage.removeItem("expires_at");
     localStorage.removeItem("role");
@@ -155,7 +158,6 @@ export class AuthService {
   }
   get defaultNavigationURL(): string {
     const role = localStorage.getItem("role");
-    console.log(this._defaultSellerNav);
     if (role && role == "BUYER") return this._defaultBuyerNav;
     if (role && role == "SELLER") return this._defaultSellerNav;
     if (role && role == "SELLER_STAFF") return this._defaultSellerNav;
@@ -171,6 +173,7 @@ export class AuthService {
       localStorage.removeItem("rd_url");
     }
 
+    console.log(this._redirectURL);
     return this._redirectURL;
   }
   set redirectURL(rdrcturl: string) {

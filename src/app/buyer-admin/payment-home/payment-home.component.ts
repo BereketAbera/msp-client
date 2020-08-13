@@ -89,6 +89,10 @@ export class PaymentHomeComponent implements OnInit {
   getErrorMessage() {}
   getCartProduct() {
     this.cartProducts = this.cartService.getLocalCartProducts();
+    // console.log(this.cartProducts);
+    if (!this.cartProducts || !this.cartProducts.length) {
+      this.router.navigateByUrl("/tlgu-byr");
+    }
     this.getTotalPrice();
   }
   getTotalPrice() {

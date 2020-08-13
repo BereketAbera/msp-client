@@ -404,36 +404,6 @@ export class DealDetailComponent implements OnInit {
     }
   }
 
-  changeStartPickUpTo12Hours(time) {
-    console.log(time);
-    let x = time.split(":");
-    let hour = parseInt(x[0]);
-    let minute = parseInt(x[1]);
-    let totalMinutes = hour * 60 + minute;
-    totalMinutes = totalMinutes < 0 ? 24 * 60 + totalMinutes : totalMinutes;
-    hour = Math.floor(totalMinutes / 60);
-    minute = totalMinutes % 60;
-
-    if (hour < 12) {
-      if (hour == 0) {
-        return `${this.returnTwoDigit(12)}:${this.returnTwoDigit(minute)}AM`;
-      }
-      return `${this.returnTwoDigit(hour)}:${this.returnTwoDigit(minute)}AM`;
-    } else if (hour == 12) {
-      return `${this.returnTwoDigit(12)}:${this.returnTwoDigit(minute)}PM`;
-    } else if (hour > 24) {
-      return `${this.returnTwoDigit(hour - 24)}:${this.returnTwoDigit(
-        minute
-      )}AM`;
-    } else if (hour == 24) {
-      return `${this.returnTwoDigit(12)}:${this.returnTwoDigit(minute)}AM`;
-    } else {
-      return `${this.returnTwoDigit(hour % 12)}:${this.returnTwoDigit(
-        minute
-      )}PM`;
-    }
-  }
-
   returnTwoDigit(value) {
     return value.toString().length == 1 ? "0" + value : value;
   }

@@ -1,3 +1,4 @@
+import { AuthService } from "@app/service/auth.service";
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
@@ -53,7 +54,8 @@ export class PaymentWithBalanceComponent implements OnInit {
     private trnsService: TransactionService,
     private fb: FormBuilder,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
@@ -70,6 +72,7 @@ export class PaymentWithBalanceComponent implements OnInit {
     this.paymentForm.controls["phoneNumber"].valueChanges
       .pipe((debounceTime(200), switchMap((term) => of(term))))
       .subscribe((res) => this.phoneNumberChange(res));
+    this.authService.redirectURL = null;
   }
   payWithCredit() {
     if (this.creditInfoAvailable) this.payWith.emit(this.PAY_WITH_SAVED_CARD);
