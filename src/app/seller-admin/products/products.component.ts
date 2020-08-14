@@ -221,18 +221,19 @@ export class ProductsComponent implements OnInit, AfterViewInit {
           (res) => {
             if (res["success"]) {
               progressDialogRef.close();
+              this.dataSource.loadProducts(
+                1,
+                "",
+                this.sort.active,
+                this.sort.direction,
+                this.paginator.pageIndex,
+                5
+              );
               let snackBarRef = this.snackBar.open("Successfuly Removed", "", {
                 duration: 5000,
               });
               snackBarRef.afterDismissed().subscribe(() => {
-                this.dataSource.loadProducts(
-                  1,
-                  "",
-                  this.sort.active,
-                  this.sort.direction,
-                  this.paginator.pageIndex,
-                  5
-                );
+               
               });
               //this.router.navigate(["../"], { relativeTo: this.route });
             } else {
