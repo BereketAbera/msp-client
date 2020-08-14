@@ -18,7 +18,7 @@
             <h6 class="product-detail__reserve-order-spec">
               <i class="fad fa-clock product-detail__time-icon"></i>
               <span class="product-detail__reserve-order-time-text"
-                >From - {{ product?.offerStartTime }}
+                >From - {{ product?.offerStartTime | date: "hh:mm a" }}
                 {{
                   resolvedOfferDays[0] == 1
                     ? "d+1"
@@ -31,7 +31,7 @@
             <h6 class="product-detail__reserve-order-spec">
               <i class="fad fa-clock product-detail__time-icon"></i>
               <span class="product-detail__reserve-order-time-text"
-                >To - {{ product?.offerEndTime }}
+                >To - {{ product?.offerEndTime | date: "hh:mm a" }}
                 {{
                   resolvedOfferDays[1] == 1
                     ? "d+1"
@@ -53,7 +53,7 @@
             <h6 class="product-detail__reserve-order-spec">
               <i class="fad fa-clock product-detail__time-icon"></i>
               <span class="product-detail__reserve-order-time-text"
-                >From - {{ product?.pickupStartTime }}
+                >From - {{ product?.pickupStartTime | date: "hh:mm a" }}
                 {{
                   resolvedPickupDays[0] == 1
                     ? "d+1"
@@ -66,7 +66,7 @@
             <h6 class="product-detail__reserve-order-spec">
               <i class="fad fa-clock product-detail__time-icon"></i>
               <span class="product-detail__reserve-order-time-text"
-                >To - {{ product?.pickupEndTime }}
+                >To - {{ product?.pickupEndTime | date: "hh:mm a" }}
                 {{
                   resolvedPickupDays[1] == 1
                     ? "d+1"
@@ -217,7 +217,7 @@
             >
               Allowed Pick Up Time:
               <strong
-                >{{ validPickUpStartTime }}
+                >{{ validPickUpStartTime | date: "hh:mm a" }}
                 {{
                   startTimeUpdated
                     ? ""
@@ -230,7 +230,7 @@
               >
               -
               <strong
-                >{{ validPickUpEndTime }}
+                >{{ validPickUpEndTime | date: "hh:mm a" }}
                 {{
                   resolvedPickupDays[1] == 1
                     ? "d+1"

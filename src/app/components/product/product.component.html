@@ -25,8 +25,8 @@
       <span class="product__reserve-text">
         <i class="fad fa-clock product__clock-icon"></i>
         Reserve
-        {{ changeToLocal12Hours(product?.offerStartTime) }} -
-        {{ changeToLocal12Hours(product?.offerEndTime) }}
+        {{ product?.offerStartTime | date: "h:mm a" }} -
+        {{ product?.offerEndTime | date: "h:mm a" }}
       </span>
     </div>
 
@@ -34,8 +34,8 @@
       <span class="product__reserve-text">
         <i class="fad fa-clock product__clock-icon"></i>
         Service
-        {{ changeToLocal12Hours(product?.pickupStartTime) }} -
-        {{ changeToLocal12Hours(product?.pickupEndTime) }}
+        {{ product?.pickupStartTime | date: "h:mm a" }} -
+        {{ product?.pickupEndTime | date: "h:mm a" }}
       </span>
     </div>
     <div class="product__prices">
