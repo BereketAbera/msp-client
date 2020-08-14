@@ -81,7 +81,12 @@ export class DealDetailComponent implements OnInit {
       cnt["specialRequirements"].setValue(specialRequirements);
       this.pickUpTime = pickUpTime;
       let pickMoment = moment(pickUpTime);
-      cnt["pickupHH"].setValue(pickMoment.format("HH"));
+      console.log(
+        this.pickUpTime,
+        pickMoment.format("HH"),
+        pickMoment.format("mm:A")
+      );
+      cnt["pickupHH"].setValue(this.return12Two(pickMoment.format("HH")));
       cnt["pickupMM"].setValue(pickMoment.format("mm:A"));
     } else if (quantity) {
       cnt["quantity"].setValue(quantity);
@@ -147,6 +152,11 @@ export class DealDetailComponent implements OnInit {
         .format("YYYY-MM-DD HH:mm");
       this.startTimeUpdated = true;
     }
+  }
+
+  return12Two(hour) {
+    if (hour == "12") return "12";
+    return this.returnTwoDigit(parseInt(hour) % 12);
   }
 
   adjustPickUpInput(time: moment.Moment, offset) {
