@@ -57,7 +57,7 @@ export class ProfileComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.profileForm.valid);
+    // console.log(this.profileForm.valid);
     if (this.profileForm.valid) {
       let phoneNumber = this.profileForm.controls["phoneNumber"];
       phoneNumber.setValue(this.phoneChangeFormat(phoneNumber.value, "db"));

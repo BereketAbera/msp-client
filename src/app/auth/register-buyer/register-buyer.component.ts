@@ -223,7 +223,7 @@ export class RegisterBuyerComponent implements OnInit {
   }
 
   checkInput(event) {
-    console.log(event.keyCode);
+    // console.log(event.keyCode);
     if (
       !(
         (event.keyCode >= 48 && event.keyCode <= 57) ||
@@ -231,7 +231,7 @@ export class RegisterBuyerComponent implements OnInit {
         event.keyCode == 8
       )
     ) {
-      console.log("returning false!!");
+      // console.log("returning false!!");
       return false;
     }
   }

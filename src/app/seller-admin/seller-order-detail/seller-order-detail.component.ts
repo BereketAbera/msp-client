@@ -12,6 +12,7 @@ import * as moment from "moment";
   styleUrls: ["./seller-order-detail.component.scss"],
 })
 export class SellerOrderDetailComponent implements OnInit {
+  callablePhoneNumber = "";
   order: Transaction;
   show = false;
   now = moment().format("YYYY-MM-DD HH:mm:ss");
@@ -26,6 +27,9 @@ export class SellerOrderDetailComponent implements OnInit {
   ngOnInit() {
     this.route.data.subscribe((data: { order: Transaction }) => {
       this.order = data.order;
+      this.callablePhoneNumber =
+        "tel:" + this.phoneChangeFormat(this.order.phoneNumber, "db");
+      console.log(this.order);
       this.pickupEndTime = moment(this.order.pickupEndTime).format(
         "YYYY-MM-DD HH:MM:SS"
       );
@@ -79,5 +83,14 @@ export class SellerOrderDetailComponent implements OnInit {
           this.show = true;
         }
       });
+  }
+
+  phoneChangeFormat(value, type) {
+    if (type == "db") {
+      return "+1" + value.replace(/[()-\s]/g, "");
+    } else {
+      let v = value.replace("+1", "").replace(/[()-\s]/g, "");
+      return `(${v.slice(0, 3)}) ${v.slice(3, 6)}-${v.slice(6)}`;
+    }
   }
 }

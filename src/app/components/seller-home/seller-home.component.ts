@@ -100,7 +100,7 @@ export class SellerHomeComponent implements OnInit {
   }
 
   addressChanged(address) {
-    console.log("address changes");
+    // console.log("address changes");
     this.searchInput.setValue(
       `${address.CityName.toString().replace(
         /'/g,

@@ -51,7 +51,7 @@ export class EditShopComponent implements OnInit {
     this.route.data.subscribe((data: { states: State[]; shop: any }) => {
       this.states = data.states;
       this.shop = data.shop;
-      console.log(this.shop);
+      // console.log(this.shop);
     });
 
     this.shopForm = this.fb.group({
@@ -150,7 +150,7 @@ export class EditShopComponent implements OnInit {
       }
     });
 
-    console.log(zipCodeFound);
+    // console.log(zipCodeFound);
 
     if (!zipCodeFound) {
       this.shopForm.get("state").setValue("");

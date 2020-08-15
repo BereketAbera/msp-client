@@ -89,9 +89,32 @@
             >
               Show Phone Number
             </button>
-            <span *ngIf="(order.phoneNumber && show) || order.status"
-              >Phone Number: {{ order.phoneNumber }}</span
+            <span
+              style="
+                display: flex;
+                flex-direction: column;
+                padding: 0rem;
+                margin-left: 0rem;
+              "
+              *ngIf="(order.phoneNumber && show) || order.status"
             >
+              <span> Phone Number: {{ order.phoneNumber }}</span>
+              <a
+                [href]="callablePhoneNumber"
+                style="
+                  color: green;
+                  text-decoration: none;
+                  font-size: 1.3rem;
+                  font-weight: 600;
+                  margin-left: 1.3rem;
+                  border: 1px solid green;
+                  padding: 0.2rem 1rem;
+                  width: 13rem;
+                  border-radius: 0.3rem;
+                "
+                ><i class="fad fa-phone-alt"></i>&nbsp;&nbsp;Call Number</a
+              >
+            </span>
           </div>
         </div>
       </div>

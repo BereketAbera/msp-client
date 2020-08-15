@@ -173,7 +173,7 @@ export class AuthService {
       localStorage.removeItem("rd_url");
     }
 
-    console.log(this._redirectURL);
+    // console.log(this._redirectURL);
     return this._redirectURL;
   }
   set redirectURL(rdrcturl: string) {

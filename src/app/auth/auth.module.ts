@@ -22,6 +22,7 @@ import { RegistrationCompleteComponent } from "./registration-complete/registrat
 import { ResetPasswordComponent } from "./reset-password/reset-password.component";
 import { AuthService } from "../service/auth.service";
 import { SignupComponent } from './signup/signup.component';
+import { SignupSellerComponent } from './signup-seller/signup-seller.component';
 
 // import { CustomNotificationComponent } from "../components/custom-notification/custom-notification.component";
 
@@ -48,6 +49,7 @@ import { SignupComponent } from './signup/signup.component';
     AuthComponent,
     CustomSubmitComponent,
     SignupComponent,
+    SignupSellerComponent,
     // CustomNotificationComponent,
   ],
   entryComponents: [RegistrationCompleteComponent],

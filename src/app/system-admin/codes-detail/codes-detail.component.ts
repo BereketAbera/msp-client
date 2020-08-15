@@ -63,7 +63,7 @@ export class CodesDetailComponent implements OnInit {
   }
 
   setUrlValues(sObj) {
-    console.log(sObj);
+    // console.log(sObj);
     let keys = Object.keys(sObj);
     let pObj = {};
     keys.map((key) => {

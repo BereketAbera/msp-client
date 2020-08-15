@@ -55,7 +55,7 @@ export class SellerGuard implements CanActivate {
                 !this.alreadyRouted &&
                 this.user_features.length != 0
               ) {
-                console.log(this.user_features);
+                // console.log(this.user_features);
                 let route = this.getAccessibleRoute(
                   this.user_features,
                   "redirect"
@@ -81,7 +81,7 @@ export class SellerGuard implements CanActivate {
             return found;
           } else if (!this.alreadyRouted && this.user_features.length != 0) {
             let route = this.getAccessibleRoute(this.user_features, "redirect");
-            console.log(this.user_features);
+            // console.log(this.user_features);
             this.alreadyRouted = true;
             if (route) {
               this.router.navigate([route]);

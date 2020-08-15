@@ -81,11 +81,11 @@ export class DealDetailComponent implements OnInit {
       cnt["specialRequirements"].setValue(specialRequirements);
       this.pickUpTime = pickUpTime;
       let pickMoment = moment(pickUpTime);
-      console.log(
-        this.pickUpTime,
-        pickMoment.format("HH"),
-        pickMoment.format("mm:A")
-      );
+      // console.log(
+      //   this.pickUpTime,
+      //   pickMoment.format("HH"),
+      //   pickMoment.format("mm:A")
+      // );
       cnt["pickupHH"].setValue(this.return12Two(pickMoment.format("HH")));
       cnt["pickupMM"].setValue(pickMoment.format("mm:A"));
     } else if (quantity) {
