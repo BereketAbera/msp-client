@@ -31,6 +31,7 @@ export class PublicComponent implements OnInit {
   categoryId: any;
   q: any;
   searchActive: any = false;
+  signUpRoute = "/signup";
 
   constructor(
     public authService: AuthService,
@@ -39,6 +40,15 @@ export class PublicComponent implements OnInit {
     private route: ActivatedRoute
   ) {
     this.router.events.subscribe((url: any) => {
+      if (url.url && url.url.includes("/seller")) {
+        this.signUpRoute = "/signup-seller";
+      } else {
+        if (this.router.url.toString().includes("/seller")) {
+          this.signUpRoute = "/signup-seller";
+        } else {
+          this.signUpRoute = "/signup";
+        }
+      }
       if (url.url && url.url.includes("/products")) {
         this.searchActive = true;
       } else {
