@@ -295,6 +295,7 @@
 
     &--active {
       transform: translateY(0);
+      height: 100vh;
     }
   }
 
@@ -342,7 +343,7 @@
     border-radius: 2px;
     position: relative;
     padding: 2rem 0.5rem;
-    height: 50vh;
+    height: 56vh;
     overflow-y: auto;
   }
 

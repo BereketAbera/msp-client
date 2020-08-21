@@ -156,7 +156,7 @@ img {
     justify-content: center;
     padding: 2rem;
     width: 100%;
-    margin-top: 4rem;
+    margin-top: 0rem;
   }
 
   &__not-found {
@@ -448,6 +448,12 @@ img {
 
     &__search-input-result-name {
       font-size: 1.1rem;
+    }
+  }
+
+  .products {
+    &__not-found-container {
+      margin-top: 4rem;
     }
   }
 

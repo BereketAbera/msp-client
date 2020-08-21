@@ -258,17 +258,15 @@
     position: fixed;
     top: calc(7rem - 2px);
     left: 0;
-    // height: 7rem;
-    // border: 1px solid red;
     z-index: 499;
     background-color: #fff;
     padding: 2rem;
     transition: transform 0.3s;
-    // opacity: 0;
     transform: translateY(-100%);
 
     &--active {
       transform: translateY(0);
+      height: 100vh;
     }
   }
 
@@ -316,7 +314,7 @@
     border-radius: 2px;
     position: relative;
     padding: 2rem 0.5rem;
-    height: 50vh;
+    height: 56vh;
     overflow-y: auto;
   }
 
