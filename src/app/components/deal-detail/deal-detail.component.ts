@@ -162,8 +162,9 @@ export class DealDetailComponent implements OnInit {
   adjustPickUpInput(time: moment.Moment, offset) {
     let orgTime = time.format("HH:mm");
     let date = time.format("YYYY-MM-DD");
-    let newDate = time.add(offset, "minutes").format("YYYY-MM-DD");
+    let newDate = time.add(offset - 30, "minutes").format("YYYY-MM-DD");
     let newTime;
+    console.log(date, newDate, time, offset);
     if (date < newDate) {
       newTime = moment(
         moment().add(-1, "day").format("YYYY-MM-DD") + " " + orgTime
@@ -181,6 +182,42 @@ export class DealDetailComponent implements OnInit {
     return newTime;
   }
 
+  checkValidInput(tempInput: moment.Moment) {
+    let currentTime = moment().format("HH:mm");
+    let currentDate = moment().format("YYYY MM DD HH:mm");
+    let inputTime = tempInput.format("HH:mm");
+    let sDateTime = moment(this.pickUpStartTime)
+      .add(30, "minutes")
+      .format("YYYY MM DD HH:mm");
+    let eDateTime = moment(this.pickUpEndTime)
+      .add(30, "minutes")
+      .format("YYYY MM DD HH:mm");
+    if (currentDate > eDateTime) {
+      return null;
+    }
+
+    let sTime = moment(this.pickUpStartTime).add(30, "minutes").format("HH:mm");
+    let eTime = moment(this.pickUpEndTime).add(30, "minutes").format("HH:mm");
+
+    let returnInput;
+    if (sTime < eTime) {
+      if (currentTime > sTime) {
+        // tomorrow
+        returnInput = tempInput.add(1, "day");
+      } else {
+        // today
+        returnInput = tempInput;
+      }
+    } else {
+      if (inputTime >= sTime && inputTime < "24:00") {
+        returnInput = tempInput;
+      } else if ("00:00" < inputTime && inputTime < eTime) {
+        returnInput = tempInput.add(1, "day");
+      }
+    }
+    return returnInput.toISOString();
+  }
+
   validatePickUpTime() {
     let fCont = this.buyForm.controls;
     let offset = this.product.utcoffset + new Date().getTimezoneOffset();
@@ -194,7 +231,8 @@ export class DealDetailComponent implements OnInit {
         " " +
         fCont["pickupMM"].value.split(":")[1]
     );
-    this.pickUpInput = this.adjustPickUpInput(localPickUpInput, offset);
+    // this.pickUpInput = this.adjustPickUpInput(localPickUpInput, offset);
+    this.pickUpInput = this.checkValidInput(localPickUpInput);
 
     let sTemp = moment(this.pickUpStartTime).add(30, "minutes").toISOString();
     let eTemp = moment(this.pickUpEndTime).add(30, "minutes").toISOString();
@@ -225,10 +263,16 @@ export class DealDetailComponent implements OnInit {
   }
 
   addToCart() {
+    // console.log(this.product);
     this.showErrorNotification = false;
     this.errorMessage = "";
     if (this.cartService.isCartExpired()) {
       this.cartService.resetCart();
+    }
+    if (this.product.prStatus != "AVAILABLE NOW") {
+      this.showErrorNotification = true;
+      this.errorMessage = "Not Reservation Time Try Leter";
+      return;
     }
     let fCont = this.buyForm.controls;
     if (fCont["takeOut"].value) {
