@@ -211,11 +211,11 @@ export class DealDetailComponent implements OnInit {
     } else {
       if (inputTime >= sTime && inputTime < "24:00") {
         returnInput = tempInput;
-      } else if ("00:00" < inputTime && inputTime < eTime) {
+      } else if ("00:00" <= inputTime && inputTime <= eTime) {
         returnInput = tempInput.add(1, "day");
       }
     }
-    return returnInput.toISOString();
+    return returnInput ? returnInput.toISOString() : null;
   }
 
   validatePickUpTime() {
@@ -233,6 +233,9 @@ export class DealDetailComponent implements OnInit {
     );
     // this.pickUpInput = this.adjustPickUpInput(localPickUpInput, offset);
     this.pickUpInput = this.checkValidInput(localPickUpInput);
+    if (!this.pickUpInput) {
+      return false;
+    }
 
     let sTemp = moment(this.pickUpStartTime).add(30, "minutes").toISOString();
     let eTemp = moment(this.pickUpEndTime).add(30, "minutes").toISOString();
@@ -271,7 +274,7 @@ export class DealDetailComponent implements OnInit {
     }
     if (this.product.prStatus != "AVAILABLE NOW") {
       this.showErrorNotification = true;
-      this.errorMessage = "Not Reservation Time Try Leter";
+      this.errorMessage = "Not Reservation Time Try Later";
       return;
     }
     let fCont = this.buyForm.controls;
