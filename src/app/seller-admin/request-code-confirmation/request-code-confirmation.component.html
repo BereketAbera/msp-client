@@ -1,14 +1,20 @@
 <div *ngIf="responseRecived">
   <p *ngIf="isOk()"><strong>Order</strong></p>
-  <mat-dialog-content class="mat-typography">
+  <mat-dialog-content class="mat-typograpdhy">
     <div *ngIf="data.success">
-      <P>Buyer Name: {{ data.firstName }} {{ data.lastName }}</P>
-      <p>Product: {{ data.productName }}</p>
-      <p>Quantity: {{ data.quantity }}</p>
-      <p>Discounted Price: {{ data.discountPrice | currency }}/unit + Tax</p>
-      <p>
-        Status: {{ data.status }}
-        {{ data.status == "PENDING" ? ": Pick Up time has not arrived" : "" }}
+      <P class="info_name">{{ data.firstName }} {{ data.lastName }}</P>
+      <p class="pro_name">{{ data.productName }}    <span [style.background]="
+       data.status == 'ACTIVE'
+          ? 'green'
+          :data.status == 'PENDING'
+          ? 'orange'
+          : 'red'
+      " class="status">  {{ data.status }} </span></p>
+      <p class="content">Quantity: {{ data.quantity }}</p>
+      <p class="content">Discounted Price: {{ data.discountPrice | currency }}/unit + Tax</p>
+      <p class="content-italic">
+       
+        {{ data.status == "PENDING" ? "Pick Up time has not arrived" : "" }}
       </p>
     </div>
     <div *ngIf="!data.success">

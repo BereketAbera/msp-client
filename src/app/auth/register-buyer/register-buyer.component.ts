@@ -21,6 +21,9 @@ export class RegisterBuyerComponent implements OnInit {
   loading = false;
   prevValue = "";
   withCode = false;
+  submitBtnStyle = {
+    btn: { width: '100%',  fontSize: '2rem',height:'4rem' },
+  };
 
   constructor(
     public dialog: MatDialog,

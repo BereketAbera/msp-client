@@ -1,0 +1,41 @@
+.info_name{
+    font-weight: 700;
+    font-size: 2.3rem;
+
+}
+
+.pro_name{
+    color:rgb(66, 50, 88);
+    font-size: 1.6rem;
+
+    .status{
+        margin-left: 1rem;
+        padding:0.3rem 0.7rem;
+        font-size: 1.4rem;
+        background-color:rgb(255, 166, 0);
+        border-radius: 10px;
+    }
+}
+
+.content{
+    font-size: 1.3rem;
+    color:rgb(65, 68, 70);
+    margin:0.5rem 0;
+    
+    &-italic{
+        font-size: 1.2rem;
+        font-style: italic;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    .info_name{
+        font-size: 2.6rem;
+    }
+    .pro_name{
+        font-size: 2.2rem;
+    }
+    p{
+        font-size:1.7rem;
+    }
+}
