@@ -342,6 +342,10 @@ video::-webkit-media-controls {
     color: #888;
   }
 
+  &__step-memebership {
+    margin-top: 2rem;
+  }
+
   &__step-icon {
     font-size: 4rem;
     color: #f94081;
@@ -407,6 +411,9 @@ video::-webkit-media-controls {
 
 @media only screen and (min-width: 700px) {
   .home {
+    &__step-memebership {
+      margin-top: 0rem;
+    }
     &__section-one {
       align-items: flex-end;
       max-height: none;

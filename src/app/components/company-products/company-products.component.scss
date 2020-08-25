@@ -130,12 +130,22 @@
   .slide {
     &__button {
       display: flex;
+      margin-right: 1.2rem;
     }
   }
 
   .products {
     &__product {
       min-width: 26rem;
+    }
+  }
+}
+
+@media only screen and (min-width: 950px) {
+  .slide {
+    &__button {
+      display: flex;
+      margin-right: 0.2rem;
     }
   }
 }

@@ -1,25 +1,31 @@
 <div *ngIf="showError" id="errorCntr">
-  <button id = "errClsBtn" (click)="close()">
-      X
+  <button id="errClsBtn" (click)="close()">
+    X
   </button>
   <ul>
     <li *ngFor="let error of errors">
-      {{error}}
+      {{ error }}
     </li>
-    
   </ul>
 </div>
-<div class="divMrg">
-    <p>Your balance is not sufficient.</p>
-    <p>Please add more money to your account and try to settle the order.</p>
-    <div fxLayout="row"  fxLayoutGap="7px" class="spaceNext">
-        <div>
-          <button mat-stroked-button color="accent" type="button" (click)="goToDeposit()">Add Money #
-          </button>
-  
-        </div>
-        <div>
-            <button type="button" mat-flat-button color="accent" (click)="goToHome()">Cancel</button>
-        </div>
+<div class="divMrg" style="font-size: 1.6rem;">
+  <p>Your balance is not sufficient.</p>
+  <p>Please add more money to your account and try to settle the order.</p>
+  <div fxLayout="row" fxLayoutGap="7px" class="spaceNext">
+    <div>
+      <button
+        mat-stroked-button
+        color="accent"
+        type="button"
+        (click)="goToDeposit()"
+      >
+        Add Money #
+      </button>
+    </div>
+    <div>
+      <button type="button" mat-flat-button color="accent" (click)="goToHome()">
+        Cancel
+      </button>
     </div>
   </div>
+</div>

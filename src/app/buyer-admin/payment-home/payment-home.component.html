@@ -50,7 +50,7 @@
           <tr *ngIf="product.pickUpTime">
             <td style="font-size: 1.3rem;" colspan="5">
               Pick Up Time:
-              {{ product.pickUpTime | date: "shortTime" }}
+              {{ product.pickUpTime | date: "MMM d, h:mm a" }}
             </td>
           </tr>
         </ng-container>

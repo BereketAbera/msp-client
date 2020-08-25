@@ -68,7 +68,7 @@
           <div *ngIf="product.takeOut" class="row-detail show">
             Message To Seller: {{ product.specialRequirements || "None" }}
             <br />
-            Pick Up Time: {{ product.pickUpTime | date: "shortTime" }}
+            Pick Up Time: {{ product.pickUpTime | date: "MMM d, h:mm a" }}
           </div>
           <div *ngIf="!product.takeOut" class="row-detail show"></div>
         </div>
@@ -98,7 +98,7 @@
           <div *ngIf="product.takeOut" class="card__req">
             Message To Seller: {{ product.specialRequirements || "None" }}
             <br />
-            Pick Up Time: {{ product.pickUpTime | date: "shortTime" }}
+            Pick Up Time: {{ product.pickUpTime | date: "MMM d, h:mm a" }}
           </div>
         </div>
         <div class="card__action">

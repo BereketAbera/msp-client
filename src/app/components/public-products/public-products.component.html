@@ -66,14 +66,11 @@
     content="width=device-width, initial-scale=1.0"
   >
     <div *ngIf="companies?.length > 0" class="products__container">
-      <div
-        style="width: 100%;"
-        *ngFor="let company of companies; let i = index"
-      >
+      <div style="width: 100%;" *ngFor="let c of companies; let i = index">
         <app-company-products
           class="company_proaduct"
           [index]="i"
-          [company]="company"
+          [company]="c"
           [query]="query"
           [categoryId]="categoryId"
         >
