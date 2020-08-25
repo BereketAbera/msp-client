@@ -30,7 +30,9 @@ export class RegisterSellerRefComponent implements OnInit {
   zipCodeHints: ZipCode[];
   states: State[];
   prevValue = "";
-
+  submitBtnStyle = {
+    btn: { width: '100%',  fontSize: '2rem',height:'4rem' },
+  };
   registrationForm = this.fb.group({
     firstName: ["", Validators.required],
     lastName: ["", Validators.required],

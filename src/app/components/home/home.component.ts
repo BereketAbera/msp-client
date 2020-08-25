@@ -60,6 +60,7 @@ export class HomeComponent implements OnInit {
     return this.authService.isLoggedIn();
   }
   playVideo() {
+    this.videoplayer.nativeElement.load();
     if (this.play) {
       this.videoplayer.nativeElement.pause();
       this.play = false;

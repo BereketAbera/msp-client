@@ -19,6 +19,9 @@ export class RegisterBuyerRefComponent implements OnInit {
   showError: boolean = false;
   tk: string;
   referedEmail = "";
+  submitBtnStyle = {
+    btn: { width: '100%',  fontSize: '2rem',height:'4rem' },
+  };
   registrationForm = this.fb.group({
     firstName: ["", Validators.required],
     lastName: ["", Validators.required],

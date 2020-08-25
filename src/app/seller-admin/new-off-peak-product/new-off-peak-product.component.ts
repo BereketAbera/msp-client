@@ -229,7 +229,7 @@ export class NewOffPeakProductComponent implements OnInit {
               this.populateFields();
               this.parseWeekDay(this.product.activeDays);
 
-              // console.log(this.product)
+              console.log(this.product)
             },
             (err) => console.log(err)
           );
@@ -841,8 +841,8 @@ export class NewOffPeakProductComponent implements OnInit {
     totalMinutes = totalMinutes < 0 ? 24 * 60 + totalMinutes : totalMinutes;
     hour = Math.floor(totalMinutes / 60);
     minute = totalMinutes % 60;
-
-    if (hour < 12) {
+    console.log(hour,'h')
+    if (hour < 12 && hour !=0) {
       return `${this.returnTwoDigit(hour)};${this.returnTwoDigit(
         minute
       )}:AM;AM`;
@@ -853,6 +853,8 @@ export class NewOffPeakProductComponent implements OnInit {
         minute
       )}:AM;AM`;
     } else if (hour == 24) {
+      return `${this.returnTwoDigit(12)};${this.returnTwoDigit(minute)}:AM;AM`;
+    }else if (hour == 0) {
       return `${this.returnTwoDigit(12)};${this.returnTwoDigit(minute)}:AM;AM`;
     } else {
       return `${this.returnTwoDigit(hour % 12)};${this.returnTwoDigit(

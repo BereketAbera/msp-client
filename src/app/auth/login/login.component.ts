@@ -16,6 +16,9 @@ export class LoginComponent implements OnInit {
   version = environment.version;
   showError: boolean = false;
   type = "normal";
+  submitBtnStyle = {
+    btn: { width: '100%',  fontSize: '2rem',height:'4rem' },
+  };
   loginForm = this.fb.group({
     email: ["", [Validators.required, Validators.minLength(3)]],
     password: ["", Validators.required],

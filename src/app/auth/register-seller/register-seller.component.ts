@@ -30,6 +30,9 @@ export class RegisterSellerComponent implements OnInit {
   states: State[];
   loading = false;
   prevValue = "";
+  submitBtnStyle = {
+    btn: { width: '100%',  fontSize: '2rem',height:'4rem' },
+  };
   registrationForm = this.fb.group({
     firstName: ["", Validators.required],
     lastName: ["", Validators.required],
