@@ -38,8 +38,8 @@ export class SellerGuard implements CanActivate {
   manageUserRouteAccess(url: string): boolean {
     let role = this.authService.getRole();
     if (this.authService.isSellerLoggedIn()) {
-      // this.authService.get
-      if (this.authService.getSellerStatus() != "1") {
+      // console.log(url);
+      if (this.authService.getSellerStatus() != "1" && url.includes("prdcts")) {
         this.router.navigate(["/tlgu-slr/waiting_admin_approval"]);
         return false;
       }
