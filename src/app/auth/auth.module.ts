@@ -1,6 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
-import { ReactiveFormsModule } from "@angular/forms";
+import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { DemoMaterialModule } from "../material/material.module";
 import { StateResolverService } from "../service/state-resolver.service";
@@ -21,8 +21,9 @@ import { RegisterComponent } from "./register/register.component";
 import { RegistrationCompleteComponent } from "./registration-complete/registration-complete.component";
 import { ResetPasswordComponent } from "./reset-password/reset-password.component";
 import { AuthService } from "../service/auth.service";
-import { SignupComponent } from './signup/signup.component';
-import { SignupSellerComponent } from './signup-seller/signup-seller.component';
+import { SignupComponent } from "./signup/signup.component";
+import { SignupSellerComponent } from "./signup-seller/signup-seller.component";
+import { ConfirmTermsComponent } from "./confirm-terms/confirm-terms.component";
 
 // import { CustomNotificationComponent } from "../components/custom-notification/custom-notification.component";
 
@@ -34,6 +35,7 @@ import { SignupSellerComponent } from './signup-seller/signup-seller.component';
     SharedModule,
     AuthRoutingModule,
     MatSlideToggleModule,
+    FormsModule,
   ],
   declarations: [
     LoginComponent,
@@ -50,6 +52,7 @@ import { SignupSellerComponent } from './signup-seller/signup-seller.component';
     CustomSubmitComponent,
     SignupComponent,
     SignupSellerComponent,
+    ConfirmTermsComponent,
     // CustomNotificationComponent,
   ],
   entryComponents: [RegistrationCompleteComponent],

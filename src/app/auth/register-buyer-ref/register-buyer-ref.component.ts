@@ -20,7 +20,7 @@ export class RegisterBuyerRefComponent implements OnInit {
   tk: string;
   referedEmail = "";
   submitBtnStyle = {
-    btn: { width: '100%',  fontSize: '2rem',height:'4rem' },
+    btn: { width: "100%", fontSize: "2rem", height: "4rem" },
   };
   registrationForm = this.fb.group({
     firstName: ["", Validators.required],
@@ -88,27 +88,59 @@ export class RegisterBuyerRefComponent implements OnInit {
         usrInfo.tk = this.tk;
         usrInfo.phoneNumber = this.phoneChangeFormat(phoneNumber.value, "db");
         this.loading = true;
-        return this.userService.registerByrUser(usrInfo).subscribe((res) => {
-          // console.log(res);
-          this.loading = false;
-          window.scrollTo(0, 0);
-          if (res["success"]) {
-            const dialogRef = this.dialog.open(RegistrationCompleteComponent, {
-              width: "350px",
-              data: { msg: "Thank you! Now you can login" },
-            });
-            dialogRef.afterClosed().subscribe((result) => {
-              this.router
-                .navigateByUrl("/RefrshComponent", {
-                  skipLocationChange: true,
-                })
-                .then(() => this.router.navigate(["/login"]));
-            });
-          } else {
-            this.showError = true;
-            this.errors = res["messages"];
-          }
-        });
+        return this.userService
+          .registerByrUser(usrInfo)
+          .subscribe((res: any) => {
+            // console.log(res);
+            this.loading = false;
+            window.scrollTo(0, 0);
+            if (res["success"]) {
+              if (res.user && res.user.applicationName) {
+                const dialogRef = this.dialog.open(
+                  RegistrationCompleteComponent,
+                  {
+                    width: "350px",
+                    data: {
+                      msg: `The email ${
+                        res.user.email
+                      } is already registered in ${
+                        res.user.applicationName
+                      }.COM as ${
+                        res.user.role == "STAFFER"
+                          ? "EMPLOYER STAFF"
+                          : res.user.role
+                      }. You can use this email to sign in to ManagerSpecial and become a ${
+                        res.user.role == "APPLICANT" ? "BUYER" : "SELLER"
+                      }. Please try logging in or use another email.`,
+                    },
+                  }
+                );
+                dialogRef.afterClosed().subscribe((result) => {
+                  this.router.navigate([`/login/seller`], {
+                    queryParams: { email: res.user.email, tk: this.tk },
+                  });
+                });
+              } else {
+                const dialogRef = this.dialog.open(
+                  RegistrationCompleteComponent,
+                  {
+                    width: "350px",
+                    data: { msg: "Thank you! Now you can login" },
+                  }
+                );
+                dialogRef.afterClosed().subscribe((result) => {
+                  this.router
+                    .navigateByUrl("/RefrshComponent", {
+                      skipLocationChange: true,
+                    })
+                    .then(() => this.router.navigate(["/login"]));
+                });
+              }
+            } else {
+              this.showError = true;
+              this.errors = res["messages"];
+            }
+          });
       } else {
         this.showError = true;
         this.errors = ["Please agree to the buyer's terms of use and privacy."];

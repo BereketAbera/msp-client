@@ -1,3 +1,4 @@
+import { AuthService } from "@app/service/auth.service";
 import {
   HttpClient,
   HttpErrorResponse,
@@ -18,17 +19,25 @@ import { RevenuRprt } from "../model/revenuRprt";
 import { SellerSummary } from "../model/sellerySummary";
 import { Transaction } from "../model/transaction";
 import { User } from "../model/user";
+import { Router } from "@angular/router";
 
 // import { KeyRegistry } from "@angular/core/src/di/reflective_key";
 
 const userAPI = environment.APIEndpoint + "register";
 const accountAPI = environment.APIEndpoint + "accounts";
 const profileAPI = environment.APIEndpoint + "profile";
+let globThis;
 
 @Injectable()
 export class UserService {
   public countSubject = new BehaviorSubject<number>(0);
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private authService: AuthService,
+    private router: Router
+  ) {
+    globThis = this;
+  }
   registerUser(user: any) {
     return this.http.post(userAPI, user).pipe(catchError(this.handleError));
   }
@@ -246,6 +255,11 @@ export class UserService {
       // A client-side or network error occurred. Handle it accordingly.
       console.error("An error occurred:", error.error.message);
     } else {
+      if (error.status == 401) {
+        // console.log("unoutorized from user service ...");
+        globThis.authService.logout();
+        globThis.router.navigateByUrl("/login");
+      }
       // The backend returned an unsuccessful response code.
       // The response body may contain clues as to what went wrong,
       console.error(

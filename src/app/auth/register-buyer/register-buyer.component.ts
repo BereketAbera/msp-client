@@ -22,7 +22,7 @@ export class RegisterBuyerComponent implements OnInit {
   prevValue = "";
   withCode = false;
   submitBtnStyle = {
-    btn: { width: '100%',  fontSize: '2rem',height:'4rem' },
+    btn: { width: "100%", fontSize: "2rem", height: "4rem" },
   };
 
   constructor(
@@ -99,31 +99,51 @@ export class RegisterBuyerComponent implements OnInit {
             ...this.registrationForm.value,
             phoneNumber: this.phoneChangeFormat(phoneNumber.value, "db"),
           })
-          .subscribe((res) => {
+          .subscribe((res: any) => {
             this.loading = false;
             window.scrollTo(0, 0);
             if (res["success"]) {
-              const dialogRef = this.dialog.open(
-                RegistrationCompleteComponent,
-                {
-                  width: "350px",
-                  data: {
-                    msg:
-                      "Thank you! Now please check your email for our email verfication.",
-                  },
-                }
-              );
-              dialogRef.afterClosed().subscribe((result) => {
-                this.router.navigate(["/login/buyer"]);
-                // this.router
-                //   .navigateByUrl("/RefrshComponent", { skipLocationChange: true })
-                //   .then(() => this.router.navigate(["/login/buyer"]));
-              });
-
-              //this.registeredByr.emit("Buyer")
-              //this.router.navigate(['/login/buyer']);
+              if (res.user && res.user.applicationName) {
+                const dialogRef = this.dialog.open(
+                  RegistrationCompleteComponent,
+                  {
+                    width: "350px",
+                    data: {
+                      msg: `The email ${
+                        res.user.email
+                      } is already registered in ${
+                        res.user.applicationName
+                      }.COM as ${
+                        res.user.role == "STAFFER"
+                          ? "EMPLOYER STAFF"
+                          : res.user.role
+                      }. You can use this email to sign in to ManagerSpecial and become a ${
+                        res.user.role == "APPLICANT" ? "BUYER" : "SELLER"
+                      }. Please try logging in or use another email.`,
+                    },
+                  }
+                );
+                dialogRef.afterClosed().subscribe((result) => {
+                  this.router.navigate([`/login/buyer`], {
+                    queryParams: { email: res.user.email },
+                  });
+                });
+              } else {
+                const dialogRef = this.dialog.open(
+                  RegistrationCompleteComponent,
+                  {
+                    width: "350px",
+                    data: {
+                      msg:
+                        "Thank you! Now please check your email for our email verfication.",
+                    },
+                  }
+                );
+                dialogRef.afterClosed().subscribe((result) => {
+                  this.router.navigate(["/login/buyer"]);
+                });
+              }
             } else {
-              // console.log(res["messages"]);
               this.showError = true;
               this.errors = res["messages"];
               window.scrollTo(0, 0);

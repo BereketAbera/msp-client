@@ -1,3 +1,4 @@
+import { WaitingAdminComponent } from "./waiting-admin/waiting-admin.component";
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { FeaturesResolverService } from "../service/features-resolver.service";
@@ -187,6 +188,10 @@ const sellerRoutes: Routes = [
       {
         path: "access_denied",
         component: AccessDeniedComponent,
+      },
+      {
+        path: "waiting_admin_approval",
+        component: WaitingAdminComponent,
       },
       { path: "**", redirectTo: "", pathMatch: "full" },
     ],

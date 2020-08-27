@@ -47,6 +47,7 @@ import { ShopListComponent } from "./shop-list/shop-list.component";
 import { StaffsComponent } from "./staffs/staffs.component";
 import { TransactionsComponent } from "./transactions/transactions.component";
 import { UploadImgComponent } from "./upload-img/upload-img.component";
+import { WaitingAdminComponent } from './waiting-admin/waiting-admin.component';
 
 @NgModule({
   imports: [
@@ -83,6 +84,7 @@ import { UploadImgComponent } from "./upload-img/upload-img.component";
     AccessDeniedComponent,
     EditShopComponent,
     ProfileComponent,
+    WaitingAdminComponent,
   ],
   entryComponents: [
     RequestConfirmationComponent,
