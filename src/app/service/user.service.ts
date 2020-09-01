@@ -291,6 +291,16 @@ export class UserService {
     return this.http.get(accountAPI + "/user");
   }
 
+  sendPhonenNumberCode(phoneNumber): Observable<any> {
+    return this.http.post(profileAPI + "/send_phonenumber_code", {
+      phoneNumber,
+    });
+  }
+
+  changePhoneNumber(code): Observable<any> {
+    return this.http.post(profileAPI + "/change_phone_number", { code });
+  }
+
   getQueryParams(obj) {
     let keys = Object.keys(obj);
     let url = "?";

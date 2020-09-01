@@ -1,9 +1,11 @@
+import { ChangePhonenumberComponent } from "./../change-phonenumber/change-phonenumber.component";
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { UserService } from "src/app/service/user.service";
 import { debounceTime, switchMap } from "rxjs/operators";
 import { of } from "rxjs";
+import { MatDialog } from "@angular/material/dialog";
 
 @Component({
   selector: "app-profile",
@@ -12,6 +14,7 @@ import { of } from "rxjs";
 })
 export class ProfileComponent implements OnInit {
   edit = false;
+  edit_phoneNumber = false;
   profile: any;
   profileForm: FormGroup;
   showError = false;
@@ -21,7 +24,9 @@ export class ProfileComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private fb: FormBuilder,
-    private userService: UserService
+    private userService: UserService,
+    public dialog: MatDialog,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -35,32 +40,39 @@ export class ProfileComponent implements OnInit {
         [Validators.required, Validators.minLength(2)],
       ],
       companyAddress: [this.profile.companyAddress, Validators.required],
-      phoneNumber: [
-        this.phoneChangeFormat(this.profile.phoneNumber, "form"),
-        [
-          Validators.required,
-          Validators.pattern(/(\(\d{3}\))(\s)\d{3}(-)\d{4}/),
-        ],
-      ],
       websiteURL: [this.profile.websiteURL],
     });
-
-    this.profileForm.controls["phoneNumber"].valueChanges
-      .pipe((debounceTime(200), switchMap((term) => of(term))))
-      .subscribe((res) => this.phoneNumberChange(res));
   }
 
   toggleEdit() {
-    this.profileForm.controls["phoneNumber"].setValue(
-      this.phoneChangeFormat(this.profile.phoneNumber, "form")
-    );
     this.edit = !this.edit;
+    this.edit_phoneNumber = !this.edit_phoneNumber;
+  }
+
+  togglePhoneNumberEdit() {
+    const dialogRef = this.dialog.open(ChangePhonenumberComponent, {
+      width: "400px",
+      height: "auto",
+      data: { phoneNumber: this.profile.phoneNumber },
+    });
+
+    dialogRef.afterClosed().subscribe((phoneNumber) => {
+      if (phoneNumber) {
+        phoneNumber = this.phoneChangeFormat(phoneNumber, "db");
+        this.userService.sendPhonenNumberCode(phoneNumber).subscribe((res) => {
+          // console.log(res);
+          if (res.success) {
+            this.router.navigate(["/tlgu-slr/confirm_phonenumber_code"], {
+              queryParams: { phoneNumber },
+            });
+          }
+        });
+      }
+    });
   }
 
   onSubmit() {
     if (this.profileForm.valid) {
-      let phoneNumber = this.profileForm.controls["phoneNumber"];
-      phoneNumber.setValue(this.phoneChangeFormat(phoneNumber.value, "db"));
       this.userService.updateSellerProfile(this.profileForm.value).subscribe(
         (res) => {
           if (res.success) {

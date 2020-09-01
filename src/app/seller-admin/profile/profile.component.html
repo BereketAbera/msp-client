@@ -8,10 +8,6 @@
         <i class="fad fa-dot-circle profile__icon"></i>
         <span>{{ profile?.companyAddress }}</span>
       </div>
-      <div class="profile__phonenumber">
-        <i class="fad fa-phone-alt profile__icon"></i>
-        <span>{{ phoneChangeFormat(profile?.phoneNumber, "form") }}</span>
-      </div>
     </div>
     <div class="profile__website">
       <i class="fad fa-share-square profile__icon"></i>
@@ -28,11 +24,35 @@
     <span (click)="toggleEdit()" class="profile__edit-button">Edit</span>
   </div>
 
+  <div
+    *ngIf="!edit_phoneNumber"
+    class="profile__display"
+    style="
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    "
+  >
+    <div class="profile__address-phonenumber" style="margin: 0rem">
+      <div class="profile__phonenumber" style="margin: 0">
+        <i class="fad fa-phone-alt profile__icon"></i>
+        <span>{{ phoneChangeFormat(profile?.phoneNumber, "form") }}</span>
+      </div>
+    </div>
+
+    <div
+      (click)="togglePhoneNumberEdit()"
+      class="profile__edit-button"
+      style="position: unset"
+    >
+      Edit Company Phone Number
+    </div>
+  </div>
+
   <div *ngIf="edit" class="profile__edit">
     <div *ngIf="showError" class="errorCntr">
-      <button class="errClsBtn" (click)="close()">
-        &#215;
-      </button>
+      <button class="errClsBtn" (click)="close()">&#215;</button>
       <ul>
         <li *ngFor="let error of errors">
           {{ error }}
@@ -68,20 +88,7 @@
                 maxlength="120"
               />
             </mat-form-field>
-            <mat-form-field class="example-full-width">
-              <mat-label>Phone Number</mat-label>
-              <span style="color: #555;" matPrefix>+1&nbsp;</span>
-              <input
-                type="text"
-                matInput
-                placeholder="000-000-0000"
-                required
-                maxlength="14"
-                formControlName="phoneNumber"
-                (paste)="preventPaste($event)"
-                (change)="phoneNumberChangeEvent($event)"
-              />
-            </mat-form-field>
+
             <mat-form-field>
               <input
                 matInput

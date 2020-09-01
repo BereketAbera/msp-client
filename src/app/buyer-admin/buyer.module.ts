@@ -42,7 +42,9 @@ import { ReferSellerComponent } from "./refer-seller/refer-seller.component";
 import { ReferStatusComponent } from "./refer-status/refer-status.component";
 import { ReferComponent } from "./refer/refer.component";
 import { SocialReferralComponent } from "./social-referral/social-referral.component";
-import { SocialReferralsComponent } from './social-referrals/social-referrals.component';
+import { SocialReferralsComponent } from "./social-referrals/social-referrals.component";
+import { ChangePhonenumberComponent } from "./change-phonenumber/change-phonenumber.component";
+import { ConfirmCodeComponent } from "./confirm-code/confirm-code.component";
 
 @NgModule({
   imports: [
@@ -81,6 +83,8 @@ import { SocialReferralsComponent } from './social-referrals/social-referrals.co
     ProfileComponent,
     SocialReferralComponent,
     SocialReferralsComponent,
+    ChangePhonenumberComponent,
+    ConfirmCodeComponent,
   ],
   entryComponents: [
     PaymentWithCreditCardComponent,

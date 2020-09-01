@@ -1,3 +1,4 @@
+import { ConfirmCodeComponent } from "./confirm-code/confirm-code.component";
 import { WaitingAdminComponent } from "./waiting-admin/waiting-admin.component";
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
@@ -192,6 +193,10 @@ const sellerRoutes: Routes = [
       {
         path: "waiting_admin_approval",
         component: WaitingAdminComponent,
+      },
+      {
+        path: "confirm_phonenumber_code",
+        component: ConfirmCodeComponent,
       },
       { path: "**", redirectTo: "", pathMatch: "full" },
     ],

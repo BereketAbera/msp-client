@@ -1,0 +1,50 @@
+.heading {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  font-size: 1.6rem;
+}
+
+.dialog {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__input {
+    font-size: 1.6rem;
+  }
+
+  &__content {
+    width: 100%;
+    margin: 1rem 0rem;
+    font-size: 1.5rem;
+    color: #333;
+  }
+
+  &__footer {
+    align-self: flex-end;
+    margin-top: 1rem;
+  }
+
+  &__checkbox {
+    color: #333;
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    text-align: justify;
+    line-height: 2;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .dialog {
+    &__content {
+      font-size: 1.2rem;
+    }
+
+    &__checkbox {
+      font-size: 1.2rem;
+    }
+  }
+}

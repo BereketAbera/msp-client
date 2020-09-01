@@ -21,6 +21,7 @@ import { BuyerTransactionsComponent } from "./buyer-transactions/buyer-transacti
 import { PaymentHomeComponent } from "./payment-home/payment-home.component";
 import { ProfileComponent } from "./profile/profile.component";
 import { ReferComponent } from "./refer/refer.component";
+import { ConfirmCodeComponent } from "./confirm-code/confirm-code.component";
 
 const buyerRoutes: Routes = [
   {
@@ -80,6 +81,10 @@ const buyerRoutes: Routes = [
         resolve: {
           profile: UserProfileResolverService,
         },
+      },
+      {
+        path: "confirm_phonenumber_code",
+        component: ConfirmCodeComponent,
       },
       {
         path: "",

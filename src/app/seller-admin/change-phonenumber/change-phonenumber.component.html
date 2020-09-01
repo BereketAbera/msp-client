@@ -1,0 +1,32 @@
+<div class="dialog__container">
+  <div class="heading">Change Phone Number</div>
+  <div>
+    <form [formGroup]="chnagePhoneNumber" style="margin: 2rem 0rem">
+      <mat-form-field class="dialog__input">
+        <mat-label>Phone Number</mat-label>
+        <span style="color: #555" matPrefix>+1&nbsp;</span>
+        <input
+          type="text"
+          matInput
+          placeholder="000-000-0000"
+          required
+          maxlength="14"
+          formControlName="phoneNumber"
+          (paste)="preventPaste($event)"
+          (change)="phoneNumberChangeEvent($event)"
+        />
+      </mat-form-field>
+    </form>
+  </div>
+  <div class="dialog__footer">
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button
+      [disabled]="chnagePhoneNumber.invalid"
+      mat-button
+      [mat-dialog-close]="chnagePhoneNumber.controls['phoneNumber'].value"
+      cdkFocusInitial
+    >
+      Submit
+    </button>
+  </div>
+</div>

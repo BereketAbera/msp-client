@@ -48,6 +48,8 @@ import { StaffsComponent } from "./staffs/staffs.component";
 import { TransactionsComponent } from "./transactions/transactions.component";
 import { UploadImgComponent } from "./upload-img/upload-img.component";
 import { WaitingAdminComponent } from './waiting-admin/waiting-admin.component';
+import { ChangePhonenumberComponent } from './change-phonenumber/change-phonenumber.component';
+import { ConfirmCodeComponent } from './confirm-code/confirm-code.component';
 
 @NgModule({
   imports: [
@@ -85,6 +87,8 @@ import { WaitingAdminComponent } from './waiting-admin/waiting-admin.component';
     EditShopComponent,
     ProfileComponent,
     WaitingAdminComponent,
+    ChangePhonenumberComponent,
+    ConfirmCodeComponent,
   ],
   entryComponents: [
     RequestConfirmationComponent,
