@@ -18,6 +18,7 @@ export class ProfileComponent implements OnInit {
   showError = false;
   errors = [];
   prevValue = "";
+  message = "";
 
   constructor(
     private route: ActivatedRoute,
@@ -61,6 +62,8 @@ export class ProfileComponent implements OnInit {
             this.router.navigate(["/tlgu-byr/confirm_phonenumber_code"], {
               queryParams: { phoneNumber },
             });
+          } else {
+            this.message = "Please try again after 1 minute.";
           }
         });
       }

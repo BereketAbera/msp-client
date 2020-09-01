@@ -1,6 +1,12 @@
 <div class="profile__container">
   <h1 class="profile__header">Profile</h1>
-
+  <div
+    *ngIf="message"
+    class="profile__display"
+    style="padding: 0.5rem; text-align: center"
+  >
+    {{ message }}
+  </div>
   <div *ngIf="!edit" class="profile__display">
     <h2 class="profile__company-name">{{ profile?.companyName }}</h2>
     <div class="profile__address-phonenumber">

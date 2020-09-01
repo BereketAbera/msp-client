@@ -25,6 +25,7 @@ export class ProfileComponent implements OnInit {
   errors = [];
   prevValue = "";
   type = "";
+  message = "";
 
   constructor(
     private route: ActivatedRoute,
@@ -67,51 +68,27 @@ export class ProfileComponent implements OnInit {
   }
 
   togglePhoneNumberEdit(type) {
-    if (type == "company") {
-      const dialogRef = this.dialog.open(ChangePhonenumberComponent, {
-        width: "400px",
-        height: "auto",
-        data: { phoneNumber: this.profile.phoneNumber },
-      });
+    const dialogRef = this.dialog.open(ChangePhonenumberComponent, {
+      width: "400px",
+      height: "auto",
+      data: { phoneNumber: this.userProfile.phoneNumber },
+    });
 
-      dialogRef.afterClosed().subscribe((phoneNumber) => {
-        if (phoneNumber) {
-          phoneNumber = this.phoneChangeFormat(phoneNumber, "db");
-          this.userService
-            .sendPhonenNumberCode(phoneNumber)
-            .subscribe((res) => {
-              // console.log(res);
-              if (res.success) {
-                this.router.navigate(["/tlgu-slr/confirm_phonenumber_code"], {
-                  queryParams: { phoneNumber, type },
-                });
-              }
+    dialogRef.afterClosed().subscribe((phoneNumber) => {
+      if (phoneNumber) {
+        phoneNumber = this.phoneChangeFormat(phoneNumber, "db");
+        this.userService.sendPhonenNumberCode(phoneNumber).subscribe((res) => {
+          // console.log(res);
+          if (res.success) {
+            this.router.navigate(["/tlgu-slr/confirm_phonenumber_code"], {
+              queryParams: { phoneNumber, type },
             });
-        }
-      });
-    } else {
-      const dialogRef = this.dialog.open(ChangePhonenumberComponent, {
-        width: "400px",
-        height: "auto",
-        data: { phoneNumber: this.userProfile.phoneNumber },
-      });
-
-      dialogRef.afterClosed().subscribe((phoneNumber) => {
-        if (phoneNumber) {
-          phoneNumber = this.phoneChangeFormat(phoneNumber, "db");
-          this.userService
-            .sendPhonenNumberCode(phoneNumber)
-            .subscribe((res) => {
-              // console.log(res);
-              if (res.success) {
-                this.router.navigate(["/tlgu-slr/confirm_phonenumber_code"], {
-                  queryParams: { phoneNumber, type },
-                });
-              }
-            });
-        }
-      });
-    }
+          } else {
+            this.message = "Please try again after 1 minute.";
+          }
+        });
+      }
+    });
   }
 
   onSubmit() {
