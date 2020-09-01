@@ -15,11 +15,16 @@ import { MatDialog } from "@angular/material/dialog";
 export class ProfileComponent implements OnInit {
   edit = false;
   edit_phoneNumber = false;
+  editUserProfile = false;
+  editUserPhoneNumber = false;
   profile: any;
+  userProfile: any;
   profileForm: FormGroup;
+  userProfileForm: FormGroup;
   showError = false;
   errors = [];
   prevValue = "";
+  type = "";
 
   constructor(
     private route: ActivatedRoute,
@@ -30,8 +35,9 @@ export class ProfileComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.route.data.subscribe(({ profile }) => {
+    this.route.data.subscribe(({ profile, userProfile }) => {
       this.profile = profile;
+      this.userProfile = userProfile;
     });
 
     this.profileForm = this.fb.group({
@@ -42,33 +48,70 @@ export class ProfileComponent implements OnInit {
       companyAddress: [this.profile.companyAddress, Validators.required],
       websiteURL: [this.profile.websiteURL],
     });
+
+    this.userProfileForm = this.fb.group({
+      firstName: [
+        this.userProfile.firstName,
+        [Validators.required, Validators.minLength(2)],
+      ],
+      lastName: [this.userProfile.lastName, Validators.required],
+    });
   }
 
-  toggleEdit() {
-    this.edit = !this.edit;
+  toggleEdit(type = "") {
+    this.type = type;
     this.edit_phoneNumber = !this.edit_phoneNumber;
+    this.editUserPhoneNumber = !this.editUserPhoneNumber;
+    this.edit = !this.edit;
+    this.editUserProfile = !this.editUserProfile;
   }
 
-  togglePhoneNumberEdit() {
-    const dialogRef = this.dialog.open(ChangePhonenumberComponent, {
-      width: "400px",
-      height: "auto",
-      data: { phoneNumber: this.profile.phoneNumber },
-    });
+  togglePhoneNumberEdit(type) {
+    if (type == "company") {
+      const dialogRef = this.dialog.open(ChangePhonenumberComponent, {
+        width: "400px",
+        height: "auto",
+        data: { phoneNumber: this.profile.phoneNumber },
+      });
 
-    dialogRef.afterClosed().subscribe((phoneNumber) => {
-      if (phoneNumber) {
-        phoneNumber = this.phoneChangeFormat(phoneNumber, "db");
-        this.userService.sendPhonenNumberCode(phoneNumber).subscribe((res) => {
-          // console.log(res);
-          if (res.success) {
-            this.router.navigate(["/tlgu-slr/confirm_phonenumber_code"], {
-              queryParams: { phoneNumber },
+      dialogRef.afterClosed().subscribe((phoneNumber) => {
+        if (phoneNumber) {
+          phoneNumber = this.phoneChangeFormat(phoneNumber, "db");
+          this.userService
+            .sendPhonenNumberCode(phoneNumber)
+            .subscribe((res) => {
+              // console.log(res);
+              if (res.success) {
+                this.router.navigate(["/tlgu-slr/confirm_phonenumber_code"], {
+                  queryParams: { phoneNumber, type },
+                });
+              }
             });
-          }
-        });
-      }
-    });
+        }
+      });
+    } else {
+      const dialogRef = this.dialog.open(ChangePhonenumberComponent, {
+        width: "400px",
+        height: "auto",
+        data: { phoneNumber: this.userProfile.phoneNumber },
+      });
+
+      dialogRef.afterClosed().subscribe((phoneNumber) => {
+        if (phoneNumber) {
+          phoneNumber = this.phoneChangeFormat(phoneNumber, "db");
+          this.userService
+            .sendPhonenNumberCode(phoneNumber)
+            .subscribe((res) => {
+              // console.log(res);
+              if (res.success) {
+                this.router.navigate(["/tlgu-slr/confirm_phonenumber_code"], {
+                  queryParams: { phoneNumber, type },
+                });
+              }
+            });
+        }
+      });
+    }
   }
 
   onSubmit() {
@@ -82,6 +125,28 @@ export class ProfileComponent implements OnInit {
         },
         (err) => console.log(err)
       );
+    }
+  }
+
+  onUserProfileSubmit() {
+    if (this.userProfileForm.valid) {
+      this.userService
+        .updateProfile({
+          ...this.userProfileForm.value,
+          id: this.userProfile.id,
+        })
+        .subscribe(
+          (res) => {
+            if (res.success) {
+              this.userProfile = {
+                ...this.userProfile,
+                ...this.userProfileForm.value,
+              };
+              this.toggleEdit();
+            }
+          },
+          (err) => console.log(err)
+        );
     }
   }
 

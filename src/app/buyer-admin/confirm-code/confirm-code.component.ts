@@ -36,6 +36,7 @@ export class ConfirmCodeComponent implements OnInit {
 
   onSubmit() {
     this.error = "";
+    this.message = "";
     this.userService
       .changePhoneNumber(this.confirmCode.controls["code"].value)
       .subscribe((res) => {

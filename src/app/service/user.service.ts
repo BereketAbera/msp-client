@@ -297,8 +297,8 @@ export class UserService {
     });
   }
 
-  changePhoneNumber(code): Observable<any> {
-    return this.http.post(profileAPI + "/change_phone_number", { code });
+  changePhoneNumber(code, type = "user"): Observable<any> {
+    return this.http.post(profileAPI + "/change_phone_number", { code, type });
   }
 
   getQueryParams(obj) {

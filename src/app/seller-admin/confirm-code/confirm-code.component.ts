@@ -13,6 +13,7 @@ export class ConfirmCodeComponent implements OnInit {
   error = "";
   message = "";
   phoneNumber = "";
+  type = "company";
   confirmCode = this.fb.group({
     code: ["", Validators.required],
   });
@@ -26,7 +27,7 @@ export class ConfirmCodeComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParamMap.subscribe((params) => {
       this.phoneNumber = params.get("phoneNumber");
-      // console.log(this.phoneNumber);
+      this.type = params.get("type");
     });
   }
 
@@ -37,7 +38,7 @@ export class ConfirmCodeComponent implements OnInit {
   onSubmit() {
     this.error = "";
     this.userService
-      .changePhoneNumber(this.confirmCode.controls["code"].value)
+      .changePhoneNumber(this.confirmCode.controls["code"].value, this.type)
       .subscribe((res) => {
         // console.log(res);
         if (res.success) {

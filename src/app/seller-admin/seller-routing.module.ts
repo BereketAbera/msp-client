@@ -35,6 +35,7 @@ import { ShopListComponent } from "./shop-list/shop-list.component";
 import { StaffsComponent } from "./staffs/staffs.component";
 import { TransactionsComponent } from "./transactions/transactions.component";
 import { UploadImgComponent } from "./upload-img/upload-img.component";
+import { UserProfileResolverService } from "@app/service/user-profile-resolver.service";
 
 const sellerRoutes: Routes = [
   {
@@ -155,7 +156,10 @@ const sellerRoutes: Routes = [
         path: "profile",
         canActivate: [SellerGuard],
         component: ProfileComponent,
-        resolve: { profile: ProfileResolverService },
+        resolve: {
+          profile: ProfileResolverService,
+          userProfile: UserProfileResolverService,
+        },
       },
       {
         path: "staffs",
