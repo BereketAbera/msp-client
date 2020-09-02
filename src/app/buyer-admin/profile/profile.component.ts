@@ -19,6 +19,8 @@ export class ProfileComponent implements OnInit {
   errors = [];
   prevValue = "";
   message = "";
+  successMessage = "";
+  showSuccessNotification = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -71,6 +73,7 @@ export class ProfileComponent implements OnInit {
   }
 
   onSubmit() {
+    this.showSuccessNotification = false;
     if (this.profileForm.valid) {
       this.userService
         .updateProfile({ ...this.profileForm.value, id: this.profile.id })
@@ -79,6 +82,8 @@ export class ProfileComponent implements OnInit {
             if (res.success) {
               this.profile = { ...this.profile, ...this.profileForm.value };
               this.toggleEdit();
+              this.showSuccessNotification = true;
+              this.successMessage = "Successfully changed profile";
             }
           },
           (err) => console.log(err)

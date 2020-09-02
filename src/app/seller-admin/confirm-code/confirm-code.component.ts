@@ -17,6 +17,9 @@ export class ConfirmCodeComponent implements OnInit {
   confirmCode = this.fb.group({
     code: ["", Validators.required],
   });
+  successMessage = "";
+  showSuccessNotification = false;
+
   constructor(
     private fb: FormBuilder,
     private _location: Location,
@@ -35,6 +38,10 @@ export class ConfirmCodeComponent implements OnInit {
     this._location.back();
   }
 
+  showNotification($event) {
+    console.log("hello from notification");
+  }
+
   onSubmit() {
     this.error = "";
     this.userService
@@ -42,7 +49,10 @@ export class ConfirmCodeComponent implements OnInit {
       .subscribe((res) => {
         // console.log(res);
         if (res.success) {
-          this.goBack();
+          this.confirmCode.controls["code"].setValue("");
+          this.showSuccessNotification = true;
+          this.successMessage = "Successfully changed phone number.";
+          // this.goBack();
         } else {
           this.error = "Invalid Activation Code";
         }

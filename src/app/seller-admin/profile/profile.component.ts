@@ -26,6 +26,8 @@ export class ProfileComponent implements OnInit {
   prevValue = "";
   type = "";
   message = "";
+  successMessage = "";
+  showSuccessNotification = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -71,7 +73,12 @@ export class ProfileComponent implements OnInit {
     const dialogRef = this.dialog.open(ChangePhonenumberComponent, {
       width: "400px",
       height: "auto",
-      data: { phoneNumber: this.userProfile.phoneNumber },
+      data: {
+        phoneNumber:
+          type == "user"
+            ? this.userProfile.phoneNumber
+            : this.profile.phoneNumber,
+      },
     });
 
     dialogRef.afterClosed().subscribe((phoneNumber) => {
@@ -92,12 +99,15 @@ export class ProfileComponent implements OnInit {
   }
 
   onSubmit() {
+    this.showSuccessNotification = false;
     if (this.profileForm.valid) {
       this.userService.updateSellerProfile(this.profileForm.value).subscribe(
         (res) => {
           if (res.success) {
             this.profile = res.profile;
             this.toggleEdit();
+            this.showSuccessNotification = true;
+            this.successMessage = "Successfully changed profile";
           }
         },
         (err) => console.log(err)
@@ -106,6 +116,7 @@ export class ProfileComponent implements OnInit {
   }
 
   onUserProfileSubmit() {
+    this.showSuccessNotification = false;
     if (this.userProfileForm.valid) {
       this.userService
         .updateProfile({
@@ -119,7 +130,10 @@ export class ProfileComponent implements OnInit {
                 ...this.userProfile,
                 ...this.userProfileForm.value,
               };
+
               this.toggleEdit();
+              this.showSuccessNotification = true;
+              this.successMessage = "Successfully changed account";
             }
           },
           (err) => console.log(err)

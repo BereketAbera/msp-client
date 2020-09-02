@@ -57,3 +57,10 @@
     </div>
   </form>
 </div>
+<app-custom-notification
+  [show]="showSuccessNotification"
+  type="success"
+  [text]="successMessage"
+  callback="goBack"
+>
+</app-custom-notification>
