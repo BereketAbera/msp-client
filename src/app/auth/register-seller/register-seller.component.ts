@@ -12,6 +12,7 @@ import { ZipCode } from "src/app/model/zipCode";
 import { UserService } from "../../service/user.service";
 import { RegistrationCompleteComponent } from "../registration-complete/registration-complete.component";
 import { ZipcodeService } from "./../../service/zipcode.service";
+import { AuthService } from "@app/service/auth.service";
 
 let zipCodeHints = [];
 
@@ -72,10 +73,12 @@ export class RegisterSellerComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private userService: UserService,
+    private authService: AuthService,
     private fb: FormBuilder,
     private zipcodeService: ZipcodeService
   ) {}
   ngOnInit() {
+    this.authService.progressBarActive.next(false);
     this.route.data.subscribe(
       (data: { categories: Category[]; states: State[] }) => {
         // this.categories = data.categories;

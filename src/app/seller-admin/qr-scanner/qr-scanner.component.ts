@@ -121,6 +121,7 @@ export class QrScannerComponent implements OnInit {
       });
       dialogRef.afterClosed().subscribe((result) => {
         if (result) {
+          console.log(result);
           this.transactionService
             .processTransactionQRCdCode({
               code: ordCode,

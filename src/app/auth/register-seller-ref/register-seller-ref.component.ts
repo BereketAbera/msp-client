@@ -1,3 +1,4 @@
+import { AuthService } from "./../../service/auth.service";
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormControl, Validators } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
@@ -65,17 +66,20 @@ export class RegisterSellerRefComponent implements OnInit {
   });
   loading: boolean = false;
   valueSet = false;
+  email = "";
 
   constructor(
     private route: ActivatedRoute,
     public dialog: MatDialog,
     private router: Router,
     private userService: UserService,
+    private authService: AuthService,
     private fb: FormBuilder,
     private zipcodeService: ZipcodeService
   ) {}
 
   ngOnInit() {
+    this.authService.progressBarActive.next(false);
     this.route.data.subscribe(
       (data: { categories: Category[]; states: State[] }) => {
         this.states = data.states;
@@ -88,6 +92,7 @@ export class RegisterSellerRefComponent implements OnInit {
         this.tk = params.tk;
         this.userService.getReferedEmail(this.tk).subscribe((rslt) => {
           this.registrationForm.get("email").setValue(rslt["email"]);
+          this.email = rslt["email"];
         });
       });
 
@@ -168,7 +173,10 @@ export class RegisterSellerRefComponent implements OnInit {
                   RegistrationCompleteComponent,
                   {
                     width: "350px",
-                    data: { msg: "Thank you! You can login to system." },
+                    data: {
+                      msg:
+                        "Thank you! Now please check your email for our email and phone number verfication.",
+                    },
                   }
                 );
                 dialogRef.afterClosed().subscribe((result) => {

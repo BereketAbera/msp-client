@@ -1,3 +1,4 @@
+import { AuthService } from "./../../service/auth.service";
 import { Component, EventEmitter, OnInit, Output } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
@@ -28,6 +29,7 @@ export class RegisterBuyerComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private userService: UserService,
+    private authService: AuthService,
     private fb: FormBuilder,
     private router: Router
   ) {
@@ -59,6 +61,7 @@ export class RegisterBuyerComponent implements OnInit {
     this.showError = false;
   }
   ngOnInit() {
+    this.authService.progressBarActive.next(false);
     this.registrationForm.controls["phoneNumber"].valueChanges
       .pipe((debounceTime(200), switchMap((term) => of(term))))
       .subscribe((res) => this.phoneNumberChange(res));

@@ -102,19 +102,19 @@ export class ShopListComponent implements OnInit, AfterViewInit {
       let status = this.authService.getMyStatus();
       let userStatus = parseInt(status.toString());
       this.router.navigate(["./newshp"], { relativeTo: this.route });
-      if (userStatus == 1)
-        this.router.navigate(["./newshp"], { relativeTo: this.route });
-      else {
-        this.showError = true;
-        this.errors = [
-          "Sorry, your account is either inactive or disabled.Please contact sales@ManagerSpecial.com.",
-        ];
-      }
+      // if (userStatus == 1)
+      //   this.router.navigate(["./newshp"], { relativeTo: this.route });
+      // else {
+      //   this.showError = true;
+      //   this.errors = [
+      //     "Sorry, your account is either inactive or disabled.Please contact sales@ManagerSpecial.com.",
+      //   ];
+      // }
     } catch (err) {
-      this.showError = true;
-      this.errors = [
-        "Sorry, your account is either inactive or disabled.Please contact sales@ManagerSpecial.com.",
-      ];
+      // this.showError = true;
+      // this.errors = [
+      //   "Sorry, your account is either inactive or disabled.Please contact sales@ManagerSpecial.com.",
+      // ];
     }
   }
   loadShopsPage() {
@@ -177,9 +177,7 @@ export class ShopListComponent implements OnInit, AfterViewInit {
               let snackBarRef = this.snackBar.open("Successfuly Removed", "", {
                 duration: 5000,
               });
-              snackBarRef.afterDismissed().subscribe(() => {
-                
-              });
+              snackBarRef.afterDismissed().subscribe(() => {});
               //this.router.navigate(["../"], { relativeTo: this.route });
             } else {
               progressDialogRef.close();
