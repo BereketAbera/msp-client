@@ -161,7 +161,7 @@ export class RegisterSellerComponent implements OnInit {
                     width: "350px",
                     data: {
                       msg:
-                        "Thank you! Now please check your email for our email verfication.",
+                        "Thank you! Now please check your email for our email verification.",
                     },
                   }
                 );

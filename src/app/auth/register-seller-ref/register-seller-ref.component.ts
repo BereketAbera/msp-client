@@ -175,7 +175,7 @@ export class RegisterSellerRefComponent implements OnInit {
                     width: "350px",
                     data: {
                       msg:
-                        "Thank you! Now please check your email for our email and phone number verfication.",
+                        "Thank you! Now please check your email for our email and phone number verification.",
                     },
                   }
                 );

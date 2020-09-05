@@ -37,6 +37,7 @@ export class PublicProductsComponent implements OnInit {
   locationInputActive = false;
   category: Category = new Category();
   categoryId: number;
+  firstTimeLoaded = false;
 
   constructor(
     private winRef: WindowRef,
@@ -61,6 +62,7 @@ export class PublicProductsComponent implements OnInit {
         this.reachedPageEnd = false;
         this.query = response.q;
         this.categoryId = response.categoryId;
+        this.firstTimeLoaded = true;
         this.loadFirstTime();
       },
       (err) => console.log(err)

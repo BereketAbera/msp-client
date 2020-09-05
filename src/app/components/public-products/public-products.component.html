@@ -66,7 +66,7 @@
     content="width=device-width, initial-scale=1.0"
   >
     <div *ngIf="companies?.length > 0" class="products__container">
-      <div style="width: 100%;" *ngFor="let c of companies; let i = index">
+      <div style="width: 100%" *ngFor="let c of companies; let i = index">
         <app-company-products
           class="company_proaduct"
           [index]="i"
@@ -78,7 +78,7 @@
       </div>
     </div>
     <div
-      *ngIf="companies && companies.length == 0"
+      *ngIf="companies && companies.length == 0 && firstTimeLoaded"
       class="products__not-found-container"
     >
       <p class="products__not-found">
@@ -87,7 +87,7 @@
     </div>
   </div>
   <div id="xyze12" #anchor></div>
-  <div style="min-height: 100px; width: 100%;"></div>
+  <div style="min-height: 100px; width: 100%"></div>
 </div>
 <div class="footer">
   <button (click)="gotoCart()" class="floating_cart">
