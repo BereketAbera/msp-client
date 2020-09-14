@@ -62,7 +62,7 @@ export class PublicProductsComponent implements OnInit {
         this.reachedPageEnd = false;
         this.query = response.q;
         this.categoryId = response.categoryId;
-        this.firstTimeLoaded = true;
+
         this.loadFirstTime();
       },
       (err) => console.log(err)
@@ -90,6 +90,7 @@ export class PublicProductsComponent implements OnInit {
           this.query
         )
         .subscribe((company) => {
+          this.firstTimeLoaded = true;
           this.companies = company;
           this.shouldLoad = true;
           this.authService.progressBarActive.next(false);
