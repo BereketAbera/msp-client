@@ -78,9 +78,9 @@ export class SellerDashboardComponent implements OnInit {
     );
   }
 
-  changeDateValue(){
+  changeDateValue() {
     // console.log(this.eDate.value);
-    this.maxDate=this.eDate.value
+    this.maxDate = this.eDate.value;
   }
   revenuChart() {
     this.lables = this.actualRevenuReport.map((value) => {
