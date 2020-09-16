@@ -44,6 +44,7 @@ html {
 
 ::ng-deep .mat-dialog-content {
   font-size: 1.4rem;
+  text-align: center;
 }
 
 @media only screen and (min-width: 320px) {
@@ -157,4 +158,33 @@ html {
 
 .msp-button {
   border-radius: 0rem !important;
+}
+
+.email-support {
+  &__button-container {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 0.5rem;
+    right: 1rem;
+    z-index: 1000;
+  }
+
+  &__button {
+    padding: 6px 12px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 18px;
+    background-color: #f94081;
+    border-radius: 10px;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: 0.2s;
+
+    &:active,
+    &:hover {
+      transform: scale(0.9);
+    }
+  }
 }
