@@ -90,7 +90,7 @@ export class RegisterBuyerRefComponent implements OnInit {
         this.loading = true;
         return this.userService.registerByrUser(usrInfo).subscribe((res) => {
           // console.log(res);
-          this.loading = false;
+          this.loading = false;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
           window.scrollTo(0, 0);
           if (res["success"]) {
             const dialogRef = this.dialog.open(RegistrationCompleteComponent, {
