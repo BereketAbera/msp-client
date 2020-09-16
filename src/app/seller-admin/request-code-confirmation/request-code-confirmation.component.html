@@ -3,17 +3,26 @@
   <mat-dialog-content class="mat-typograpdhy">
     <div *ngIf="data.success">
       <P class="info_name">{{ data.firstName }} {{ data.lastName }}</P>
-      <p class="pro_name">{{ data.productName }}    <span [style.background]="
-       data.status == 'ACTIVE'
-          ? 'green'
-          :data.status == 'PENDING'
-          ? 'orange'
-          : 'red'
-      " class="status">  {{ data.status }} </span></p>
+      <p class="pro_name">
+        {{ data.productName }}
+        <span
+          [style.background]="
+            data.status == 'OK'
+              ? 'green'
+              : data.status == 'PENDING'
+              ? 'orange'
+              : 'red'
+          "
+          class="status"
+        >
+          {{ data.status == "OK" ? "ACTIVE" : data.status }}
+        </span>
+      </p>
       <p class="content">Quantity: {{ data.quantity }}</p>
-      <p class="content">Discounted Price: {{ data.discountPrice | currency }}/unit + Tax</p>
+      <p class="content">
+        Discounted Price: {{ data.discountPrice | currency }}/unit + Tax
+      </p>
       <p class="content-italic">
-       
         {{ data.status == "PENDING" ? "Pick Up time has not arrived" : "" }}
       </p>
     </div>

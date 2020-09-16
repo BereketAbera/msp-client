@@ -37,6 +37,7 @@ export class PublicProductsComponent implements OnInit {
   locationInputActive = false;
   category: Category = new Category();
   categoryId: number;
+  firstTimeLoaded = false;
 
   constructor(
     private winRef: WindowRef,
@@ -49,6 +50,7 @@ export class PublicProductsComponent implements OnInit {
   ngOnInit() {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
+    this.companies = [];
 
     this.address = JSON.parse(localStorage.getItem("client_address"));
     this.searchInput.setValue(this.address?.CityName || "Your Location");
@@ -60,6 +62,7 @@ export class PublicProductsComponent implements OnInit {
         this.reachedPageEnd = false;
         this.query = response.q;
         this.categoryId = response.categoryId;
+
         this.loadFirstTime();
       },
       (err) => console.log(err)
@@ -69,9 +72,9 @@ export class PublicProductsComponent implements OnInit {
       this.categories = data.categories;
       // console.log(data.categories);
     });
-    if (!this.categoryId) {
-      this.loadFirstTime();
-    }
+    // if (!this.categoryId) {
+    //   this.loadFirstTime();
+    // }
   }
 
   loadFirstTime() {
@@ -87,9 +90,11 @@ export class PublicProductsComponent implements OnInit {
           this.query
         )
         .subscribe((company) => {
+          this.firstTimeLoaded = true;
           this.companies = company;
           this.shouldLoad = true;
           this.authService.progressBarActive.next(false);
+          this.page = this.page + 1;
           this.loadJobs();
         });
     }
@@ -123,7 +128,7 @@ export class PublicProductsComponent implements OnInit {
         this.authService.progressBarActive.next(true);
         this.prdctService
           .listCompaniesProducts(
-            ++this.page,
+            this.page,
             this.address.Latitude,
             this.address.Longitude,
             this.categoryId,
@@ -132,14 +137,13 @@ export class PublicProductsComponent implements OnInit {
           .subscribe((company) => {
             let l = this.companies.length;
             this.shouldLoad = true;
-            for (let i = 0; i < company.length; i++) {
-              this.companies.push(company[i]);
-            }
+            this.companies = [...this.companies, ...company];
             let l2 = this.companies.length;
             if (l == l2) {
               this.reachedPageEnd = true;
             }
             this.authService.progressBarActive.next(false);
+            this.page = this.page + 1;
           });
       }
     };

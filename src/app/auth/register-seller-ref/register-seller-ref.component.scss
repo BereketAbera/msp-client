@@ -7,6 +7,29 @@ example-container {
   padding: 66px;
   border-radius: 8px;
 }
+
+.header {
+  &__container {
+    width: 100%;
+    padding: 0.5rem;
+    text-align: center;
+  }
+
+  &__text,
+  &__small-text {
+    font-size: 1.6rem;
+    text-transform: uppercase;
+    color: #555;
+    font-weight: 600;
+  }
+
+  &__small-text {
+    font-size: 1.1rem;
+    text-transform: none;
+    color: #777;
+  }
+}
+
 .errorCnt {
   width: 100%;
   border: 2px solid red;

@@ -47,6 +47,10 @@ import { ShopListComponent } from "./shop-list/shop-list.component";
 import { StaffsComponent } from "./staffs/staffs.component";
 import { TransactionsComponent } from "./transactions/transactions.component";
 import { UploadImgComponent } from "./upload-img/upload-img.component";
+import { WaitingAdminComponent } from "./waiting-admin/waiting-admin.component";
+import { ChangePhonenumberComponent } from "./change-phonenumber/change-phonenumber.component";
+import { ConfirmCodeComponent } from "./confirm-code/confirm-code.component";
+import { UserProfileResolverService } from "@app/service/user-profile-resolver.service";
 
 @NgModule({
   imports: [
@@ -83,6 +87,9 @@ import { UploadImgComponent } from "./upload-img/upload-img.component";
     AccessDeniedComponent,
     EditShopComponent,
     ProfileComponent,
+    WaitingAdminComponent,
+    ChangePhonenumberComponent,
+    ConfirmCodeComponent,
   ],
   entryComponents: [
     RequestConfirmationComponent,
@@ -108,6 +115,7 @@ import { UploadImgComponent } from "./upload-img/upload-img.component";
     SellerSummaryResolverService,
     RevenuRprtResolverService,
     StateService,
+    UserProfileResolverService,
   ],
 })
 export class SellerModule {}

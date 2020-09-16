@@ -1,3 +1,4 @@
+import { AuthService } from "./../../service/auth.service";
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormControl, Validators } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
@@ -31,7 +32,7 @@ export class RegisterSellerRefComponent implements OnInit {
   states: State[];
   prevValue = "";
   submitBtnStyle = {
-    btn: { width: '100%',  fontSize: '2rem',height:'4rem' },
+    btn: { width: "100%", fontSize: "2rem", height: "4rem" },
   };
   registrationForm = this.fb.group({
     firstName: ["", Validators.required],
@@ -65,17 +66,20 @@ export class RegisterSellerRefComponent implements OnInit {
   });
   loading: boolean = false;
   valueSet = false;
+  email = "";
 
   constructor(
     private route: ActivatedRoute,
     public dialog: MatDialog,
     private router: Router,
     private userService: UserService,
+    private authService: AuthService,
     private fb: FormBuilder,
     private zipcodeService: ZipcodeService
   ) {}
 
   ngOnInit() {
+    this.authService.progressBarActive.next(false);
     this.route.data.subscribe(
       (data: { categories: Category[]; states: State[] }) => {
         this.states = data.states;
@@ -88,6 +92,7 @@ export class RegisterSellerRefComponent implements OnInit {
         this.tk = params.tk;
         this.userService.getReferedEmail(this.tk).subscribe((rslt) => {
           this.registrationForm.get("email").setValue(rslt["email"]);
+          this.email = rslt["email"];
         });
       });
 
@@ -132,27 +137,64 @@ export class RegisterSellerRefComponent implements OnInit {
         usrInfo.phoneNumber = this.phoneChangeFormat(phoneNumber.value, "db");
         // usrInfo.phoneNumber = "+251931644114"
         this.loading = true;
-        return this.userService.registerSlrUser(usrInfo).subscribe((res) => {
-          this.loading = false;
-          window.scrollTo(0, 0);
-          if (res["success"]) {
-            const dialogRef = this.dialog.open(RegistrationCompleteComponent, {
-              width: "350px",
-              data: { msg: "Thank you! You can login to system." },
-            });
-            dialogRef.afterClosed().subscribe((result) => {
-              this.router
-                .navigateByUrl("/RefrshComponent", { skipLocationChange: true })
-                .then(() => this.router.navigate(["/login/seller"]));
-            });
+        return this.userService
+          .registerSlrUser(usrInfo)
+          .subscribe((res: any) => {
+            if (res.user && res.user.applicationName) {
+              const dialogRef = this.dialog.open(
+                RegistrationCompleteComponent,
+                {
+                  width: "350px",
+                  data: {
+                    msg: `The email ${
+                      res.user.email
+                    } is already registered in ${
+                      res.user.applicationName
+                    }.COM as ${
+                      res.user.role == "STAFFER"
+                        ? "EMPLOYER STAFF"
+                        : res.user.role
+                    }. You can use this email to sign in to ManagerSpecial and become a ${
+                      res.user.role == "APPLICANT" ? "BUYER" : "SELLER"
+                    }. Please try logging in or use another email.`,
+                  },
+                }
+              );
+              dialogRef.afterClosed().subscribe((result) => {
+                this.router.navigate([`/login/seller`], {
+                  queryParams: { email: res.user.email, tk: this.tk },
+                });
+              });
+            } else {
+              this.loading = false;
+              window.scrollTo(0, 0);
+              if (res["success"]) {
+                const dialogRef = this.dialog.open(
+                  RegistrationCompleteComponent,
+                  {
+                    width: "350px",
+                    data: {
+                      msg:
+                        "Thank you! Now please check your email for our email and phone number verification.",
+                    },
+                  }
+                );
+                dialogRef.afterClosed().subscribe((result) => {
+                  this.router
+                    .navigateByUrl("/RefrshComponent", {
+                      skipLocationChange: true,
+                    })
+                    .then(() => this.router.navigate(["/login/seller"]));
+                });
 
-            //this.registeredSlr.emit("seller");
-          } else {
-            this.showError = true;
-            this.errors = res["messages"];
-            window.scrollTo(0, 0);
-          }
-        });
+                //this.registeredSlr.emit("seller");
+              } else {
+                this.showError = true;
+                this.errors = res["messages"];
+                window.scrollTo(0, 0);
+              }
+            }
+          });
       } else {
         window.scrollTo(0, 0);
         this.showError = true;

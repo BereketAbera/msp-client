@@ -1,8 +1,10 @@
 <div class="container">
+  <div class="header__container">
+    <h5 class="header__small-text">WELCOME {{ email }}</h5>
+    <h3 class="header__text">Register As An Applicant</h3>
+  </div>
   <div *ngIf="showError" class="errorCntr">
-    <button class="errClsBtn" (click)="close()">
-      &#215;
-    </button>
+    <button class="errClsBtn" (click)="close()">&#215;</button>
     <ul>
       <li *ngFor="let error of errors">
         {{ error }}
@@ -10,8 +12,8 @@
     </ul>
   </div>
   <div class="container">
-    <mat-card class="card">
-      <div class="card__tab">
+    <mat-card>
+      <div>
         <form
           class="form"
           [formGroup]="registrationForm"
@@ -62,7 +64,7 @@
             </table>
             <mat-form-field class="example-full-width">
               <mat-label>Phone Number</mat-label>
-              <span style="color: #555;" matPrefix>+1&nbsp;</span>
+              <span style="color: #555" matPrefix>+1&nbsp;</span>
               <input
                 type="text"
                 matInput
@@ -143,9 +145,9 @@
               </span>
             </mat-form-field>
             <br />
-       
+
             <mat-checkbox
-              style="color: gray; font-size: 16px;"
+              style="color: gray; font-size: 16px"
               matInput
               formControlName="agreed"
               >I have read and agreed to the &nbsp;<a
@@ -165,7 +167,7 @@
             </button> -->
 
             <auth-custom-submit
-            [styleObject]="submitBtnStyle"
+              [styleObject]="submitBtnStyle"
               class="msp-button example-full-width"
               [loading]="loading"
               text="Log In"

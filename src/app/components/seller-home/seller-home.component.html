@@ -81,14 +81,14 @@
       <div class="home__step">
         <div
           class="home__step-icon"
-          style="cursor: pointer;"
+          style="cursor: pointer"
           routerLink="/signup-seller"
         >
           <i class="fad fa-french-fries"></i>
         </div>
         <h1
           class="home__step-header"
-          style="cursor: pointer;"
+          style="cursor: pointer"
           routerLink="/signup-seller"
         >
           Become a Seller
@@ -105,13 +105,13 @@
             #videoPlayer
           >
             <source
-              src="https://msp-prd.s3-us-west-2.amazonaws.com/videos/MSP_Seller_Intro.mp4"
+              src="https://msp-seller-1.s3.amazonaws.com/seller-intro.mp4"
               type="video/mp4"
             />
             <source src="video.ogg" type="video/ogg" />
             <source src="video.webm" type="video/webm" />
             <object
-              data="https://msp-prd.s3-us-west-2.amazonaws.com/videos/MSP_Seller_Intro.mp4"
+              data="https://msp-seller-1.s3.amazonaws.com/seller-intro.mp4"
               width="340"
               height="175"
             >
@@ -123,9 +123,7 @@
             <img src="../../../assets/image/vidoeicon.png" alt="" />
           </div>
         </div>
-        <p class="home__step-description">
-          No Membership Fee
-        </p>
+        <p class="home__step-description">No Membership Fee</p>
       </div>
       <div class="home__step">
         <div class="home__step-icon"><i class="fad fa-user-friends"></i></div>
@@ -135,7 +133,7 @@
         </p>
         <span
           (click)="displayFullText()"
-          style="font-size: 1.4rem; color: #f94081; cursor: pointer;"
+          style="font-size: 1.4rem; color: #f94081; cursor: pointer"
           >{{ smallTextDisplayed ? "Read More" : "Read Less" }}</span
         >
       </div>

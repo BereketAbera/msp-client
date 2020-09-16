@@ -1,5 +1,5 @@
 <div class="main-container">
-  <h3 class="title">Users Register With Code {{ registrationType }}</h3>
+  <h3 class="title">Users Registered With Code {{ registrationType }}</h3>
   <div *ngIf="dataSource && dataSource.length > 0">
     <mat-table class="mat-elevation-z8" [dataSource]="dataSource">
       <ng-container matColumnDef="name">
@@ -63,6 +63,6 @@
     "
     *ngIf="dataSource && dataSource.length == 0"
   >
-    No Registered Users
+    No User Signups
   </div>
 </div>

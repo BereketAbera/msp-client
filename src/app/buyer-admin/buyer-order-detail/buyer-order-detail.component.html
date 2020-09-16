@@ -15,7 +15,9 @@
           </span>
           <span class="name">
             <i class="fad fa-phone-alt table__icon"></i>
-            <span class="name"> {{ supplier.phoneNumber }} </span>
+            <span class="name">
+              {{ phoneChangeFormat(supplier.phoneNumber, "form") }}
+            </span>
           </span>
           <span class="name">
             <i class="fad fa-location table__icon"></i>
@@ -45,7 +47,8 @@
           <span class="name">
             <i class="fad fa-stopwatch table__icon"></i>
             <span class="name">
-              <b>Reservation Date :</b> {{ order.purchaseTime | date: "MMM d, y" }}
+              <b>Reservation Date :</b>
+              {{ order.purchaseTime | date: "MMM d, y" }}
             </span>
           </span>
           <span class="name">

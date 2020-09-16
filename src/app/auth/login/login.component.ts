@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
-import { FormBuilder, Validators } from "@angular/forms";
+import { FormBuilder, Validators, FormGroup } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { environment } from "../../../environments/environment";
 import { AuthService } from "../../service/auth.service";
+import { MatDialog } from "@angular/material/dialog";
+import { ConfirmTermsComponent } from "../confirm-terms/confirm-terms.component";
 @Component({
   selector: "app-login",
   templateUrl: "./login.component.html",
@@ -17,24 +19,38 @@ export class LoginComponent implements OnInit {
   showError: boolean = false;
   type = "normal";
   submitBtnStyle = {
-    btn: { width: '100%',  fontSize: '2rem',height:'4rem' },
+    btn: { width: "100%", fontSize: "2rem", height: "4rem" },
   };
-  loginForm = this.fb.group({
-    email: ["", [Validators.required, Validators.minLength(3)]],
-    password: ["", Validators.required],
-  });
+  loginForm: FormGroup;
   loading = false;
+
+  confirmTerms = false;
+  remoteUser = {};
+  email = "";
+  tk = "";
+
   constructor(
     private authService: AuthService,
     private fb: FormBuilder,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit() {
     this.authService.progressBarActive.next(false);
     this.type = this.route.snapshot.paramMap.get("type");
+    // this.email = this.route.snapshot.paramMap.get("email") || "";
+    this.route.queryParamMap.subscribe((params) => {
+      this.email = params.get("email");
+      this.tk = params.get("tk");
+    });
+    // console.log(this.email);
     if (!this.type) this.type = "normal";
+    this.loginForm = this.fb.group({
+      email: [this.email, [Validators.required, Validators.minLength(3)]],
+      password: ["", Validators.required],
+    });
   }
   getErrorMessage() {
     return this.loginForm.get("email").hasError("required")
@@ -71,12 +87,17 @@ export class LoginComponent implements OnInit {
     this.showError = false;
     this.loading = true;
     return this.authService.login(this.loginForm.value).subscribe(
-      (res) => {
+      (res: any) => {
         this.loading = false;
-        this.authService.progressBarActive.next(true);
-        if (this.authService.redirectURL) {
-          this.router.navigateByUrl(this.authService.redirectURL);
-        } else this.router.navigate([this.authService.defaultNavigationURL]);
+        if (res && res.success) {
+          this.remoteUser = res;
+          this.openDialog(res);
+        } else {
+          this.authService.progressBarActive.next(true);
+          if (this.authService.redirectURL) {
+            this.router.navigateByUrl(this.authService.redirectURL);
+          } else this.router.navigate([this.authService.defaultNavigationURL]);
+        }
       },
       (error) => {
         this.showError = true;
@@ -84,5 +105,53 @@ export class LoginComponent implements OnInit {
         this.loading = false;
       }
     );
+  }
+
+  openDialog(res): void {
+    const dialogRef = this.dialog.open(ConfirmTermsComponent, {
+      width: "700px",
+      height: "auto",
+      data: { confirmTerms: this.confirmTerms, user: res },
+    });
+
+    if (res.role == "APPLICANT") {
+      dialogRef.afterClosed().subscribe((result) => {
+        if (result) {
+          this.authService
+            .localApplicantSignUp({
+              ...this.remoteUser,
+              agreed: true,
+              tk: this.tk,
+            })
+            .subscribe(
+              (res) => {
+                this.authService.progressBarActive.next(true);
+                if (this.authService.redirectURL) {
+                  this.router.navigateByUrl(this.authService.redirectURL);
+                } else
+                  this.router.navigate([this.authService.defaultNavigationURL]);
+              },
+              (err) => console.log(err)
+            );
+        }
+      });
+    } else {
+      dialogRef.afterClosed().subscribe((result) => {
+        if (result) {
+          this.authService
+            .localEmployerSignUp({ ...this.remoteUser, ...result, tk: this.tk })
+            .subscribe(
+              (res) => {
+                this.authService.progressBarActive.next(true);
+                if (this.authService.redirectURL) {
+                  this.router.navigateByUrl(this.authService.redirectURL);
+                } else
+                  this.router.navigate([this.authService.defaultNavigationURL]);
+              },
+              (err) => console.log(err)
+            );
+        }
+      });
+    }
   }
 }

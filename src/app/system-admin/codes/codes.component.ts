@@ -60,7 +60,7 @@ export class CodesComponent implements OnInit {
   }
 
   generateNewCode() {
-    if (!isNaN(this.referredCredit.value)) {
+    if (!isNaN(this.referredCredit.value) && this.referredCredit.value > 0) {
       this.buttonDisable = true;
       this.referralService
         .generateNewAdminCode(this.referredCredit.value)

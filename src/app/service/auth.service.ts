@@ -35,13 +35,16 @@ export class AuthService {
       .post<HttpResponse<any>>(authApi, useCredential, { observe: "response" })
       .pipe(
         tap((res) => {
-          if (res.body["success"]) {
+          if (res.body["success"] && res.body["idToken"]) {
             this.newUser = true;
             this.setSession(res.body);
           }
         }),
-        map((res) => {
+        map((res: any) => {
           if (!res.body["success"]) throw res.body;
+          if (res.body.applicationName) {
+            return res.body;
+          }
         }),
         shareReplay()
       );
@@ -83,6 +86,11 @@ export class AuthService {
     localStorage.setItem("status", authResult.status);
     localStorage.setItem("email", authResult.email);
     localStorage.setItem("name", authResult.name);
+    localStorage.setItem("sellerStatus", authResult.sellerStatus || null);
+  }
+
+  getSellerStatus() {
+    return localStorage.getItem("sellerStatus") || null;
   }
   logout() {
     this.redirectURL = null;
@@ -95,6 +103,7 @@ export class AuthService {
     localStorage.removeItem("status");
     localStorage.removeItem("email");
     localStorage.removeItem("name");
+    localStorage.removeItem("sellerStatus");
   }
 
   public isLoggedIn() {
@@ -209,5 +218,46 @@ export class AuthService {
 
   updateClientLocation(obj) {
     this.clientLocation = obj;
+  }
+
+  localApplicantSignUp(user) {
+    return this.http
+      .post(environment.APIEndpoint + "auth/local_applicant_signup", user)
+      .pipe(
+        tap((res: any) => {
+          // console.log(res);
+          if (res["success"] && res["idToken"]) {
+            this.newUser = true;
+            this.setSession(res);
+          }
+        }),
+        map((res: any) => {
+          if (!res["success"]) throw res;
+          if (res.applicationName) {
+            return res;
+          }
+        })
+      );
+  }
+
+  localEmployerSignUp(user) {
+    // console.log(user);
+    return this.http
+      .post(environment.APIEndpoint + "auth/local_employer_signup", user)
+      .pipe(
+        tap((res: any) => {
+          // console.log(res);
+          if (res["success"] && res["idToken"]) {
+            this.newUser = true;
+            this.setSession(res);
+          }
+        }),
+        map((res: any) => {
+          if (!res["success"]) throw res;
+          if (res.applicationName) {
+            return res;
+          }
+        })
+      );
   }
 }

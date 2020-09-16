@@ -202,8 +202,8 @@ export class ProductsComponent implements OnInit, AfterViewInit {
 
   removeProduct(product: Product) {
     const dialogRef = this.dialog.open(SaveConfirmationDialogComponent, {
-      width: "250px",
-      height: "300px",
+      width: "400px",
+      height: "auto",
       data: {
         title: "",
         question:
@@ -232,9 +232,7 @@ export class ProductsComponent implements OnInit, AfterViewInit {
               let snackBarRef = this.snackBar.open("Successfuly Removed", "", {
                 duration: 5000,
               });
-              snackBarRef.afterDismissed().subscribe(() => {
-               
-              });
+              snackBarRef.afterDismissed().subscribe(() => {});
               //this.router.navigate(["../"], { relativeTo: this.route });
             } else {
               progressDialogRef.close();

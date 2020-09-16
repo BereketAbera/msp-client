@@ -1,3 +1,5 @@
+import { ConfirmCodeComponent } from "./confirm-code/confirm-code.component";
+import { WaitingAdminComponent } from "./waiting-admin/waiting-admin.component";
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { FeaturesResolverService } from "../service/features-resolver.service";
@@ -33,6 +35,7 @@ import { ShopListComponent } from "./shop-list/shop-list.component";
 import { StaffsComponent } from "./staffs/staffs.component";
 import { TransactionsComponent } from "./transactions/transactions.component";
 import { UploadImgComponent } from "./upload-img/upload-img.component";
+import { UserProfileResolverService } from "@app/service/user-profile-resolver.service";
 
 const sellerRoutes: Routes = [
   {
@@ -153,7 +156,10 @@ const sellerRoutes: Routes = [
         path: "profile",
         canActivate: [SellerGuard],
         component: ProfileComponent,
-        resolve: { profile: ProfileResolverService },
+        resolve: {
+          profile: ProfileResolverService,
+          userProfile: UserProfileResolverService,
+        },
       },
       {
         path: "staffs",
@@ -187,6 +193,14 @@ const sellerRoutes: Routes = [
       {
         path: "access_denied",
         component: AccessDeniedComponent,
+      },
+      {
+        path: "waiting_admin_approval",
+        component: WaitingAdminComponent,
+      },
+      {
+        path: "confirm_phonenumber_code",
+        component: ConfirmCodeComponent,
       },
       { path: "**", redirectTo: "", pathMatch: "full" },
     ],

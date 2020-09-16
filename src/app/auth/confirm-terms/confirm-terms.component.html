@@ -1,0 +1,157 @@
+<div class="dialog__container">
+  <div class="heading">
+    <img class="heading__image" src="assets/image/msp-icon.png" alt="MSP" />
+    <img
+      *ngIf="data.user.applicationName == 'TRABAHANAP'"
+      class="heading__image"
+      src="assets/image/th_logo.png"
+      alt="TRABAHANAP"
+    />
+    <img
+      *ngIf="data.user.applicationName == 'JOBDOR'"
+      class="heading__image"
+      src="assets/image/jobdor.png"
+      alt="JOBDOR"
+    />
+  </div>
+  <div>
+    <p class="dialog__content">
+      The email <strong>{{ data.user.email }}</strong> is already registered in
+      <strong>{{ data.user.applicationName }}.COM</strong> as
+      <strong>{{
+        data.user.role == "STAFFER" ? "EMPLOYER STAFF" : data.user.role
+      }}</strong
+      >. You can use this email to sign in to
+      <strong>ManagerSpecial</strong> and become a
+      <strong>{{ data.user.role == "APPLICANT" ? "BUYER" : "SELLER" }}</strong
+      >. Otherwise, please use a different email to registered as a buyer or
+      seller.
+    </p>
+    <p *ngIf="data.user.role == 'APPLICANT'" class="dialog__content">
+      To continue, please read the terms of use and privacy statement.
+    </p>
+    <p *ngIf="!(data.user.role == 'APPLICANT')" class="dialog__content">
+      To continue, please fill the following information.
+    </p>
+    <mat-checkbox
+      class="dialog__checkbox"
+      name="confirmTerms"
+      [(ngModel)]="data.confirmTerms"
+      *ngIf="data.user.role == 'APPLICANT'"
+      >I have read and agreed to the &nbsp;<a
+        target="_blank"
+        routerLink="/buyer_terms"
+      >
+        Buyer's Terms of Use</a
+      >&nbsp;and &nbsp;
+      <a target="_blank" routerLink="/privacy">
+        Privacy Statement.</a
+      ></mat-checkbox
+    >
+    <form
+      [formGroup]="registrationForm"
+      *ngIf="!(data.user.role == 'APPLICANT')"
+      style="margin: 2rem 0rem"
+    >
+      <div class="seller__address">
+        <mat-form-field class="seller__input zipstatecity">
+          <input
+            matInput
+            maxlength="45"
+            placeholder="City"
+            formControlName="city"
+            required
+          />
+        </mat-form-field>
+        <mat-form-field class="seller__input zipstatecity">
+          <input
+            matInput
+            type="tel"
+            placeholder="Zip / Postal Code"
+            matInput
+            [matAutocomplete]="auto"
+            formControlName="zipcode"
+            (keydown)="checkInput($event)"
+            (change)="
+              registrationForm.controls['zipcode'].setValue($event.target.value)
+            "
+            minlength="5"
+            maxlength="5"
+            required
+          />
+          <mat-error *ngIf="registrationForm.controls.zipcode.invalid"
+            >Zip code is not valid</mat-error
+          >
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option
+              *ngFor="let result of zipCodeHints"
+              [value]="result.ZIPCode"
+              (click)="zipCodeSelected(result)"
+            >
+              <span>{{ result.ZIPCode }}</span>
+              <small>
+                | {{ result.CountyName }} {{ result.CityName }}
+                {{ result.StateAbbr }}</small
+              >
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+
+        <mat-form-field
+          *ngIf="registrationForm.get('state').value"
+          class="seller__input zipstatecity"
+        >
+          <input
+            matInput
+            placeholder="State"
+            formControlName="state"
+            readonly
+          />
+        </mat-form-field>
+        <!-- <mat-form-field class="seller__input zipstatecity">
+          <mat-select
+            placeholder="State"
+            formControlName="state"
+            required
+            disabled
+          >
+            <mat-option *ngFor="let state of states" [value]="state.name">
+              {{ state.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field> -->
+      </div>
+      <mat-checkbox class="dialog__checkbox" formControlName="agreed"
+        >I have read and agreed to the &nbsp;
+        <a target="_blank" routerLink="/seller_terms"> Seller's Terms of Use</a
+        >&nbsp; and &nbsp;
+        <a target="_blank" routerLink="/privacy"
+          >Privacy Statement.</a
+        ></mat-checkbox
+      >
+    </form>
+  </div>
+  <div class="dialog__footer">
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button
+      *ngIf="data.user.role == 'APPLICANT'"
+      [disabled]="!data.confirmTerms"
+      mat-button
+      [mat-dialog-close]="data.confirmTerms"
+      cdkFocusInitial
+    >
+      Submit
+    </button>
+    <button
+      *ngIf="!(data.user.role == 'APPLICANT')"
+      [disabled]="
+        registrationForm.invalid || !registrationForm.controls['agreed'].value
+      "
+      mat-button
+      [mat-dialog-close]="registrationForm.value"
+      cdkFocusInitial
+    >
+      Submit
+    </button>
+  </div>
+</div>

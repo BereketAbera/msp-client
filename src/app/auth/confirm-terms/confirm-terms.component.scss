@@ -1,0 +1,77 @@
+.heading {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+
+  &__image {
+    height: 4rem;
+    margin: 1rem;
+  }
+}
+
+.dialog {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__content {
+    width: 100%;
+    margin: 1rem 0rem;
+    font-size: 1.5rem;
+    color: #333;
+  }
+
+  &__footer {
+    align-self: flex-end;
+    margin-top: 1rem;
+  }
+
+  &__checkbox {
+    color: #333;
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    text-align: justify;
+    line-height: 2;
+  }
+}
+.seller {
+  &__address {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__input {
+    width: 100%;
+    font-size: 1.3rem;
+  }
+}
+
+.zipstatecity {
+  &:not(:last-child) {
+    margin-right: 1rem;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .seller {
+    &__address {
+      flex-direction: row;
+      justify-content: flex-start;
+    }
+
+    &__input {
+      width: 30%;
+    }
+  }
+  .dialog {
+    &__content {
+      font-size: 1.2rem;
+    }
+
+    &__checkbox {
+      font-size: 1.2rem;
+    }
+  }
+}
