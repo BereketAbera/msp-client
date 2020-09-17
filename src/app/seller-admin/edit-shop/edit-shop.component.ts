@@ -113,8 +113,7 @@ export class EditShopComponent implements OnInit {
           ),
         })
         .subscribe((res) => {
-          if (res["success"])
-            this.router.navigate(["../../"], { relativeTo: this.route });
+          if (res["success"]) this.location.back();
           else {
             this.showError = true;
             this.errors = res["messages"];

@@ -1,3 +1,4 @@
+import { UserService } from "./service/user.service";
 import { HttpClientModule } from "@angular/common/http";
 import { APP_INITIALIZER, NgModule } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
@@ -104,6 +105,7 @@ import { EditConfigModalComponent } from "./system-admin/edit-config-modal/edit-
     WindowRef,
     httpInterceptorProviders,
     ConfiguartionService,
+    UserService,
     {
       provide: APP_INITIALIZER,
       useFactory: (configService: ConfiguartionService) => () =>

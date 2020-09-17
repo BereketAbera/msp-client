@@ -1,3 +1,5 @@
+import { UserService } from "./service/user.service";
+import { AuthService } from "./service/auth.service";
 import { Component } from "@angular/core";
 import { VERSION } from "@angular/flex-layout";
 import {
@@ -19,12 +21,21 @@ export class AppComponent {
   version = VERSION.full;
 
   routing: boolean;
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private userService: UserService
+  ) {
+    if (this.authService.isSellerLoggedIn()) {
+      this.userService.getSellerProfile().subscribe((res) => {
+        // console.log(res);
+        this.authService.setStatus(res.status);
+      });
+    }
     this.router.events.subscribe((event: Event) => {
       switch (true) {
         case event instanceof NavigationStart: {
           this.routing = true;
-          window.scrollTo(0, 0);
           break;
         }
         case event instanceof NavigationEnd:
