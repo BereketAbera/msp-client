@@ -148,7 +148,7 @@
 
 .order_service {
   position: absolute;
-  bottom: -8rem;
+  bottom: -3rem;
   font-size: 1.7rem;
   color: #555;
   display: flex;
@@ -205,7 +205,7 @@
 
 @media only screen and (min-width: 600px) {
   .order_service {
-    bottom: -6rem;
+    bottom: -4rem;
   }
   .orders__container {
     width: 90%;
