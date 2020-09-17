@@ -38,9 +38,7 @@
           routerLink="/login"
           class="header__desktop__login-container"
         >
-          <button class="header__desktop__login-button">
-            LOG IN
-          </button>
+          <button class="header__desktop__login-button">LOG IN</button>
         </div>
         <div
           *ngIf="!authService.isLoggedIn()"
@@ -118,12 +116,10 @@
       <div
         *ngIf="authService.isLoggedIn()"
         class="header__desktop__right"
-        style="justify-content: flex-end;"
+        style="justify-content: flex-end"
       >
         <div routerLink="/tlgu-byr" class="header__desktop__login-container">
-          <button class="header__desktop__login-button">
-            My Account
-          </button>
+          <button class="header__desktop__login-button">My Account</button>
         </div>
       </div>
     </div>
@@ -188,4 +184,9 @@
       >{{ category.name }}</span
     >
   </div>
+</div>
+<div class="email-support__button-container">
+  <a href="mailto:support@managerspecial.com" class="email-support__button"
+    ><i class="fad fa-envelope-square"></i
+  ></a>
 </div>
