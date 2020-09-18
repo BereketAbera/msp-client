@@ -33,7 +33,7 @@ export class CartComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    window.scrollTo(0, 0);
+    // window.scrollTo(0, 0);
     this.getCartProduct();
     this.getTotalPrice();
     if (this.cartService.isCartExpired()) {
@@ -45,7 +45,7 @@ export class CartComponent implements OnInit {
       if (rmvRes["success"]) {
         this.cartService.removeLocalCartProduct(product);
         this.getCartProduct();
-        window.scrollTo(0, 0);
+        // window.scrollTo(0, 0);
       }
     });
   }

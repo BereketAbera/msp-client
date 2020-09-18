@@ -31,6 +31,7 @@ export class StaffsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    // window.scrollTo(0, 0);
     this.route.data.subscribe(({ staff }) => {
       this.dataSource = staff.staffs.row;
       this.count = staff.staffs.count;

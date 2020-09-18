@@ -37,6 +37,7 @@ export class ReferStatusComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngOnInit() {
+    // window.scrollTo(0, 0);
     this.dataSource = new RefersDataSource(this.userService);
     this.dataSource.loadRefers("", "asc", 0, 5);
     // console.log(this.dataSource)

@@ -68,6 +68,7 @@ export class DealDetailComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    // window.scrollTo(0, 0);
     let takeOut = this.route.snapshot.queryParamMap.get("takeOut");
     let quantity = this.route.snapshot.queryParamMap.get("quantity");
     let specialRequirements = this.route.snapshot.queryParamMap.get(

@@ -28,6 +28,7 @@ export class GalleryComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    // window.scrollTo(0, 0);
     this.route.data.subscribe((data: { pictures: Picture[] }) => {
       this.pictures = data.pictures;
       // this.prepareOddEvenPicture();

@@ -89,6 +89,10 @@ export class AuthService {
     localStorage.setItem("sellerStatus", authResult.sellerStatus || null);
   }
 
+  setStatus(status) {
+    localStorage.setItem("sellerStatus", status);
+  }
+
   getSellerStatus() {
     return localStorage.getItem("sellerStatus") || null;
   }

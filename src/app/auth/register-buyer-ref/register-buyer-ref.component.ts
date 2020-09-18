@@ -98,7 +98,7 @@ export class RegisterBuyerRefComponent implements OnInit {
           .subscribe((res: any) => {
             // console.log(res);
             this.loading = false;
-            window.scrollTo(0, 0);
+            // window.scrollTo(0, 0);
             if (res["success"]) {
               if (res.user && res.user.applicationName) {
                 const dialogRef = this.dialog.open(
@@ -152,12 +152,12 @@ export class RegisterBuyerRefComponent implements OnInit {
       } else {
         this.showError = true;
         this.errors = ["Please agree to the buyer's terms of use and privacy."];
-        window.scrollTo(0, 0);
+        // window.scrollTo(0, 0);
       }
     } else {
       this.showError = true;
       this.errors = ["Invalid input! Check again."];
-      window.scrollTo(0, 0);
+      // window.scrollTo(0, 0);
     }
   }
   openTerms() {}

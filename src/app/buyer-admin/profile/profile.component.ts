@@ -31,6 +31,7 @@ export class ProfileComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    // window.scrollTo(0, 0);
     this.route.data.subscribe(({ profile }) => {
       this.profile = profile;
     });

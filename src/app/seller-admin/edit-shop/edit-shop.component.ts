@@ -99,7 +99,7 @@ export class EditShopComponent implements OnInit {
   }
   onSubmit() {
     // console.log(this.shopForm.value);
-    window.scrollTo(0, 0);
+    // window.scrollTo(0, 0);
     if (this.shopForm.valid) {
       let shop = new Shop();
       shop = { ...this.shopForm.value };
@@ -113,8 +113,7 @@ export class EditShopComponent implements OnInit {
           ),
         })
         .subscribe((res) => {
-          if (res["success"])
-            this.router.navigate(["../../"], { relativeTo: this.route });
+          if (res["success"]) this.location.back();
           else {
             this.showError = true;
             this.errors = res["messages"];

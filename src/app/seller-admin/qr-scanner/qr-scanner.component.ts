@@ -38,8 +38,7 @@ export class QrScannerComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    //if(!this.authService.accountCanScan())
-    //this.showError = true;
+    // window.scrollTo(0, 0);
     const typeahead = fromEvent(
       this.myCodeElementHTML.nativeElement,
       "keyup"

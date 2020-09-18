@@ -23,6 +23,7 @@ export class AddStaffComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    // window.scrollTo(0, 0);
     this.addStaffForm = this.formBuilder.group({
       email: ["", [Validators.required, Validators.email]],
       username: ["", Validators.required],

@@ -35,6 +35,7 @@ export class BuyerDepositComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    // window.scrollTo(0, 0);
     this.route.data.subscribe(
       (data: { balance: Balance; creditCards: CreditCard[] }) => {
         this.creditCards = data.creditCards;

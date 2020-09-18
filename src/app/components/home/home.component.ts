@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
     private configService: ConfiguartionService
   ) {}
   ngOnInit() {
-    window.scrollTo(0, 0);
+    // window.scrollTo(0, 0);
     this.route.data.subscribe((data: { categories: Category[] }) => {
       this.categories = data.categories;
     });

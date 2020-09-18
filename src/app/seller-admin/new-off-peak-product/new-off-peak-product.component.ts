@@ -426,7 +426,7 @@ export class NewOffPeakProductComponent implements OnInit {
                   //this.router.navigate(["../"], { relativeTo: this.route });
                 } else {
                   progressDialogRef.close();
-                  window.scrollTo(0, 0);
+                  // window.scrollTo(0, 0);
                   this.showErrorNotification = true;
                   this.errorMessage = res["messages"];
                   this.showError = true;
@@ -477,7 +477,7 @@ export class NewOffPeakProductComponent implements OnInit {
                   //this.router.navigate(["../"], { relativeTo: this.route });
                 } else {
                   progressDialogRef.close();
-                  window.scrollTo(0, 0);
+                  // window.scrollTo(0, 0);
                   this.showError = true;
                   this.showErrorNotification = true;
                   this.errorMessage = res["messages"];
@@ -774,7 +774,7 @@ export class NewOffPeakProductComponent implements OnInit {
   }
 
   consumptionTimesOnChanges($event) {
-    console.log(this.productForm.get("pickupEndHH").value);
+    // console.log(this.productForm.get("pickupEndHH").value);
     let currY = this.productForm.get("pickupEndHH").value;
     if (parseInt(currY) <= 12 && parseInt(currY) != 1) {
       this.productForm

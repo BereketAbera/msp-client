@@ -1,18 +1,18 @@
-import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
+import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { FormControl } from "@angular/forms";
-import { Category } from "@app/model/category";
-import { WindowRef } from "@app/service/window.service";
 import { ActivatedRoute, Router } from "@angular/router";
+import { Category } from "@app/model/category";
 import { AuthService } from "@app/service/auth.service";
-import { ZipcodeService } from "@app/service/zipcode.service";
 import { ConfiguartionService } from "@app/service/configuartion.service";
+import { WindowRef } from "@app/service/window.service";
+import { ZipcodeService } from "@app/service/zipcode.service";
 
 @Component({
-  selector: "app-seller-home",
-  templateUrl: "./seller-home.component.html",
-  styleUrls: ["./seller-home.component.scss"],
+  selector: "app-buyer-home",
+  templateUrl: "./buyer-home.component.html",
+  styleUrls: ["./buyer-home.component.scss"],
 })
-export class SellerHomeComponent implements OnInit {
+export class BuyerHomeComponent implements OnInit {
   @ViewChild("anchor") anchor: ElementRef<HTMLElement>;
   searchInput = new FormControl("");
   categories: Category[];
@@ -27,13 +27,6 @@ export class SellerHomeComponent implements OnInit {
   play: boolean;
   play2: any;
   config: any;
-  smallTextDisplayed = true;
-  sellerTextSmall = "";
-  sellerText = `You keep 100% of the sales. No fees, no deductions, no equipment to buy.
-  You decide the time, date, and quantities to discount to our members. You will know ahead of time how many orders have been ordered by our members. Each member will present you with a unique discount code and pay you directly. Your regular customers will not be affected.
-  Just upload your product photos, offer a discount, quantity, time and date. We will notify our members near you immediately. It is that simple.
-  We only charge the buyers a small processing fee for generating discount codes and making reservations for them.`;
-
   constructor(
     private winRef: WindowRef,
     private route: ActivatedRoute,
@@ -48,7 +41,7 @@ export class SellerHomeComponent implements OnInit {
       this.categories = data.categories;
     });
     this.config = this.configService.configData;
-    this.sellerTextSmall = this.sellerText.slice(0, 230) + "...";
+    // this.videoplayer.nativeElement.pause();
   }
 
   ngAfterViewChecked() {}
@@ -68,6 +61,7 @@ export class SellerHomeComponent implements OnInit {
     return this.authService.isLoggedIn();
   }
   playVideo() {
+    this.videoplayer.nativeElement.load();
     if (this.play) {
       this.videoplayer.nativeElement.pause();
       this.play = false;
@@ -92,6 +86,7 @@ export class SellerHomeComponent implements OnInit {
     if (q.length > 2) {
       this.zipcodeService.searchAddress(q).subscribe(
         (response) => {
+          // console.log(response);
           this.addresses = response;
         },
         (err) => console.log(err)
@@ -150,15 +145,6 @@ export class SellerHomeComponent implements OnInit {
         },
         (err) => console.log(err)
       );
-    }
-  }
-
-  displayFullText() {
-    this.smallTextDisplayed = !this.smallTextDisplayed;
-    if (this.smallTextDisplayed) {
-      this.sellerTextSmall = this.sellerText.slice(0, 230) + "...";
-    } else {
-      this.sellerTextSmall = this.sellerText;
     }
   }
 }

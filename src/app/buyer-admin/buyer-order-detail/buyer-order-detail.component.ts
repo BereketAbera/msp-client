@@ -14,6 +14,7 @@ export class BuyerOrderDetailComponent implements OnInit {
   constructor(private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit() {
+    // window.scrollTo(0, 0);
     this.route.data.subscribe(
       (data: { order: Transaction; supplier: Supplier }) => {
         this.order = data.order;
