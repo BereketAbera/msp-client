@@ -1,4 +1,4 @@
-$container-size: 3.5rem;
+$container-size: 3.6rem;
 $check-height: $container-size/2;
 $check-width: $check-height/2;
 $success-color: #50e83e;
@@ -12,7 +12,7 @@ $error-color: #ff0000;
   opacity: 0;
   visibility: hidden;
   padding: 1rem 1rem;
-  background-color: #333;
+  background-color: #4a4748;
   border: 1px solid rgba(white, 0.2);
   border-right: none;
   // border-radius: 2px;
