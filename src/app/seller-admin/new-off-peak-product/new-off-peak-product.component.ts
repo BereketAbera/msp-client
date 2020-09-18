@@ -426,7 +426,7 @@ export class NewOffPeakProductComponent implements OnInit {
                   //this.router.navigate(["../"], { relativeTo: this.route });
                 } else {
                   progressDialogRef.close();
-                  window.scrollTo(0, 0);
+                  // window.scrollTo(0, 0);
                   this.showErrorNotification = true;
                   this.errorMessage = res["messages"];
                   this.showError = true;
@@ -477,7 +477,7 @@ export class NewOffPeakProductComponent implements OnInit {
                   //this.router.navigate(["../"], { relativeTo: this.route });
                 } else {
                   progressDialogRef.close();
-                  window.scrollTo(0, 0);
+                  // window.scrollTo(0, 0);
                   this.showError = true;
                   this.showErrorNotification = true;
                   this.errorMessage = res["messages"];

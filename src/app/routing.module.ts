@@ -98,6 +98,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes, {
       preloadingStrategy: CustomPreloadingService,
       onSameUrlNavigation: "reload",
+      scrollPositionRestoration: "top",
     }),
   ],
   declarations: [],

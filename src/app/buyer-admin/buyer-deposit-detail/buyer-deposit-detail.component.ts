@@ -11,6 +11,7 @@ export class BuyerDepositDetailComponent implements OnInit {
   constructor(private route: ActivatedRoute, private router: Router) {}
   deposit: Deposit;
   ngOnInit() {
+    // window.scrollTo(0, 0);
     this.route.data.subscribe((data: { deposit: Deposit }) => {
       this.deposit = data.deposit;
     });

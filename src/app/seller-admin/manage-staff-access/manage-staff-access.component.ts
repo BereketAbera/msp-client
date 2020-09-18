@@ -25,6 +25,7 @@ export class ManageStaffAccessComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    // window.scrollTo(0, 0);
     this.route.data.subscribe(
       (response) => {
         this.features = response.features;

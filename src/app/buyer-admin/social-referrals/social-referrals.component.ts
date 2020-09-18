@@ -14,6 +14,7 @@ export class SocialReferralsComponent implements OnInit {
   constructor(private referralService: SocialReferralService) {}
 
   ngOnInit(): void {
+    // window.scrollTo(0, 0);
     this.referralService
       .getUserSocialReferrals(this.pageSize || 5, this.pageNumber || 0)
       .subscribe((res) => {
