@@ -42,6 +42,7 @@ import { SaveConfirmationDialogComponent } from "./shared/save-confirmation-dial
 import { SaveProgressComponent } from "./shared/save-progress/save-progress.component";
 import { SharedModule } from "./shared/shared.module";
 import { EditConfigModalComponent } from "./system-admin/edit-config-modal/edit-config-modal.component";
+import { BuyerHomeComponent } from "./components/buyer-home/buyer-home.component";
 
 // import { DragDropDirective } from './service/drag-drop.directive';
 // import { CustomNotificationComponent } from "./components/custom-notification/custom-notification.component";
@@ -66,6 +67,7 @@ import { EditConfigModalComponent } from "./system-admin/edit-config-modal/edit-
     RefundComponent,
     EditConfigModalComponent,
     SellerHomeComponent,
+    BuyerHomeComponent,
     //  DragDropDirective
     // CustomNotificationComponent,
   ],

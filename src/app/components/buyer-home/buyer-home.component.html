@@ -1,0 +1,213 @@
+<div class="home">
+  <div class="home__section-one">
+    <div class="home__search-container">
+      <div class="home__search-header">
+        Hourly Discounts From Restaurants Near You
+      </div>
+      <div action="#" mathod="GET" class="home__search-input-container">
+        <input
+          type="text"
+          placeholder="Enter a zip code to see products"
+          class="home__search-input"
+          (change)="getlocations($event.target.value)"
+          (keyup)="getlocations($event.target.value)"
+          [formControl]="searchInput"
+        />
+        <div class="home__search-input-results">
+          <div class="home__search-input-result" (click)="getClientLocation()">
+            <div>
+              <!-- <i
+                  class="fas fa-map-marker-alt home__search-input-result-icon"
+                ></i> -->
+              <i
+                class="fad fa-map-marker-alt home__search-input-result-icon"
+              ></i>
+              <span class="home__search-input-result-name"
+                >Use Current Location</span
+              >
+            </div>
+          </div>
+          <div
+            *ngFor="let address of addresses"
+            class="home__search-input-result"
+            (click)="addressChanged(address)"
+          >
+            <div>
+              <!-- <i
+                  class="fas fa-map-marker-alt home__search-input-result-icon"
+                ></i> -->
+              <i
+                class="fad fa-map-marker-alt home__search-input-result-icon"
+              ></i>
+              <span class="home__search-input-result-name">
+                {{ address.CityName }}
+              </span>
+            </div>
+
+            <div class="home__search-input-county-state">
+              <span class="home__search-input-result-county"
+                >{{ address.StateName }},
+              </span>
+              <span class="home__search-input-result-state">
+                {{ address.ZIPCode }}
+              </span>
+            </div>
+          </div>
+        </div>
+        <button
+          (click)="getProducts()"
+          class="home__search-submit"
+          type="submit"
+        >
+          <!-- <i class="fad fa-hand-point-right home__search-submit-icon"></i> -->
+          <i class="fad fa-search-location home__search-submit-icon"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="overlay" [class.active]="play">
+    <div (click)="playVideo()" class="overlay__close">
+      <i class="fad fa-times home__icon_cancel"></i>
+    </div>
+  </div>
+  <div class="overlay" [class.active]="play2">
+    <div (click)="playVideo2()" class="overlay__close">
+      <i class="fad fa-times home__icon_cancel"></i>
+    </div>
+  </div>
+  <div class="home__section-two">
+    <h1 class="home__secton-header"></h1>
+    <div class="home__steps-container">
+      <div class="home__step home__step-video">
+        <div class="home__step-icon" routerLink="/signup">
+          <i class="fad fa-cheeseburger"></i>
+        </div>
+        <h1 class="home__step-header" routerLink="/signup">BECOME A MEMBER</h1>
+        <div class="home__video__container" [class.home__full]="play2">
+          <video
+            class="home__video2"
+            [class.home__fullscreen]="play2"
+            poster="../../../assets/image/BuyerVideoFrame.JPG"
+            (click)="playVideo2()"
+            #videoPlayerB
+            controls
+          >
+            <source
+              src="https://msp-seller-1.s3.amazonaws.com/buyer-intro.mp4"
+              type="video/mp4"
+            />
+            <source src="video.ogg" type="video/ogg" />
+            <source src="video.webm" type="video/webm" />
+            <object
+              data="https://msp-seller-1.s3.amazonaws.com/buyer-intro.mp4"
+            >
+              <embed src="video.swf" width="340" height="190" />
+            </object>
+          </video>
+          <div (click)="playVideo2()" *ngIf="!play2" class="home__icon">
+            <img src="../../../assets/image/vidoeicon.png" alt="" />
+          </div>
+        </div>
+
+        <p class="home__step-description home__step-memebership">
+          No Membership Fee
+        </p>
+      </div>
+
+      <div class="home__step" routerLink="/signup">
+        <div class="home__step-icon"><i class="fad fa-french-fries"></i></div>
+        <h1 class="home__step-header">SIGN UP NOW</h1>
+        <p class="home__step-description home__refer">
+          To enjoy the hourly discounted <br />
+          deals from your local restaurants.<br />
+          Up to 60% off.
+        </p>
+      </div>
+      <div class="home__step" routerLink="/signup">
+        <div class="home__step-icon"><i class="fad fa-user-friends"></i></div>
+        <h1 class="home__step-header">
+          GET ${{ config.noRefCredit }} CREDIT TODAY
+        </h1>
+        <p class="home__step-description home__refer">
+          Get ${{ config.noRefCredit }} sign up credit <br />
+          for the first 100 new <br />
+          members today
+          <!-- Earn {{ config.buyerRefReferrerCredit }}$,
+            {{ config.socialRefReferredCredit }}$,
+            {{ config.sellerRefReferrerCredit }}$ credit <br />
+            for each friend you refer to <br />
+            us. Just email them to join,<br />
+            it is that simple. -->
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="home__section-four" routerLink="/signup">
+    <span class="home__section-four-left"></span>
+    <span class="home__section-four-middle">Sign Up</span>
+    <span class="home__section-four-right"></span>
+    <!-- <img src="../../../assets/image/signUp.JPG" alt="" /> -->
+  </div>
+  <!-- <div class="home__section-four"  routerLink="/login">
+      <img src="../../../assets/image/signUp.JPG" alt="">
+    </div> -->
+  <div class="home__section-three">
+    <h1 class="home__secton-header">MORE CITIES JOINING EACH DAY</h1>
+    <div class="home__cities-container">
+      <span class="home__city"
+        ><i class="fad fa-angle-double-right home__list-icon"></i>New York</span
+      >
+      <span class="home__city"
+        ><i class="fad fa-angle-double-right home__list-icon"></i
+        >California</span
+      >
+      <span class="home__city"
+        ><i class="fad fa-angle-double-right home__list-icon"></i>Chicago</span
+      >
+      <span class="home__city"
+        ><i class="fad fa-angle-double-right home__list-icon"></i>Houston</span
+      >
+      <span class="home__city"
+        ><i class="fad fa-angle-double-right home__list-icon"></i>Phoenix</span
+      >
+      <span class="home__city"
+        ><i class="fad fa-angle-double-right home__list-icon"></i>San
+        Antonio</span
+      >
+      <span class="home__city"
+        ><i class="fad fa-angle-double-right home__list-icon"></i>Dallas</span
+      >
+      <span class="home__city"
+        ><i class="fad fa-angle-double-right home__list-icon"></i>San Jose</span
+      >
+      <span class="home__city"
+        ><i class="fad fa-angle-double-right home__list-icon"></i>Sedona</span
+      >
+      <span class="home__city"
+        ><i class="fad fa-angle-double-right home__list-icon"></i
+        >Scottsdale</span
+      >
+      <span class="home__city"
+        ><i class="fad fa-angle-double-right home__list-icon"></i>Austin</span
+      >
+      <span class="home__city"
+        ><i class="fad fa-angle-double-right home__list-icon"></i>Tucson</span
+      >
+      <span class="home__city"
+        ><i class="fad fa-angle-double-right home__list-icon"></i>Seatle</span
+      >
+      <span class="home__city"
+        ><i class="fad fa-angle-double-right home__list-icon"></i>Las
+        Vegas</span
+      >
+      <span class="home__city"
+        ><i class="fad fa-angle-double-right home__list-icon"></i>Denver</span
+      >
+      <span class="home__city"
+        ><i class="fad fa-angle-double-right home__list-icon"></i>Miami</span
+      >
+    </div>
+  </div>
+  <!-- <div class="home__section-four"></div> -->
+</div>

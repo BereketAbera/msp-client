@@ -5,15 +5,14 @@
         <form class="form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
           <div class="login-container">
             <div *ngIf="showError" class="errorCntr">
-              <button class="errClsBtn" (click)="close()">
-                &#215;
-              </button>
+              <button class="errClsBtn" (click)="close()">&#215;</button>
               <ul>
                 <li *ngFor="let error of errors">
                   {{ error }}
                 </li>
               </ul>
             </div>
+
             <div>
               <mat-form-field class="example-full-width-login">
                 <input
@@ -56,7 +55,7 @@
               </mat-form-field>
             </div>
 
-            <div class="form__group__pass" style="margin-bottom: 1.5rem;">
+            <div class="form__group__pass" style="margin-bottom: 1.5rem">
               <mat-hint id="frgtpswrd">
                 <a class="forgot-password" routerLink="/rstpwrd">
                   Forgot Password?

@@ -30,6 +30,7 @@ export class AppComponent {
       this.userService.getSellerProfile().subscribe((res) => {
         // console.log(res);
         this.authService.setStatus(res.status);
+        this.router.navigate(["/"]);
       });
     }
     this.router.events.subscribe((event: Event) => {

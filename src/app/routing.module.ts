@@ -1,5 +1,6 @@
+import { BuyerHomeComponent } from "./components/buyer-home/buyer-home.component";
 import { SellerHomeComponent } from "./components/seller-home/seller-home.component";
-import { StafferGuard } from "./staffer.guard";
+// import { StafferGuard } from "./staffer.guard";
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
@@ -15,7 +16,7 @@ import { PublicComponent } from "./components/public/public.component";
 import { RefundComponent } from "./components/refund/refund.component";
 import { SellerTermsComponent } from "./components/seller-terms/seller-terms.component";
 import { HomeGuard } from "./home.guard";
-import { SellerGuard } from "./seller-admin/seller.guard";
+// import { SellerGuard } from "./seller-admin/seller.guard";
 import { CustomPreloadingService } from "./service/custom-preloading.service";
 import { MspMarkupResolverService } from "./service/msp-markup-resolver.service";
 import { ProductResolverService } from "./service/product-resolver.service";
@@ -60,6 +61,7 @@ const appRoutes: Routes = [
       { path: "seller_terms", component: SellerTermsComponent },
       { path: "refund", component: RefundComponent },
       { path: "seller", component: SellerHomeComponent },
+      { path: "buyer", component: BuyerHomeComponent },
     ],
   },
   {
