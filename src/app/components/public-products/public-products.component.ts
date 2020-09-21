@@ -1,3 +1,4 @@
+import { ConfigurationService } from "./../../service/configuartion.service";
 import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { FormControl } from "@angular/forms";
 import { ActivatedRoute, Params, Router } from "@angular/router";
@@ -38,6 +39,8 @@ export class PublicProductsComponent implements OnInit {
   category: Category = new Category();
   categoryId: number;
   firstTimeLoaded = false;
+  showNoProductsMessage = false;
+  config: any = {};
 
   constructor(
     private winRef: WindowRef,
@@ -45,9 +48,12 @@ export class PublicProductsComponent implements OnInit {
     private route: ActivatedRoute,
     private prdctService: ProductService,
     private authService: AuthService,
-    private zipcodeService: ZipcodeService
+    private zipcodeService: ZipcodeService,
+    private configService: ConfigurationService
   ) {}
   ngOnInit() {
+    this.config = this.configService.configData;
+    console.log(this.config);
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
     this.companies = [];
@@ -77,8 +83,35 @@ export class PublicProductsComponent implements OnInit {
     // }
   }
 
+  checkAvailableOnThisCity() {
+    if (this.address && this.address.Latitude && this.address.Longitude) {
+      this.prdctService
+        .listCompaniesProducts(
+          1,
+          this.address.Latitude,
+          this.address.Longitude,
+          null,
+          ""
+        )
+        .subscribe((company) => {
+          if (
+            company &&
+            company[0] &&
+            company[0].distance > this.config.localDistance
+          ) {
+            this.showNoProductsMessage = true;
+          } else {
+            this.showNoProductsMessage = false;
+          }
+        });
+    }
+  }
+
   loadFirstTime() {
     this.page = 1;
+    if (this.query || this.categoryId) {
+      this.checkAvailableOnThisCity();
+    }
     if (this.address && this.address.Latitude && this.address.Longitude) {
       this.authService.progressBarActive.next(true);
       this.prdctService
@@ -90,6 +123,17 @@ export class PublicProductsComponent implements OnInit {
           this.query
         )
         .subscribe((company) => {
+          if (!this.categoryId && !this.query) {
+            if (
+              company &&
+              company[0] &&
+              company[0].distance > this.config.localDistance
+            ) {
+              this.showNoProductsMessage = true;
+            } else {
+              this.showNoProductsMessage = false;
+            }
+          }
           this.firstTimeLoaded = true;
           this.companies = company;
           this.shouldLoad = true;

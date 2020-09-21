@@ -27,7 +27,7 @@ import { httpInterceptorProviders } from "./http-interceptors/index";
 import { RoutingModule } from "./routing.module";
 import { AuthService } from "./service/auth.service";
 import { CartService } from "./service/cart.service";
-import { ConfiguartionService } from "./service/configuartion.service";
+import { ConfigurationService } from "./service/configuartion.service";
 import { CustomPreloadingService } from "./service/custom-preloading.service";
 import { DataStorageService } from "./service/data-storage.service";
 import { MspMarkupResolverService } from "./service/msp-markup-resolver.service";
@@ -106,13 +106,13 @@ import { BuyerHomeComponent } from "./components/buyer-home/buyer-home.component
     SubCategoryResolverService,
     WindowRef,
     httpInterceptorProviders,
-    ConfiguartionService,
+    ConfigurationService,
     UserService,
     {
       provide: APP_INITIALIZER,
-      useFactory: (configService: ConfiguartionService) => () =>
+      useFactory: (configService: ConfigurationService) => () =>
         configService.loadConfigurationData(),
-      deps: [ConfiguartionService],
+      deps: [ConfigurationService],
       multi: true,
     },
   ],

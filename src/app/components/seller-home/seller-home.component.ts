@@ -5,7 +5,7 @@ import { WindowRef } from "@app/service/window.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { AuthService } from "@app/service/auth.service";
 import { ZipcodeService } from "@app/service/zipcode.service";
-import { ConfiguartionService } from "@app/service/configuartion.service";
+import { ConfigurationService } from "@app/service/configuartion.service";
 
 @Component({
   selector: "app-seller-home",
@@ -40,7 +40,7 @@ export class SellerHomeComponent implements OnInit {
     private authService: AuthService,
     private zipcodeService: ZipcodeService,
     private router: Router,
-    private configService: ConfiguartionService
+    private configService: ConfigurationService
   ) {}
   ngOnInit() {
     // window.scrollTo(0, 0);

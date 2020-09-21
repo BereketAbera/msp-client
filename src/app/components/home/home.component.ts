@@ -5,7 +5,7 @@ import { Category } from "../../model/category";
 import { AuthService } from "../../service/auth.service";
 import { WindowRef } from "../../service/window.service";
 import { ZipcodeService } from "./../../service/zipcode.service";
-import { ConfiguartionService } from "src/app/service/configuartion.service";
+import { ConfigurationService } from "src/app/service/configuartion.service";
 
 @Component({
   templateUrl: "./home.component.html",
@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit {
     private authService: AuthService,
     private zipcodeService: ZipcodeService,
     private router: Router,
-    private configService: ConfiguartionService
+    private configService: ConfigurationService
   ) {}
   ngOnInit() {
     // window.scrollTo(0, 0);

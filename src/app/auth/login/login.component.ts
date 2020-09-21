@@ -28,6 +28,7 @@ export class LoginComponent implements OnInit {
   remoteUser = {};
   email = "";
   tk = "";
+  emailSent = false;
 
   constructor(
     private authService: AuthService,
@@ -87,9 +88,11 @@ export class LoginComponent implements OnInit {
     this.errors = null;
     this.showError = false;
     this.loading = true;
+    this.emailSent = false;
     return this.authService.login(this.loginForm.value).subscribe(
       (res: any) => {
         this.loading = false;
+        // console.log(res);
         if (res && res.success) {
           this.remoteUser = res;
           this.openDialog(res);
@@ -101,8 +104,17 @@ export class LoginComponent implements OnInit {
         }
       },
       (error) => {
-        this.showError = true;
-        this.errors = error.messages;
+        // console.log(error);
+        if (
+          error.messages &&
+          error.messages.length &&
+          error.messages[0] == "Check your confirmation email first"
+        ) {
+          this.emailSent = true;
+        } else {
+          this.errors = error.messages;
+          this.showError = true;
+        }
         this.loading = false;
       }
     );

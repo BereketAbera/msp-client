@@ -7,7 +7,7 @@ const adminApi = environment.APIEndpoint;
 @Injectable({
   providedIn: "root",
 })
-export class ConfiguartionService {
+export class ConfigurationService {
   configData: any = {
     id: 1,
     distanceKM: 20,

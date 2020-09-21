@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { AdminService } from "src/app/service/admin.service";
-import { ConfiguartionService } from "src/app/service/configuartion.service";
+import { ConfigurationService } from "src/app/service/configuartion.service";
 import { EditConfigModalComponent } from "../edit-config-modal/edit-config-modal.component";
 
 @Component({
@@ -15,7 +15,7 @@ export class ConfigComponent implements OnInit {
   // editmode: boolean = false;
   constructor(
     private adminsService: AdminService,
-    private configService: ConfiguartionService,
+    private configService: ConfigurationService,
     private dialog: MatDialog,
     private snackBar: MatSnackBar
   ) {}

@@ -1,7 +1,5 @@
 <div class="content">
-  <div class="content__header">
-    Active Configuration of ManagerSpecial
-  </div>
+  <div class="content__header">Active Configuration of ManagerSpecial</div>
 
   <div class="content__body">
     <ul>
@@ -18,7 +16,26 @@
             mat-flat-button
             color="default"
           >
-            <i style="font-size: 1.8rem;" class="fad fa-edit"></i>
+            <i style="font-size: 1.8rem" class="fad fa-edit"></i>
+          </button>
+        </div>
+      </li>
+      <li class="content__item">
+        <span class="label">Local Distance </span>
+        <b
+          ><span> {{ confg?.localDistance }}</span
+          >KM
+        </b>
+        <div class="action">
+          <button
+            type="submit"
+            (click)="
+              editConfig('localDistance', confg?.localDistance, 'Distance')
+            "
+            mat-flat-button
+            color="default"
+          >
+            <i style="font-size: 1.8rem" class="fad fa-edit"></i>
           </button>
         </div>
       </li>
@@ -36,7 +53,7 @@
             mat-flat-button
             color="default"
           >
-            <i style="font-size: 1.8rem;" class="fad fa-edit"></i>
+            <i style="font-size: 1.8rem" class="fad fa-edit"></i>
           </button>
         </div>
       </li>
@@ -58,7 +75,7 @@
             mat-flat-button
             color="default"
           >
-            <i style="font-size: 1.8rem;" class="fad fa-edit"></i>
+            <i style="font-size: 1.8rem" class="fad fa-edit"></i>
           </button>
         </div>
       </li>
@@ -80,7 +97,7 @@
             mat-flat-button
             color="default"
           >
-            <i style="font-size: 1.8rem;" class="fad fa-edit"></i>
+            <i style="font-size: 1.8rem" class="fad fa-edit"></i>
           </button>
         </div>
       </li>
@@ -102,7 +119,7 @@
             mat-flat-button
             color="default"
           >
-            <i style="font-size: 1.8rem;" class="fad fa-edit"></i>
+            <i style="font-size: 1.8rem" class="fad fa-edit"></i>
           </button>
         </div>
       </li>
@@ -124,7 +141,7 @@
             mat-flat-button
             color="default"
           >
-            <i style="font-size: 1.8rem;" class="fad fa-edit"></i>
+            <i style="font-size: 1.8rem" class="fad fa-edit"></i>
           </button>
         </div>
       </li>
@@ -146,7 +163,7 @@
             mat-flat-button
             color="default"
           >
-            <i style="font-size: 1.8rem;" class="fad fa-edit"></i>
+            <i style="font-size: 1.8rem" class="fad fa-edit"></i>
           </button>
         </div>
       </li>
@@ -168,7 +185,7 @@
             mat-flat-button
             color="default"
           >
-            <i style="font-size: 1.8rem;" class="fad fa-edit"></i>
+            <i style="font-size: 1.8rem" class="fad fa-edit"></i>
           </button>
         </div>
       </li>

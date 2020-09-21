@@ -6,7 +6,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { ErrorStateMatcher } from "@angular/material/core";
-import { ConfiguartionService } from "src/app/service/configuartion.service";
+import { ConfigurationService } from "src/app/service/configuartion.service";
 import { UserService } from "../../service/user.service";
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -41,7 +41,7 @@ export class ReferSellerComponent implements OnInit {
   config: any;
   constructor(
     private userService: UserService,
-    private configService: ConfiguartionService
+    private configService: ConfigurationService
   ) {}
   addEmail() {
     if (

@@ -3,7 +3,7 @@ import { FormControl } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Category } from "@app/model/category";
 import { AuthService } from "@app/service/auth.service";
-import { ConfiguartionService } from "@app/service/configuartion.service";
+import { ConfigurationService } from "@app/service/configuartion.service";
 import { WindowRef } from "@app/service/window.service";
 import { ZipcodeService } from "@app/service/zipcode.service";
 
@@ -33,7 +33,7 @@ export class BuyerHomeComponent implements OnInit {
     private authService: AuthService,
     private zipcodeService: ZipcodeService,
     private router: Router,
-    private configService: ConfiguartionService
+    private configService: ConfigurationService
   ) {}
   ngOnInit() {
     // window.scrollTo(0, 0);

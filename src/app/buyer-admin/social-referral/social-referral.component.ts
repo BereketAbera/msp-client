@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import * as moment from "moment";
-import { ConfiguartionService } from "src/app/service/configuartion.service";
+import { ConfigurationService } from "src/app/service/configuartion.service";
 import { SocialReferralService } from "./../../service/social-referral.service";
 
 @Component({
@@ -14,7 +14,7 @@ export class SocialReferralComponent implements OnInit {
   config: any;
   constructor(
     private referralService: SocialReferralService,
-    private configService: ConfiguartionService
+    private configService: ConfigurationService
   ) {}
 
   ngOnInit() {

@@ -12,7 +12,21 @@
                 </li>
               </ul>
             </div>
-
+            <div
+              *ngIf="emailSent"
+              style="
+                font-size: 1.4rem;
+                text-align: center;
+                color: green;
+                padding: 0.4rem;
+                margin-bottom: 1rem;
+                border: 1px solid green;
+                border-radius: 0.8rem;
+              "
+            >
+              Your email is not verified. We have resent a verification email.
+              Please verify to proceed!
+            </div>
             <div>
               <mat-form-field class="example-full-width-login">
                 <input
