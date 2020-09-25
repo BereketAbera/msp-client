@@ -84,15 +84,14 @@
         text-transform: uppercase;
         text-align: center;
         position: relative;
-        background: url(assets/image/home_background3.svg),
-          linear-gradient(0deg, #9f6176, #9f6176);
+        background: url(https://msp-seller-1.s3.amazonaws.com/coming_soon.png);
         background-position-x: 50%;
         background-position-y: 50%;
         background-repeat: no-repeat;
         background-size: cover;
       "
     >
-      <span>Coming soon to your city</span>
+      <!-- <span>Coming soon to your city</span> -->
     </div>
     <div *ngIf="companies?.length > 0" class="products__container">
       <div style="width: 100%" *ngFor="let c of companies; let i = index">

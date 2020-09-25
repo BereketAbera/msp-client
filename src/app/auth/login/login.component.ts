@@ -133,7 +133,7 @@ export class LoginComponent implements OnInit {
           this.authService
             .localApplicantSignUp({
               ...this.remoteUser,
-              agreed: true,
+              ...result,
               tk: this.tk,
             })
             .subscribe(

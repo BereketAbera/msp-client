@@ -1,12 +1,21 @@
+import { ZipcodeService } from "src/app/service/zipcode.service";
 import { AuthService } from "./../../service/auth.service";
 import { Component, EventEmitter, OnInit, Output } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { Router } from "@angular/router";
 import { of } from "rxjs";
 import { debounceTime, switchMap } from "rxjs/operators";
 import { UserService } from "../../service/user.service";
 import { RegistrationCompleteComponent } from "../registration-complete/registration-complete.component";
+import { ZipCode } from "@app/model/zipCode";
+
+let zipCodeHints = [];
 
 @Component({
   selector: "app-register-buyer",
@@ -19,6 +28,8 @@ export class RegisterBuyerComponent implements OnInit {
   errors;
   showError: boolean = false;
   registrationForm: FormGroup;
+  zipCodeHints: ZipCode[];
+  valueSet = true;
   loading = false;
   prevValue = "";
   withCode = false;
@@ -31,7 +42,8 @@ export class RegisterBuyerComponent implements OnInit {
     private userService: UserService,
     private authService: AuthService,
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private zipcodeService: ZipcodeService
   ) {
     this.registrationForm = this.fb.group({
       firstName: ["", Validators.required],
@@ -44,6 +56,12 @@ export class RegisterBuyerComponent implements OnInit {
           Validators.pattern(/(\(\d{3}\))(\s)\d{3}(-)\d{4}/),
         ],
       ],
+      zipcode: [
+        "",
+        [Validators.required, Validators.pattern(/\d{5}/)],
+        zipCodeValidator,
+      ],
+      city: ["", Validators.required],
       password: [
         "",
         [
@@ -74,7 +92,42 @@ export class RegisterBuyerComponent implements OnInit {
           control.setValue(res.slice(0, res.length - 1));
         }
       });
+    this.registrationForm.controls["zipcode"].valueChanges
+      .pipe(
+        debounceTime(200),
+        switchMap((term) => this.zipcodeService.searchAddress(term))
+      )
+      .subscribe((zipCodeHints) => this.getlocations(zipCodeHints));
   }
+
+  getlocations(zipCodes) {
+    // console.log(zipCodes);
+    let zipCodeFound = false;
+    this.zipCodeHints = zipCodes;
+    zipCodeHints = this.zipCodeHints;
+    if (
+      this.registrationForm.controls["zipcode"].value.length == 5 &&
+      !this.valueSet
+    ) {
+      this.valueSet = true;
+      this.registrationForm
+        .get("zipcode")
+        .setValue(this.registrationForm.controls["zipcode"].value);
+    } else {
+      this.valueSet = false;
+    }
+    this.zipCodeHints.map((zipcode) => {
+      if (this.registrationForm.get("zipcode").value == zipcode.ZIPCode) {
+        zipCodeFound = true;
+        console.log(zipcode);
+        this.registrationForm.get("city").setValue(zipcode.CityName);
+      }
+    });
+    if (!zipCodeFound) {
+      this.registrationForm.get("city").setValue("");
+    }
+  }
+
   onSubmit() {
     if (
       this.registrationForm.get("password").value !=
@@ -284,4 +337,18 @@ export class RegisterBuyerComponent implements OnInit {
     let control = this.registrationForm.controls[value];
     control.setValue(control.value.toUpperCase());
   }
+}
+
+function zipCodeValidator(control: FormControl) {
+  let zipCode = control.value;
+
+  let found = false;
+
+  zipCodeHints.map((zch) => {
+    if (zch.ZIPCode == zipCode) {
+      found = true;
+    }
+  });
+  // console.log(zipCodeHints, found, zipCode);
+  return found ? of(null) : of({ error: "zipcode is not valid" });
 }

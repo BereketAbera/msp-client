@@ -33,21 +33,82 @@
     <p *ngIf="!(data.user.role == 'APPLICANT')" class="dialog__content">
       To continue, please fill the following information.
     </p>
-    <mat-checkbox
-      class="dialog__checkbox"
-      name="confirmTerms"
-      [(ngModel)]="data.confirmTerms"
+    <form
+      [formGroup]="registrationBuyerForm"
       *ngIf="data.user.role == 'APPLICANT'"
-      >I have read and agreed to the &nbsp;<a
-        target="_blank"
-        routerLink="/buyer_terms"
-      >
-        Buyer's Terms of Use</a
-      >&nbsp;and &nbsp;
-      <a target="_blank" routerLink="/privacy">
-        Privacy Statement.</a
-      ></mat-checkbox
+      style="margin: 2rem 0rem"
     >
+      <div class="seller__address">
+        <mat-form-field class="seller__input zipstatecity">
+          <input
+            matInput
+            type="tel"
+            placeholder="Zip / Postal Code"
+            matInput
+            [matAutocomplete]="auto"
+            formControlName="zipcode"
+            (keydown)="checkInput($event)"
+            (change)="
+              registrationBuyerForm.controls['zipcode'].setValue(
+                $event.target.value
+              )
+            "
+            minlength="5"
+            maxlength="5"
+            required
+          />
+          <mat-error *ngIf="registrationBuyerForm.controls.zipcode.invalid"
+            >Zip code is not valid</mat-error
+          >
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option
+              *ngFor="let result of zipCodeHints"
+              [value]="result.ZIPCode"
+              (click)="zipCodeBuyerSelected(result)"
+            >
+              <span>{{ result.ZIPCode }}</span>
+              <small>
+                | {{ result.CountyName }} {{ result.CityName }}
+                {{ result.StateAbbr }}</small
+              >
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+
+        <mat-form-field
+          *ngIf="registrationBuyerForm.get('city').value"
+          class="seller__input zipstatecity"
+        >
+          <input matInput placeholder="City" formControlName="city" readonly />
+        </mat-form-field>
+        <!-- <mat-form-field class="seller__input zipstatecity">
+        <mat-select
+          placeholder="State"
+          formControlName="state"
+          required
+          disabled
+        >
+          <mat-option *ngFor="let state of states" [value]="state.name">
+            {{ state.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field> -->
+      </div>
+      <mat-checkbox
+        class="dialog__checkbox"
+        name="confirmTerms"
+        formControlName="agreed"
+        >I have read and agreed to the &nbsp;<a
+          target="_blank"
+          routerLink="/buyer_terms"
+        >
+          Buyer's Terms of Use</a
+        >&nbsp;and &nbsp;
+        <a target="_blank" routerLink="/privacy">
+          Privacy Statement.</a
+        ></mat-checkbox
+      >
+    </form>
     <form
       [formGroup]="registrationForm"
       *ngIf="!(data.user.role == 'APPLICANT')"
@@ -135,9 +196,12 @@
     <button mat-button (click)="onNoClick()">Cancel</button>
     <button
       *ngIf="data.user.role == 'APPLICANT'"
-      [disabled]="!data.confirmTerms"
+      [disabled]="
+        registrationBuyerForm.invalid ||
+        !registrationBuyerForm.controls['agreed'].value
+      "
       mat-button
-      [mat-dialog-close]="data.confirmTerms"
+      [mat-dialog-close]="registrationBuyerForm.value"
       cdkFocusInitial
     >
       Submit

@@ -86,6 +86,36 @@ ul {
   }
 }
 
+.buyer {
+  &__address {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__input {
+    width: 100%;
+  }
+}
+
+.zipstatecity {
+  &:not(:last-child) {
+    margin-right: 1rem;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .buyer {
+    &__address {
+      flex-direction: row;
+      justify-content: flex-start;
+    }
+
+    &__input {
+      width: 30%;
+    }
+  }
+}
+
 @media only screen and (max-width: 732px) {
   ::ng-deep .mat-form-field-subscript-wrapper {
     font-size: 55%;

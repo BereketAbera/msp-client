@@ -31,6 +31,16 @@ export class ConfirmTermsComponent implements OnInit {
 
     // subCategoryId: ["", Validators.required],
   });
+
+  registrationBuyerForm = this.fb.group({
+    zipcode: [
+      "",
+      [Validators.required, Validators.pattern(/\d{5}/)],
+      zipCodeValidator,
+    ],
+    city: [""],
+    agreed: [false, Validators.required],
+  });
   valueSet = true;
   constructor(
     public dialogRef: MatDialogRef<ConfirmTermsComponent>,
@@ -50,6 +60,13 @@ export class ConfirmTermsComponent implements OnInit {
         switchMap((term) => this.zipcodeService.searchAddress(term))
       )
       .subscribe((zipCodeHints) => this.getlocations(zipCodeHints));
+
+    this.registrationBuyerForm.controls["zipcode"].valueChanges
+      .pipe(
+        debounceTime(200),
+        switchMap((term) => this.zipcodeService.searchAddress(term))
+      )
+      .subscribe((zipCodeHints) => this.getBuyerLocations(zipCodeHints));
     // console.log(this.data);
   }
 
@@ -86,10 +103,41 @@ export class ConfirmTermsComponent implements OnInit {
     }
   }
 
+  getBuyerLocations(zipCodes) {
+    // console.log(zipCodes);
+    let zipCodeFound = false;
+    this.zipCodeHints = zipCodes;
+    zipCodeHints = this.zipCodeHints;
+    if (
+      this.registrationBuyerForm.controls["zipcode"].value.length == 5 &&
+      !this.valueSet
+    ) {
+      this.valueSet = true;
+      this.registrationBuyerForm
+        .get("zipcode")
+        .setValue(this.registrationBuyerForm.controls["zipcode"].value);
+    } else {
+      this.valueSet = false;
+    }
+    this.zipCodeHints.map((zipcode) => {
+      if (this.registrationBuyerForm.get("zipcode").value == zipcode.ZIPCode) {
+        zipCodeFound = true;
+        // console.log(zipcode);
+        this.registrationBuyerForm.get("city").setValue(zipcode.CityName);
+      }
+    });
+    if (!zipCodeFound) {
+      this.registrationBuyerForm.get("city").setValue("");
+    }
+  }
+
   zipCodeSelected(zipcode) {
     this.registrationForm
       .get("state")
       .setValue(this.getStateName(zipcode.StateAbbr));
+  }
+  zipCodeBuyerSelected(zipcode) {
+    this.registrationBuyerForm.get("city").setValue(zipcode.CityName);
   }
 
   checkInput(event) {
