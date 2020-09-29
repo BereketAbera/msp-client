@@ -14,6 +14,7 @@ import { debounceTime, switchMap } from "rxjs/operators";
 import { UserService } from "../../service/user.service";
 import { RegistrationCompleteComponent } from "../registration-complete/registration-complete.component";
 import { ZipCode } from "@app/model/zipCode";
+import { State } from "@app/model/state";
 
 let zipCodeHints = [];
 
@@ -37,6 +38,7 @@ export class RegisterBuyerComponent implements OnInit {
     btn: { width: "100%", fontSize: "2rem", height: "4rem" },
   };
   referralLinkKey = null;
+  states = [];
 
   constructor(
     public dialog: MatDialog,
@@ -64,6 +66,7 @@ export class RegisterBuyerComponent implements OnInit {
         zipCodeValidator,
       ],
       city: ["", Validators.required],
+      state: ["", Validators.required],
       password: [
         "",
         [
@@ -81,6 +84,9 @@ export class RegisterBuyerComponent implements OnInit {
     this.showError = false;
   }
   ngOnInit() {
+    this.route.data.subscribe((data: { states: State[] }) => {
+      this.states = data.states;
+    });
     this.route.queryParamMap.subscribe((query) => {
       this.referralLinkKey = query.get("referralKey");
     });
@@ -126,11 +132,26 @@ export class RegisterBuyerComponent implements OnInit {
         zipCodeFound = true;
         // console.log(zipcode);
         this.registrationForm.get("city").setValue(zipcode.CityName);
+        this.registrationForm
+          .get("state")
+          .setValue(this.getStateName(zipcode.StateAbbr));
       }
     });
     if (!zipCodeFound) {
       this.registrationForm.get("city").setValue("");
+      this.registrationForm.get("state").setValue("");
     }
+  }
+
+  getStateName(abbr) {
+    let name = null;
+    this.states.map((state) => {
+      if (state.abbreviation == abbr) {
+        name = state.name;
+      }
+    });
+
+    return name;
   }
 
   onSubmit() {

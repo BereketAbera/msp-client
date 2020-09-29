@@ -39,6 +39,7 @@ export class ConfirmTermsComponent implements OnInit {
       zipCodeValidator,
     ],
     city: [""],
+    state: [""],
     agreed: [false, Validators.required],
   });
   valueSet = true;
@@ -124,10 +125,14 @@ export class ConfirmTermsComponent implements OnInit {
         zipCodeFound = true;
         // console.log(zipcode);
         this.registrationBuyerForm.get("city").setValue(zipcode.CityName);
+        this.registrationBuyerForm
+          .get("state")
+          .setValue(this.getStateName(zipcode.StateAbbr));
       }
     });
     if (!zipCodeFound) {
       this.registrationBuyerForm.get("city").setValue("");
+      this.registrationBuyerForm.get("state").setValue("");
     }
   }
 
@@ -136,8 +141,12 @@ export class ConfirmTermsComponent implements OnInit {
       .get("state")
       .setValue(this.getStateName(zipcode.StateAbbr));
   }
+
   zipCodeBuyerSelected(zipcode) {
     this.registrationBuyerForm.get("city").setValue(zipcode.CityName);
+    this.registrationBuyerForm
+      .get("state")
+      .setValue(this.getStateName(zipcode.StateAbbr));
   }
 
   checkInput(event) {

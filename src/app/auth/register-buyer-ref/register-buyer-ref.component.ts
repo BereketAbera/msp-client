@@ -9,6 +9,7 @@ import { UserService } from "../../service/user.service";
 import { RegistrationCompleteComponent } from "../registration-complete/registration-complete.component";
 import { ZipCode } from "@app/model/zipCode";
 import { ZipcodeService } from "@app/service/zipcode.service";
+import { State } from "@app/model/state";
 
 let zipCodeHints = [];
 
@@ -43,6 +44,7 @@ export class RegisterBuyerRefComponent implements OnInit {
       zipCodeValidator,
     ],
     city: ["", Validators.required],
+    state: ["", Validators.required],
     password: [
       "",
       [
@@ -57,6 +59,7 @@ export class RegisterBuyerRefComponent implements OnInit {
   loading: boolean = false;
   prevValue = "";
   email = "";
+  states = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -71,6 +74,10 @@ export class RegisterBuyerRefComponent implements OnInit {
     this.showError = false;
   }
   ngOnInit() {
+    this.route.data.subscribe((data: { states: State[] }) => {
+      this.states = data.states;
+    });
+
     this.authService.progressBarActive.next(false);
     this.route.queryParams
       .filter((params) => params.tk)
@@ -115,11 +122,26 @@ export class RegisterBuyerRefComponent implements OnInit {
         zipCodeFound = true;
         console.log(zipcode);
         this.registrationForm.get("city").setValue(zipcode.CityName);
+        this.registrationForm
+          .get("state")
+          .setValue(this.getStateName(zipcode.StateAbbr));
       }
     });
     if (!zipCodeFound) {
       this.registrationForm.get("city").setValue("");
+      this.registrationForm.get("state").setValue("");
     }
+  }
+
+  getStateName(abbr) {
+    let name = null;
+    this.states.map((state) => {
+      if (state.abbreviation == abbr) {
+        name = state.name;
+      }
+    });
+
+    return name;
   }
 
   onSubmit() {

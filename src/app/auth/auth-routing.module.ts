@@ -33,6 +33,9 @@ const authRoutes: Routes = [
       {
         path: "signup",
         component: SignupComponent,
+        resolve: {
+          states: StateResolverService,
+        },
       },
       {
         path: "signup-seller",
@@ -51,7 +54,13 @@ const authRoutes: Routes = [
           states: StateResolverService,
         },
       },
-      { path: "regbyrrfr", component: RegisterBuyerRefComponent },
+      {
+        path: "regbyrrfr",
+        component: RegisterBuyerRefComponent,
+        resolve: {
+          states: StateResolverService,
+        },
+      },
     ],
   },
 ];
