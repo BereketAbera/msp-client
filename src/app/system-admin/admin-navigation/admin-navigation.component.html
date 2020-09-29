@@ -19,7 +19,7 @@
           [routerLinkActiveOptions]="{ exact: true }"
           class="navigation__item-text"
           (click)="sellerClicked()"
-          ><i class="fad fa-chart-bar navigation__item-icon"></i> Sellers
+          ><i class="fad fa-users-cog navigation__item-icon"></i> Sellers
         </a>
       </li>
       <li class="navigation__item">
@@ -28,7 +28,7 @@
           [routerLinkActive]="['active-route']"
           [routerLinkActiveOptions]="{ exact: false }"
           class="navigation__item-text"
-          ><i class="fad fa-envelope-open navigation__item-icon"></i>Buyers</a
+          ><i class="fad fa-users navigation__item-icon"></i>Buyers</a
         >
       </li>
 
@@ -38,7 +38,17 @@
           [routerLinkActive]="['active-route']"
           [routerLinkActiveOptions]="{ exact: false }"
           class="navigation__item-text"
-          ><i class="fad fa-envelope-open navigation__item-icon"></i> Codes</a
+          ><i class="fad fa-bring-front navigation__item-icon"></i> Codes</a
+        >
+      </li>
+      <li class="navigation__item">
+        <a
+          routerLink="./referral_links"
+          [routerLinkActive]="['active-route']"
+          [routerLinkActiveOptions]="{ exact: false }"
+          class="navigation__item-text"
+          ><i class="fad fa-external-link-square-alt navigation__item-icon"></i>
+          Referral Links</a
         >
       </li>
       <li class="navigation__item">

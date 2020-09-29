@@ -1,3 +1,5 @@
+import { LinksComponent } from "./links/links.component";
+import { ReferralLinkServiceService } from "./../service/referral-link-service.service";
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { StateResolverService } from "../service/state-resolver.service";
@@ -53,6 +55,10 @@ const sellerRoutes: Routes = [
         // resolve:{
         //   seller: SellerInfoResolverService
         // }
+      },
+      {
+        path: "referral_links",
+        component: LinksComponent,
       },
       {
         path: "config",

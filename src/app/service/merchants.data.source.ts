@@ -25,7 +25,8 @@ export class MerchantsDataSource implements DataSource<User> {
     pageIndex,
     pageSize,
     sortOrder,
-    sortBy
+    sortBy,
+    referralLinkKey
   ) {
     this.loadingSubject.next(true);
 
@@ -39,7 +40,8 @@ export class MerchantsDataSource implements DataSource<User> {
         pageIndex,
         pageSize,
         sortOrder,
-        sortBy
+        sortBy,
+        referralLinkKey
       )
       .pipe(
         catchError(() => of([])),

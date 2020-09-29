@@ -19,6 +19,7 @@ export class BuyersComponent implements OnInit {
   sDate;
   eDate;
   registrationType = "";
+  referralLinkKey = "";
   displayedColumns = [
     "name",
     "email",
@@ -28,7 +29,7 @@ export class BuyersComponent implements OnInit {
     "createdAt",
   ];
   registrationTypes = [
-    {name:"ALL",value:""},
+    { name: "ALL", value: "" },
     { name: "EMAIL REFERRAL", value: "EMAIL REFERRAL" },
     { name: "NORMAL", value: "NORMAL" },
     { name: "SOCIAL MEDIA", value: "SOCIAL MEDIA" },
@@ -47,6 +48,7 @@ export class BuyersComponent implements OnInit {
   ngOnInit() {
     this.filterForm = this.formBuilder.group({
       email: [""],
+      referralLinkKey: [""],
       signUpCredit: [""],
       registrationType: [""],
       sDate: [],
@@ -60,6 +62,7 @@ export class BuyersComponent implements OnInit {
       this.signUpCredit = params.get("signUpCredit") || "";
       this.sDate = params.get("sDate") || "";
       this.eDate = params.get("eDate") || "";
+      this.referralLinkKey = params.get("referralLinkKey") || null;
 
       this.filterForm.controls["email"].setValue(this.email);
       this.filterForm.controls["signUpCredit"].setValue(this.signUpCredit);
@@ -79,6 +82,7 @@ export class BuyersComponent implements OnInit {
         email: this.email,
         signUpCredit: this.signUpCredit,
         registrationType: this.registrationType,
+        referralLinkKey: this.referralLinkKey,
         sDate: this.sDate,
         eDate: this.eDate,
       })
@@ -124,6 +128,7 @@ export class BuyersComponent implements OnInit {
       email: controls["email"].value,
       signUpCredit: controls["signUpCredit"].value,
       registrationType: controls["registrationType"].value,
+      referralLinkKey: controls["referralLinkKey"].value,
       sDate: moment(controls["sDate"].value).isValid()
         ? moment(controls["sDate"].value).format("YYYY-MM-DD")
         : "",

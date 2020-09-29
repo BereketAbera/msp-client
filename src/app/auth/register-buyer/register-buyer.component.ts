@@ -8,7 +8,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { of } from "rxjs";
 import { debounceTime, switchMap } from "rxjs/operators";
 import { UserService } from "../../service/user.service";
@@ -36,6 +36,7 @@ export class RegisterBuyerComponent implements OnInit {
   submitBtnStyle = {
     btn: { width: "100%", fontSize: "2rem", height: "4rem" },
   };
+  referralLinkKey = null;
 
   constructor(
     public dialog: MatDialog,
@@ -43,6 +44,7 @@ export class RegisterBuyerComponent implements OnInit {
     private authService: AuthService,
     private fb: FormBuilder,
     private router: Router,
+    private route: ActivatedRoute,
     private zipcodeService: ZipcodeService
   ) {
     this.registrationForm = this.fb.group({
@@ -79,6 +81,9 @@ export class RegisterBuyerComponent implements OnInit {
     this.showError = false;
   }
   ngOnInit() {
+    this.route.queryParamMap.subscribe((query) => {
+      this.referralLinkKey = query.get("referralKey");
+    });
     this.authService.progressBarActive.next(false);
     this.registrationForm.controls["phoneNumber"].valueChanges
       .pipe((debounceTime(200), switchMap((term) => of(term))))
@@ -119,7 +124,7 @@ export class RegisterBuyerComponent implements OnInit {
     this.zipCodeHints.map((zipcode) => {
       if (this.registrationForm.get("zipcode").value == zipcode.ZIPCode) {
         zipCodeFound = true;
-        console.log(zipcode);
+        // console.log(zipcode);
         this.registrationForm.get("city").setValue(zipcode.CityName);
       }
     });
@@ -154,6 +159,7 @@ export class RegisterBuyerComponent implements OnInit {
           .registerUser({
             ...this.registrationForm.value,
             phoneNumber: this.phoneChangeFormat(phoneNumber.value, "db"),
+            referralLinkKey: this.referralLinkKey,
           })
           .subscribe((res: any) => {
             this.loading = false;

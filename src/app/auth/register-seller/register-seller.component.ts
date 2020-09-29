@@ -67,6 +67,7 @@ export class RegisterSellerComponent implements OnInit {
   });
   valueSet = true;
   subscription: Subscription;
+  referralLinkKey = null;
 
   constructor(
     public dialog: MatDialog,
@@ -78,6 +79,9 @@ export class RegisterSellerComponent implements OnInit {
     private zipcodeService: ZipcodeService
   ) {}
   ngOnInit() {
+    this.route.queryParamMap.subscribe((query) => {
+      this.referralLinkKey = query.get("referralKey");
+    });
     this.authService.progressBarActive.next(false);
     this.route.data.subscribe(
       (data: { categories: Category[]; states: State[] }) => {
@@ -123,6 +127,7 @@ export class RegisterSellerComponent implements OnInit {
           .registerUser({
             ...this.registrationForm.value,
             phoneNumber: this.phoneChangeFormat(phoneNumber.value, "db"),
+            referralLinkKey: this.referralLinkKey,
             // phoneNumber:"+251931644114"
           })
           .subscribe((res: any) => {

@@ -1,3 +1,5 @@
+import { ReferralLinkServiceService } from "./../service/referral-link-service.service";
+import { LinksComponent } from "./links/links.component";
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
@@ -27,6 +29,7 @@ import { UsersAdminComponent } from "./users-admin/users-admin.component";
     CodesComponent,
     ConfigComponent,
     CodesDetailComponent,
+    LinksComponent,
   ],
   imports: [
     CommonModule,
@@ -40,6 +43,7 @@ import { UsersAdminComponent } from "./users-admin/users-admin.component";
     StateService,
     StateResolverService,
     SellerInfoResolverService,
+    ReferralLinkServiceService,
   ],
 })
 export class SystemAdminModule {}

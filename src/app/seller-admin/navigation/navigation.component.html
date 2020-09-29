@@ -41,7 +41,7 @@
             <li
               (click)="drawerLinkClicked()"
               class="side_bar_mobile__item"
-              style="min-width: 13rem;"
+              style="min-width: 13rem"
             >
               <a
                 routerLink="./trnscts/process"
@@ -51,8 +51,8 @@
                 [class.not-active]="
                   role == 'SELLER_STAFF' && !checkHaveAccess('Manage Order')
                 "
-                ><i class="fad fa-envelope-open navigation__item-icon"></i
-                >Process Code</a
+                ><i class="fad fa-bring-front navigation__item-icon"></i>Process
+                Code</a
               >
             </li>
 
@@ -193,7 +193,7 @@
           >Reservations</a
         >
       </li>
-      <li class="navigation__item" style="min-width: 13rem;">
+      <li class="navigation__item" style="min-width: 13rem">
         <a
           routerLink="./trnscts/process"
           [routerLinkActive]="['active-route']"
@@ -202,7 +202,7 @@
           [class.not-active]="
             role == 'SELLER_STAFF' && !checkHaveAccess('Manage Order')
           "
-          ><i class="fad fa-envelope-open navigation__item-icon"></i>Process
+          ><i class="fad fa-bring-front navigation__item-icon"></i>Process
           Code</a
         >
       </li>
@@ -279,7 +279,7 @@
           ><i class="fad fa-chart-bar navigation__item-icon"></i> Dashboard
         </a>
       </li>
-      <li class="navigation__item" style="min-width: 13rem;">
+      <li class="navigation__item" style="min-width: 13rem">
         <a
           routerLink="./trnscts/process"
           [routerLinkActive]="['active-route']"
@@ -289,7 +289,7 @@
             role == 'SELLER_STAFF' && !checkHaveAccess('Manage Order')
           "
         >
-          <!-- <i class="fad fa-envelope-open navigation__item-icon"></i> -->
+          <i class="fad fa-bring-front navigation__item-icon"></i>
           Process Code</a
         >
       </li>

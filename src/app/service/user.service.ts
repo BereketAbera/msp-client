@@ -171,7 +171,8 @@ export class UserService {
     pageNumber = 0,
     pageSize = 5,
     sortOrder,
-    sortedBy
+    sortedBy,
+    referralLinkKey
   ): Observable<any[]> {
     return this.http
       .get(accountAPI + "/seller/filter", {
@@ -184,7 +185,8 @@ export class UserService {
           .set("pageNumber", pageNumber.toString())
           .set("pageSize", pageSize.toString())
           .set("sortOrder", sortOrder)
-          .set("sortedBy", sortedBy),
+          .set("sortedBy", sortedBy)
+          .set("referralLinkKey", referralLinkKey),
       })
       .pipe(
         map((res) => {
