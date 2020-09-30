@@ -140,7 +140,7 @@
       <div class="product-detail__bottom-container">
         <div class="product-detail__input-container">
           <label for="quantity" class="product-detail__input-label"
-            >Reserve Quantity</label
+            >Quantity</label
           >
           <input
             id="quantity"
@@ -152,8 +152,6 @@
             [max]="product?.currentQuantity"
           />
         </div>
-      </div>
-      <div class="user-request">
         <div class="user-request__takeout">
           <img
             (click)="toggleCheckbox()"
@@ -164,10 +162,12 @@
           <mat-checkbox
             name="takeOut"
             formControlName="takeOut"
-            style="width: 2.5rem; height: 2.5rem;"
+            style="width: 2.5rem; height: 2.5rem"
           >
           </mat-checkbox>
         </div>
+      </div>
+      <div class="user-request">
         <div
           *ngIf="buyForm.controls['takeOut'].value"
           class="user-request__inputs"

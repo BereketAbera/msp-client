@@ -1,3 +1,4 @@
+import { CommonSingupComponent } from "./common-singup/common-singup.component";
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
@@ -53,6 +54,7 @@ import { ConfirmTermsComponent } from "./confirm-terms/confirm-terms.component";
     SignupComponent,
     SignupSellerComponent,
     ConfirmTermsComponent,
+    CommonSingupComponent,
     // CustomNotificationComponent,
   ],
   entryComponents: [RegistrationCompleteComponent],

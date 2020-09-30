@@ -85,9 +85,7 @@ export class RegisterSellerComponent implements OnInit {
     this.authService.progressBarActive.next(false);
     this.route.data.subscribe(
       (data: { categories: Category[]; states: State[] }) => {
-        // this.categories = data.categories;
         this.states = data.states;
-        // console.log(data);
       }
     );
 

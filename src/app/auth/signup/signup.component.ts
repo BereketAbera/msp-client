@@ -9,9 +9,9 @@ import { Component, OnInit } from "@angular/core";
 export class SignupComponent implements OnInit {
   selectedIndex = 0;
   constructor(private route: ActivatedRoute) {
-    route.queryParamMap.subscribe((res) => {
-      this.selectedIndex = res.get("role") == "seller" ? 1 : 0;
-    });
+    // route.queryParamMap.subscribe((res) => {
+    //   this.selectedIndex = res.get("role") == "seller" ? 1 : 0;
+    // });
   }
 
   ngOnInit(): void {

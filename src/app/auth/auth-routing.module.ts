@@ -1,3 +1,4 @@
+import { CommonSingupComponent } from "./common-singup/common-singup.component";
 import { SignupSellerComponent } from "./signup-seller/signup-seller.component";
 import { SignupComponent } from "./signup/signup.component";
 import { NgModule } from "@angular/core";
@@ -33,6 +34,13 @@ const authRoutes: Routes = [
       {
         path: "signup",
         component: SignupComponent,
+        resolve: {
+          states: StateResolverService,
+        },
+      },
+      {
+        path: "common-signup",
+        component: CommonSingupComponent,
         resolve: {
           states: StateResolverService,
         },

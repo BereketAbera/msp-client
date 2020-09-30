@@ -45,8 +45,10 @@ export class PublicComponent implements OnInit {
       } else {
         if (this.router.url.toString().includes("/seller")) {
           this.signUpRoute = "/signup-seller";
-        } else {
+        } else if (this.router.url.toString().includes("/buyer")) {
           this.signUpRoute = "/signup";
+        } else {
+          this.signUpRoute = "/common-signup";
         }
       }
       if (url.url && url.url.includes("/products")) {
