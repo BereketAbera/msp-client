@@ -3,6 +3,8 @@ import { FormControl, FormGroup, FormBuilder } from "@angular/forms";
 import { ActivatedRoute, Router, Params } from "@angular/router";
 import { ReferralLinkServiceService } from "@app/service/referral-link-service.service";
 import * as moment from "moment";
+import { MatSort } from "@angular/material/sort";
+import { ViewChild } from "@angular/core";
 
 @Component({
   selector: "app-links",
@@ -27,13 +29,17 @@ export class LinksComponent implements OnInit {
     "key",
     "type",
     "count",
-    "createdDate",
+    "createdAt",
   ];
   filterForm: FormGroup;
   types = [
     { value: "BUYER", viewValue: "Buyer" },
     { value: "SELLER", viewValue: "Seller" },
   ];
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
+
+  active;
+  direction;
 
   constructor(
     private referralLinkService: ReferralLinkServiceService,
@@ -52,8 +58,14 @@ export class LinksComponent implements OnInit {
       this.pageSize = parseInt(params.get("pageSize")) || 0;
       this.code = params.get("code") || "";
       this.createdDate = params.get("createdDate") || "";
+      this.active = params.get("active") || "";
+      this.direction = params.get("direction") || "";
       this.getLinks();
     });
+  }
+
+  sortData(event) {
+    this.setUrlValues(event);
   }
 
   getLinks() {
@@ -63,6 +75,8 @@ export class LinksComponent implements OnInit {
         pageSize: this.pageSize,
         code: this.code,
         createdDate: this.createdDate,
+        active: this.active,
+        direction: this.direction,
       })
       .subscribe((res) => {
         // console.log(res);
@@ -89,22 +103,22 @@ export class LinksComponent implements OnInit {
     }
   }
 
-  // setUrlValues(sObj) {
-  //   // console.log(sObj);
-  //   let keys = Object.keys(sObj);
-  //   let pObj = {};
-  //   keys.map((key) => {
-  //     pObj[key] = sObj[key];
-  //   });
-  //   const queryParams: Params = {
-  //     ...pObj,
-  //   };
-  //   this.router.navigate([], {
-  //     relativeTo: this.route,
-  //     queryParams: queryParams,
-  //     queryParamsHandling: "merge",
-  //   });
-  // }
+  setUrlValues(sObj) {
+    // console.log(sObj);
+    let keys = Object.keys(sObj);
+    let pObj = {};
+    keys.map((key) => {
+      pObj[key] = sObj[key];
+    });
+    const queryParams: Params = {
+      ...pObj,
+    };
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: queryParams,
+      queryParamsHandling: "merge",
+    });
+  }
 
   // pageChange({ pageIndex, pageSize }) {
   //   let sObj = {

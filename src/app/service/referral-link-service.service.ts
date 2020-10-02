@@ -1,3 +1,4 @@
+import { query } from "@angular/animations";
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
@@ -15,7 +16,20 @@ export class ReferralLinkServiceService {
     return this.http.post(referralLinkURL, obj);
   }
 
-  getReferralLinkList({}): Observable<any> {
-    return this.http.get(referralLinkURL);
+  getReferralLinkList(obj): Observable<any> {
+    let queryParams = this.generateParams(obj);
+    return this.http.get(`${referralLinkURL}?${queryParams}`);
+  }
+
+  generateParams(params) {
+    let url = "";
+    let keys = Object.keys(params);
+    keys.map((key) => {
+      if (params[key]) {
+        url = url + `${key}=${params[key]}&`;
+      }
+    });
+
+    return url.slice(0, url.length - 1);
   }
 }

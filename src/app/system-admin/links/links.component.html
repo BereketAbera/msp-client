@@ -70,7 +70,14 @@
         </button>
       </form> -->
     <div *ngIf="links && links.length > 0" class="links__table">
-      <mat-table class="mat-elevation-z8" [dataSource]="links">
+      <mat-table
+        class="mat-elevation-z8"
+        [dataSource]="links"
+        matSort
+        matSortDirection="asc"
+        matSortDisableClear
+        (matSortChange)="sortData($event)"
+      >
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let link; columns: displayedColumns"></mat-row>
         <ng-container matColumnDef="referralLink">
@@ -83,12 +90,16 @@
           </mat-cell>
         </ng-container>
         <ng-container matColumnDef="reason">
-          <mat-header-cell *matHeaderCellDef>Reason</mat-header-cell>
+          <mat-header-cell *matHeaderCellDef mat-sort-header
+            >Reason</mat-header-cell
+          >
           <mat-cell *matCellDef="let link">{{ link.reason }}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="key">
-          <mat-header-cell *matHeaderCellDef>Ref Key</mat-header-cell>
+          <mat-header-cell *matHeaderCellDef mat-sort-header
+            >Ref Key</mat-header-cell
+          >
           <mat-cell *matCellDef="let link">{{ link.key }}</mat-cell>
         </ng-container>
 
@@ -98,12 +109,16 @@
         </ng-container>
 
         <ng-container matColumnDef="count">
-          <mat-header-cell *matHeaderCellDef>Registered Users</mat-header-cell>
+          <mat-header-cell *matHeaderCellDef mat-sort-header
+            >Registered Users</mat-header-cell
+          >
           <mat-cell *matCellDef="let link">{{ link.count }}</mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="createdDate">
-          <mat-header-cell *matHeaderCellDef>Created Date</mat-header-cell>
+        <ng-container matColumnDef="createdAt">
+          <mat-header-cell *matHeaderCellDef mat-sort-header
+            >Created Date</mat-header-cell
+          >
           <mat-cell *matCellDef="let link">{{
             link.createdAt | date
           }}</mat-cell>
@@ -121,7 +136,7 @@
 
       <mat-paginator
         [length]="links.length"
-        [pageSize]="5"
+        [pageSize]="links.length"
         [pageSizeOptions]="[10, 20, 30, 50]"
         (page)="pageChange($event)"
       ></mat-paginator>
