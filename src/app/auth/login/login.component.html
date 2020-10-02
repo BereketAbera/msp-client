@@ -1,7 +1,12 @@
 <div class="container-login">
   <div class="card">
     <mat-tab-group class="card__tab" [selectedIndex]="selectedIndex">
-      <mat-tab label="LOG IN">
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <span style="font-weight: bold; color: #000; font-size: 1.6rem"
+            >LOG IN</span
+          >
+        </ng-template>
         <form class="form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
           <div class="login-container">
             <div *ngIf="showError" class="errorCntr">
@@ -110,12 +115,22 @@
           </div>
         </form>
       </mat-tab>
-      <mat-tab label="NEW BUYER SIGN UP" *ngIf="showBuyer">
+      <mat-tab *ngIf="showBuyer">
+        <ng-template mat-tab-label>
+          <span style="font-weight: bold; color: #000; font-size: 1.6rem"
+            >NEW BUYER SIGN UP</span
+          >
+        </ng-template>
         <app-register-buyer
           (registeredByr)="setSelectedIndexBuyer()"
         ></app-register-buyer>
       </mat-tab>
-      <mat-tab label="NEW SELLER SIGN UP" *ngIf="showSeller">
+      <mat-tab *ngIf="showSeller">
+        <ng-template mat-tab-label>
+          <span style="font-weight: bold; color: #000; font-size: 1.6rem"
+            >NEW SELLER SIGN UP</span
+          >
+        </ng-template>
         <app-register-seller
           (registeredSlr)="setSelectedIndexSeller()"
         ></app-register-seller>

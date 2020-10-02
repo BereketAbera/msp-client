@@ -39,6 +39,17 @@
   width: 100%;
 }
 
+.mat-tab-labels {
+  flex-direction: column;
+  // border: 1px solid #aaa;
+}
+
+@media only screen and (min-width: 480px) {
+  .mat-tab-labels {
+    flex-direction: row;
+  }
+}
+
 @media only screen and (min-width: 732px) {
   .card {
     width: 70%;

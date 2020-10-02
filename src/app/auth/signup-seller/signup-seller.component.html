@@ -1,7 +1,35 @@
 <div class="contanier">
-  <div class="card">
+  <div class="card" style="position: relative">
+    <div
+      style="
+        /* width: 100%; */
+        display: flex;
+        justify-content: flex-end;
+        position: absolute;
+        top: 35px;
+        right: 25px;
+        z-index: 100;
+      "
+    >
+      <a
+        style="
+          text-decoration: none;
+          color: #f94081;
+          font-size: 1.4rem;
+          font-weight: 600;
+          /* margin-bottom: 16px; */
+        "
+        href="/seller"
+        >WATCH SELLER VIDEO</a
+      >
+    </div>
     <mat-tab-group class="card__tab" [selectedIndex]="0">
-      <mat-tab label="NEW SELLER SIGN UP">
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <span style="font-weight: bold; color: #000; font-size: 1.6rem"
+            >NEW SELLER SIGN UP</span
+          >
+        </ng-template>
         <app-register-seller></app-register-seller>
       </mat-tab>
     </mat-tab-group>

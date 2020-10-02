@@ -70,11 +70,11 @@
       <i class="fad fa-times home__icon_cancel"></i>
     </div>
   </div>
-  <div class="overlay" [class.active]="play2">
+  <!-- <div class="overlay" [class.active]="play2">
     <div (click)="playVideo2()" class="overlay__close">
       <i class="fad fa-times home__icon_cancel"></i>
     </div>
-  </div>
+  </div> -->
   <div class="home__section-two">
     <h1 class="home__secton-header"></h1>
     <div class="home__steps-container">
@@ -83,10 +83,9 @@
           <i class="fad fa-cheeseburger"></i>
         </div>
         <h1 class="home__step-header" routerLink="/signup">BECOME A MEMBER</h1>
-        <div class="home__video__container" [class.home__full]="play2">
+        <div class="home__video__container">
           <video
             class="home__video2"
-            [class.home__fullscreen]="play2"
             poster="../../../assets/image/BuyerVideoFrame.JPG"
             (click)="playVideo2()"
             #videoPlayerB

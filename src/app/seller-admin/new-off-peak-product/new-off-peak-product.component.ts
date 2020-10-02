@@ -773,7 +773,7 @@ export class NewOffPeakProductComponent implements OnInit {
     }
   }
 
-  consumptionTimesOnChanges($event) {
+  consumptionTimesOnChanges() {
     // console.log(this.productForm.get("pickupEndHH").value);
     let currY = this.productForm.get("pickupEndHH").value;
     if (parseInt(currY) <= 12 && parseInt(currY) != 1) {

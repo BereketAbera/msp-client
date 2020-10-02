@@ -47,6 +47,14 @@ html {
   text-align: center;
 }
 
+// ::ng-deep {
+//   .mat-tab-label .mat-tab-label-content {
+//     font-weight: bold !important;
+//     color: #000 !important;
+//     font-size: 1.6rem !important;
+//   }
+// }
+
 @media only screen and (min-width: 320px) {
   html {
     font-size: 50%;
@@ -56,6 +64,10 @@ html {
   html {
     font-size: 55%;
   }
+
+  // .mat-tab-labels {
+  //   flex-direction: row;
+  // }
 }
 @media only screen and (min-width: 600px) {
   html {

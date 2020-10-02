@@ -65,7 +65,7 @@
       </div>
     </div>
   </div>
-  <div class="overlay" [class.active]="play">
+  <!-- <div class="overlay" [class.active]="play">
     <div (click)="playVideo()" class="overlay__close">
       <i class="fad fa-times home__icon_cancel"></i>
     </div>
@@ -74,7 +74,7 @@
     <div (click)="playVideo2()" class="overlay__close">
       <i class="fad fa-times home__icon_cancel"></i>
     </div>
-  </div>
+  </div> -->
   <div class="home__section-two">
     <h1 class="home__secton-header"></h1>
     <div class="home__steps-container">
@@ -93,10 +93,9 @@
         >
           Become a Seller
         </h1>
-        <div class="home__video__container" [class.home__full]="play">
+        <div class="home__video__container">
           <video
             class="home__video"
-            [class.home__fullscreen]="play"
             width="342"
             height="190"
             poster="../../../assets/image/SellerVideoFrame.JPG"

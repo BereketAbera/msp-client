@@ -1,7 +1,5 @@
 <div *ngIf="showError" class="errorCntr">
-  <button class="errClsBtn" (click)="close()">
-    &#215;
-  </button>
+  <button class="errClsBtn" (click)="close()">&#215;</button>
   <ul>
     <li *ngFor="let error of errors">
       {{ error }}
@@ -84,7 +82,7 @@
     </mat-form-field> -->
     <mat-form-field class="example-full-width">
       <mat-label>Phone Number</mat-label>
-      <span style="color: #555;" matPrefix>+1&nbsp;</span>
+      <span style="color: #555" matPrefix>+1&nbsp;</span>
       <input
         type="text"
         matInput
@@ -196,7 +194,7 @@
       >
       <span
         (click)="hide = !hide"
-        style="position: absolute; right: 0; font-size: 2rem; z-index: 100;"
+        style="position: absolute; right: 0; font-size: 2rem; z-index: 100"
       >
         <i *ngIf="hide" class="fad fa-eye-slash"></i>
         <i *ngIf="!hide" class="fad fa-eye"></i>
@@ -217,7 +215,7 @@
       > -->
       <span
         (click)="hide = !hide"
-        style="position: absolute; right: 0; font-size: 2rem; z-index: 100;"
+        style="position: absolute; right: 0; font-size: 2rem; z-index: 100"
       >
         <i *ngIf="hide" class="fad fa-eye-slash"></i>
         <i *ngIf="!hide" class="fad fa-eye"></i>
@@ -227,7 +225,7 @@
 
     <div>
       <mat-checkbox
-        style="color: gray; font-size: 16px;"
+        style="color: gray; font-size: 16px"
         formControlName="agreed"
         >I have read and agreed to the &nbsp;
         <a target="_blank" routerLink="/seller_terms"> Seller's Terms of Use</a
@@ -240,9 +238,19 @@
     <br />
     <br />
 
-    <!-- <button type="submit" mat-raised-button color="accent" class="msp-button">
-      Sign Up
-    </button> -->
+    <div style="width: 100%; display: flex; justify-content: flex-end">
+      <a
+        style="
+          text-decoration: none;
+          color: blue;
+          font-size: 1.6rem;
+          font-weight: 600;
+          margin-bottom: 16px;
+        "
+        routerLink="/signup"
+        >New Buyer Sign Up?</a
+      >
+    </div>
 
     <auth-custom-submit
       [styleObject]="submitBtnStyle"
