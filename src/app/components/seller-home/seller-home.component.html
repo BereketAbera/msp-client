@@ -83,6 +83,7 @@
           class="home__step-icon"
           style="cursor: pointer"
           routerLink="/signup-seller"
+          [queryParams]="{ referralKey: referralKey }"
         >
           <i class="fad fa-french-fries"></i>
         </div>
@@ -90,6 +91,7 @@
           class="home__step-header"
           style="cursor: pointer"
           routerLink="/signup-seller"
+          [queryParams]="{ referralKey: referralKey }"
         >
           Become a Seller
         </h1>
@@ -139,7 +141,11 @@
     </div>
   </div>
 
-  <div class="home__section-four" routerLink="/signup-seller">
+  <div
+    class="home__section-four"
+    routerLink="/signup-seller"
+    [queryParams]="{ referralKey: referralKey }"
+  >
     <span class="home__section-four-left"></span>
     <span class="home__section-four-middle">Sign Up</span>
     <span class="home__section-four-right"></span>

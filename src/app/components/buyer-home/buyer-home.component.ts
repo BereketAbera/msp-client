@@ -27,6 +27,8 @@ export class BuyerHomeComponent implements OnInit {
   play: boolean;
   play2: any;
   config: any;
+  referralKey = null;
+
   constructor(
     private winRef: WindowRef,
     private route: ActivatedRoute,
@@ -41,7 +43,11 @@ export class BuyerHomeComponent implements OnInit {
       this.categories = data.categories;
     });
     this.config = this.configService.configData;
-    // this.videoplayer.nativeElement.pause();
+
+    this.route.queryParamMap.subscribe((query) => {
+      let refKey = query.get("referralKey");
+      this.referralKey = refKey;
+    });
   }
 
   ngAfterViewChecked() {}

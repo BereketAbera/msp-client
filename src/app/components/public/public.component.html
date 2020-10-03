@@ -43,6 +43,7 @@
         <div
           *ngIf="!authService.isLoggedIn()"
           [routerLink]="signUpRoute"
+          [queryParams]="{ referralKey: referralKey }"
           class="header__desktop__singup-container"
         >
           <button class="header__desktop__signup-button">

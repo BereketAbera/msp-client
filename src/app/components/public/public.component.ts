@@ -32,6 +32,7 @@ export class PublicComponent implements OnInit {
   q: any;
   searchActive: any = false;
   signUpRoute = "/signup";
+  referralKey = null;
 
   constructor(
     public authService: AuthService,
@@ -39,6 +40,10 @@ export class PublicComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     private route: ActivatedRoute
   ) {
+    this.route.queryParamMap.subscribe((query) => {
+      let refKey = query.get("referralKey");
+      this.referralKey = refKey;
+    });
     this.router.events.subscribe((url: any) => {
       if (url.url && url.url.includes("/seller")) {
         this.signUpRoute = "/signup-seller";

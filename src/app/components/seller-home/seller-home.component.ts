@@ -28,7 +28,8 @@ export class SellerHomeComponent implements OnInit {
   play2: any;
   config: any;
   smallTextDisplayed = true;
-  sellerTextSmall = "";
+  referralKey = "";
+  sellerTextSmall = null;
   sellerText = `You keep 100% of the sales. No fees, no deductions, no equipment to buy.
   You decide the time, date, and quantities to discount to our members. You will know ahead of time how many orders have been ordered by our members. Each member will present you with a unique discount code and pay you directly. Your regular customers will not be affected.
   Just upload your product photos, offer a discount, quantity, time and date. We will notify our members near you immediately. It is that simple.
@@ -46,6 +47,10 @@ export class SellerHomeComponent implements OnInit {
     // window.scrollTo(0, 0);
     this.route.data.subscribe((data: { categories: Category[] }) => {
       this.categories = data.categories;
+    });
+    this.route.queryParamMap.subscribe((query) => {
+      let refKey = query.get("referralKey");
+      this.referralKey = refKey;
     });
     this.config = this.configService.configData;
     this.sellerTextSmall = this.sellerText.slice(0, 230) + "...";

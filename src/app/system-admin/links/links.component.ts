@@ -35,6 +35,8 @@ export class LinksComponent implements OnInit {
   types = [
     { value: "BUYER", viewValue: "Buyer" },
     { value: "SELLER", viewValue: "Seller" },
+    { value: "BUYER_HOME", viewValue: "Buyer Home" },
+    { value: "SELLER_HOME", viewValue: "Seller Home" },
   ];
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
