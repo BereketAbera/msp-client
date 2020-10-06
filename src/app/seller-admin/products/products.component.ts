@@ -111,42 +111,42 @@ export class ProductsComponent implements OnInit, AfterViewInit {
     }
   }
   gotoAddNewProduct() {
-    try {
-      let status = this.authService.getMyStatus();
-      let userStatus = parseInt(status.toString());
-      if (userStatus == 1)
-        this.router.navigate(["./nwclsngtlgu"], { relativeTo: this.route });
-      else {
-        this.showError = true;
-        this.errors = [
-          "Sorry, your account is either inactive or disabled.Please contact sales@ManagerSpecial.com.",
-        ];
-      }
-    } catch (err) {
-      this.showError = true;
-      this.errors = [
-        "Sorry, your account is either inactive or disabled.Please contact sales@ManagerSpecial.com.",
-      ];
-    }
+    this.router.navigate(["./nwclsngtlgu"], { relativeTo: this.route });
+    // try {
+    //   let status = this.authService.getMyStatus();
+    //   let userStatus = parseInt(status.toString());
+    //   if (userStatus == 1)
+    //   else {
+    //     this.showError = true;
+    //     this.errors = [
+    //       "Sorry, your account is either inactive or disabled.Please contact sales@ManagerSpecial.com.",
+    //     ];
+    //   }
+    // } catch (err) {
+    //   this.showError = true;
+    //   this.errors = [
+    //     "Sorry, your account is either inactive or disabled.Please contact sales@ManagerSpecial.com.",
+    //   ];
+    // }
   }
   gotoOffPeakProduct() {
-    try {
-      let status = this.authService.getMyStatus();
-      let userStatus = parseInt(status.toString());
-      if (userStatus == 1)
-        this.router.navigate(["./nwoffpktlgu"], { relativeTo: this.route });
-      else {
-        this.showError = true;
-        this.errors = [
-          "Sorry, your account is either inactive or disabled.Please contact sales@ManagerSpecial.com.",
-        ];
-      }
-    } catch (err) {
-      this.showError = true;
-      this.errors = [
-        "Sorry, your account is either inactive or disabled.Please contact sales@ManagerSpecial.com.",
-      ];
-    }
+    this.router.navigate(["./nwoffpktlgu"], { relativeTo: this.route });
+    // try {
+    //   let status = this.authService.getMyStatus();
+    //   let userStatus = parseInt(status.toString());
+    //   if (userStatus == 1)
+    //   else {
+    //     this.showError = true;
+    //     this.errors = [
+    //       "Sorry, your account is either inactive or disabled.Please contact sales@ManagerSpecial.com.",
+    //     ];
+    //   }
+    // } catch (err) {
+    //   this.showError = true;
+    //   this.errors = [
+    //     "Sorry, your account is either inactive or disabled.Please contact sales@ManagerSpecial.com.",
+    //   ];
+    // }
   }
 
   editProduct($event) {
