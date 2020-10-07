@@ -28,7 +28,7 @@
         [formControl]="sDate"
         placeholder="MM/DD/YYYY"
         [min]="minDate"
-        [max]="eDateValue? maxDate:eDateValue"
+        [max]="eDateValue ? maxDate : eDateValue"
       />
       <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
       <mat-datepicker #picker2></mat-datepicker>
@@ -62,7 +62,7 @@
           <circle
             class="dashboard__circle"
             stroke-dasharray="20 5 20 5 20"
-            style="stroke-dashoffset: 0;"
+            style="stroke-dashoffset: 0"
             stroke-width="4"
             fill="transparent"
             r="70"
@@ -79,7 +79,7 @@
           <circle
             class="dashboard__circle"
             stroke-dasharray="10 5 10"
-            style="stroke-dashoffset: 0;"
+            style="stroke-dashoffset: 0"
             stroke-width="4"
             fill="transparent"
             r="70"
@@ -87,7 +87,7 @@
             cy="75"
           ></circle>
         </svg>
-        <span class="dashboard__item-text">Units offered</span>
+        <span class="dashboard__item-text">Daily offered units</span>
         <span class="dashboard__item-value">{{ summary.totalQty }}</span>
         <!-- <span class="dashboard__item-percentage">50%</span> -->
       </div>
@@ -96,7 +96,7 @@
           <circle
             class="dashboard__circle"
             stroke-dasharray="439.82 439.82"
-            [style.stroke-dashoffset]="439.82 - reservedPercentage * 4.3982"
+            [style.stroke-dashoffset]="439.82 - 100 * 4.3982"
             stroke-width="4"
             fill="transparent"
             r="70"
@@ -108,9 +108,9 @@
         <span class="dashboard__item-value">{{
           summary.totalReservedQty
         }}</span>
-        <span class="dashboard__item-percentage">
+        <!-- <span class="dashboard__item-percentage">
           {{ reservedPercentage }}%</span
-        >
+        > -->
       </div>
 
       <div class="dashboard__item dashboard__total-revenue">
@@ -118,7 +118,7 @@
           <circle
             class="dashboard__circle"
             stroke-dasharray="20 5 20 5 20"
-            style="stroke-dashoffset: 0;"
+            style="stroke-dashoffset: 0"
             stroke-width="4"
             fill="transparent"
             r="70"
@@ -137,7 +137,7 @@
           <circle
             class="dashboard__circle"
             stroke-dasharray="20 5 20 5 20"
-            style="stroke-dashoffset: 0;"
+            style="stroke-dashoffset: 0"
             stroke-width="4"
             fill="transparent"
             r="70"

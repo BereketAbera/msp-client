@@ -21,17 +21,9 @@ export class SellerDashboardComponent implements OnInit {
   lables: string[];
   actualRevenu: number[];
   estimateRevenu: number[];
-
-  // sdate = new Date(moment().subtract(6, "M").format("YYYY-MM-DD"));
-
   reservedPercentage: any = 0;
   fullCircle: any = 0;
   totalRevenue: any = 0;
-  // eData = new Date();
-  // revenuForm = this.fb.group({
-  //   startDate: [this.sdate, Validators.required],
-  //   endDate: [this.eData, Validators.required],
-  // });
   sDate = new FormControl();
   eDate = new FormControl(new Date());
   sDateValue = "";
@@ -49,12 +41,8 @@ export class SellerDashboardComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // this.route.queryParamMap.subscribe((params) => {
     this.sDateValue = this.sDate.value;
     this.eDateValue2 = this.sDate.value;
-
-    //   this.filterDashboard();
-    // });
     this.route.data.subscribe(
       (data: {
         summary: SellerSummary;
@@ -63,7 +51,6 @@ export class SellerDashboardComponent implements OnInit {
           estimateRvnuRprt: RevenuRprt[];
         };
       }) => {
-        // console.log(data.summary);
         this.summary = data.summary;
         if (this.summary.totalQty > 0) {
           this.reservedPercentage = Math.ceil(
@@ -79,14 +66,12 @@ export class SellerDashboardComponent implements OnInit {
   }
 
   changeDateValue() {
-    // console.log(this.eDate.value);
     this.maxDate = this.eDate.value;
   }
   revenuChart() {
     this.lables = this.actualRevenuReport.map((value) => {
       return value.year + "|" + value.month + "|" + value.day;
     });
-    // console.log(this.revenuReport);
     this.actualRevenu = this.actualRevenuReport.map((value) => {
       return +value.revenu;
     });
@@ -178,31 +163,4 @@ export class SellerDashboardComponent implements OnInit {
   goToSellSummary() {
     this.router.navigate(["./slssmry"], { relativeTo: this.route });
   }
-
-  // setUrlValues(sObj) {
-  //   let keys = Object.keys(sObj);
-  //   let pObj = {};
-  //   keys.map((key) => {
-  //     pObj[key] = sObj[key];
-  //   });
-  //   const queryParams: Params = {
-  //     ...pObj,
-  //   };
-
-  //   this.router.navigate([], {
-  //     relativeTo: this.route,
-  //     queryParams: queryParams,
-  //     queryParamsHandling: "merge",
-  //   });
-  // }
-
-  // submitFilter() {
-  //   if (moment(this.sDate.value).isValid && moment(this.eDateValue).isValid) {
-  //     let obj = {
-  //       sDate: moment(this.sDate.value).format("MM/DD/YYYY"),
-  //       eDate: moment(this.eDate.value).format("MM/DD/YYYY"),
-  //     };
-  //     this.setUrlValues(obj);
-  //   }
-  // }
 }
