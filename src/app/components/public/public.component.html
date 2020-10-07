@@ -2,7 +2,6 @@
   <div class="header">
     <div class="header_mobile">
       <div class="header_mobile__logo">
-        <!-- <img src="favicon.ico" alt="Logo" class="header_mobile__logo_icon" /> -->
         <a routerLink="/" class="header_mobile__logo_text">ManagerSpecial</a>
       </div>
       <div class="header_mobile__right">
@@ -13,26 +12,6 @@
         >
           <i class="fad fa-search header_mobile__search-icon"></i>
         </div>
-        <!-- <div
-          *ngIf="mobileSearchActive"
-          (click)="searchClick()"
-          class="header_mobile__search-icon-container"
-        >
-          <i class="fad fa-times header_mobile__search-icon"></i>
-        </div>
-        <div
-          *ngIf="!authService.isLoggedIn()"
-          class="header_mobile__search-icon-container"
-        >
-          <button routerLink="/login" class="header_mobile__login-button">
-            <button
-              class="header__desktop__login-button"
-              style="font-size: 1.8rem; font-weight: 900;"
-            >
-              LOG IN
-            </button>
-          </button>
-        </div> -->
         <div
           *ngIf="!authService.isLoggedIn()"
           routerLink="/login"
@@ -46,10 +25,7 @@
           [queryParams]="{ referralKey: referralKey }"
           class="header__desktop__singup-container"
         >
-          <button class="header__desktop__signup-button">
-            SIGN UP
-            <!-- <i class="fad fa-ellipsis-v-alt"></i> UP -->
-          </button>
+          <button class="header__desktop__signup-button">SIGN UP</button>
         </div>
 
         <div
@@ -65,7 +41,6 @@
 
     <div class="header__desktop">
       <div class="header__desktop__logo">
-        <!-- <img src="favicon.ico" alt="Logo" class="header__desktop__logo_icon" /> -->
         <a routerLink="/" class="header__desktop__logo_text">ManagerSpecial</a>
       </div>
 
@@ -101,17 +76,14 @@
         <div routerLink="/login" class="header__desktop__login-container">
           <button class="header__desktop__login-button">
             <i class="fad fa-sign-in-alt"></i> &nbsp; LOG IN
-            <!-- <i class="fad fa-ellipsis-v-alt"></i> UP -->
           </button>
         </div>
         <div
           [routerLink]="signUpRoute"
+          [queryParams]="{ referralKey: referralKey }"
           class="header__desktop__singup-container"
         >
-          <button class="header__desktop__signup-button">
-            SIGN UP
-            <!-- <i class="fad fa-ellipsis-v-alt"></i> UP -->
-          </button>
+          <button class="header__desktop__signup-button">SIGN UP</button>
         </div>
       </div>
       <div
@@ -187,9 +159,6 @@
   </div>
 </div>
 <div class="email-support__button-container">
-  <!-- <a href="mailto:support@managerspecial.com" class="email-support__button"
-    ><i class="fad fa-envelope"></i
-  ></a> -->
   <a href="mailto:support@managerspecial.com"
     ><img
       src="assets/email_Circle_pink.png"

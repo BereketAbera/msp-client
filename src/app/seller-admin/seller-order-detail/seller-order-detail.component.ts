@@ -29,7 +29,7 @@ export class SellerOrderDetailComponent implements OnInit {
       this.order = data.order;
       this.callablePhoneNumber =
         "tel:" + this.phoneChangeFormat(this.order.phoneNumber, "db");
-      console.log(this.order);
+      // console.log(this.order);
       this.pickupEndTime = moment(this.order.pickupEndTime).format(
         "YYYY-MM-DD HH:MM:SS"
       );

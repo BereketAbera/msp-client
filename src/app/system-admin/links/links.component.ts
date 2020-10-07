@@ -88,7 +88,7 @@ export class LinksComponent implements OnInit {
   }
 
   generateNewLink() {
-    console.log(this.reason.value);
+    // console.log(this.reason.value);
     if (this.reason.value && this.type.value) {
       this.buttonDisable = true;
       this.referralLinkService

@@ -57,7 +57,7 @@ export class SalesSummaryComponent implements OnInit, AfterViewInit {
       10
     );
 
-    console.log(this.dataSource);
+    // console.log(this.dataSource);
   }
   ngAfterViewInit() {
     this.sort.sortChange.subscribe(() => (this.paginator.pageIndex = 0));

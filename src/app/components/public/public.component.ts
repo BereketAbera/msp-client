@@ -43,6 +43,7 @@ export class PublicComponent implements OnInit {
     this.route.queryParamMap.subscribe((query) => {
       let refKey = query.get("referralKey");
       this.referralKey = refKey;
+      // console.log(this.referralKey);
     });
     this.router.events.subscribe((url: any) => {
       if (url.url && url.url.includes("/seller")) {

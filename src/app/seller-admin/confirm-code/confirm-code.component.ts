@@ -39,7 +39,7 @@ export class ConfirmCodeComponent implements OnInit {
   }
 
   showNotification($event) {
-    console.log("hello from notification");
+    // console.log("hello from notification");
   }
 
   onSubmit() {

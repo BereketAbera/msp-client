@@ -120,7 +120,7 @@ export class RegisterBuyerRefComponent implements OnInit {
     this.zipCodeHints.map((zipcode) => {
       if (this.registrationForm.get("zipcode").value == zipcode.ZIPCode) {
         zipCodeFound = true;
-        console.log(zipcode);
+        // console.log(zipcode);
         this.registrationForm.get("city").setValue(zipcode.CityName);
         this.registrationForm
           .get("state")

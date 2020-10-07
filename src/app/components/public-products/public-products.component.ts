@@ -53,7 +53,7 @@ export class PublicProductsComponent implements OnInit {
   ) {}
   ngOnInit() {
     this.config = this.configService.configData;
-    console.log(this.config);
+    // console.log(this.config);
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
     this.companies = [];

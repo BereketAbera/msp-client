@@ -165,7 +165,7 @@ export class DealDetailComponent implements OnInit {
     let date = time.format("YYYY-MM-DD");
     let newDate = time.add(offset - 30, "minutes").format("YYYY-MM-DD");
     let newTime;
-    console.log(date, newDate, time, offset);
+    // console.log(date, newDate, time, offset);
     if (date < newDate) {
       newTime = moment(
         moment().add(-1, "day").format("YYYY-MM-DD") + " " + orgTime

@@ -99,14 +99,14 @@ export class SellerGuard implements CanActivate {
           }
         }
       } else {
-        console.log("hello ----------1");
+        // console.log("hello ----------1");
         this.router.navigate(["/login"]);
       }
     } else if (this.authService.isLoggedIn()) {
       this.router.navigate([this.authService.defaultNavigationURL]);
       return false;
     } else {
-      console.log("hello ----------1");
+      // console.log("hello ----------1");
       this.authService.redirectURL = url;
       this.router.navigate(["/login"]);
       return false;
