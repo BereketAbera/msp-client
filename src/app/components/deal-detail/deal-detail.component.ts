@@ -82,12 +82,9 @@ export class DealDetailComponent implements OnInit {
       cnt["specialRequirements"].setValue(specialRequirements);
       this.pickUpTime = pickUpTime;
       let pickMoment = moment(pickUpTime);
-      // console.log(
-      //   this.pickUpTime,
-      //   pickMoment.format("HH"),
-      //   pickMoment.format("mm:A")
-      // );
-      cnt["pickupHH"].setValue(this.return12Two(pickMoment.format("HH")));
+      cnt["pickupHH"].setValue(
+        this.return12Two(pickMoment.format("HH")).toString()
+      );
       cnt["pickupMM"].setValue(pickMoment.format("mm:A"));
     } else if (quantity) {
       cnt["quantity"].setValue(quantity);
@@ -157,7 +154,8 @@ export class DealDetailComponent implements OnInit {
 
   return12Two(hour) {
     if (hour == "12") return "12";
-    return this.returnTwoDigit(parseInt(hour) % 12);
+    let val = this.returnTwoDigit(parseInt(hour) % 12);
+    return val;
   }
 
   adjustPickUpInput(time: moment.Moment, offset) {
@@ -165,7 +163,6 @@ export class DealDetailComponent implements OnInit {
     let date = time.format("YYYY-MM-DD");
     let newDate = time.add(offset - 30, "minutes").format("YYYY-MM-DD");
     let newTime;
-    // console.log(date, newDate, time, offset);
     if (date < newDate) {
       newTime = moment(
         moment().add(-1, "day").format("YYYY-MM-DD") + " " + orgTime
@@ -219,20 +216,28 @@ export class DealDetailComponent implements OnInit {
     return returnInput ? returnInput.toISOString() : null;
   }
 
+  changeTo24(hour, ampm) {
+    if (ampm == "AM") {
+      return hour;
+    } else {
+      return this.returnTwoDigit(parseInt(hour) + 12);
+    }
+  }
+
   validatePickUpTime() {
     let fCont = this.buyForm.controls;
     let offset = this.product.utcoffset + new Date().getTimezoneOffset();
     let localPickUpInput = moment(
       moment().format("YYYY-MM-DD") +
         " " +
-        fCont["pickupHH"].value +
+        this.changeTo24(
+          fCont["pickupHH"].value,
+          fCont["pickupMM"].value.split(":")[1]
+        ) +
         ":" +
         fCont["pickupMM"].value.split(":")[0] +
-        ":00" +
-        " " +
-        fCont["pickupMM"].value.split(":")[1]
+        ":00"
     );
-    // this.pickUpInput = this.adjustPickUpInput(localPickUpInput, offset);
     this.pickUpInput = this.checkValidInput(localPickUpInput);
     if (!this.pickUpInput) {
       return false;
@@ -267,7 +272,6 @@ export class DealDetailComponent implements OnInit {
   }
 
   addToCart() {
-    // console.log(this.product);
     this.showErrorNotification = false;
     this.errorMessage = "";
     if (this.cartService.isCartExpired()) {
@@ -377,7 +381,8 @@ export class DealDetailComponent implements OnInit {
   }
 
   returnTwoDigit(value) {
-    return value.toString().length == 1 ? "0" + value : value;
+    let val = value.toString().length == 1 ? "0" + value : value;
+    return val;
   }
 
   toggleCheckbox() {

@@ -75,10 +75,10 @@
       </div>
     </div>
     <div class="mobile_responsive">
-      <div class="card" *ngFor="let product of cartProducts">
-        <div class="card__product">
-          <div class="card__product-title">{{ product.name }}</div>
-          <div class="card__product-body">
+      <div class="card-cart" *ngFor="let product of cartProducts">
+        <div class="card-cart__product">
+          <div class="card-cart__product-title">{{ product.name }}</div>
+          <div class="card-cart__product-body">
             <div class="shopping-cart__product-price items">
               <span>Reg </span> {{ product.regPrice | currency }}
             </div>
@@ -95,19 +95,19 @@
               <span>Qty</span> {{ product.qty }}
             </div>
           </div>
-          <div *ngIf="product.takeOut" class="card__req">
+          <div *ngIf="product.takeOut" class="card-cart__req">
             Message To Seller: {{ product.specialRequirements || "None" }}
             <br />
             Pick Up Time: {{ product.pickUpTime | date: "MMM d, h:mm a" }}
           </div>
         </div>
-        <div class="card__action">
+        <div class="card-cart__action">
           <div class="shopping-cart__product-line-price">
             Total: <b>{{ product.unitPrice * product.qty | currency }} </b>
           </div>
         </div>
 
-        <div class="card__remove">
+        <div class="card-cart__remove">
           <button
             class="shopping-cart__remove-product"
             (click)="removeCartProduct(product)"
@@ -115,7 +115,7 @@
             Remove
           </button>
         </div>
-        <div class="card__header">
+        <div class="card-cart__header">
           <img
             (click)="productDetail(product)"
             class="shopping-cart__product-image"

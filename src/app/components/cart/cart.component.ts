@@ -52,7 +52,6 @@ export class CartComponent implements OnInit {
   getCartProduct() {
     this.cartProducts = this.cartService.getLocalCartProducts();
     this.getTotalPrice();
-    // console.log(this.cartProducts);
   }
   getTotalPrice() {
     this.total = 0;
