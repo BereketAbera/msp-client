@@ -3,11 +3,7 @@
   <div class="navigation__container">
     <div class="header_mobile">
       <div>
-        <input
-          #drawerCheckbox
-          type="checkbox"
-          class="header_mobile__menu_checkbox"
-        />
+        <input #drawerCheckbox type="checkbox" class="header_mobile__menu_checkbox" />
         <div class="header_mobile__menu_button"></div>
         <div class="side_bar_mobile">
           <ul class="side_bar_mobile__list-container">
@@ -27,8 +23,7 @@
                 [routerLinkActive]="['active-route']"
                 [routerLinkActiveOptions]="{ exact: true }"
                 class="side_bar_mobile__item-text"
-                ><i class="fad fa-envelope-open navigation__item-icon"></i
-                >Reservation(s)</a
+                ><i class="fad fa-envelope-open navigation__item-icon"></i>Reservation(s)</a
               >
             </li>
             <li (click)="drawerLinkClicked()" class="side_bar_mobile__item">
@@ -37,8 +32,7 @@
                 [routerLinkActive]="['active-route']"
                 [routerLinkActiveOptions]="{ exact: false }"
                 class="side_bar_mobile__item-text"
-                ><i class="fad fa-clone side_bar_mobile__item-icon"></i>Add
-                Money</a
+                ><i class="fad fa-clone side_bar_mobile__item-icon"></i>Add Money</a
               >
             </li>
             <li (click)="drawerLinkClicked()" class="side_bar_mobile__item">
@@ -47,8 +41,7 @@
                 [routerLinkActive]="['active-route']"
                 [routerLinkActiveOptions]="{ exact: false }"
                 class="side_bar_mobile__item-text"
-                ><i class="fad fa-map side_bar_mobile__item-icon"></i
-                >Referral(s)
+                ><i class="fad fa-map side_bar_mobile__item-icon"></i>Referral(s)
               </a>
             </li>
             <li (click)="drawerLinkClicked()" class="side_bar_mobile__item">
@@ -57,8 +50,7 @@
                 [routerLinkActive]="['active-route']"
                 [routerLinkActiveOptions]="{ exact: false }"
                 class="side_bar_mobile__item-text"
-                ><i class="fad fa-images side_bar_mobile__item-icon"></i>
-                History</a
+                ><i class="fad fa-images side_bar_mobile__item-icon"></i> History</a
               >
             </li>
             <li (click)="drawerLinkClicked()" class="side_bar_mobile__item">
@@ -67,17 +59,14 @@
                 [routerLinkActive]="['active-route']"
                 [routerLinkActiveOptions]="{ exact: false }"
                 class="side_bar_mobile__item-text"
-                ><i class="fad fa-address-card side_bar_mobile__item-icon"></i>
-                Profile</a
+                ><i class="fad fa-address-card side_bar_mobile__item-icon"></i> Profile</a
               >
             </li>
             <li (click)="drawerLinkClicked()" class="side_bar_mobile__item">
-              <a
-                (click)="logout()"
-                class="side_bar_mobile__item-text side_bar_mobile__logout"
-              >
-                <i class="fad fa-user side_bar_mobile__item-icon"></i>Log Out
-                ({{ name | slice: 0:5 }})</a
+              <a (click)="logout()" class="side_bar_mobile__item-text side_bar_mobile__logout">
+                <i class="fad fa-user side_bar_mobile__item-icon"></i>Log Out ({{
+                  name | slice: 0:5
+                }})</a
               >
             </li>
           </ul>
@@ -116,9 +105,7 @@
       class="navigation__header-container"
     >
       <div class="navigation__sub-header-container navigation__sub-container1">
-        <a routerLink="./" class="navigation__desktop-header-text"
-          >ManagerSpecial</a
-        >
+        <a routerLink="./" class="navigation__desktop-header-text">ManagerSpecial</a>
       </div>
       <div class="navigation__sub-container1">
         <span class="navigation__item">
@@ -131,13 +118,8 @@
           >
         </span>
         <span class="navigation__item">
-          <a
-            (click)="logout()"
-            class="navigation__item-text navigation__logout"
-          >
-            <i class="fad fa-user navigation__item-icon"></i>SIGN OUT ({{
-              name
-            }})</a
+          <a (click)="logout()" class="navigation__item-text navigation__logout">
+            <i class="fad fa-user navigation__item-icon"></i>SIGN OUT ({{ name }})</a
           >
         </span>
       </div>
@@ -158,8 +140,7 @@
           [routerLinkActive]="['active-route']"
           [routerLinkActiveOptions]="{ exact: true }"
           class="navigation__item-text"
-          ><i class="fad fa-envelope-open navigation__item-icon"></i
-          >Reservation(s)</a
+          ><i class="fad fa-envelope-open navigation__item-icon"></i>Reservation(s)</a
         >
       </li>
       <li class="navigation__item">
@@ -225,8 +206,7 @@
           [routerLinkActive]="['active-route']"
           [routerLinkActiveOptions]="{ exact: true }"
           class="navigation__item-text"
-          ><i class="fad fa-envelope-open navigation__item-icon"></i
-          >Reservation(s)</a
+          ><i class="fad fa-envelope-open navigation__item-icon"></i>Reservation(s)</a
         >
       </li>
       <li class="navigation__item">
