@@ -36,7 +36,6 @@ import { UsersAdminComponent } from "./users-admin/users-admin.component";
     ReactiveFormsModule,
     SharedModule,
     AdminRoutingModule,
-    MatDialogModule,
   ],
   providers: [
     UserService,

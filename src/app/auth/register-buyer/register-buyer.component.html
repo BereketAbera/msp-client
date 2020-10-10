@@ -17,10 +17,7 @@
     <table class="example-full-width" cellspacing="0">
       <tr>
         <td>
-          <mat-form-field
-            class="example-full-width"
-            hintLabel="min 2 characters"
-          >
+          <mat-form-field class="example-full-width" hintLabel="min 2 characters">
             <input
               matInput
               placeholder="First Name"
@@ -35,10 +32,7 @@
           </mat-form-field>
         </td>
         <td>
-          <mat-form-field
-            class="example-full-width"
-            hintLabel="min 2 characters"
-          >
+          <mat-form-field class="example-full-width" hintLabel="min 2 characters">
             <input
               matInput
               placeholder="Last Name"
@@ -70,15 +64,8 @@
       />
     </mat-form-field>
     <mat-form-field>
-      <input
-        matInput
-        placeholder="Enter your email"
-        formControlName="email"
-        required
-      />
-      <mat-error *ngIf="registrationForm.controls.email.invalid">{{
-        getErrorMessage()
-      }}</mat-error>
+      <input matInput placeholder="Enter your email" formControlName="email" required />
+      <mat-error *ngIf="registrationForm.controls.email.invalid">{{ getErrorMessage() }}</mat-error>
     </mat-form-field>
     <div class="buyer__address">
       <mat-form-field class="buyer__input zipstatecity">
@@ -90,9 +77,7 @@
           [matAutocomplete]="auto"
           formControlName="zipcode"
           (keydown)="checkInput($event)"
-          (change)="
-            registrationForm.controls['zipcode'].setValue($event.target.value)
-          "
+          (change)="registrationForm.controls['zipcode'].setValue($event.target.value)"
           minlength="5"
           maxlength="5"
           required
@@ -107,18 +92,12 @@
             (click)="zipCodeSelected(result)"
           >
             <span>{{ result.ZIPCode }}</span>
-            <small>
-              | {{ result.CountyName }} {{ result.CityName }}
-              {{ result.StateAbbr }}</small
-            >
+            <small> | {{ result.CountyName }} {{ result.CityName }} {{ result.StateAbbr }}</small>
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>
 
-      <mat-form-field
-        *ngIf="registrationForm.get('city').value"
-        class="buyer__input zipstatecity"
-      >
+      <mat-form-field *ngIf="registrationForm.get('city').value" class="buyer__input zipstatecity">
         <input matInput placeholder="City" formControlName="city" readonly />
       </mat-form-field>
       <!-- <mat-form-field class="buyer__input zipstatecity">
@@ -134,10 +113,7 @@
         </mat-select>
       </mat-form-field> -->
     </div>
-    <mat-form-field
-      hintLabel="At least six characters, one number, one lowercase, and one
-        uppercase"
-    >
+    <mat-form-field hintLabel="At least six characters, 1 number, 1 lowercase, and 1 uppercase">
       <input
         matInput
         placeholder="Enter your password"
@@ -147,10 +123,9 @@
         [type]="hide ? 'password' : 'text'"
         required
       />
-      <mat-error *ngIf="registrationForm.controls.password.invalid"
-        >At least six characters, one number, one lowercase, and one
-        uppercase</mat-error
-      >
+      <mat-error *ngIf="registrationForm.controls.password.invalid">
+        At least six characters, 1 number, 1 lowercase, and 1 uppercase
+      </mat-error>
       <span
         (click)="hide = !hide"
         style="position: absolute; right: 0; font-size: 2rem; z-index: 100"
@@ -181,17 +156,8 @@
         <i *ngIf="!hide" class="fad fa-eye"></i>
       </span>
     </mat-form-field>
-    <div
-      style="
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        margin: 0.5rem;
-      "
-    >
-      <mat-slide-toggle
-        (change)="changeWidthCodeStatus($event)"
-        class="code__toggle"
+    <div style="width: 100%; display: flex; justify-content: center; margin: 0.5rem">
+      <mat-slide-toggle (change)="changeWidthCodeStatus($event)" class="code__toggle"
         >I have a bonus credit code</mat-slide-toggle
       >
     </div>
@@ -209,19 +175,11 @@
     </mat-form-field>
     <br />
 
-    <mat-checkbox
-      style="color: gray; font-size: 16px"
-      matInput
-      formControlName="agreed"
-      >I have read and agreed to the &nbsp;<a
-        target="_blank"
-        routerLink="/buyer_terms"
-      >
+    <mat-checkbox style="color: gray; font-size: 16px" matInput formControlName="agreed"
+      >I have read and agreed to the &nbsp;<a target="_blank" routerLink="/buyer_terms">
         Buyer's Terms of Use</a
       >&nbsp;and &nbsp;
-      <a target="_blank" routerLink="/privacy">
-        Privacy Statement.</a
-      ></mat-checkbox
+      <a target="_blank" routerLink="/privacy"> Privacy Statement.</a></mat-checkbox
     >
     <br />
     <br />

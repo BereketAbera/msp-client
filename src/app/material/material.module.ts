@@ -32,7 +32,7 @@ import { MatToolbarModule } from "@angular/material/toolbar";
     // MatButtonToggleModule,
     MatCardModule,
     MatCheckboxModule,
-    MatChipsModule,
+    // MatChipsModule,
     // MatStepperModule,
     MatDatepickerModule,
     MatDialogModule,

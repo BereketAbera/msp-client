@@ -33,7 +33,7 @@
     width: 100%;
     display: flex;
     list-style: none;
-    padding: 1.8rem;
+    padding: 1.8rem 0rem;
     margin-left: -2rem;
     background-color: #fff;
   }
@@ -366,9 +366,6 @@
 
   &__list-container {
     list-style: none;
-  }
-
-  &__item {
   }
 
   &__item-text {

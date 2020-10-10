@@ -11,10 +11,7 @@
     <table class="example-full-width" cellspacing="0">
       <tr>
         <td>
-          <mat-form-field
-            hintLabel="min 2 characters"
-            class="example-full-width"
-          >
+          <mat-form-field hintLabel="min 2 characters" class="example-full-width">
             <input
               matInput
               #frName
@@ -30,10 +27,7 @@
           </mat-form-field>
         </td>
         <td>
-          <mat-form-field
-            hintLabel="min 2 characters"
-            class="example-full-width"
-          >
+          <mat-form-field hintLabel="min 2 characters" class="example-full-width">
             <input
               matInput
               minlength="2"
@@ -50,24 +44,11 @@
       </tr>
     </table>
     <mat-form-field hintLabel="max 32 characters">
-      <input
-        matInput
-        placeholder="Company"
-        maxlength="32"
-        formControlName="companyName"
-        required
-      />
+      <input matInput placeholder="Company" maxlength="32" formControlName="companyName" required />
     </mat-form-field>
     <mat-form-field>
-      <input
-        matInput
-        placeholder="Enter your email"
-        formControlName="email"
-        required
-      />
-      <mat-error *ngIf="registrationForm.controls.email.invalid">{{
-        getErrorMessage()
-      }}</mat-error>
+      <input matInput placeholder="Enter your email" formControlName="email" required />
+      <mat-error *ngIf="registrationForm.controls.email.invalid">{{ getErrorMessage() }}</mat-error>
     </mat-form-field>
     <!-- <mat-form-field class="seller__categories seller__input">
       <mat-select
@@ -96,23 +77,11 @@
     </mat-form-field>
 
     <mat-form-field hintLabel="max 120 characters">
-      <input
-        matInput
-        placeholder="Address"
-        maxlength="120"
-        formControlName="address"
-        required
-      />
+      <input matInput placeholder="Address" maxlength="120" formControlName="address" required />
     </mat-form-field>
     <div class="seller__address">
       <mat-form-field class="seller__input zipstatecity">
-        <input
-          matInput
-          maxlength="45"
-          placeholder="City"
-          formControlName="city"
-          required
-        />
+        <input matInput maxlength="45" placeholder="City" formControlName="city" required />
       </mat-form-field>
       <mat-form-field class="seller__input zipstatecity">
         <input
@@ -123,9 +92,7 @@
           [matAutocomplete]="auto"
           formControlName="zipcode"
           (keydown)="checkInput($event)"
-          (change)="
-            registrationForm.controls['zipcode'].setValue($event.target.value)
-          "
+          (change)="registrationForm.controls['zipcode'].setValue($event.target.value)"
           minlength="5"
           maxlength="5"
           required
@@ -140,10 +107,7 @@
             (click)="zipCodeSelected(result)"
           >
             <span>{{ result.ZIPCode }}</span>
-            <small>
-              | {{ result.CountyName }} {{ result.CityName }}
-              {{ result.StateAbbr }}</small
-            >
+            <small> | {{ result.CountyName }} {{ result.CityName }} {{ result.StateAbbr }}</small>
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>
@@ -168,17 +132,9 @@
       </mat-form-field> -->
     </div>
     <mat-form-field>
-      <input
-        matInput
-        placeholder="Website Address"
-        maxlength="50"
-        formControlName="websiteURL"
-      />
+      <input matInput placeholder="Website Address" maxlength="50" formControlName="websiteURL" />
     </mat-form-field>
-    <mat-form-field
-      hintLabel="At least six characters, one number, one lowercase, and one
-        uppercase"
-    >
+    <mat-form-field hintLabel="At least six characters, 1 number, 1 lowercase, and 1 uppercase">
       <input
         matInput
         placeholder="Enter your password"
@@ -188,10 +144,9 @@
         [type]="hide ? 'password' : 'text'"
         required
       />
-      <mat-error *ngIf="registrationForm.controls.password.invalid"
-        >At least six characters, one number, one lowercase, and one
-        uppercase</mat-error
-      >
+      <mat-error *ngIf="registrationForm.controls.password.invalid">
+        At least six characters, 1 number, 1 lowercase, and 1 uppercase
+      </mat-error>
       <span
         (click)="hide = !hide"
         style="position: absolute; right: 0; font-size: 2rem; z-index: 100"
@@ -224,15 +179,10 @@
     <br />
 
     <div>
-      <mat-checkbox
-        style="color: gray; font-size: 16px"
-        formControlName="agreed"
+      <mat-checkbox style="color: gray; font-size: 16px" formControlName="agreed"
         >I have read and agreed to the &nbsp;
-        <a target="_blank" routerLink="/seller_terms"> Seller's Terms of Use</a
-        >&nbsp; and &nbsp;
-        <a target="_blank" routerLink="/privacy"
-          >Privacy Statement.</a
-        ></mat-checkbox
+        <a target="_blank" routerLink="/seller_terms"> Seller's Terms of Use</a>&nbsp; and &nbsp;
+        <a target="_blank" routerLink="/privacy">Privacy Statement.</a></mat-checkbox
       >
     </div>
     <br />

@@ -35,7 +35,7 @@ import { ConfirmTermsComponent } from "./confirm-terms/confirm-terms.component";
     DemoMaterialModule,
     SharedModule,
     AuthRoutingModule,
-    MatSlideToggleModule,
+    // MatSlideToggleModule,
     FormsModule,
   ],
   declarations: [

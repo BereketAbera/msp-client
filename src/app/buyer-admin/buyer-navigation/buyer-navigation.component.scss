@@ -21,6 +21,10 @@
     list-style: none;
   }
 
+  &__sub-container1 {
+    display: none;
+  }
+
   &__mobile-container {
     position: fixed;
     top: 4.2rem;
@@ -40,10 +44,6 @@
     padding: 1.8rem 0rem;
     background-color: #fff;
     overflow: hidden;
-  }
-
-  &__item {
-    // margin-bottom: 2rem;
   }
 
   &__item-text {
@@ -397,9 +397,6 @@
     list-style: none;
   }
 
-  &__item {
-  }
-
   &__item-text {
     text-decoration: none;
     font-size: 1.8rem;
@@ -446,6 +443,11 @@
 
     &__sub-container {
       display: flex;
+    }
+
+    &__sub-container1 {
+      display: flex;
+      align-items: center;
     }
 
     &__mobile-sub-container {
