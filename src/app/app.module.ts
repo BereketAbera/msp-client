@@ -67,7 +67,7 @@ import { BuyerHomeComponent } from "./components/buyer-home/buyer-home.component
     RefundComponent,
     EditConfigModalComponent,
     SellerHomeComponent,
-    BuyerHomeComponent,
+    BuyerHomeComponent
     //  DragDropDirective
     // CustomNotificationComponent,
   ],
@@ -78,7 +78,7 @@ import { BuyerHomeComponent } from "./components/buyer-home/buyer-home.component
     SharedModule,
     MatNativeDateModule,
     ReactiveFormsModule,
-    RoutingModule,
+    RoutingModule
     // DragDropDirective,
 
     // ServiceWorkerModule.register("ngsw-worker.js", {
@@ -90,7 +90,7 @@ import { BuyerHomeComponent } from "./components/buyer-home/buyer-home.component
     SaveConfirmationDialogComponent,
     SaveProgressComponent,
     CartExpiredDialogComponent,
-    EditConfigModalComponent,
+    EditConfigModalComponent
   ],
   providers: [
     CartService,
@@ -113,10 +113,10 @@ import { BuyerHomeComponent } from "./components/buyer-home/buyer-home.component
       useFactory: (configService: ConfigurationService) => () =>
         configService.loadConfigurationData(),
       deps: [ConfigurationService],
-      multi: true,
-    },
+      multi: true
+    }
   ],
 
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}

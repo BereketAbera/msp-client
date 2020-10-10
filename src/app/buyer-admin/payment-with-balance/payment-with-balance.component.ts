@@ -13,7 +13,7 @@ import { of } from "rxjs";
 @Component({
   selector: "app-payment-with-balance",
   templateUrl: "./payment-with-balance.component.html",
-  styleUrls: ["./payment-with-balance.component.scss"],
+  styleUrls: ["./payment-with-balance.component.scss"]
 })
 export class PaymentWithBalanceComponent implements OnInit {
   @Output() payWith = new EventEmitter<any>();
@@ -21,6 +21,7 @@ export class PaymentWithBalanceComponent implements OnInit {
 
   showError: boolean = false;
   errors = [];
+  disabled = false;
 
   // take_out = false;
   // special_requirements = "";
@@ -40,10 +41,7 @@ export class PaymentWithBalanceComponent implements OnInit {
     deposit: ["", Validators.required],
     paymentType: [this.PAY_WITH_BALANCE, Validators.required],
     allowCallPhoneNumber: [true],
-    phoneNumber: [
-      "",
-      [Validators.required, Validators.pattern(/(\(\d{3}\))(\s)\d{3}(-)\d{4}/)],
-    ],
+    phoneNumber: ["", [Validators.required, Validators.pattern(/(\(\d{3}\))(\s)\d{3}(-)\d{4}/)]]
   });
 
   prevValue = "";
@@ -92,9 +90,8 @@ export class PaymentWithBalanceComponent implements OnInit {
       width: "350px",
       data: {
         title: "Cart Time Expired",
-        message:
-          "Sorry, your shopping cart time limit of ten minutes has expired",
-      },
+        message: "Sorry, your shopping cart time limit of ten minutes has expired"
+      }
     });
     dialogRef.afterClosed().subscribe((result) => {
       this.cartService.resetCart();
@@ -104,6 +101,10 @@ export class PaymentWithBalanceComponent implements OnInit {
   onSubmit() {
     this.showError = false;
     this.errors = [];
+    console.log("about to send requrest", this.disabled);
+    if (this.disabled) {
+      return;
+    }
     if (this.cartService.isCartExpired()) {
       this.showResetDialog();
     } else {
@@ -111,25 +112,27 @@ export class PaymentWithBalanceComponent implements OnInit {
         this.showError = true;
         this.errors = ["Phone number is not valid"];
         return;
+      } else {
+        this.disabled = true;
+        let transaction: any = this.paymentForm.value;
+        transaction.ordrGuid = this.ordrGuid;
+        transaction.phoneNumber = this.paymentForm.controls["phoneNumber"].value;
+        this.trnsService.createTransaction(transaction).subscribe((res) => {
+          // console.log(res);
+          if (res["success"]) {
+            this.cartService.resetCart();
+            this.showSuccessNotification = true;
+            setTimeout(() => {
+              this.router.navigate(["../../"], { relativeTo: this.route });
+            }, 3500);
+            //
+          } else {
+            this.cartService.resetCart();
+            this.showError = true;
+            this.errors = res["messages"];
+          }
+        });
       }
-      let transaction: any = this.paymentForm.value;
-      transaction.ordrGuid = this.ordrGuid;
-      transaction.phoneNumber = this.paymentForm.controls["phoneNumber"].value;
-      this.trnsService.createTransaction(transaction).subscribe((res) => {
-        // console.log(res);
-        if (res["success"]) {
-          this.cartService.resetCart();
-          this.showSuccessNotification = true;
-          setTimeout(() => {
-            this.router.navigate(["../../"], { relativeTo: this.route });
-          }, 3500);
-          //
-        } else {
-          this.cartService.resetCart();
-          this.showError = true;
-          this.errors = res["messages"];
-        }
-      });
     }
   }
   showNotification($event) {
@@ -139,34 +142,23 @@ export class PaymentWithBalanceComponent implements OnInit {
   phoneNumberChange(value) {
     let val = value;
     if (val.length > 14) {
-      this.paymentForm.controls["phoneNumber"].setValue(
-        val.slice(0, val.length - 1)
-      );
+      this.paymentForm.controls["phoneNumber"].setValue(val.slice(0, val.length - 1));
       return;
     }
     let lk = val[val.length - 1];
     if (this.prevValue.length < val.length) {
-      if (
-        lk &&
-        ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"].includes(lk)
-      ) {
+      if (lk && ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"].includes(lk)) {
         if (val.length == 3) {
           if (val[0] == "1" || val[0] == "0") {
             this.paymentForm.controls["phoneNumber"].setValue(val.slice(1));
           }
         } else if (val.length == 4) {
-          this.paymentForm.controls["phoneNumber"].setValue(
-            `(${val.slice(0, 3)}) ${val[3]}`
-          );
+          this.paymentForm.controls["phoneNumber"].setValue(`(${val.slice(0, 3)}) ${val[3]}`);
         } else if (val.length == 10) {
-          this.paymentForm.controls["phoneNumber"].setValue(
-            `${val.slice(0, 9)}-${val[9]}`
-          );
+          this.paymentForm.controls["phoneNumber"].setValue(`${val.slice(0, 9)}-${val[9]}`);
         }
       } else if (lk) {
-        this.paymentForm.controls["phoneNumber"].setValue(
-          val.slice(0, val.length - 1)
-        );
+        this.paymentForm.controls["phoneNumber"].setValue(val.slice(0, val.length - 1));
       }
       if (["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"].includes(lk)) {
         this.prevValue = value;
@@ -181,9 +173,7 @@ export class PaymentWithBalanceComponent implements OnInit {
         this.paymentForm.controls["phoneNumber"].setValue(`${val.slice(1, 4)}`);
         this.prevValue = val.slice(1, 4);
       } else if (isNaN(val) && val.length <= 4) {
-        this.paymentForm.controls["phoneNumber"].setValue(
-          `${val.replace(/\D/g, "")}`
-        );
+        this.paymentForm.controls["phoneNumber"].setValue(`${val.replace(/\D/g, "")}`);
       } else {
         this.prevValue = this.paymentForm.controls["phoneNumber"].value;
       }
@@ -217,8 +207,6 @@ export class PaymentWithBalanceComponent implements OnInit {
   }
 
   toggleCheckbox() {
-    this.paymentForm.controls["takeOut"].setValue(
-      !this.paymentForm.controls["takeOut"].value
-    );
+    this.paymentForm.controls["takeOut"].setValue(!this.paymentForm.controls["takeOut"].value);
   }
 }

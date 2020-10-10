@@ -1,7 +1,5 @@
 <div *ngIf="showError" class="errorCntr">
-  <button class="errClsBtn" (click)="close()">
-    &#215;
-  </button>
+  <button class="errClsBtn" (click)="close()">&#215;</button>
   <ul>
     <li *ngFor="let error of errors">
       {{ error }}
@@ -24,13 +22,13 @@
             "
             >Payment Amount</span
           >
-          <label style="font-size: 1.5rem;">{{ orderAmount | currency }}</label>
+          <label style="font-size: 1.5rem">{{ orderAmount | currency }}</label>
           <div>
             <div class="user-request__allow-call-phone-number">
               Seller will call&nbsp;&nbsp;
               <mat-form-field class="example-full-width">
                 <mat-label>Phone Number</mat-label>
-                <span style="color: #555;" matPrefix>+1&nbsp;</span>
+                <span style="color: #555" matPrefix>+1&nbsp;</span>
                 <input
                   type="text"
                   matInput
@@ -46,25 +44,21 @@
             </div>
           </div>
         </div>
-        <div fxLayout="row" fxLayoutGap="3px" style="justify-content: center;">
+        <div fxLayout="row" fxLayoutGap="3px" style="justify-content: center">
           <div>
             <button
               type="button"
               (click)="onSubmit()"
               mat-flat-button
               color="accent"
+              [disabled]="disabled"
             >
               Pay Handling Fee Now
             </button>
           </div>
 
           <div>
-            <button
-              type="button"
-              mat-flat-button
-              color="accent"
-              (click)="goToHome()"
-            >
+            <button type="button" mat-flat-button color="accent" (click)="goToHome()">
               Cancel
             </button>
           </div>
