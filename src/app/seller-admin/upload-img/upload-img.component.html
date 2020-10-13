@@ -1,7 +1,5 @@
 <div *ngIf="showError" class="errorCntr">
-  <button class="errClsBtn" (click)="close()">
-    &#215;
-  </button>
+  <button class="errClsBtn" (click)="close()">&#215;</button>
   <ul>
     <li *ngFor="let error of errors">
       {{ error }}
@@ -10,11 +8,7 @@
 </div>
 <form class="upload-form__container" [formGroup]="uploadForm">
   <div class="upload-form__image-input">
-    <div
-      [class.hidden]="!uploadForm.value['img']"
-      class="captureBrdr"
-      fxFlexAlign="center"
-    >
+    <div [class.hidden]="!uploadForm.value['img']" class="captureBrdr" fxFlexAlign="center">
       <img id="localImage" src="" class="upload-form__image" />
     </div>
     <!-- <div><span>Keep picture size smaller. Max 1M.</span></div> -->
@@ -31,7 +25,7 @@
           id="file"
           (change)="fileChangeEvent($event)"
           accept="image/jpg,image/jpeg,image/gif,image/png"
-          style="display: none;"
+          style="display: none"
         />
       </label>
     </div>
@@ -65,14 +59,7 @@
         </button>
       </div>
       <div>
-        <button
-          type="button"
-          mat-flat-button
-          color="accent"
-          (click)="gotoGallery()"
-        >
-          Cancel
-        </button>
+        <button type="button" mat-flat-button color="accent" (click)="gotoGallery()">Cancel</button>
       </div>
     </div>
   </div>
@@ -93,15 +80,11 @@
     <button
       (click)="saveImage()"
       class="mat-flat-button mat-accent image__submit"
+      [disabled]="eventRecieved"
     >
       Add Image
     </button>
-    <button
-      (click)="closeModal()"
-      class="mat-flat-button mat-accent image__submit"
-    >
-      Cancel
-    </button>
+    <button (click)="closeModal()" class="mat-flat-button mat-accent image__submit">Cancel</button>
   </div>
 </div>
 <div *ngIf="loadingLocalImage" class="loader">
