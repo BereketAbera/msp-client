@@ -4,11 +4,15 @@
       <div class="header_mobile__logo">
         <a routerLink="/" class="header_mobile__logo_text">ManagerSpecial</a>
       </div>
-      <!-- <div class="header_mobile__search-icon-container">
+      <div
+        *ngIf="signUpRoute"
+        [routerLink]="signUpRoute"
+        class="header_mobile__search-icon-container"
+      >
         <button routerLink="/login" class="header__desktop__login-button">
-          LOG IN
+          {{ signUpRoute == "/common-signup" ? "Buyer Sign Up" : "Seller Sign Up" }}
         </button>
-      </div> -->
+      </div>
     </div>
 
     <div class="header__desktop">
