@@ -14,33 +14,25 @@ let zipCodeHints = [];
 @Component({
   selector: "app-confirm-terms",
   templateUrl: "./confirm-terms.component.html",
-  styleUrls: ["./confirm-terms.component.scss"],
+  styleUrls: ["./confirm-terms.component.scss"]
 })
 export class ConfirmTermsComponent implements OnInit {
   zipCodeHints: ZipCode[];
   states: State[];
   registrationForm = this.fb.group({
-    zipcode: [
-      "",
-      [Validators.required, Validators.pattern(/\d{5}/)],
-      zipCodeValidator,
-    ],
+    zipcode: ["", [Validators.required, Validators.pattern(/\d{5}/)], zipCodeValidator],
     city: ["", Validators.required],
-    state: [""],
-    agreed: [false, Validators.required],
+    state: ["", Validators.required],
+    agreed: [false, Validators.required]
 
     // subCategoryId: ["", Validators.required],
   });
 
   registrationBuyerForm = this.fb.group({
-    zipcode: [
-      "",
-      [Validators.required, Validators.pattern(/\d{5}/)],
-      zipCodeValidator,
-    ],
-    city: [""],
-    state: [""],
-    agreed: [false, Validators.required],
+    zipcode: ["", [Validators.required, Validators.pattern(/\d{5}/)], zipCodeValidator],
+    city: ["", Validators.required],
+    state: ["", Validators.required],
+    agreed: [false, Validators.required]
   });
   valueSet = true;
   constructor(
@@ -80,10 +72,7 @@ export class ConfirmTermsComponent implements OnInit {
     let zipCodeFound = false;
     this.zipCodeHints = zipCodes;
     zipCodeHints = this.zipCodeHints;
-    if (
-      this.registrationForm.controls["zipcode"].value.length == 5 &&
-      !this.valueSet
-    ) {
+    if (this.registrationForm.controls["zipcode"].value.length == 5 && !this.valueSet) {
       this.valueSet = true;
       this.registrationForm
         .get("zipcode")
@@ -94,12 +83,12 @@ export class ConfirmTermsComponent implements OnInit {
     this.zipCodeHints.map((zipcode) => {
       if (this.registrationForm.get("zipcode").value == zipcode.ZIPCode) {
         zipCodeFound = true;
-        this.registrationForm
-          .get("state")
-          .setValue(this.getStateName(zipcode.StateAbbr));
+        this.registrationForm.get("city").setValue(zipcode.CityName);
+        this.registrationForm.get("state").setValue(this.getStateName(zipcode.StateAbbr));
       }
     });
     if (!zipCodeFound) {
+      this.registrationForm.get("city").setValue("");
       this.registrationForm.get("state").setValue("");
     }
   }
@@ -109,10 +98,7 @@ export class ConfirmTermsComponent implements OnInit {
     let zipCodeFound = false;
     this.zipCodeHints = zipCodes;
     zipCodeHints = this.zipCodeHints;
-    if (
-      this.registrationBuyerForm.controls["zipcode"].value.length == 5 &&
-      !this.valueSet
-    ) {
+    if (this.registrationBuyerForm.controls["zipcode"].value.length == 5 && !this.valueSet) {
       this.valueSet = true;
       this.registrationBuyerForm
         .get("zipcode")
@@ -125,9 +111,7 @@ export class ConfirmTermsComponent implements OnInit {
         zipCodeFound = true;
         // console.log(zipcode);
         this.registrationBuyerForm.get("city").setValue(zipcode.CityName);
-        this.registrationBuyerForm
-          .get("state")
-          .setValue(this.getStateName(zipcode.StateAbbr));
+        this.registrationBuyerForm.get("state").setValue(this.getStateName(zipcode.StateAbbr));
       }
     });
     if (!zipCodeFound) {
@@ -137,16 +121,13 @@ export class ConfirmTermsComponent implements OnInit {
   }
 
   zipCodeSelected(zipcode) {
-    this.registrationForm
-      .get("state")
-      .setValue(this.getStateName(zipcode.StateAbbr));
+    this.registrationForm.get("city").setValue(zipcode.CityName);
+    this.registrationForm.get("state").setValue(this.getStateName(zipcode.StateAbbr));
   }
 
   zipCodeBuyerSelected(zipcode) {
     this.registrationBuyerForm.get("city").setValue(zipcode.CityName);
-    this.registrationBuyerForm
-      .get("state")
-      .setValue(this.getStateName(zipcode.StateAbbr));
+    this.registrationBuyerForm.get("state").setValue(this.getStateName(zipcode.StateAbbr));
   }
 
   checkInput(event) {

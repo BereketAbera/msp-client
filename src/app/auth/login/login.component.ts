@@ -1,3 +1,5 @@
+import { LinksComponent } from "./../../system-admin/links/links.component";
+import { MatSelectModule } from "@angular/material/select";
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { FormBuilder, Validators, FormGroup } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -9,7 +11,7 @@ import { ConfirmTermsComponent } from "../confirm-terms/confirm-terms.component"
   selector: "app-login",
   templateUrl: "./login.component.html",
   styleUrls: ["./login.component.scss"],
-  encapsulation: ViewEncapsulation.None,
+  encapsulation: ViewEncapsulation.None
 })
 export class LoginComponent implements OnInit {
   selectedIndex: number = 0;
@@ -19,7 +21,7 @@ export class LoginComponent implements OnInit {
   showError: boolean = false;
   type = "normal";
   submitBtnStyle = {
-    btn: { width: "100%", fontSize: "2rem", height: "4rem" },
+    btn: { width: "100%", fontSize: "2rem", height: "4rem" }
   };
   loginForm: FormGroup;
   loading = false;
@@ -51,7 +53,7 @@ export class LoginComponent implements OnInit {
     if (!this.type) this.type = "normal";
     this.loginForm = this.fb.group({
       email: [this.email, [Validators.required, Validators.minLength(3)]],
-      password: ["", Validators.required],
+      password: ["", Validators.required]
     });
   }
   getErrorMessage() {
@@ -111,6 +113,13 @@ export class LoginComponent implements OnInit {
           error.messages[0] == "Check your confirmation email first"
         ) {
           this.emailSent = true;
+        } else if (
+          error.messages &&
+          error.messages.length &&
+          error.messages[0] == "Illegal arguments: string, object"
+        ) {
+          this.errors = ["Can not login."];
+          this.showError = true;
         } else {
           this.errors = error.messages;
           this.showError = true;
@@ -124,7 +133,7 @@ export class LoginComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfirmTermsComponent, {
       width: "700px",
       height: "auto",
-      data: { confirmTerms: this.confirmTerms, user: res },
+      data: { confirmTerms: this.confirmTerms, user: res }
     });
 
     if (res.role == "APPLICANT") {
@@ -134,15 +143,14 @@ export class LoginComponent implements OnInit {
             .localApplicantSignUp({
               ...this.remoteUser,
               ...result,
-              tk: this.tk,
+              tk: this.tk
             })
             .subscribe(
               (res) => {
                 this.authService.progressBarActive.next(true);
                 if (this.authService.redirectURL) {
                   this.router.navigateByUrl(this.authService.redirectURL);
-                } else
-                  this.router.navigate([this.authService.defaultNavigationURL]);
+                } else this.router.navigate([this.authService.defaultNavigationURL]);
               },
               (err) => console.log(err)
             );
@@ -155,11 +163,11 @@ export class LoginComponent implements OnInit {
             .localEmployerSignUp({ ...this.remoteUser, ...result, tk: this.tk })
             .subscribe(
               (res) => {
+                console.log(res);
                 this.authService.progressBarActive.next(true);
                 if (this.authService.redirectURL) {
                   this.router.navigateByUrl(this.authService.redirectURL);
-                } else
-                  this.router.navigate([this.authService.defaultNavigationURL]);
+                } else this.router.navigate([this.authService.defaultNavigationURL]);
               },
               (err) => console.log(err)
             );

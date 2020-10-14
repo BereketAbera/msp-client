@@ -18,14 +18,10 @@
     <p class="dialog__content">
       The email <strong>{{ data.user.email }}</strong> is already registered in
       <strong>{{ data.user.applicationName }}.COM</strong> as
-      <strong>{{
-        data.user.role == "STAFFER" ? "EMPLOYER STAFF" : data.user.role
-      }}</strong
-      >. You can use this email to sign in to
-      <strong>ManagerSpecial</strong> and become a
+      <strong>{{ data.user.role == "STAFFER" ? "EMPLOYER STAFF" : data.user.role }}</strong
+      >. You can use this email to sign in to <strong>ManagerSpecial</strong> and become a
       <strong>{{ data.user.role == "APPLICANT" ? "BUYER" : "SELLER" }}</strong
-      >. Otherwise, please use a different email to registered as a buyer or
-      seller.
+      >. Otherwise, please use a different email to registered as a buyer or seller.
     </p>
     <p *ngIf="data.user.role == 'APPLICANT'" class="dialog__content">
       To continue, please read the terms of use and privacy statement.
@@ -48,11 +44,7 @@
             [matAutocomplete]="auto"
             formControlName="zipcode"
             (keydown)="checkInput($event)"
-            (change)="
-              registrationBuyerForm.controls['zipcode'].setValue(
-                $event.target.value
-              )
-            "
+            (change)="registrationBuyerForm.controls['zipcode'].setValue($event.target.value)"
             minlength="5"
             maxlength="5"
             required
@@ -67,46 +59,33 @@
               (click)="zipCodeBuyerSelected(result)"
             >
               <span>{{ result.ZIPCode }}</span>
-              <small>
-                | {{ result.CountyName }} {{ result.CityName }}
-                {{ result.StateAbbr }}</small
-              >
+              <small> | {{ result.CountyName }} {{ result.CityName }} {{ result.StateAbbr }}</small>
             </mat-option>
           </mat-autocomplete>
         </mat-form-field>
 
         <mat-form-field
-          *ngIf="registrationBuyerForm.get('city').value"
+          *ngIf="
+            registrationBuyerForm.get('city').value || !registrationBuyerForm.get('city').pristine
+          "
           class="seller__input zipstatecity"
         >
-          <input matInput placeholder="City" formControlName="city" readonly />
+          <input matInput maxlength="45" placeholder="City" formControlName="city" required />
         </mat-form-field>
-        <!-- <mat-form-field class="seller__input zipstatecity">
-        <mat-select
-          placeholder="State"
-          formControlName="state"
-          required
-          disabled
+        <mat-form-field
+          *ngIf="
+            registrationBuyerForm.get('state').value || !registrationBuyerForm.get('state').pristine
+          "
+          class="seller__input zipstatecity"
         >
-          <mat-option *ngFor="let state of states" [value]="state.name">
-            {{ state.name }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field> -->
+          <input matInput placeholder="State" formControlName="state" required />
+        </mat-form-field>
       </div>
-      <mat-checkbox
-        class="dialog__checkbox"
-        name="confirmTerms"
-        formControlName="agreed"
-        >I have read and agreed to the &nbsp;<a
-          target="_blank"
-          routerLink="/buyer_terms"
-        >
+      <mat-checkbox class="dialog__checkbox" name="confirmTerms" formControlName="agreed"
+        >I have read and agreed to the &nbsp;<a target="_blank" routerLink="/buyer_terms">
           Buyer's Terms of Use</a
         >&nbsp;and &nbsp;
-        <a target="_blank" routerLink="/privacy">
-          Privacy Statement.</a
-        ></mat-checkbox
+        <a target="_blank" routerLink="/privacy"> Privacy Statement.</a></mat-checkbox
       >
     </form>
     <form
@@ -118,24 +97,13 @@
         <mat-form-field class="seller__input zipstatecity">
           <input
             matInput
-            maxlength="45"
-            placeholder="City"
-            formControlName="city"
-            required
-          />
-        </mat-form-field>
-        <mat-form-field class="seller__input zipstatecity">
-          <input
-            matInput
             type="tel"
             placeholder="Zip / Postal Code"
             matInput
             [matAutocomplete]="auto"
             formControlName="zipcode"
             (keydown)="checkInput($event)"
-            (change)="
-              registrationForm.controls['zipcode'].setValue($event.target.value)
-            "
+            (change)="registrationForm.controls['zipcode'].setValue($event.target.value)"
             minlength="5"
             maxlength="5"
             required
@@ -150,24 +118,22 @@
               (click)="zipCodeSelected(result)"
             >
               <span>{{ result.ZIPCode }}</span>
-              <small>
-                | {{ result.CountyName }} {{ result.CityName }}
-                {{ result.StateAbbr }}</small
-              >
+              <small> | {{ result.CountyName }} {{ result.CityName }} {{ result.StateAbbr }}</small>
             </mat-option>
           </mat-autocomplete>
         </mat-form-field>
 
         <mat-form-field
-          *ngIf="registrationForm.get('state').value"
+          *ngIf="registrationForm.get('city').value || !registrationForm.get('city').pristine"
           class="seller__input zipstatecity"
         >
-          <input
-            matInput
-            placeholder="State"
-            formControlName="state"
-            readonly
-          />
+          <input matInput maxlength="45" placeholder="City" formControlName="city" required />
+        </mat-form-field>
+        <mat-form-field
+          *ngIf="registrationForm.get('state').value || !registrationForm.get('state').pristine"
+          class="seller__input zipstatecity"
+        >
+          <input matInput placeholder="State" formControlName="state" required />
         </mat-form-field>
         <!-- <mat-form-field class="seller__input zipstatecity">
           <mat-select
@@ -184,11 +150,8 @@
       </div>
       <mat-checkbox class="dialog__checkbox" formControlName="agreed"
         >I have read and agreed to the &nbsp;
-        <a target="_blank" routerLink="/seller_terms"> Seller's Terms of Use</a
-        >&nbsp; and &nbsp;
-        <a target="_blank" routerLink="/privacy"
-          >Privacy Statement.</a
-        ></mat-checkbox
+        <a target="_blank" routerLink="/seller_terms"> Seller's Terms of Use</a>&nbsp; and &nbsp;
+        <a target="_blank" routerLink="/privacy">Privacy Statement.</a></mat-checkbox
       >
     </form>
   </div>
@@ -196,10 +159,7 @@
     <button mat-button (click)="onNoClick()">Cancel</button>
     <button
       *ngIf="data.user.role == 'APPLICANT'"
-      [disabled]="
-        registrationBuyerForm.invalid ||
-        !registrationBuyerForm.controls['agreed'].value
-      "
+      [disabled]="registrationBuyerForm.invalid || !registrationBuyerForm.controls['agreed'].value"
       mat-button
       [mat-dialog-close]="registrationBuyerForm.value"
       cdkFocusInitial
@@ -208,9 +168,7 @@
     </button>
     <button
       *ngIf="!(data.user.role == 'APPLICANT')"
-      [disabled]="
-        registrationForm.invalid || !registrationForm.controls['agreed'].value
-      "
+      [disabled]="registrationForm.invalid || !registrationForm.controls['agreed'].value"
       mat-button
       [mat-dialog-close]="registrationForm.value"
       cdkFocusInitial
