@@ -81,9 +81,6 @@
     </mat-form-field>
     <div class="seller__address">
       <mat-form-field class="seller__input zipstatecity">
-        <input matInput maxlength="45" placeholder="City" formControlName="city" required />
-      </mat-form-field>
-      <mat-form-field class="seller__input zipstatecity">
         <input
           matInput
           type="tel"
@@ -111,12 +108,17 @@
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>
-
       <mat-form-field
-        *ngIf="registrationForm.get('state').value"
+        *ngIf="registrationForm.get('city').value || !registrationForm.get('city').pristine"
         class="seller__input zipstatecity"
       >
-        <input matInput placeholder="State" formControlName="state" readonly />
+        <input matInput maxlength="45" placeholder="City" formControlName="city" required />
+      </mat-form-field>
+      <mat-form-field
+        *ngIf="registrationForm.get('state').value || !registrationForm.get('state').pristine"
+        class="seller__input zipstatecity"
+      >
+        <input matInput placeholder="State" formControlName="state" required />
       </mat-form-field>
       <!-- <mat-form-field class="seller__input zipstatecity">
         <mat-select
@@ -187,20 +189,6 @@
     </div>
     <br />
     <br />
-
-    <div style="width: 100%; display: flex; justify-content: flex-end">
-      <a
-        style="
-          text-decoration: none;
-          color: blue;
-          font-size: 1.6rem;
-          font-weight: 600;
-          margin-bottom: 16px;
-        "
-        routerLink="/signup"
-        >Buyer Sign Up</a
-      >
-    </div>
 
     <auth-custom-submit
       [styleObject]="submitBtnStyle"

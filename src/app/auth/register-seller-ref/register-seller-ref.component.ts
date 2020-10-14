@@ -19,7 +19,7 @@ let zipCodeHints = [];
 @Component({
   selector: "app-register-seller-ref",
   templateUrl: "./register-seller-ref.component.html",
-  styleUrls: ["./register-seller-ref.component.scss"],
+  styleUrls: ["./register-seller-ref.component.scss"]
 })
 export class RegisterSellerRefComponent implements OnInit {
   tk: string;
@@ -32,7 +32,7 @@ export class RegisterSellerRefComponent implements OnInit {
   states: State[];
   prevValue = "";
   submitBtnStyle = {
-    btn: { width: "100%", fontSize: "2rem", height: "4rem" },
+    btn: { width: "100%", fontSize: "2rem", height: "4rem" }
   };
   registrationForm = this.fb.group({
     firstName: ["", Validators.required],
@@ -47,12 +47,12 @@ export class RegisterSellerRefComponent implements OnInit {
     state: [""],
     password: [
       "",
-      [Validators.required, Validators.pattern(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/)],
+      [Validators.required, Validators.pattern(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/)]
     ],
     confirmPassword: ["", Validators.required],
     agreed: [false, Validators.required],
     role: ["SELLER", Validators.required],
-    subCategoryId: [1, Validators.required],
+    subCategoryId: [1, Validators.required]
   });
   loading: boolean = false;
   valueSet = false;
@@ -65,7 +65,7 @@ export class RegisterSellerRefComponent implements OnInit {
     private userService: UserService,
     private authService: AuthService,
     private fb: FormBuilder,
-    private zipcodeService: ZipcodeService,
+    private zipcodeService: ZipcodeService
   ) {}
 
   ngOnInit() {
@@ -87,7 +87,7 @@ export class RegisterSellerRefComponent implements OnInit {
     this.registrationForm.controls["zipcode"].valueChanges
       .pipe(
         debounceTime(200),
-        switchMap((term) => this.zipcodeService.searchAddress(term)),
+        switchMap((term) => this.zipcodeService.searchAddress(term))
       )
       .subscribe((zipCodeHints) => this.getlocations(zipCodeHints));
     this.registrationForm.controls["phoneNumber"].valueChanges
@@ -136,12 +136,12 @@ export class RegisterSellerRefComponent implements OnInit {
                   res.user.role == "STAFFER" ? "EMPLOYER STAFF" : res.user.role
                 }. You can use this email to sign in to ManagerSpecial and become a ${
                   res.user.role == "APPLICANT" ? "BUYER" : "SELLER"
-                }. Please try logging in or use another email.`,
-              },
+                }. Please try logging in or use another email.`
+              }
             });
             dialogRef.afterClosed().subscribe((result) => {
               this.router.navigate([`/login/seller`], {
-                queryParams: { email: res.user.email, tk: this.tk },
+                queryParams: { email: res.user.email, tk: this.tk }
               });
             });
           } else {
@@ -152,13 +152,13 @@ export class RegisterSellerRefComponent implements OnInit {
                 width: "350px",
                 data: {
                   msg:
-                    "Thank you! Now please check your email for our email and phone number verification.",
-                },
+                    "Thank you! Now please check your email for our email and phone number verification."
+                }
               });
               dialogRef.afterClosed().subscribe((result) => {
                 this.router
                   .navigateByUrl("/RefrshComponent", {
-                    skipLocationChange: true,
+                    skipLocationChange: true
                   })
                   .then(() => this.router.navigate(["/login/seller"]));
               });
@@ -199,10 +199,12 @@ export class RegisterSellerRefComponent implements OnInit {
     this.zipCodeHints.map((zipcode) => {
       if (this.registrationForm.get("zipcode").value == zipcode.ZIPCode) {
         zipCodeFound = true;
+        this.registrationForm.get("city").setValue(zipcode.CityName);
         this.registrationForm.get("state").setValue(this.getStateName(zipcode.StateAbbr));
       }
     });
     if (!zipCodeFound) {
+      this.registrationForm.get("city").setValue("");
       this.registrationForm.get("state").setValue("");
     }
   }
@@ -219,6 +221,7 @@ export class RegisterSellerRefComponent implements OnInit {
   }
 
   zipCodeSelected(zipcode) {
+    this.registrationForm.get("city").setValue(zipcode.CityName);
     this.registrationForm.get("state").setValue(this.getStateName(zipcode.StateAbbr));
   }
 

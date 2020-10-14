@@ -109,10 +109,18 @@
               </mat-form-field>
 
               <mat-form-field
-                *ngIf="registrationForm.get('city').value"
+                *ngIf="registrationForm.get('city').value || !registrationForm.get('city').pristine"
                 class="buyer__input zipstatecity"
               >
-                <input matInput placeholder="City" formControlName="city" readonly />
+                <input matInput placeholder="City" formControlName="city" required />
+              </mat-form-field>
+              <mat-form-field
+                *ngIf="
+                  registrationForm.get('state').value || !registrationForm.get('state').pristine
+                "
+                class="buyer__input zipstatecity"
+              >
+                <input matInput placeholder="State" formControlName="state" required />
               </mat-form-field>
             </div>
             <mat-form-field

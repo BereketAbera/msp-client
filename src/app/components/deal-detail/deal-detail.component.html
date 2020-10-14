@@ -20,11 +20,7 @@
               <span class="product-detail__reserve-order-time-text"
                 >From - {{ product?.offerStartTime | date: "hh:mm a" }}
                 {{
-                  resolvedOfferDays[0] == 1
-                    ? "d+1"
-                    : resolvedOfferDays[0] == -1
-                    ? "d-1"
-                    : ""
+                  resolvedOfferDays[0] == 1 ? "d+1" : resolvedOfferDays[0] == -1 ? "d-1" : ""
                 }}</span
               >
             </h6>
@@ -33,11 +29,7 @@
               <span class="product-detail__reserve-order-time-text"
                 >To - {{ product?.offerEndTime | date: "hh:mm a" }}
                 {{
-                  resolvedOfferDays[1] == 1
-                    ? "d+1"
-                    : resolvedOfferDays[1] == -1
-                    ? "d-1"
-                    : ""
+                  resolvedOfferDays[1] == 1 ? "d+1" : resolvedOfferDays[1] == -1 ? "d-1" : ""
                 }}</span
               >
             </h6>
@@ -55,11 +47,7 @@
               <span class="product-detail__reserve-order-time-text"
                 >From - {{ product?.pickupStartTime | date: "hh:mm a" }}
                 {{
-                  resolvedPickupDays[0] == 1
-                    ? "d+1"
-                    : resolvedPickupDays[0] == -1
-                    ? "d-1"
-                    : ""
+                  resolvedPickupDays[0] == 1 ? "d+1" : resolvedPickupDays[0] == -1 ? "d-1" : ""
                 }}</span
               >
             </h6>
@@ -68,11 +56,7 @@
               <span class="product-detail__reserve-order-time-text"
                 >To - {{ product?.pickupEndTime | date: "hh:mm a" }}
                 {{
-                  resolvedPickupDays[1] == 1
-                    ? "d+1"
-                    : resolvedPickupDays[1] == -1
-                    ? "d-1"
-                    : ""
+                  resolvedPickupDays[1] == 1 ? "d+1" : resolvedPickupDays[1] == -1 ? "d-1" : ""
                 }}</span
               >
             </h6>
@@ -104,26 +88,36 @@
           <h5 class="product-detail__shop-name">{{ product?.shopName }}</h5>
         </div>
         <div class="product-detail__shop">
-          <i class="fad fa-map-marker-alt product-detail__address-icon"></i>
-          <h5 class="product-detail__address-name">
-            {{ product?.shopAddress }}, {{ product?.shopCity }}
-          </h5>
-        </div>
-        <div class="product-detail__shop">
           <i class="fad fa-phone product-detail__address-icon"></i>
           <h5 class="product-detail__address-name">
             {{ product?.companyPhoneNumber }}
           </h5>
         </div>
+        <a
+          target="_blank"
+          [href]="'http://maps.google.com/?q=' + product?.shopCity + ',' + product.shopAddress"
+          style="
+            font-size: 1.3rem;
+            text-decoration: none;
+            max-width: 75%;
+            display: flex;
+            align-items: center;
+            color: #f94081;
+          "
+        >
+          <i class="fad fa-map-marked" style="color: #f94081; margin-right: 1rem"></i
+          >{{ product?.shopCity }}, {{ product.shopAddress }}
+        </a>
+        <!-- <div class="product-detail__shop">
+          <h5 class="product-detail__address-name">
+            {{ product?.shopCity }}
+          </h5>
+        </div> -->
       </div>
       <div class="product-detail__middle-right">
         <div class="product-detail__price">
-          <span class="product-detail__normal-price">{{
-            product?.normalPrice | currency
-          }}</span>
-          <span class="product-detail__discountPrice">{{
-            product?.discountPrice | currency
-          }}</span>
+          <span class="product-detail__normal-price">{{ product?.normalPrice | currency }}</span>
+          <span class="product-detail__discountPrice">{{ product?.discountPrice | currency }}</span>
         </div>
         <div class="product-detail__rating">
           <i class="fad fa-star product-detail__time-icon"></i>
@@ -139,9 +133,7 @@
     <div class="product-detail__bottom-1">
       <div class="product-detail__bottom-container">
         <div class="product-detail__input-container">
-          <label for="quantity" class="product-detail__input-label"
-            >Quantity</label
-          >
+          <label for="quantity" class="product-detail__input-label">Quantity</label>
           <input
             id="quantity"
             class="product-detail__input"
@@ -168,10 +160,7 @@
         </div>
       </div>
       <div class="user-request">
-        <div
-          *ngIf="buyForm.controls['takeOut'].value"
-          class="user-request__inputs"
-        >
+        <div *ngIf="buyForm.controls['takeOut'].value" class="user-request__inputs">
           <div class="user-request__input">
             <mat-form-field class="user-request__input-req">
               <mat-label>Note for seller</mat-label>
@@ -185,9 +174,7 @@
             </mat-form-field>
           </div>
           <div class="user-request__input">
-            <div class="user-request__label" fxFlexAlign="center">
-              Picking Up At:
-            </div>
+            <div class="user-request__label" fxFlexAlign="center">Picking Up At:</div>
             <mat-form-field class="user-request__input-1">
               <mat-select matInput formControlName="pickupHH" placeholder="HH">
                 <mat-option *ngFor="let hh of hhlst" [value]="hh">
@@ -232,11 +219,7 @@
               <strong
                 >{{ validPickUpEndTime | date: "hh:mm a" }}
                 {{
-                  resolvedPickupDays[1] == 1
-                    ? "d+1"
-                    : resolvedPickupDays[1] == -1
-                    ? "d-1"
-                    : ""
+                  resolvedPickupDays[1] == 1 ? "d+1" : resolvedPickupDays[1] == -1 ? "d-1" : ""
                 }}</strong
               >
             </div>
@@ -245,21 +228,11 @@
       </div>
     </div>
     <div class="product-detail__bottom-container">
-      <button
-        mat-flat-button
-        color="accent"
-        class="product-detail__button"
-        (click)="addToCart()"
-      >
+      <button mat-flat-button color="accent" class="product-detail__button" (click)="addToCart()">
         <i class="fad fa-cart-plus product-detail__icon"></i>
         <span>Add To Reservation</span>
       </button>
-      <button
-        mat-flat-button
-        color="accent"
-        class="product-detail__button"
-        (click)="cancel()"
-      >
+      <button mat-flat-button color="accent" class="product-detail__button" (click)="cancel()">
         Cancel
       </button>
     </div>

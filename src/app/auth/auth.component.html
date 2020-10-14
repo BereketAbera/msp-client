@@ -15,11 +15,16 @@
       <div class="header__desktop__logo">
         <a routerLink="/" class="header__desktop__logo_text">ManagerSpecial</a>
       </div>
-      <!-- <div routerLink="/login" class="header__desktop__login-container">
+      <div
+        *ngIf="signUpRoute"
+        [routerLink]="signUpRoute"
+        class="header__desktop__login-container"
+        style="border: none"
+      >
         <button class="header__desktop__login-button">
-          LOG IN
+          {{ signUpRoute == "/common-signup" ? "Buyer Sign Up" : "Seller Sign Up" }}
         </button>
-      </div> -->
+      </div>
     </div>
   </div>
   <mat-progress-bar *ngIf="progressBarActive" mode="query"></mat-progress-bar>
@@ -42,8 +47,8 @@
       </li>
       <li class="footer__item">
         <p class="footer__item-text">
-          ManagerSpecial Copyright {{ today }}. All Rights reserved. Worldwide
-          Patent Pending {{ today }}. A business unit of Live Inc. {{ version }}
+          ManagerSpecial Copyright {{ today }}. All Rights reserved. Worldwide Patent Pending
+          {{ today }}. A business unit of Live Inc. {{ version }}
         </p>
       </li>
     </ul>
@@ -54,9 +59,6 @@
     ><i class="fad fa-envelope"></i
   ></a> -->
   <a href="mailto:support@managerspecial.com"
-    ><img
-      src="assets/email_Circle_pink.png"
-      class="email-support__button"
-      alt=""
+    ><img src="assets/email_Circle_pink.png" class="email-support__button" alt=""
   /></a>
 </div>

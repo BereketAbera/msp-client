@@ -1,12 +1,7 @@
 import { ZipcodeService } from "src/app/service/zipcode.service";
 import { AuthService } from "./../../service/auth.service";
 import { Component, EventEmitter, OnInit, Output } from "@angular/core";
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from "@angular/forms";
+import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { ActivatedRoute, Router } from "@angular/router";
 import { of } from "rxjs";
@@ -21,7 +16,7 @@ let zipCodeHints = [];
 @Component({
   selector: "app-register-buyer",
   templateUrl: "./register-buyer.component.html",
-  styleUrls: ["./register-buyer.component.scss"],
+  styleUrls: ["./register-buyer.component.scss"]
 })
 export class RegisterBuyerComponent implements OnInit {
   @Output() registeredByr: EventEmitter<any> = new EventEmitter();
@@ -35,7 +30,7 @@ export class RegisterBuyerComponent implements OnInit {
   prevValue = "";
   withCode = false;
   submitBtnStyle = {
-    btn: { width: "100%", fontSize: "2rem", height: "4rem" },
+    btn: { width: "100%", fontSize: "2rem", height: "4rem" }
   };
   referralLinkKey = null;
   states = [];
@@ -53,31 +48,18 @@ export class RegisterBuyerComponent implements OnInit {
       firstName: ["", Validators.required],
       lastName: ["", Validators.required],
       email: ["", [Validators.required, Validators.email]],
-      phoneNumber: [
-        "",
-        [
-          Validators.required,
-          Validators.pattern(/(\(\d{3}\))(\s)\d{3}(-)\d{4}/),
-        ],
-      ],
-      zipcode: [
-        "",
-        [Validators.required, Validators.pattern(/\d{5}/)],
-        zipCodeValidator,
-      ],
+      phoneNumber: ["", [Validators.required, Validators.pattern(/(\(\d{3}\))(\s)\d{3}(-)\d{4}/)]],
+      zipcode: ["", [Validators.required, Validators.pattern(/\d{5}/)], zipCodeValidator],
       city: ["", Validators.required],
       state: ["", Validators.required],
       password: [
         "",
-        [
-          Validators.required,
-          Validators.pattern(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/),
-        ],
+        [Validators.required, Validators.pattern(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/)]
       ],
       confirmPassword: ["", Validators.required],
       agreed: [false, Validators.required],
       role: ["BUYER", Validators.required],
-      code: [""],
+      code: [""]
     });
   }
   close() {
@@ -116,10 +98,7 @@ export class RegisterBuyerComponent implements OnInit {
     let zipCodeFound = false;
     this.zipCodeHints = zipCodes;
     zipCodeHints = this.zipCodeHints;
-    if (
-      this.registrationForm.controls["zipcode"].value.length == 5 &&
-      !this.valueSet
-    ) {
+    if (this.registrationForm.controls["zipcode"].value.length == 5 && !this.valueSet) {
       this.valueSet = true;
       this.registrationForm
         .get("zipcode")
@@ -132,9 +111,7 @@ export class RegisterBuyerComponent implements OnInit {
         zipCodeFound = true;
         // console.log(zipcode);
         this.registrationForm.get("city").setValue(zipcode.CityName);
-        this.registrationForm
-          .get("state")
-          .setValue(this.getStateName(zipcode.StateAbbr));
+        this.registrationForm.get("state").setValue(this.getStateName(zipcode.StateAbbr));
       }
     });
     if (!zipCodeFound) {
@@ -180,48 +157,37 @@ export class RegisterBuyerComponent implements OnInit {
           .registerUser({
             ...this.registrationForm.value,
             phoneNumber: this.phoneChangeFormat(phoneNumber.value, "db"),
-            referralLinkKey: this.referralLinkKey,
+            referralLinkKey: this.referralLinkKey
           })
           .subscribe((res: any) => {
             this.loading = false;
             // window.scrollTo(0, 0);
             if (res["success"]) {
               if (res.user && res.user.applicationName) {
-                const dialogRef = this.dialog.open(
-                  RegistrationCompleteComponent,
-                  {
-                    width: "350px",
-                    data: {
-                      msg: `The email ${
-                        res.user.email
-                      } is already registered in ${
-                        res.user.applicationName
-                      }.COM as ${
-                        res.user.role == "STAFFER"
-                          ? "EMPLOYER STAFF"
-                          : res.user.role
-                      }. You can use this email to sign in to ManagerSpecial and become a ${
-                        res.user.role == "APPLICANT" ? "BUYER" : "SELLER"
-                      }. Please try logging in or use another email.`,
-                    },
+                const dialogRef = this.dialog.open(RegistrationCompleteComponent, {
+                  width: "350px",
+                  data: {
+                    msg: `The email ${res.user.email} is already registered in ${
+                      res.user.applicationName
+                    }.COM as ${
+                      res.user.role == "STAFFER" ? "EMPLOYER STAFF" : res.user.role
+                    }. You can use this email to sign in to ManagerSpecial and become a ${
+                      res.user.role == "APPLICANT" ? "BUYER" : "SELLER"
+                    }. Please try logging in or use another email.`
                   }
-                );
+                });
                 dialogRef.afterClosed().subscribe((result) => {
                   this.router.navigate([`/login/buyer`], {
-                    queryParams: { email: res.user.email },
+                    queryParams: { email: res.user.email }
                   });
                 });
               } else {
-                const dialogRef = this.dialog.open(
-                  RegistrationCompleteComponent,
-                  {
-                    width: "350px",
-                    data: {
-                      msg:
-                        "Thank you! Now please check your email for our email verification.",
-                    },
+                const dialogRef = this.dialog.open(RegistrationCompleteComponent, {
+                  width: "350px",
+                  data: {
+                    msg: "Thank you! Now please check your email for our email verification."
                   }
-                );
+                });
                 dialogRef.afterClosed().subscribe((result) => {
                   this.router.navigate(["/login/buyer"]);
                 });
@@ -256,36 +222,23 @@ export class RegisterBuyerComponent implements OnInit {
   phoneNumberChange(value) {
     let val = value;
     if (val.length > 14) {
-      this.registrationForm.controls["phoneNumber"].setValue(
-        val.slice(0, val.length - 1)
-      );
+      this.registrationForm.controls["phoneNumber"].setValue(val.slice(0, val.length - 1));
       return;
     }
     let lk = val[val.length - 1];
     if (this.prevValue.length < val.length) {
-      if (
-        lk &&
-        ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"].includes(lk)
-      ) {
+      if (lk && ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"].includes(lk)) {
         if (val.length == 3) {
           if (val[0] == "1" || val[0] == "0") {
-            this.registrationForm.controls["phoneNumber"].setValue(
-              val.slice(1)
-            );
+            this.registrationForm.controls["phoneNumber"].setValue(val.slice(1));
           }
         } else if (val.length == 4) {
-          this.registrationForm.controls["phoneNumber"].setValue(
-            `(${val.slice(0, 3)}) ${val[3]}`
-          );
+          this.registrationForm.controls["phoneNumber"].setValue(`(${val.slice(0, 3)}) ${val[3]}`);
         } else if (val.length == 10) {
-          this.registrationForm.controls["phoneNumber"].setValue(
-            `${val.slice(0, 9)}-${val[9]}`
-          );
+          this.registrationForm.controls["phoneNumber"].setValue(`${val.slice(0, 9)}-${val[9]}`);
         }
       } else if (lk) {
-        this.registrationForm.controls["phoneNumber"].setValue(
-          val.slice(0, val.length - 1)
-        );
+        this.registrationForm.controls["phoneNumber"].setValue(val.slice(0, val.length - 1));
       }
       if (["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"].includes(lk)) {
         this.prevValue = value;
@@ -297,14 +250,10 @@ export class RegisterBuyerComponent implements OnInit {
         }
       }
       if (val[val.length - 1] == " " && val.length == 6) {
-        this.registrationForm.controls["phoneNumber"].setValue(
-          `${val.slice(1, 4)}`
-        );
+        this.registrationForm.controls["phoneNumber"].setValue(`${val.slice(1, 4)}`);
         this.prevValue = val.slice(1, 4);
       } else if (isNaN(val) && val.length <= 4) {
-        this.registrationForm.controls["phoneNumber"].setValue(
-          `${val.replace(/\D/g, "")}`
-        );
+        this.registrationForm.controls["phoneNumber"].setValue(`${val.replace(/\D/g, "")}`);
       } else {
         this.prevValue = this.registrationForm.controls["phoneNumber"].value;
       }
