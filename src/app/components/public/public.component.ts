@@ -4,7 +4,7 @@ import {
   Component,
   ElementRef,
   OnInit,
-  ViewChild,
+  ViewChild
 } from "@angular/core";
 import { FormControl } from "@angular/forms";
 import { ActivatedRoute, Params, Router } from "@angular/router";
@@ -16,7 +16,7 @@ import { AuthService } from "../../service/auth.service";
   selector: "app-public",
   templateUrl: "./public.component.html",
   styleUrls: ["./public.component.scss"],
-  changeDetection: ChangeDetectionStrategy.Default,
+  changeDetection: ChangeDetectionStrategy.Default
 })
 export class PublicComponent implements OnInit {
   today = new Date().getFullYear();
@@ -31,7 +31,7 @@ export class PublicComponent implements OnInit {
   categoryId: any;
   q: any;
   searchActive: any = false;
-  signUpRoute = "/signup";
+  signUpRoute = "/common-signup";
   referralKey = null;
 
   constructor(
@@ -52,7 +52,7 @@ export class PublicComponent implements OnInit {
         if (this.router.url.toString().includes("/seller")) {
           this.signUpRoute = "/signup-seller";
         } else if (this.router.url.toString().includes("/buyer")) {
-          this.signUpRoute = "/signup";
+          this.signUpRoute = "/common-signup";
         } else {
           this.signUpRoute = "/common-signup";
         }
@@ -109,13 +109,13 @@ export class PublicComponent implements OnInit {
   searchValueChanged(name) {
     const queryParams: Params = {
       q: this[name].value == "" ? null : this[name].value,
-      categoryId: this.categoryId ? this.categoryId : null,
+      categoryId: this.categoryId ? this.categoryId : null
     };
     this.deskInput.nativeElement.blur();
     this.router.navigate([], {
       relativeTo: this.route,
       queryParams: queryParams,
-      queryParamsHandling: "merge",
+      queryParamsHandling: "merge"
     });
 
     this.mobileSearchActive = false;
@@ -139,7 +139,7 @@ export class PublicComponent implements OnInit {
     this.router.navigate([], {
       relativeTo: this.route,
       queryParams: queryParams,
-      queryParamsHandling: "merge",
+      queryParamsHandling: "merge"
     });
     this.mobileSearchActive = false;
   }

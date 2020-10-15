@@ -12,7 +12,7 @@ import { SaveProgressComponent } from "../../shared/save-progress/save-progress.
 @Component({
   selector: "app-buyer-item-qrcode",
   templateUrl: "./buyer-item-qrcode.component.html",
-  styleUrls: ["./buyer-item-qrcode.component.scss"],
+  styleUrls: ["./buyer-item-qrcode.component.scss"]
 })
 export class BuyerItemQrcodeComponent implements OnInit {
   @ViewChild("qrImg") image;
@@ -34,11 +34,7 @@ export class BuyerItemQrcodeComponent implements OnInit {
   ngOnInit() {
     let id = +this.route.snapshot.paramMap.get("id");
     this.route.data.subscribe(
-      (data: {
-        transaction: Transaction;
-        supplier: Supplier;
-        transStatus: TransactionStatus;
-      }) => {
+      (data: { transaction: Transaction; supplier: Supplier; transStatus: TransactionStatus }) => {
         this.transaction = data.transaction;
         if (
           this.transaction.codePool &&
@@ -58,45 +54,31 @@ export class BuyerItemQrcodeComponent implements OnInit {
     }); */
   }
   acceptProduct() {
-    this.trnsService
-      .getTransactionStatus(this.transaction.id)
-      .subscribe((latestTrnsStatus) => {
-        if (
-          (latestTrnsStatus.status == "OK" && latestTrnsStatus.isScanneded) ||
-          (latestTrnsStatus.status == "REJECTED" &&
-            latestTrnsStatus.isScanneded &&
-            latestTrnsStatus.canBeAccepted)
-        ) {
-          this.acceptOrder(true);
-        } else if (
-          latestTrnsStatus.status == "OK" &&
-          !latestTrnsStatus.isScanneded
-        ) {
-          alert(
-            "your QR Code is not scaned yet. Please ask the seller to scan your QR Code."
-          );
-        } else {
-          alert("Sorry, this QR Code is already claimed,rejected or expired.");
-        }
-      });
+    this.trnsService.getTransactionStatus(this.transaction.id).subscribe((latestTrnsStatus) => {
+      if (
+        (latestTrnsStatus.status == "OK" && latestTrnsStatus.isScanneded) ||
+        (latestTrnsStatus.status == "REJECTED" &&
+          latestTrnsStatus.isScanneded &&
+          latestTrnsStatus.canBeAccepted)
+      ) {
+        this.acceptOrder(true);
+      } else if (latestTrnsStatus.status == "OK" && !latestTrnsStatus.isScanneded) {
+        alert("your QR Code is not scaned yet. Please ask the seller to scan your QR Code.");
+      } else {
+        alert("Sorry, this QR Code is already claimed,rejected or expired.");
+      }
+    });
   }
   rejectProduct() {
-    this.trnsService
-      .getTransactionStatus(this.transaction.id)
-      .subscribe((latestTrnsStatus) => {
-        if (latestTrnsStatus.status == "OK" && latestTrnsStatus.isScanneded) {
-          this.acceptOrder(false);
-        } else if (
-          latestTrnsStatus.status == "OK" &&
-          !latestTrnsStatus.isScanneded
-        ) {
-          alert(
-            "your QR Code is not scaned yet. Please ask the seller to scan your QR Code."
-          );
-        } else {
-          alert("Sorry, this QR Code is already claimed,rejected or expired.");
-        }
-      });
+    this.trnsService.getTransactionStatus(this.transaction.id).subscribe((latestTrnsStatus) => {
+      if (latestTrnsStatus.status == "OK" && latestTrnsStatus.isScanneded) {
+        this.acceptOrder(false);
+      } else if (latestTrnsStatus.status == "OK" && !latestTrnsStatus.isScanneded) {
+        alert("your QR Code is not scaned yet. Please ask the seller to scan your QR Code.");
+      } else {
+        alert("Sorry, this QR Code is already claimed,rejected or expired.");
+      }
+    });
   }
   showIfRejected() {
     if (this.transStatus.status == "REJECTED") return true;
@@ -127,17 +109,13 @@ export class BuyerItemQrcodeComponent implements OnInit {
     return false;
   }
   showClaimedDate() {
-    if (
-      this.transStatus.status == "CLAIMED" ||
-      this.transStatus.status == "REJECTED"
-    )
-      return true;
+    if (this.transStatus.status == "CLAIMED" || this.transStatus.status == "REJECTED") return true;
     return false;
   }
   get ORDERSTATUS() {
     if (this.transStatus.status == "REJECTED") return "Rejected";
     else if (this.transStatus.status == "EXPIRED") return "Expired";
-    else if (this.transStatus.status == "CLAIMED") return "Picked Up";
+    else if (this.transStatus.status == "CLAIMED") return "Processed";
     else return "Pending";
   }
   get CLAIMMSG() {
@@ -157,21 +135,21 @@ export class BuyerItemQrcodeComponent implements OnInit {
     const dialogRef = this.dialog.open(SaveConfirmationDialogComponent, {
       width: "250px",
       height: "150px",
-      data: { title: "", question: qt },
+      data: { title: "", question: qt }
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result == "yes") {
         const progressDialogRef = this.dialog.open(SaveProgressComponent, {
           width: "260px",
           height: "180px",
-          data: { title: "", question: "" },
+          data: { title: "", question: "" }
         });
         this.trnsService.acceptOrder(isOK, this.transaction.id).subscribe(
           (res) => {
             if (res["success"]) {
               progressDialogRef.close();
               let snackBarRef = this.snackBar.open(ordMsg, "", {
-                duration: 4000,
+                duration: 4000
               });
               snackBarRef.afterDismissed().subscribe(() => {
                 this.router.navigate(["../../"], { relativeTo: this.route });

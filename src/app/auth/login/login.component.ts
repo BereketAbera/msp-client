@@ -163,7 +163,7 @@ export class LoginComponent implements OnInit {
             .localEmployerSignUp({ ...this.remoteUser, ...result, tk: this.tk })
             .subscribe(
               (res) => {
-                console.log(res);
+                // console.log(res);
                 this.authService.progressBarActive.next(true);
                 if (this.authService.redirectURL) {
                   this.router.navigateByUrl(this.authService.redirectURL);

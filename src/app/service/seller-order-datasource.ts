@@ -15,10 +15,7 @@ export class SellerOrderDataSource implements DataSource<Transaction> {
   public loading$ = this.loadingSubject.asObservable();
 
   public count: number;
-  constructor(
-    private transactionService: TransactionService,
-    private authService: AuthService
-  ) {}
+  constructor(private transactionService: TransactionService, private authService: AuthService) {}
   loadTransactions(
     usrId: number,
     filter: string,

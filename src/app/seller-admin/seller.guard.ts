@@ -1,10 +1,5 @@
 import { Injectable } from "@angular/core";
-import {
-  ActivatedRouteSnapshot,
-  CanActivate,
-  Router,
-  RouterStateSnapshot,
-} from "@angular/router";
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from "@angular/router";
 import { Observable } from "rxjs";
 import { mapRoutes } from "../mapRoutes";
 import { mapRoutesMajor } from "../mapRoutesMajor";
@@ -12,7 +7,7 @@ import { AuthService } from "../service/auth.service";
 import { SellerStaffService } from "../service/seller-staff.service";
 
 @Injectable({
-  providedIn: "root",
+  providedIn: "root"
 })
 export class SellerGuard implements CanActivate {
   user_features = null;
@@ -27,6 +22,7 @@ export class SellerGuard implements CanActivate {
     state: RouterStateSnapshot
   ): Observable<boolean> | Promise<boolean> | boolean {
     let url: string = state.url;
+    // console.log(url);
     return this.manageUserRouteAccess(url);
   }
   canActivateChild(
@@ -44,6 +40,7 @@ export class SellerGuard implements CanActivate {
         return false;
       }
       if (role == "SELLER" || url == "/tlgu-slr/access_denied") {
+        // console.log("hello from seller block", url);
         return true;
       }
       let user = this.authService.getUser();
@@ -56,15 +53,9 @@ export class SellerGuard implements CanActivate {
               found = this.checkUserFeatures(url);
               if (found) {
                 return found;
-              } else if (
-                !this.alreadyRouted &&
-                this.user_features.length != 0
-              ) {
+              } else if (!this.alreadyRouted && this.user_features.length != 0) {
                 // console.log(this.user_features);
-                let route = this.getAccessibleRoute(
-                  this.user_features,
-                  "redirect"
-                );
+                let route = this.getAccessibleRoute(this.user_features, "redirect");
 
                 this.alreadyRouted = true;
                 // this.router.navigate([route]);

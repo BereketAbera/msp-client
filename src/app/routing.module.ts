@@ -29,31 +29,31 @@ const appRoutes: Routes = [
     component: PublicComponent,
     data: { preload: true },
     resolve: {
-      categories: SubCategoryResolverService,
+      categories: SubCategoryResolverService
     },
     children: [
       {
         path: "products",
         component: PublicProductsComponent,
         resolve: {
-          categories: SubCategoryResolverService,
-        },
+          categories: SubCategoryResolverService
+        }
       },
       {
         path: "deal/:id",
         component: DealDetailComponent,
         resolve: {
           product: ProductResolverService,
-          mspMarkup: MspMarkupResolverService,
-        },
+          mspMarkup: MspMarkupResolverService
+        }
       },
       {
         path: "",
         component: HomeComponent,
         canActivate: [HomeGuard],
         resolve: {
-          categories: SubCategoryResolverService,
-        },
+          categories: SubCategoryResolverService
+        }
       },
       { path: "cart", component: CartComponent },
       { path: "privacy", component: PrivacyComponent },
@@ -61,36 +61,32 @@ const appRoutes: Routes = [
       { path: "seller_terms", component: SellerTermsComponent },
       { path: "refund", component: RefundComponent },
       { path: "seller", component: SellerHomeComponent },
-      { path: "buyer", component: BuyerHomeComponent },
-    ],
+      { path: "buyer", component: BuyerHomeComponent }
+    ]
   },
   {
     path: "",
     canActivate: [AuthGuard],
     data: { preload: true },
-    loadChildren: () => import("./auth/auth.module").then((m) => m.AuthModule),
+    loadChildren: () => import("./auth/auth.module").then((m) => m.AuthModule)
   },
   {
     path: "tlgu-slr",
     // canActivate: [],
-    loadChildren: () =>
-      import("./seller-admin/seller.module").then((m) => m.SellerModule),
+    loadChildren: () => import("./seller-admin/seller.module").then((m) => m.SellerModule)
   },
   {
     path: "tlgu-byr",
     canActivate: [BuyerGuard],
-    loadChildren: () =>
-      import("./buyer-admin/buyer.module").then((m) => m.BuyerModule),
+    loadChildren: () => import("./buyer-admin/buyer.module").then((m) => m.BuyerModule)
   },
   {
     path: "tlgu-admin",
     canActivate: [AdminGuard],
     loadChildren: () =>
-      import("./system-admin/system-admin.module").then(
-        (m) => m.SystemAdminModule
-      ),
+      import("./system-admin/system-admin.module").then((m) => m.SystemAdminModule)
   },
-  { path: "**", redirectTo: "", pathMatch: "full" },
+  { path: "**", redirectTo: "", pathMatch: "full" }
 ];
 
 @NgModule({
@@ -100,9 +96,9 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes, {
       preloadingStrategy: CustomPreloadingService,
       onSameUrlNavigation: "reload",
-      scrollPositionRestoration: "top",
-    }),
+      scrollPositionRestoration: "top"
+    })
   ],
-  declarations: [],
+  declarations: []
 })
 export class RoutingModule {}

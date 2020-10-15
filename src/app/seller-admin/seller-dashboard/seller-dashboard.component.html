@@ -9,12 +9,7 @@
     >
       Date Filter
     </button> -->
-    <button
-      mat-raised-button
-      color="accent"
-      class="dashboard__button"
-      (click)="goToSellSummary()"
-    >
+    <button mat-raised-button color="accent" class="dashboard__button" (click)="goToSellSummary()">
       Date Summary
     </button>
   </div>
@@ -87,7 +82,7 @@
             cy="75"
           ></circle>
         </svg>
-        <span class="dashboard__item-text">Daily offered units</span>
+        <span class="dashboard__item-text">Offered Units Today</span>
         <span class="dashboard__item-value">{{ summary.totalQty }}</span>
         <!-- <span class="dashboard__item-percentage">50%</span> -->
       </div>
@@ -105,9 +100,7 @@
           ></circle>
         </svg>
         <span class="dashboard__item-text">Units Reserved</span>
-        <span class="dashboard__item-value">{{
-          summary.totalReservedQty
-        }}</span>
+        <span class="dashboard__item-value">{{ summary.totalReservedQty }}</span>
         <!-- <span class="dashboard__item-percentage">
           {{ reservedPercentage }}%</span
         > -->

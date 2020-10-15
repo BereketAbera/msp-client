@@ -1,9 +1,7 @@
 <div class="home">
   <div class="home__section-one">
     <div class="home__search-container">
-      <div class="home__search-header">
-        Hourly Discounts From Restaurants Near You
-      </div>
+      <div class="home__search-header">Hourly Discounts From Restaurants Near You</div>
       <div action="#" mathod="GET" class="home__search-input-container">
         <input
           type="text"
@@ -19,12 +17,8 @@
               <!-- <i
                   class="fas fa-map-marker-alt home__search-input-result-icon"
                 ></i> -->
-              <i
-                class="fad fa-map-marker-alt home__search-input-result-icon"
-              ></i>
-              <span class="home__search-input-result-name"
-                >Use Current Location</span
-              >
+              <i class="fad fa-map-marker-alt home__search-input-result-icon"></i>
+              <span class="home__search-input-result-name">Use Current Location</span>
             </div>
           </div>
           <div
@@ -36,29 +30,21 @@
               <!-- <i
                   class="fas fa-map-marker-alt home__search-input-result-icon"
                 ></i> -->
-              <i
-                class="fad fa-map-marker-alt home__search-input-result-icon"
-              ></i>
+              <i class="fad fa-map-marker-alt home__search-input-result-icon"></i>
               <span class="home__search-input-result-name">
                 {{ address.CityName }}
               </span>
             </div>
 
             <div class="home__search-input-county-state">
-              <span class="home__search-input-result-county"
-                >{{ address.StateName }},
-              </span>
+              <span class="home__search-input-result-county">{{ address.StateName }}, </span>
               <span class="home__search-input-result-state">
                 {{ address.ZIPCode }}
               </span>
             </div>
           </div>
         </div>
-        <button
-          (click)="getProducts()"
-          class="home__search-submit"
-          type="submit"
-        >
+        <button (click)="getProducts()" class="home__search-submit" type="submit">
           <!-- <i class="fad fa-hand-point-right home__search-submit-icon"></i> -->
           <i class="fad fa-search-location home__search-submit-icon"></i>
         </button>
@@ -81,14 +67,14 @@
       <div class="home__step home__step-video">
         <div
           class="home__step-icon"
-          routerLink="/signup"
+          routerLink="/common-signup"
           [queryParams]="{ referralKey: referralKey }"
         >
           <i class="fad fa-cheeseburger"></i>
         </div>
         <h1
           class="home__step-header"
-          routerLink="/signup"
+          routerLink="/common-signup"
           [queryParams]="{ referralKey: referralKey }"
         >
           BECOME A MEMBER
@@ -101,15 +87,10 @@
             #videoPlayerB
             controls
           >
-            <source
-              src="https://msp-seller-1.s3.amazonaws.com/buyer-intro.mp4"
-              type="video/mp4"
-            />
+            <source src="https://msp-seller-1.s3.amazonaws.com/buyer-intro.mp4" type="video/mp4" />
             <source src="video.ogg" type="video/ogg" />
             <source src="video.webm" type="video/webm" />
-            <object
-              data="https://msp-seller-1.s3.amazonaws.com/buyer-intro.mp4"
-            >
+            <object data="https://msp-seller-1.s3.amazonaws.com/buyer-intro.mp4">
               <embed src="video.swf" width="340" height="190" />
             </object>
           </video>
@@ -118,14 +99,12 @@
           </div>
         </div>
 
-        <p class="home__step-description home__step-memebership">
-          No Membership Fee
-        </p>
+        <p class="home__step-description home__step-memebership">No Membership Fee</p>
       </div>
 
       <div
         class="home__step"
-        routerLink="/signup"
+        routerLink="/common-signup"
         [queryParams]="{ referralKey: referralKey }"
       >
         <div class="home__step-icon"><i class="fad fa-french-fries"></i></div>
@@ -138,13 +117,11 @@
       </div>
       <div
         class="home__step"
-        routerLink="/signup"
+        routerLink="/common-signup"
         [queryParams]="{ referralKey: referralKey }"
       >
         <div class="home__step-icon"><i class="fad fa-user-friends"></i></div>
-        <h1 class="home__step-header">
-          GET ${{ config.noRefCredit }} CREDIT TODAY
-        </h1>
+        <h1 class="home__step-header">GET ${{ config.noRefCredit }} CREDIT TODAY</h1>
         <p class="home__step-description home__refer">
           Get ${{ config.noRefCredit }} sign up credit <br />
           for the first 100 new <br />
@@ -162,16 +139,16 @@
 
   <div
     class="home__section-four"
-    routerLink="/signup"
+    routerLink="/common-signup"
     [queryParams]="{ referralKey: referralKey }"
   >
     <span class="home__section-four-left"></span>
     <span class="home__section-four-middle">Sign Up</span>
     <span class="home__section-four-right"></span>
-    <!-- <img src="../../../assets/image/signUp.JPG" alt="" /> -->
+    <!-- <img src="../../../assets/image/common-signup.JPG" alt="" /> -->
   </div>
   <!-- <div class="home__section-four"  routerLink="/login">
-      <img src="../../../assets/image/signUp.JPG" alt="">
+      <img src="../../../assets/image/common-signup.JPG" alt="">
     </div> -->
   <div class="home__section-three">
     <h1 class="home__secton-header">MORE CITIES JOINING EACH DAY</h1>
@@ -180,8 +157,7 @@
         ><i class="fad fa-angle-double-right home__list-icon"></i>New York</span
       >
       <span class="home__city"
-        ><i class="fad fa-angle-double-right home__list-icon"></i
-        >California</span
+        ><i class="fad fa-angle-double-right home__list-icon"></i>California</span
       >
       <span class="home__city"
         ><i class="fad fa-angle-double-right home__list-icon"></i>Chicago</span
@@ -193,8 +169,7 @@
         ><i class="fad fa-angle-double-right home__list-icon"></i>Phoenix</span
       >
       <span class="home__city"
-        ><i class="fad fa-angle-double-right home__list-icon"></i>San
-        Antonio</span
+        ><i class="fad fa-angle-double-right home__list-icon"></i>San Antonio</span
       >
       <span class="home__city"
         ><i class="fad fa-angle-double-right home__list-icon"></i>Dallas</span
@@ -206,8 +181,7 @@
         ><i class="fad fa-angle-double-right home__list-icon"></i>Sedona</span
       >
       <span class="home__city"
-        ><i class="fad fa-angle-double-right home__list-icon"></i
-        >Scottsdale</span
+        ><i class="fad fa-angle-double-right home__list-icon"></i>Scottsdale</span
       >
       <span class="home__city"
         ><i class="fad fa-angle-double-right home__list-icon"></i>Austin</span
@@ -219,15 +193,12 @@
         ><i class="fad fa-angle-double-right home__list-icon"></i>Seatle</span
       >
       <span class="home__city"
-        ><i class="fad fa-angle-double-right home__list-icon"></i>Las
-        Vegas</span
+        ><i class="fad fa-angle-double-right home__list-icon"></i>Las Vegas</span
       >
       <span class="home__city"
         ><i class="fad fa-angle-double-right home__list-icon"></i>Denver</span
       >
-      <span class="home__city"
-        ><i class="fad fa-angle-double-right home__list-icon"></i>Miami</span
-      >
+      <span class="home__city"><i class="fad fa-angle-double-right home__list-icon"></i>Miami</span>
     </div>
   </div>
   <!-- <div class="home__section-four"></div> -->

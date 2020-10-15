@@ -13,7 +13,7 @@ let uploadClass = null;
 @Component({
   selector: "app-upload-img",
   templateUrl: "./upload-img.component.html",
-  styleUrls: ["./upload-img.component.scss"],
+  styleUrls: ["./upload-img.component.scss"]
 })
 export class UploadImgComponent implements OnInit {
   @ViewChild("imageInput", { static: true }) imageInput: ElementRef;
@@ -29,7 +29,7 @@ export class UploadImgComponent implements OnInit {
   showImage: boolean = false;
   uploadForm = this.fb.group({
     name: ["", Validators.required],
-    img: null,
+    img: null
   });
   formData = new FormData();
   loadingFile = false;
@@ -68,17 +68,13 @@ export class UploadImgComponent implements OnInit {
         (res) => {
           if (res["success"]) {
             this.loadingLocalImage = false;
-            let snackBarRef = this.snackBar.open(
-              "Successfuly Uploaded File",
-              "",
-              {
-                duration: 5000,
-              }
-            );
+            let snackBarRef = this.snackBar.open("Successfuly Uploaded File", "", {
+              duration: 5000
+            });
             snackBarRef.afterDismissed().subscribe(() => {
               if (this.authService.isLoggedIn()) {
                 this.router.navigate(["../"], {
-                  relativeTo: this.route,
+                  relativeTo: this.route
                 });
               }
             });
@@ -112,16 +108,14 @@ export class UploadImgComponent implements OnInit {
     let name = event.target.files[0].name;
     if (name) {
       if (
-        ["PNG", "JPG", "JPEG"].includes(
-          name.split(".")[name.split(".").length - 1].toUpperCase()
-        )
+        ["PNG", "JPG", "JPEG"].includes(name.split(".")[name.split(".").length - 1].toUpperCase())
       ) {
         this.loadingLocalImage = true;
         this.imageChangedEvent = event;
       } else {
         this.loadingLocalImage = false;
         this.snackBar.open("The file type should be PNG or JPEG", "", {
-          duration: 4000,
+          duration: 4000
         });
       }
     }
@@ -133,7 +127,7 @@ export class UploadImgComponent implements OnInit {
         "Image is not large enough, Select a larger image.",
         "",
         {
-          duration: 4000,
+          duration: 4000
         }
       );
       this.imageChangedEvent = "";
@@ -190,7 +184,7 @@ export class UploadImgComponent implements OnInit {
       error: (err) => {
         this.eventRecieved = false;
         console.log(err);
-      },
+      }
     });
   }
 

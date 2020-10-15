@@ -21,21 +21,15 @@
         matSortDisableClear
       >
         <ng-container matColumnDef="img">
-          <mat-header-cell
-            class="header-align-right"
-            *matHeaderCellDef
-            mat-sort-header
+          <mat-header-cell class="header-align-right" *matHeaderCellDef mat-sort-header
             >Image</mat-header-cell
           >
           <mat-cell *matCellDef="let transaction">
-            <button
-              class="order__image-button"
-              [routerLink]="['./', transaction.id]"
-            >
+            <button class="order__image-button" [routerLink]="['./', transaction.id]">
               <img class="img" [src]="transaction.imagePath" alt="" />
               <img
                 *ngIf="transaction.takeOut"
-                style="height: 3rem; width: 3rem;"
+                style="height: 3rem; width: 3rem"
                 src="assets/image/take_out.jpg"
                 alt=""
                 class="img"
@@ -61,21 +55,17 @@
         </ng-container>
 
         <ng-container matColumnDef="product">
-          <mat-header-cell class="header-align-right" *matHeaderCellDef
-            >Product</mat-header-cell
-          >
+          <mat-header-cell class="header-align-right" *matHeaderCellDef>Product</mat-header-cell>
 
-          <mat-cell *matCellDef="let transaction">{{
-            transaction.name
-          }}</mat-cell>
+          <mat-cell *matCellDef="let transaction">{{ transaction.name }}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="status">
-          <mat-header-cell class="header-align-right" *matHeaderCellDef
-            >Status</mat-header-cell
-          >
+          <mat-header-cell class="header-align-right" *matHeaderCellDef>Status</mat-header-cell>
 
           <mat-cell *matCellDef="let transaction">{{
-            transaction.transStatus
+            transaction.transStatus == "PICKED UP" && transaction.takeOut
+              ? "Processed"
+              : transaction.transStatus
           }}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="pickupStartTime">
@@ -97,22 +87,16 @@
           }}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="date">
-          <mat-header-cell class="header-align-right" *matHeaderCellDef
-            >Date</mat-header-cell
-          >
+          <mat-header-cell class="header-align-right" *matHeaderCellDef>Date</mat-header-cell>
 
           <mat-cell *matCellDef="let transaction">{{
             transaction.purchaseTime | date: "yyyy-MM-dd"
           }}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="totalPrice">
-          <mat-header-cell class="header-align-right" *matHeaderCellDef
-            >Amount</mat-header-cell
-          >
+          <mat-header-cell class="header-align-right" *matHeaderCellDef>Amount</mat-header-cell>
 
-          <mat-cell *matCellDef="let transaction">{{
-            transaction.total | currency
-          }}</mat-cell>
+          <mat-cell *matCellDef="let transaction">{{ transaction.total | currency }}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="name" stickyEnd>
           <mat-header-cell *matHeaderCellDef></mat-header-cell>
@@ -133,9 +117,7 @@
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
       </mat-table>
-      <div *ngIf="dataSource.count == 0" class="no_result">
-        No Reservation yet
-      </div>
+      <div *ngIf="dataSource.count == 0" class="no_result">No Reservation yet</div>
       <mat-paginator
         [length]="dataSource.count"
         [pageSize]="5"

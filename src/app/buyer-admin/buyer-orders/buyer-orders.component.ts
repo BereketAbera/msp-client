@@ -7,7 +7,7 @@ import * as moment from "moment";
 
 @Component({
   templateUrl: "./buyer-orders.component.html",
-  styleUrls: ["./buyer-orders.component.scss"],
+  styleUrls: ["./buyer-orders.component.scss"]
 })
 export class BuyerOrdersComponent implements OnInit {
   orders: Transaction[];
@@ -45,7 +45,7 @@ export class BuyerOrdersComponent implements OnInit {
     let status = "Pending";
     if (transaction.isScanneded) {
       if (transaction.status == 1) {
-        status = "Picked Up";
+        status = "Processed";
       } else if (transaction.status == 2) {
         status = "Rejected";
       } else {
@@ -83,15 +83,11 @@ export class BuyerOrdersComponent implements OnInit {
     } else if (hour == 12) {
       value = `${this.returnTwoDigit(12)}:${this.returnTwoDigit(minute)}PM`;
     } else if (hour > 24) {
-      value = `${this.returnTwoDigit(hour - 24)}:${this.returnTwoDigit(
-        minute
-      )}AM`;
+      value = `${this.returnTwoDigit(hour - 24)}:${this.returnTwoDigit(minute)}AM`;
     } else if (hour == 24) {
       value = `${this.returnTwoDigit(12)}:${this.returnTwoDigit(minute)}AM`;
     } else {
-      value = `${this.returnTwoDigit(hour % 12)}:${this.returnTwoDigit(
-        minute
-      )}PM`;
+      value = `${this.returnTwoDigit(hour % 12)}:${this.returnTwoDigit(minute)}PM`;
     }
     return value;
   }

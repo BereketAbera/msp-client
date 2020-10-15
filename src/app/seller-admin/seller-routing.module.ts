@@ -51,8 +51,8 @@ const sellerRoutes: Routes = [
           shops: ShopResolverService,
           categories: SubCategoryResolverService,
           markup: MarkupResolverService,
-          pictures: GalleryResolverService,
-        },
+          pictures: GalleryResolverService
+        }
       },
       {
         path: "prdcts/nwoffpktlgu/edit/:id",
@@ -62,9 +62,9 @@ const sellerRoutes: Routes = [
           shops: ShopResolverService,
           categories: SubCategoryResolverService,
           markup: MarkupResolverService,
-          pictures: GalleryResolverService,
+          pictures: GalleryResolverService
         },
-        data: { clone: false, edit: true },
+        data: { clone: false, edit: true }
       },
       {
         path: "prdcts/nwoffpktlgu/clone/:id",
@@ -74,9 +74,9 @@ const sellerRoutes: Routes = [
           shops: ShopResolverService,
           categories: SubCategoryResolverService,
           markup: MarkupResolverService,
-          pictures: GalleryResolverService,
+          pictures: GalleryResolverService
         },
-        data: { clone: true, edit: false },
+        data: { clone: true, edit: false }
       },
       {
         path: "prdcts/nwclsngtlgu",
@@ -86,8 +86,8 @@ const sellerRoutes: Routes = [
           shops: ShopResolverService,
           categories: SubCategoryResolverService,
           markup: MarkupResolverService,
-          pictures: GalleryResolverService,
-        },
+          pictures: GalleryResolverService
+        }
       },
 
       {
@@ -96,8 +96,8 @@ const sellerRoutes: Routes = [
         component: NewShopComponent,
         resolve: {
           states: StateResolverService,
-          categories: SubCategoryResolverService,
-        },
+          categories: SubCategoryResolverService
+        }
       },
       {
         path: "shops/edit/:id",
@@ -105,52 +105,52 @@ const sellerRoutes: Routes = [
         component: EditShopComponent,
         resolve: {
           states: StateResolverService,
-          shop: ShopByIdResolverService,
-        },
+          shop: ShopByIdResolverService
+        }
       },
       {
         path: "trnsctns",
         canActivate: [SellerGuard],
-        component: TransactionsComponent,
+        component: TransactionsComponent
       },
       {
         path: "trnscts/process",
         canActivate: [SellerGuard],
-        component: QrScannerComponent,
+        component: QrScannerComponent
       },
       {
         path: "trnsctns/:id",
         canActivate: [SellerGuard],
         component: SellerOrderDetailComponent,
-        resolve: { order: SellerOrderResolverService },
+        resolve: { order: SellerOrderResolverService }
       },
       {
         path: "slssmry",
         canActivate: [SellerGuard],
-        component: SalesSummaryComponent,
+        component: SalesSummaryComponent
       },
       {
         path: "prdcts",
         canActivate: [SellerGuard],
-        component: ProductsComponent,
+        component: ProductsComponent
       },
       {
         path: "gallery",
         canActivate: [SellerGuard],
         component: GalleryComponent,
         resolve: {
-          pictures: GalleryResolverService,
-        },
+          pictures: GalleryResolverService
+        }
       },
       {
         path: "gallery/:upldimg",
         canActivate: [SellerGuard],
-        component: UploadImgComponent,
+        component: UploadImgComponent
       },
       {
         path: "shops",
         canActivate: [SellerGuard],
-        component: ShopListComponent,
+        component: ShopListComponent
       },
       {
         path: "profile",
@@ -158,19 +158,19 @@ const sellerRoutes: Routes = [
         component: ProfileComponent,
         resolve: {
           profile: ProfileResolverService,
-          userProfile: UserProfileResolverService,
-        },
+          userProfile: UserProfileResolverService
+        }
       },
       {
         path: "staffs",
         canActivate: [SellerGuard],
         component: StaffsComponent,
-        resolve: { staff: StaffResolverService },
+        resolve: { staff: StaffResolverService }
       },
       {
         path: "staffs/add",
         canActivate: [SellerGuard],
-        component: AddStaffComponent,
+        component: AddStaffComponent
       },
       {
         path: "staffs/manage_access/:id",
@@ -178,8 +178,8 @@ const sellerRoutes: Routes = [
         component: ManageStaffAccessComponent,
         resolve: {
           features: FeaturesResolverService,
-          user_features: UserFeaturesResolverService,
-        },
+          user_features: UserFeaturesResolverService
+        }
       },
       {
         path: "",
@@ -187,28 +187,29 @@ const sellerRoutes: Routes = [
         component: SellerDashboardComponent,
         resolve: {
           summary: SellerSummaryResolverService,
-          rvnuRprt: RevenuRprtResolverService,
-        },
+          rvnuRprt: RevenuRprtResolverService
+        }
       },
       {
         path: "access_denied",
-        component: AccessDeniedComponent,
+        component: AccessDeniedComponent
       },
       {
         path: "waiting_admin_approval",
-        component: WaitingAdminComponent,
+        component: WaitingAdminComponent
       },
       {
         path: "confirm_phonenumber_code",
-        component: ConfirmCodeComponent,
+        canActivate: [SellerGuard],
+        component: ConfirmCodeComponent
       },
-      { path: "**", redirectTo: "", pathMatch: "full" },
-    ],
-  },
+      { path: "**", redirectTo: "", pathMatch: "full" }
+    ]
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(sellerRoutes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
 export class SellerRoutingModule {}

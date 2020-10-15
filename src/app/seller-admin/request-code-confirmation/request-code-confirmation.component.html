@@ -7,11 +7,7 @@
         {{ data.productName }}
         <span
           [style.background]="
-            data.status == 'OK'
-              ? 'green'
-              : data.status == 'PENDING'
-              ? 'orange'
-              : 'red'
+            data.status == 'OK' ? 'green' : data.status == 'PENDING' ? 'orange' : 'red'
           "
           class="status"
         >
@@ -19,9 +15,7 @@
         </span>
       </p>
       <p class="content">Quantity: {{ data.quantity }}</p>
-      <p class="content">
-        Discounted Price: {{ data.discountPrice | currency }}/unit + Tax
-      </p>
+      <p class="content">Discounted Price: {{ data.discountPrice | currency }}/unit + Tax</p>
       <p class="content-italic">
         {{ data.status == "PENDING" ? "Pick Up time has not arrived" : "" }}
       </p>

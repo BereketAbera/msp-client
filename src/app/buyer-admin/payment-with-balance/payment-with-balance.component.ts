@@ -101,7 +101,7 @@ export class PaymentWithBalanceComponent implements OnInit {
   onSubmit() {
     this.showError = false;
     this.errors = [];
-    console.log("about to send requrest", this.disabled);
+    // console.log("about to send requrest", this.disabled);
     if (this.disabled) {
       return;
     }

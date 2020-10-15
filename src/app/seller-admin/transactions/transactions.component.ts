@@ -1,10 +1,4 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  OnInit,
-  ViewChild,
-} from "@angular/core";
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { MatPaginator } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
 import { ActivatedRoute, Router, Params } from "@angular/router";
@@ -16,7 +10,7 @@ import { AuthService } from "./../../service/auth.service";
 @Component({
   selector: "app-transactions",
   templateUrl: "./transactions.component.html",
-  styleUrls: ["./transactions.component.scss"],
+  styleUrls: ["./transactions.component.scss"]
 })
 export class TransactionsComponent implements OnInit, AfterViewInit {
   dataSource: SellerOrderDataSource;
@@ -31,7 +25,7 @@ export class TransactionsComponent implements OnInit, AfterViewInit {
     "pickupEndTime",
     "date",
     "totalPrice",
-    "name",
+    "name"
   ];
   pageSize = 5;
   pageIndex = 0;
@@ -49,24 +43,13 @@ export class TransactionsComponent implements OnInit, AfterViewInit {
     private authService: AuthService
   ) {}
   ngOnInit() {
-    this.pageIndex =
-      parseInt(this.route.snapshot.queryParamMap.get("pageIndex")) || 0;
-    this.pageSize =
-      parseInt(this.route.snapshot.queryParamMap.get("pageSize")) || 5;
-    this.dataSource = new SellerOrderDataSource(
-      this.transactionService,
-      this.authService
-    );
+    this.pageIndex = parseInt(this.route.snapshot.queryParamMap.get("pageIndex")) || 0;
+    this.pageSize = parseInt(this.route.snapshot.queryParamMap.get("pageSize")) || 5;
+    this.dataSource = new SellerOrderDataSource(this.transactionService, this.authService);
     this.paginator.pageIndex = this.pageIndex;
     this.paginator.pageSize = this.pageSize;
 
-    this.dataSource.loadTransactions(
-      1,
-      "",
-      "asc",
-      this.pageIndex,
-      this.pageSize
-    );
+    this.dataSource.loadTransactions(1, "", "asc", this.pageIndex, this.pageSize);
   }
 
   ngAfterViewInit() {
@@ -76,7 +59,7 @@ export class TransactionsComponent implements OnInit, AfterViewInit {
         tap((res: any) => {
           this.setUrlValues({
             pageIndex: this.paginator.pageIndex,
-            pageSize: this.paginator.pageSize,
+            pageSize: this.paginator.pageSize
           });
           this.loadTransactionsPage();
         })
@@ -120,15 +103,11 @@ export class TransactionsComponent implements OnInit, AfterViewInit {
     } else if (hour == 12) {
       value = `${this.returnTwoDigit(12)}:${this.returnTwoDigit(minute)}PM`;
     } else if (hour > 24) {
-      value = `${this.returnTwoDigit(hour - 24)}:${this.returnTwoDigit(
-        minute
-      )}AM`;
+      value = `${this.returnTwoDigit(hour - 24)}:${this.returnTwoDigit(minute)}AM`;
     } else if (hour == 24) {
       value = `${this.returnTwoDigit(12)}:${this.returnTwoDigit(minute)}AM`;
     } else {
-      value = `${this.returnTwoDigit(hour % 12)}:${this.returnTwoDigit(
-        minute
-      )}PM`;
+      value = `${this.returnTwoDigit(hour % 12)}:${this.returnTwoDigit(minute)}PM`;
     }
     return value;
   }
@@ -139,7 +118,7 @@ export class TransactionsComponent implements OnInit, AfterViewInit {
 
   getOrderStatus(order) {
     if (order.status) {
-      return "Picked Up";
+      return "Processed";
     } else {
       let local = new Date().toISOString();
       let pDate = order.purchaseTime.split("T")[0];
@@ -166,13 +145,13 @@ export class TransactionsComponent implements OnInit, AfterViewInit {
       pObj[key] = sObj[key];
     });
     const queryParams: Params = {
-      ...pObj,
+      ...pObj
     };
 
     this.router.navigate([], {
       relativeTo: this.route,
       queryParams: queryParams,
-      queryParamsHandling: "merge",
+      queryParamsHandling: "merge"
     });
   }
 }

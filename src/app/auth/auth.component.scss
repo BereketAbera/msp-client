@@ -15,7 +15,7 @@
   min-height: 7rem;
   border-bottom: 1px solid #ddd;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-direction: row;
   padding: 0.5rem 1rem;
   z-index: 500;
@@ -29,6 +29,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    border-right: 1px solid #aaa;
+    margin-right: 1rem;
+    padding-right: 1rem;
   }
 
   &__logo_text {
@@ -57,7 +60,7 @@
   min-height: 5rem;
   border-bottom: 1px solid #ddd;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-direction: row;
   padding: 0.5rem 1rem;
   z-index: 500;
