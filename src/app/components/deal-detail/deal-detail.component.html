@@ -93,21 +93,7 @@
             {{ product?.companyPhoneNumber }}
           </h5>
         </div>
-        <a
-          target="_blank"
-          [href]="'http://maps.google.com/?q=' + product?.shopCity + ',' + product.shopAddress"
-          style="
-            font-size: 1.3rem;
-            text-decoration: none;
-            max-width: 75%;
-            display: flex;
-            align-items: center;
-            color: #f94081;
-          "
-        >
-          <i class="fad fa-map-marked" style="color: #f94081; margin-right: 1rem"></i
-          >{{ product?.shopCity }}, {{ product.shopAddress }}
-        </a>
+
         <!-- <div class="product-detail__shop">
           <h5 class="product-detail__address-name">
             {{ product?.shopCity }}
@@ -127,6 +113,26 @@
           <i class="fad fa-star-half product-detail__time-icon"></i>
         </div>
       </div>
+    </div>
+    <div class="product-detail__description">
+      <a
+        target="_blank"
+        [href]="'http://maps.google.com/?q=' + product?.shopCity + ',' + product.shopAddress"
+        style="
+          font-size: 1.3rem;
+          text-decoration: none;
+          max-width: 100%;
+          display: flex;
+          align-items: center;
+          color: #f94081;
+        "
+      >
+        <i class="fad fa-map-marked product-detail__address-icon"></i
+        ><span style="color: #333; margin-right: 0.5rem"
+          >{{ product?.shopCity }}, {{ product.shopAddress }}</span
+        >
+        (See Map & Directions)
+      </a>
     </div>
   </div>
   <div class="product-detail__bottom" [formGroup]="buyForm">
