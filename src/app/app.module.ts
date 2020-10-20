@@ -1,3 +1,4 @@
+import { ZipProductsComponent } from "./components/zip-products/zip-products.component";
 import { UserService } from "./service/user.service";
 import { HttpClientModule } from "@angular/common/http";
 import { APP_INITIALIZER, NgModule } from "@angular/core";
@@ -67,7 +68,8 @@ import { BuyerHomeComponent } from "./components/buyer-home/buyer-home.component
     RefundComponent,
     EditConfigModalComponent,
     SellerHomeComponent,
-    BuyerHomeComponent
+    BuyerHomeComponent,
+    ZipProductsComponent
     //  DragDropDirective
     // CustomNotificationComponent,
   ],

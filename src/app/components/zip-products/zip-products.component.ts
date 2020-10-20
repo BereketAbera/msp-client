@@ -1,19 +1,19 @@
-import { ConfigurationService } from "./../../service/configuartion.service";
 import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { FormControl } from "@angular/forms";
-import { ActivatedRoute, Params, Router } from "@angular/router";
-import { Category } from "../../model/category";
-import { AuthService } from "../../service/auth.service";
-import { ProductService } from "../../service/product.service";
-import { WindowRef } from "../../service/window.service";
-import { ZipcodeService } from "./../../service/zipcode.service";
+import { Router, ActivatedRoute, Params } from "@angular/router";
+import { Category } from "@app/model/category";
+import { AuthService } from "@app/service/auth.service";
+import { ConfigurationService } from "@app/service/configuartion.service";
+import { ProductService } from "@app/service/product.service";
+import { WindowRef } from "@app/service/window.service";
+import { ZipcodeService } from "@app/service/zipcode.service";
 
 @Component({
-  selector: "app-public-products",
-  templateUrl: "./public-products.component.html",
-  styleUrls: ["./public-products.component.scss"]
+  selector: "app-zip-products",
+  templateUrl: "./zip-products.component.html",
+  styleUrls: ["./zip-products.component.scss"]
 })
-export class PublicProductsComponent implements OnInit {
+export class ZipProductsComponent implements OnInit {
   @ViewChild("anchor", { static: true }) anchor: ElementRef<HTMLElement>;
   @ViewChild("locationInput", { static: true }) locationInput: ElementRef<HTMLElement>;
   query: string = "";
@@ -55,12 +55,26 @@ export class PublicProductsComponent implements OnInit {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
     this.companies = [];
+    this.route.queryParams.subscribe((res) => {
+      let zip_code = res["zip"];
+      if (!zip_code) {
+        this.router.navigate(["/products"]);
+      } else {
+        this.zipcodeService.searchAddress(zip_code).subscribe((res) => {
+          if (res.length == 1) {
+            this.addressChanged(res[0]);
+          } else {
+            this.router.navigate(["/products"]);
+          }
+        });
+      }
+    });
 
-    this.address = JSON.parse(localStorage.getItem("client_address"));
-    this.searchInput.setValue(this.address?.CityName || "Your Location");
-    if (!this.address) {
-      this.router.navigate(["/"]);
-    }
+    // this.address = JSON.parse(localStorage.getItem("client_address"));
+    // this.searchInput.setValue(this.address?.CityName || "Your Location");
+    // if (!this.address) {
+    //   this.router.navigate(["/"]);
+    // }
     this.route.queryParams.subscribe(
       (response) => {
         this.reachedPageEnd = false;
@@ -84,7 +98,7 @@ export class PublicProductsComponent implements OnInit {
   checkAvailableOnThisCity() {
     if (this.address && this.address.Latitude && this.address.Longitude) {
       this.prdctService
-        .listCompaniesProducts(1, this.address.Latitude, this.address.Longitude, null, "")
+        .listCompaniesProductszip(1, this.address.Latitude, this.address.Longitude, null, "")
         .subscribe((company) => {
           if (company && company[0] && company[0].distance > this.config.localDistance) {
             this.showNoProductsMessage = true;
@@ -103,7 +117,7 @@ export class PublicProductsComponent implements OnInit {
     if (this.address && this.address.Latitude && this.address.Longitude) {
       this.authService.progressBarActive.next(true);
       this.prdctService
-        .listCompaniesProducts(
+        .listCompaniesProductszip(
           this.page,
           this.address.Latitude,
           this.address.Longitude,
@@ -153,7 +167,7 @@ export class PublicProductsComponent implements OnInit {
         this.shouldLoad = false;
         this.authService.progressBarActive.next(true);
         this.prdctService
-          .listCompaniesProducts(
+          .listCompaniesProductszip(
             this.page,
             this.address.Latitude,
             this.address.Longitude,
