@@ -3,12 +3,7 @@
     <div class="add-shop__address">
       <form class="form" [formGroup]="filterForm">
         <mat-form-field class="filter-body">
-          <input
-            matInput
-            maxlength="45"
-            placeholder="Email"
-            formControlName="email"
-          />
+          <input matInput maxlength="45" placeholder="Email" formControlName="email" />
         </mat-form-field>
         <mat-form-field class="filter-body">
           <input
@@ -20,10 +15,7 @@
           />
         </mat-form-field>
         <mat-form-field class="filter-body filter-state">
-          <mat-select
-            placeholder="Select registrationType"
-            formControlName="registrationType"
-          >
+          <mat-select placeholder="Select registrationType" formControlName="registrationType">
             <mat-option
               *ngFor="let registrationType of registrationTypes"
               [value]="registrationType.value"
@@ -42,47 +34,42 @@
             type="number"
           />
         </mat-form-field>
+        <div style="align-self: flex-end">
+          <mat-form-field class="filter-body">
+            <mat-label>From</mat-label>
+            <input
+              formControlName="sDate"
+              matInput
+              [matDatepicker]="sDate"
+              placeholder="MM/DD/YYYY"
+              #dateValue
+              [min]="sDate ? sDate : minDate"
+              [max]="maxDate"
+              (dateChange)="dateChanged('sDate')"
+            />
+            <mat-datepicker-toggle matSuffix [for]="sDate"></mat-datepicker-toggle>
+            <mat-datepicker #sDate disabled="false"></mat-datepicker>
+          </mat-form-field>
 
-        <mat-form-field class="filter-body">
-          <mat-label>From</mat-label>
-          <input
-            formControlName="sDate"
-            matInput
-            [matDatepicker]="sDate"
-            placeholder="MM/DD/YYYY"
-            #dateValue
-            [min]="sDate ? sDate : minDate"
-            [max]="maxDate"
-            (dateChange)="dateChanged('sDate')"
-          />
-          <mat-datepicker-toggle
-            matSuffix
-            [for]="sDate"
-          ></mat-datepicker-toggle>
-          <mat-datepicker #sDate disabled="false"></mat-datepicker>
-        </mat-form-field>
-
-        <mat-form-field class="filter-body">
-          <mat-label>To</mat-label>
-          <input
-            formControlName="eDate"
-            matInput
-            [matDatepicker]="eDate"
-            placeholder="MM/DD/YYYY"
-            #dateValue
-            [min]="minDate"
-            [max]="eDate ? eDate : maxDate"
-            (dateChange)="dateChanged('eDate')"
-          />
-          <mat-datepicker-toggle
-            matSuffix
-            [for]="eDate"
-          ></mat-datepicker-toggle>
-          <mat-datepicker #eDate disabled="false"></mat-datepicker>
-        </mat-form-field>
-
+          <mat-form-field class="filter-body">
+            <mat-label>To</mat-label>
+            <input
+              formControlName="eDate"
+              matInput
+              [matDatepicker]="eDate"
+              placeholder="MM/DD/YYYY"
+              #dateValue
+              [min]="minDate"
+              [max]="eDate ? eDate : maxDate"
+              (dateChange)="dateChanged('eDate')"
+            />
+            <mat-datepicker-toggle matSuffix [for]="eDate"></mat-datepicker-toggle>
+            <mat-datepicker #eDate disabled="false"></mat-datepicker>
+          </mat-form-field>
+        </div>
         <div class="filter-button">
           <button
+            style="width: 12rem"
             type="submit"
             (click)="filterBuyer()"
             mat-raised-button
@@ -94,55 +81,55 @@
       </form>
     </div>
   </div>
-  <mat-table class="mat-elevation-z8" [dataSource]="dataSource">
-    <ng-container matColumnDef="name">
-      <mat-header-cell *matHeaderCellDef>First Name</mat-header-cell>
-      <mat-cell *matCellDef="let user">{{
-        user.firstName + " " + user.lastName
-      }}</mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="email">
-      <mat-header-cell *matHeaderCellDef>Email</mat-header-cell>
-      <mat-cell *matCellDef="let user">{{ user.email }}</mat-cell>
-    </ng-container>
+  <div class="table__container">
+    <div class="table__sub-container">
+      <mat-table class="mat-elevation-z8" [dataSource]="dataSource">
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef>First Name</mat-header-cell>
+          <mat-cell *matCellDef="let user">{{ user.firstName + " " + user.lastName }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="email">
+          <mat-header-cell *matHeaderCellDef>Email</mat-header-cell>
+          <mat-cell *matCellDef="let user">{{ user.email }}</mat-cell>
+        </ng-container>
 
-    <ng-container matColumnDef="phoneNumber">
-      <mat-header-cell *matHeaderCellDef>Phone Number</mat-header-cell>
-      <mat-cell *matCellDef="let user">{{ user.phoneNumber }}</mat-cell>
-    </ng-container>
+        <ng-container matColumnDef="phoneNumber">
+          <mat-header-cell *matHeaderCellDef>Phone Number</mat-header-cell>
+          <mat-cell *matCellDef="let user">{{ user.phoneNumber }}</mat-cell>
+        </ng-container>
 
-    <ng-container matColumnDef="registrationType">
-      <mat-header-cell *matHeaderCellDef>Registration Type</mat-header-cell>
-      <mat-cell *matCellDef="let user">{{ user.registrationType }}</mat-cell>
-    </ng-container>
+        <ng-container matColumnDef="registrationType">
+          <mat-header-cell *matHeaderCellDef>Registration Type</mat-header-cell>
+          <mat-cell *matCellDef="let user">{{ user.registrationType }}</mat-cell>
+        </ng-container>
 
-    <ng-container matColumnDef="signUpCredit">
-      <mat-header-cell *matHeaderCellDef>Sign Up Credit</mat-header-cell>
-      <mat-cell *matCellDef="let user">{{ user.signUpCredit }}</mat-cell>
-    </ng-container>
+        <ng-container matColumnDef="signUpCredit">
+          <mat-header-cell *matHeaderCellDef>Sign Up Credit</mat-header-cell>
+          <mat-cell *matCellDef="let user">{{ user.signUpCredit }}</mat-cell>
+        </ng-container>
 
-    <ng-container matColumnDef="createdAt">
-      <mat-header-cell *matHeaderCellDef>Created date</mat-header-cell>
-      <mat-cell *matCellDef="let user">{{
-        user.createdAt | date: "MM/dd/yyyy"
-      }}</mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="status">
-      <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
-      <mat-cell *matCellDef="let user">{{ getStatus(user.status) }}</mat-cell>
-    </ng-container>
+        <ng-container matColumnDef="createdAt">
+          <mat-header-cell *matHeaderCellDef>Created date</mat-header-cell>
+          <mat-cell *matCellDef="let user">{{ user.createdAt | date: "MM/dd/yyyy" }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="status">
+          <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
+          <mat-cell *matCellDef="let user">{{ getStatus(user.status) }}</mat-cell>
+        </ng-container>
 
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 
-    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
-  </mat-table>
-  <!-- <div *ngIf="count == 0" class="no_result">
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+      </mat-table>
+      <!-- <div *ngIf="count == 0" class="no_result">
     No Buyer match your criteria
   </div> -->
-  <mat-paginator
-    [length]="count"
-    [pageSize]="10"
-    [pageSizeOptions]="[10, 20, 30, 50]"
-    (page)="pageChange($event)"
-  ></mat-paginator>
+      <mat-paginator
+        [length]="count"
+        [pageSize]="10"
+        [pageSizeOptions]="[10, 20, 30, 50]"
+        (page)="pageChange($event)"
+      ></mat-paginator>
+    </div>
+  </div>
 </div>

@@ -1,9 +1,7 @@
 <div class="codes__container">
   <h3 class="codes__title">Manage Codes</h3>
   <div class="codes__list">
-    <h4 class="codes__list-title">
-      Unique codes for target marketing
-    </h4>
+    <h4 class="codes__list-title">Unique codes for target marketing</h4>
     <div class="codes__form">
       <mat-form-field class="codes__form-input">
         <input
@@ -30,12 +28,7 @@
     </div>
     <form [formGroup]="filterForm" class="filter">
       <mat-form-field class="filter__input">
-        <input
-          matInput
-          maxlength="45"
-          placeholder="Search code"
-          formControlName="code"
-        />
+        <input matInput maxlength="45" placeholder="Search code" formControlName="code" />
       </mat-form-field>
       <mat-form-field class="filter__input">
         <mat-label>Created Date</mat-label>
@@ -47,10 +40,7 @@
           #dateValue
           [max]="maxDate"
         />
-        <mat-datepicker-toggle
-          matSuffix
-          [for]="createdDate"
-        ></mat-datepicker-toggle>
+        <mat-datepicker-toggle matSuffix [for]="createdDate"></mat-datepicker-toggle>
         <mat-datepicker #createdDate disabled="false"></mat-datepicker>
       </mat-form-field>
       <button
@@ -63,52 +53,48 @@
         Search
       </button>
     </form>
-    <div *ngIf="codes && codes.length > 0" class="codes__table">
-      <mat-table class="mat-elevation-z8" [dataSource]="codes">
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let code; columns: displayedColumns"></mat-row>
-        <ng-container matColumnDef="code">
-          <mat-header-cell *matHeaderCellDef>Code</mat-header-cell>
 
-          <mat-cell *matCellDef="let code">{{ code.code }}</mat-cell>
-        </ng-container>
-        <ng-container matColumnDef="credit">
-          <mat-header-cell *matHeaderCellDef>Code Credit</mat-header-cell>
-          <mat-cell *matCellDef="let code">{{
-            code.referredCredit | currency
-          }}</mat-cell>
-        </ng-container>
+    <div *ngIf="codes && codes.length > 0" class="table__container">
+      <div class="table__sub-container">
+        <mat-table class="mat-elevation-z8" [dataSource]="codes">
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let code; columns: displayedColumns"></mat-row>
+          <ng-container matColumnDef="code">
+            <mat-header-cell *matHeaderCellDef>Code</mat-header-cell>
 
-        <ng-container matColumnDef="expiresAt">
-          <mat-header-cell *matHeaderCellDef>Expiration Date</mat-header-cell>
-          <mat-cell *matCellDef="let code">{{
-            getExpDate(code.createdAt) | date
-          }}</mat-cell>
-        </ng-container>
+            <mat-cell *matCellDef="let code">{{ code.code }}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="credit">
+            <mat-header-cell *matHeaderCellDef>Code Credit</mat-header-cell>
+            <mat-cell *matCellDef="let code">{{ code.referredCredit | currency }}</mat-cell>
+          </ng-container>
 
-        <ng-container matColumnDef="status">
-          <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
-          <mat-cell *matCellDef="let code">{{
-            checkExp(code.createdAt)
-          }}</mat-cell>
-        </ng-container>
-        <ng-container matColumnDef="action">
-          <mat-header-cell *matHeaderCellDef></mat-header-cell>
-          <mat-cell *matCellDef="let code"
-            ><a [routerLink]="['detail', code.code]" class="codes__action"
-              >Signups</a
-            >
-          </mat-cell>
-        </ng-container>
-      </mat-table>
+          <ng-container matColumnDef="expiresAt">
+            <mat-header-cell *matHeaderCellDef>Expiration Date</mat-header-cell>
+            <mat-cell *matCellDef="let code">{{ getExpDate(code.createdAt) | date }}</mat-cell>
+          </ng-container>
 
-      <mat-paginator
-        [length]="count"
-        [pageSize]="5"
-        [pageSizeOptions]="[10, 20, 30, 50]"
-        (page)="pageChange($event)"
-      ></mat-paginator>
+          <ng-container matColumnDef="status">
+            <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
+            <mat-cell *matCellDef="let code">{{ checkExp(code.createdAt) }}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="action" stickyEnd>
+            <mat-header-cell *matHeaderCellDef></mat-header-cell>
+            <mat-cell *matCellDef="let code"
+              ><a [routerLink]="['detail', code.code]" class="codes__action">Signups</a>
+            </mat-cell>
+          </ng-container>
+        </mat-table>
+
+        <mat-paginator
+          [length]="count"
+          [pageSize]="5"
+          [pageSizeOptions]="[10, 20, 30, 50]"
+          (page)="pageChange($event)"
+        ></mat-paginator>
+      </div>
     </div>
+
     <div
       style="
         width: 100%;

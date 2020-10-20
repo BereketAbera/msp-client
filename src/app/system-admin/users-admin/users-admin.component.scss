@@ -23,20 +23,20 @@
   margin-right: 4px;
 }
 
-.mat-column-status {
-  max-width: 8rem;
-}
+// .mat-column-status {
+//   max-width: 8rem;
+// }
 
-.mat-column-updatedAt {
-  max-width: 10rem;
-}
+// .mat-column-updatedAt {
+//   max-width: 10rem;
+// }
 
-.mat-column-state {
-  max-width: 10rem;
-}
-.mat-column-firstName {
-  max-width: 10rem;
-}
+// .mat-column-state {
+//   max-width: 10rem;
+// }
+// .mat-column-firstName {
+//   max-width: 10rem;
+// }
 
 .mat-column-lastName {
   max-width: 10rem;
@@ -66,12 +66,16 @@
   margin: 1rem;
   form {
     display: flex;
+    flex-wrap: wrap;
     width: 100%;
+    justify-content: flex-end;
   }
   &-body {
     padding: 0 2rem;
     font-size: 1.2rem;
-    width: 12rem;
+    // width: 12rem;
+    flex: 1;
+    // align-self: flex-end;
   }
   &-status {
     display: flex;
@@ -87,6 +91,9 @@
   &-button {
     display: flex;
     align-items: center;
+    margin: 0rem 2rem;
+    margin-bottom: 1rem;
+    min-width: 8rem;
   }
   &-state {
     max-width: 12rem;
@@ -150,12 +157,24 @@ li {
   list-style-type: none;
 }
 
+.table {
+  &__container {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  &__sub-container {
+    min-width: 70rem;
+    padding: 1rem 0.5rem;
+  }
+}
+
 .orders {
   display: flex;
   justify-content: center;
   border: 1px #ddd solid;
-  width: 85%;
-  margin: 1rem 5rem;
+  width: 100%;
+  // margin: 1rem 5rem;
   flex-direction: column;
   &__header {
     font-size: 1.9rem;
