@@ -106,11 +106,18 @@ export class ProductService {
       );
   }
 
-  listCompaniesProductszip(page, latitude, longitude, subCategoryId, query): Observable<any> {
+  listCompaniesProductszip(
+    page,
+    latitude,
+    longitude,
+    subCategoryId,
+    query,
+    radius
+  ): Observable<any> {
     // console.log(latitude, longitude);
     return this.http
       .get(
-        `${productApi}/company_zip?page=${page}&lat=${latitude}&lng=${longitude}&q=${query}&subCategoryId=${subCategoryId}`
+        `${productApi}/company_zip?page=${page}&lat=${latitude}&lng=${longitude}&q=${query}&subCategoryId=${subCategoryId}&radius=${radius}`
       )
       .pipe(
         map((res) => {

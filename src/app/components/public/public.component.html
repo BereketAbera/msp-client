@@ -28,10 +28,7 @@
           <button class="header__desktop__signup-button">SIGN UP</button>
         </div>
 
-        <div
-          *ngIf="authService.isLoggedIn()"
-          class="header_mobile__search-icon-container"
-        >
+        <div *ngIf="authService.isLoggedIn()" class="header_mobile__search-icon-container">
           <button routerLink="/tlgu-byr" class="header_mobile__login-button">
             <i class="fad fa-home"></i>
           </button>
@@ -45,16 +42,13 @@
       </div>
 
       <div class="header__desktop__search-input-container">
-        <i
-          *ngIf="searchActive"
-          class="fad fa-search header__desktop__search-icon"
-        ></i>
+        <i *ngIf="searchActive" class="fad fa-search header__desktop__search-icon"></i>
         <input
           *ngIf="searchActive"
           [formControl]="desktopSearchValue"
           type="text"
           class="header__desktop__search-input"
-          placeholder="Search for offers.."
+          placeholder="Search for food type.."
           (keyup.enter)="searchValueChanged('desktopSearchValue')"
           [value]="q"
           #deskInput
@@ -119,8 +113,8 @@
       </li>
       <li class="footer__item">
         <p class="footer__item-text">
-          ManagerSpecial Copyright {{ today }}. All Rights reserved. Worldwide
-          Patent Pending {{ today }}. A business unit of Live Inc. {{ version }}
+          ManagerSpecial Copyright {{ today }}. All Rights reserved. Worldwide Patent Pending
+          {{ today }}. A business unit of Live Inc. {{ version }}
         </p>
       </li>
     </ul>
@@ -136,14 +130,11 @@
       [formControl]="mobileSearchValue"
       type="text"
       class="header_mobile__search-input"
-      placeholder="Search for offers.."
+      placeholder="Search for food type.."
       (keyup.enter)="searchValueChanged('mobileSearchValue')"
       [value]="q"
     />
-    <button
-      (click)="searchValueChanged('mobileSearchValue')"
-      class="header_mobile__search-button"
-    >
+    <button (click)="searchValueChanged('mobileSearchValue')" class="header_mobile__search-button">
       <i class="fad fa-search header_mobile__search-icon"></i>
     </button>
   </div>
@@ -160,9 +151,6 @@
 </div>
 <div class="email-support__button-container">
   <a href="mailto:support@managerspecial.com"
-    ><img
-      src="assets/email_Circle_pink.png"
-      class="email-support__button"
-      alt=""
+    ><img src="assets/email_Circle_pink.png" class="email-support__button" alt=""
   /></a>
 </div>

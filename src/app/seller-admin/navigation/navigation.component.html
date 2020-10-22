@@ -3,11 +3,7 @@
   <div class="navigation__container">
     <div class="header_mobile">
       <div>
-        <input
-          #drawerCheckbox
-          type="checkbox"
-          class="header_mobile__menu_checkbox"
-        />
+        <input #drawerCheckbox type="checkbox" class="header_mobile__menu_checkbox" />
         <div class="header_mobile__menu_button"></div>
         <div class="side_bar_mobile">
           <ul class="side_bar_mobile__list-container">
@@ -17,9 +13,7 @@
                 [routerLinkActive]="['active-route']"
                 [routerLinkActiveOptions]="{ exact: true }"
                 class="side_bar_mobile__item-text"
-                [class.not-active]="
-                  role == 'SELLER_STAFF' && !checkHaveAccess('View Summary')
-                "
+                [class.not-active]="role == 'SELLER_STAFF' && !checkHaveAccess('View Summary')"
                 ><i class="fad fa-chart-bar navigation__item-icon"></i>
                 Dashboard
               </a>
@@ -30,11 +24,8 @@
                 [routerLinkActive]="['active-route']"
                 [routerLinkActiveOptions]="{ exact: false }"
                 class="side_bar_mobile__item-text"
-                [class.not-active]="
-                  role == 'SELLER_STAFF' && !checkHaveAccess('Manage Order')
-                "
-                ><i class="fad fa-envelope-open navigation__item-icon"></i
-                >Reservations</a
+                [class.not-active]="role == 'SELLER_STAFF' && !checkHaveAccess('Manage Order')"
+                ><i class="fad fa-envelope-open navigation__item-icon"></i>Reservations</a
               >
             </li>
 
@@ -48,11 +39,8 @@
                 [routerLinkActive]="['active-route']"
                 [routerLinkActiveOptions]="{ exact: false }"
                 class="side_bar_mobile__item-text"
-                [class.not-active]="
-                  role == 'SELLER_STAFF' && !checkHaveAccess('Manage Order')
-                "
-                ><i class="fad fa-bring-front navigation__item-icon"></i>Process
-                Code</a
+                [class.not-active]="role == 'SELLER_STAFF' && !checkHaveAccess('Manage Order')"
+                ><i class="fad fa-bring-front navigation__item-icon"></i>Process Code</a
               >
             </li>
 
@@ -62,11 +50,8 @@
                 [routerLinkActive]="['active-route']"
                 [routerLinkActiveOptions]="{ exact: false }"
                 class="side_bar_mobile__item-text"
-                [class.not-active]="
-                  role == 'SELLER_STAFF' && !checkHaveAccess('View Products')
-                "
-                ><i class="fad fa-clone side_bar_mobile__item-icon"></i
-                >Products</a
+                [class.not-active]="role == 'SELLER_STAFF' && !checkHaveAccess('View Products')"
+                ><i class="fad fa-clone side_bar_mobile__item-icon"></i>Products</a
               >
             </li>
             <li (click)="drawerLinkClicked()" class="side_bar_mobile__item">
@@ -75,9 +60,7 @@
                 [routerLinkActive]="['active-route']"
                 [routerLinkActiveOptions]="{ exact: false }"
                 class="side_bar_mobile__item-text"
-                [class.not-active]="
-                  role == 'SELLER_STAFF' && !checkHaveAccess('Manage Shop')
-                "
+                [class.not-active]="role == 'SELLER_STAFF' && !checkHaveAccess('Manage Shop')"
                 ><i class="fad fa-map side_bar_mobile__item-icon"></i>Stores
               </a>
             </li>
@@ -87,11 +70,8 @@
                 [routerLinkActive]="['active-route']"
                 [routerLinkActiveOptions]="{ exact: false }"
                 class="side_bar_mobile__item-text"
-                [class.not-active]="
-                  role == 'SELLER_STAFF' && !checkHaveAccess('Manage Gallery')
-                "
-                ><i class="fad fa-images side_bar_mobile__item-icon"></i>
-                Gallery</a
+                [class.not-active]="role == 'SELLER_STAFF' && !checkHaveAccess('Manage Gallery')"
+                ><i class="fad fa-images side_bar_mobile__item-icon"></i> Gallery</a
               >
             </li>
             <li
@@ -104,8 +84,7 @@
                 [routerLinkActive]="['active-route']"
                 [routerLinkActiveOptions]="{ exact: false }"
                 class="side_bar_mobile__item-text"
-                ><i class="fad fa-sun side_bar_mobile__item-icon"></i>
-                Employee</a
+                ><i class="fad fa-sun side_bar_mobile__item-icon"></i> Employee</a
               >
             </li>
             <li
@@ -118,17 +97,12 @@
                 [routerLinkActive]="['active-route']"
                 [routerLinkActiveOptions]="{ exact: false }"
                 class="side_bar_mobile__item-text"
-                ><i class="fad fa-address-card side_bar_mobile__item-icon"></i>
-                Profile</a
+                ><i class="fad fa-address-card side_bar_mobile__item-icon"></i> Profile</a
               >
             </li>
             <li (click)="drawerLinkClicked()" class="side_bar_mobile__item">
-              <a
-                (click)="logout()"
-                class="side_bar_mobile__item-text side_bar_mobile__logout"
-              >
-                <i class="fad fa-user side_bar_mobile__item-icon"></i>Sign Out
-                ({{ name }})</a
+              <a (click)="logout()" class="side_bar_mobile__item-text side_bar_mobile__logout">
+                <i class="fad fa-user side_bar_mobile__item-icon"></i>Sign Out ({{ name }})</a
               >
             </li>
           </ul>
@@ -140,7 +114,14 @@
         alt="Logo"
         class="navigation__header-image"
       /> -->
-      <a routerLink="./" class="navigation__header-text">ManagerSpecial</a>
+      <div style="display: flex; width: 100%; justify-content: space-between">
+        <a routerLink="./" class="navigation__header-text">ManagerSpecial</a>
+        <span class="navigation__item">
+          <a (click)="logout()" class="navigation__item-text navigation__logout">
+            <i class="fad fa-user navigation__item-icon"></i>Sign Out</a
+          >
+        </span>
+      </div>
     </div>
     <div routerLink="/" class="navigation__header-container">
       <div class="navigation__sub-header-container">
@@ -150,19 +131,12 @@
           alt="Logo"
           class="navigation__desktop-header-image"
         /> -->
-        <a routerLink="./" class="navigation__desktop-header-text"
-          >ManagerSpecial</a
-        >
+        <a routerLink="./" class="navigation__desktop-header-text">ManagerSpecial</a>
       </div>
       <div>
         <span class="navigation__item">
-          <a
-            (click)="logout()"
-            class="navigation__item-text navigation__logout"
-          >
-            <i class="fad fa-user navigation__item-icon"></i>Sign Out ({{
-              name
-            }})</a
+          <a (click)="logout()" class="navigation__item-text navigation__logout">
+            <i class="fad fa-user navigation__item-icon"></i>Sign Out ({{ name }})</a
           >
         </span>
       </div>
@@ -174,9 +148,7 @@
           [routerLinkActive]="['active-route']"
           [routerLinkActiveOptions]="{ exact: true }"
           class="navigation__item-text"
-          [class.not-active]="
-            role == 'SELLER_STAFF' && !checkHaveAccess('View Summary')
-          "
+          [class.not-active]="role == 'SELLER_STAFF' && !checkHaveAccess('View Summary')"
           ><i class="fad fa-chart-bar navigation__item-icon"></i> Dashboard
         </a>
       </li>
@@ -186,11 +158,8 @@
           [routerLinkActive]="['active-route']"
           [routerLinkActiveOptions]="{ exact: false }"
           class="navigation__item-text"
-          [class.not-active]="
-            role == 'SELLER_STAFF' && !checkHaveAccess('Manage Order')
-          "
-          ><i class="fad fa-envelope-open navigation__item-icon"></i
-          >Reservations</a
+          [class.not-active]="role == 'SELLER_STAFF' && !checkHaveAccess('Manage Order')"
+          ><i class="fad fa-envelope-open navigation__item-icon"></i>Reservations</a
         >
       </li>
       <li class="navigation__item" style="min-width: 13rem">
@@ -199,11 +168,8 @@
           [routerLinkActive]="['active-route']"
           [routerLinkActiveOptions]="{ exact: false }"
           class="navigation__item-text"
-          [class.not-active]="
-            role == 'SELLER_STAFF' && !checkHaveAccess('Manage Order')
-          "
-          ><i class="fad fa-bring-front navigation__item-icon"></i>Process
-          Code</a
+          [class.not-active]="role == 'SELLER_STAFF' && !checkHaveAccess('Manage Order')"
+          ><i class="fad fa-bring-front navigation__item-icon"></i>Process Code</a
         >
       </li>
 
@@ -213,9 +179,7 @@
           [routerLinkActive]="['active-route']"
           [routerLinkActiveOptions]="{ exact: false }"
           class="navigation__item-text"
-          [class.not-active]="
-            role == 'SELLER_STAFF' && !checkHaveAccess('View Products')
-          "
+          [class.not-active]="role == 'SELLER_STAFF' && !checkHaveAccess('View Products')"
           ><i class="fad fa-clone navigation__item-icon"></i>Products</a
         >
       </li>
@@ -225,9 +189,7 @@
           [routerLinkActive]="['active-route']"
           [routerLinkActiveOptions]="{ exact: false }"
           class="navigation__item-text"
-          [class.not-active]="
-            role == 'SELLER_STAFF' && !checkHaveAccess('Manage Shop')
-          "
+          [class.not-active]="role == 'SELLER_STAFF' && !checkHaveAccess('Manage Shop')"
           ><i class="fad fa-map navigation__item-icon"></i>Stores
         </a>
       </li>
@@ -237,9 +199,7 @@
           [routerLinkActive]="['active-route']"
           [routerLinkActiveOptions]="{ exact: false }"
           class="navigation__item-text"
-          [class.not-active]="
-            role == 'SELLER_STAFF' && !checkHaveAccess('Manage Gallery')
-          "
+          [class.not-active]="role == 'SELLER_STAFF' && !checkHaveAccess('Manage Gallery')"
           ><i class="fad fa-images navigation__item-icon"></i> Gallery</a
         >
       </li>
@@ -273,9 +233,7 @@
           [routerLinkActive]="['active-route']"
           [routerLinkActiveOptions]="{ exact: true }"
           class="navigation__item-text"
-          [class.not-active]="
-            role == 'SELLER_STAFF' && !checkHaveAccess('View Summary')
-          "
+          [class.not-active]="role == 'SELLER_STAFF' && !checkHaveAccess('View Summary')"
           ><i class="fad fa-chart-bar navigation__item-icon"></i> Dashboard
         </a>
       </li>
@@ -285,9 +243,7 @@
           [routerLinkActive]="['active-route']"
           [routerLinkActiveOptions]="{ exact: false }"
           class="navigation__item-text"
-          [class.not-active]="
-            role == 'SELLER_STAFF' && !checkHaveAccess('Manage Order')
-          "
+          [class.not-active]="role == 'SELLER_STAFF' && !checkHaveAccess('Manage Order')"
         >
           <i class="fad fa-bring-front navigation__item-icon"></i>
           Process Code</a
@@ -299,9 +255,7 @@
           [routerLinkActive]="['active-route']"
           [routerLinkActiveOptions]="{ exact: false }"
           class="navigation__item-text"
-          [class.not-active]="
-            role == 'SELLER_STAFF' && !checkHaveAccess('View Products')
-          "
+          [class.not-active]="role == 'SELLER_STAFF' && !checkHaveAccess('View Products')"
           ><i class="fad fa-clone navigation__item-icon"></i>Products</a
         >
       </li>

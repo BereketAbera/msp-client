@@ -39,6 +39,7 @@ export class ZipProductsComponent implements OnInit {
   firstTimeLoaded = false;
   showNoProductsMessage = false;
   config: any = {};
+  radius = 160;
 
   constructor(
     private winRef: WindowRef,
@@ -60,6 +61,7 @@ export class ZipProductsComponent implements OnInit {
       if (!zip_code) {
         this.router.navigate(["/products"]);
       } else {
+        this.radius = res["radius"] || 160;
         this.zipcodeService.searchAddress(zip_code).subscribe((res) => {
           if (res.length == 1) {
             this.addressChanged(res[0]);
@@ -98,7 +100,14 @@ export class ZipProductsComponent implements OnInit {
   checkAvailableOnThisCity() {
     if (this.address && this.address.Latitude && this.address.Longitude) {
       this.prdctService
-        .listCompaniesProductszip(1, this.address.Latitude, this.address.Longitude, null, "")
+        .listCompaniesProductszip(
+          1,
+          this.address.Latitude,
+          this.address.Longitude,
+          null,
+          "",
+          this.radius
+        )
         .subscribe((company) => {
           if (company && company[0] && company[0].distance > this.config.localDistance) {
             this.showNoProductsMessage = true;
@@ -122,7 +131,8 @@ export class ZipProductsComponent implements OnInit {
           this.address.Latitude,
           this.address.Longitude,
           this.categoryId,
-          this.query
+          this.query,
+          this.radius
         )
         .subscribe((company) => {
           if (!this.categoryId && !this.query) {
@@ -137,7 +147,7 @@ export class ZipProductsComponent implements OnInit {
           this.shouldLoad = true;
           this.authService.progressBarActive.next(false);
           this.page = this.page + 1;
-          this.loadJobs();
+          this.loadProducts();
         });
     }
   }
@@ -148,13 +158,21 @@ export class ZipProductsComponent implements OnInit {
     var toPosition = window.innerWidth + window.pageXOffset + 1;
     window.scrollTo(elementPosition - 10, rightPosition);
   }
-  loadJobs() {
+  loadProducts() {
     window.onscroll = () => {
-      if (!this.router.url.includes("/products")) {
+      if (!this.router.url.includes("/zip_products")) {
         return;
       }
       var bottomPosition = window.innerHeight + window.pageYOffset;
       var elementPosition = this.anchor ? this.anchor.nativeElement.offsetTop : 0;
+      console.log(
+        elementPosition < bottomPosition &&
+          this.shouldLoad &&
+          !this.reachedPageEnd &&
+          !!this.address &&
+          this.address.Latitude &&
+          this.address.Longitude
+      );
 
       if (
         elementPosition < bottomPosition &&
@@ -172,7 +190,8 @@ export class ZipProductsComponent implements OnInit {
             this.address.Latitude,
             this.address.Longitude,
             this.categoryId,
-            this.query
+            this.query,
+            this.radius
           )
           .subscribe((company) => {
             let l = this.companies.length;
