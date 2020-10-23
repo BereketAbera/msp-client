@@ -73,7 +73,7 @@ export class ZipProductsComponent implements OnInit {
     });
 
     // this.address = JSON.parse(localStorage.getItem("client_address"));
-    // this.searchInput.setValue(this.address?.CityName || "Your Location");
+    // this.searchInput.setValue(this.address?.CityName || "Change Current Location");
     // if (!this.address) {
     //   this.router.navigate(["/"]);
     // }
@@ -261,7 +261,7 @@ export class ZipProductsComponent implements OnInit {
 
   addressChanged(address) {
     this.address = address;
-    this.searchInput.setValue(this.address?.CityName || "Your Location");
+    this.searchInput.setValue(this.address?.CityName || "Change Current Location");
     this.reachedPageEnd = false;
     this.getProducts();
     this.onBlur();
@@ -272,7 +272,7 @@ export class ZipProductsComponent implements OnInit {
       localStorage.setItem("client_address", JSON.stringify(this.address));
       this.authService.updateClientLocation(this.address);
       this.loadFirstTime();
-      this.searchInput.setValue("");
+      // this.searchInput.setValue("");
       this.categoryOptionsActive = false;
     }
   }
@@ -312,7 +312,9 @@ export class ZipProductsComponent implements OnInit {
   }
 
   onBlur() {
-    this.searchInput.setValue(this.address?.CityName ? this.address?.CityName : "Your Location");
+    this.searchInput.setValue(
+      this.address?.CityName ? this.address?.CityName : "Change Current Location"
+    );
     this.locationInputActive = false;
   }
 

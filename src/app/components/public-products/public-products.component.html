@@ -1,9 +1,12 @@
 <div class="search__container">
   <div action="#" mathod="GET" class="search__search-input-container">
+    <button (click)="toggleLocationInputActive()" class="search__search-submit">
+      <i class="fad fa-map-marker-alt search__search-submit-icon"></i>
+    </button>
     <input
       type="text"
-      [value]="address.CityName ? address.CityName : 'Your location'"
-      placeholder="Enter zip code..."
+      [value]="address.CityName ? address.CityName : 'Change Current Location'"
+      placeholder="Enter City or Zip Code"
       class="search__search-input"
       [style.width]="categoryId ? '45%' : '85%'"
       (change)="getlocations($event.target.value)"
@@ -22,9 +25,7 @@
         <div>
           <i class="fad fa-map-marker-alt search__search-input-result-icon"></i>
           <!-- <i class="fad fa-map-marker-alt"></i> -->
-          <span class="search__search-input-result-name"
-            >Use Current Location</span
-          >
+          <span class="search__search-input-result-name">Use Current Location</span>
         </div>
       </div>
       <div
@@ -34,37 +35,24 @@
       >
         <div>
           <i class="fad fa-map-marker-alt search__search-input-result-icon"></i>
-          <span class="search__search-input-result-name">{{
-            address.CityName
-          }}</span>
+          <span class="search__search-input-result-name">{{ address.CityName }}</span>
         </div>
 
         <div class="search__search-input-county-state">
-          <span class="search__search-input-result-county"
-            >{{ address.StateName }},
-          </span>
-          <span class="search__search-input-result-state">
-            {{ address.ZIPCode }}</span
-          >
+          <span class="search__search-input-result-county">{{ address.StateName }}, </span>
+          <span class="search__search-input-result-state"> {{ address.ZIPCode }}</span>
         </div>
       </div>
     </div>
-    <button (click)="toggleLocationInputActive()" class="search__search-submit">
-      <i class="fad fa-map-marker-alt search__search-submit-icon"></i>
-    </button>
+
     <div *ngIf="categoryId" class="search__selected-category">
       {{ getCategoryName() }}
-      <span (click)="removeCategory()" class="search__selected-category-close"
-        >&#215;</span
-      >
+      <span (click)="removeCategory()" class="search__selected-category-close">&#215;</span>
     </div>
   </div>
 </div>
 <div class="container" fxLayout="column" fxLayoutAlign="center center">
-  <div
-    class="products__viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+  <div class="products__viewport" content="width=device-width, initial-scale=1.0">
     <div *ngIf="showNoProductsMessage" class="coming_soon">
       <!-- <span>Coming soon to your city</span> -->
     </div>
@@ -84,9 +72,7 @@
       *ngIf="companies && companies.length == 0 && firstTimeLoaded"
       class="products__not-found-container"
     >
-      <p class="products__not-found">
-        No Offers Found. Check Other Locations or Categories.
-      </p>
+      <p class="products__not-found">No Offers Found. Check Other Locations or Categories.</p>
     </div>
   </div>
   <div id="xyze12" #anchor></div>

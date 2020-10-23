@@ -1,9 +1,12 @@
 <div class="search__container">
   <div action="#" mathod="GET" class="search__search-input-container">
+    <button (click)="toggleLocationInputActive()" class="search__search-submit">
+      <i class="fad fa-map-marker-alt search__search-submit-icon"></i>
+    </button>
     <input
       type="text"
-      [value]="address?.CityName ? address?.CityName : 'Your location'"
-      placeholder="Enter zip code..."
+      [value]="address?.CityName ? address?.CityName : 'Change Current Location'"
+      placeholder="Enter City or Zip Code"
       class="search__search-input"
       [style.width]="categoryId ? '45%' : '85%'"
       (change)="getlocations($event.target.value)"
@@ -41,9 +44,7 @@
         </div>
       </div>
     </div>
-    <button (click)="toggleLocationInputActive()" class="search__search-submit">
-      <i class="fad fa-map-marker-alt search__search-submit-icon"></i>
-    </button>
+
     <div *ngIf="categoryId" class="search__selected-category">
       {{ getCategoryName() }}
       <span (click)="removeCategory()" class="search__selected-category-close">&#215;</span>

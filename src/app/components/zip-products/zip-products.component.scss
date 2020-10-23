@@ -281,7 +281,7 @@ img {
     justify-content: flex-start;
     align-items: center;
     width: auto;
-    border-bottom: 1px solid #eee;
+    border-bottom: 2px solid #eee;
     position: relative;
   }
 
@@ -294,6 +294,7 @@ img {
     color: #888;
     caret-color: #888;
     width: 60%;
+    padding-left: 1.5rem;
 
     &:focus {
       border-bottom: 2px solid #f94081;
@@ -318,8 +319,8 @@ img {
     cursor: pointer;
     margin-left: 0.5rem;
     border-bottom: 2px solid transparent;
-    &:last-child {
-      border-left: 1px solid #eee;
+    &:first-child {
+      border-right: 2px solid #eee;
     }
   }
 
@@ -358,7 +359,7 @@ img {
     position: absolute;
     display: none;
     top: 100%;
-    left: -1px;
+    left: calc(4rem + 2px);
     background-color: #fff;
     width: calc(85% + 8px);
     border: 1px solid #eee;
@@ -448,8 +449,8 @@ img {
 
     &__search-input-container {
       margin-top: 3rem;
-      width: 40rem;
-      margin-left: -10rem;
+      width: 36rem;
+      margin-left: -5rem;
       // width: 80%;
     }
 
