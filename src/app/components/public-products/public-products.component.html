@@ -25,7 +25,7 @@
         <div>
           <i class="fad fa-map-marker-alt search__search-input-result-icon"></i>
           <!-- <i class="fad fa-map-marker-alt"></i> -->
-          <span class="search__search-input-result-name">Use Current Location</span>
+          <span class="search__search-input-result-name">{{ useCurrentLocationString }}</span>
         </div>
       </div>
       <div
@@ -54,7 +54,7 @@
 <div class="container" fxLayout="column" fxLayoutAlign="center center">
   <div class="products__viewport" content="width=device-width, initial-scale=1.0">
     <div *ngIf="showNoProductsMessage" class="coming_soon">
-      <!-- <span>Coming soon to your city</span> -->
+      <span>Coming soon to your city</span>
     </div>
     <div *ngIf="companies?.length > 0" class="products__container">
       <div style="width: 100%" *ngFor="let c of companies; let i = index">

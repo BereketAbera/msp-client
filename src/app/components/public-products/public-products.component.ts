@@ -39,6 +39,7 @@ export class PublicProductsComponent implements OnInit {
   firstTimeLoaded = false;
   showNoProductsMessage = false;
   config: any = {};
+  useCurrentLocationString = "Use Current Location";
 
   constructor(
     private winRef: WindowRef,
@@ -209,9 +210,14 @@ export class PublicProductsComponent implements OnInit {
       this.zipcodeService.searchAddress(q).subscribe(
         (response) => {
           this.addresses = response;
+          if (this.addresses.length == 0) {
+            this.useCurrentLocationString = "Not Available, User Current Location";
+          }
         },
         (err) => console.log(err)
       );
+    } else {
+      this.useCurrentLocationString = "User Current Location";
     }
 
     this.locationInputActive = true;
