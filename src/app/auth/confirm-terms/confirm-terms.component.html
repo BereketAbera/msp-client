@@ -20,7 +20,9 @@
       <strong>{{ data.user.applicationName }}.COM</strong> as
       <strong>{{ data.user.role == "STAFFER" ? "EMPLOYER STAFF" : data.user.role }}</strong
       >. You can use this email to sign in to <strong>ManagerSpecial</strong> and become a
-      <strong>{{ data.user.role == "APPLICANT" ? "BUYER" : "SELLER" }}</strong
+      <strong>{{
+        data.user.role == "APPLICANT" || data.user.role == "VIEWER" ? "BUYER" : "SELLER"
+      }}</strong
       >. Otherwise, please use a different email to registered as a buyer or seller.
     </p>
     <p *ngIf="data.user.role == 'APPLICANT'" class="dialog__content">

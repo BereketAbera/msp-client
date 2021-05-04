@@ -136,7 +136,7 @@ export class LoginComponent implements OnInit {
       data: { confirmTerms: this.confirmTerms, user: res }
     });
 
-    if (res.role == "APPLICANT") {
+    if (res.role == "APPLICANT" || res.role == "VIEWER") {
       dialogRef.afterClosed().subscribe((result) => {
         if (result) {
           this.authService
