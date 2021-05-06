@@ -1,8 +1,4 @@
-import {
-  HttpClient,
-  HttpErrorResponse,
-  HttpResponse,
-} from "@angular/common/http";
+import { HttpClient, HttpErrorResponse, HttpResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import jwt_decode from "jwt-decode";
 import * as moment from "moment";
@@ -155,7 +151,7 @@ export class AuthService {
   }
   isAdmin() {
     const role = localStorage.getItem("role");
-    if (role && role == "ADMIN") return true;
+    if (role && (role == "ADMIN" || role == "ADMIN_ASSISTANT")) return true;
     return false;
   }
   isBuyer() {
@@ -174,14 +170,11 @@ export class AuthService {
     if (role && role == "BUYER") return this._defaultBuyerNav;
     if (role && role == "SELLER") return this._defaultSellerNav;
     if (role && role == "SELLER_STAFF") return this._defaultSellerNav;
-    if (role && role == "ADMIN") return this._defaultAdminNav;
+    if (role && (role == "ADMIN" || role == "ADMIN_ASSISTANT")) return this._defaultAdminNav;
     else return this._defaultNav;
   }
   get redirectURL(): string {
-    if (
-      localStorage.getItem("rd_url") &&
-      localStorage.getItem("rd_url") != "null"
-    ) {
+    if (localStorage.getItem("rd_url") && localStorage.getItem("rd_url") != "null") {
       this._redirectURL = localStorage.getItem("rd_url");
       localStorage.removeItem("rd_url");
     }
@@ -200,9 +193,7 @@ export class AuthService {
     } else {
       // The backend returned an unsuccessful response code.
       // The response body may contain clues as to what went wrong,
-      console.error(
-        `Backend returned code ${error.status}, ` + `body was: ${error.error}`
-      );
+      console.error(`Backend returned code ${error.status}, ` + `body was: ${error.error}`);
     }
     // return an observable with a user-facing error message
     return throwError("Something bad happened; please try again later.");
@@ -225,43 +216,39 @@ export class AuthService {
   }
 
   localApplicantSignUp(user) {
-    return this.http
-      .post(environment.APIEndpoint + "auth/local_applicant_signup", user)
-      .pipe(
-        tap((res: any) => {
-          // console.log(res);
-          if (res["success"] && res["idToken"]) {
-            this.newUser = true;
-            this.setSession(res);
-          }
-        }),
-        map((res: any) => {
-          if (!res["success"]) throw res;
-          if (res.applicationName) {
-            return res;
-          }
-        })
-      );
+    return this.http.post(environment.APIEndpoint + "auth/local_applicant_signup", user).pipe(
+      tap((res: any) => {
+        // console.log(res);
+        if (res["success"] && res["idToken"]) {
+          this.newUser = true;
+          this.setSession(res);
+        }
+      }),
+      map((res: any) => {
+        if (!res["success"]) throw res;
+        if (res.applicationName) {
+          return res;
+        }
+      })
+    );
   }
 
   localEmployerSignUp(user) {
     // console.log(user);
-    return this.http
-      .post(environment.APIEndpoint + "auth/local_employer_signup", user)
-      .pipe(
-        tap((res: any) => {
-          // console.log(res);
-          if (res["success"] && res["idToken"]) {
-            this.newUser = true;
-            this.setSession(res);
-          }
-        }),
-        map((res: any) => {
-          if (!res["success"]) throw res;
-          if (res.applicationName) {
-            return res;
-          }
-        })
-      );
+    return this.http.post(environment.APIEndpoint + "auth/local_employer_signup", user).pipe(
+      tap((res: any) => {
+        // console.log(res);
+        if (res["success"] && res["idToken"]) {
+          this.newUser = true;
+          this.setSession(res);
+        }
+      }),
+      map((res: any) => {
+        if (!res["success"]) throw res;
+        if (res.applicationName) {
+          return res;
+        }
+      })
+    );
   }
 }

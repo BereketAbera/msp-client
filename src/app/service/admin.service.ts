@@ -6,7 +6,7 @@ import { environment } from "src/environments/environment";
 const adminApi = environment.APIEndpoint;
 
 @Injectable({
-  providedIn: "root",
+  providedIn: "root"
 })
 export class AdminService {
   constructor(private http: HttpClient) {}
@@ -34,5 +34,13 @@ export class AdminService {
     });
 
     return url.slice(0, url.length - 1);
+  }
+
+  getAssistants(page): Observable<any> {
+    return this.http.get(`${environment.APIEndpoint}accounts/assistants?page=${page}`);
+  }
+
+  addAssistant(assistant): Observable<any> {
+    return this.http.post(`${environment.APIEndpoint}accounts/assistants`, assistant);
   }
 }

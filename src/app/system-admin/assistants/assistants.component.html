@@ -1,0 +1,66 @@
+<div>
+  <div fxLayout="row" fxLayoutAlign="end center" class="addNewDiv">
+    <div class="assistant__header-container">
+      <h2 class="assistant__header">Assistants</h2>
+      <button
+        mat-raised-button
+        color="accent"
+        (click)="goToAddAssistant()"
+        title="Add your employees who will help you with reservation processing and management of ManagerSpecial.com. You can assign privileges and create individual usernames for them to use"
+      >
+        Add New Assistant
+      </button>
+    </div>
+  </div>
+  <div class="assistant__container">
+    <div *ngIf="dataSource?.length > 0" class="assistant__sub-container">
+      <mat-table
+        *ngIf="dataSource?.length > 0"
+        class="mat-elevation-z2"
+        [dataSource]="dataSource"
+        matSort
+        matSortActive="name"
+        matSortDirection="asc"
+        matSortDisableClear
+      >
+        <ng-container matColumnDef="username">
+          <mat-header-cell class="header-align-right" *matHeaderCellDef mat-sort-header
+            >Username</mat-header-cell
+          >
+
+          <mat-cell *matCellDef="let assistant">{{ assistant.username }}</mat-cell>
+        </ng-container>
+
+        <ng-container class="header-align-right" matColumnDef="email">
+          <mat-header-cell *matHeaderCellDef>Email</mat-header-cell>
+
+          <mat-cell *matCellDef="let assistant">{{ assistant.email }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="firstName">
+          <mat-header-cell class="header-align-right" *matHeaderCellDef>First Name</mat-header-cell>
+
+          <mat-cell *matCellDef="let assistant">{{ assistant.firstName }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="lastName">
+          <mat-header-cell class="header-align-right" *matHeaderCellDef>LastName</mat-header-cell>
+
+          <mat-cell *matCellDef="let assistant">{{ assistant.lastName }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="phoneNumber">
+          <mat-header-cell class="header-align-right" *matHeaderCellDef
+            >Phone Number</mat-header-cell
+          >
+
+          <mat-cell *matCellDef="let assistant">{{
+            phoneChangeFormat(assistant.phoneNumber, "form")
+          }}</mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+      </mat-table>
+      <mat-paginator [length]="count" [pageSize]="5" (page)="getServerData($event)"></mat-paginator>
+    </div>
+  </div>
+</div>

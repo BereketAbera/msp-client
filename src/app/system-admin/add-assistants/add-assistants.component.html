@@ -1,0 +1,85 @@
+<div class="assistant__container">
+  <h3 class="assistant__title">Manage Assistants</h3>
+  <div class="assistant__list">
+    <h4 class="assistant__list-title">Add user to help you manage ManagerSpecial.</h4>
+    <div class="assistant__form">
+      <form (ngSubmit)="onSubmit()" [formGroup]="addAssistantForm">
+        <div *ngIf="errorMessage" class="add-assistant__errors">
+          <span>{{ errorMessage }}</span>
+        </div>
+        <div class="add-assistant__inputs">
+          <mat-form-field class="add-assistant__input" hintLabel="Min 3 characters">
+            <input
+              matInput
+              minlength="3"
+              placeholder="Assistant username"
+              formControlName="username"
+              required
+              maxlength="40"
+            />
+            <mat-error *ngIf="addAssistantForm.controls.username.invalid"
+              >Assistant username should be at least three characters.</mat-error
+            >
+          </mat-form-field>
+          <mat-form-field class="add-assistant__input">
+            <input
+              matInput
+              placeholder="Assistant email"
+              formControlName="email"
+              required
+              maxlength="40"
+            />
+            <mat-error *ngIf="addAssistantForm.controls.email.invalid">Invalid email.</mat-error>
+          </mat-form-field>
+          <mat-form-field class="add-assistant__input">
+            <input
+              matInput
+              placeholder="Assistant first name"
+              formControlName="firstName"
+              required
+              maxlength="40"
+            />
+            <mat-error *ngIf="addAssistantForm.controls.firstName.invalid"
+              >First name required.</mat-error
+            >
+          </mat-form-field>
+          <mat-form-field class="add-assistant__input">
+            <input
+              matInput
+              placeholder="Assistant last name"
+              formControlName="lastName"
+              required
+              maxlength="40"
+            />
+            <mat-error *ngIf="addAssistantForm.controls.lastName.invalid"
+              >Invalid last name.</mat-error
+            >
+          </mat-form-field>
+          <mat-form-field class="add-assistant__input">
+            <mat-label>Assistant phone number</mat-label>
+            <span style="color: #555" matPrefix>+1&nbsp;</span>
+            <input
+              type="text"
+              matInput
+              placeholder="000-000-0000"
+              required
+              maxlength="14"
+              formControlName="phoneNumber"
+              (paste)="preventPaste($event)"
+              (change)="phoneNumberChangeEvent($event)"
+            />
+            <mat-error *ngIf="addAssistantForm.controls.phoneNumber.invalid"
+              >Invalid phone number.</mat-error
+            >
+          </mat-form-field>
+        </div>
+        <div class="add-assistant__actions">
+          <button type="submit" mat-flat-button color="accent" [disabled]="!addAssistantForm.valid">
+            Save
+          </button>
+          <button (click)="gotoAssistants()" mat-flat-button color="accent">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

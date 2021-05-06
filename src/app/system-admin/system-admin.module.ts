@@ -1,3 +1,5 @@
+import { AddAssistantsComponent } from "./add-assistants/add-assistants.component";
+import { AssistantsComponent } from "./assistants/assistants.component";
 import { ReferralLinkServiceService } from "./../service/referral-link-service.service";
 import { LinksComponent } from "./links/links.component";
 import { CommonModule } from "@angular/common";
@@ -30,19 +32,16 @@ import { UsersAdminComponent } from "./users-admin/users-admin.component";
     ConfigComponent,
     CodesDetailComponent,
     LinksComponent,
+    AssistantsComponent,
+    AddAssistantsComponent
   ],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    SharedModule,
-    AdminRoutingModule,
-  ],
+  imports: [CommonModule, ReactiveFormsModule, SharedModule, AdminRoutingModule],
   providers: [
     UserService,
     StateService,
     StateResolverService,
     SellerInfoResolverService,
-    ReferralLinkServiceService,
-  ],
+    ReferralLinkServiceService
+  ]
 })
 export class SystemAdminModule {}

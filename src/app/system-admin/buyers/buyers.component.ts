@@ -7,7 +7,7 @@ import { AdminService } from "./../../service/admin.service";
 @Component({
   selector: "app-buyers",
   templateUrl: "./buyers.component.html",
-  styleUrls: ["./buyers.component.scss"],
+  styleUrls: ["./buyers.component.scss"]
 })
 export class BuyersComponent implements OnInit {
   dataSource = [];
@@ -24,15 +24,16 @@ export class BuyersComponent implements OnInit {
     "name",
     "email",
     "phoneNumber",
+    "zipcode",
     "registrationType",
     "signUpCredit",
-    "createdAt",
+    "createdAt"
   ];
   registrationTypes = [
     { name: "ALL", value: "" },
     { name: "EMAIL REFERRAL", value: "EMAIL REFERRAL" },
     { name: "NORMAL", value: "NORMAL" },
-    { name: "SOCIAL MEDIA", value: "SOCIAL MEDIA" },
+    { name: "SOCIAL MEDIA", value: "SOCIAL MEDIA" }
   ];
   filterForm: FormGroup;
   minDate = new Date(2020, 1, 1);
@@ -52,7 +53,7 @@ export class BuyersComponent implements OnInit {
       signUpCredit: [""],
       registrationType: [""],
       sDate: [],
-      eDate: [],
+      eDate: []
     });
     this.route.queryParamMap.subscribe((params) => {
       this.pageNumber = parseInt(params.get("pageNumber")) || 1;
@@ -66,9 +67,7 @@ export class BuyersComponent implements OnInit {
 
       this.filterForm.controls["email"].setValue(this.email);
       this.filterForm.controls["signUpCredit"].setValue(this.signUpCredit);
-      this.filterForm.controls["registrationType"].setValue(
-        this.registrationType
-      );
+      this.filterForm.controls["registrationType"].setValue(this.registrationType);
 
       this.getUsers({ pageIndex: this.pageNumber, pageSize: this.pageSize });
     });
@@ -84,10 +83,11 @@ export class BuyersComponent implements OnInit {
         registrationType: this.registrationType,
         referralLinkKey: this.referralLinkKey,
         sDate: this.sDate,
-        eDate: this.eDate,
+        eDate: this.eDate
       })
       .subscribe(
         (res) => {
+          console.log(res);
           this.count = res.count;
           this.dataSource = res.rows;
         },
@@ -103,20 +103,20 @@ export class BuyersComponent implements OnInit {
       pObj[key] = sObj[key];
     });
     const queryParams: Params = {
-      ...pObj,
+      ...pObj
     };
 
     this.router.navigate([], {
       relativeTo: this.route,
       queryParams: queryParams,
-      queryParamsHandling: "merge",
+      queryParamsHandling: "merge"
     });
   }
 
   pageChange({ pageIndex, pageSize }) {
     let sObj = {
       pageNumber: pageIndex + 1,
-      pageSize: pageSize,
+      pageSize: pageSize
     };
     this.setUrlValues(sObj);
   }
@@ -134,7 +134,7 @@ export class BuyersComponent implements OnInit {
         : "",
       eDate: moment(controls["eDate"].value).isValid()
         ? moment(controls["eDate"].value).format("YYYY-MM-DD")
-        : "",
+        : ""
     });
   }
 

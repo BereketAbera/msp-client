@@ -97,7 +97,10 @@
           <mat-header-cell *matHeaderCellDef>Phone Number</mat-header-cell>
           <mat-cell *matCellDef="let user">{{ user.phoneNumber }}</mat-cell>
         </ng-container>
-
+        <ng-container matColumnDef="zipcode">
+          <mat-header-cell *matHeaderCellDef>Zip Code</mat-header-cell>
+          <mat-cell *matCellDef="let user">{{ user.zipcode }}</mat-cell>
+        </ng-container>
         <ng-container matColumnDef="registrationType">
           <mat-header-cell *matHeaderCellDef>Registration Type</mat-header-cell>
           <mat-cell *matCellDef="let user">{{ user.registrationType }}</mat-cell>

@@ -1,3 +1,6 @@
+import { AddAssistantsComponent } from "./add-assistants/add-assistants.component";
+import { AdminAssistantResolverService } from "./../service/admin-assistant-resolver.service";
+import { AssistantsComponent } from "./assistants/assistants.component";
 import { LinksComponent } from "./links/links.component";
 import { ReferralLinkServiceService } from "./../service/referral-link-service.service";
 import { NgModule } from "@angular/core";
@@ -25,54 +28,63 @@ const sellerRoutes: Routes = [
         path: "",
         component: UsersAdminComponent,
         resolve: {
-          states: StateResolverService,
-        },
+          states: StateResolverService
+        }
       },
       {
         path: "details/:id",
         component: SellerDetailComponent,
         resolve: {
-          seller: SellerInfoResolverService,
-        },
+          seller: SellerInfoResolverService
+        }
       },
       {
         path: "buyers",
-        component: BuyersComponent,
+        component: BuyersComponent
         // resolve:{
         //   seller: SellerInfoResolverService
         // }
       },
       {
         path: "codes",
-        component: CodesComponent,
+        component: CodesComponent
         // resolve:{
         //   seller: SellerInfoResolverService
         // }
       },
       {
         path: "codes/detail/:code",
-        component: CodesDetailComponent,
+        component: CodesDetailComponent
         // resolve:{
         //   seller: SellerInfoResolverService
         // }
       },
       {
         path: "referral_links",
-        component: LinksComponent,
+        component: LinksComponent
       },
       {
         path: "config",
-        component: ConfigComponent,
+        component: ConfigComponent
         // resolve:{
         //   seller: SellerInfoResolverService
         // }
       },
-    ],
-  },
+      {
+        path: "assistant",
+        component: AssistantsComponent,
+        resolve: { assistants: AdminAssistantResolverService }
+      },
+      {
+        path: "assistant/add",
+        component: AddAssistantsComponent
+      }
+    ]
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(sellerRoutes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
 export class AdminRoutingModule {}

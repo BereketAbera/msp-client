@@ -170,7 +170,7 @@ export class RegisterSellerComponent implements OnInit {
     } else {
       // window.scrollTo(0, 0);
       this.showError = true;
-      this.errors = ["Invalid input! Check Again"];
+      this.errors = ["Invalid input! Re-enter data in RED area(s)"];
     }
   }
   getErrorMessage() {

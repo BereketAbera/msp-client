@@ -6,14 +6,14 @@ export const environment = {
   version: "V4.0.0 AA",
   production: false,
   // APIEndpoint: "http://192.168.0.100:8383/api/"
-  APIEndpoint: "http://localhost/api/"
+  APIEndpoint: "http://localhost:8080/api/"
   //APIEndpoint: "https://www.qualitycode1.com/api/"
   //APIEndpoint: "https://www.qualitycode2.com/api/"
   //APIEndpoint: "https://www.managerspecial.com/api/"
 };
 
 /*
- * For easier debugging in developm
+ * For easier debugging in development
  ent mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
  *

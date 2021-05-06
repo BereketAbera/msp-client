@@ -18,13 +18,16 @@
   <div class="mobile-hint">
     <i class="fad fa-info home__icon"></i>
     <div>
-      Add your employees who will help you with reservation processing and
-      management of ManagerSpecial.com. You can assign privileges and create
-      individual usernames for them to use
+      Add your employees who will help you with reservation processing and management of
+      ManagerSpecial.com. You can assign privileges and create individual usernames for them to use
     </div>
   </div>
   <div *ngIf="dataSource && dataSource?.length == 0" class="no_result">
-    <span>You do not have any Employee yet.</span>
+    <span style="font-size: 1.5rem; text-align: center"
+      >You can add new employee accounts here to authorize them to process <br />
+      ManagerSpecial discount orders. You can assign <br />
+      individual privileges to each employee later.</span
+    >
   </div>
   <div class="staff__container">
     <div *ngIf="dataSource?.length > 0" class="staff__sub-container">
@@ -38,10 +41,7 @@
         matSortDisableClear
       >
         <ng-container matColumnDef="username">
-          <mat-header-cell
-            class="header-align-right"
-            *matHeaderCellDef
-            mat-sort-header
+          <mat-header-cell class="header-align-right" *matHeaderCellDef mat-sort-header
             >Username</mat-header-cell
           >
 
@@ -54,16 +54,12 @@
           <mat-cell *matCellDef="let staff">{{ staff.email }}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="firstName">
-          <mat-header-cell class="header-align-right" *matHeaderCellDef
-            >First Name</mat-header-cell
-          >
+          <mat-header-cell class="header-align-right" *matHeaderCellDef>First Name</mat-header-cell>
 
           <mat-cell *matCellDef="let staff">{{ staff.firstName }}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="lastName">
-          <mat-header-cell class="header-align-right" *matHeaderCellDef
-            >LastName</mat-header-cell
-          >
+          <mat-header-cell class="header-align-right" *matHeaderCellDef>LastName</mat-header-cell>
 
           <mat-cell *matCellDef="let staff">{{ staff.lastName }}</mat-cell>
         </ng-container>
@@ -105,10 +101,7 @@
                 <span>Edit</span>
               </button> -->
               <button
-                *ngIf="
-                  staff.staff_status != 'ACTIVE' &&
-                  staff.staff_status != 'INVITED'
-                "
+                *ngIf="staff.staff_status != 'ACTIVE' && staff.staff_status != 'INVITED'"
                 mat-menu-item
                 (click)="updateStaff(staff.id, 'ACTIVE')"
               >
@@ -117,10 +110,7 @@
               </button>
 
               <button
-                *ngIf="
-                  staff.staff_status != 'SUSPENDED' &&
-                  staff.staff_status != 'INVITED'
-                "
+                *ngIf="staff.staff_status != 'SUSPENDED' && staff.staff_status != 'INVITED'"
                 mat-menu-item
                 (click)="updateStaff(staff.id, 'SUSPENDED')"
               >
@@ -128,10 +118,7 @@
                 <span>Suspend</span>
               </button>
               <button
-                *ngIf="
-                  staff.staff_status != 'REMOVED' &&
-                  staff.staff_status != 'INVITED'
-                "
+                *ngIf="staff.staff_status != 'REMOVED' && staff.staff_status != 'INVITED'"
                 mat-menu-item
                 (click)="deleteStaff(staff.id, 'REMOVED')"
               >
@@ -146,11 +133,7 @@
 
         <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
       </mat-table>
-      <mat-paginator
-        [length]="count"
-        [pageSize]="5"
-        (page)="getServerData($event)"
-      ></mat-paginator>
+      <mat-paginator [length]="count" [pageSize]="5" (page)="getServerData($event)"></mat-paginator>
     </div>
   </div>
 </div>

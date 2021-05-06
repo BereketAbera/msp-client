@@ -7,7 +7,7 @@ import { SaveConfirmationDialogComponent } from "src/app/shared/save-confirmatio
 @Component({
   selector: "app-staffs",
   templateUrl: "./staffs.component.html",
-  styleUrls: ["./staffs.component.scss"],
+  styleUrls: ["./staffs.component.scss"]
 })
 export class StaffsComponent implements OnInit {
   dataSource: any;
@@ -18,7 +18,7 @@ export class StaffsComponent implements OnInit {
     "lastName",
     "phoneNumber",
     "status",
-    "actions",
+    "actions"
   ];
   count = 0;
   page = 1;
@@ -77,8 +77,8 @@ export class StaffsComponent implements OnInit {
       data: {
         title: "",
         question:
-          "<strong>Please note:</strong> User will not be able to login and you can not reactivate this user.\n Do you want to remove user?",
-      },
+          "<strong>Please note:</strong> User will not be able to login and you can not reactivate this user.\n Do you want to remove user?"
+      }
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result == "yes") {

@@ -35,7 +35,11 @@
                 ><i class="fad fa-users side_bar_mobile__item-icon"></i>Buyers</a
               >
             </li>
-            <li (click)="drawerLinkClicked()" class="side_bar_mobile__item">
+            <li
+              *ngIf="authService.getRole() == 'ADMIN'"
+              (click)="drawerLinkClicked()"
+              class="side_bar_mobile__item"
+            >
               <a
                 routerLink="./codes"
                 [routerLinkActive]="['active-route']"
@@ -44,7 +48,11 @@
                 ><i class="fad fa-bring-front side_bar_mobile__item-icon"></i>Codes
               </a>
             </li>
-            <li (click)="drawerLinkClicked()" class="side_bar_mobile__item">
+            <li
+              *ngIf="authService.getRole() == 'ADMIN'"
+              (click)="drawerLinkClicked()"
+              class="side_bar_mobile__item"
+            >
               <a
                 routerLink="./referral_links"
                 [routerLinkActive]="['active-route']"
@@ -53,7 +61,11 @@
                 ><i class="fad fa-images side_bar_mobile__item-icon"></i> Referral Links</a
               >
             </li>
-            <li (click)="drawerLinkClicked()" class="side_bar_mobile__item">
+            <li
+              *ngIf="authService.getRole() == 'ADMIN'"
+              (click)="drawerLinkClicked()"
+              class="side_bar_mobile__item"
+            >
               <a
                 routerLink="./config"
                 [routerLinkActive]="['active-route']"
@@ -119,7 +131,7 @@
         </span> -->
         <span class="navigation__item">
           <a (click)="logout()" class="navigation__item-text navigation__logout">
-            <i class="fad fa-user navigation__item-icon"></i>SIGN OUT ({{ name }})</a
+            <i class="fad fa-user navigation__item-icon"></i>SIGN OUT({{ name }})</a
           >
         </span>
       </div>
@@ -152,7 +164,7 @@
           ><i class="fad fa-users navigation__item-icon"></i>Buyers</a
         >
       </li>
-      <li class="navigation__item">
+      <li *ngIf="authService.getRole() == 'ADMIN'" class="navigation__item">
         <a
           routerLink="./codes"
           [routerLinkActive]="['active-route']"
@@ -161,7 +173,7 @@
           ><i class="fad fa-bring-front navigation__item-icon"></i>Codes
         </a>
       </li>
-      <li class="navigation__item">
+      <li *ngIf="authService.getRole() == 'ADMIN'" class="navigation__item">
         <a
           routerLink="./referral_links"
           [routerLinkActive]="['active-route']"
@@ -170,7 +182,16 @@
           ><i class="fad fa-images navigation__item-icon"></i> Referral Links</a
         >
       </li>
-      <li class="navigation__item">
+      <li *ngIf="authService.getRole() == 'ADMIN'" class="navigation__item">
+        <a
+          routerLink="./assistant"
+          [routerLinkActive]="['active-route']"
+          [routerLinkActiveOptions]="{ exact: false }"
+          class="navigation__item-text"
+          ><i class="fad fa-user-headset navigation__item-icon"></i> Assistant</a
+        >
+      </li>
+      <li *ngIf="authService.getRole() == 'ADMIN'" class="navigation__item">
         <a
           routerLink="./config"
           [routerLinkActive]="['active-route']"
@@ -218,7 +239,7 @@
           ><i class="fad fa-users navigation__item-icon"></i> Buyers</a
         >
       </li>
-      <li class="navigation__item">
+      <li *ngIf="authService.getRole() == 'ADMIN'" class="navigation__item">
         <a
           routerLink="./codes"
           [routerLinkActive]="['active-route']"

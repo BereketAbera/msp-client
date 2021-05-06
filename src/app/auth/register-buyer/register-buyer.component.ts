@@ -206,7 +206,7 @@ export class RegisterBuyerComponent implements OnInit {
     } else {
       // window.scrollTo(0, 0);
       this.showError = true;
-      this.errors = ["Invalid Input! Check Again"];
+      this.errors = ["Invalid input! Re-enter data in RED area(s)"];
     }
   }
   openTerms() {}
