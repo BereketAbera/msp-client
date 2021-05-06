@@ -1,5 +1,5 @@
 .main-container {
-  margin: 2rem;
+  // margin: 2rem;
 }
 
 .title {
@@ -8,4 +8,16 @@
   font-weight: 600;
   text-transform: uppercase;
   margin-bottom: 1.5rem;
+}
+
+.table {
+  &__container {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  &__sub-container {
+    min-width: 70rem;
+    padding: 1rem 0.5rem;
+  }
 }

@@ -1,26 +1,147 @@
 <header class="navigation">
-  <div class="navigation__header-container">
-    <div class="navigation__sub-header-container">
-      <!-- <img
-        routerLink="./"
-        src="favicon.ico"
-        alt="Logo"
-        class="navigation__desktop-header-image"
-      /> -->
-      <a routerLink="/" class="navigation__desktop-header-text"
-        >ManagerSpecial</a
-      >
+  <!-- <div class="navigation__divider"></div> -->
+  <div class="navigation__container">
+    <div class="header_mobile">
+      <div>
+        <input #drawerCheckbox type="checkbox" class="header_mobile__menu_checkbox" />
+        <div class="header_mobile__menu_button"></div>
+        <div class="side_bar_mobile">
+          <ul class="side_bar_mobile__list-container">
+            <!-- <li (click)="drawerLinkClicked()" class="side_bar_mobile__item">
+              <a
+                routerLink="./"
+                [routerLinkActive]="['active-route']"
+                [routerLinkActiveOptions]="{ exact: true }"
+                class="side_bar_mobile__item-text"
+                ><i class="fad fa-chart-bar navigation__item-icon"></i>
+                Orders
+              </a>
+            </li> -->
+            <li (click)="drawerLinkClicked()" class="side_bar_mobile__item">
+              <a
+                routerLink="./"
+                [routerLinkActive]="['active-route']"
+                [routerLinkActiveOptions]="{ exact: true }"
+                class="side_bar_mobile__item-text"
+                ><i class="fad fa-users-cog navigation__item-icon"></i>Sellers</a
+              >
+            </li>
+            <li (click)="drawerLinkClicked()" class="side_bar_mobile__item">
+              <a
+                routerLink="./buyers"
+                [routerLinkActive]="['active-route']"
+                [routerLinkActiveOptions]="{ exact: false }"
+                class="side_bar_mobile__item-text"
+                ><i class="fad fa-users side_bar_mobile__item-icon"></i>Buyers</a
+              >
+            </li>
+            <li (click)="drawerLinkClicked()" class="side_bar_mobile__item">
+              <a
+                routerLink="./codes"
+                [routerLinkActive]="['active-route']"
+                [routerLinkActiveOptions]="{ exact: false }"
+                class="side_bar_mobile__item-text"
+                ><i class="fad fa-bring-front side_bar_mobile__item-icon"></i>Codes
+              </a>
+            </li>
+            <li (click)="drawerLinkClicked()" class="side_bar_mobile__item">
+              <a
+                routerLink="./referral_links"
+                [routerLinkActive]="['active-route']"
+                [routerLinkActiveOptions]="{ exact: false }"
+                class="side_bar_mobile__item-text"
+                ><i class="fad fa-images side_bar_mobile__item-icon"></i> Referral Links</a
+              >
+            </li>
+            <li (click)="drawerLinkClicked()" class="side_bar_mobile__item">
+              <a
+                routerLink="./config"
+                [routerLinkActive]="['active-route']"
+                [routerLinkActiveOptions]="{ exact: false }"
+                class="side_bar_mobile__item-text"
+                ><i class="fad fa-cog side_bar_mobile__item-icon"></i> Config</a
+              >
+            </li>
+            <li (click)="drawerLinkClicked()" class="side_bar_mobile__item">
+              <a (click)="logout()" class="side_bar_mobile__item-text side_bar_mobile__logout">
+                <i class="fad fa-user side_bar_mobile__item-icon"></i>Log Out ({{
+                  name | slice: 0:5
+                }})</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div style="display: flex; justify-content: space-between; flex: 1">
+        <div style="display: flex">
+          <!-- <img
+            routerLink="/"
+            [routerLinkActive]="['active-routeas']"
+            [routerLinkActiveOptions]="{ exact: false }"
+            src="favicon.ico"
+            alt="Logo"
+            class="navigation__header-image"
+          /> -->
+          <a routerLink="/" class="navigation__header-text">ManagerSpecial</a>
+        </div>
+        <!-- <div style="display: flex">
+          <span class="navigation__item">
+            <a
+              routerLink="/products"
+              class="navigation__item-text navigation__logout"
+              style="font-size: 1.7rem; color: #f94081"
+            >
+              <i class="fad fa-burn navigation__item-icon"></i>OFFERS</a
+            >
+          </span>
+        </div> -->
+      </div>
+    </div>
+    <div
+      (click)="drawerLinkClicked()"
+      routerLink="/"
+      [routerLinkActive]="['active-routes']"
+      [routerLinkActiveOptions]="{ exact: false }"
+      class="navigation__header-container"
+    >
+      <div class="navigation__sub-header-container navigation__sub-container1">
+        <a routerLink="./" class="navigation__desktop-header-text">ManagerSpecial</a>
+      </div>
+      <div class="navigation__sub-container1">
+        <!-- <span class="navigation__item">
+          <a
+            routerLink="/products"
+            class="navigation__item-text navigation__logout"
+            style="font-size: 1rem; color: #f94081"
+          >
+            <i class="fad fa-burn navigation__item-icon"></i>OFFERS</a
+          >
+        </span> -->
+        <span class="navigation__item">
+          <a (click)="logout()" class="navigation__item-text navigation__logout">
+            <i class="fad fa-user navigation__item-icon"></i>SIGN OUT ({{ name }})</a
+          >
+        </span>
+      </div>
     </div>
     <ul class="navigation__sub-container">
-      <li class="navigation__item svg-wrapper">
+      <!-- <li class="navigation__item svg-wrapper">
         <a
           routerLink="./"
           [routerLinkActive]="['active-route']"
           [routerLinkActiveOptions]="{ exact: true }"
           class="navigation__item-text"
-          (click)="sellerClicked()"
-          ><i class="fad fa-users-cog navigation__item-icon"></i> Sellers
+          ><i class="fad fa-chart-bar navigation__item-icon"></i> Dashboard
         </a>
+      </li> -->
+      <li class="navigation__item">
+        <a
+          routerLink="./"
+          [routerLinkActive]="['active-route']"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="navigation__item-text"
+          ><i class="fad fa-users-cog navigation__item-icon"></i>Sellers</a
+        >
       </li>
       <li class="navigation__item">
         <a
@@ -31,15 +152,14 @@
           ><i class="fad fa-users navigation__item-icon"></i>Buyers</a
         >
       </li>
-
       <li class="navigation__item">
         <a
           routerLink="./codes"
           [routerLinkActive]="['active-route']"
           [routerLinkActiveOptions]="{ exact: false }"
           class="navigation__item-text"
-          ><i class="fad fa-bring-front navigation__item-icon"></i> Codes</a
-        >
+          ><i class="fad fa-bring-front navigation__item-icon"></i>Codes
+        </a>
       </li>
       <li class="navigation__item">
         <a
@@ -47,8 +167,7 @@
           [routerLinkActive]="['active-route']"
           [routerLinkActiveOptions]="{ exact: false }"
           class="navigation__item-text"
-          ><i class="fad fa-external-link-square-alt navigation__item-icon"></i>
-          Referral Links</a
+          ><i class="fad fa-images navigation__item-icon"></i> Referral Links</a
         >
       </li>
       <li class="navigation__item">
@@ -57,15 +176,58 @@
           [routerLinkActive]="['active-route']"
           [routerLinkActiveOptions]="{ exact: false }"
           class="navigation__item-text"
-          ><i class="fad fa-cog navigation__item-icon"></i>Config</a
+          ><i class="fad fa-cog navigation__item-icon"></i> Config</a
         >
       </li>
+      <!-- <li class="navigation__item">
+        <a
+          routerLink="./staffs"
+          [routerLinkActive]="['active-route']"
+          [routerLinkActiveOptions]="{ exact: false }"
+          class="navigation__item-text"
+          ><i class="fad fa-sun navigation__item-icon"></i> Staff</a
+        >
+      </li> -->
+      <!-- <li class="navigation__item">
+        <a (click)="logout()" class="navigation__item-text navigation__logout">
+          <i class="fad fa-user navigation__item-icon"></i>Log Out ({{
+            name
+          }})</a
+        >
+      </li> -->
     </ul>
-    <span class="navigation__item">
-      <a (click)="logout()" class="navigation__item-text navigation__logout">
-        <i class="fad fa-user navigation__item-icon"></i>Log Out ({{ name }})</a
-      >
-    </span>
   </div>
-  <!-- <div class="navigation__divider navigation__divider-middle"></div> -->
+  <div class="navigation__divider navigation__divider-middle"></div>
+  <div class="navigation__mobile-container">
+    <ul class="navigation__mobile-sub-container">
+      <li class="navigation__item">
+        <a
+          routerLink="./"
+          [routerLinkActive]="['active-route']"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="navigation__item-text"
+          ><i class="fad fa-users-cog navigation__item-icon"></i>Sellers</a
+        >
+      </li>
+      <li class="navigation__item">
+        <a
+          routerLink="./buyers"
+          [routerLinkActive]="['active-route']"
+          [routerLinkActiveOptions]="{ exact: false }"
+          class="navigation__item-text"
+          ><i class="fad fa-users navigation__item-icon"></i> Buyers</a
+        >
+      </li>
+      <li class="navigation__item">
+        <a
+          routerLink="./codes"
+          [routerLinkActive]="['active-route']"
+          [routerLinkActiveOptions]="{ exact: false }"
+          class="navigation__item-text"
+          ><i class="fad fa-bring-front navigation__item-icon"></i> Codes
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="navigation__divider navigation__divider-bottom"></div>
 </header>

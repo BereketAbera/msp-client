@@ -1,19 +1,19 @@
-import { ConfigurationService } from "./../../service/configuartion.service";
 import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { FormControl } from "@angular/forms";
-import { ActivatedRoute, Params, Router } from "@angular/router";
-import { Category } from "../../model/category";
-import { AuthService } from "../../service/auth.service";
-import { ProductService } from "../../service/product.service";
-import { WindowRef } from "../../service/window.service";
-import { ZipcodeService } from "./../../service/zipcode.service";
+import { Router, ActivatedRoute, Params } from "@angular/router";
+import { Category } from "@app/model/category";
+import { AuthService } from "@app/service/auth.service";
+import { ConfigurationService } from "@app/service/configuartion.service";
+import { ProductService } from "@app/service/product.service";
+import { WindowRef } from "@app/service/window.service";
+import { ZipcodeService } from "@app/service/zipcode.service";
 
 @Component({
-  selector: "app-public-products",
-  templateUrl: "./public-products.component.html",
-  styleUrls: ["./public-products.component.scss"]
+  selector: "app-zip-products",
+  templateUrl: "./zip-products.component.html",
+  styleUrls: ["./zip-products.component.scss"]
 })
-export class PublicProductsComponent implements OnInit {
+export class ZipProductsComponent implements OnInit {
   @ViewChild("anchor", { static: true }) anchor: ElementRef<HTMLElement>;
   @ViewChild("locationInput", { static: true }) locationInput: ElementRef<HTMLElement>;
   query: string = "";
@@ -39,7 +39,7 @@ export class PublicProductsComponent implements OnInit {
   firstTimeLoaded = false;
   showNoProductsMessage = false;
   config: any = {};
-  useCurrentLocationString = "Use Current Location";
+  radius = 160;
 
   constructor(
     private winRef: WindowRef,
@@ -56,12 +56,27 @@ export class PublicProductsComponent implements OnInit {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
     this.companies = [];
+    this.route.queryParams.subscribe((res) => {
+      let zip_code = res["zip"];
+      if (!zip_code) {
+        this.router.navigate(["/products"]);
+      } else {
+        this.radius = res["radius"] || 160;
+        this.zipcodeService.searchAddress(zip_code).subscribe((res) => {
+          if (res.length == 1) {
+            this.addressChanged(res[0]);
+          } else {
+            this.router.navigate(["/products"]);
+          }
+        });
+      }
+    });
 
-    this.address = JSON.parse(localStorage.getItem("client_address"));
-    this.searchInput.setValue(this.address?.CityName || "Change Current Location");
-    if (!this.address) {
-      this.router.navigate(["/"]);
-    }
+    // this.address = JSON.parse(localStorage.getItem("client_address"));
+    // this.searchInput.setValue(this.address?.CityName || "Change Current Location");
+    // if (!this.address) {
+    //   this.router.navigate(["/"]);
+    // }
     this.route.queryParams.subscribe(
       (response) => {
         this.reachedPageEnd = false;
@@ -85,7 +100,14 @@ export class PublicProductsComponent implements OnInit {
   checkAvailableOnThisCity() {
     if (this.address && this.address.Latitude && this.address.Longitude) {
       this.prdctService
-        .listCompaniesProducts(1, this.address.Latitude, this.address.Longitude, null, "")
+        .listCompaniesProductszip(
+          1,
+          this.address.Latitude,
+          this.address.Longitude,
+          null,
+          "",
+          this.radius
+        )
         .subscribe((company) => {
           if (company && company[0] && company[0].distance > this.config.localDistance) {
             this.showNoProductsMessage = true;
@@ -104,12 +126,13 @@ export class PublicProductsComponent implements OnInit {
     if (this.address && this.address.Latitude && this.address.Longitude) {
       this.authService.progressBarActive.next(true);
       this.prdctService
-        .listCompaniesProducts(
+        .listCompaniesProductszip(
           this.page,
           this.address.Latitude,
           this.address.Longitude,
           this.categoryId,
-          this.query
+          this.query,
+          this.radius
         )
         .subscribe((company) => {
           if (!this.categoryId && !this.query) {
@@ -124,7 +147,7 @@ export class PublicProductsComponent implements OnInit {
           this.shouldLoad = true;
           this.authService.progressBarActive.next(false);
           this.page = this.page + 1;
-          this.loadJobs();
+          this.loadProducts();
         });
     }
   }
@@ -135,13 +158,21 @@ export class PublicProductsComponent implements OnInit {
     var toPosition = window.innerWidth + window.pageXOffset + 1;
     window.scrollTo(elementPosition - 10, rightPosition);
   }
-  loadJobs() {
+  loadProducts() {
     window.onscroll = () => {
-      if (!this.router.url.includes("/products")) {
+      if (!this.router.url.includes("/zip_products")) {
         return;
       }
       var bottomPosition = window.innerHeight + window.pageYOffset;
       var elementPosition = this.anchor ? this.anchor.nativeElement.offsetTop : 0;
+      console.log(
+        elementPosition < bottomPosition &&
+          this.shouldLoad &&
+          !this.reachedPageEnd &&
+          !!this.address &&
+          this.address.Latitude &&
+          this.address.Longitude
+      );
 
       if (
         elementPosition < bottomPosition &&
@@ -154,12 +185,13 @@ export class PublicProductsComponent implements OnInit {
         this.shouldLoad = false;
         this.authService.progressBarActive.next(true);
         this.prdctService
-          .listCompaniesProducts(
+          .listCompaniesProductszip(
             this.page,
             this.address.Latitude,
             this.address.Longitude,
             this.categoryId,
-            this.query
+            this.query,
+            this.radius
           )
           .subscribe((company) => {
             let l = this.companies.length;
@@ -210,14 +242,9 @@ export class PublicProductsComponent implements OnInit {
       this.zipcodeService.searchAddress(q).subscribe(
         (response) => {
           this.addresses = response;
-          if (this.addresses.length == 0) {
-            this.useCurrentLocationString = "Not Available, User Current Location";
-          }
         },
         (err) => console.log(err)
       );
-    } else {
-      this.useCurrentLocationString = "User Current Location";
     }
 
     this.locationInputActive = true;
@@ -271,7 +298,6 @@ export class PublicProductsComponent implements OnInit {
             Latitude: response.coords.latitude,
             Longitude: response.coords.longitude
           };
-          this.searchInput.setValue("Change Current Location");
           this.getProducts();
         },
         (err) => console.log(err)

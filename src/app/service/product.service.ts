@@ -1,8 +1,4 @@
-import {
-  HttpClient,
-  HttpErrorResponse,
-  HttpParams,
-} from "@angular/common/http";
+import { HttpClient, HttpErrorResponse, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import * as moment_ from "moment";
 import { throwError } from "rxjs";
@@ -24,15 +20,11 @@ export class ProductService {
 
   constructor(private http: HttpClient) {}
   createProduct(product: Product) {
-    return this.http
-      .post(productApi, product)
-      .pipe(catchError(this.handleError));
+    return this.http.post(productApi, product).pipe(catchError(this.handleError));
   }
 
   editProduct(product) {
-    return this.http
-      .put(productApi, product)
-      .pipe(catchError(this.handleError));
+    return this.http.put(productApi, product).pipe(catchError(this.handleError));
   }
   getProductById(id): Observable<any> {
     return this.http.get<any>(`${productApi}/product/${id}`);
@@ -51,7 +43,7 @@ export class ProductService {
         params: new HttpParams()
           .set("prdId", prdId.toString())
           .set("lat", lat.toString())
-          .set("lng", lng.toString()),
+          .set("lng", lng.toString())
       })
       .pipe(
         map((res) => {
@@ -76,7 +68,7 @@ export class ProductService {
           .set("sortBy", sortBy)
           .set("sortOrder", sortOrder)
           .set("pageNumber", pageNumber.toString())
-          .set("pageSize", pageSize.toString()),
+          .set("pageSize", pageSize.toString())
       })
       .pipe(
         map((res) => {
@@ -114,13 +106,27 @@ export class ProductService {
       );
   }
 
-  listCompaniesProducts(
+  listCompaniesProductszip(
     page,
     latitude,
     longitude,
     subCategoryId,
-    query
+    query,
+    radius
   ): Observable<any> {
+    // console.log(latitude, longitude);
+    return this.http
+      .get(
+        `${productApi}/company_zip?page=${page}&lat=${latitude}&lng=${longitude}&q=${query}&subCategoryId=${subCategoryId}&radius=${radius}`
+      )
+      .pipe(
+        map((res) => {
+          return res;
+        })
+      );
+  }
+
+  listCompaniesProducts(page, latitude, longitude, subCategoryId, query): Observable<any> {
     // console.log(latitude, longitude);
     return this.http
       .get(
@@ -154,7 +160,7 @@ export class ProductService {
           .set("sortOrder", sortOrder)
           .set("pageNumber", pageNumber.toString())
           .set("pageSize", pageSize.toString())
-          .set("timeZoneDiff", new Date().getTimezoneOffset().toString()),
+          .set("timeZoneDiff", new Date().getTimezoneOffset().toString())
       })
       .pipe(
         map((res) => {
@@ -187,7 +193,7 @@ export class ProductService {
           .set("sortOrder", sortOrder)
           .set("pageNumber", pageNumber.toString())
           .set("pageSize", pageSize.toString())
-          .set("timeZoneDiff", new Date().getTimezoneOffset().toString()),
+          .set("timeZoneDiff", new Date().getTimezoneOffset().toString())
       })
       .pipe(
         map((res) => {
@@ -237,9 +243,7 @@ export class ProductService {
     } else {
       // The backend returned an unsuccessful response code.
       // The response body may contain clues as to what went wrong,
-      console.error(
-        `Backend returned code ${error.status}, ` + `body was: ${error.error}`
-      );
+      console.error(`Backend returned code ${error.status}, ` + `body was: ${error.error}`);
     }
     // return an observable with a user-facing error message
     return throwError("Something bad happened; please try again later.");

@@ -1,7 +1,7 @@
 <div class="container">
   <mat-card class="balance">
     <div class="balance__icon">
-      <i class="fad fa-dollar-sign table__icon-2" style="color: white;"></i>
+      <i class="fad fa-dollar-sign table__icon-2" style="color: white"></i>
     </div>
     <span class="balance__header">Balance = </span>
     <span class="balance__header__value"> {{ balance | currency }} </span>
@@ -21,13 +21,11 @@
 
       <mat-cell
         [routerLink]="['../trnsctns', transaction.transactionId]"
-        style="cursor: pointer;"
+        style="cursor: pointer"
         *matCellDef="let transaction"
       >
         <span class="mobile-label">Type:</span>
-        {{
-          transaction.type == "ORDER" ? "RESERVATION" : transaction.type
-        }}</mat-cell
+        {{ transaction.type == "ORDER" ? "RESERVATION" : transaction.type }}</mat-cell
       >
     </ng-container>
     <ng-container matColumnDef="date">
@@ -44,8 +42,7 @@
       <mat-cell *matCellDef="let transaction">
         <span class="mobile-label">Amount:</span>
         {{
-          (transaction.type == "ORDER" ? "-" : "+") +
-            (getAmount(transaction) | currency)
+          (transaction.type == "ORDER" ? "-" : "+") + (getAmount(transaction) | currency)
         }}</mat-cell
       >
     </ng-container>
@@ -55,7 +52,7 @@
 
       <mat-cell *matCellDef="let transaction">
         <span class="mobile-label">Reason:</span>
-        <span style="text-transform: capitalize;">
+        <span style="text-transform: capitalize">
           {{
             transaction.type == "ORDER"
               ? "DISCOUNT CODE"
@@ -77,37 +74,25 @@
         </button>
 
         <div class="mobile-body" *ngIf="transaction.type == 'DEPOSIT'">
-          <a [routerLink]="['../deposit', transaction.transactionId]"
-            >View Detail</a
-          >
+          <a [routerLink]="['../deposit', transaction.transactionId]">View Detail</a>
         </div>
         <div
           class="mobile-body"
           *ngIf="transaction.type == 'ORDER' || transaction.type == 'REFUND'"
         >
-          <a [routerLink]="['../trnsctns', transaction.transactionId]"
-            >View Detail</a
-          >
+          <a [routerLink]="['../trnsctns', transaction.transactionId]">View Detail</a>
         </div>
 
         <mat-menu #menu="matMenu">
           <div *ngIf="transaction.type == 'DEPOSIT'">
-            <button
-              mat-menu-item
-              [routerLink]="['../deposit', transaction.transactionId]"
-            >
+            <button mat-menu-item [routerLink]="['../deposit', transaction.transactionId]">
               <i class="fad fa-info-circle table__icon"></i>
               <span>View Detail</span>
             </button>
           </div>
 
-          <div
-            *ngIf="transaction.type == 'ORDER' || transaction.type == 'REFUND'"
-          >
-            <button
-              mat-menu-item
-              [routerLink]="['../trnsctns', transaction.transactionId]"
-            >
+          <div *ngIf="transaction.type == 'ORDER' || transaction.type == 'REFUND'">
+            <button mat-menu-item [routerLink]="['../trnsctns', transaction.transactionId]">
               <i class="fad fa-info-circle table__icon"></i>
               <span>View Detail</span>
             </button>

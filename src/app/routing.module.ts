@@ -1,3 +1,4 @@
+import { ZipProductsComponent } from "./components/zip-products/zip-products.component";
 import { BuyerHomeComponent } from "./components/buyer-home/buyer-home.component";
 import { SellerHomeComponent } from "./components/seller-home/seller-home.component";
 // import { StafferGuard } from "./staffer.guard";
@@ -35,6 +36,13 @@ const appRoutes: Routes = [
       {
         path: "products",
         component: PublicProductsComponent,
+        resolve: {
+          categories: SubCategoryResolverService
+        }
+      },
+      {
+        path: "zip_products",
+        component: ZipProductsComponent,
         resolve: {
           categories: SubCategoryResolverService
         }

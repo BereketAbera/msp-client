@@ -57,10 +57,13 @@ export class PublicComponent implements OnInit {
           this.signUpRoute = "/common-signup";
         }
       }
-      if (url.url && url.url.includes("/products")) {
+      if (url.url && (url.url.includes("/products") || url.url.includes("/zip_products"))) {
         this.searchActive = true;
       } else {
-        if (this.router.url.toString().includes("/products")) {
+        if (
+          this.router.url.toString().includes("/products") ||
+          this.router.url.toString().includes("/zip_products")
+        ) {
           this.searchActive = true;
         } else {
           this.searchActive = false;

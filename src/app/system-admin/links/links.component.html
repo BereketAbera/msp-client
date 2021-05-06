@@ -69,62 +69,51 @@
           Search
         </button>
       </form> -->
-    <div *ngIf="links && links.length > 0" class="links__table">
-      <mat-table
-        class="mat-elevation-z8"
-        [dataSource]="links"
-        matSort
-        matSortDirection="asc"
-        matSortDisableClear
-        (matSortChange)="sortData($event)"
-      >
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let link; columns: displayedColumns"></mat-row>
-        <ng-container matColumnDef="referralLink">
-          <mat-header-cell *matHeaderCellDef>Referral Link</mat-header-cell>
+    <div *ngIf="links && links.length > 0" class="table__container">
+      <div class="table__sub-container">
+        <mat-table
+          class="mat-elevation-z8"
+          [dataSource]="links"
+          matSort
+          matSortDirection="asc"
+          matSortDisableClear
+          (matSortChange)="sortData($event)"
+        >
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let link; columns: displayedColumns"></mat-row>
+          <ng-container matColumnDef="referralLink">
+            <mat-header-cell *matHeaderCellDef>Referral Link</mat-header-cell>
 
-          <mat-cell *matCellDef="let link"
-            ><a target="_blank" [href]="link.referralLink">{{
-              link.referralLink
-            }}</a>
-          </mat-cell>
-        </ng-container>
-        <ng-container matColumnDef="reason">
-          <mat-header-cell *matHeaderCellDef mat-sort-header
-            >Reason</mat-header-cell
-          >
-          <mat-cell *matCellDef="let link">{{ link.reason }}</mat-cell>
-        </ng-container>
+            <mat-cell *matCellDef="let link"
+              ><a target="_blank" [href]="link.referralLink">{{ link.referralLink }}</a>
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="reason">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Reason</mat-header-cell>
+            <mat-cell *matCellDef="let link">{{ link.reason }}</mat-cell>
+          </ng-container>
 
-        <ng-container matColumnDef="key">
-          <mat-header-cell *matHeaderCellDef mat-sort-header
-            >Ref Key</mat-header-cell
-          >
-          <mat-cell *matCellDef="let link">{{ link.key }}</mat-cell>
-        </ng-container>
+          <ng-container matColumnDef="key">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Ref Key</mat-header-cell>
+            <mat-cell *matCellDef="let link">{{ link.key }}</mat-cell>
+          </ng-container>
 
-        <ng-container matColumnDef="type">
-          <mat-header-cell *matHeaderCellDef>Type</mat-header-cell>
-          <mat-cell *matCellDef="let link">{{ link.type }}</mat-cell>
-        </ng-container>
+          <ng-container matColumnDef="type">
+            <mat-header-cell *matHeaderCellDef>Type</mat-header-cell>
+            <mat-cell *matCellDef="let link">{{ link.type }}</mat-cell>
+          </ng-container>
 
-        <ng-container matColumnDef="count">
-          <mat-header-cell *matHeaderCellDef mat-sort-header
-            >Registered Users</mat-header-cell
-          >
-          <mat-cell *matCellDef="let link">{{ link.count }}</mat-cell>
-        </ng-container>
+          <ng-container matColumnDef="count">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Registered Users</mat-header-cell>
+            <mat-cell *matCellDef="let link">{{ link.count }}</mat-cell>
+          </ng-container>
 
-        <ng-container matColumnDef="createdAt">
-          <mat-header-cell *matHeaderCellDef mat-sort-header
-            >Created Date</mat-header-cell
-          >
-          <mat-cell *matCellDef="let link">{{
-            link.createdAt | date
-          }}</mat-cell>
-        </ng-container>
+          <ng-container matColumnDef="createdAt">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Created Date</mat-header-cell>
+            <mat-cell *matCellDef="let link">{{ link.createdAt | date }}</mat-cell>
+          </ng-container>
 
-        <!-- <ng-container matColumnDef="action">
+          <!-- <ng-container matColumnDef="action">
           <mat-header-cell *matHeaderCellDef></mat-header-cell>
           <mat-cell *matCellDef="let link"
             ><a [routerLink]="['detail', link.link]" class="links__action"
@@ -132,14 +121,15 @@
             >
           </mat-cell>
         </ng-container> -->
-      </mat-table>
+        </mat-table>
 
-      <mat-paginator
-        [length]="links.length"
-        [pageSize]="links.length"
-        [pageSizeOptions]="[10, 20, 30, 50]"
-        (page)="pageChange($event)"
-      ></mat-paginator>
+        <mat-paginator
+          [length]="links.length"
+          [pageSize]="links.length"
+          [pageSizeOptions]="[10, 20, 30, 50]"
+          (page)="pageChange($event)"
+        ></mat-paginator>
+      </div>
     </div>
     <div
       style="

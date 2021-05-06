@@ -414,22 +414,22 @@ img {
 
 .coming_soon {
   width: 90%;
-  height: 6rem;
+  height: 3.2rem;
   padding: 1rem;
+  /* border: 1px solid #aaa; */
   border-radius: 0.5rem;
   margin: 0 auto;
   margin-top: 5rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: 600;
   color: #fff;
   text-transform: uppercase;
   text-align: center;
   position: relative;
-  background: url("../../../assets/image/home_background3.svg"),
-    linear-gradient(0deg, rgba(255, 0, 86, 0.7), rgba(255, 0, 86, 0.7));
+  background: url(https://msp-seller-1.s3.amazonaws.com/coming_soon.png);
   background-position-x: 50%;
   background-position-y: 50%;
   background-repeat: no-repeat;
@@ -476,7 +476,7 @@ img {
     }
   }
   .coming_soon {
-    font-size: 2.5rem;
+    height: 6rem;
   }
 
   .products {
@@ -506,8 +506,4 @@ img {
       margin-top: 1rem;
     }
   }
-
-  // .coming_soon {
-  //   height: 6rem;
-  // }
 }
