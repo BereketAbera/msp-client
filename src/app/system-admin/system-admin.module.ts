@@ -1,3 +1,4 @@
+import { ChangePasswordComponent } from "./change-password/change-password.component";
 import { AddAssistantsComponent } from "./add-assistants/add-assistants.component";
 import { AssistantsComponent } from "./assistants/assistants.component";
 import { ReferralLinkServiceService } from "./../service/referral-link-service.service";
@@ -33,7 +34,8 @@ import { UsersAdminComponent } from "./users-admin/users-admin.component";
     CodesDetailComponent,
     LinksComponent,
     AssistantsComponent,
-    AddAssistantsComponent
+    AddAssistantsComponent,
+    ChangePasswordComponent
   ],
   imports: [CommonModule, ReactiveFormsModule, SharedModule, AdminRoutingModule],
   providers: [

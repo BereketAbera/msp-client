@@ -122,7 +122,9 @@ export class AddAssistantsComponent implements OnInit {
     }
   }
 
-  gotoAssistants() {}
+  gotoAssistants() {
+    this.router.navigate(["/tlgu-admin/assistant"]);
+  }
 
   preventPaste(event) {
     event.preventDefault();

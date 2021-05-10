@@ -43,4 +43,8 @@ export class AdminService {
   addAssistant(assistant): Observable<any> {
     return this.http.post(`${environment.APIEndpoint}accounts/assistants`, assistant);
   }
+
+  changePassword(changePassword): Observable<any> {
+    return this.http.post(`${environment.APIEndpoint}accounts/update_password`, changePassword);
+  }
 }

@@ -1,3 +1,4 @@
+import { ChangePasswordComponent } from "./change-password/change-password.component";
 import { AddAssistantsComponent } from "./add-assistants/add-assistants.component";
 import { AdminAssistantResolverService } from "./../service/admin-assistant-resolver.service";
 import { AssistantsComponent } from "./assistants/assistants.component";
@@ -78,6 +79,10 @@ const sellerRoutes: Routes = [
       {
         path: "assistant/add",
         component: AddAssistantsComponent
+      },
+      {
+        path: "change_password",
+        component: ChangePasswordComponent
       }
     ]
   }
