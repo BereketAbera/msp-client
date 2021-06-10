@@ -34,6 +34,8 @@ export class RegisterBuyerComponent implements OnInit {
   };
   referralLinkKey = null;
   states = [];
+  pid = null;
+  rid = null;
 
   constructor(
     public dialog: MatDialog,
@@ -71,6 +73,8 @@ export class RegisterBuyerComponent implements OnInit {
     });
     this.route.queryParamMap.subscribe((query) => {
       this.referralLinkKey = query.get("referralKey");
+      this.pid = query.get("pid");
+      this.rid = query.get("rid");
     });
     this.authService.progressBarActive.next(false);
     this.registrationForm.controls["phoneNumber"].valueChanges
@@ -154,11 +158,15 @@ export class RegisterBuyerComponent implements OnInit {
         let phoneNumber = this.registrationForm.controls["phoneNumber"];
         this.loading = true;
         return this.userService
-          .registerUser({
-            ...this.registrationForm.value,
-            phoneNumber: this.phoneChangeFormat(phoneNumber.value, "db"),
-            referralLinkKey: this.referralLinkKey
-          })
+          .registerUser(
+            {
+              ...this.registrationForm.value,
+              phoneNumber: this.phoneChangeFormat(phoneNumber.value, "db"),
+              referralLinkKey: this.referralLinkKey
+            },
+            this.pid,
+            this.rid
+          )
           .subscribe((res: any) => {
             this.loading = false;
             // window.scrollTo(0, 0);

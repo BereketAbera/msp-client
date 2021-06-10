@@ -1,7 +1,7 @@
 <div *ngIf="showError" class="errorCntr">
   <button class="errClsBtn" (click)="close()">&#215;</button>
   <ul>
-    <li *ngFor="let error of errors">
+    <li style="text-align: center" *ngFor="let error of errors">
       {{ error }}
     </li>
   </ul>
@@ -40,11 +40,7 @@
           {{ edit ? "" : "Select Image/Upload" }}
 
           <div *ngIf="edit" class="edit_image">
-            <img
-              *ngIf="imagePath && !imageUploadsDiv"
-              [src]="imagePath"
-              alt=""
-            />
+            <img *ngIf="imagePath && !imageUploadsDiv" [src]="imagePath" alt="" />
           </div>
 
           <button mat-raised-button class="text" (click)="toggleImageUploads()">
@@ -70,22 +66,14 @@
                 <i class="fad fa-cloud-upload-alt table__icon-2"></i>
               </div>
               <h2 class="text">Drag And Drop Your Image Here</h2>
-              <span class="describe"
-                >(Image should be greater than 550x440 size)</span
-              >
+              <span class="describe">(Image should be greater than 550x440 size)</span>
             </div>
           </div>
         </div>
-        <div
-          *ngIf="!edit || imageUploadsDiv"
-          class="product-form__image-gallery-container"
-        >
+        <div *ngIf="!edit || imageUploadsDiv" class="product-form__image-gallery-container">
           <div class="product-form__image-upload"></div>
           <div class="product-form__image-gallery">
-            <div
-              class="product-form__image-container"
-              *ngFor="let picture of pictures"
-            >
+            <div class="product-form__image-container" *ngFor="let picture of pictures">
               <input
                 type="radio"
                 [id]="picture.id"
@@ -97,9 +85,7 @@
                 <img
                   [src]="picture.file"
                   class="product-form__image"
-                  [class.product-form__image--active]="
-                    picture.id == productForm.get('imgId').value
-                  "
+                  [class.product-form__image--active]="picture.id == productForm.get('imgId').value"
                 />
               </label>
               <label>{{ picture.name }}</label>
@@ -114,11 +100,7 @@
             class="form-group-item-2"
             hintLabel="If empty list, go create at least one store location first."
           >
-            <mat-select
-              placeholder="Select Store Location"
-              formControlName="shop"
-              required
-            >
+            <mat-select placeholder="Select Store Location" formControlName="shop" required>
               <mat-option *ngFor="let option of shop1" [value]="option.value">
                 {{ option.name }}
               </mat-option>
@@ -150,9 +132,7 @@
             formControlName="unit"
           >
             <label class="product-form__label">Unit: </label>
-            <mat-radio-button class="product-form__radio" value="piece"
-              >Per Unit
-            </mat-radio-button>
+            <mat-radio-button class="product-form__radio" value="piece">Per Unit </mat-radio-button>
             <mat-radio-button class="product-form__radio" value="person"
               >Per Person
             </mat-radio-button>
@@ -183,21 +163,13 @@
             hintLabel="Buyer will pay you the discounted price plus any tax directly upon service."
             class="form-group-item"
           >
-            <mat-select
-              placeholder="Discount %"
-              formControlName="discountPersent"
-              required
-            >
+            <mat-select placeholder="Discount %" formControlName="discountPersent" required>
               <!-- <mat-option>--</mat-option> -->
-              <mat-option
-                *ngFor="let option of discounts"
-                [value]="option.value"
-              >
+              <mat-option *ngFor="let option of discounts" [value]="option.value">
                 {{ option.name }}
               </mat-option>
             </mat-select>
-            <mat-error
-              *ngIf="productForm.controls.discountPersent.hasError('required')"
+            <mat-error *ngIf="productForm.controls.discountPersent.hasError('required')"
               >Please choose discounted by
             </mat-error>
           </mat-form-field>
@@ -252,10 +224,7 @@
                       placeholder="Date"
                       [value]="offerStartInitTime"
                     />
-                    <mat-datepicker-toggle
-                      matSuffix
-                      [for]="pickerOffStr"
-                    ></mat-datepicker-toggle>
+                    <mat-datepicker-toggle matSuffix [for]="pickerOffStr"></mat-datepicker-toggle>
                     <mat-datepicker touchUi #pickerOffStr></mat-datepicker>
                   </mat-form-field>
                 </div>
@@ -271,10 +240,7 @@
                       placeholder="Date"
                       [value]="offerEndInitTime"
                     />
-                    <mat-datepicker-toggle
-                      matSuffix
-                      [for]="pickerOffEnd"
-                    ></mat-datepicker-toggle>
+                    <mat-datepicker-toggle matSuffix [for]="pickerOffEnd"></mat-datepicker-toggle>
                     <mat-datepicker touchUi #pickerOffEnd></mat-datepicker>
                   </mat-form-field>
                 </div>
@@ -292,11 +258,7 @@
                 <div class="form-group__label" fxFlexAlign="center">From:</div>
                 <div class="product-form__sub-container">
                   <mat-form-field class="product-form__input--type-3">
-                    <mat-select
-                      matInput
-                      formControlName="pickupStartHH"
-                      placeholder="HH"
-                    >
+                    <mat-select matInput formControlName="pickupStartHH" placeholder="HH">
                       <mat-option *ngFor="let hh of hhlst" [value]="hh">
                         {{ hh }}
                       </mat-option>
@@ -304,11 +266,7 @@
                   </mat-form-field>
                   <div fxFlexAlign="center">:</div>
                   <mat-form-field class="product-form__input--type-4">
-                    <mat-select
-                      matInput
-                      formControlName="pickupStartMM"
-                      placeholder="MM"
-                    >
+                    <mat-select matInput formControlName="pickupStartMM" placeholder="MM">
                       <mat-option *ngFor="let min of hhmm" [value]="min">
                         {{ min }}
                       </mat-option>
@@ -340,11 +298,7 @@
                   </mat-form-field>
                   <div fxFlexAlign="center">:</div>
                   <mat-form-field class="product-form__input--type-4">
-                    <mat-select
-                      matInput
-                      formControlName="pickupEndMM"
-                      placeholder="MM"
-                    >
+                    <mat-select matInput formControlName="pickupEndMM" placeholder="MM">
                       <mat-option *ngFor="let min of hhmm" [value]="min">
                         {{ min }}
                       </mat-option>
@@ -362,9 +316,7 @@
             </div>
           </div>
           <div fxLayout="row" fxFlexAlign="start">
-            <span class="product-form__label"
-              >Product Reservation Time Window</span
-            >
+            <span class="product-form__label">Product Reservation Time Window</span>
           </div>
           <div class="form-group">
             <div class="form-group-content">
@@ -372,11 +324,7 @@
                 <div class="form-group__label" fxFlexAlign="center">From:</div>
                 <div class="product-form__sub-container">
                   <mat-form-field class="product-form__input--type-3">
-                    <mat-select
-                      matInput
-                      formControlName="offerStartHH"
-                      placeholder="HH"
-                    >
+                    <mat-select matInput formControlName="offerStartHH" placeholder="HH">
                       <mat-option *ngFor="let hh of hhlst" [value]="hh">
                         {{ hh }}
                       </mat-option>
@@ -384,11 +332,7 @@
                   </mat-form-field>
                   <div fxFlexAlign="center">:</div>
                   <mat-form-field class="product-form__input--type-4">
-                    <mat-select
-                      matInput
-                      formControlName="offerStartMM"
-                      placeholder="MM"
-                    >
+                    <mat-select matInput formControlName="offerStartMM" placeholder="MM">
                       <mat-option *ngFor="let min of hhmm" [value]="min">
                         {{ min }}
                       </mat-option>
@@ -407,11 +351,7 @@
                 <div class="form-group__label-2" fxFlexAlign="center">To:</div>
                 <div class="product-form__sub-container">
                   <mat-form-field class="product-form__input--type-3">
-                    <mat-select
-                      matInput
-                      formControlName="offerEndHH"
-                      placeholder="HH"
-                    >
+                    <mat-select matInput formControlName="offerEndHH" placeholder="HH">
                       <mat-option *ngFor="let hh of hhlst" [value]="hh">
                         {{ hh }}
                       </mat-option>
@@ -419,11 +359,7 @@
                   </mat-form-field>
                   <div fxFlexAlign="center">:</div>
                   <mat-form-field class="product-form__input--type-4">
-                    <mat-select
-                      matInput
-                      formControlName="offerEndMM"
-                      placeholder="MM"
-                    >
+                    <mat-select matInput formControlName="offerEndMM" placeholder="MM">
                       <mat-option *ngFor="let min of hhmm" [value]="min">
                         {{ min }}
                       </mat-option>
@@ -476,12 +412,7 @@
             </button>
           </div>
           <div>
-            <button
-              type="button"
-              mat-flat-button
-              color="accent"
-              (click)="gotoSellAdmin()"
-            >
+            <button type="button" mat-flat-button color="accent" (click)="gotoSellAdmin()">
               Cancel
             </button>
           </div>
@@ -526,18 +457,8 @@
       Add Image
     </button>
 
-    <button
-      *ngIf="savingImage"
-      class="mat-flat-button mat-accent image__submit"
-    >
-      Add Image
-    </button>
-    <button
-      (click)="closeModal()"
-      class="mat-flat-button mat-accent image__submit"
-    >
-      Cancel
-    </button>
+    <button *ngIf="savingImage" class="mat-flat-button mat-accent image__submit">Add Image</button>
+    <button (click)="closeModal()" class="mat-flat-button mat-accent image__submit">Cancel</button>
   </div>
 </div>
 <div *ngIf="loadingLocalImage" class="loader">

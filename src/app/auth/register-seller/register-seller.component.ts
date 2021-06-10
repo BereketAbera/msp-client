@@ -58,6 +58,8 @@ export class RegisterSellerComponent implements OnInit {
   valueSet = true;
   subscription: Subscription;
   referralLinkKey = null;
+  pid = null;
+  rid = null;
 
   constructor(
     public dialog: MatDialog,
@@ -71,6 +73,8 @@ export class RegisterSellerComponent implements OnInit {
   ngOnInit() {
     this.route.queryParamMap.subscribe((query) => {
       this.referralLinkKey = query.get("referralKey");
+      this.pid = query.get("pid");
+      this.rid = query.get("rid");
     });
     this.authService.progressBarActive.next(false);
     this.route.data.subscribe((data: { categories: Category[]; states: State[] }) => {
@@ -110,12 +114,15 @@ export class RegisterSellerComponent implements OnInit {
         let phoneNumber = this.registrationForm.controls["phoneNumber"];
         // phoneNumber.setValue(this.phoneChangeFormat(phoneNumber.value, "db"));
         return this.userService
-          .registerUser({
-            ...this.registrationForm.value,
-            phoneNumber: this.phoneChangeFormat(phoneNumber.value, "db"),
-            referralLinkKey: this.referralLinkKey
-            // phoneNumber:"+251931644114"
-          })
+          .registerUser(
+            {
+              ...this.registrationForm.value,
+              phoneNumber: this.phoneChangeFormat(phoneNumber.value, "db"),
+              referralLinkKey: this.referralLinkKey
+            },
+            this.pid,
+            this.rid
+          )
           .subscribe((res: any) => {
             // window.scrollTo(0, 0);
             this.loading = false;

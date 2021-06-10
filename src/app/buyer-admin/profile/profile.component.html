@@ -1,10 +1,6 @@
 <div class="profile__container">
   <h1 class="profile__header">Profile</h1>
-  <div
-    *ngIf="message"
-    class="profile__display"
-    style="padding: 0.5rem; text-align: center"
-  >
+  <div *ngIf="message" class="profile__display" style="padding: 0.5rem; text-align: center">
     {{ message }}
   </div>
   <div *ngIf="!edit" class="profile__display">
@@ -22,12 +18,7 @@
   <div
     *ngIf="!edit_phoneNumber"
     class="profile__display"
-    style="
-      padding: 1rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    "
+    style="padding: 1rem; display: flex; justify-content: space-between; align-items: center"
   >
     <div class="profile__address-phonenumber" style="margin: 0rem">
       <div class="profile__phonenumber" style="margin: 0">
@@ -36,11 +27,7 @@
       </div>
     </div>
 
-    <div
-      (click)="togglePhoneNumberEdit()"
-      class="profile__edit-button"
-      style="position: unset"
-    >
+    <div (click)="togglePhoneNumberEdit()" class="profile__edit-button" style="position: unset">
       Edit Phone Number
     </div>
   </div>
@@ -49,16 +36,12 @@
     <div *ngIf="showError" class="errorCntr">
       <button class="errClsBtn" (click)="close()">&#215;</button>
       <ul>
-        <li *ngFor="let error of errors">
+        <li style="text-align: center" *ngFor="let error of errors">
           {{ error }}
         </li>
       </ul>
     </div>
-    <form
-      [formGroup]="profileForm"
-      class="add-shop__container"
-      (ngSubmit)="onSubmit()"
-    >
+    <form [formGroup]="profileForm" class="add-shop__container" (ngSubmit)="onSubmit()">
       <mat-card>
         <mat-card-title>Edit Your Profile</mat-card-title>
         <mat-card-content>
@@ -87,25 +70,13 @@
         </mat-card-content>
         <mat-card-actions>
           <div class="add-shop__actions">
-            <button
-              mat-flat-button
-              color="accent"
-              [disabled]="!profileForm.valid"
-            >
-              Save
-            </button>
-            <button mat-flat-button color="accent" (click)="toggleEdit()">
-              Cancel
-            </button>
+            <button mat-flat-button color="accent" [disabled]="!profileForm.valid">Save</button>
+            <button mat-flat-button color="accent" (click)="toggleEdit()">Cancel</button>
           </div>
         </mat-card-actions>
       </mat-card>
     </form>
   </div>
 </div>
-<app-custom-notification
-  [show]="showSuccessNotification"
-  type="success"
-  [text]="successMessage"
->
+<app-custom-notification [show]="showSuccessNotification" type="success" [text]="successMessage">
 </app-custom-notification>

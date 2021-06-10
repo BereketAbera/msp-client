@@ -3,7 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  version: "V4.0.0 AA",
+  version: "MSPAA V4.0.0",
   production: false,
   // APIEndpoint: "http://192.168.0.100:8383/api/"
   APIEndpoint: "http://localhost:8080/api/"

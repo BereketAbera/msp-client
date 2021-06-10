@@ -1,15 +1,11 @@
-<form
-  [formGroup]="shopForm"
-  class="add-shop__container"
-  (ngSubmit)="onSubmit()"
->
+<form [formGroup]="shopForm" class="add-shop__container" (ngSubmit)="onSubmit()">
   <mat-card class="card">
     <mat-card-title>Create store location</mat-card-title>
     <p>Must create at least one store location to sell products.</p>
     <div *ngIf="showError" class="errorCntr">
       <button class="errClsBtn" (click)="close()">&#215;</button>
       <ul>
-        <li *ngFor="let error of errors">
+        <li style="text-align: center" *ngFor="let error of errors">
           {{ error }}
         </li>
       </ul>
@@ -53,37 +49,18 @@
           />
         </mat-form-field>
         <mat-form-field class="add-shop__categories add-shop__input">
-          <mat-select
-            placeholder="Select Restaurant Type"
-            formControlName="subCategoryId"
-            required
-          >
-            <mat-option
-              *ngFor="let category of categories"
-              [value]="category.id"
-            >
+          <mat-select placeholder="Select Restaurant Type" formControlName="subCategoryId" required>
+            <mat-option *ngFor="let category of categories" [value]="category.id">
               {{ category.name }}
             </mat-option>
           </mat-select>
         </mat-form-field>
         <mat-form-field>
-          <input
-            maxlength="50"
-            matInput
-            placeholder="Address"
-            formControlName="address"
-            required
-          />
+          <input maxlength="50" matInput placeholder="Address" formControlName="address" required />
         </mat-form-field>
         <div class="add-shop__address">
           <mat-form-field class="add-shop__input zipstatecity">
-            <input
-              matInput
-              maxlength="30"
-              placeholder="City"
-              formControlName="city"
-              required
-            />
+            <input matInput maxlength="30" placeholder="City" formControlName="city" required />
           </mat-form-field>
 
           <mat-form-field class="add-shop__input zipstatecity">
@@ -95,16 +72,12 @@
               [matAutocomplete]="auto"
               formControlName="zipCode"
               (keydown)="checkInput($event)"
-              (change)="
-                shopForm.controls['zipCode'].setValue($event.target.value)
-              "
+              (change)="shopForm.controls['zipCode'].setValue($event.target.value)"
               minlength="5"
               maxlength="5"
               required
             />
-            <mat-error *ngIf="shopForm.controls.zipCode.invalid"
-              >Zip code is not valid</mat-error
-            >
+            <mat-error *ngIf="shopForm.controls.zipCode.invalid">Zip code is not valid</mat-error>
             <mat-autocomplete #auto="matAutocomplete">
               <mat-option
                 *ngFor="let result of zipCodeHints"
@@ -113,22 +86,13 @@
               >
                 <span>{{ result.ZIPCode }}</span>
                 <small>
-                  | {{ result.CountyName }} {{ result.CityName }}
-                  {{ result.StateAbbr }}</small
+                  | {{ result.CountyName }} {{ result.CityName }} {{ result.StateAbbr }}</small
                 >
               </mat-option>
             </mat-autocomplete>
           </mat-form-field>
-          <mat-form-field
-            *ngIf="shopForm.get('state').value"
-            class="add-shop__input zipstatecity"
-          >
-            <mat-select
-              placeholder="State"
-              formControlName="state"
-              required
-              disabled
-            >
+          <mat-form-field *ngIf="shopForm.get('state').value" class="add-shop__input zipstatecity">
+            <mat-select placeholder="State" formControlName="state" required disabled>
               <mat-option *ngFor="let state of states" [value]="state.id">
                 {{ state.abbreviation }}
               </mat-option>
@@ -150,12 +114,8 @@
     </mat-card-content>
     <mat-card-actions>
       <div class="add-shop__actions">
-        <button mat-flat-button color="accent" [disabled]="!shopForm.valid">
-          Save
-        </button>
-        <button mat-flat-button color="accent" (click)="gotoShopList()">
-          Cancel
-        </button>
+        <button mat-flat-button color="accent" [disabled]="!shopForm.valid">Save</button>
+        <button mat-flat-button color="accent" (click)="gotoShopList()">Cancel</button>
       </div>
     </mat-card-actions>
   </mat-card>

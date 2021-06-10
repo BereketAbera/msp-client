@@ -1,14 +1,10 @@
-<form
-  [formGroup]="shopForm"
-  class="add-shop__container"
-  (ngSubmit)="onSubmit()"
->
+<form [formGroup]="shopForm" class="add-shop__container" (ngSubmit)="onSubmit()">
   <mat-card class="card-edit">
     <mat-card-title>Edit store location</mat-card-title>
     <div *ngIf="showError" class="errorCntr">
       <button class="errClsBtn" (click)="close()">&#215;</button>
       <ul>
-        <li *ngFor="let error of errors">
+        <li style="text-align: center" *ngFor="let error of errors">
           {{ error }}
         </li>
       </ul>
@@ -85,16 +81,12 @@
               [matAutocomplete]="auto"
               formControlName="zipCode"
               (keydown)="checkInput($event)"
-              (change)="
-                shopForm.controls['zipCode'].setValue($event.target.value)
-              "
+              (change)="shopForm.controls['zipCode'].setValue($event.target.value)"
               minlength="5"
               maxlength="5"
               required
             />
-            <mat-error *ngIf="shopForm.controls.zipCode.invalid"
-              >Zip code is not valid</mat-error
-            >
+            <mat-error *ngIf="shopForm.controls.zipCode.invalid">Zip code is not valid</mat-error>
             <mat-autocomplete #auto="matAutocomplete">
               <mat-option
                 *ngFor="let result of zipCodeHints"
@@ -103,16 +95,12 @@
               >
                 <span>{{ result.ZIPCode }}</span>
                 <small>
-                  | {{ result.CountyName }} {{ result.CityName }}
-                  {{ result.StateAbbr }}</small
+                  | {{ result.CountyName }} {{ result.CityName }} {{ result.StateAbbr }}</small
                 >
               </mat-option>
             </mat-autocomplete>
           </mat-form-field>
-          <mat-form-field
-            *ngIf="shopForm.get('state').value"
-            class="add-shop__input zipstatecity"
-          >
+          <mat-form-field *ngIf="shopForm.get('state').value" class="add-shop__input zipstatecity">
             <mat-select
               placeholder="State"
               formControlName="state"
@@ -131,9 +119,7 @@
     <mat-card-actions>
       <div class="add-shop__actions">
         <button mat-flat-button color="accent">Save</button>
-        <button mat-flat-button color="accent" (click)="gotoShopList()">
-          Cancel
-        </button>
+        <button mat-flat-button color="accent" (click)="gotoShopList()">Cancel</button>
       </div>
     </mat-card-actions>
   </mat-card>

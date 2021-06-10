@@ -1,9 +1,5 @@
 import { AuthService } from "@app/service/auth.service";
-import {
-  HttpClient,
-  HttpErrorResponse,
-  HttpParams,
-} from "@angular/common/http";
+import { HttpClient, HttpErrorResponse, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { throwError } from "rxjs";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
@@ -31,49 +27,43 @@ let globThis;
 @Injectable()
 export class UserService {
   public countSubject = new BehaviorSubject<number>(0);
-  constructor(
-    private http: HttpClient,
-    private authService: AuthService,
-    private router: Router
-  ) {
+  constructor(private http: HttpClient, private authService: AuthService, private router: Router) {
     globThis = this;
   }
-  registerUser(user: any) {
-    return this.http.post(userAPI, user).pipe(catchError(this.handleError));
-  }
-  registerSlrUser(user: any) {
+  registerUser(user: any, pid: string = null, rid: string = null) {
     return this.http
-      .post(userAPI + "/crtslrfr", user)
+      .post(pid && rid ? userAPI + `?pid=${pid}&rid=${rid}` : userAPI, user)
       .pipe(catchError(this.handleError));
   }
-  registerByrUser(user: User) {
+  registerSlrUser(user: any, points: string = null) {
     return this.http
-      .post(userAPI + "/crtbyrrfr", user)
+      .post(points ? userAPI + `/crtslrfr?points=${points}` : userAPI + `/crtslrfr`, user)
+      .pipe(catchError(this.handleError));
+  }
+  registerByrUser(user: User, points: string = null) {
+    return this.http
+      .post(points ? userAPI + `/crtbyrrfr?points=${points}` : userAPI + `/crtbyrrfr`, user)
       .pipe(catchError(this.handleError));
   }
   getReferedEmail(tk: string) {
     return this.http
       .get(userAPI + "/rfrdeml", {
-        params: new HttpParams().set("tk", tk.toString()),
+        params: new HttpParams().set("tk", tk.toString())
       })
       .pipe(catchError(this.handleError));
   }
   inviteBuyers(emails: string[]) {
-    return this.http
-      .post(accountAPI + "/invtbyrs", emails)
-      .pipe(catchError(this.handleError));
+    return this.http.post(accountAPI + "/invtbyrs", emails).pipe(catchError(this.handleError));
   }
   isEmailUsed(email: string) {
     return this.http
       .get(accountAPI + "/isemlusd", {
-        params: new HttpParams().set("email", email.toString()),
+        params: new HttpParams().set("email", email.toString())
       })
       .pipe(catchError(this.handleError));
   }
   inviteSellers(emails: string[]) {
-    return this.http
-      .post(accountAPI + "/invtslrs", emails)
-      .pipe(catchError(this.handleError));
+    return this.http.post(accountAPI + "/invtslrs", emails).pipe(catchError(this.handleError));
   }
   getSellerDailySlsSmry(
     fltrDate: Date | string,
@@ -87,7 +77,7 @@ export class UserService {
           .set("startDate", fltrDate.toString())
           .set("endDate", fltrEnd.toString())
           .set("pageNumber", pageNumber.toString())
-          .set("pageSize", pageSize.toString()),
+          .set("pageSize", pageSize.toString())
       })
       .pipe(
         map((res) => {
@@ -97,19 +87,14 @@ export class UserService {
         catchError(this.handleError)
       );
   }
-  listRefers(
-    filter = "",
-    sortOrder = "asc",
-    pageNumber = 0,
-    pageSize = 5
-  ): Observable<Refer[]> {
+  listRefers(filter = "", sortOrder = "asc", pageNumber = 0, pageSize = 5): Observable<Refer[]> {
     return this.http
       .get(accountAPI + "/lstrfrs", {
         params: new HttpParams()
           .set("filter", filter)
           .set("sortOrder", sortOrder)
           .set("pageNumber", pageNumber.toString())
-          .set("pageSize", pageSize.toString()),
+          .set("pageSize", pageSize.toString())
       })
       .pipe(
         map((res) => {
@@ -124,8 +109,7 @@ export class UserService {
       map((balance) => {
         if (balance["amount"] && balance["amount"].balance)
           return <Balance>{ amount: balance["amount"].balance };
-        else if (balance["amount"])
-          return <Balance>{ amount: balance["amount"] };
+        else if (balance["amount"]) return <Balance>{ amount: balance["amount"] };
         else return <Balance>{ amount: 0 };
       }),
       catchError(this.handleError)
@@ -186,7 +170,7 @@ export class UserService {
           .set("pageSize", pageSize.toString())
           .set("sortOrder", sortOrder)
           .set("sortedBy", sortedBy)
-          .set("referralLinkKey", referralLinkKey),
+          .set("referralLinkKey", referralLinkKey)
       })
       .pipe(
         map((res) => {
@@ -201,7 +185,7 @@ export class UserService {
   getOneSellerInfo(id) {
     return this.http
       .get(accountAPI + "/seller/detail", {
-        params: new HttpParams().set("id", id),
+        params: new HttpParams().set("id", id)
       })
       .pipe(
         map((seller) => {
@@ -224,7 +208,7 @@ export class UserService {
           .set("filter", filter)
           .set("sortOrder", sortOrder)
           .set("pageNumber", pageNumber.toString())
-          .set("pageSize", pageSize.toString()),
+          .set("pageSize", pageSize.toString())
       })
       .pipe(
         map((res) => {
@@ -264,9 +248,7 @@ export class UserService {
       }
       // The backend returned an unsuccessful response code.
       // The response body may contain clues as to what went wrong,
-      console.error(
-        `Backend returned code ${error.status}, ` + `body was: ${error.error}`
-      );
+      console.error(`Backend returned code ${error.status}, ` + `body was: ${error.error}`);
     }
     // return an observable with a user-facing error message
     return throwError("Something bad happened; please try again later.");
@@ -295,7 +277,7 @@ export class UserService {
 
   sendPhonenNumberCode(phoneNumber): Observable<any> {
     return this.http.post(profileAPI + "/send_phonenumber_code", {
-      phoneNumber,
+      phoneNumber
     });
   }
 

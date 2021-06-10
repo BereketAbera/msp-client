@@ -2,7 +2,7 @@
   <div *ngIf="showError" class="errorCntr">
     <button class="errClsBtn" (click)="close()">&#215;</button>
     <ul>
-      <li *ngFor="let error of errors">
+      <li style="text-align: center" *ngFor="let error of errors">
         {{ error }}
       </li>
     </ul>

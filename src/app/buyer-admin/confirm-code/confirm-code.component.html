@@ -3,40 +3,24 @@
   <div *ngIf="error" class="errorCntr">
     <button class="errClsBtn" (click)="close()">&#215;</button>
     <ul>
-      <li>
+      <li style="text-align: center">
         {{ error }}
       </li>
     </ul>
   </div>
-  <form
-    class="confirm__form"
-    [formGroup]="confirmCode"
-    style="margin: 2rem 0rem"
-  >
+  <form class="confirm__form" [formGroup]="confirmCode" style="margin: 2rem 0rem">
     <div class="confirm__info">
-      Please check your phone for a text message with your code.Your code is 5
-      characters long
+      Please check your phone for a text message with your code.Your code is 5 characters long
     </div>
     <div *ngIf="message" class="confirm__message">
       {{ message }}
     </div>
     <mat-form-field class="confirm__input">
       <mat-label>Confirm Code</mat-label>
-      <input
-        type="number"
-        matInput
-        placeholder="Enter Code"
-        formControlName="code"
-        required
-      />
+      <input type="number" matInput placeholder="Enter Code" formControlName="code" required />
     </mat-form-field>
     <div>
-      <button
-        class="confirm__button"
-        mat-flat-button
-        color="accent"
-        (click)="goBack()"
-      >
+      <button class="confirm__button" mat-flat-button color="accent" (click)="goBack()">
         Cancel
       </button>
       <button

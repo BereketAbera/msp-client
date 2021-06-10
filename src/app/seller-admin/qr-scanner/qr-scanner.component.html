@@ -1,8 +1,7 @@
 <div *ngIf="showError" class="errorCntr">
   <button class="errClsBtn" (click)="close()">&#215;</button>
-  <p>
-    Sorry, your account is either inactive or disabled.Please contact
-    sales@ManagerSpecial.com.
+  <p style="text-align: center">
+    Sorry, your account is either inactive or disabled.Please contact sales@ManagerSpecial.com.
   </p>
 </div>
 <div class="scanner__container">
@@ -23,14 +22,7 @@
         </mat-form-field>
       </mat-card-content>
       <mat-card-actions align="center">
-        <button
-          type="button"
-          mat-flat-button
-          color="accent"
-          (click)="checkCode()"
-        >
-          Submit
-        </button>
+        <button type="button" mat-flat-button color="accent" (click)="checkCode()">Submit</button>
         <br />
         <p>Do not accept if Buyer’s code is expired or not valid.</p>
       </mat-card-actions>
@@ -41,8 +33,7 @@
       <div fxLayout="column" fxLayoutAlign="center" class="frmDiv">
         <div>
           <p style="font-size: 1.5rem">
-            <strong>Thanks for using our service.</strong> You may now serve the
-            Buyer!
+            <strong>Thanks for using our service.</strong> You may now serve the Buyer!
           </p>
         </div>
       </div>
