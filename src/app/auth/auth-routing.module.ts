@@ -21,36 +21,36 @@ const authRoutes: Routes = [
         path: "login/:type",
         component: LoginComponent,
         resolve: {
-          states: StateResolverService,
-        },
+          states: StateResolverService
+        }
       },
       {
         path: "login",
         component: LoginComponent,
         resolve: {
-          states: StateResolverService,
-        },
+          states: StateResolverService
+        }
       },
       {
         path: "signup",
         component: SignupComponent,
         resolve: {
-          states: StateResolverService,
-        },
+          states: StateResolverService
+        }
       },
       {
-        path: "common-signup",
+        path: "signup-buyer",
         component: CommonSingupComponent,
         resolve: {
-          states: StateResolverService,
-        },
+          states: StateResolverService
+        }
       },
       {
         path: "signup-seller",
         component: SignupSellerComponent,
         resolve: {
-          states: StateResolverService,
-        },
+          states: StateResolverService
+        }
       },
       { path: "rstpwrd", component: ResetPasswordComponent },
       { path: "nwpwd", component: NewPasswordComponent },
@@ -59,22 +59,22 @@ const authRoutes: Routes = [
         path: "regslrrfr",
         component: RegisterSellerRefComponent,
         resolve: {
-          states: StateResolverService,
-        },
+          states: StateResolverService
+        }
       },
       {
         path: "regbyrrfr",
         component: RegisterBuyerRefComponent,
         resolve: {
-          states: StateResolverService,
-        },
-      },
-    ],
-  },
+          states: StateResolverService
+        }
+      }
+    ]
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(authRoutes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
 export class AuthRoutingModule {}

@@ -18,18 +18,18 @@ export class AuthComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
-    if (this.router.url.toString().includes("/common-signup")) {
+    if (this.router.url.toString().includes("/signup-buyer")) {
       this.signUpRoute = "/signup-seller";
     } else if (this.router.url.toString().includes("/signup-seller")) {
-      this.signUpRoute = "/common-signup";
+      this.signUpRoute = "/signup-buyer";
     } else {
       this.signUpRoute = "";
     }
     this.router.events.subscribe((url: any) => {
-      if (url.url && url.url.includes("/common-signup")) {
+      if (url.url && url.url.includes("/signup-buyer")) {
         this.signUpRoute = "/signup-seller";
       } else if (url.url && url.url.includes("/signup-seller")) {
-        this.signUpRoute = "/common-signup";
+        this.signUpRoute = "/signup-buyer";
       }
     });
     this.authService.progressBarActive.subscribe((value) => {

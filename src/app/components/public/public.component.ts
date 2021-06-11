@@ -31,7 +31,7 @@ export class PublicComponent implements OnInit {
   categoryId: any;
   q: any;
   searchActive: any = false;
-  signUpRoute = "/common-signup";
+  signUpRoute = "/signup-buyer";
   referralKey = null;
 
   constructor(
@@ -52,9 +52,9 @@ export class PublicComponent implements OnInit {
         if (this.router.url.toString().includes("/seller")) {
           this.signUpRoute = "/signup-seller";
         } else if (this.router.url.toString().includes("/buyer")) {
-          this.signUpRoute = "/common-signup";
+          this.signUpRoute = "/signup-buyer";
         } else {
-          this.signUpRoute = "/common-signup";
+          this.signUpRoute = "/signup-buyer";
         }
       }
       if (url.url && (url.url.includes("/products") || url.url.includes("/zip_products"))) {
