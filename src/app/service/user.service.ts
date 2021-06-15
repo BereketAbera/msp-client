@@ -31,6 +31,7 @@ export class UserService {
     globThis = this;
   }
   registerUser(user: any, pid: string = null, rid: string = null) {
+    console.log(pid, rid);
     return this.http
       .post(pid && rid ? userAPI + `?pid=${pid}&rid=${rid}` : userAPI, user)
       .pipe(catchError(this.handleError));
