@@ -9,7 +9,7 @@ import { ConfigurationService } from "src/app/service/configuartion.service";
 
 @Component({
   templateUrl: "./home.component.html",
-  styleUrls: ["./home.component.scss"],
+  styleUrls: ["./home.component.scss"]
 })
 export class HomeComponent implements OnInit {
   @ViewChild("anchor") anchor: ElementRef<HTMLElement>;
@@ -23,9 +23,29 @@ export class HomeComponent implements OnInit {
   videosC = true;
   @ViewChild("videoPlayer", { static: true }) videoplayer: ElementRef;
   @ViewChild("videoPlayerB", { static: true }) videoplayerB: ElementRef;
+  @ViewChild("target", { static: true }) target: ElementRef;
   play: boolean;
   play2: any;
   config: any;
+  options: {
+    fluid: boolean;
+    autoplay: boolean;
+    controls: boolean;
+    sources: {
+      src: string;
+      type: string;
+    }[];
+  } = {
+    fluid: false,
+    autoplay: false,
+    controls: false,
+    sources: [
+      {
+        src: "https://3forces.s3.amazonaws.com/msp/MSP_Buyer/playlist.m3u8",
+        type: "application/x-mpegURL"
+      }
+    ]
+  };
   constructor(
     private winRef: WindowRef,
     private route: ActivatedRoute,
@@ -95,10 +115,7 @@ export class HomeComponent implements OnInit {
   addressChanged(address) {
     // console.log("address changes");
     this.searchInput.setValue(
-      `${address.CityName.toString().replace(
-        /'/g,
-        ""
-      )}, ${address.CountyName.toString().replace(
+      `${address.CityName.toString().replace(/'/g, "")}, ${address.CountyName.toString().replace(
         /'/g,
         ""
       )}, ${address.StateName.toString().replace(/'/g, "")}`
@@ -132,12 +149,12 @@ export class HomeComponent implements OnInit {
             "client_address",
             JSON.stringify({
               Latitude: response.coords.latitude,
-              Longitude: response.coords.longitude,
+              Longitude: response.coords.longitude
             })
           );
           this.authService.updateClientLocation({
             Latitude: response.coords.latitude,
-            Longitude: response.coords.longitude,
+            Longitude: response.coords.longitude
           });
           this.router.navigate(["/products"]);
         },

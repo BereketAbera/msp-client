@@ -80,7 +80,7 @@
           BECOME A MEMBER
         </h1>
         <div class="home__video__container">
-          <video
+          <!-- <video
             class="home__video2"
             poster="assets/image/BuyerVideoFrame.JPG"
             (click)="playVideo2()"
@@ -88,18 +88,17 @@
             controls
           >
             <source
-              src="https://3forces.s3.amazonaws.com/msp/msp_buyer_intro.mp4"
-              type="video/mp4"
+              src="http://8mspbb.com/strm/1617349008048video/playlist.m3u8"
+              type="application/x-mpegURL"
             />
-            <source src="video.ogg" type="video/ogg" />
-            <source src="video.webm" type="video/webm" />
-            <object data="https://3forces.s3.amazonaws.com/msp/msp_buyer_intro.mp4">
-              <embed src="video.swf" width="340" height="190" />
-            </object>
           </video>
           <div (click)="playVideo2()" *ngIf="!play2" class="home__icon">
             <img src="assets/image/vidoeicon.png" alt="" />
-          </div>
+          </div> -->
+          <mat-video
+            poster="assets/image/BuyerVideoFrame.JPG"
+            src="https://3forces.s3.amazonaws.com/msp/msp_buyer_intro.mp4"
+          ></mat-video>
         </div>
 
         <p class="home__step-description home__step-memebership">No Membership Fee</p>

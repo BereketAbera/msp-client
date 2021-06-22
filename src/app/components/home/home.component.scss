@@ -1,3 +1,10 @@
+@import "~video.js/dist/video-js.min.css";
+
+::ng-deep {
+  .vjs-modal-dialog .vjs-text-track-settings {
+    display: none;
+  }
+}
 .overlay {
   position: fixed;
   top: 0;

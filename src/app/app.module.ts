@@ -44,6 +44,7 @@ import { SaveProgressComponent } from "./shared/save-progress/save-progress.comp
 import { SharedModule } from "./shared/shared.module";
 import { EditConfigModalComponent } from "./system-admin/edit-config-modal/edit-config-modal.component";
 import { BuyerHomeComponent } from "./components/buyer-home/buyer-home.component";
+import { MatVideoModule } from "mat-video";
 
 // import { DragDropDirective } from './service/drag-drop.directive';
 // import { CustomNotificationComponent } from "./components/custom-notification/custom-notification.component";
@@ -80,7 +81,8 @@ import { BuyerHomeComponent } from "./components/buyer-home/buyer-home.component
     SharedModule,
     MatNativeDateModule,
     ReactiveFormsModule,
-    RoutingModule
+    RoutingModule,
+    MatVideoModule
     // DragDropDirective,
 
     // ServiceWorkerModule.register("ngsw-worker.js", {
